@@ -48,6 +48,7 @@ jobs:
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
+          versioning: None
       - uses: actions/upload-artifact@v2.1.4
         with:
           name: Build
