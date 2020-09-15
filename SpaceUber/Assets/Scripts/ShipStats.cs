@@ -40,7 +40,7 @@ public class ShipStats : MonoBehaviour
 
     List<GameObject> rooms;
 
-    int credits { get; set; }
+    int credits;
     int energyMax;
     int energyRemaining;
     int security;
