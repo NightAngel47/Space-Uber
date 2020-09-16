@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -156,7 +156,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: -180}
-  m_SizeDelta: {x: 500, y: 50}
+  m_SizeDelta: {x: 750, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &206933816
 MonoBehaviour:
@@ -361,7 +361,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: -60}
-  m_SizeDelta: {x: 500, y: 50}
+  m_SizeDelta: {x: 750, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &394631325
 MonoBehaviour:
@@ -577,7 +577,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: -360}
-  m_SizeDelta: {x: 500, y: 50}
+  m_SizeDelta: {x: 750, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &772619098
 MonoBehaviour:
@@ -767,7 +767,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: -120}
-  m_SizeDelta: {x: 500, y: 50}
+  m_SizeDelta: {x: 750, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &785371259
 MonoBehaviour:
@@ -1071,7 +1071,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 50}
+  m_SizeDelta: {x: 750, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1381152716
 MonoBehaviour:
@@ -1204,7 +1204,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: -240}
-  m_SizeDelta: {x: 500, y: 50}
+  m_SizeDelta: {x: 750, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1542323317
 MonoBehaviour:
@@ -1337,7 +1337,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: -300}
-  m_SizeDelta: {x: 500, y: 50}
+  m_SizeDelta: {x: 750, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1553740890
 MonoBehaviour:
@@ -1445,6 +1445,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1784940688}
   - component: {fileID: 1784940687}
+  - component: {fileID: 1784940690}
+  - component: {fileID: 1784940692}
+  - component: {fileID: 1784940689}
+  - component: {fileID: 1784940691}
   m_Layer: 0
   m_Name: New Sprite
   m_TagString: Untagged
@@ -1516,3 +1520,62 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1784940689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784940686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfec50bf890af17479ff38a5eee6322e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: Credits
+  amount: 100
+--- !u!114 &1784940690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784940686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9737dedef52a2fc46ab85f491529aa9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources: []
+  minCrew: 0
+  maxCrew: 0
+  minPower: 0
+  maxPower: 0
+--- !u!114 &1784940691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784940686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfec50bf890af17479ff38a5eee6322e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: Food
+  amount: 50
+--- !u!114 &1784940692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784940686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfec50bf890af17479ff38a5eee6322e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: Energy
+  amount: 10
