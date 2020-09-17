@@ -181,7 +181,7 @@ public class InkExample : MonoBehaviour
     /// </summary>
     string GetNextStoryBlock()
     {
-        string text = "This should not be printing :D"; //error check
+        string text = ""; //error check
 
         if (story.canContinue) //ALWAYS do this check before using story.Continue() to avoid errors
         {
