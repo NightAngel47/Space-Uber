@@ -36,5 +36,6 @@ public class RoomUIController : MonoBehaviour
                 textList[i + 1].text = resources[i].resourceType + ": " + resources[i].amount;
             }
         }
+        textList[4].text = roomPrefab.GetComponent<RoomStats>().roomDescription;
     }
 }
