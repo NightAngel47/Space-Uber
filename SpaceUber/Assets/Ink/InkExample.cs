@@ -56,6 +56,10 @@ public class InkExample : MonoBehaviour
         {
             Refresh();
         }
+		if (!story.canContinue && story.currentChoices.Count == 0)
+		{
+            EventSystem.instance.ConcludeEvent();
+		}
     }
 
     /// <summary>
