@@ -1,11 +1,15 @@
 VAR name = "Player"
-
-<color=green>"This is an example Ink file."</color>#Dan
+VAR shipIntegrity = 7
+"This is an example Ink file."#Dan
 
 
 * [Are you sure this is a good example?] 
     "Yes it is, shut up" 
+    
     "I even have multiple lines of dialogue"#Dan
+    
+    **[That's fair"]
+    "Yeah that's what I thought"
     -> DONE
 * [Everything seems good here!] 
     "Wow, suck up" #Dan
