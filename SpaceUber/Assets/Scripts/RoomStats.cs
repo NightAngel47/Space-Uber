@@ -21,6 +21,11 @@ public class RoomStats : MonoBehaviour
 
     int currentCrew;
 
+    [ResizableTextArea]
+    public string roomDescription;
+
+    public string roomName;
+
     private int credits = 0;
     private int energy = 0;
     private int security = 0;
@@ -58,6 +63,9 @@ public class RoomStats : MonoBehaviour
         GetStats();
     }
 
+    /// <summary>
+    /// Adds the stats from all attached Resource components to RoomStats
+    /// </summary>
     private void GetStats()
     {
         foreach(Resource resource in resources)
@@ -95,27 +103,33 @@ public class RoomStats : MonoBehaviour
         AddRoomStats();
     }
 
+    /// <summary>
+    /// Adds the room's stats to the ship's total
+    /// </summary>
     public void AddRoomStats()
     {
         shipStats.UpdateCreditsAmount(credits);
-        shipStats.UpdateEnergyAmount(energy);
+        shipStats.UpdateEnergyAmount(energy, energy);
         shipStats.UpdateSecurityAmount(security);
         shipStats.UpdateShipWeaponsAmount(shipWeapons);
-        shipStats.UpdateCrewAmount(crew);
+        shipStats.UpdateCrewAmount(crew, crew);
         shipStats.UpdateFoodAmount(food);
         shipStats.UpdateFoodPerTickAmount(foodPerTick);
-        shipStats.UpdateHullDurabilityAmount(shipHealth);
+        shipStats.UpdateHullDurabilityAmount(shipHealth, shipHealth);
     }
 
+    /// <summary>
+    /// Subtracts the room's stats from the ship's total
+    /// </summary>
     public void SubtractRoomStats()
     {
         shipStats.UpdateCreditsAmount(-credits);
-        shipStats.UpdateEnergyAmount(-energy);
+        shipStats.UpdateEnergyAmount(-energy, energy);
         shipStats.UpdateSecurityAmount(-security);
         shipStats.UpdateShipWeaponsAmount(-shipWeapons);
-        shipStats.UpdateCrewAmount(-crew);
+        shipStats.UpdateCrewAmount(-crew, crew);
         shipStats.UpdateFoodAmount(-food);
         shipStats.UpdateFoodPerTickAmount(-foodPerTick);
-        shipStats.UpdateHullDurabilityAmount(-shipHealth);
+        shipStats.UpdateHullDurabilityAmount(-shipHealth, shipHealth);
     }
 }

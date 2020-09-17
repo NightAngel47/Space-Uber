@@ -46,27 +46,16 @@ public class ShipStats : MonoBehaviour
 
     private List<RoomStats> rooms;
 
-    [OnValueChanged("UpdateShipStatsUI")]
     private int credits;
-    [OnValueChanged("UpdateShipStatsUI")]
     private int energyMax;
-    [OnValueChanged("UpdateShipStatsUI")]
     private int energyRemaining;
-    [OnValueChanged("UpdateShipStatsUI")]
     private int security;
-    [OnValueChanged("UpdateShipStatsUI")]
     private int shipWeapons;
-    [OnValueChanged("UpdateShipStatsUI")]
     private int crewMax;
-    [OnValueChanged("UpdateShipStatsUI")]
     private int crewRemaining;
-    [OnValueChanged("UpdateShipStatsUI")]
     private int food;
-    [OnValueChanged("UpdateShipStatsUI")]
     private int foodPerTick;
-    [OnValueChanged("UpdateShipStatsUI")]
     private int shipHealthMax;
-    [OnValueChanged("UpdateShipStatsUI")]
     private int shipHealthCurrent;
 
     void Start()
@@ -100,43 +89,51 @@ public class ShipStats : MonoBehaviour
     public void UpdateCreditsAmount(int creditAmount)
     {
         credits += creditAmount;
+        UpdateShipStatsUI();
     }
 
-    public void UpdateEnergyAmount(int energyAmount)
+    public void UpdateEnergyAmount(int energyRemainingAmount, int energyMaxAmount = 0)
     {
-        energyMax += energyAmount;
-        energyRemaining += energyAmount;
+        energyMax += energyMaxAmount;
+        energyRemaining += energyRemainingAmount;
+        UpdateShipStatsUI();
     }
 
     public void UpdateSecurityAmount(int securityAmount)
     {
         security += securityAmount;
+        UpdateShipStatsUI();
     }
 
     public void UpdateShipWeaponsAmount(int shipWeaponsAmount)
     {
         shipWeapons += shipWeaponsAmount;
+        UpdateShipStatsUI();
     }
 
-    public void UpdateCrewAmount(int crewAmount)
+    public void UpdateCrewAmount(int crewRemainingAmount, int crewMaxAmount = 0)
     {
-        crewMax += crewAmount;
-        crewRemaining += crewAmount;
+        crewMax += crewMaxAmount;
+        crewRemaining += crewRemainingAmount;
+        UpdateShipStatsUI();
     }
 
     public void UpdateFoodAmount(int foodAmount)
     {
         food += foodAmount;
+        UpdateShipStatsUI();
     }
 
     public void UpdateFoodPerTickAmount(int foodPerTickAmount)
     {
         foodPerTick += foodPerTickAmount;
+        UpdateShipStatsUI();
     }
 
-    public void UpdateHullDurabilityAmount(int hullDurabilityAmount)
+    public void UpdateHullDurabilityAmount(int hullDurabilityRemainingAmount, int hullDurabilityMax = 0)
     {
-        shipHealthMax += hullDurabilityAmount;
-        shipHealthCurrent += hullDurabilityAmount;
+        shipHealthMax += hullDurabilityMax;
+        shipHealthCurrent += hullDurabilityRemainingAmount;
+        UpdateShipStatsUI();
     }
 }
