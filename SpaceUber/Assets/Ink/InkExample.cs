@@ -52,10 +52,10 @@ public class InkExample : MonoBehaviour
     private void Update()
     {
         //Save for potential implementation of story.Continue() instead of continueMaximally()
-        if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && donePrinting && !showingChoices)
-        {
-            Refresh();
-        }
+        //if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && donePrinting && !showingChoices)
+        //{
+        //    Refresh();
+        //}
     }
 
     /// <summary>
@@ -181,9 +181,8 @@ public class InkExample : MonoBehaviour
 
         if (story.canContinue) //ALWAYS do this check before using story.Continue() to avoid errors
         {
-            text = story.Continue();  //reads text until there is another choice 
+            text = story.ContinueMaximally();  //reads text until there is another choice 
             print("The next block is: " + text);
-            
         }
         
         return text;
