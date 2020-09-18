@@ -1,5 +1,5 @@
 /*
- * InkExample.cs
+ * InkDriverBase.cs
  * Author(s): Scott Acker
  * Created on: 9/11/2020
  * Description: An example file to show the most-common functions of Ink-related Code
@@ -12,7 +12,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
 
-public class InkExample : MonoBehaviour
+public class InkDriverBase : MonoBehaviour
 {
     [Tooltip("Attach the.JSON file you want read to this")]
     public TextAsset inkJSONAsset;
@@ -52,7 +52,7 @@ public class InkExample : MonoBehaviour
     private void Update()
     {
         //Save for potential implementation of story.Continue() instead of continueMaximally()
-        if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && donePrinting && !showingChoices)
+        if ((Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Space)) && !showingChoices && donePrinting)
         {
             Refresh();
         }
@@ -77,26 +77,17 @@ public class InkExample : MonoBehaviour
 
         while (tempString.Length < text.Length)
         {
-            //This causes a crash. Beware
-            ////if the length is getting too close to the text box size and the current char is a space or line
-            //if((tempString.Length > textBoxMaxChar - 10) 
-            //    && (text[runningIndx] == ' ' || text[runningIndx] == '\n'))
-            //{
-            //    //wait for player to click or press space to continue
-            //    bool wait = true;
-            //    while(wait)
-            //    {
-            //        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1))
-            //        {
-            //            wait = false;
-            //            tempString = "";
-            //        }
-            //    }
-
-            //}
             tempString += text[runningIndx];
             runningIndx++;
+            
+            //click to instantly finish text, 
+            if(Input.GetKeyDown(KeyCode.Return))
+            {
+                tempString = text;
+                print("Skipping");
+            }
             textBox.text = tempString;
+
             yield return new WaitForSeconds(textPrintSpeed);
         }
 
@@ -186,7 +177,6 @@ public class InkExample : MonoBehaviour
         if (story.canContinue) //ALWAYS do this check before using story.Continue() to avoid errors
         {
             text = story.Continue();  //reads text until there is another choice 
-            print("The next block is: " + text);
         }
         
         return text;

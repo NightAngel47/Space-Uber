@@ -48,7 +48,7 @@ public class EventSystem : MonoBehaviour
 			{ 
 				testStoryInstance = Instantiate(testStoryPrefab);
 				testStoryInstance.transform.SetParent(canvas.transform);
-				testStoryInstance.GetComponent<InkExample>().textBox = textBox;
+				testStoryInstance.GetComponent<InkDriverBase>().textBox = textBox;
 				eventActive = true;
 				while (eventActive) { yield return null; }
 			}
