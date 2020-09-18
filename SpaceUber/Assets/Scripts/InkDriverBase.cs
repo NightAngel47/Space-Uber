@@ -35,6 +35,8 @@ public class InkDriverBase : MonoBehaviour
     [Tooltip("How fast text will scroll")]
     public float textPrintSpeed = 0.07f;
 
+    public Sprite background;
+
     /// <summary>
     /// Whether the latest bit of text is done printing so it can show the choices
     /// </summary>
@@ -47,6 +49,7 @@ public class InkDriverBase : MonoBehaviour
     {
         story = new Story(inkJSONAsset.text); //this draws text out of the JSON file
         Refresh();
+        GetComponentInChildren<RawImage>().texture = background.texture;
     }
 
     private void Update()
@@ -56,10 +59,10 @@ public class InkDriverBase : MonoBehaviour
         {
             Refresh();
         }
-		if (!story.canContinue && story.currentChoices.Count == 0)
-		{
+        if (!story.canContinue && story.currentChoices.Count == 0)
+        {
             EventSystem.instance.ConcludeEvent();
-		}
+        }
     }
 
     /// <summary>
@@ -189,7 +192,7 @@ public class InkDriverBase : MonoBehaviour
         int childCount = this.transform.childCount;
         for (int i = childCount - 1; i >= 0; --i)
         {
-            GameObject.Destroy(this.transform.GetChild(i).gameObject);
+            if(!transform.GetChild(i).GetComponentInChildren<RawImage>())Destroy(this.transform.GetChild(i).gameObject);
         }
     }
 

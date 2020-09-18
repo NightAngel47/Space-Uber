@@ -9,6 +9,7 @@ using System.Collections;
 using UnityEngine;
 using Ink.Runtime;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public enum EventSystemState { Traveling, Docked}
 
@@ -16,7 +17,7 @@ public class EventSystem : MonoBehaviour
 {
 	public static EventSystem instance;
 	public EventSystemState systemState;
-	public GameObject testStoryPrefab;
+	public List<GameObject> testStoryPrefabs;
 	public GameObject canvas;
 	GameObject testStoryInstance;
 	public Text textBox;
@@ -25,6 +26,7 @@ public class EventSystem : MonoBehaviour
 	float travelTicTime = 5;
 	bool isTraveling = false;
 	bool eventActive = false;
+	int eventIndex = 0;
 
 	private void Awake()
 	{
@@ -44,12 +46,21 @@ public class EventSystem : MonoBehaviour
 		{
 			isTraveling = true;
 			yield return new WaitForSeconds(travelTicTime);
-			if (!eventActive) 
-			{ 
-				testStoryInstance = Instantiate(testStoryPrefab);
+			if (!eventActive && eventIndex < testStoryPrefabs.Count) 
+			{
+				//prompt an event
+				testStoryInstance = Instantiate(testStoryPrefabs[eventIndex]);
 				testStoryInstance.transform.SetParent(canvas.transform);
+<<<<<<< Updated upstream
 				testStoryInstance.GetComponent<InkDriverBase>().textBox = textBox;
+=======
+				testStoryInstance.transform.SetSiblingIndex(0);
+				testStoryInstance.GetComponent<RectTransform>().anchoredPosition = new Vector3(-17.11f, 54.87f, 0);
+
+				testStoryInstance.GetComponent<InkExample>().textBox = textBox;
+>>>>>>> Stashed changes
 				eventActive = true;
+				eventIndex++;
 				while (eventActive) { yield return null; }
 			}
 		}

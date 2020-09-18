@@ -1,6 +1,6 @@
 VAR name = "Player"
 VAR shipIntegrity = 7
-"This is an example Ink file for event 1."#Dan
+"This is an example Ink file for event 3."#Dan
 
 
 * [Are you sure this is a good example?] "Yes it is, shut up" 
