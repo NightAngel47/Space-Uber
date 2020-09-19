@@ -6,63 +6,47 @@
  * Runs a simple path of choices by creating clickable UI buttons.
  */
 
-using System;
 using UnityEngine;
 using Ink.Runtime;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
-using System.Security.AccessControl;
+using NaughtyAttributes;
 using TMPro;
 
 public class InkDriverBase : MonoBehaviour
 {
-    [Tooltip("Attach the.JSON file you want read to this")]
-    public TextAsset inkJSONAsset;
+    [SerializeField, Tooltip("Attach the.JSON file you want read to this")]
+    private TextAsset inkJSONAsset;
+
+    //A prefab of the button we will generate every time a choice is needed
+    [SerializeField, Tooltip("Attach the prefab of a choice button to this")] 
+    private Button buttonPrefab;
+
+    [SerializeField, Tooltip("The transform parent to spawn choices under")]
+    private Transform choicesPos;
+
+    [SerializeField, Tooltip("This is where the event title goes")]
+    public TMP_Text titleBox;
+    [SerializeField, Tooltip("This is where event dialogue goes")]
+    public TMP_Text textBox;
+
+    [SerializeField, Tooltip("How fast text will scroll")]
+    private float textPrintSpeed = 0.1f;
+
+    [SerializeField, Tooltip("The list of choice outcomes for this event.")] 
+    private List<ChoiceOutcomes> choiceOutcomes = new List<ChoiceOutcomes>();
 
     /// <summary>
     /// The story itself being read
     /// </summary>
     private Story story;
-
-    [Tooltip("Attach the prefab of a choice button to this")]
-    /// <summary>
-    /// A prefab of the button we will generate every time a choice is needed
-    /// </summary>
-    public Button buttonPrefab;
-
-    public Transform choicesPos;
-
-    [Tooltip("This is where the event title goes")]
-    public TMP_Text titleBox;
-    [Tooltip("This is where event dialogue goes")]
-    public TMP_Text textBox;
-
-    [Tooltip("How fast text will scroll")]
-    public float textPrintSpeed = 0.1f;
-
-    [SerializeField]private List<ChoiceOutcomes> choiceOutcomes = new List<ChoiceOutcomes>();
-
     /// <summary>
     /// Whether the latest bit of text is done printing so it can show the choices
     /// </summary>
     public bool donePrinting = true;
     public bool showingChoices = false;
     private bool canEnd = false; //if the event can end. Based on player clicking at end of interaction
-
-    public enum ResouceType
-    {
-        Credits, Energy, Security, ShipWeapons, Crew, Food, FoodPerTick, HullDurability, Stock
-    };
-
-    public List<ChoiceOutcome> outcomes = new List<ChoiceOutcome>();
-
-    [Serializable]
-    public struct ChoiceOutcome
-    {
-        public ResouceType type;
-        public int amount;
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -134,8 +118,7 @@ public class InkDriverBase : MonoBehaviour
             foreach (Choice choice in story.currentChoices)
             {
                 //instantiate a button
-                Button choiceButton = Instantiate(buttonPrefab) as Button;
-                choiceButton.transform.SetParent(choicesPos, false);
+                Button choiceButton = Instantiate(buttonPrefab, choicesPos);
 
                 // Gets the text from the button prefab
                 TMP_Text choiceText = choiceButton.GetComponentInChildren<TMP_Text>();
@@ -145,11 +128,13 @@ public class InkDriverBase : MonoBehaviour
                 choiceButton.onClick.AddListener(delegate {
                     OnClickChoiceButton(choice);
                 });
+                //The delegate keyword is used to pass a method as a parameter to the AddListenerer() function.
+                //Whenever a button is clicked, the function onClickChoiceButton() function is used.
+                
+                // Have on click also call the outcome choice to update the ship stats
                 choiceButton.onClick.AddListener(delegate {
                     choiceOutcomes[choice.index].ChoiceChange();
                 });
-                //The delegate keyword is used to pass a method as a parameter to the AddListenerer() function.
-                //Whenever a button is clicked, the function onClickChoiceButton() function is used.
             }
         }
 
