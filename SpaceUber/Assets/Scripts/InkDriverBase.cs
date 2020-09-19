@@ -3,7 +3,7 @@
  * Author(s): Scott Acker
  * Created on: 9/11/2020
  * Description: An example file to show the most-common functions of Ink-related Code
- * Runs a simple path of choices by creating clickable UI buttons. 
+ * Runs a simple path of choices by creating clickable UI buttons.
  */
 
 using UnityEngine;
@@ -11,41 +11,42 @@ using Ink.Runtime;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
+using NaughtyAttributes;
+using TMPro;
 
 public class InkDriverBase : MonoBehaviour
 {
-    [Tooltip("Attach the.JSON file you want read to this")]
-    public TextAsset inkJSONAsset;
-    
+    [SerializeField, Tooltip("Attach the.JSON file you want read to this")]
+    private TextAsset inkJSONAsset;
+
+    //A prefab of the button we will generate every time a choice is needed
+    [SerializeField, Tooltip("Attach the prefab of a choice button to this")] 
+    private Button buttonPrefab;
+
+    [SerializeField, Tooltip("The transform parent to spawn choices under")]
+    private Transform choicesPos;
+
+    [SerializeField, Tooltip("This is where the event title goes")]
+    public TMP_Text titleBox;
+    [SerializeField, Tooltip("This is where event dialogue goes")]
+    public TMP_Text textBox;
+
+    [SerializeField, Tooltip("How fast text will scroll")]
+    private float textPrintSpeed = 0.1f;
+
+    [SerializeField, Tooltip("The list of choice outcomes for this event.")] 
+    private List<ChoiceOutcomes> choiceOutcomes = new List<ChoiceOutcomes>();
+
     /// <summary>
     /// The story itself being read
     /// </summary>
     private Story story;
-
-    [Tooltip("Attach the prefab of a choice button to this")]
-    /// <summary>
-    /// A prefab of the button we will generate every time a choice is needed
-    /// </summary>
-    public Button buttonPrefab;
-
-    [Tooltip("This is where the event title goes")]
-    public Text titleBox;
-    [Tooltip("This is where event dialogue goes")]
-    public Text textBox;
-
-    [Tooltip("How fast text will scroll")]
-    public float textPrintSpeed = 0.1f;
-
-    public Sprite background;
-    [SerializeField]private List<ChoiceOutcomes> choiceOutcomes = new List<ChoiceOutcomes>();
-
     /// <summary>
     /// Whether the latest bit of text is done printing so it can show the choices
     /// </summary>
     public bool donePrinting = true;
     public bool showingChoices = false;
     private bool canEnd = false; //if the event can end. Based on player clicking at end of interaction
-
 
     // Start is called before the first frame update
     void Start()
@@ -58,9 +59,6 @@ public class InkDriverBase : MonoBehaviour
         //string title = story.state.currentPathString;
         //titleBox.text = title;
         //print(title);
-
-        GetComponentInChildren<RawImage>().texture = background.texture;
-        
     }
 
     private void Update()
@@ -93,8 +91,8 @@ public class InkDriverBase : MonoBehaviour
         {
             tempString += text[runningIndx];
             runningIndx++;
-            
-            //click to instantly finish text, 
+
+            //click to instantly finish text,
             if(Input.GetKeyDown(KeyCode.Return))
             {
                 tempString = text;
@@ -119,27 +117,28 @@ public class InkDriverBase : MonoBehaviour
             showingChoices = true;
             foreach (Choice choice in story.currentChoices)
             {
-                //instantiate a button 
-                Button choiceButton = Instantiate(buttonPrefab) as Button;
-                choiceButton.transform.SetParent(this.transform, false);
+                //instantiate a button
+                Button choiceButton = Instantiate(buttonPrefab, choicesPos);
 
                 // Gets the text from the button prefab
-                Text choiceText = choiceButton.GetComponentInChildren<Text>();
+                TMP_Text choiceText = choiceButton.GetComponentInChildren<TMP_Text>();
                 choiceText.text = " " + (choice.index + 1) + ". " + choice.text;
 
                 // Set listener
                 choiceButton.onClick.AddListener(delegate {
                     OnClickChoiceButton(choice);
                 });
+                //The delegate keyword is used to pass a method as a parameter to the AddListenerer() function.
+                //Whenever a button is clicked, the function onClickChoiceButton() function is used.
+                
+                // Have on click also call the outcome choice to update the ship stats
                 choiceButton.onClick.AddListener(delegate {
                     choiceOutcomes[choice.index].ChoiceChange();
                 });
-                //The delegate keyword is used to pass a method as a parameter to the AddListenerer() function.
-                //Whenever a button is clicked, the function onClickChoiceButton() function is used.
             }
         }
 
-        
+
     }
 
     /// <summary>
@@ -155,12 +154,12 @@ public class InkDriverBase : MonoBehaviour
         // Set the text from new story block
         string text = GetNextStoryBlock();
         StartCoroutine(PrintText(text));
-        
+
 
         //// Get the tags from the current story lines (if any)
         //List<string> tags = story.currentTags;
 
-        //// If there are tags for character names specifically, use the first one in front of the text. 
+        //// If there are tags for character names specifically, use the first one in front of the text.
         ////Otherwise, just show the text.
         //if (tags.Count > 0)
         //{
@@ -171,7 +170,7 @@ public class InkDriverBase : MonoBehaviour
         //    textBox.text = text;
         //}
 
-        
+
     }
 
     /// <summary>
@@ -194,7 +193,7 @@ public class InkDriverBase : MonoBehaviour
 
         if (story.canContinue) //ALWAYS do this check before using story.Continue() to avoid errors
         {
-            text = story.Continue();  //reads text until there is another choice 
+            text = story.Continue();  //reads text until there is another choice
         }
         print(text);
         return text;
@@ -204,11 +203,14 @@ public class InkDriverBase : MonoBehaviour
     // Currently causes a stackoverflow error
     public void ClearUI()
     {
-        int childCount = this.transform.childCount;
-        for (int i = childCount - 1; i >= 0; --i)
+        foreach (var button in transform.GetComponentsInChildren<Button>())
         {
-            if(!transform.GetChild(i).GetComponentInChildren<RawImage>())Destroy(this.transform.GetChild(i).gameObject);
+            Destroy(button.gameObject);
+        }
+
+        foreach (var text in transform.GetComponentsInChildren<TMP_Text>())
+        {
+            Destroy(text.gameObject);
         }
     }
-
 }

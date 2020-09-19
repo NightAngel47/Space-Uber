@@ -31,11 +31,6 @@ public class ChoiceOutcomes : MonoBehaviour
         shipStats = FindObjectOfType<ShipStats>();
     }
 
-    void Update()
-    {
-
-    }
-
     public void ChoiceChange()
     {
         switch (resourceType)
