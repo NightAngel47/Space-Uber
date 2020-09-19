@@ -2,7 +2,7 @@
  * EventSystem.cs
  * Author(s): #Greg Brandt#
  * Created on: 9/17/2020 (en-US)
- * Description: 
+ * Description:
  */
 
 using System.Collections;
@@ -45,13 +45,13 @@ public class EventSystem : MonoBehaviour
 	IEnumerator Travel()
 	{
 		//float travelTicker = 0;
-		
+
 
 		while (systemState == EventSystemState.Traveling)
 		{
 			isTraveling = true;
 			yield return new WaitForSeconds(travelTicTime);
-			if (!eventActive && eventIndex < testStoryPrefabs.Count) 
+			if (!eventActive && eventIndex < testStoryPrefabs.Count)
 			{
 				//prompt an event
 				testStoryInstance = Instantiate(testStoryPrefabs[eventIndex], canvas.transform);
@@ -80,7 +80,7 @@ public class EventSystem : MonoBehaviour
 			//}
 		}
 		isTraveling = false;
-		
+
 	}
 
 	public void ConcludeEvent()

@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d332c5c8227bb0045994e96ce5b5ac67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   inkJSONAsset: {fileID: 4900000, guid: 478adf17c9543ee4a893e41cbb624235, type: 3}
   buttonPrefab: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
     type: 3}
@@ -112,8 +112,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Padding:
     m_Left: 10
     m_Right: 10
@@ -170,9 +170,22 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7977253876060718123}
-  m_CullTransparentMesh: 0
---- !u!114 &679382834480594491
+  m_GameObject: {fileID: 4656191228972796408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d332c5c8227bb0045994e96ce5b5ac67, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  inkJSONAsset: {fileID: 4900000, guid: ffefd9b9fc4c8f94586a0cd83583a0f9, type: 3}
+  buttonPrefab: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
+    type: 3}
+  titleBox: {fileID: 0}
+  textBox: {fileID: 0}
+  textPrintSpeed: 0.07
+  background: {fileID: 21300000, guid: 85eb97aedad820547967b7058cd1e4d7, type: 3}
+  donePrinting: 1
+  showingChoices: 0
+--- !u!114 &4656191228972796406
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,8 +195,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1

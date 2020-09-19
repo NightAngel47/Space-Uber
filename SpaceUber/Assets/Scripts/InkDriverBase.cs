@@ -3,7 +3,7 @@
  * Author(s): Scott Acker
  * Created on: 9/11/2020
  * Description: An example file to show the most-common functions of Ink-related Code
- * Runs a simple path of choices by creating clickable UI buttons. 
+ * Runs a simple path of choices by creating clickable UI buttons.
  */
 
 using System;
@@ -19,7 +19,7 @@ public class InkDriverBase : MonoBehaviour
 {
     [Tooltip("Attach the.JSON file you want read to this")]
     public TextAsset inkJSONAsset;
-    
+
     /// <summary>
     /// The story itself being read
     /// </summary>
@@ -32,7 +32,7 @@ public class InkDriverBase : MonoBehaviour
     public Button buttonPrefab;
 
     public Transform choicesPos;
-    
+
     [Tooltip("This is where the event title goes")]
     public TMP_Text titleBox;
     [Tooltip("This is where event dialogue goes")]
@@ -40,7 +40,9 @@ public class InkDriverBase : MonoBehaviour
 
     [Tooltip("How fast text will scroll")]
     public float textPrintSpeed = 0.1f;
-    
+
+    [SerializeField]private List<ChoiceOutcomes> choiceOutcomes = new List<ChoiceOutcomes>();
+
     /// <summary>
     /// Whether the latest bit of text is done printing so it can show the choices
     /// </summary>
@@ -105,8 +107,8 @@ public class InkDriverBase : MonoBehaviour
         {
             tempString += text[runningIndx];
             runningIndx++;
-            
-            //click to instantly finish text, 
+
+            //click to instantly finish text,
             if(Input.GetKeyDown(KeyCode.Return))
             {
                 tempString = text;
@@ -131,7 +133,7 @@ public class InkDriverBase : MonoBehaviour
             showingChoices = true;
             foreach (Choice choice in story.currentChoices)
             {
-                //instantiate a button 
+                //instantiate a button
                 Button choiceButton = Instantiate(buttonPrefab) as Button;
                 choiceButton.transform.SetParent(choicesPos, false);
 
@@ -143,12 +145,15 @@ public class InkDriverBase : MonoBehaviour
                 choiceButton.onClick.AddListener(delegate {
                     OnClickChoiceButton(choice);
                 });
+                choiceButton.onClick.AddListener(delegate {
+                    choiceOutcomes[choice.index].ChoiceChange();
+                });
                 //The delegate keyword is used to pass a method as a parameter to the AddListenerer() function.
                 //Whenever a button is clicked, the function onClickChoiceButton() function is used.
             }
         }
 
-        
+
     }
 
     /// <summary>
@@ -164,12 +169,12 @@ public class InkDriverBase : MonoBehaviour
         // Set the text from new story block
         string text = GetNextStoryBlock();
         StartCoroutine(PrintText(text));
-        
+
 
         //// Get the tags from the current story lines (if any)
         //List<string> tags = story.currentTags;
 
-        //// If there are tags for character names specifically, use the first one in front of the text. 
+        //// If there are tags for character names specifically, use the first one in front of the text.
         ////Otherwise, just show the text.
         //if (tags.Count > 0)
         //{
@@ -180,7 +185,7 @@ public class InkDriverBase : MonoBehaviour
         //    textBox.text = text;
         //}
 
-        
+
     }
 
     /// <summary>
@@ -203,7 +208,7 @@ public class InkDriverBase : MonoBehaviour
 
         if (story.canContinue) //ALWAYS do this check before using story.Continue() to avoid errors
         {
-            text = story.Continue();  //reads text until there is another choice 
+            text = story.Continue();  //reads text until there is another choice
         }
         print(text);
         return text;
