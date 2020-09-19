@@ -6,11 +6,14 @@
  * Runs a simple path of choices by creating clickable UI buttons. 
  */
 
+using System;
 using UnityEngine;
 using Ink.Runtime;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
+using System.Security.AccessControl;
+using TMPro;
 
 public class InkDriverBase : MonoBehaviour
 {
@@ -28,16 +31,16 @@ public class InkDriverBase : MonoBehaviour
     /// </summary>
     public Button buttonPrefab;
 
+    public Transform choicesPos;
+    
     [Tooltip("This is where the event title goes")]
-    public Text titleBox;
+    public TMP_Text titleBox;
     [Tooltip("This is where event dialogue goes")]
-    public Text textBox;
+    public TMP_Text textBox;
 
     [Tooltip("How fast text will scroll")]
     public float textPrintSpeed = 0.1f;
-
-    public Sprite background;
-
+    
     /// <summary>
     /// Whether the latest bit of text is done printing so it can show the choices
     /// </summary>
@@ -45,6 +48,19 @@ public class InkDriverBase : MonoBehaviour
     public bool showingChoices = false;
     private bool canEnd = false; //if the event can end. Based on player clicking at end of interaction
 
+    public enum ResouceType
+    {
+        Credits, Energy, Security, ShipWeapons, Crew, Food, FoodPerTick, HullDurability, Stock
+    };
+
+    public List<ChoiceOutcome> outcomes = new List<ChoiceOutcome>();
+
+    [Serializable]
+    public struct ChoiceOutcome
+    {
+        public ResouceType type;
+        public int amount;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -57,8 +73,6 @@ public class InkDriverBase : MonoBehaviour
         //string title = story.state.currentPathString;
         //titleBox.text = title;
         //print(title);
-
-        GetComponentInChildren<RawImage>().texture = background.texture;
     }
 
     private void Update()
@@ -119,10 +133,10 @@ public class InkDriverBase : MonoBehaviour
             {
                 //instantiate a button 
                 Button choiceButton = Instantiate(buttonPrefab) as Button;
-                choiceButton.transform.SetParent(this.transform, false);
+                choiceButton.transform.SetParent(choicesPos, false);
 
                 // Gets the text from the button prefab
-                Text choiceText = choiceButton.GetComponentInChildren<Text>();
+                TMP_Text choiceText = choiceButton.GetComponentInChildren<TMP_Text>();
                 choiceText.text = " " + (choice.index + 1) + ". " + choice.text;
 
                 // Set listener
@@ -199,11 +213,14 @@ public class InkDriverBase : MonoBehaviour
     // Currently causes a stackoverflow error
     public void ClearUI()
     {
-        int childCount = this.transform.childCount;
-        for (int i = childCount - 1; i >= 0; --i)
+        foreach (var button in transform.GetComponentsInChildren<Button>())
         {
-            if(!transform.GetChild(i).GetComponentInChildren<RawImage>())Destroy(this.transform.GetChild(i).gameObject);
+            Destroy(button.gameObject);
+        }
+
+        foreach (var text in transform.GetComponentsInChildren<TMP_Text>())
+        {
+            Destroy(text.gameObject);
         }
     }
-
 }

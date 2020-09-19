@@ -9,6 +9,7 @@ using System.Collections;
 using UnityEngine;
 using Ink.Runtime;
 using UnityEngine.UI;
+using TMPro;
 using System.Collections.Generic;
 
 public enum EventSystemState { Traveling, Docked}
@@ -20,8 +21,8 @@ public class EventSystem : MonoBehaviour
 	public List<GameObject> testStoryPrefabs;
 	public GameObject canvas;
 	GameObject testStoryInstance;
-	public Text titleBox;
-	public Text textBox;
+	public TMP_Text titleBox;
+	public TMP_Text textBox;
 
 	//time inbetween possible event triggers
 	float travelTicTime = 5;
@@ -53,17 +54,18 @@ public class EventSystem : MonoBehaviour
 			if (!eventActive && eventIndex < testStoryPrefabs.Count) 
 			{
 				//prompt an event
-				testStoryInstance = Instantiate(testStoryPrefabs[eventIndex]);
-				testStoryInstance.transform.SetParent(canvas.transform);
+				testStoryInstance = Instantiate(testStoryPrefabs[eventIndex], canvas.transform);
 
-				testStoryInstance.GetComponent<InkDriverBase>().titleBox = titleBox;
-				testStoryInstance.GetComponent<InkDriverBase>().textBox = textBox;
+				if (testStoryInstance.TryGetComponent(out InkDriverBase inkDriver))
+				{
+					inkDriver.titleBox = titleBox;
+					inkDriver.textBox = textBox;
+				}
 				testStoryInstance.transform.SetSiblingIndex(0);
-				testStoryInstance.GetComponent<RectTransform>().anchoredPosition = new Vector3(-17.11f, 54.87f, 0);
 
 				eventActive = true;
 				eventIndex++;
-				while (eventActive) { yield return null; }
+				yield return new WaitWhile((() => eventActive));
 			}
 
 			////Some small animation to show time is ticking
