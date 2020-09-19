@@ -36,6 +36,7 @@ public class InkDriverBase : MonoBehaviour
     public float textPrintSpeed = 0.07f;
 
     public Sprite background;
+    [SerializeField]private List<ChoiceOutcomes> choiceOutcomes = new List<ChoiceOutcomes>();
 
     /// <summary>
     /// Whether the latest bit of text is done printing so it can show the choices
@@ -50,6 +51,7 @@ public class InkDriverBase : MonoBehaviour
         story = new Story(inkJSONAsset.text); //this draws text out of the JSON file
         Refresh();
         GetComponentInChildren<RawImage>().texture = background.texture;
+        
     }
 
     private void Update()
@@ -119,6 +121,9 @@ public class InkDriverBase : MonoBehaviour
                 // Set listener
                 choiceButton.onClick.AddListener(delegate {
                     OnClickChoiceButton(choice);
+                });
+                choiceButton.onClick.AddListener(delegate {
+                    choiceOutcomes[choice.index].ChoiceChange();
                 });
                 //The delegate keyword is used to pass a method as a parameter to the AddListenerer() function.
                 //Whenever a button is clicked, the function onClickChoiceButton() function is used.

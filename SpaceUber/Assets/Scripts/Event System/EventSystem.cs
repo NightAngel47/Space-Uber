@@ -51,14 +51,14 @@ public class EventSystem : MonoBehaviour
 				//prompt an event
 				testStoryInstance = Instantiate(testStoryPrefabs[eventIndex]);
 				testStoryInstance.transform.SetParent(canvas.transform);
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
 				testStoryInstance.GetComponent<InkDriverBase>().textBox = textBox;
-=======
+//=======
 				testStoryInstance.transform.SetSiblingIndex(0);
 				testStoryInstance.GetComponent<RectTransform>().anchoredPosition = new Vector3(-17.11f, 54.87f, 0);
 
-				testStoryInstance.GetComponent<InkExample>().textBox = textBox;
->>>>>>> Stashed changes
+				//testStoryInstance.GetComponent<InkExample>().textBox = textBox;
+//>>>>>>> Stashed changes
 				eventActive = true;
 				eventIndex++;
 				while (eventActive) { yield return null; }
