@@ -2,7 +2,7 @@
  * EventSystem.cs
  * Author(s): #Greg Brandt#
  * Created on: 9/17/2020 (en-US)
- * Description: 
+ * Description:
  */
 
 using System.Collections;
@@ -20,6 +20,7 @@ public class EventSystem : MonoBehaviour
 	public List<GameObject> testStoryPrefabs;
 	public GameObject canvas;
 	GameObject testStoryInstance;
+	public Text titleBox;
 	public Text textBox;
 
 	//time inbetween possible event triggers
@@ -42,34 +43,49 @@ public class EventSystem : MonoBehaviour
 
 	IEnumerator Travel()
 	{
-		while(systemState == EventSystemState.Traveling)
+		//float travelTicker = 0;
+
+
+		while (systemState == EventSystemState.Traveling)
 		{
 			isTraveling = true;
 			yield return new WaitForSeconds(travelTicTime);
-			if (!eventActive && eventIndex < testStoryPrefabs.Count) 
+			if (!eventActive && eventIndex < testStoryPrefabs.Count)
 			{
 				//prompt an event
 				testStoryInstance = Instantiate(testStoryPrefabs[eventIndex]);
 				testStoryInstance.transform.SetParent(canvas.transform);
-//<<<<<<< Updated upstream
+
+				testStoryInstance.GetComponent<InkDriverBase>().titleBox = titleBox;
 				testStoryInstance.GetComponent<InkDriverBase>().textBox = textBox;
-//=======
 				testStoryInstance.transform.SetSiblingIndex(0);
 				testStoryInstance.GetComponent<RectTransform>().anchoredPosition = new Vector3(-17.11f, 54.87f, 0);
 
-				//testStoryInstance.GetComponent<InkExample>().textBox = textBox;
-//>>>>>>> Stashed changes
 				eventActive = true;
 				eventIndex++;
 				while (eventActive) { yield return null; }
 			}
+
+			////Some small animation to show time is ticking
+			//++travelTicker;
+			//if(travelTicker % 30 == 0 && travelTicker != 180)
+			//{
+			//	titleBox.text += ".";
+			//}
+			//else if(travelTicker == 12)
+			//{
+			//	titleBox.text = "Waiting for Event";
+			//}
 		}
 		isTraveling = false;
+
 	}
 
 	public void ConcludeEvent()
 	{
+		testStoryInstance.GetComponent<InkDriverBase>().ClearUI();
 		Destroy(testStoryInstance);
 		eventActive = false;
+		titleBox.text = "Waiting for Event";
 	}
 }

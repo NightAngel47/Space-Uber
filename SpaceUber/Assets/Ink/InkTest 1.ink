@@ -1,12 +1,11 @@
 VAR name = "Player"
 VAR shipIntegrity = 7
-"This is an example Ink file for event 2."#Dan
+->Ink_Example_Two
+=== Ink_Example_Two ===
+"This is another example Ink file for event 2."
 
 
-* [Are you sure this is a good example?] "Yes it is, shut up" 
-    "I even have multiple lines of dialogue"
-    **[That's fair"]
-    "Yeah that's what I thought"
+* [Didn't you just do this?] "That's not my problem"
     -> DONE
-* [Everything seems good here!] "Wow, suck up" #Dan
+* [Wow, such original content!] "I feel like that was sarcastic" 
     -> DONE

@@ -28,12 +28,13 @@ public class InkDriverBase : MonoBehaviour
     /// </summary>
     public Button buttonPrefab;
 
-    [Tooltip("Attach the connected TextBox to this")]
+    [Tooltip("This is where the event title goes")]
+    public Text titleBox;
+    [Tooltip("This is where event dialogue goes")]
     public Text textBox;
-    [Tooltip("How many characters you will allow to fit in one text box")]
-    public int textBoxMaxChar = 70;
+
     [Tooltip("How fast text will scroll")]
-    public float textPrintSpeed = 0.07f;
+    public float textPrintSpeed = 0.1f;
 
     public Sprite background;
     [SerializeField]private List<ChoiceOutcomes> choiceOutcomes = new List<ChoiceOutcomes>();
@@ -43,13 +44,21 @@ public class InkDriverBase : MonoBehaviour
     /// </summary>
     public bool donePrinting = true;
     public bool showingChoices = false;
+    private bool canEnd = false; //if the event can end. Based on player clicking at end of interaction
 
 
     // Start is called before the first frame update
     void Start()
     {
         story = new Story(inkJSONAsset.text); //this draws text out of the JSON file
-        Refresh();
+
+        Refresh(); //starts the dialogue
+        titleBox.text = "";
+        //set the event title based on Knot title in the .Ink
+        //string title = story.state.currentPathString;
+        //titleBox.text = title;
+        //print(title);
+
         GetComponentInChildren<RawImage>().texture = background.texture;
         
     }
@@ -57,13 +66,13 @@ public class InkDriverBase : MonoBehaviour
     private void Update()
     {
         //Save for potential implementation of story.Continue() instead of continueMaximally()
-        if ((Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Space)) && !showingChoices && donePrinting)
+        if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && !showingChoices && donePrinting)
         {
             Refresh();
-        }
-        if (!story.canContinue && story.currentChoices.Count == 0)
-        {
-            EventSystem.instance.ConcludeEvent();
+            if(!story.canContinue && story.currentChoices.Count == 0)
+            {
+                EventSystem.instance.ConcludeEvent();
+            }
         }
     }
 
@@ -139,6 +148,7 @@ public class InkDriverBase : MonoBehaviour
     /// </summary>
     void Refresh()
     {
+        print("Refreshing");
         // Clear the UI
         ClearUI();
 
@@ -186,13 +196,13 @@ public class InkDriverBase : MonoBehaviour
         {
             text = story.Continue();  //reads text until there is another choice 
         }
-        
+        print(text);
         return text;
     }
 
     // Clear out all of the UI, calling Destory() in reverse
     // Currently causes a stackoverflow error
-    void ClearUI()
+    public void ClearUI()
     {
         int childCount = this.transform.childCount;
         for (int i = childCount - 1; i >= 0; --i)
