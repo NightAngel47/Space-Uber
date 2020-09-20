@@ -75,6 +75,9 @@ public class ShipStats : MonoBehaviour
         UpdateShipStatsUI();
     }
 
+    /// <summary>
+    /// Updates the UI to reflect the ship's current stats
+    /// </summary>
     public void UpdateShipStatsUI()
     {
         creditsText.text = "Credits: " + credits.ToString();
