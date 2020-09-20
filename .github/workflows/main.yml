@@ -49,6 +49,7 @@ jobs:
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
+          buildName: SpaceUber-${{ matrix.targetPlatform }}
           versioning: None
       - uses: actions/upload-artifact@v2.1.4
         with:
