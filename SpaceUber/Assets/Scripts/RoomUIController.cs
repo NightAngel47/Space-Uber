@@ -27,15 +27,19 @@ public class RoomUIController : MonoBehaviour
 
     public void UpdateRoomUI()
     {
-        Resource[] resources = roomPrefab.GetComponents<Resource>();
-        textList[0].text = roomPrefab.GetComponent<RoomStats>().roomName;
-        for(int i = 0; i < resources.Length; i++)
+        RoomStats room = roomPrefab.GetComponent<RoomStats>();
+        Resource[] resources = room.GetComponents<Resource>();
+        
+        textList[0].text = room.roomName;
+        textList[1].text = "Price: " + room.price.ToString();
+        for (int i = 1; i < resources.Length; i++)
         {
             if (resources[i] != null)
             {
                 textList[i + 1].text = resources[i].resourceType + ": " + resources[i].amount;
             }
         }
-        textList[4].text = roomPrefab.GetComponent<RoomStats>().roomDescription;
+        textList[5].text = room.roomDescription;
+        
     }
 }

@@ -19,6 +19,9 @@ public class RoomStats : MonoBehaviour
     public int minPower;
     public int maxPower;
 
+    [Tooltip("How many credits the room costs to place")]
+    public int price;
+
     int currentCrew;
 
     [ResizableTextArea]
@@ -26,6 +29,7 @@ public class RoomStats : MonoBehaviour
 
     public string roomName;
 
+    //List of stats for the room that will affect the ship's stats
     private int credits = 0;
     private int energy = 0;
     private int security = 0;
@@ -52,11 +56,20 @@ public class RoomStats : MonoBehaviour
         //}
     }
 
+    /// <summary>
+    /// Adds a Resource component to the list of Resource components for the individual room
+    /// </summary>
+    /// <param name="item">The Resource component to add</param>
     public void AddToResourceList(Resource item)
     {
         resources.Add(item);
     }
 
+    /// <summary>
+    /// Delays when the script calls functions in start
+    /// </summary>
+    /// <param name="time">How long the delay should be</param>
+    /// <returns></returns>
     private IEnumerator LateStart(float time)
     {
         yield return new WaitForSeconds(time);

@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - 1x3
+  - 1x2
+  - 2x2
+  - 1x1
   layers:
   - Default
   - TransparentFX
@@ -38,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: grid
+    uniqueID: 1725670363
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
