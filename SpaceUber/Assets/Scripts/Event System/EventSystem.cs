@@ -96,5 +96,10 @@ public class EventSystem : MonoBehaviour
 		Destroy(storyEventInstance);
 		eventActive = false;
 		titleBox.text = waitMessage;
+
+		if (eventIndex >= storyEvents.Count)
+		{
+			GameManager.instance.LoadScene("PromptScreen");
+		}
 	}
 }

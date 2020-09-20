@@ -10,6 +10,17 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+    
+    private void Awake()
+    {
+        //Singleton pattern
+        if(instance) { Destroy(gameObject); }
+        else { instance = this; }
+        
+        DontDestroyOnLoad(gameObject);
+    }
+    
     /// <summary>
     /// Loads the passed in scene name.
     /// </summary>
