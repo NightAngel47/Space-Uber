@@ -19,19 +19,19 @@ public class InkDriverBase : MonoBehaviour
     [SerializeField, Tooltip("Attach the.JSON file you want read to this")]
     private TextAsset inkJSONAsset;
 
+    [SerializeField] private string eventName;
+    
     //A prefab of the button we will generate every time a choice is needed
     [SerializeField, Tooltip("Attach the prefab of a choice button to this")] 
     private Button buttonPrefab;
 
     [SerializeField, Tooltip("The transform parent to spawn choices under")]
     private Transform choicesPos;
+    
+    [HideInInspector] public TMP_Text titleBox;
+    [HideInInspector] public TMP_Text textBox;
 
-    [SerializeField, Tooltip("This is where the event title goes")]
-    public TMP_Text titleBox;
-    [SerializeField, Tooltip("This is where event dialogue goes")]
-    public TMP_Text textBox;
-
-    [SerializeField, Tooltip("How fast text will scroll")]
+    [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
     private float textPrintSpeed = 0.1f;
 
     [SerializeField, Tooltip("The list of choice outcomes for this event.")] 
@@ -54,7 +54,7 @@ public class InkDriverBase : MonoBehaviour
         story = new Story(inkJSONAsset.text); //this draws text out of the JSON file
 
         Refresh(); //starts the dialogue
-        titleBox.text = "";
+        titleBox.text = eventName;
         //set the event title based on Knot title in the .Ink
         //string title = story.state.currentPathString;
         //titleBox.text = title;
@@ -81,16 +81,17 @@ public class InkDriverBase : MonoBehaviour
     /// <returns></returns>
     private IEnumerator PrintText(string text)
     {
+        print("Printing Text");
         donePrinting = false;
 
         string tempString = "";
         textBox.text = tempString;
-        int runningIndx = 0;
+        int runningIndex = 0;
 
         while (tempString.Length < text.Length)
         {
-            tempString += text[runningIndx];
-            runningIndx++;
+            tempString += text[runningIndex];
+            runningIndex++;
 
             //click to instantly finish text,
             if(Input.GetKeyDown(KeyCode.Return))
@@ -137,8 +138,6 @@ public class InkDriverBase : MonoBehaviour
                 });
             }
         }
-
-
     }
 
     /// <summary>

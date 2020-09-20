@@ -7,8 +7,6 @@
 
 using System.Collections;
 using UnityEngine;
-using Ink.Runtime;
-using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
@@ -18,12 +16,15 @@ public class EventSystem : MonoBehaviour
 {
 	public static EventSystem instance;
 	public EventSystemState systemState;
-	public List<GameObject> testStoryPrefabs;
-	public GameObject canvas;
-	GameObject testStoryInstance;
-	public TMP_Text titleBox;
-	public TMP_Text textBox;
 
+	[SerializeField] private string waitMessage = "Wait for Next Event";
+	[SerializeField] private List<GameObject> storyEvents;
+	[SerializeField] private GameObject canvas;
+	[SerializeField] private TMP_Text titleBox;
+	[SerializeField] private TMP_Text textBox;
+
+	GameObject storyEventInstance;
+	
 	//time inbetween possible event triggers
 	float travelTicTime = 5;
 	bool isTraveling = false;
@@ -39,29 +40,33 @@ public class EventSystem : MonoBehaviour
 
 	private void Update()
 	{
-		if(systemState == EventSystemState.Traveling && !isTraveling) { StartCoroutine(Travel()); }
+		if (systemState == EventSystemState.Traveling && !isTraveling)
+		{
+			print("Starting Travel Coroutine");
+			StartCoroutine(Travel());
+		}
 	}
 
 	IEnumerator Travel()
 	{
 		//float travelTicker = 0;
-
-
+		
 		while (systemState == EventSystemState.Traveling)
 		{
 			isTraveling = true;
 			yield return new WaitForSeconds(travelTicTime);
-			if (!eventActive && eventIndex < testStoryPrefabs.Count)
+			
+			if (!eventActive && eventIndex < storyEvents.Count)
 			{
 				//prompt an event
-				testStoryInstance = Instantiate(testStoryPrefabs[eventIndex], canvas.transform);
+				storyEventInstance = Instantiate(storyEvents[eventIndex], canvas.transform);
 
-				if (testStoryInstance.TryGetComponent(out InkDriverBase inkDriver))
+				if (storyEventInstance.TryGetComponent(out InkDriverBase inkDriver))
 				{
 					inkDriver.titleBox = titleBox;
 					inkDriver.textBox = textBox;
 				}
-				testStoryInstance.transform.SetSiblingIndex(0);
+				storyEventInstance.transform.SetSiblingIndex(0);
 
 				eventActive = true;
 				eventIndex++;
@@ -80,14 +85,14 @@ public class EventSystem : MonoBehaviour
 			//}
 		}
 		isTraveling = false;
-
 	}
 
 	public void ConcludeEvent()
 	{
-		testStoryInstance.GetComponent<InkDriverBase>().ClearUI();
-		Destroy(testStoryInstance);
+		print("Concluded Event");
+		storyEventInstance.GetComponent<InkDriverBase>().ClearUI();
+		Destroy(storyEventInstance);
 		eventActive = false;
-		titleBox.text = "Waiting for Event";
+		titleBox.text = waitMessage;
 	}
 }
