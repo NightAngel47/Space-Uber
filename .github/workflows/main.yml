@@ -37,6 +37,7 @@ jobs:
       - uses: webbertakken/unity-test-runner@v1.6
         id: testRunner
         with:
+          customParameters: '-nographics'
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
       - uses: actions/upload-artifact@v2.1.4
