@@ -96,6 +96,7 @@ public class EventSystem : MonoBehaviour
 		Destroy(storyEventInstance);
 		eventActive = false;
 		titleBox.text = waitMessage;
+		textBox.text = ""; // make sure that the text has been cleared.
 
 		if (eventIndex >= storyEvents.Count)
 		{
