@@ -1,6 +1,7 @@
-As you proceed through the stars something catches the attention of crew and computer alike. A distortion in space where light is warped, bent, and trapped in the cosmic maw of a Wormhole. You and your crew watch as a nearby star is ripped from its position in the void and stretched into stellar spaghetti as it crosses the event horizon. A quick number crunch reveals that there is only a small chance that the same would happen to your ship should you choose to venture closer. Would you care to take a closer look?
-+ [Approach Wormhole] 
-{shuffle:
+As you proceed through the stars something catches the attention of crew and computer alike. A distortion in space where light is warped, bent, and trapped in the cosmic maw of a Wormhole. 
+You and your crew watch as a nearby star is ripped from its position in the void and stretched into stellar spaghetti as it crosses the event horizon. A quick number crunch reveals that there is only a small chance that the same 
+would happen to your ship should you choose to venture closer. Would you care to take a closer look?
++ [Approach Wormhole] {shuffle:
     -->Propel
     -->Sent
     -->Pranked
