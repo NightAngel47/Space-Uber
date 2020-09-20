@@ -9,6 +9,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public enum EventSystemState { Traveling, Docked}
 
@@ -22,6 +23,7 @@ public class EventSystem : MonoBehaviour
 	[SerializeField] private GameObject canvas;
 	[SerializeField] private TMP_Text titleBox;
 	[SerializeField] private TMP_Text textBox;
+	[SerializeField] private Image backgroundImage;
 
 	GameObject storyEventInstance;
 	
@@ -65,8 +67,8 @@ public class EventSystem : MonoBehaviour
 				{
 					inkDriver.titleBox = titleBox;
 					inkDriver.textBox = textBox;
+					inkDriver.backgroundUI = backgroundImage;
 				}
-				storyEventInstance.transform.SetSiblingIndex(0);
 
 				eventActive = true;
 				eventIndex++;

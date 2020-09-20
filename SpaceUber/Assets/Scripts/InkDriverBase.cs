@@ -20,6 +20,7 @@ public class InkDriverBase : MonoBehaviour
     private TextAsset inkJSONAsset;
 
     [SerializeField] private string eventName;
+    [SerializeField] private Sprite backgroundImage;
     
     //A prefab of the button we will generate every time a choice is needed
     [SerializeField, Tooltip("Attach the prefab of a choice button to this")] 
@@ -30,6 +31,7 @@ public class InkDriverBase : MonoBehaviour
     
     [HideInInspector] public TMP_Text titleBox;
     [HideInInspector] public TMP_Text textBox;
+    [HideInInspector] public Image backgroundUI;
 
     [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
     private float textPrintSpeed = 0.1f;
@@ -55,6 +57,7 @@ public class InkDriverBase : MonoBehaviour
 
         Refresh(); //starts the dialogue
         titleBox.text = eventName;
+        backgroundUI.sprite = backgroundImage;
         //set the event title based on Knot title in the .Ink
         //string title = story.state.currentPathString;
         //titleBox.text = title;

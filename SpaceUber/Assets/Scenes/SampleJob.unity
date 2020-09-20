@@ -695,8 +695,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Event Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5886673956733768951, guid: 950a9a7584f89f34e81b93f6e22aee5f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 950a9a7584f89f34e81b93f6e22aee5f, type: 3}
+--- !u!114 &2226933874810775162 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5886673956733768951, guid: 950a9a7584f89f34e81b93f6e22aee5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2226933874810775161}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4483520059444689811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -802,5 +819,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8811855456129256297, guid: 284df52fb5378b543b71c9e78141873f,
         type: 3}
+    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
+        type: 3}
+      propertyPath: backgroundImage
+      value: 
+      objectReference: {fileID: 2226933874810775162}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe5d639606919114a9b48eb746a06bc6, type: 3}
