@@ -1,7 +1,7 @@
 # Space Uber Senior Game Capstone at Bradley University
 
   Project Build Status:   
-  ![Build and Test](https://github.com/NightAngel47/Space-Uber/workflows/Build%20and%20Test/badge.svg)
+![Build](https://github.com/NightAngel47/Space-Uber/workflows/Build/badge.svg)
 
 ## Coding Guidelines
 	
