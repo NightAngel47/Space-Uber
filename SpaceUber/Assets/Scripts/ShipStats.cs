@@ -57,6 +57,7 @@ public class ShipStats : MonoBehaviour
     private int foodPerTick;
     private int shipHealthMax;
     private int shipHealthCurrent;
+    private int crewMorale;
 
     void Start()
     {
@@ -137,6 +138,12 @@ public class ShipStats : MonoBehaviour
     {
         shipHealthMax += hullDurabilityMax;
         shipHealthCurrent += hullDurabilityRemainingAmount;
+        UpdateShipStatsUI();
+    }
+
+    public void UpdateCrewMorale(int crewMoraleAmount)
+    {
+        crewMorale += crewMoraleAmount;
         UpdateShipStatsUI();
     }
 }
