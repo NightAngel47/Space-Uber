@@ -1,4 +1,4 @@
-name: Build and Test
+name: Build
 
 on:
   pull_request: {}
@@ -34,20 +34,12 @@ jobs:
           restore-keys: |
             Library-${{ matrix.projectPath }}-
             Library-
-      - uses: webbertakken/unity-test-runner@v1.6
-        id: testRunner
-        with:
-          projectPath: ${{ matrix.projectPath }}
-          unityVersion: ${{ matrix.unityVersion }}
-      - uses: actions/upload-artifact@v2.1.4
-        with:
-          name: Test results (all modes)
-          path: ${{ steps.testRunner.outputs.artifactsPath }}
       - uses: webbertakken/unity-builder@v1.2
         with:
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
+          buildName: SpaceUber-${{ matrix.targetPlatform }}
           versioning: None
       - uses: actions/upload-artifact@v2.1.4
         with:
