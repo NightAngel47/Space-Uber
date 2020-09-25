@@ -197,7 +197,6 @@ public class InkDriverBase : MonoBehaviour
         {
             text = story.Continue();  //reads text until there is another choice
         }
-        print(text);
         return text;
     }
 

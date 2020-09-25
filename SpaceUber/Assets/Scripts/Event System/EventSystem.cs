@@ -1,6 +1,6 @@
 /*
  * EventSystem.cs
- * Author(s): #Greg Brandt#
+ * Author(s): #Greg Brandt#, Scott Acker, Steven Drovie
  * Created on: 9/17/2020 (en-US)
  * Description:
  */
@@ -61,7 +61,7 @@ public class EventSystem : MonoBehaviour
 			if (!eventActive && eventIndex < storyEvents.Count)
 			{
 				//prompt an event
-				storyEventInstance = Instantiate(storyEvents[eventIndex], canvas.transform);
+				storyEventInstance = Instantiate(RandomizeEvent(), canvas.transform);
 
 				if (storyEventInstance.TryGetComponent(out InkDriverBase inkDriver))
 				{
@@ -102,5 +102,26 @@ public class EventSystem : MonoBehaviour
 		{
 			GameManager.instance.LoadScene("PromptScreen");
 		}
+	}
+
+	/// <summary>
+	/// Picks a random event to spawn. The random numbers include the eventIndex to the count of storyEvents list
+	/// When an event is picked, it is moved to the start of the list and cannot be picked again.
+	/// </summary>
+	/// <returns></returns>
+	private GameObject RandomizeEvent()
+	{
+		GameObject thisEvent = storyEvents[eventIndex];
+		print("Event index is " + eventIndex);
+
+		if (eventIndex != storyEvents.Count)
+		{
+			int eventNum = Random.Range(eventIndex, storyEvents.Count);
+			thisEvent = storyEvents[eventNum];
+			storyEvents.RemoveAt(eventNum);
+			storyEvents.Insert(0, thisEvent);
+		}
+		
+		return thisEvent;
 	}
 }
