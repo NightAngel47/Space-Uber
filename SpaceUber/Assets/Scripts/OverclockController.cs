@@ -35,7 +35,7 @@ public class OverclockController : MonoBehaviour
         StartCoroutine(StopOverclocking(resourceType, resourceAmount));
     }
 
-    private IEnumerator StartOverclocking(int moraleAmount, string resourceType = null, int resourceAmount = 0)
+    private IEnumerator StartOverclocking(int moraleAmount, string resourceType = "", int resourceAmount = 0)
     {
         overclocking = true;
         switch (resourceType)
@@ -65,40 +65,39 @@ public class OverclockController : MonoBehaviour
                 break;
         }
         shipStats.UpdateCrewMorale(moraleAmount);
-        new WaitForSecondsRealtime(5.0f);
+        yield return new WaitForSecondsRealtime(5.0f);
         StartCoroutine(StopOverclocking(resourceType, resourceAmount));
-        return null;
     }
 
-    private IEnumerator StopOverclocking(string resourceType = null, int resourceAmount = 0)
+    private IEnumerator StopOverclocking(string resourceType = "", int resourceAmount = 0)
     {
         overclocking = false;
         switch (resourceType)
         {
             case "Credits":
-                shipStats.UpdateCreditsAmount(resourceAmount);
+                shipStats.UpdateCreditsAmount(-resourceAmount);
                 break;
             case "Energy":
-                shipStats.UpdateEnergyAmount(resourceAmount, resourceAmount);
+                shipStats.UpdateEnergyAmount(-resourceAmount, -resourceAmount);
                 break;
             case "Security":
-                shipStats.UpdateSecurityAmount(resourceAmount);
+                shipStats.UpdateSecurityAmount(-resourceAmount);
                 break;
             case "Ship Weapons":
-                shipStats.UpdateShipWeaponsAmount(resourceAmount);
+                shipStats.UpdateShipWeaponsAmount(-resourceAmount);
                 break;
             case "Food":
-                shipStats.UpdateFoodAmount(resourceAmount);
+                shipStats.UpdateFoodAmount(-resourceAmount);
                 break;
             case "Food Per Tick":
-                shipStats.UpdateFoodPerTickAmount(resourceAmount);
+                shipStats.UpdateFoodPerTickAmount(-resourceAmount);
                 break;
             case "Hull Durability":
-                shipStats.UpdateHullDurabilityAmount(resourceAmount);
+                shipStats.UpdateHullDurabilityAmount(-resourceAmount);
                 break;
             default:
                 break;
         }
-        return null;
+        yield return null;
     }
 }

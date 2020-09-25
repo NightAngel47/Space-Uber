@@ -43,6 +43,8 @@ public class ShipStats : MonoBehaviour
     public TMP_Text foodText;
     [Foldout("Ship Stats UI Objects")]
     public TMP_Text shipHealthText;
+    [Foldout("Ship Stats UI Objects")]
+    public TMP_Text crewMoraleText;
 
     private List<RoomStats> rooms;
 
@@ -72,7 +74,7 @@ public class ShipStats : MonoBehaviour
         foodPerTick = 0;
         shipHealthMax = startingShipHealth;
         shipHealthCurrent = startingShipHealth;
-
+        crewMorale = 0;
         UpdateShipStatsUI();
     }
 
@@ -88,6 +90,7 @@ public class ShipStats : MonoBehaviour
         crewText.text = "Crew: " + crewRemaining.ToString() + " / " + crewMax.ToString();
         foodText.text = "Food: " + food.ToString() + " + " + foodPerTick.ToString();
         shipHealthText.text = "Hull Durability: " + shipHealthCurrent.ToString() + " / " + shipHealthMax.ToString();
+        crewMoraleText.text = "Crew Morale: " + crewMorale.ToString();
     }
 
     public void UpdateCreditsAmount(int creditAmount)
