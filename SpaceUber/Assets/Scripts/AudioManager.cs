@@ -35,12 +35,12 @@ public class Sound
     {
         source = sourceIn;
         source.clip = clip;
+        source.outputAudioMixerGroup = mixer;
     }
 
     public void SetMixer(AudioMixerGroup mixAssign)
     {
         mix = mixAssign;
-        mix.AudioMixerGroup = mixer;
     }
 
     public void SetVolume(float newVolume) { source.volume = newVolume; }
@@ -105,7 +105,7 @@ public class AudioManager : MonoBehaviour
             GameObject obj = new GameObject("Sound_" + i + "_" + musicTracks[i].name);
             obj.transform.SetParent(transform);
             musicTracks[i].SetSource(obj.AddComponent<AudioSource>());
-            musicTracks[i].SetMixer(outputAudioMixerGroup = obj.AddComponent<Audiosource>(outputAudioMixerGroup)); //new
+            //musicTracks[i].SetMixer(new AudioMixerGroup()); //new
     }
 
         for (int i = 0; i < sfxTracks.Length; i++)
