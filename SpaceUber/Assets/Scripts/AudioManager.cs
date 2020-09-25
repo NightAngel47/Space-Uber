@@ -9,6 +9,7 @@ using System.Collections;
 using System.Data.Common;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.Audio;
 
 //Serialized wrapper of AudioSource 
 [System.Serializable]
@@ -16,6 +17,7 @@ public class Sound
 {
     public string name;
     public AudioClip clip;
+    public AudioMixerGroup mixer; //new
 
     [Range(0f, 1f)] public float volume = 1;
     [Range(0.5f, 1.5f)] public float pitch = 1;
@@ -26,11 +28,19 @@ public class Sound
     [Range(0, 0.5f)] public float pitchVarience = 0;
 
     AudioSource source;
+    AudioMixerGroup mix;
+
 
     public void SetSource(AudioSource sourceIn)
     {
         source = sourceIn;
         source.clip = clip;
+    }
+
+    public void SetMixer(AudioMixerGroup mixAssign)
+    {
+        mix = mixAssign;
+        mix.AudioMixerGroup = mixer;
     }
 
     public void SetVolume(float newVolume) { source.volume = newVolume; }
@@ -60,6 +70,7 @@ public class Sound
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
+    
     [SerializeField] Sound[] musicTracks;
     [SerializeField] Sound[] sfxTracks;
     [Range(0f, 1f)] public float masterVolume = 1;
@@ -94,13 +105,15 @@ public class AudioManager : MonoBehaviour
             GameObject obj = new GameObject("Sound_" + i + "_" + musicTracks[i].name);
             obj.transform.SetParent(transform);
             musicTracks[i].SetSource(obj.AddComponent<AudioSource>());
-		}
+            musicTracks[i].SetMixer(outputAudioMixerGroup = obj.AddComponent<Audiosource>(outputAudioMixerGroup)); //new
+    }
 
         for (int i = 0; i < sfxTracks.Length; i++)
         {
             GameObject obj = new GameObject("Sound_" + i + "_" + sfxTracks[i].name);
             obj.transform.SetParent(transform);
             sfxTracks[i].SetSource(obj.AddComponent<AudioSource>());
+            //sfxTracks[i].SetMixer() = soundEffects; //new
         }
     }
 
