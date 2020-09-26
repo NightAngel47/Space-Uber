@@ -17,6 +17,7 @@ public class EventSystem : MonoBehaviour
 {
 	public static EventSystem instance;
 	public EventSystemState systemState;
+	public ShipStats ship;
 
 	[SerializeField] private string waitMessage = "Wait for Next Event";
 	[SerializeField] private List<GameObject> storyEvents;
@@ -118,6 +119,31 @@ public class EventSystem : MonoBehaviour
 		{
 			int eventNum = Random.Range(eventIndex, storyEvents.Count);
 			thisEvent = storyEvents[eventNum];
+			
+			if(thisEvent.GetComponent<EventRequirements>())
+			{
+				//maximum number of events still available
+				int counter = eventIndex;
+
+				//Copies the list to shuffle until it finds a new event to do or runs out of ideas
+				while(!thisEvent.GetComponent<EventRequirements>().MatchesRequirements(ship) && counter != storyEvents.Count)
+				{
+					int newNum = Random.Range(counter, storyEvents.Count);
+					List<GameObject> newStoryEvents = storyEvents;
+					thisEvent = newStoryEvents[newNum];
+
+					newStoryEvents.RemoveAt(eventNum);
+					newStoryEvents.Insert(0, thisEvent);
+
+					counter++;
+				}
+
+				if(counter == storyEvents.Count)
+				{
+					print("There were no other events to run.");
+				}
+			}
+
 			storyEvents.RemoveAt(eventNum);
 			storyEvents.Insert(0, thisEvent);
 		}
