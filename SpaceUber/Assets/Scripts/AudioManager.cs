@@ -11,13 +11,13 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Audio;
 
-//Serialized wrapper of AudioSource 
+//Serialized wrapper of AudioSource. These are declared in the AudioManagerInspector and initialized on Start.
 [System.Serializable]
 public class Sound
 {
     public string name;
     public AudioClip clip;
-    public AudioMixerGroup mixer; //new
+    public AudioMixerGroup mixer; 
 
     [Range(0f, 1f)] public float volume = 1;
     [Range(0.5f, 1.5f)] public float pitch = 1;
@@ -28,25 +28,31 @@ public class Sound
     [Range(0, 0.5f)] public float pitchVarience = 0;
 
     AudioSource source;
-    AudioMixerGroup mix;
 
-
-    public void SetSource(AudioSource sourceIn)
+    public void Initialize(AudioSource sourceIn)
     {
         source = sourceIn;
         source.clip = clip;
         source.outputAudioMixerGroup = mixer;
     }
 
-    public void SetMixer(AudioMixerGroup mixAssign)
-    {
-        mix = mixAssign;
-    }
-
+    /// <summary>
+    /// Sets the volume of the audio source but still maintains the original volume value. To restore the volume, Call ResetToOriginalVolume()
+    /// </summary>
+    /// <param name="newVolume"></param>
     public void SetVolume(float newVolume) { source.volume = newVolume; }
 
-    public void ScaleVolume(float scale) { source.volume *= scale; }
+    /// <summary>
+    /// Use to adjust scale the volume by a specified amount such as, music volume scale, sfx scale etc.
+    /// </summary>
+    /// <param name="scale"></param>
+    public void ScaleVolume(float scale) { source.volume = volume*scale; }
 
+    public void ResetToOriginalVolume() { source.volume = volume; }
+
+    /// <summary>
+    /// Plays the Sound's clip. If the Sound has sound volume or pitch varience, the sound will play with a random pitch or volume varience in a set range
+    /// </summary>
     public void PlayOnce()
     {
         source.volume = volume * (1 + Random.Range(-volumeVarience / 2, volumeVarience / 2));
@@ -54,6 +60,9 @@ public class Sound
         source.Play();
     }
 
+    /// <summary>
+    /// Call this for music or ambient sound tracks
+    /// </summary>
     public void PlayLoop()
     {
         source.loop = true;
@@ -99,22 +108,8 @@ public class AudioManager : MonoBehaviour
 
 	private void Start()
 	{
-        //intialize sounds as gameobjects
-		for(int i = 0; i < musicTracks.Length; i++)
-		{
-            GameObject obj = new GameObject("Sound_" + i + "_" + musicTracks[i].name);
-            obj.transform.SetParent(transform);
-            musicTracks[i].SetSource(obj.AddComponent<AudioSource>());
-            //musicTracks[i].SetMixer(new AudioMixerGroup()); //new
-    }
-
-        for (int i = 0; i < sfxTracks.Length; i++)
-        {
-            GameObject obj = new GameObject("Sound_" + i + "_" + sfxTracks[i].name);
-            obj.transform.SetParent(transform);
-            sfxTracks[i].SetSource(obj.AddComponent<AudioSource>());
-            //sfxTracks[i].SetMixer() = soundEffects; //new
-        }
+        InitializeTracks(musicTracks);
+        InitializeTracks(sfxTracks);
     }
 
 	private void FixedUpdate()
@@ -123,6 +118,24 @@ public class AudioManager : MonoBehaviour
         if(currentlyPlayingMusic != null)currentlyPlayingMusic.SetVolume(currentlyPlayingMusic.volume * musicVolume);
 	}
 
+    /// <summary>
+    /// //Intialize GameObjects, give them names, attach an AudioSource, assign the AudioSource to a Sound object.
+    /// </summary>
+    /// <param name="tracks"></param>
+    void InitializeTracks(Sound[] tracks)
+	{
+        for (int i = 0; i < tracks.Length; i++)
+        {
+            GameObject obj = new GameObject("Sound_" + i + "_" + tracks[i].name);
+            obj.transform.SetParent(transform);
+            tracks[i].Initialize(obj.AddComponent<AudioSource>());
+        }
+    }
+
+    /// <summary>
+    /// Plays a given music track and cross fade transitions if music is currently playing
+    /// </summary>
+    /// <param name="soundName"></param>
 	public void PlayMusicWithTransition(string soundName)
 	{
         //Search tracks for sound name
@@ -132,11 +145,13 @@ public class AudioManager : MonoBehaviour
 			{
                 if (currentlyPlayingMusic != null)
                 {
+                    //If music is playing, cross fade track transition
                     StartCoroutine(Fade(currentlyPlayingMusic, fadeOutTime, false));
                     StartCoroutine(OverLap(i));
                 }
                 else
                 {
+                    //If no music, just play it.
                     currentlyPlayingMusic = musicTracks[i];
                     musicTracks[i].ScaleVolume(musicVolume);
                     if (isMuted) musicTracks[i].ScaleVolume(0);
@@ -147,6 +162,7 @@ public class AudioManager : MonoBehaviour
 		}
         Debug.LogWarning("AudioManager: Sound not found in List: " + soundName);
 	}
+
 
     public void PlayMusicWithoutTransition(string soundName)
 	{
@@ -160,7 +176,6 @@ public class AudioManager : MonoBehaviour
                 musicTracks[i].ScaleVolume(musicVolume);
                 if (isMuted) musicTracks[i].ScaleVolume(0);
                 musicTracks[i].PlayLoop();
-                
                 return;
             }
         }
@@ -189,6 +204,13 @@ public class AudioManager : MonoBehaviour
 
     public void StopMusic() { currentlyPlayingMusic.Stop(); }
 
+    /// <summary>
+    /// Fades a given sound in or out
+    /// </summary>
+    /// <param name="sound"></param>
+    /// <param name="fadeTime"></param>
+    /// <param name="fadeIn">False to fade out</param>
+    /// <returns></returns>
     IEnumerator Fade(Sound sound, float fadeTime, bool fadeIn)
     {
         //Sanitize Input
@@ -201,17 +223,8 @@ public class AudioManager : MonoBehaviour
             float startVolume = sound.volume;
 
             //Adjust values to fade in or fade out
-            if (fadeIn)
-            {
-                fadeInOrOut = -1;
-                sound.SetVolume(0.1f);
-                fadeStart = 0;
-            }
-            else
-            {
-                fadeStart = 1;
-                fadeInOrOut = 1;
-            }
+            if (fadeIn) { fadeInOrOut = -1; sound.SetVolume(0.1f); fadeStart = 0; }
+            else { fadeStart = 1; fadeInOrOut = 1; }
 
             float timeElapsed = 0;
 
@@ -222,7 +235,6 @@ public class AudioManager : MonoBehaviour
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
-
             //Stop sound and reset volume to original amount
             if (!fadeIn) sound.Stop();
             sound.volume = startVolume;
