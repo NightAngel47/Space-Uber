@@ -66,34 +66,39 @@ public class AdditiveSceneManager : MonoBehaviour
         
         if(moveObjects)
         {
-            print(SceneManager.GetSceneByBuildIndex(scene).isLoaded);
-            GameObject[] newAddedObjects = SceneManager.GetSceneByBuildIndex(scene).GetRootGameObjects();
-            foreach(GameObject obj in newAddedObjects)
+            StartCoroutine(MoveObjects(scene));
+        }
+    }
+    
+    private IEnumerator MoveObjects(int scene)
+    {
+        yield return new WaitUntil(() => SceneManager.GetSceneByBuildIndex(scene).isLoaded);
+        GameObject[] newAddedObjects = SceneManager.GetSceneByBuildIndex(scene).GetRootGameObjects();
+        foreach(GameObject obj in newAddedObjects)
+        {
+            SceneManager.MoveGameObjectToScene(obj, SceneManager.GetSceneByBuildIndex(baseSceneIndex));
+        }
+        
+        if(addedObjects != null)
+        {
+            GameObject[] oldAddedObjects = addedObjects;
+            int totalLength = newAddedObjects.Length + oldAddedObjects.Length;
+            addedObjects = new GameObject[totalLength];
+            for(int i = 0; i < addedObjects.Length; i++)
             {
-                SceneManager.MoveGameObjectToScene(obj, SceneManager.GetSceneByBuildIndex(baseSceneIndex));
-            }
-            
-            if(addedObjects != null)
-            {
-                GameObject[] oldAddedObjects = addedObjects;
-                int totalLength = newAddedObjects.Length + oldAddedObjects.Length;
-                addedObjects = new GameObject[totalLength];
-                for(int i = 0; i < addedObjects.Length; i++)
+                if(i < oldAddedObjects.Length)
                 {
-                    if(i < oldAddedObjects.Length)
-                    {
-                        addedObjects[i] = oldAddedObjects[i];
-                    }
-                    else
-                    {
-                        addedObjects[i] = newAddedObjects[i-oldAddedObjects.Length];
-                    }
+                    addedObjects[i] = oldAddedObjects[i];
+                }
+                else
+                {
+                    addedObjects[i] = newAddedObjects[i-oldAddedObjects.Length];
                 }
             }
-            else
-            {
-                addedObjects = newAddedObjects;
-            }
+        }
+        else
+        {
+            addedObjects = newAddedObjects;
         }
     }
     
