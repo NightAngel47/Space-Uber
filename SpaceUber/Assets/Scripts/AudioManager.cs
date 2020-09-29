@@ -5,13 +5,14 @@
  * Provides a central manager to play audio sounds and transitions music tracks: 
  */
 
+using Boo.Lang;
 using System.Collections;
 using System.Data.Common;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Audio;
 
-//Serialized wrapper of AudioSource. These are declared in the AudioManagerInspector and initialized on Start.
+//Serialized wrapper of AudioSource. These are declared in the AudioManager inspector and initialized on Start.
 [System.Serializable]
 public class Sound
 {
@@ -22,9 +23,9 @@ public class Sound
     [Range(0f, 1f)] public float volume = 1;
     [Range(0.5f, 1.5f)] public float pitch = 1;
 
-    [Tooltip("On play the sound will have a random volume varience plus or minus this value. Does not effect music")]
+    [Tooltip("On play the sound will have a random volume variance  plus or minus this value. Does not affect music")]
     [Range(0, 0.5f)] public float volumeVarience = 0;
-    [Tooltip("On play the sound will have a random volume varience plus or minus this value. Does not effect music")]
+    [Tooltip("On play the sound will have a random volume variance  plus or minus this value. Does not affect music")]
     [Range(0, 0.5f)] public float pitchVarience = 0;
 
     AudioSource source;
@@ -51,7 +52,7 @@ public class Sound
     public void ResetToOriginalVolume() { source.volume = volume; }
 
     /// <summary>
-    /// Plays the Sound's clip. If the Sound has sound volume or pitch varience, the sound will play with a random pitch or volume varience in a set range
+    /// Plays the Sound's clip. If the Sound has sound volume or pitch variance, the sound will play with a random pitch or volume variance in a set range
     /// </summary>
     public void PlayOnce()
     {
@@ -82,9 +83,12 @@ public class AudioManager : MonoBehaviour
     
     [SerializeField] Sound[] musicTracks;
     [SerializeField] Sound[] sfxTracks;
+    [SerializeField] Sound[] ambientTracks;
+    [SerializeField] List<Sound> currentlyPlayingAmbience = new List<Sound>();
     [Range(0f, 1f)] public float masterVolume = 1;
     [Range(0f, 1f)] public float sfxVolume = 1;
     [Range(0f, 1f)] public float musicVolume = 1;
+    [Range(0f, 1f)] public float ambienceVolume = 1;
     [Tooltip("Time it takes for current track to fade out")]
     [SerializeField] float fadeOutTime;
     [Tooltip("Time window of overlap of current track fade out and next track fade in")]
@@ -110,16 +114,29 @@ public class AudioManager : MonoBehaviour
 	{
         InitializeTracks(musicTracks);
         InitializeTracks(sfxTracks);
+        InitializeTracks(ambientTracks);
     }
 
 	private void FixedUpdate()
 	{
         //Ensures the volume can be adjusted by player dynamically. 
-        if(currentlyPlayingMusic != null)currentlyPlayingMusic.SetVolume(currentlyPlayingMusic.volume * musicVolume);
+        if (currentlyPlayingMusic != null)
+        {
+            if (isMuted) 
+            {
+                currentlyPlayingMusic.ScaleVolume(0); 
+                foreach(Sound sound in currentlyPlayingAmbience) { sound.ScaleVolume(0); }
+            }
+            else 
+            {
+                currentlyPlayingMusic.ScaleVolume(musicVolume * masterVolume); 
+                foreach(Sound sound in currentlyPlayingAmbience) { sound.ScaleVolume(ambienceVolume * masterVolume); }
+            }
+        }
 	}
 
     /// <summary>
-    /// //Intialize GameObjects, give them names, attach an AudioSource, assign the AudioSource to a Sound object.
+    /// //Initializes GameObjects, give them names, attach an AudioSource, assign the AudioSource to a Sound object.
     /// </summary>
     /// <param name="tracks"></param>
     void InitializeTracks(Sound[] tracks)
@@ -153,7 +170,7 @@ public class AudioManager : MonoBehaviour
                 {
                     //If no music, just play it.
                     currentlyPlayingMusic = musicTracks[i];
-                    musicTracks[i].ScaleVolume(musicVolume);
+                    musicTracks[i].ScaleVolume(musicVolume * masterVolume);
                     if (isMuted) musicTracks[i].ScaleVolume(0);
                     musicTracks[i].PlayLoop();
                 }
@@ -173,7 +190,7 @@ public class AudioManager : MonoBehaviour
             {
                 if (currentlyPlayingMusic != null) { currentlyPlayingMusic.Stop(); }
                 currentlyPlayingMusic = musicTracks[i];
-                musicTracks[i].ScaleVolume(musicVolume);
+                musicTracks[i].ScaleVolume(musicVolume * masterVolume);
                 if (isMuted) musicTracks[i].ScaleVolume(0);
                 musicTracks[i].PlayLoop();
                 return;
@@ -182,6 +199,51 @@ public class AudioManager : MonoBehaviour
         Debug.LogWarning("AudioManager: Sound not found in List: " + soundName);
     }
 
+    /// <summary>
+    /// Play ambient sound along side music if applicable
+    /// </summary>
+    /// <param name="soundName"></param>
+    public void PlayAmbience(string soundName)
+    {
+        //Search tracks for sound name
+        for (int i = 0; i < ambientTracks.Length; i++)
+        {
+            if (ambientTracks[i].name == soundName && currentlyPlayingAmbience.Contains(ambientTracks[i]))
+            {
+                ambientTracks[i].ScaleVolume(ambienceVolume * masterVolume);
+                if (isMuted) ambientTracks[i].ScaleVolume(0);
+                ambientTracks[i].PlayLoop();
+                currentlyPlayingAmbience.Add(ambientTracks[i]);
+                return;
+            }
+        }
+        Debug.LogWarning("AudioManager: Sound not found in List: " + soundName);
+    }
+
+    /// <summary>
+    /// Stops a specific ambientTrack
+    /// </summary>
+    /// <param name="soundName"></param>
+    public void StopAmbientTrack(string soundName)
+	{
+        Sound soundToBeRemoved = null;
+        foreach(Sound sound in currentlyPlayingAmbience)
+		{
+            if(sound.name == soundName) 
+            {
+                sound.Stop();
+                soundToBeRemoved = sound;
+            }
+		}
+        if (soundToBeRemoved != null) { currentlyPlayingAmbience.Remove(soundToBeRemoved); }
+	}
+
+    public void StopAllAmbience()
+	{
+        foreach(Sound sound in currentlyPlayingAmbience) { sound.Stop();  }
+        currentlyPlayingAmbience.Clear();
+	}
+
     public void PlaySFX(string soundName)
     {
         //Search tracks for sound name
@@ -189,7 +251,7 @@ public class AudioManager : MonoBehaviour
         {
             if (sfxTracks[i].name == soundName)
             {
-                sfxTracks[i].ScaleVolume(sfxVolume);
+                sfxTracks[i].ScaleVolume(sfxVolume * masterVolume);
                 if (isMuted) sfxTracks[i].ScaleVolume(0);
                 sfxTracks[i].PlayOnce();
                 return;
