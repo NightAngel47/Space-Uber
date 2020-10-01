@@ -7,11 +7,11 @@ You decide that whatever deals lie off the path are not likely not worth your ti
 
 == Black_Market ==
 You divert your flight plan into the shadow of a nearby gas giant. You coast into a tower-shaped space station covered in radio antennas, its hangar giving your ample space to land. A broker, wrapped in several suits, cuff-links, and masks, boards your ship. They welcome you to the black market, and offer you their wares.
-* [Flashclones]
+* [Flashclones (-Credits, +Crew, ILLEGAL)]
 -> Flashclones
-* [Nuclear Weapons]
+* [Nuclear Weapons (-Credits, +Weapons, ILLEGAL)]
 -> Nuclear_Weapons
-* [Rations]
+* [Rations (-Credits, +Food, ILLEGAL)]
 -> Rations
 * [Leave]
 You decide that none of the black market's options are worth the money or ire from local authorities.
