@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 985421082131903529}
   - component: {fileID: 6555813848325040068}
+  - component: {fileID: -2278236822874128572}
   m_Layer: 0
   m_Name: 1x2
   m_TagString: Untagged
@@ -44,6 +45,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85abcfb88d2be284cb798b37dc985349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2278236822874128572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2550557044629842532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9737dedef52a2fc46ab85f491529aa9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minCrew: 0
+  maxCrew: 0
+  minPower: 0
+  maxPower: 0
+  price: 150
+  roomDescription: 
+  roomName: 
 --- !u!1 &4511853470536124943
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,11 +161,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotAdjust: 1
-  buttons: {fileID: 0}
   shapeType: 2
   objectNum: 2
   shapeDataTemplate: {fileID: 11400000, guid: 0b34d4364602b164eae4194b0f9c002b, type: 2}
   shapeData: {fileID: 0}
+  hoverUiPanel: {fileID: 0}
   boundsUp: 0
   boundsDown: 0
   boundsLeft: 0

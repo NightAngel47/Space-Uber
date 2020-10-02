@@ -133,8 +133,10 @@ public class ObjectMover : MonoBehaviour
         {
             SpotChecker.instance.FillSpots(gameObject, os.rotAdjust);
 
-            if (SpotChecker.cannotPlace == false)
+            if (SpotChecker.cannotPlace == false && FindObjectOfType<ShipStats>().GetCredits() >= gameObject.GetComponent<RoomStats>().price)
             {
+                gameObject.GetComponent<RoomStats>().AddRoomStats();
+
                 hasPlaced = true;
                 gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = ObjectScript.c;
                 Destroy(gameObject.GetComponent<ObjectMover>());

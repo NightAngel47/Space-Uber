@@ -80,12 +80,12 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     public void UpdateShipStatsUI()
     {
-        creditsText.text = "Credits: " + credits.ToString();
-        energyText.text = "Energy: " + energyRemaining.ToString() + " / " + energyMax.ToString();
+        creditsText.text = credits.ToString();
+        energyText.text =  energyRemaining.ToString() + " / " + energyMax.ToString();
         securityText.text = "Security: " + security.ToString();
         shipWeaponsText.text = "Ship Weapons: " + shipWeapons.ToString();
         crewText.text = "Crew: " + crewRemaining.ToString() + " / " + crewMax.ToString();
-        foodText.text = "Food: " + food.ToString() + " + " + foodPerTick.ToString();
+        foodText.text = food.ToString() + " + " + foodPerTick.ToString();
         shipHealthText.text = "Hull Durability: " + shipHealthCurrent.ToString() + " / " + shipHealthMax.ToString();
     }
 
@@ -138,5 +138,10 @@ public class ShipStats : MonoBehaviour
         shipHealthMax += hullDurabilityMax;
         shipHealthCurrent += hullDurabilityRemainingAmount;
         UpdateShipStatsUI();
+    }
+
+    public int GetCredits()
+    {
+        return credits;
     }
 }

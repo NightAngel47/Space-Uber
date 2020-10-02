@@ -8,62 +8,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnObject : MonoBehaviour
 {
-    public GameObject _1x1;
-    public GameObject _1x2;
-    public GameObject _2x2;
-    public GameObject _1x3;
-    public GameObject _LeftL;
+    [SerializeField] private List<GameObject> allRoomList = new List<GameObject>();
+    [SerializeField] private List<GameObject> availableRooms = new List<GameObject>();
+    [SerializeField] private GameObject buttonPrefab;
+    [SerializeField] private GameObject buttonPanel;
 
-    public void Spawn1x1()
+    public void Start()
     {
-        if (ObjectMover.hasPlaced == true)
+        CreateRoomSpawnButtons();
+    }
+
+    public void SetAvailableRoomList(List<GameObject> l)
+    {
+        availableRooms = new List<GameObject>(l);
+    }
+
+    public void CreateRoomSpawnButtons()
+    {
+        foreach (GameObject room in availableRooms)
         {
-            ObjectMover.hasPlaced = false;
-            GameObject g = Instantiate(_1x1, new Vector3(1, -1, 0), Quaternion.identity);
-            //g.transform.GetChild(1).gameObject.SetActive(false);
+            GameObject g = Instantiate(buttonPrefab);
+            g.transform.SetParent(buttonPanel.transform);
+            g.GetComponent<Button>().onClick.AddListener(() => SpawnRoom(room));
+            g.transform.GetChild(0).gameObject.GetComponent<Text>().text = room.name;
         }
     }
 
-    public void Spawn1x2()
+    public void SpawnRoom(GameObject ga)
     {
-        if (ObjectMover.hasPlaced == true)
-        {
-            ObjectMover.hasPlaced = false;
-            GameObject g = Instantiate(_1x2, new Vector3(1, -1, 0), Quaternion.identity);
-            //g.transform.GetChild(1).gameObject.SetActive(false);
-        }
-    }
-
-    public void Spawn2x2()
-    {
-        if (ObjectMover.hasPlaced == true)
-        {
-            ObjectMover.hasPlaced = false;
-            GameObject g = Instantiate(_2x2, new Vector3(1, -1, 0), Quaternion.identity);
-           //g.transform.GetChild(1).gameObject.SetActive(false);
-        }
-    }
-
-    public void SpawnLeftL()
-    {
-        if (ObjectMover.hasPlaced == true)
-        {
-            ObjectMover.hasPlaced = false;
-            GameObject g = Instantiate(_LeftL, new Vector3(1, -1, 0), Quaternion.identity);
-            //g.transform.GetChild(1).gameObject.SetActive(false);
-        }
-    }
-
-    public void Spawn1x3()
-    {
-        if (ObjectMover.hasPlaced == true)
-        {
-            ObjectMover.hasPlaced = false;
-            GameObject g = Instantiate(_1x3, new Vector3(1, -1, 0), Quaternion.identity);
-            //g.transform.GetChild(1).gameObject.SetActive(false);
-        }
+        ObjectMover.hasPlaced = false;
+        GameObject g = Instantiate(ga, new Vector3(1, -1, 0), Quaternion.identity);
     }
 }
