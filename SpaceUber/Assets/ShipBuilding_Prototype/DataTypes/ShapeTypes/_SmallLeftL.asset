@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d399416dd404df4aa1ce21be5903b40, type: 3}
+  m_Name: _Z
+  m_EditorClassIdentifier: 
+  shapeType: 6
+  boundsUp: 2
+  boundsDown: -4
+  boundsLeft: 0
+  boundsRight: 7
+  rotBoundsRight: 6
+  rotBoundsUp: 3
+  rotAdjustVal: {x: 0.5, y: -0.5, z: 0}
+  gridSpaces:
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: 1, y: 1}
+  - {x: 1, y: 2}

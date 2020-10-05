@@ -68,5 +68,9 @@ public enum ShapeTypes
     _1x2,
     _1x3,
     _2x2,
-    _LeftL
+    _LeftL,
+    _3x3,
+    _Z,
+    _ShortT,
+    _SmallLeftL
 }
