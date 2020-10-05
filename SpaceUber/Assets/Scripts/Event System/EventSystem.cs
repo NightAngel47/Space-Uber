@@ -79,7 +79,8 @@ public class EventSystem : MonoBehaviour
 			yield return new WaitForSeconds(travelTicTime);
 
 			//Time to decide on an event
-			if (storyEventIndex % 2 == 0 && storyEventIndex != storyEvents.Count) //story events happen every other time
+			//story events happen every other time
+			if (storyEventIndex % 2 == 0 && storyEventIndex != storyEvents.Count) 
 			{
 				eventInstance = Instantiate(storyEvents[storyEventIndex], canvas.transform);
 
@@ -116,6 +117,10 @@ public class EventSystem : MonoBehaviour
 					overallEventIndex++;
 					yield return new WaitWhile((() => eventActive));
 				}
+				else
+				{
+					ConcludeEvent();
+				}
 				
 				
 			}
@@ -129,7 +134,12 @@ public class EventSystem : MonoBehaviour
 	{
 		print("Concluded Event");
 		eventInstance.GetComponent<InkDriverBase>().ClearUI();
-		Destroy(eventInstance);
+		
+		if(eventInstance != null)
+		{
+			Destroy(eventInstance);
+		}
+
 		eventActive = false;
 		titleBox.text = waitMessage;
 		textBox.text = ""; // make sure that the text has been cleared.
