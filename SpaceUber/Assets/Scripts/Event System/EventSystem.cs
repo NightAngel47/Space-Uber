@@ -29,15 +29,19 @@ public class EventSystem : MonoBehaviour
 	[SerializeField] private TMP_Text textBox;
 	[SerializeField] private Image backgroundImage;
 
-	GameObject storyEventInstance;
+	GameObject eventInstance;
 	
 	//time inbetween possible event triggers
 	float travelTicTime = 5;
 	bool isTraveling = false;
 	bool eventActive = false;
-	
-	//how many events have passed. Tells code how many events to ignore at the start of the list
-	int eventIndex = 0;
+
+	//how many events (story and random) have occurred
+	private int overallEventIndex = 0;
+	// How many story events have occurred. Tells the code which story event to play
+	private int storyEventIndex = 0;
+	//how many random events have passed. Tells code how many events to ignore at the start of the list
+	private int randomEventIndex = 0;
 	
 
 	private void Awake()
@@ -62,19 +66,45 @@ public class EventSystem : MonoBehaviour
 		
 		while (systemState == EventSystemState.Traveling)
 		{
+			//int chanceOfEvent = 1;
+			//while(!WillRunEvent(chanceOfEvent))
+			//{
+			//	isTraveling = true;
+			//	++chanceOfEvent;
+			//	yield return new WaitForSeconds(travelTicTime);
+
+			//}
+
 			isTraveling = true;
 			yield return new WaitForSeconds(travelTicTime);
 
-			if (!eventActive && eventIndex < randomEvents.Count)
+			//Time to decide on an event
+			if (storyEventIndex % 2 == 0 && storyEventIndex != storyEvents.Count) //story events happen every other time
 			{
-				//prompt a random event
+				eventInstance = Instantiate(storyEvents[storyEventIndex], canvas.transform);
+
+				if (eventInstance.TryGetComponent(out InkDriverBase inkDriver))
+				{
+					inkDriver.titleBox = titleBox;
+					inkDriver.textBox = textBox;
+					inkDriver.backgroundUI = backgroundImage;
+				}
+
+				eventActive = true;
+				storyEventIndex++;
+				overallEventIndex++;
+				yield return new WaitWhile((() => eventActive));
+				
+			}
+			else if (!eventActive && randomEventIndex < randomEvents.Count) //Pick a random event
+			{
 				GameObject newEvent = RandomizeEvent();
 				
 				if(newEvent != null) //check to be sure a random event was still chosen
 				{
-					storyEventInstance = Instantiate(newEvent, canvas.transform);
+					eventInstance = Instantiate(newEvent, canvas.transform);
 
-					if (storyEventInstance.TryGetComponent(out InkDriverBase inkDriver))
+					if (eventInstance.TryGetComponent(out InkDriverBase inkDriver))
 					{
 						inkDriver.titleBox = titleBox;
 						inkDriver.textBox = textBox;
@@ -82,26 +112,15 @@ public class EventSystem : MonoBehaviour
 					}
 
 					eventActive = true;
-					eventIndex++;
+					randomEventIndex++;
+					overallEventIndex++;
 					yield return new WaitWhile((() => eventActive));
 				}
-				else
-				{
-
-				}
+				
 				
 			}
 
-			////Some small animation to show time is ticking
-			//++travelTicker;
-			//if(travelTicker % 30 == 0 && travelTicker != 180)
-			//{
-			//	titleBox.text += ".";
-			//}
-			//else if(travelTicker == 12)
-			//{
-			//	titleBox.text = "Waiting for Event";
-			//}
+			
 		}
 		isTraveling = false;
 	}
@@ -109,18 +128,34 @@ public class EventSystem : MonoBehaviour
 	public void ConcludeEvent()
 	{
 		print("Concluded Event");
-		storyEventInstance.GetComponent<InkDriverBase>().ClearUI();
-		Destroy(storyEventInstance);
+		eventInstance.GetComponent<InkDriverBase>().ClearUI();
+		Destroy(eventInstance);
 		eventActive = false;
 		titleBox.text = waitMessage;
 		textBox.text = ""; // make sure that the text has been cleared.
 
-		if (eventIndex >= maxEvents)
+		if (overallEventIndex >= maxEvents)
 		{
 			GameManager.instance.LoadScene("PromptScreen");
 		}
 	}
 
+	/// <summary>
+	/// Decides whether or not an event will run. 
+	/// </summary>
+	/// <param name="chances">The number of times that the event chance has failed. The higher it is, the more likely an event</param>
+	/// <returns></returns>
+	private bool WillRunEvent(int chances)
+	{
+		int rng = Random.Range(1, 5);
+
+		if(rng <= chances)
+		{ return true; }
+		else
+		{ return false; }
+
+		
+	}
 	/// <summary>
 	/// Picks a random event to spawn. The random numbers include the eventIndex to the count of storyEvents list
 	/// When an event is picked, it is moved to the start of the list and cannot be picked again.
@@ -130,11 +165,11 @@ public class EventSystem : MonoBehaviour
 	/// <returns></returns>
 	private GameObject RandomizeEvent()
 	{
-		GameObject thisEvent = randomEvents[eventIndex];
+		GameObject thisEvent = randomEvents[randomEventIndex];
 
-		if (eventIndex != randomEvents.Count)
+		if (randomEventIndex != randomEvents.Count)
 		{
-			int eventNum = Random.Range(eventIndex, randomEvents.Count);
+			int eventNum = Random.Range(randomEventIndex, randomEvents.Count);
 			thisEvent = randomEvents[eventNum];
 			
 			//if the event chosen has requirements that are not met
@@ -143,7 +178,7 @@ public class EventSystem : MonoBehaviour
 				EventRequirements requirements = thisEvent.GetComponent<EventRequirements>();
 				
 				//copies the current index
-				int newIndex = eventIndex;
+				int newIndex = randomEventIndex;
 				List<GameObject> newRandomEvents = randomEvents;
 
 				//Copies the list to shuffle until it finds a new event to do or runs out of ideas
