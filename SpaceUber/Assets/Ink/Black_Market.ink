@@ -1,9 +1,5 @@
-An encrypted signal reaches your ship, its source less than a thousand kilometers off your current flight plan. The signal conveys the Universal characters for "wares of value," "bartering," and "critical discretion." Do you follow this signal?
-* [Detour to Signal]
+An encrypted signal reaches your ship, its source less than a thousand kilometers off your current flight plan. The signal conveys the Universal characters for "wares of value," "bartering," and "critical discretion." 
 -> Black_Market
-* [Carry on Mission]
-You decide that whatever deals lie off the path are not likely not worth your time.
--> END
 
 == Black_Market ==
 You divert your flight plan into the shadow of a nearby gas giant. You coast into a tower-shaped space station covered in radio antennas, its hangar giving your ample space to land. A broker, wrapped in several suits, cuff-links, and masks, boards your ship. They welcome you to the black market, and offer you their wares.
