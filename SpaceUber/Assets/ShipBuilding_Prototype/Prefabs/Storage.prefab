@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2455024970339946581}
   - component: {fileID: 3895126724606400052}
   - component: {fileID: 7060798059909865623}
-  - component: {fileID: 1343264148245035539}
   m_Layer: 0
   m_Name: Storage
   m_TagString: Untagged
@@ -66,20 +65,6 @@ MonoBehaviour:
   price: 25
   roomDescription: 
   roomName: 
---- !u!114 &1343264148245035539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2455024970339946571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfec50bf890af17479ff38a5eee6322e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resourceType: Energy
-  amount: 10
 --- !u!1 &2881483668041925008
 GameObject:
   m_ObjectHideFlags: 0
