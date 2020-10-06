@@ -131,15 +131,18 @@ public class ObjectMover : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            SpotChecker.instance.FillSpots(gameObject, os.rotAdjust);
-
-            if (SpotChecker.cannotPlace == false && FindObjectOfType<ShipStats>().GetCredits() >= gameObject.GetComponent<RoomStats>().price)
+            if (FindObjectOfType<ShipStats>().GetCredits() >= gameObject.GetComponent<RoomStats>().price)
             {
-                gameObject.GetComponent<RoomStats>().AddRoomStats();
+                SpotChecker.instance.FillSpots(gameObject, os.rotAdjust);
 
-                hasPlaced = true;
-                gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = ObjectScript.c;
-                Destroy(gameObject.GetComponent<ObjectMover>());
+                if (SpotChecker.cannotPlace == false)
+                {
+                    gameObject.GetComponent<RoomStats>().AddRoomStats();
+
+                    hasPlaced = true;
+                    gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = ObjectScript.c;
+                    Destroy(gameObject.GetComponent<ObjectMover>());
+                }
             }
         }
     }

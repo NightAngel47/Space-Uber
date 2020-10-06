@@ -33,6 +33,7 @@ public class SpotChecker : MonoBehaviour
         int objectNum = cube.gameObject.GetComponentInChildren<ObjectScript>().objectNum;
         GameObject gridPosBase = cube.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
         List<Vector2> gridSpots = new List<Vector2>(cube.transform.GetChild(0).gameObject.GetComponent<ObjectScript>().shapeData.gridSpaces);
+        cannotPlace = true;
 
         for (int i = 0; i < gridSpots.Count; i++)
         {
