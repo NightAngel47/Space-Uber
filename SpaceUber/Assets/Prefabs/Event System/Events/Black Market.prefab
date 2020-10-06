@@ -1,116 +1,68 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7583228578748488009
+--- !u!114 &1911157826831352640
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7062536059002245315}
+  m_GameObject: {fileID: 4819145014956791667}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 129e010db1cde6d44a7d4c9316f48ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountChanged: -10
-  resourceType: Hull Durability
---- !u!114 &-3775472013781600469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7062536059002245315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 129e010db1cde6d44a7d4c9316f48ce9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  amountChanged: -20
+  amountChanged: 5
   resourceType: Crew
---- !u!1001 &2494209557312690491
+--- !u!114 &6619806552572726335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4819145014956791667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129e010db1cde6d44a7d4c9316f48ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amountChanged: 10
+  resourceType: 
+--- !u!114 &8174952792129233843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4819145014956791667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129e010db1cde6d44a7d4c9316f48ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amountChanged: 5
+  resourceType: Food
+--- !u!1001 &179888466227535499
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 38239879930196473, guid: 2cf18f7b38f9c76429097f95022bf7d6,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 38239879930196473, guid: 2cf18f7b38f9c76429097f95022bf7d6,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 38239879930196473, guid: 2cf18f7b38f9c76429097f95022bf7d6,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 38239879930196473, guid: 2cf18f7b38f9c76429097f95022bf7d6,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 38239879930196473, guid: 2cf18f7b38f9c76429097f95022bf7d6,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 38239879930196473, guid: 2cf18f7b38f9c76429097f95022bf7d6,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2706129742640976860, guid: 2cf18f7b38f9c76429097f95022bf7d6,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: d119bbc55f7e1944fa4e8aca30be92e3, type: 3}
-    - target: {fileID: 4656191228972796406, guid: 2cf18f7b38f9c76429097f95022bf7d6,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 0a96ac10ca130534e9aec004c2a63879,
-        type: 3}
-    - target: {fileID: 4656191228972796407, guid: 2cf18f7b38f9c76429097f95022bf7d6,
-        type: 3}
-      propertyPath: choiceOutcomes.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 2cf18f7b38f9c76429097f95022bf7d6,
-        type: 3}
-      propertyPath: choiceOutcomes.Array.data[0]
-      value: 
-      objectReference: {fileID: -7583228578748488009}
-    - target: {fileID: 4656191228972796407, guid: 2cf18f7b38f9c76429097f95022bf7d6,
-        type: 3}
-      propertyPath: choiceOutcomes.Array.data[1]
-      value: 
-      objectReference: {fileID: -3775472013781600469}
     - target: {fileID: 4656191228972796407, guid: 2cf18f7b38f9c76429097f95022bf7d6,
         type: 3}
       propertyPath: inkJSONAsset
       value: 
-      objectReference: {fileID: 4900000, guid: ffefd9b9fc4c8f94586a0cd83583a0f9, type: 3}
+      objectReference: {fileID: 4900000, guid: e508b1ff6180c424e8f03fe69987d6d1, type: 3}
     - target: {fileID: 4656191228972796407, guid: 2cf18f7b38f9c76429097f95022bf7d6,
         type: 3}
       propertyPath: eventName
-      value: Wormhole
+      value: Black Market
       objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 2cf18f7b38f9c76429097f95022bf7d6,
-        type: 3}
-      propertyPath: backgroundImage
-      value: 
-      objectReference: {fileID: 21300000, guid: 0a96ac10ca130534e9aec004c2a63879,
-        type: 3}
     - target: {fileID: 4656191228972796408, guid: 2cf18f7b38f9c76429097f95022bf7d6,
         type: 3}
       propertyPath: m_Name
-      value: Wormhole Event
+      value: Black Market
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796409, guid: 2cf18f7b38f9c76429097f95022bf7d6,
         type: 3}
@@ -219,9 +171,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cf18f7b38f9c76429097f95022bf7d6, type: 3}
---- !u!1 &7062536059002245315 stripped
+--- !u!1 &4819145014956791667 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4656191228972796408, guid: 2cf18f7b38f9c76429097f95022bf7d6,
     type: 3}
-  m_PrefabInstance: {fileID: 2494209557312690491}
+  m_PrefabInstance: {fileID: 179888466227535499}
   m_PrefabAsset: {fileID: 0}
