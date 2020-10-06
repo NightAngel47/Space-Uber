@@ -101,7 +101,7 @@ public class EventSystem : MonoBehaviour
 					inkDriver.titleBox = titleBox;
 					inkDriver.textBox = textBox;
 					inkDriver.backgroundUI = backgroundImage;
-					inkDriver.choicesPos = buttonGroup;
+					inkDriver.buttonGroup = buttonGroup;
 				}
 
 				eventActive = true;
@@ -123,6 +123,7 @@ public class EventSystem : MonoBehaviour
 						inkDriver.titleBox = titleBox;
 						inkDriver.textBox = textBox;
 						inkDriver.backgroundUI = backgroundImage;
+						inkDriver.buttonGroup = buttonGroup;
 					}
 
 					eventActive = true;

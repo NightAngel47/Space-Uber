@@ -27,7 +27,7 @@ public class InkDriverBase : MonoBehaviour
     private Button buttonPrefab;
 
     [SerializeField, Tooltip("The transform parent to spawn choices under")]
-    [HideInInspector]public Transform choicesPos;
+    [HideInInspector]public Transform buttonGroup;
     
     [HideInInspector] public TMP_Text titleBox;
     [HideInInspector] public TMP_Text textBox;
@@ -72,6 +72,8 @@ public class InkDriverBase : MonoBehaviour
         titleBox.text = eventName;
         backgroundUI.sprite = backgroundImage;
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
+
+
     }
 
     private void Update()
@@ -132,7 +134,7 @@ public class InkDriverBase : MonoBehaviour
             foreach (Choice choice in story.currentChoices)
             {
                 //instantiate a button
-                Button choiceButton = Instantiate(buttonPrefab, choicesPos);
+                Button choiceButton = Instantiate(buttonPrefab, buttonGroup);
 
                 // Gets the text from the button prefab
                 TMP_Text choiceText = choiceButton.GetComponentInChildren<TMP_Text>();
