@@ -55,7 +55,10 @@ public class ObjectScript : MonoBehaviour
         c = gameObject.GetComponent<SpriteRenderer>().color;
         c.a = 0.5f;
         parentObj = gameObject.transform.parent.gameObject;
-        //buttons = gameObject.transform.parent.transform.GetChild(1).gameObject;
+
+        hoverUiPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = parentObj.GetComponent<RoomStats>().roomName;
+        hoverUiPanel.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = parentObj.GetComponent<RoomStats>().roomDescription;
+
 
         ResetData();
     }
@@ -72,7 +75,10 @@ public class ObjectScript : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             //buttons.SetActive(true);
-            parentObj.GetComponent<RoomStats>().SubtractRoomStats();
+            if (ObjectMover.hasPlaced == true)
+            {
+                parentObj.GetComponent<RoomStats>().SubtractRoomStats();
+            }
             Delete();
         }
 

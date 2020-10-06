@@ -87,12 +87,12 @@ public class ObjectMover : MonoBehaviour
         {
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, 90);
 
-            if ((os.shapeType == 2 || os.shapeType == 3) && (os.rotAdjust == 1 || os.rotAdjust == 3))
+            if ((os.shapeType != 0 || os.shapeType != 1 || os.shapeType != 3) && (os.rotAdjust == 1 || os.rotAdjust == 3))
             {
                 gameObject.transform.GetChild(0).transform.position += os.rotAdjustVal;
                 os.rotAdjust -= 1;
             }
-            else if ((os.shapeType == 2 || os.shapeType == 3) && (os.rotAdjust == 2 || os.rotAdjust == 4))
+            else if ((os.shapeType != 0 || os.shapeType != 1 || os.shapeType != 3) && (os.rotAdjust == 2 || os.rotAdjust == 4))
             {
                 gameObject.transform.GetChild(0).transform.position -= os.rotAdjustVal;
                 os.rotAdjust -= 1;
@@ -109,12 +109,12 @@ public class ObjectMover : MonoBehaviour
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, -90);
 
 
-            if ((os.shapeType == 2 || os.shapeType == 3) && (os.rotAdjust == 1 || os.rotAdjust == 3))
+            if ((os.shapeType != 0 || os.shapeType != 1 || os.shapeType != 3) && (os.rotAdjust == 1 || os.rotAdjust == 3))
             {
                 gameObject.transform.GetChild(0).transform.position += os.rotAdjustVal;
                 os.rotAdjust += 1;
             }
-            else if ((os.shapeType == 2 || os.shapeType == 3) && (os.rotAdjust == 2 || os.rotAdjust == 4))
+            else if ((os.shapeType != 0 || os.shapeType != 1 || os.shapeType != 3) && (os.rotAdjust == 2 || os.rotAdjust == 4))
             {
                 gameObject.transform.GetChild(0).transform.position -= os.rotAdjustVal;
                 os.rotAdjust += 1;
