@@ -18,33 +18,45 @@ public class AdditiveSceneManager : MonoBehaviour
     /// <summary>
     /// When set to true, a second scene is loaded as soon as the base scene is loaded.
     /// </summary>
-    public bool addSceneOnStart;
+    public bool addScenesOnStart;
     
     /// <summary>
     /// The build settings id of the scene that is loaded if <c>addSceneOnStart</c> is set to true.
     /// </summary>
-    public int startingAddedScene;
+    public int[] startingAddedScenes;
     
     /// <summary>
     /// When set to true, the objects from <c>startingAddedScene</c> are moved to the base scene if <c>startingAddedScene</c> is loaded at the start.
     /// </summary>
-    public bool moveStartingObjects;
+    public bool[] moveStartingObjects;
+    
+    public int maxAddedScenes;
     
     // The index of the second loaded scene
-    private int addedSceneIndex;
+    private int[] addedSceneIndices;
     
     // The index of the base scene
     private int baseSceneIndex;
     
     // True if a second scene is loaded, false if the base scene is the only scene loaded
-    private bool addedSceneLoaded;
+    private int numAddedScenesLoaded;
     
     // Keeps track of objects from added scenes that were moved to the base scene so unloading the added scene can still remove the objects
-    private GameObject[] addedObjects;
+    private GameObject[][] addedObjects;
     
     // Start is called before the first frame update
     void Start()
     {
+        if(startingAddedScenes.Length > maxAddedScenes)
+        {
+            int[] oldStartingAddedScenes = startingAddedScenes;
+            startingAddedScenes = new int[maxAddedScenes];
+            for(int i = 0; i < maxAddedScenes; i++)
+            {
+                startingAddedScenes[i] = oldStartingAddedScenes[i];
+            }
+        }
+        
         // The scene containing this script's game object is the base scene
         baseSceneIndex = this.gameObject.scene.buildIndex;
         
@@ -52,20 +64,29 @@ public class AdditiveSceneManager : MonoBehaviour
         for(int i = SceneManager.sceneCount-1; i >= 0; i--)
         {
             int buildIndex = SceneManager.GetSceneAt(i).buildIndex;
-            if(buildIndex != baseSceneIndex && (buildIndex != startingAddedScene || !addSceneOnStart))
+            bool shouldExist = false;
+            foreach(int scene in startingAddedScenes)
+            {
+                if(buildIndex == scene)
+                {
+                    shouldExist = true;
+                }
+            }
+            if(buildIndex != baseSceneIndex && (!shouldExist || !addScenesOnStart))
             {
                 SceneManager.UnloadSceneAsync(buildIndex);
             }
         }
         
         // Sets the private variables
-        addedSceneLoaded = false;
-        addedObjects = null;
+        addedSceneIndices = new int[maxAddedScenes];
+        numAddedScenesLoaded = 0;
+        addedObjects = new GameObject[maxAddedScenes][];
         
         // Automatically loads the second scene if it is set to be loaded
-        if(addSceneOnStart)
+        if(addScenesOnStart)
         {
-            LoadScene(startingAddedScene, moveStartingObjects);
+            LoadScenes(startingAddedScenes, moveStartingObjects);
         }
     }
     
@@ -73,46 +94,105 @@ public class AdditiveSceneManager : MonoBehaviour
     /// Loads the specified scene without moving objects to the base scene, which is probably better for performance but can cause issues if objects from different scenes are supposed to interract.  The base scene stays loaded and any other scenes are unloaded first.
     /// </summary>
     /// <param name="scene">The integer id of the scene in the build settings.</param>
+    public void LoadScenesSeperate(int[] scenes)
+    {
+        bool[] moveObjects = new bool[scenes.Length];
+        for(int i = 0; i < moveObjects.Length; i++)
+        {
+            moveObjects[i] = false;
+        }
+        LoadScenes(scenes, moveObjects);
+    }
+    
     public void LoadSceneSeperate(int scene)
     {
-        LoadScene(scene, false);
+        int[] scenes = new int[1];
+        scenes[0] = scene;
+        LoadScenesSeperate(scenes);
     }
     
     /// <summary>
     /// Loads the specified scene and moves its objects to the base scene, allowing objects from different scenes to easily interract.  The base scene stays loaded and any other scenes are unloaded first.
     /// </summary>
     /// <param name="scene">The integer id of the scene in the build settings.</param>
+    public void LoadScenesMerged(int[] scenes)
+    {
+        bool[] moveObjects = new bool[scenes.Length];
+        for(int i = 0; i < moveObjects.Length; i++)
+        {
+            moveObjects[i] = true;
+        }
+        LoadScenes(scenes, moveObjects);
+    }
+    
     public void LoadSceneMerged(int scene)
     {
-        LoadScene(scene, true);
+        int[] scenes = new int[1];
+        scenes[0] = scene;
+        LoadScenesMerged(scenes);
     }
     
     // Actually contains the scene loading code.  I made this function private and split it into two public ones because I don't think UI buttons can be linked to functions with multiple parameters
-    private void LoadScene(int scene, bool moveObjects)
+    private void LoadScenes(int[] scenes, bool[] moveObjects)
     {
-        if(!SceneManager.GetSceneByBuildIndex(scene).isLoaded) // If the scene's not already loaded, unload any other added scene and load the new scene
+        for(int i = 0; i < scenes.Length; i++)
         {
-            UnloadScene();
-            
-            SceneManager.LoadScene(scene, LoadSceneMode.Additive);
-            
-            addedSceneLoaded = true;
-            addedSceneIndex = scene;
-        }
-        else if(scene != baseSceneIndex) // If the scene is loaded and not the base scene, make sure the variables keeping track of which scene is loaded are still updated
-        {
-            addedSceneIndex = scene;
-            addedSceneLoaded = true;
-        }
-        
-        if(moveObjects && scene != baseSceneIndex) // Whether or not the scene was already loaded previously, move its objects to the base scene if moveObjects is true
-        {
-            StartCoroutine(MoveObjects(scene));
+            if(!SceneManager.GetSceneByBuildIndex(scenes[i]).isLoaded) // If the scene's not already loaded, unload any other added scene and load the new scene
+            {
+                if(numAddedScenesLoaded == maxAddedScenes)
+                {
+                    UnloadScene();
+                }
+                
+                SceneManager.LoadScene(scenes[i], LoadSceneMode.Additive);
+                
+                if(i < moveObjects.Length && moveObjects[i])
+                {
+                    StartCoroutine(MoveObjects(scenes[i], numAddedScenesLoaded));
+                }
+                
+                addedSceneIndices[numAddedScenesLoaded] = scenes[i];
+                numAddedScenesLoaded++;
+            }
+            else if(scenes[i] != baseSceneIndex) // If the scene is loaded and not the base scene, make sure the variables keeping track of which scene is loaded are still updated
+            {
+                int addedSceneArrayIndex = FindIndex(scenes[i]);
+                if(addedSceneArrayIndex == -1)
+                {
+                    if(i < moveObjects.Length && moveObjects[i])
+                    {
+                        StartCoroutine(MoveObjects(scenes[i], numAddedScenesLoaded));
+                    }
+                    
+                    addedSceneIndices[numAddedScenesLoaded] = scenes[i];
+                    numAddedScenesLoaded++;
+                }
+                else
+                {
+                    if(i < moveObjects.Length && moveObjects[i])
+                    {
+                        StartCoroutine(MoveObjects(scenes[i], addedSceneArrayIndex));
+                    }
+                }
+            }
         }
     }
     
+    private int FindIndex(int scene)
+    {
+        for(int i = 0; i < numAddedScenesLoaded; i++)
+        {
+            if(addedSceneIndices[i] == scene)
+            {
+                return i;
+            }
+        }
+        
+        return -1;
+    }
+    
     // Waits for the scene to load and then moves its objects to the base scene
-    private IEnumerator MoveObjects(int scene)
+    private IEnumerator MoveObjects(int scene, int objectArrayArrayIndex)
     {
         yield return new WaitUntil(() => SceneManager.GetSceneByBuildIndex(scene).isLoaded);
         GameObject[] newAddedObjects = SceneManager.GetSceneByBuildIndex(scene).GetRootGameObjects();
@@ -122,39 +202,39 @@ public class AdditiveSceneManager : MonoBehaviour
         }
         
         // Keeps track of all moved objects to be unloaded when the scene is unloaded, including objects moved previously in case someone tries to move objects from the same scene multiple times in a row and as such the scene isn't unloaded first
-        if(addedObjects != null)
+        if(addedObjects[objectArrayArrayIndex] != null)
         {
-            GameObject[] oldAddedObjects = addedObjects;
+            GameObject[] oldAddedObjects = addedObjects[objectArrayArrayIndex];
             int totalLength = newAddedObjects.Length + oldAddedObjects.Length;
-            addedObjects = new GameObject[totalLength];
-            for(int i = 0; i < addedObjects.Length; i++)
+            addedObjects[objectArrayArrayIndex] = new GameObject[totalLength];
+            for(int i = 0; i < addedObjects[objectArrayArrayIndex].Length; i++)
             {
                 if(i < oldAddedObjects.Length)
                 {
-                    addedObjects[i] = oldAddedObjects[i];
+                    addedObjects[objectArrayArrayIndex][i] = oldAddedObjects[i];
                 }
                 else
                 {
-                    addedObjects[i] = newAddedObjects[i-oldAddedObjects.Length];
+                    addedObjects[objectArrayArrayIndex][i] = newAddedObjects[i-oldAddedObjects.Length];
                 }
             }
         }
         else
         {
-            addedObjects = newAddedObjects;
+            addedObjects[objectArrayArrayIndex] = newAddedObjects;
         }
     }
     
     /// <summary>
     /// If there is a second scene loaded on top of the base scene, unloads that scene and and any objects moved to the base scene from it while keeping the base scene loaded.
     /// </summary>
-    public void UnloadScene()
+    private void UnloadScene()
     {
-        if(addedSceneLoaded)
+        if(numAddedScenesLoaded > 0)
         {
-            if(addedObjects != null)
+            if(addedObjects[0] != null)
             {
-                foreach(GameObject obj in addedObjects)
+                foreach(GameObject obj in addedObjects[0])
                 {
                     if(obj != null) // In case something else destroyed the object first
                     {
@@ -162,11 +242,60 @@ public class AdditiveSceneManager : MonoBehaviour
                     }
                 }
                 
-                addedObjects = null;
+                for(int i = 0; i < maxAddedScenes-1; i++)
+                {
+                    addedObjects[i] = addedObjects[i+1];
+                }
+                
+                addedObjects[maxAddedScenes-1] = null;
             }
             
-            SceneManager.UnloadSceneAsync(addedSceneIndex);
-            addedSceneLoaded = false;
+            SceneManager.UnloadSceneAsync(addedSceneIndices[0]);
+            numAddedScenesLoaded--;
+            for(int i = 0; i < maxAddedScenes-1; i++)
+            {
+                addedSceneIndices[i] = addedSceneIndices[i+1];
+            }
+        }
+    }
+    
+    public void UnloadScenes(int[] scenes)
+    {
+        foreach(int scene in scenes)
+        {
+            UnloadScene(scene);
+        }
+    }
+    
+    public void UnloadScene(int scene)
+    {
+        int addedSceneArrayIndex = FindIndex(scene);
+        if(addedSceneArrayIndex != -1)
+        {
+            if(addedObjects[addedSceneArrayIndex] != null)
+            {
+                foreach(GameObject obj in addedObjects[addedSceneArrayIndex])
+                {
+                    if(obj != null) // In case something else destroyed the object first
+                    {
+                        Destroy(obj);
+                    }
+                }
+                
+                for(int i = addedSceneArrayIndex; i < maxAddedScenes-1; i++)
+                {
+                    addedObjects[i] = addedObjects[i+1];
+                }
+                
+                addedObjects[maxAddedScenes-1] = null;
+            }
+            
+            SceneManager.UnloadSceneAsync(addedSceneIndices[addedSceneArrayIndex]);
+            numAddedScenesLoaded--;
+            for(int i = addedSceneArrayIndex; i < maxAddedScenes-1; i++)
+            {
+                addedSceneIndices[i] = addedSceneIndices[i+1];
+            }
         }
     }
 }
