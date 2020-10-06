@@ -27,7 +27,7 @@ public class InkDriverBase : MonoBehaviour
     private Button buttonPrefab;
 
     [SerializeField, Tooltip("The transform parent to spawn choices under")]
-    private Transform choicesPos;
+    [HideInInspector]public Transform choicesPos;
     
     [HideInInspector] public TMP_Text titleBox;
     [HideInInspector] public TMP_Text textBox;
@@ -43,12 +43,25 @@ public class InkDriverBase : MonoBehaviour
     /// The story itself being read
     /// </summary>
     private Story story;
+
     /// <summary>
     /// Whether the latest bit of text is done printing so it can show the choices
     /// </summary>
     public bool donePrinting = true;
     public bool showingChoices = false;
     private bool canEnd = false; //if the event can end. Based on player clicking at end of interaction
+
+    
+    [Dropdown("eventMusicTracks")]
+    public string eventBGM;
+    private List<string> eventMusicTracks
+    {
+        get
+        {
+            return new List<string>()
+        { "", "General Theme", "Wormhole", "Engine Malfunction", "Engine Delivery"};
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +71,7 @@ public class InkDriverBase : MonoBehaviour
         Refresh(); //starts the dialogue
         titleBox.text = eventName;
         backgroundUI.sprite = backgroundImage;
+        AudioManager.instance.PlayMusicWithTransition(eventBGM);
     }
 
     private void Update()

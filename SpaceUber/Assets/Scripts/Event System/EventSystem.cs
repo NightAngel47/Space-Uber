@@ -10,6 +10,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public enum EventSystemState { Traveling, Docked}
 
@@ -24,10 +25,12 @@ public class EventSystem : MonoBehaviour
 	[SerializeField] private string waitMessage = "Wait for Next Event";
 	[SerializeField] private List<GameObject> storyEvents;
 	[SerializeField] private List<GameObject> randomEvents;
-	[SerializeField] private GameObject canvas;
-	[SerializeField] private TMP_Text titleBox;
-	[SerializeField] private TMP_Text textBox;
-	[SerializeField] private Image backgroundImage;
+	[HideInInspector] [SerializeField] private GameObject canvas;
+	[HideInInspector] [SerializeField] private TMP_Text titleBox;
+	[HideInInspector] [SerializeField] private TMP_Text textBox;
+	[HideInInspector] [SerializeField] private UnityEngine.UI.Image backgroundImage;
+
+	[HideInInspector] [SerializeField] public Transform buttonGroup;
 
 	GameObject eventInstance;
 	
@@ -49,6 +52,15 @@ public class EventSystem : MonoBehaviour
 		//Singleton pattern
 		if(instance) { Destroy(gameObject); }
 		else { instance = this; }
+
+		canvas = GameObject.FindGameObjectWithTag("Canvas");
+		titleBox = GameObject.FindGameObjectWithTag("Header").GetComponent<TMP_Text>();
+		textBox = GameObject.FindGameObjectWithTag("Body").GetComponent<TMP_Text>();
+		backgroundImage = GameObject.FindGameObjectWithTag("Background").GetComponent<UnityEngine.UI.Image>();
+		buttonGroup = GameObject.FindGameObjectWithTag("ButtonGroup").transform;
+
+		titleBox.text = waitMessage;
+		textBox.text = ""; // make sure that the text has been cleared.
 	}
 
 	private void Update()
@@ -89,6 +101,7 @@ public class EventSystem : MonoBehaviour
 					inkDriver.titleBox = titleBox;
 					inkDriver.textBox = textBox;
 					inkDriver.backgroundUI = backgroundImage;
+					inkDriver.choicesPos = buttonGroup;
 				}
 
 				eventActive = true;
@@ -135,6 +148,7 @@ public class EventSystem : MonoBehaviour
 		print("Concluded Event");
 		eventInstance.GetComponent<InkDriverBase>().ClearUI();
 		
+		//in case a random event isn't chosen
 		if(eventInstance != null)
 		{
 			Destroy(eventInstance);
