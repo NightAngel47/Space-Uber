@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129e010db1cde6d44a7d4c9316f48ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountChanged: -10
-  resourceType: Hull Durability
+  choiceName: Leave it
+  resourcesChanged: 07000000
+  amountChanged: 
 --- !u!114 &-3775472013781600469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26,8 +27,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129e010db1cde6d44a7d4c9316f48ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountChanged: -20
-  resourceType: Crew
+  choiceName: Go inside
+  resourcesChanged: 07000000
+  amountChanged: 00000000
 --- !u!1001 &2494209557312690491
 PrefabInstance:
   m_ObjectHideFlags: 0

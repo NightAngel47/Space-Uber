@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129e010db1cde6d44a7d4c9316f48ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountChanged: -2
-  resourceType: Crew
+  choiceName: Sacrifice Engineers
+  resourcesChanged: 
+  amountChanged: 
 --- !u!114 &-1115151063445593605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26,8 +27,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129e010db1cde6d44a7d4c9316f48ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountChanged: 0
-  resourceType: Credits
+  choiceName: Use Ship parts
+  resourcesChanged: 
+  amountChanged: 
 --- !u!114 &3901002839951064822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40,8 +42,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129e010db1cde6d44a7d4c9316f48ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountChanged: -50
-  resourceType: Hull Durability
+  choiceName: Ignore it
+  resourcesChanged: 
+  amountChanged: 
 --- !u!1001 &4240106722889990801
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,20 +11,33 @@ using UnityEngine;
 
 public class ChoiceOutcomes : MonoBehaviour
 {
+    [Tooltip("To keep track of which choice this is")]
+    public string choiceName;
     ShipStats shipStats;
-    public int amountChanged;
+    public List<ResourceType> resourcesChanged;
+    public List<int> amountChanged;
 
-    [Dropdown("resourceTypes")]
-    public string resourceType;
-
-    private List<string> resourceTypes
+    public enum ResourceType
     {
-        get
-        {
-            return new List<string>() { "", "Credits", "Energy", "Security",
-        "Ship Weapons", "Crew", "Food", "Food Per Tick", "Hull Durability", "Stock" };
-        }
+        Credits,
+        Energy,
+        Security,
+        ShipWeapons,
+        Crew,
+        Food,
+        FoodPerTick,
+        HullDurability,
+        Stock
     }
+
+    //private List<string> resourceTypes
+    //{
+    //    get
+    //    {
+    //        return new List<string>() { "", "Credits", "Energy", "Security",
+    //    "Ship Weapons", "Crew", "Food", "Food Per Tick", "Hull Durability", "Stock" };
+    //    }
+    //}
 
     void Start()
     {
@@ -33,34 +46,38 @@ public class ChoiceOutcomes : MonoBehaviour
 
     public void ChoiceChange()
     {
-        switch (resourceType)
+        for(int i = 0; i < resourcesChanged.Count; i++)
+        {
+            switch (resourcesChanged[i])
             {
-                case "Credits":
-                        shipStats.UpdateCreditsAmount(amountChanged);
+                case ResourceType.Credits:
+                    shipStats.UpdateCreditsAmount(amountChanged[i]);
                     break;
-                case "Energy":
-                        shipStats.UpdateEnergyAmount(amountChanged);
+                case ResourceType.Energy:
+                    shipStats.UpdateEnergyAmount(amountChanged[i]);
                     break;
-                case "Security":
-                        shipStats.UpdateSecurityAmount(amountChanged);
+                case ResourceType.Security:
+                    shipStats.UpdateSecurityAmount(amountChanged[i]);
                     break;
-                case "Ship Weapons":
-                        shipStats.UpdateShipWeaponsAmount(amountChanged);
+                case ResourceType.ShipWeapons:
+                    shipStats.UpdateShipWeaponsAmount(amountChanged[i]);
                     break;
-                case "Crew":
-                        shipStats.UpdateCrewAmount(amountChanged);
+                case ResourceType.Crew:
+                    shipStats.UpdateCrewAmount(amountChanged[i]);
                     break;
-                case "Food":
-                        shipStats.UpdateFoodAmount(amountChanged);
+                case ResourceType.Food:
+                    shipStats.UpdateFoodAmount(amountChanged[i]);
                     break;
-                case "Food Per Tick":
-                        shipStats.UpdateFoodPerTickAmount(amountChanged);
+                case ResourceType.FoodPerTick:
+                    shipStats.UpdateFoodPerTickAmount(amountChanged[i]);
                     break;
-                case "Hull Durability":
-                        shipStats.UpdateHullDurabilityAmount(amountChanged);
+                case ResourceType.HullDurability:
+                    shipStats.UpdateHullDurabilityAmount(amountChanged[i]);
                     break;
                 default:
                     break;
+            }
+        
         }
     }
 }

@@ -58,10 +58,6 @@ public class InkDriverBase : MonoBehaviour
         Refresh(); //starts the dialogue
         titleBox.text = eventName;
         backgroundUI.sprite = backgroundImage;
-        //set the event title based on Knot title in the .Ink
-        //string title = story.state.currentPathString;
-        //titleBox.text = title;
-        //print(title);
     }
 
     private void Update()
