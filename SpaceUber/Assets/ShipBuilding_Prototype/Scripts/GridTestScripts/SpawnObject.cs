@@ -40,7 +40,10 @@ public class SpawnObject : MonoBehaviour
 
     public void SpawnRoom(GameObject ga)
     {
-        ObjectMover.hasPlaced = false;
-        GameObject g = Instantiate(ga, new Vector3(1, -1, 0), Quaternion.identity);
+        if (ObjectMover.hasPlaced == true)
+        {
+            ObjectMover.hasPlaced = false;
+            GameObject g = Instantiate(ga, new Vector3(1, -1, 0), Quaternion.identity);
+        }
     }
 }

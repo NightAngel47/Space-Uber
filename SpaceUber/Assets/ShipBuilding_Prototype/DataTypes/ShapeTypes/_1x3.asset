@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: _1x3
   m_EditorClassIdentifier: 
   shapeType: 2
-  boundsUp: 9
-  boundsDown: 2
-  boundsLeft: 0
-  boundsRight: 8.5
-  rotBoundsRight: 7
+  boundsUp: 2
+  boundsDown: -3
+  boundsLeft: -4
+  boundsRight: 2
+  rotBoundsRight: 4
   rotBoundsUp: 0
   rotAdjustVal: {x: -1, y: 1, z: 0}
-  gridSpaces: []
+  gridSpaces:
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: 2, y: 0}
