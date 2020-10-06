@@ -96,7 +96,6 @@ public class InkDriverBase : MonoBehaviour
     /// <returns></returns>
     private IEnumerator PrintText(string text)
     {
-        print("Printing Text");
         donePrinting = false;
 
         string tempString = "";
@@ -112,7 +111,6 @@ public class InkDriverBase : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Return))
             {
                 tempString = text;
-                print("Skipping");
             }
             textBox.text = tempString;
 
@@ -161,7 +159,6 @@ public class InkDriverBase : MonoBehaviour
     /// </summary>
     void Refresh()
     {
-        print("Refreshing");
         // Clear the UI
         ClearUI();
 
@@ -216,7 +213,7 @@ public class InkDriverBase : MonoBehaviour
     // Currently causes a stackoverflow error
     public void ClearUI()
     {
-        foreach (var button in transform.GetComponentsInChildren<Button>())
+        foreach (var button in buttonGroup.transform.GetComponentsInChildren<Button>())
         {
             Destroy(button.gameObject);
         }
