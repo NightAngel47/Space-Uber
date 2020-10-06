@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1911157826831352640
+--- !u!114 &-1457849628914520543
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129e010db1cde6d44a7d4c9316f48ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  choiceName: FlashClones
+  choiceName: Flashclones
   resourcesChanged: 0000000004000000
-  amountChanged: 9cffffff05000000
---- !u!114 &6619806552572726335
+  amountChanged: 9cffffff0a000000
+--- !u!114 &1641648225670485597
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29,8 +29,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Nuclear Weapons
   resourcesChanged: 0000000003000000
-  amountChanged: 9cffffff05000000
---- !u!114 &8174952792129233843
+  amountChanged: 9cffffff14000000
+--- !u!114 &2017998542302755657
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,6 +45,21 @@ MonoBehaviour:
   choiceName: Rations
   resourcesChanged: 0000000005000000
   amountChanged: 9cffffff0a000000
+--- !u!114 &5715224881265526693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4819145014956791667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129e010db1cde6d44a7d4c9316f48ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  choiceName: Leave
+  resourcesChanged: 
+  amountChanged: 
 --- !u!1001 &179888466227535499
 PrefabInstance:
   m_ObjectHideFlags: 0
