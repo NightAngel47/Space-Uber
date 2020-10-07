@@ -15,26 +15,53 @@ public class EnergyLevelStabalizeMiniGame : MonoBehaviour
 	[SerializeField] Slider slider1;
 	[SerializeField] Slider slider2;
 	[SerializeField] Slider slider3;
+	[SerializeField] MiniGameButton button1;
+	[SerializeField] MiniGameButton button2;
+	[SerializeField] MiniGameButton button3;
+	[SerializeField] MiniGameButton switch1;
+	[SerializeField] MiniGameButton switch2;
+	[SerializeField] MiniGameButton switch3;
 	[SerializeField] TMP_Text optimizationText;
-	float target1;
-    float target2;
-    float target3;
+	float slider1Target;
+    float slider2Target;
+    float slider3Target;
+	int button1Target;
+	int button2Target;
+	int button3Target;
+	int switch1Target;
+	int switch2Target;
+	int switch3Target;
+
 	float optimization;
 
 	private void Start()
 	{
-		target1 = Random.Range(0f, 1f);
-		target2 = Random.Range(0f, 1f);
-		target3 = Random.Range(0f, 1f);
+		slider1Target = Random.Range(0f, 1f);
+		slider2Target = Random.Range(0f, 1f);
+		slider3Target = Random.Range(0f, 1f);
+		button1Target = Random.Range(0, 2);
+		button2Target = Random.Range(0, 2); 
+		button3Target = Random.Range(0, 2); 
+		switch1Target = Random.Range(0, 2); 
+		switch2Target = Random.Range(0, 2); 
+		switch3Target = Random.Range(0, 2); 
 	}
 
 	private void Update()
 	{
-		float optimizationLevel1 = 1- (Mathf.Abs(target1 - slider1.value));
-		float optimizationLevel2 = 1 - (Mathf.Abs(target2 - slider2.value));
-		float optimizationLevel3 = 1 - (Mathf.Abs(target3 - slider3.value));
-		float total = optimizationLevel1 + optimizationLevel2 + optimizationLevel3;
-		optimization = Mathf.RoundToInt(100 * (total / 3f));
+		float sliderOptimizationLevel1 = 1- (Mathf.Abs(slider1Target - slider1.value));
+		float sliderOptimizationLevel2 = 1 - (Mathf.Abs(slider2Target - slider2.value));
+		float sliderOptimizationLevel3 = 1 - (Mathf.Abs(slider3Target - slider3.value));
+		float buttonOptimizationLevel1 = 1 - (Mathf.Abs(button1Target - button1.value));
+		float buttonOptimizationLevel2 = 1 - (Mathf.Abs(button2Target - button2.value));
+		float buttonOptimizationLevel3 = 1 - (Mathf.Abs(button3Target - button3.value));
+		float switchOptimizationLevel1 = 1 - (Mathf.Abs(switch1Target - switch1.value));
+		float switchOptimizationLevel2 = 1 - (Mathf.Abs(switch2Target - switch2.value));
+		float switchOptimizationLevel3 = 1 - (Mathf.Abs(switch3Target - switch3.value));
+		float total = sliderOptimizationLevel1 + sliderOptimizationLevel2 + sliderOptimizationLevel3 +
+			buttonOptimizationLevel1 + buttonOptimizationLevel2 + buttonOptimizationLevel3 + 
+			switchOptimizationLevel1 + switchOptimizationLevel2 + switchOptimizationLevel3;
+		optimization = Mathf.RoundToInt(100f * (total / 9f));
 		optimizationText.text = (optimization + "%");
 	}
 }
