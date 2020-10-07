@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Sacrifice Engineers
-  resourcesChanged: 04000000
-  amountChanged: fbffffff
+  resourcesChanged: 0400000004000000
+  amountChanged: 00000000feffffff
+  isRandomOutcome: 1
+  probabilities:
+  - 50
+  - 50
 --- !u!114 &-1115151063445593605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,6 +34,8 @@ MonoBehaviour:
   choiceName: Salvage Parts
   resourcesChanged: 00000000
   amountChanged: 9cffffff
+  isRandomOutcome: 0
+  probabilities: []
 --- !u!114 &3901002839951064822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,6 +51,8 @@ MonoBehaviour:
   choiceName: Leave It Be
   resourcesChanged: 07000000
   amountChanged: fdffffff
+  isRandomOutcome: 0
+  probabilities: []
 --- !u!1001 &4240106722889990801
 PrefabInstance:
   m_ObjectHideFlags: 0

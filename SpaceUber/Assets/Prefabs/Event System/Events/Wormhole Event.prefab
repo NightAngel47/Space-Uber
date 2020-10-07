@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Leave it
-  resourcesChanged: 07000000
+  resourcesChanged: 
   amountChanged: 
+  isRandomOutcome: 0
+  probabilities: []
 --- !u!114 &-3775472013781600469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27,9 +29,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129e010db1cde6d44a7d4c9316f48ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  choiceName: Go inside
-  resourcesChanged: 07000000
-  amountChanged: 00000000
+  choiceName: Go Inside the Wormhole
+  resourcesChanged: 05000000070000000400000000000000
+  amountChanged: fbfffffffdfffffffbffffff64000000
+  isRandomOutcome: 1
+  probabilities:
+  - 35
+  - 35
+  - 15
+  - 15
 --- !u!1001 &2494209557312690491
 PrefabInstance:
   m_ObjectHideFlags: 0
