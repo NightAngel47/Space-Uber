@@ -537,54 +537,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651479871}
   m_CullTransparentMesh: 0
---- !u!1 &1000330546
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1000330548}
-  - component: {fileID: 1000330547}
-  m_Layer: 0
-  m_Name: AdditiveSceneManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1000330547
+--- !u!114 &1000330547 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 15351267747110344, guid: 0b458fdfd765a814ab562780f1460550,
+    type: 3}
+  m_PrefabInstance: {fileID: 15351268460775675}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000330546}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5e2f722a5149450ba7b12d850ea61eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addScenesOnStart: 0
-  startingAddedScenes:
-  - AdditiveSceneTest1
-  - AdditiveSceneTest2
-  moveStartingObjects: 0100
---- !u!4 &1000330548
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000330546}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1156940475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1670,3 +1634,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059739736}
   m_CullTransparentMesh: 0
+--- !u!1001 &15351268460775675
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 15351267747110345, guid: 0b458fdfd765a814ab562780f1460550,
+        type: 3}
+      propertyPath: m_Name
+      value: AdditiveSceneManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 15351267747110351, guid: 0b458fdfd765a814ab562780f1460550,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 15351267747110351, guid: 0b458fdfd765a814ab562780f1460550,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 15351267747110351, guid: 0b458fdfd765a814ab562780f1460550,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 15351267747110351, guid: 0b458fdfd765a814ab562780f1460550,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 15351267747110351, guid: 0b458fdfd765a814ab562780f1460550,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 15351267747110351, guid: 0b458fdfd765a814ab562780f1460550,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 15351267747110351, guid: 0b458fdfd765a814ab562780f1460550,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 15351267747110351, guid: 0b458fdfd765a814ab562780f1460550,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 15351267747110351, guid: 0b458fdfd765a814ab562780f1460550,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 15351267747110351, guid: 0b458fdfd765a814ab562780f1460550,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 15351267747110351, guid: 0b458fdfd765a814ab562780f1460550,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0b458fdfd765a814ab562780f1460550, type: 3}
