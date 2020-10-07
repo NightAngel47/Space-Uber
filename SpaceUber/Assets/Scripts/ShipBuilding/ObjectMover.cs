@@ -14,6 +14,7 @@ public class ObjectMover : MonoBehaviour
     public static bool hasPlaced = true;
     private ObjectScript os;
     private Color c;
+    [SerializeField] private float moveDistance;
 
     // Start is called before the first frame update
     void Start()
@@ -38,22 +39,22 @@ public class ObjectMover : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.W) && gameObject.transform.position.y < os.rotBoundsUp)
             {
-                gameObject.transform.position += new Vector3(0, 1, 0);
+                gameObject.transform.position += new Vector3(0, moveDistance, 0);
             }
 
             if (Input.GetKeyDown(KeyCode.S) && gameObject.transform.position.y > os.boundsDown)
             {
-                gameObject.transform.position -= new Vector3(0, 1, 0);
+                gameObject.transform.position -= new Vector3(0, moveDistance, 0);
             }
 
             if (Input.GetKeyDown(KeyCode.D) && gameObject.transform.position.x < os.rotBoundsRight)
             {
-                gameObject.transform.position += new Vector3(1, 0, 0);
+                gameObject.transform.position += new Vector3(moveDistance, 0, 0);
             }
 
             if (Input.GetKeyDown(KeyCode.A) && gameObject.transform.position.x > os.boundsLeft)
             {
-                gameObject.transform.position -= new Vector3(1, 0, 0);
+                gameObject.transform.position -= new Vector3(moveDistance, 0, 0);
             }
         }
 
@@ -61,22 +62,22 @@ public class ObjectMover : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.W) && gameObject.transform.position.y < os.boundsUp)
             {
-                gameObject.transform.position += new Vector3(0, 1, 0);
+                gameObject.transform.position += new Vector3(0, moveDistance, 0);
             }
 
             if (Input.GetKeyDown(KeyCode.S) && gameObject.transform.position.y > os.boundsDown)
             {
-                gameObject.transform.position -= new Vector3(0, 1, 0);
+                gameObject.transform.position -= new Vector3(0, moveDistance, 0);
             }
 
             if (Input.GetKeyDown(KeyCode.D) && gameObject.transform.position.x < os.boundsRight)
             {
-                gameObject.transform.position += new Vector3(1, 0, 0);
+                gameObject.transform.position += new Vector3(moveDistance, 0, 0);
             }
 
             if (Input.GetKeyDown(KeyCode.A) && gameObject.transform.position.x > os.boundsLeft)
             {
-                gameObject.transform.position -= new Vector3(1, 0, 0);
+                gameObject.transform.position -= new Vector3(moveDistance, 0, 0);
             }
         }
     }
@@ -133,7 +134,7 @@ public class ObjectMover : MonoBehaviour
         {
             if (FindObjectOfType<ShipStats>().GetCredits() >= gameObject.GetComponent<RoomStats>().price)
             {
-                SpotChecker.instance.FillSpots(gameObject, os.rotAdjust);
+                SpotChecker.instance.FillSpots(gameObject, os.rotAdjust, moveDistance);
 
                 if (SpotChecker.cannotPlace == false)
                 {
@@ -143,6 +144,11 @@ public class ObjectMover : MonoBehaviour
                     gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = ObjectScript.c;
                     Destroy(gameObject.GetComponent<ObjectMover>());
                 }
+            }
+
+            else
+            {
+                Debug.Log("Cannot Afford");
             }
         }
     }

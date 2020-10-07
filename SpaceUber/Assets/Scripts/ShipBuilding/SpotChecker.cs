@@ -13,11 +13,12 @@ using System.IO;
 public class SpotChecker : MonoBehaviour
 {
     public ArrayLayout spots;
-    [SerializeField] private int xVarAdjust = 0;
-    [SerializeField] private int yVarAdjust = 0;
+    [SerializeField] private float xVarAdjust = 0;
+    [SerializeField] private float yVarAdjust = 0;
 
     public static bool cannotPlace = false; //bool for when the spot is filled
     public static SpotChecker instance;
+    private float moveDistance;
 
     private void Awake()
     {
@@ -27,13 +28,14 @@ public class SpotChecker : MonoBehaviour
     //how to change the individual thing
     //spots.rows[1].row[1] = true;
 
-    public void FillSpots(GameObject cube, int rotate) //called when object is attempted to be placed
+    public void FillSpots(GameObject cube, int rotate, float moveDis) //called when object is attempted to be placed
     {
         int shapeType = cube.gameObject.GetComponentInChildren<ObjectScript>().shapeType;
         int objectNum = cube.gameObject.GetComponentInChildren<ObjectScript>().objectNum;
         GameObject gridPosBase = cube.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
         List<Vector2> gridSpots = new List<Vector2>(cube.transform.GetChild(0).gameObject.GetComponent<ObjectScript>().shapeData.gridSpaces);
         cannotPlace = true;
+        moveDistance = moveDis;
 
         for (int i = 0; i < gridSpots.Count; i++)
         {
@@ -41,8 +43,8 @@ public class SpotChecker : MonoBehaviour
             {
                 if (rotate == 1 || rotate == 3)
                 {
-                    if (spots.rows[Mathf.RoundToInt(cube.transform.position.y + yVarAdjust) + Mathf.RoundToInt(gridSpots[i].y)]
-                        .row[Mathf.RoundToInt(cube.transform.position.x + xVarAdjust) + Mathf.RoundToInt(gridSpots[i].x)] != 0)
+                    if (spots.rows[Mathf.RoundToInt((cube.transform.position.y + yVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].y)]
+                        .row[Mathf.RoundToInt((cube.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)] != 0)
                     {
                         cannotPlace = true; //lets user keep moving object
                         Debug.Log("Cannot place here");
@@ -53,16 +55,16 @@ public class SpotChecker : MonoBehaviour
                     else
                     {
                         cannotPlace = false;
-                        spots.rows[Mathf.RoundToInt(cube.transform.position.y + yVarAdjust) + Mathf.RoundToInt(gridSpots[i].y)]
-                            .row[Mathf.RoundToInt(cube.transform.position.x + xVarAdjust) + Mathf.RoundToInt(gridSpots[i].x)] = objectNum;
+                        spots.rows[Mathf.RoundToInt((cube.transform.position.y + yVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].y)]
+                            .row[Mathf.RoundToInt((cube.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)] = objectNum;
                         continue;
                     }
                 }
 
                 if(rotate == 2 || rotate == 4)
                 {
-                    if (spots.rows[Mathf.RoundToInt(cube.transform.position.y + yVarAdjust) + Mathf.RoundToInt(gridSpots[i].x)]
-                        .row[Mathf.RoundToInt(cube.transform.position.x + xVarAdjust) + Mathf.RoundToInt(gridSpots[i].y)] != 0)
+                    if (spots.rows[Mathf.RoundToInt((cube.transform.position.y + yVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)]
+                        .row[Mathf.RoundToInt((cube.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].y)] != 0)
                     {
                         cannotPlace = true; //lets user keep moving object
                         Debug.Log("Cannot place here");
@@ -73,8 +75,8 @@ public class SpotChecker : MonoBehaviour
                     else
                     {
                         cannotPlace = false;
-                        spots.rows[Mathf.RoundToInt(cube.transform.position.y + yVarAdjust) + Mathf.RoundToInt(gridSpots[i].x)]
-                            .row[Mathf.RoundToInt(cube.transform.position.x + xVarAdjust) + Mathf.RoundToInt(gridSpots[i].y)] = objectNum;
+                        spots.rows[Mathf.RoundToInt((cube.transform.position.y + yVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)]
+                            .row[Mathf.RoundToInt((cube.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].y)] = objectNum;
                         continue;
                     }
                 }
@@ -82,8 +84,8 @@ public class SpotChecker : MonoBehaviour
 
             if (rotate == 1)
             {
-                if (spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) + Mathf.RoundToInt(gridSpots[i].y)]
-                    .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) + Mathf.RoundToInt(gridSpots[i].x)] != 0) 
+                if (spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) /moveDis) + Mathf.RoundToInt(gridSpots[i].y)]
+                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)] != 0) 
                 {
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
@@ -94,15 +96,15 @@ public class SpotChecker : MonoBehaviour
                 else
                 {
                     cannotPlace = false;
-                    spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) + Mathf.RoundToInt(gridSpots[i].y)]
-                        .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) + Mathf.RoundToInt(gridSpots[i].x)] = objectNum;
+                    spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) /moveDis) + Mathf.RoundToInt(gridSpots[i].y)]
+                        .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) /moveDis) + Mathf.RoundToInt(gridSpots[i].x)] = objectNum;
                 }
             }
 
             if (rotate == 2)
             {
-                if (spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) - Mathf.RoundToInt(gridSpots[i].x)]
-                    .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) + Mathf.RoundToInt(gridSpots[i].y)] != 0) 
+                if (spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) /moveDis) - Mathf.RoundToInt(gridSpots[i].x)]
+                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].y)] != 0) 
                 {
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
@@ -113,15 +115,15 @@ public class SpotChecker : MonoBehaviour
                 else
                 {
                     cannotPlace = false;
-                    spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) - Mathf.RoundToInt(gridSpots[i].x)]
-                        .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) + Mathf.RoundToInt(gridSpots[i].y)] = objectNum;
+                    spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust)/ moveDis) - Mathf.RoundToInt(gridSpots[i].x)]
+                        .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust)/ moveDis) + Mathf.RoundToInt(gridSpots[i].y)] = objectNum;
                 }
             }
 
             if (rotate == 3)
             {
-                if (spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) - Mathf.RoundToInt(gridSpots[i].y)]
-                    .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) - Mathf.RoundToInt(gridSpots[i].x)] != 0)
+                if (spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust)/moveDis) - Mathf.RoundToInt(gridSpots[i].y)]
+                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) - Mathf.RoundToInt(gridSpots[i].x)] != 0)
                 {
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
@@ -132,15 +134,15 @@ public class SpotChecker : MonoBehaviour
                 else
                 {
                     cannotPlace = false;
-                    spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) - Mathf.RoundToInt(gridSpots[i].y)]
-                        .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) - Mathf.RoundToInt(gridSpots[i].x)] = objectNum;
+                    spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDis) - Mathf.RoundToInt(gridSpots[i].y)]
+                        .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) - Mathf.RoundToInt(gridSpots[i].x)] = objectNum;
                 }
             }
 
             if (rotate == 4)
             {
-                if (spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) + Mathf.RoundToInt(gridSpots[i].x)]
-                        .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) - Mathf.RoundToInt(gridSpots[i].y)] != 0)
+                if (spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)]
+                        .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) - Mathf.RoundToInt(gridSpots[i].y)] != 0)
                 {
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
@@ -151,8 +153,8 @@ public class SpotChecker : MonoBehaviour
                 else
                 {
                     cannotPlace = false;
-                    spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) + Mathf.RoundToInt(gridSpots[i].x)]
-                        .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) - Mathf.RoundToInt(gridSpots[i].y)] = objectNum;
+                    spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)]
+                        .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) - Mathf.RoundToInt(gridSpots[i].y)] = objectNum;
                 }
             }
         }
@@ -167,26 +169,26 @@ public class SpotChecker : MonoBehaviour
         {
             if (rotate == 1)
             {
-                spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) + Mathf.RoundToInt(gridSpots[i].y)]
+                spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDistance) + Mathf.RoundToInt(gridSpots[i].y)]
                     .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) + Mathf.RoundToInt(gridSpots[i].x)] = 0;
             }
 
             if (rotate == 2)
             {
-                spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) - Mathf.RoundToInt(gridSpots[i].x)]
-                    .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) + Mathf.RoundToInt(gridSpots[i].y)] = 0;
+                spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDistance) - Mathf.RoundToInt(gridSpots[i].x)]
+                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDistance) + Mathf.RoundToInt(gridSpots[i].y)] = 0;
             }
 
             if (rotate == 3)
             {
-                spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) - Mathf.RoundToInt(gridSpots[i].y)]
-                    .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) - Mathf.RoundToInt(gridSpots[i].x)] = 0;
+                spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDistance) - Mathf.RoundToInt(gridSpots[i].y)]
+                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDistance) - Mathf.RoundToInt(gridSpots[i].x)] = 0;
             }
 
             if (rotate == 4)
             {
-                spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) + Mathf.RoundToInt(gridSpots[i].x)]
-                    .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) - Mathf.RoundToInt(gridSpots[i].y)] = 0;
+                spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDistance) + Mathf.RoundToInt(gridSpots[i].x)]
+                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDistance) - Mathf.RoundToInt(gridSpots[i].y)] = 0;
             }
         }
     }
@@ -199,32 +201,32 @@ public class SpotChecker : MonoBehaviour
 
         for (int i = 0; i < gridSpots.Count; i++)
         {
-            if (rotate == 1 && spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) + Mathf.RoundToInt(gridSpots[i].y)]
-                    .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) + Mathf.RoundToInt(gridSpots[i].x)] == shapeType)
+            if (rotate == 1 && spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDistance) + Mathf.RoundToInt(gridSpots[i].y)]
+                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDistance) + Mathf.RoundToInt(gridSpots[i].x)] == shapeType)
             {
-                spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) + Mathf.RoundToInt(gridSpots[i].y)]
-                    .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) + Mathf.RoundToInt(gridSpots[i].x)] = 0;
+                spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDistance) + Mathf.RoundToInt(gridSpots[i].y)]
+                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDistance) + Mathf.RoundToInt(gridSpots[i].x)] = 0;
             }
 
-            if (rotate == 2 && spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) + Mathf.RoundToInt(gridSpots[i].y)]
-                    .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) + Mathf.RoundToInt(gridSpots[i].x)] == shapeType)
+            if (rotate == 2 && spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDistance) + Mathf.RoundToInt(gridSpots[i].y)]
+                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDistance) + Mathf.RoundToInt(gridSpots[i].x)] == shapeType)
             {
-                spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) - Mathf.RoundToInt(gridSpots[i].x)]
-                    .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) + Mathf.RoundToInt(gridSpots[i].y)] = 0;
+                spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDistance) - Mathf.RoundToInt(gridSpots[i].x)]
+                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDistance) + Mathf.RoundToInt(gridSpots[i].y)] = 0;
             }
 
-            if (rotate == 3 && spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) + Mathf.RoundToInt(gridSpots[i].y)]
-                    .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) + Mathf.RoundToInt(gridSpots[i].x)] == shapeType)
+            if (rotate == 3 && spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDistance) + Mathf.RoundToInt(gridSpots[i].y)]
+                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDistance) + Mathf.RoundToInt(gridSpots[i].x)] == shapeType)
             {
-                spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) - Mathf.RoundToInt(gridSpots[i].y)]
-                    .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) - Mathf.RoundToInt(gridSpots[i].x)] = 0;
+                spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDistance) - Mathf.RoundToInt(gridSpots[i].y)]
+                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDistance) - Mathf.RoundToInt(gridSpots[i].x)] = 0;
             }
 
-            if (rotate == 4 && spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) + Mathf.RoundToInt(gridSpots[i].y)]
-                    .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) + Mathf.RoundToInt(gridSpots[i].x)] == shapeType)
+            if (rotate == 4 && spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDistance) + Mathf.RoundToInt(gridSpots[i].y)]
+                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDistance) + Mathf.RoundToInt(gridSpots[i].x)] == shapeType)
             {
-                spots.rows[Mathf.RoundToInt(gridPosBase.transform.position.y + yVarAdjust) + Mathf.RoundToInt(gridSpots[i].x)]
-                    .row[Mathf.RoundToInt(gridPosBase.transform.position.x + xVarAdjust) - Mathf.RoundToInt(gridSpots[i].y)] = 0;
+                spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDistance) + Mathf.RoundToInt(gridSpots[i].x)]
+                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDistance) - Mathf.RoundToInt(gridSpots[i].y)] = 0;
             }
         }
     }
