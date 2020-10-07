@@ -205,13 +205,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1000330547}
         m_MethodName: LoadSceneSeperate
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: AdditiveSceneTest1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &296791521
@@ -491,13 +491,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1000330547}
         m_MethodName: UnloadScene
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 4
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: AdditiveSceneTest2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &651479874
@@ -566,10 +566,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e2f722a5149450ba7b12d850ea61eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addScenesOnStart: 1
-  startingAddedScenes: 0300000004000000
+  addScenesOnStart: 0
+  startingAddedScenes:
+  - AdditiveSceneTest1
+  - AdditiveSceneTest2
   moveStartingObjects: 0100
-  maxAddedScenes: 2
 --- !u!4 &1000330548
 Transform:
   m_ObjectHideFlags: 0
@@ -829,13 +830,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1000330547}
         m_MethodName: LoadSceneMerged
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 4
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: AdditiveSceneTest2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1412133436
@@ -1103,13 +1104,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1000330547}
         m_MethodName: LoadSceneMerged
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: AdditiveSceneTest1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1780208126
@@ -1493,13 +1494,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1000330547}
         m_MethodName: LoadSceneSeperate
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 4
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: AdditiveSceneTest2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2008155400
@@ -1623,13 +1624,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1000330547}
         m_MethodName: UnloadScene
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: AdditiveSceneTest1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2059739739
