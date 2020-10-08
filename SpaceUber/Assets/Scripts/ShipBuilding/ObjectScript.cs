@@ -17,6 +17,7 @@ public class ObjectScript : MonoBehaviour
     [Foldout("Data")]
     public int rotAdjust = 1;
     private GameObject parentObj;
+    private float moveDistance;
     public static Color c;
 
     public int shapeType;
@@ -53,6 +54,7 @@ public class ObjectScript : MonoBehaviour
         c = gameObject.GetComponent<SpriteRenderer>().color;
         c.a = 0.5f;
         parentObj = transform.parent.gameObject;
+        moveDistance = parentObj.GetComponent<ObjectMover>().GetMoveDis();
         
         roomNameUI.text = parentObj.GetComponent<RoomStats>().roomName;
         roomDescUI.text = parentObj.GetComponent<RoomStats>().roomDescription;
@@ -93,7 +95,7 @@ public class ObjectScript : MonoBehaviour
         c.a = 1;
         gameObject.GetComponent<SpriteRenderer>().color = c;
         c.a = .5f;
-        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust);
+        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust, moveDistance);
         parentObj.AddComponent<ObjectMover>();
         ObjectMover.hasPlaced = false;
     }
@@ -101,7 +103,7 @@ public class ObjectScript : MonoBehaviour
     public void Delete()
     {
         //buttons.SetActive(false);
-        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust);
+        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust, moveDistance);
         ObjectMover.hasPlaced = true;
         Destroy(parentObj);
     }

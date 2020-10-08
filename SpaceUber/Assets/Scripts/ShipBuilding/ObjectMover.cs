@@ -25,6 +25,11 @@ public class ObjectMover : MonoBehaviour
         os = gameObject.GetComponentInChildren<ObjectScript>();
     }
 
+    public float GetMoveDis()
+    {
+        return moveDistance;
+    }
+
     // Update is called once per frame
     void Update()
     {
