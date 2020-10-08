@@ -5,28 +5,46 @@
  * Description: Manages the game states. Loads scenes.
  */
 
+using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
+public enum InGameStates { JobSelect, ShipBuilding, Events }
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     
+    /// <summary>
+    /// The current Game State
+    /// </summary>
+    public static InGameStates currentGameState { get; private set; } = InGameStates.JobSelect;
+
     private void Awake()
     {
         //Singleton pattern
         if(instance) { Destroy(gameObject); }
         else { instance = this; }
-        
-        DontDestroyOnLoad(gameObject);
     }
-    
-    /// <summary>
-    /// Loads the passed in scene name.
-    /// </summary>
-    /// <param name="sceneName">The name of the scene to load.</param>
-    public void LoadScene(string sceneName)
+
+    public void ChangeInGameState(InGameStates state)
     {
-        SceneManager.LoadScene(sceneName);
+        if (state != currentGameState)
+        {
+            currentGameState = state;
+            
+            AdditiveSceneManager asm = FindObjectOfType<AdditiveSceneManager>();
+
+            switch (state)
+            {
+                case InGameStates.ShipBuilding:
+                    asm.LoadSceneSeperate("ShipBuilding");
+                    asm.UnloadScene("PromptScreen");
+                    break;
+                case InGameStates.Events:
+                    asm.UnloadScene("ShipBuilding");
+                    StartCoroutine(EventSystem.instance.Travel());
+                    break;
+            }
+        }
     }
 }
