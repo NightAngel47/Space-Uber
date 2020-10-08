@@ -33,7 +33,7 @@ public class SpotChecker : MonoBehaviour
         int objectNum = cube.gameObject.GetComponentInChildren<ObjectScript>().objectNum;
         GameObject gridPosBase = cube.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
         List<Vector2> gridSpots = new List<Vector2>(cube.transform.GetChild(0).gameObject.GetComponent<ObjectScript>().shapeData.gridSpaces);
-        cannotPlace = true;
+        cannotPlace = false;
 
         for (int i = 0; i < gridSpots.Count; i++)
         {
@@ -49,14 +49,6 @@ public class SpotChecker : MonoBehaviour
                         RemoveOverlapSpots(cube, rotate, moveDis);
                         return;
                     }
-
-                    else
-                    {
-                        cannotPlace = false;
-                        spots.rows[Mathf.RoundToInt((cube.transform.position.y + yVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].y)]
-                            .row[Mathf.RoundToInt((cube.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)] = objectNum;
-                        continue;
-                    }
                 }
 
                 if(rotate == 2 || rotate == 4)
@@ -68,14 +60,6 @@ public class SpotChecker : MonoBehaviour
                         Debug.Log("Cannot place here");
                         RemoveOverlapSpots(cube, rotate, moveDis);
                         return;
-                    }
-
-                    else
-                    {
-                        cannotPlace = false;
-                        spots.rows[Mathf.RoundToInt((cube.transform.position.y + yVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)]
-                            .row[Mathf.RoundToInt((cube.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].y)] = objectNum;
-                        continue;
                     }
                 }
             }
@@ -90,13 +74,6 @@ public class SpotChecker : MonoBehaviour
                     RemoveOverlapSpots(cube, rotate, moveDis);
                     return;
                 }
-
-                else
-                {
-                    cannotPlace = false;
-                    spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) /moveDis) + Mathf.RoundToInt(gridSpots[i].y)]
-                        .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) /moveDis) + Mathf.RoundToInt(gridSpots[i].x)] = objectNum;
-                }
             }
 
             if (rotate == 2)
@@ -108,13 +85,6 @@ public class SpotChecker : MonoBehaviour
                     Debug.Log("Cannot place here");
                     RemoveOverlapSpots(cube, rotate, moveDis);
                     return;
-                }
-
-                else
-                {
-                    cannotPlace = false;
-                    spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust)/ moveDis) - Mathf.RoundToInt(gridSpots[i].x)]
-                        .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust)/ moveDis) + Mathf.RoundToInt(gridSpots[i].y)] = objectNum;
                 }
             }
 
@@ -128,13 +98,6 @@ public class SpotChecker : MonoBehaviour
                     RemoveOverlapSpots(cube, rotate, moveDis);
                     return;
                 }
-
-                else
-                {
-                    cannotPlace = false;
-                    spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDis) - Mathf.RoundToInt(gridSpots[i].y)]
-                        .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) - Mathf.RoundToInt(gridSpots[i].x)] = objectNum;
-                }
             }
 
             if (rotate == 4)
@@ -147,10 +110,48 @@ public class SpotChecker : MonoBehaviour
                     RemoveOverlapSpots(cube, rotate, moveDis);
                     return;
                 }
+            }
+        }
 
-                else
+        if (cannotPlace == false)
+        {
+            for (int i = 0; i < gridSpots.Count; i++)
+            {
+                if (shapeType == 2) //these objects only have two different rotations
                 {
-                    cannotPlace = false;
+                    if (rotate == 1 || rotate == 3)
+                    {
+                        spots.rows[Mathf.RoundToInt((cube.transform.position.y + yVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].y)]
+                            .row[Mathf.RoundToInt((cube.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)] = objectNum;
+                    }
+
+                    if (rotate == 2 || rotate == 4)
+                    {
+                        spots.rows[Mathf.RoundToInt((cube.transform.position.y + yVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)]
+                            .row[Mathf.RoundToInt((cube.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].y)] = objectNum;
+                    }
+                }
+
+                if (rotate == 1)
+                {
+                    spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].y)]
+                        .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)] = objectNum;
+                }
+
+                if (rotate == 2)
+                {
+                    spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDis) - Mathf.RoundToInt(gridSpots[i].x)]
+                        .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].y)] = objectNum;
+                }
+
+                if (rotate == 3)
+                {
+                    spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDis) - Mathf.RoundToInt(gridSpots[i].y)]
+                        .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) - Mathf.RoundToInt(gridSpots[i].x)] = objectNum;
+                }
+
+                if (rotate == 4)
+                {
                     spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)]
                         .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) - Mathf.RoundToInt(gridSpots[i].y)] = objectNum;
                 }
@@ -193,35 +194,35 @@ public class SpotChecker : MonoBehaviour
 
     public void RemoveOverlapSpots(GameObject cube, int rotate, float moveDis)
     {
-        int shapeType = cube.gameObject.GetComponentInChildren<ObjectScript>().shapeType;
+        int objectNum = cube.gameObject.GetComponentInChildren<ObjectScript>().objectNum;
         GameObject gridPosBase = cube.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
         List<Vector2> gridSpots = new List<Vector2>(cube.transform.GetChild(0).gameObject.GetComponent<ObjectScript>().shapeData.gridSpaces);
 
         for (int i = 0; i < gridSpots.Count; i++)
         {
             if (rotate == 1 && spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].y)]
-                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)] == shapeType)
+                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)] == objectNum)
             {
                 spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].y)]
                     .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)] = 0;
             }
 
             if (rotate == 2 && spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].y)]
-                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)] == shapeType)
+                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)] == objectNum)
             {
                 spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDis) - Mathf.RoundToInt(gridSpots[i].x)]
                     .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].y)] = 0;
             }
 
             if (rotate == 3 && spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].y)]
-                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)] == shapeType)
+                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)] == objectNum)
             {
                 spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDis) - Mathf.RoundToInt(gridSpots[i].y)]
                     .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) - Mathf.RoundToInt(gridSpots[i].x)] = 0;
             }
 
             if (rotate == 4 && spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].y)]
-                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)] == shapeType)
+                    .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)] == objectNum)
             {
                 spots.rows[Mathf.RoundToInt((gridPosBase.transform.position.y + yVarAdjust) / moveDis) + Mathf.RoundToInt(gridSpots[i].x)]
                     .row[Mathf.RoundToInt((gridPosBase.transform.position.x + xVarAdjust) / moveDis) - Mathf.RoundToInt(gridSpots[i].y)] = 0;
