@@ -91,24 +91,14 @@ public class EventSystem : MonoBehaviour
 			yield return new WaitForSeconds(travelTicTime);
 
 			//Time to decide on an event
-			//story events happen every other time
-			if (storyEventIndex % 2 == 0 && storyEventIndex != storyEvents.Count) 
+
+			//story events happen every other time 
+			if (overallEventIndex % 2 == 1 && overallEventIndex != 0) //if it's an even-numbered event 
 			{
-				eventInstance = Instantiate(storyEvents[storyEventIndex], canvas.transform);
-
-				if (eventInstance.TryGetComponent(out InkDriverBase inkDriver))
-				{
-					inkDriver.titleBox = titleBox;
-					inkDriver.textBox = textBox;
-					inkDriver.backgroundUI = backgroundImage;
-					inkDriver.buttonGroup = buttonGroup;
-				}
-
-				eventActive = true;
+				CreateEvent(storyEvents[storyEventIndex]);
 				storyEventIndex++;
-				overallEventIndex++;
+
 				yield return new WaitWhile((() => eventActive));
-				
 			}
 			else if (!eventActive && randomEventIndex < randomEvents.Count) //Pick a random event
 			{
@@ -116,19 +106,8 @@ public class EventSystem : MonoBehaviour
 				
 				if(newEvent != null) //check to be sure a random event was still chosen
 				{
-					eventInstance = Instantiate(newEvent, canvas.transform);
-
-					if (eventInstance.TryGetComponent(out InkDriverBase inkDriver))
-					{
-						inkDriver.titleBox = titleBox;
-						inkDriver.textBox = textBox;
-						inkDriver.backgroundUI = backgroundImage;
-						inkDriver.buttonGroup = buttonGroup;
-					}
-
-					eventActive = true;
+					CreateEvent(newEvent);
 					randomEventIndex++;
-					overallEventIndex++;
 					yield return new WaitWhile((() => eventActive));
 				}
 				else
@@ -142,6 +121,23 @@ public class EventSystem : MonoBehaviour
 			
 		}
 		isTraveling = false;
+	}
+
+	public void CreateEvent(GameObject newEvent)
+	{
+		eventInstance = Instantiate(newEvent, canvas.transform);
+
+		if (eventInstance.TryGetComponent(out InkDriverBase inkDriver))
+		{
+			inkDriver.titleBox = titleBox;
+			inkDriver.textBox = textBox;
+			inkDriver.backgroundUI = backgroundImage;
+			inkDriver.buttonGroup = buttonGroup;
+		}
+
+		eventActive = true;
+		overallEventIndex++;
+		
 	}
 
 	public void ConcludeEvent()
