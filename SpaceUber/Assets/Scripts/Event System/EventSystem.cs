@@ -116,7 +116,6 @@ public class EventSystem : MonoBehaviour
 
 		eventActive = true;
 		overallEventIndex++;
-		
 	}
 
 	public void ConcludeEvent()
@@ -132,6 +131,11 @@ public class EventSystem : MonoBehaviour
 
 		asm.UnloadScene("Event_General");
 		AudioManager.instance.PlayMusicWithTransition("General Theme");
+		
+		if (overallEventIndex >= maxEvents)
+		{
+			GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
+		}
 
 		eventActive = false;
 	}
