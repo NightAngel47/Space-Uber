@@ -7,30 +7,21 @@
 
 using System.Collections;
 using UnityEngine;
-using TMPro;
 using System.Collections.Generic;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
-
-public enum EventSystemState { Traveling, Docked}
+using UnityEngine.SceneManagement;
 
 public class EventSystem : MonoBehaviour
 {
 	public static EventSystem instance;
-	public EventSystemState systemState;
-	public ShipStats ship;
+	private ShipStats ship;
+	private AdditiveSceneManager asm;
 
 	//how many events will happen in this journey
 	public int maxEvents = 3;
-	[SerializeField] private string waitMessage = "Wait for Next Event";
 	[SerializeField] private List<GameObject> storyEvents;
 	[SerializeField] private List<GameObject> randomEvents;
-	[HideInInspector] [SerializeField] private GameObject canvas;
-	[HideInInspector] [SerializeField] private TMP_Text titleBox;
-	[HideInInspector] [SerializeField] private TMP_Text textBox;
-	[HideInInspector] [SerializeField] private UnityEngine.UI.Image backgroundImage;
 
-	[HideInInspector] [SerializeField] public Transform buttonGroup;
+	private EventCanvas eventCanvas;
 
 	GameObject eventInstance;
 	
@@ -53,30 +44,15 @@ public class EventSystem : MonoBehaviour
 		if(instance) { Destroy(gameObject); }
 		else { instance = this; }
 
-		canvas = GameObject.FindGameObjectWithTag("Canvas");
-		titleBox = GameObject.FindGameObjectWithTag("Header").GetComponent<TMP_Text>();
-		textBox = GameObject.FindGameObjectWithTag("Body").GetComponent<TMP_Text>();
-		backgroundImage = GameObject.FindGameObjectWithTag("Background").GetComponent<UnityEngine.UI.Image>();
-		buttonGroup = GameObject.FindGameObjectWithTag("ButtonGroup").transform;
-
-		titleBox.text = waitMessage;
-		textBox.text = ""; // make sure that the text has been cleared.
+		ship = FindObjectOfType<ShipStats>();
+		asm = FindObjectOfType<AdditiveSceneManager>();
 	}
 
-	private void Update()
-	{
-		if (systemState == EventSystemState.Traveling && !isTraveling)
-		{
-			print("Starting Travel Coroutine");
-			StartCoroutine(Travel());
-		}
-	}
-
-	IEnumerator Travel()
+	public IEnumerator Travel()
 	{
 		//float travelTicker = 0;
 		
-		while (systemState == EventSystemState.Traveling)
+		while (GameManager.currentGameState == InGameStates.Events)
 		{
 			//int chanceOfEvent = 1;
 			//while(!WillRunEvent(chanceOfEvent))
@@ -90,6 +66,13 @@ public class EventSystem : MonoBehaviour
 			isTraveling = true;
 			yield return new WaitForSeconds(travelTicTime);
 
+			// Load Event_General Scene for upcoming event
+			asm.LoadSceneMerged("Event_General");
+			
+			yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_General").isLoaded);
+
+			eventCanvas = FindObjectOfType<EventCanvas>();
+			
 			//Time to decide on an event
 
 			//story events happen every other time 
@@ -114,30 +97,25 @@ public class EventSystem : MonoBehaviour
 				{
 					ConcludeEvent();
 				}
-				
-				
 			}
-
-			
 		}
 		isTraveling = false;
 	}
 
 	public void CreateEvent(GameObject newEvent)
 	{
-		eventInstance = Instantiate(newEvent, canvas.transform);
+		eventInstance = Instantiate(newEvent, eventCanvas.canvas.transform);
 
 		if (eventInstance.TryGetComponent(out InkDriverBase inkDriver))
 		{
-			inkDriver.titleBox = titleBox;
-			inkDriver.textBox = textBox;
-			inkDriver.backgroundUI = backgroundImage;
-			inkDriver.buttonGroup = buttonGroup;
+			inkDriver.titleBox = eventCanvas.titleBox;
+			inkDriver.textBox = eventCanvas.textBox;
+			inkDriver.backgroundUI = eventCanvas.backgroundImage;
+			inkDriver.buttonGroup = eventCanvas.buttonGroup;
 		}
 
 		eventActive = true;
 		overallEventIndex++;
-		
 	}
 
 	public void ConcludeEvent()
@@ -151,14 +129,16 @@ public class EventSystem : MonoBehaviour
 			Destroy(eventInstance);
 		}
 
-		eventActive = false;
-		titleBox.text = waitMessage;
-		textBox.text = ""; // make sure that the text has been cleared.
-
+		asm.UnloadScene("Event_General");
+		AudioManager.instance.PlayMusicWithTransition("General Theme");
+		
 		if (overallEventIndex >= maxEvents)
 		{
-			GameManager.instance.LoadScene("PromptScreen");
+			//GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
+			SceneManager.LoadScene("ShipBase"); //TODO temp please remove after milestone
 		}
+
+		eventActive = false;
 	}
 
 	/// <summary>
