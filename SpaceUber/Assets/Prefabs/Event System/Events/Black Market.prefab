@@ -77,6 +77,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4656191228972796407, guid: 2cf18f7b38f9c76429097f95022bf7d6,
         type: 3}
+      propertyPath: choiceOutcomes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 2cf18f7b38f9c76429097f95022bf7d6,
+        type: 3}
       propertyPath: inkJSONAsset
       value: 
       objectReference: {fileID: 4900000, guid: e508b1ff6180c424e8f03fe69987d6d1, type: 3}
@@ -84,6 +89,37 @@ PrefabInstance:
         type: 3}
       propertyPath: eventName
       value: Black Market
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 2cf18f7b38f9c76429097f95022bf7d6,
+        type: 3}
+      propertyPath: choiceOutcomes.Array.data[0]
+      value: 
+      objectReference: {fileID: -1457849628914520543}
+    - target: {fileID: 4656191228972796407, guid: 2cf18f7b38f9c76429097f95022bf7d6,
+        type: 3}
+      propertyPath: choiceOutcomes.Array.data[1]
+      value: 
+      objectReference: {fileID: 1641648225670485597}
+    - target: {fileID: 4656191228972796407, guid: 2cf18f7b38f9c76429097f95022bf7d6,
+        type: 3}
+      propertyPath: choiceOutcomes.Array.data[2]
+      value: 
+      objectReference: {fileID: 2017998542302755657}
+    - target: {fileID: 4656191228972796407, guid: 2cf18f7b38f9c76429097f95022bf7d6,
+        type: 3}
+      propertyPath: choiceOutcomes.Array.data[3]
+      value: 
+      objectReference: {fileID: 5715224881265526693}
+    - target: {fileID: 4656191228972796407, guid: 2cf18f7b38f9c76429097f95022bf7d6,
+        type: 3}
+      propertyPath: backgroundImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 590547f0f90b4e240bae3ce3624bd2ca,
+        type: 3}
+    - target: {fileID: 4656191228972796407, guid: 2cf18f7b38f9c76429097f95022bf7d6,
+        type: 3}
+      propertyPath: eventBGM
+      value: Engine Delivery
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 2cf18f7b38f9c76429097f95022bf7d6,
         type: 3}

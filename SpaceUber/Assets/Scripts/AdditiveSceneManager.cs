@@ -157,7 +157,7 @@ public class AdditiveSceneManager : MonoBehaviour
                 addedSceneNames[numAddedScenesLoaded] = scenes[i];
                 numAddedScenesLoaded++;
             }
-            else if(scenes[i] != baseSceneName) // If the scene is loaded and not the base scene, make sure the variables keeping track of which scene is loaded are still updated
+            else if(!scenes[i].Equals(baseSceneName)) // If the scene is loaded and not the base scene, make sure the variables keeping track of which scene is loaded are still updated
             {
                 int addedSceneArrayIndex = FindIndex(scenes[i]);
                 if(addedSceneArrayIndex == -1)
@@ -185,7 +185,7 @@ public class AdditiveSceneManager : MonoBehaviour
     {
         for(int i = 0; i < numAddedScenesLoaded; i++)
         {
-            if(addedSceneNames[i] == scene)
+            if(addedSceneNames[i].Equals(scene))
             {
                 return i;
             }

@@ -48,14 +48,6 @@ public class EventSystem : MonoBehaviour
 		asm = FindObjectOfType<AdditiveSceneManager>();
 	}
 
-	void SetupEventUI()
-	{
-		asm.LoadSceneMerged("Event_General");
-
-		eventCanvas = FindObjectOfType<EventCanvas>();
-		print(eventCanvas);
-	}
-
 	public IEnumerator Travel()
 	{
 		//float travelTicker = 0;
@@ -75,7 +67,11 @@ public class EventSystem : MonoBehaviour
 			yield return new WaitForSeconds(travelTicTime);
 
 			// Load Event_General Scene for upcoming event
-			SetupEventUI();
+			asm.LoadSceneMerged("Event_General");
+			
+			yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_General").isLoaded);
+
+			eventCanvas = FindObjectOfType<EventCanvas>();
 			
 			//Time to decide on an event
 
@@ -120,7 +116,6 @@ public class EventSystem : MonoBehaviour
 
 		eventActive = true;
 		overallEventIndex++;
-		
 	}
 
 	public void ConcludeEvent()
@@ -135,6 +130,12 @@ public class EventSystem : MonoBehaviour
 		}
 
 		asm.UnloadScene("Event_General");
+		AudioManager.instance.PlayMusicWithTransition("General Theme");
+		
+		if (overallEventIndex >= maxEvents)
+		{
+			GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
+		}
 
 		eventActive = false;
 	}

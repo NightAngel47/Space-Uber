@@ -153,6 +153,7 @@ public class AudioManager : MonoBehaviour
     /// <param name="soundName"></param>
 	public void PlayMusicWithTransition(string soundName)
 	{
+        if(currentlyPlayingMusic != null) if(currentlyPlayingMusic.name == soundName) { return; }
         //Search tracks for sound name
         for(int i = 0; i < musicTracks.Length; i++)
 		{
@@ -181,6 +182,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusicWithoutTransition(string soundName)
 	{
+        if (currentlyPlayingMusic.name == soundName) { return; }
         //Search tracks for sound name
         for (int i = 0; i < musicTracks.Length; i++)
         {
@@ -203,6 +205,8 @@ public class AudioManager : MonoBehaviour
     /// <param name="soundName"></param>
     public void PlayAmbience(string soundName)
     {
+        foreach (Sound sound in currentlyPlayingAmbience)
+        { if (sound.name == soundName) { return; } }
         //Search tracks for sound name
         for (int i = 0; i < ambientTracks.Length; i++)
         {

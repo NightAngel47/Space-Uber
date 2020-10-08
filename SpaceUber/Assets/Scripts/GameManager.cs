@@ -26,6 +26,11 @@ public class GameManager : MonoBehaviour
         else { instance = this; }
     }
 
+    private void Start()
+    {
+        AudioManager.instance.PlayMusicWithTransition("General Theme");
+    }
+
     public void ChangeInGameState(InGameStates state)
     {
         if (state != currentGameState)
@@ -36,6 +41,9 @@ public class GameManager : MonoBehaviour
 
             switch (state)
             {
+                case InGameStates.JobSelect:
+                    asm.LoadSceneSeperate("PromptScreen"); // TODO Change to Job List when we have it
+                    break;
                 case InGameStates.ShipBuilding:
                     asm.LoadSceneSeperate("ShipBuilding");
                     asm.UnloadScene("PromptScreen");
