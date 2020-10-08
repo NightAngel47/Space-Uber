@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Flashclones
   resourcesChanged: 0000000004000000
-  amountChanged: 9cffffff0a000000
+  amountChanged: 9cffffff05000000
+  isRandomOutcome: 0
+  probabilities: []
 --- !u!114 &1641648225670485597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,6 +32,8 @@ MonoBehaviour:
   choiceName: Nuclear Weapons
   resourcesChanged: 0000000003000000
   amountChanged: 9cffffff0a000000
+  isRandomOutcome: 0
+  probabilities: []
 --- !u!114 &2017998542302755657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,6 +49,8 @@ MonoBehaviour:
   choiceName: Rations
   resourcesChanged: 0000000005000000
   amountChanged: 9cffffff14000000
+  isRandomOutcome: 0
+  probabilities: []
 --- !u!114 &5715224881265526693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +66,8 @@ MonoBehaviour:
   choiceName: Leave
   resourcesChanged: 
   amountChanged: 
+  isRandomOutcome: 0
+  probabilities: []
 --- !u!1001 &179888466227535499
 PrefabInstance:
   m_ObjectHideFlags: 0
