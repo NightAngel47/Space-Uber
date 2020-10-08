@@ -126,4 +126,12 @@ public class ShipStats : MonoBehaviour
     {
         return credits;
     }
+
+    public int Credits { get; set; }
+    public int EnergyRemaining { get; set; }
+    public int Security { get; set; }
+    public int ShipWeapons { get; set; }
+    public int CrewRemaining { get; set; }
+    public int Food { get; set; }
+    public int ShipHealthCurrent { get; set; }
 }
