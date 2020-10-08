@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129e010db1cde6d44a7d4c9316f48ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountChanged: 0
-  resourceType: 
+  choiceName: Leave it
+  resourcesChanged: 
+  amountChanged: 
+  isRandomOutcome: 0
+  probabilities: []
 --- !u!114 &-3775472013781600469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26,8 +29,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129e010db1cde6d44a7d4c9316f48ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountChanged: 0
-  resourceType: 
+  choiceName: Go Inside the Wormhole
+  resourcesChanged: 05000000070000000400000000000000
+  amountChanged: 0a000000e7fffffffdfffffffa000000
+  isRandomOutcome: 1
+  probabilities:
+  - 35
+  - 35
+  - 15
+  - 15
 --- !u!1001 &2494209557312690491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95,7 +105,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inkJSONAsset
       value: 
-      objectReference: {fileID: 4900000, guid: ffefd9b9fc4c8f94586a0cd83583a0f9, type: 3}
+      objectReference: {fileID: 4900000, guid: fcdf196d941f68447a0f51738f58f363, type: 3}
     - target: {fileID: 4656191228972796407, guid: 2cf18f7b38f9c76429097f95022bf7d6,
         type: 3}
       propertyPath: eventName

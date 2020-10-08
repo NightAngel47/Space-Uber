@@ -27,7 +27,7 @@ public class InkDriverBase : MonoBehaviour
     private Button buttonPrefab;
 
     [SerializeField, Tooltip("The transform parent to spawn choices under")]
-    private Transform choicesPos;
+    [HideInInspector]public Transform buttonGroup;
     
     [HideInInspector] public TMP_Text titleBox;
     [HideInInspector] public TMP_Text textBox;
@@ -43,12 +43,25 @@ public class InkDriverBase : MonoBehaviour
     /// The story itself being read
     /// </summary>
     private Story story;
+
     /// <summary>
     /// Whether the latest bit of text is done printing so it can show the choices
     /// </summary>
     public bool donePrinting = true;
     public bool showingChoices = false;
     private bool canEnd = false; //if the event can end. Based on player clicking at end of interaction
+
+    
+    [Dropdown("eventMusicTracks")]
+    public string eventBGM;
+    private List<string> eventMusicTracks
+    {
+        get
+        {
+            return new List<string>()
+        { "", "General Theme", "Wormhole", "Engine Malfunction", "Engine Delivery"};
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -58,10 +71,9 @@ public class InkDriverBase : MonoBehaviour
         Refresh(); //starts the dialogue
         titleBox.text = eventName;
         backgroundUI.sprite = backgroundImage;
-        //set the event title based on Knot title in the .Ink
-        //string title = story.state.currentPathString;
-        //titleBox.text = title;
-        //print(title);
+        AudioManager.instance.PlayMusicWithTransition(eventBGM);
+
+
     }
 
     private void Update()
@@ -84,7 +96,6 @@ public class InkDriverBase : MonoBehaviour
     /// <returns></returns>
     private IEnumerator PrintText(string text)
     {
-        print("Printing Text");
         donePrinting = false;
 
         string tempString = "";
@@ -100,7 +111,6 @@ public class InkDriverBase : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Return))
             {
                 tempString = text;
-                print("Skipping");
             }
             textBox.text = tempString;
 
@@ -122,7 +132,7 @@ public class InkDriverBase : MonoBehaviour
             foreach (Choice choice in story.currentChoices)
             {
                 //instantiate a button
-                Button choiceButton = Instantiate(buttonPrefab, choicesPos);
+                Button choiceButton = Instantiate(buttonPrefab, buttonGroup);
 
                 // Gets the text from the button prefab
                 TMP_Text choiceText = choiceButton.GetComponentInChildren<TMP_Text>();
@@ -149,7 +159,6 @@ public class InkDriverBase : MonoBehaviour
     /// </summary>
     void Refresh()
     {
-        print("Refreshing");
         // Clear the UI
         ClearUI();
 
@@ -197,7 +206,6 @@ public class InkDriverBase : MonoBehaviour
         {
             text = story.Continue();  //reads text until there is another choice
         }
-        print(text);
         return text;
     }
 
@@ -205,7 +213,7 @@ public class InkDriverBase : MonoBehaviour
     // Currently causes a stackoverflow error
     public void ClearUI()
     {
-        foreach (var button in transform.GetComponentsInChildren<Button>())
+        foreach (var button in buttonGroup.transform.GetComponentsInChildren<Button>())
         {
             Destroy(button.gameObject);
         }
