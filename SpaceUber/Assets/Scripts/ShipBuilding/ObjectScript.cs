@@ -29,6 +29,8 @@ public class ObjectScript : MonoBehaviour
     public ShapeTypes shapeTypes => shapeData.St;
 
     public GameObject hoverUiPanel;
+    [SerializeField] private TMP_Text roomNameUI;
+    [SerializeField] private TMP_Text roomDescUI;
 
     [Foldout("Data")]
     public float boundsUp;
@@ -45,20 +47,15 @@ public class ObjectScript : MonoBehaviour
 
     [Foldout("Data")]
     public Vector3 rotAdjustVal;
-
-    public static ObjectScript instance;
-
     private void Start()
     {
-        instance = this;
         //rotAdjust = false;
         c = gameObject.GetComponent<SpriteRenderer>().color;
         c.a = 0.5f;
-        parentObj = gameObject.transform.parent.gameObject;
-
-        hoverUiPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = parentObj.GetComponent<RoomStats>().roomName;
-        hoverUiPanel.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = parentObj.GetComponent<RoomStats>().roomDescription;
-
+        parentObj = transform.parent.gameObject;
+        
+        roomNameUI.text = parentObj.GetComponent<RoomStats>().roomName;
+        roomDescUI.text = parentObj.GetComponent<RoomStats>().roomDescription;
 
         ResetData();
     }
