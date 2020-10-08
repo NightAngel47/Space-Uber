@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -713,13 +713,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Your company has assigned you a job. In efforts to improve relations with
-    an up-in-coming research firm, Iko Corp., you have been asked to run a field
-    test on Iko\u2019s new engine. Their team has done the work to gut the ship and
-    rig up their new engine, you have simply been instrustructed to proceed with
-    your work as normal. Upon delivery of the tested engine and diagnostics at the
-    next starport, you will be paid an inflated sum. The engine is in the later testing
-    phases, so Iko assures you that risk of catastrophic failure is negligible."
+  m_text: 'The Kellis Corporation has assigned you your first job. As an Artificial
+    Intelligence Ship Captain and Crew Manager, you have been designed by Kellis
+    to take jobs, transport packages and persons across the galaxy, and ultimately
+    stay in the black. But to avoid liabilities, you''ve been told to go on a test
+    run first. Simply build out your ship with essential rooms and fly to the nearest
+    starport without carrying anything or anyone important--only your crew and the
+    necessities. You are advised to maintain the ship''s integrity, "have fun," and
+    turn a profit wherever possible. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9c0d64e0f2b37ff4585e042df16b3134, type: 2}
   m_sharedMaterial: {fileID: -7231770992009637525, guid: 9c0d64e0f2b37ff4585e042df16b3134,
@@ -747,12 +748,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 46
+  m_fontSize: 45.3
   m_fontSizeBase: 46
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 24
+  m_fontSizeMax: 46
   m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
