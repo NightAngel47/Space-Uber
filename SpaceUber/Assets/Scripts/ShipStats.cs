@@ -54,13 +54,13 @@ public class ShipStats : MonoBehaviour
 
     private void Start()
     {
-        shipStatsUI.UpdateCreditsUI(startingCredits);
-        shipStatsUI.UpdateEnergyUI(startingEnergy, startingEnergy);
-        shipStatsUI.UpdateSecurityUI(startingSecurity);
-        shipStatsUI.UpdateShipWeaponsUI(startingShipWeapons);
-        shipStatsUI.UpdateCrewUI(startingCrew, startingCrew);
-        shipStatsUI.UpdateFoodUI(startingFood, 0);
-        shipStatsUI.UpdateHullUI(startingShipHealth, startingShipHealth);
+        UpdateCreditsAmount(startingCredits);
+        UpdateEnergyAmount(startingEnergy, startingEnergy);
+        UpdateSecurityAmount(startingSecurity);
+        UpdateShipWeaponsAmount(startingShipWeapons);
+        UpdateCrewAmount(startingCrew, startingCrew);
+        UpdateFoodAmount(startingFood);
+        UpdateHullDurabilityAmount(startingShipHealth, startingShipHealth);
     }
 
     public void UpdateCreditsAmount(int creditAmount)

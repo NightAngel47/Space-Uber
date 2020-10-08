@@ -26,6 +26,11 @@ public class GameManager : MonoBehaviour
         else { instance = this; }
     }
 
+    private void Start()
+    {
+        AudioManager.instance.PlayMusicWithTransition("General Theme");
+    }
+
     public void ChangeInGameState(InGameStates state)
     {
         if (state != currentGameState)
