@@ -153,7 +153,7 @@ public class AudioManager : MonoBehaviour
     /// <param name="soundName"></param>
 	public void PlayMusicWithTransition(string soundName)
 	{
-        if(currentlyPlayingMusic.name == soundName) { return; }
+        if(currentlyPlayingMusic != null) if(currentlyPlayingMusic.name == soundName) { return; }
         //Search tracks for sound name
         for(int i = 0; i < musicTracks.Length; i++)
 		{
