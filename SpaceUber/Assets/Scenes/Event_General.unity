@@ -499,7 +499,7 @@ RectTransform:
   - {fileID: 875320819}
   - {fileID: 280959964}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -713,7 +713,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1013605396
 GameObject:
@@ -880,7 +880,7 @@ PrefabInstance:
     - target: {fileID: 4483520058602272394, guid: fe5d639606919114a9b48eb746a06bc6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4483520058602272394, guid: fe5d639606919114a9b48eb746a06bc6,
         type: 3}
@@ -900,12 +900,12 @@ PrefabInstance:
     - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
         type: 3}
       propertyPath: storyEvents.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
         type: 3}
       propertyPath: randomEvents.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
         type: 3}
@@ -974,6 +974,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4819145014956791667, guid: b753504c5ec1a67478ed86b8c1e0aa96,
         type: 3}
+    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
+        type: 3}
+      propertyPath: maxEvents
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe5d639606919114a9b48eb746a06bc6, type: 3}
 --- !u!1001 &1045419307
@@ -1283,7 +1288,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 1
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
