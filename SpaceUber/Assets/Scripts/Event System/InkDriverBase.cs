@@ -205,7 +205,13 @@ public class InkDriverBase : MonoBehaviour
         if (story.canContinue) //ALWAYS do this check before using story.Continue() to avoid errors
         {
             text = story.Continue();  //reads text until there is another choice
+            while((text == "\n" || text == "\r" || text == "\t") && story.canContinue)
+            {
+                text = story.Continue();
+            }
         }
+
+        print(text);
         return text;
     }
 
