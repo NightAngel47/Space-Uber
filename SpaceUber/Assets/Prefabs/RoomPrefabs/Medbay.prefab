@@ -17,7 +17,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 15.36, y: 10.24}
+    oldSize: {x: 3, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -25,14 +25,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.48, y: 0}
-      - {x: -0.48, y: -0.96}
-      - {x: 0.48, y: -0.96}
-      - {x: 0.48, y: 0}
-      - {x: 1.44, y: 0.97}
-      - {x: -1.44, y: 0.97}
-      - {x: -1.44, y: 0}
-      - {x: 1.44, y: 0}
+    - - {x: -0.5, y: 0}
+      - {x: -0.5, y: -1}
+      - {x: 0.5, y: -1}
+      - {x: 0.5, y: 0}
+      - {x: 1.5, y: 1}
+      - {x: -1.5, y: 1}
+      - {x: -1.5, y: 0}
+      - {x: 1.5, y: 0}
 --- !u!1001 &6369320012517131345
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43,12 +43,12 @@ PrefabInstance:
     - target: {fileID: 553947980719291970, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 15.36
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 553947980719291970, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 10.24
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 553947980719291970, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -547,6 +547,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 6247a534aa7349b4faf29bb65519e099,
         type: 3}
+    - target: {fileID: 8263844349415334236, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_FlipY
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8354016038451866568, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_Name
@@ -616,6 +621,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8502931638391405075, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8053823772464388611, guid: d75062b47e0b75b4384d6d8e19141c62, type: 3}
