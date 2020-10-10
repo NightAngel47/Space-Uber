@@ -22,5 +22,5 @@ Banned and re-banned for combat use every decade, nuclear weapons have somehow r
 -> END
 
 == Rations ==
-Several metal shipping containers full of plastic-wrapped rations are loaded onto your ship. Each plastic bag contains one nutritious meal for one person and has “DISASTER RELIEF” emblazoned across its width. The broker assures you that these were bought from a surplus, but you know they’re being fenced here for a reason.
+Several metal shipping containers full of plastic-wrapped rations are loaded onto your ship. Each plastic bag contains one nutritious meal for one person and has "DISASTER RELIEF" emblazoned across its width. The broker assures you that these were bought from a surplus, but you know they’re being fenced here for a reason.
 -> END
