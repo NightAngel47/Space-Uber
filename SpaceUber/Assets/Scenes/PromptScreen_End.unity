@@ -346,7 +346,7 @@ PrefabInstance:
     - target: {fileID: 9149740133387487934, guid: a6e6b03a8303cdf48b69a9c9b053a688,
         type: 3}
       propertyPath: m_text
-      value: Job Successfully Completed
+      value: 'Job Complete: Test Run Successful'
       objectReference: {fileID: 0}
     - target: {fileID: 9149740133387487934, guid: a6e6b03a8303cdf48b69a9c9b053a688,
         type: 3}
@@ -757,7 +757,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You have completed the job.
+  m_text: 'Congratulations on a successful first job! Now that you''ve proven you
+    can manage the ship, you''ll be managing your own contracts soon enough. Expect
+    more jobs for you and your crew in the future.
 
 
     Thanks for playing!'
