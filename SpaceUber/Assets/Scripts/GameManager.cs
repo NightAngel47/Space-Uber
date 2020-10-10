@@ -7,8 +7,9 @@
 
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public enum InGameStates { JobSelect, ShipBuilding, Events }
+public enum InGameStates { JobSelect, ShipBuilding, Events, Ending }
 
 public class GameManager : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
     /// The current Game State
     /// </summary>
     public static InGameStates currentGameState { get; private set; } = InGameStates.JobSelect;
-
+    
     private void Awake()
     {
         //Singleton pattern
@@ -42,6 +43,12 @@ public class GameManager : MonoBehaviour
             switch (state)
             {
                 case InGameStates.JobSelect:
+                    // unload ending screen if replaying
+                    // TODO remove when we have menus
+                    if (SceneManager.GetSceneByName("EndingScreen").isLoaded)
+                    {
+                        asm.UnloadScene("EndingScreen");
+                    }
                     asm.LoadSceneSeperate("PromptScreen"); // TODO Change to Job List when we have it
                     break;
                 case InGameStates.ShipBuilding:
@@ -51,6 +58,9 @@ public class GameManager : MonoBehaviour
                 case InGameStates.Events:
                     asm.UnloadScene("ShipBuilding");
                     StartCoroutine(EventSystem.instance.Travel());
+                    break;
+                case InGameStates.Ending:
+                    asm.LoadSceneSeperate("EndingScreen");
                     break;
             }
         }
