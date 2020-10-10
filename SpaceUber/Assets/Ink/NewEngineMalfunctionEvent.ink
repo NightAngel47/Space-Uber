@@ -1,5 +1,5 @@
 A warning comes from the engine room. A malfunction is causing the engine to overheat, and the intense temperature may cause damage to the ship. You can risk engineers to fix it, use other parts of the ship to do the repairs, or leave it be and hope for the best.
-* [Risk Engineers (50% change to lose some crew)]
+* [Risk Engineers (50% chance to lose some crew)]
 {shuffle:
     -->Survive
     -->Sacrifice
@@ -21,5 +21,5 @@ Not wanting to risk the lives of your engineers, you have the engine repaired wi
 -> END
 
 === Leave ===
-You leave the engine be and hope for the best. While the engine manages to stay intact, its heat starts melting its surroundings, doing a good amount of damage to your ship's integrity
+You leave the engine be and hope for the best. While the engine manages to stay intact, its heat starts melting its surroundings, doing a good amount of damage to your ship's integrity.
 -> END
