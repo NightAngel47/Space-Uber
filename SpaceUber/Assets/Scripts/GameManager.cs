@@ -45,22 +45,22 @@ public class GameManager : MonoBehaviour
                 case InGameStates.JobSelect:
                     // unload ending screen if replaying
                     // TODO remove when we have menus
-                    if (SceneManager.GetSceneByName("EndingScreen").isLoaded)
+                    if (SceneManager.GetSceneByName("PromptScreen_End").isLoaded)
                     {
-                        asm.UnloadScene("EndingScreen");
+                        asm.UnloadScene("PromptScreen_End");
                     }
-                    asm.LoadSceneSeperate("PromptScreen"); // TODO Change to Job List when we have it
+                    asm.LoadSceneSeperate("PromptScreen_Start"); // TODO Change to Job List when we have it
                     break;
                 case InGameStates.ShipBuilding:
                     asm.LoadSceneSeperate("ShipBuilding");
-                    asm.UnloadScene("PromptScreen");
+                    asm.UnloadScene("PromptScreen_Start");
                     break;
                 case InGameStates.Events:
                     asm.UnloadScene("ShipBuilding");
                     StartCoroutine(EventSystem.instance.Travel());
                     break;
                 case InGameStates.Ending:
-                    asm.LoadSceneSeperate("EndingScreen");
+                    asm.LoadSceneSeperate("PromptScreen_End");
                     break;
             }
         }

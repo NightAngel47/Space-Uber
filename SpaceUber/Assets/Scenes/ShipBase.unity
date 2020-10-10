@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -790,40 +790,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 15351267747110344, guid: 0b458fdfd765a814ab562780f1460550,
-        type: 3}
-      propertyPath: startingAddedScenes.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 15351267747110344, guid: 0b458fdfd765a814ab562780f1460550,
-        type: 3}
-      propertyPath: moveStartingObjects.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 15351267747110344, guid: 0b458fdfd765a814ab562780f1460550,
-        type: 3}
-      propertyPath: addScenesOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 15351267747110344, guid: 0b458fdfd765a814ab562780f1460550,
-        type: 3}
-      propertyPath: startingAddedScenes.Array.data[0]
-      value: PromptScreen
-      objectReference: {fileID: 0}
-    - target: {fileID: 15351267747110344, guid: 0b458fdfd765a814ab562780f1460550,
-        type: 3}
-      propertyPath: moveStartingObjects.Array.data[0]
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 15351267747110345, guid: 0b458fdfd765a814ab562780f1460550,
         type: 3}
       propertyPath: m_Name
       value: AdditiveSceneManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 15351267747110345, guid: 0b458fdfd765a814ab562780f1460550,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 15351267747110351, guid: 0b458fdfd765a814ab562780f1460550,
         type: 3}
