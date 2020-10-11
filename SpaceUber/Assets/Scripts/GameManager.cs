@@ -51,6 +51,11 @@ public class GameManager : MonoBehaviour
                     asm.UnloadScene("PromptScreen_Start");
                     break;
                 case InGameStates.Events:
+                    if (!ObjectMover.hasPlaced) // Remove left over room from ship building before moving to events
+                    {
+                        ObjectMover.hasPlaced = true;
+                        Destroy(FindObjectOfType<ObjectMover>().gameObject);
+                    }
                     asm.UnloadScene("ShipBuilding");
                     StartCoroutine(EventSystem.instance.Travel());
                     break;

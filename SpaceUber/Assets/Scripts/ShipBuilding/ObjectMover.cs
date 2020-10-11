@@ -33,9 +33,12 @@ public class ObjectMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
-        RotateObject();
-        Placement();
+        if (GameManager.currentGameState == InGameStates.ShipBuilding)
+        {
+            Movement();
+            RotateObject();
+            Placement();
+        }
     }
 
     public void Movement()
