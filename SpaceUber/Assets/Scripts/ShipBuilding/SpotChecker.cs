@@ -80,7 +80,7 @@ public class SpotChecker : MonoBehaviour
 
             if (rotate == 2)
             {
-                if (spots.rows[(int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].x)]
+                if (spots.rows[(int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].x - 1)]
                     .row[(int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].y)] != 0 || (int)Math.Round(cube.transform.position.y - gridSpots[i].x) >= 6
                         || (int)Math.Round(cube.transform.position.x + gridSpots[i].y) >= 9) 
                 {
@@ -93,8 +93,8 @@ public class SpotChecker : MonoBehaviour
 
             if (rotate == 3)
             {
-                if (spots.rows[(int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].y)]
-                    .row[(int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].x)] != 0 || (int)Math.Round(cube.transform.position.y - gridSpots[i].y) >= 6
+                if (spots.rows[(int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].y - 1)]
+                    .row[(int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].x - 1)] != 0 || (int)Math.Round(cube.transform.position.y - gridSpots[i].y) >= 6
                         || (int)Math.Round(cube.transform.position.x - gridSpots[i].x) >= 9)
                 {
                     cannotPlace = true; //lets user keep moving object
@@ -107,7 +107,7 @@ public class SpotChecker : MonoBehaviour
             if (rotate == 4)
             {
                 if (spots.rows[(int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].x)]
-                        .row[(int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].y)] != 0 || (int)Math.Round(cube.transform.position.y + gridSpots[i].x) >= 6
+                        .row[(int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].y - 1)] != 0 || (int)Math.Round(cube.transform.position.y + gridSpots[i].x) >= 6
                         || (int)Math.Round(cube.transform.position.x - gridSpots[i].y) >= 9)
                 {
                     cannotPlace = true; //lets user keep moving object
