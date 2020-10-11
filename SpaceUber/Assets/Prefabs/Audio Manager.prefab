@@ -79,21 +79,14 @@ MonoBehaviour:
     pitch: 0
     volumeVarience: 0
     pitchVarience: 0
-  sfxTracks:
-  - name: Click
-    clip: {fileID: 8300000, guid: 40bc818c919ed5b4698232ff007f9fde, type: 3}
-    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
-    volume: 1
-    pitch: 1
-    volumeVarience: 0
-    pitchVarience: 0.5
+  sfxTracks: []
   ambientTracks: []
   currentlyPlayingAmbience: []
   masterVolume: 1
   sfxVolume: 1
   musicVolume: 1
   ambienceVolume: 1
-  fadeOutTime: 4.25
-  trackOverlapTime: 2.75
-  fadeInTime: 5.25
+  fadeOutTime: 2.25
+  trackOverlapTime: 1.25
+  fadeInTime: 3.25
   isMuted: 0
