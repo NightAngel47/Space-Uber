@@ -81,7 +81,11 @@ public class ObjectScript : MonoBehaviour
             Delete();
         }
 
-        hoverUiPanel.SetActive(true);
+        //TODO might need to allow seeing room stats outside of ship building, however this was done to not have them show during events
+        if (GameManager.currentGameState == InGameStates.ShipBuilding) 
+        {
+            hoverUiPanel.SetActive(true);
+        }
     }
 
     public void OnMouseExit()
