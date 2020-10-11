@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8354258606540800588}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -68,6 +68,13 @@ MonoBehaviour:
   - name: General Theme
     clip: {fileID: 8300000, guid: 47f5c683db20d91429fd6fd3b2b0aa80, type: 3}
     mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 1
+    pitch: 0
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Black Market
+    clip: {fileID: 8300000, guid: 59a187e0f2d9bc1429d3b9b9b5bea71e, type: 3}
+    mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
     volume: 1
     pitch: 0
     volumeVarience: 0
