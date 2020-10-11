@@ -29,6 +29,11 @@ public class ObjectMover : MonoBehaviour
     {
         return moveDistance;
     }
+    
+    public void SetMoveDis(float mov)
+    {
+        moveDistance = mov;
+    }
 
     // Update is called once per frame
     void Update()
@@ -139,7 +144,7 @@ public class ObjectMover : MonoBehaviour
         {
             if (FindObjectOfType<ShipStats>().GetCredits() >= gameObject.GetComponent<RoomStats>().price)
             {
-                SpotChecker.instance.FillSpots(gameObject, os.rotAdjust, moveDistance);
+                SpotChecker.instance.FillSpots(gameObject, os.rotAdjust);
 
                 if (SpotChecker.cannotPlace == false)
                 {

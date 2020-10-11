@@ -112,15 +112,16 @@ public class ObjectScript : MonoBehaviour
         c.a = 1;
         gameObject.GetComponent<SpriteRenderer>().color = c;
         c.a = .5f;
-        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust, moveDistance);
+        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust);
         parentObj.AddComponent<ObjectMover>();
+        parentObj.GetComponent<ObjectMover>().SetMoveDis(moveDistance);
         ObjectMover.hasPlaced = false;
     }
 
     public void Delete()
     {
         //buttons.SetActive(false);
-        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust, moveDistance);
+        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust);
         ObjectMover.hasPlaced = true;
         Destroy(parentObj);
     }
