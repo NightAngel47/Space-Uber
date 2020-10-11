@@ -29,9 +29,13 @@ public class ObjectScript : MonoBehaviour
     public ShapeType shapeData = null;
     public ShapeTypes shapeTypes => shapeData.St;
 
-    public GameObject hoverUiPanel;
+    [SerializeField] private GameObject hoverUiPanel;
     [SerializeField] private TMP_Text roomNameUI;
     [SerializeField] private TMP_Text roomDescUI;
+    [SerializeField] private TMP_Text roomPrice;
+    [SerializeField] private Transform statsUI;
+    [SerializeField] private GameObject resourceUI;
+    
 
     [Foldout("Data")]
     public float boundsUp;
@@ -58,6 +62,15 @@ public class ObjectScript : MonoBehaviour
         
         roomNameUI.text = parentObj.GetComponent<RoomStats>().roomName;
         roomDescUI.text = parentObj.GetComponent<RoomStats>().roomDescription;
+        roomPrice.text = parentObj.GetComponent<RoomStats>().price.ToString();
+
+        foreach (var resource in parentObj.GetComponent<RoomStats>().resources)
+        {
+            GameObject resourceGO = Instantiate(resourceUI, statsUI);
+            resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = resource.resourceIcon; // resource icon
+            resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = resource.resourceType; // resource name
+            resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = resource.amount.ToString(); // resource amount
+        }
 
         ResetData();
     }
