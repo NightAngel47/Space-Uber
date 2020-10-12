@@ -12,7 +12,7 @@ using UnityEngine;
 
 public class RoomStats : MonoBehaviour
 {
-    private List<Resource> resources = new List<Resource>();
+    public List<Resource> resources { get; private set; } = new List<Resource>();
 
     public int minCrew;
     public int maxCrew;

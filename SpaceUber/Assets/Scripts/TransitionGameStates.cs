@@ -10,6 +10,10 @@ using UnityEngine;
 
 public class TransitionGameStates : MonoBehaviour
 {
+    public void ChangeToJobSelect()
+    {
+        GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
+    }
     
     public void ChangeToShipBuilding()
     {

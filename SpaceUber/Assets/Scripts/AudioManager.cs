@@ -113,6 +113,8 @@ public class AudioManager : MonoBehaviour
         InitializeTracks(musicTracks);
         InitializeTracks(sfxTracks);
         InitializeTracks(ambientTracks);
+        
+        PlayMusicWithTransition("General Theme");
     }
 
 	private void FixedUpdate()

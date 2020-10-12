@@ -29,13 +29,21 @@ public class ObjectMover : MonoBehaviour
     {
         return moveDistance;
     }
+    
+    public void SetMoveDis(float mov)
+    {
+        moveDistance = mov;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        Movement();
-        RotateObject();
-        Placement();
+        if (GameManager.currentGameState == InGameStates.ShipBuilding)
+        {
+            Movement();
+            RotateObject();
+            Placement();
+        }
     }
 
     public void Movement()
@@ -139,7 +147,7 @@ public class ObjectMover : MonoBehaviour
         {
             if (FindObjectOfType<ShipStats>().GetCredits() >= gameObject.GetComponent<RoomStats>().price)
             {
-                SpotChecker.instance.FillSpots(gameObject, os.rotAdjust, moveDistance);
+                SpotChecker.instance.FillSpots(gameObject, os.rotAdjust);
 
                 if (SpotChecker.cannotPlace == false)
                 {

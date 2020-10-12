@@ -29,9 +29,13 @@ public class ObjectScript : MonoBehaviour
     public ShapeType shapeData = null;
     public ShapeTypes shapeTypes => shapeData.St;
 
-    public GameObject hoverUiPanel;
+    [SerializeField] private GameObject hoverUiPanel;
     [SerializeField] private TMP_Text roomNameUI;
     [SerializeField] private TMP_Text roomDescUI;
+    [SerializeField] private TMP_Text roomPrice;
+    [SerializeField] private Transform statsUI;
+    [SerializeField] private GameObject resourceUI;
+    
 
     [Foldout("Data")]
     public float boundsUp;
@@ -58,30 +62,43 @@ public class ObjectScript : MonoBehaviour
         
         roomNameUI.text = parentObj.GetComponent<RoomStats>().roomName;
         roomDescUI.text = parentObj.GetComponent<RoomStats>().roomDescription;
+        roomPrice.text = parentObj.GetComponent<RoomStats>().price.ToString();
+
+        foreach (var resource in parentObj.GetComponent<RoomStats>().resources)
+        {
+            GameObject resourceGO = Instantiate(resourceUI, statsUI);
+            resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = resource.resourceIcon; // resource icon
+            resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = resource.resourceType; // resource name
+            resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = resource.amount.ToString(); // resource amount
+        }
 
         ResetData();
     }
 
     public void OnMouseOver()
     {
-        if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true)
+        if (GameManager.currentGameState == InGameStates.ShipBuilding) 
         {
-            //buttons.SetActive(true);
-            parentObj.GetComponent<RoomStats>().SubtractRoomStats();
-            Edit();
-        }
-
-        if (Input.GetMouseButton(1))
-        {
-            //buttons.SetActive(true);
-            if (ObjectMover.hasPlaced == true)
+            if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true)
             {
+                //buttons.SetActive(true);
                 parentObj.GetComponent<RoomStats>().SubtractRoomStats();
+                Edit();
             }
-            Delete();
-        }
 
-        hoverUiPanel.SetActive(true);
+            if (Input.GetMouseButton(1))
+            {
+                //buttons.SetActive(true);
+                if (ObjectMover.hasPlaced == true)
+                {
+                    parentObj.GetComponent<RoomStats>().SubtractRoomStats();
+                }
+                Delete();
+            }
+            
+            //TODO might need to allow seeing room stats outside of ship building, however this was done to not have them show during events
+            hoverUiPanel.SetActive(true);
+        }
     }
 
     public void OnMouseExit()
@@ -95,15 +112,16 @@ public class ObjectScript : MonoBehaviour
         c.a = 1;
         gameObject.GetComponent<SpriteRenderer>().color = c;
         c.a = .5f;
-        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust, moveDistance);
+        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust);
         parentObj.AddComponent<ObjectMover>();
+        parentObj.GetComponent<ObjectMover>().SetMoveDis(moveDistance);
         ObjectMover.hasPlaced = false;
     }
 
     public void Delete()
     {
         //buttons.SetActive(false);
-        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust, moveDistance);
+        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust);
         ObjectMover.hasPlaced = true;
         Destroy(parentObj);
     }

@@ -134,8 +134,7 @@ public class EventSystem : MonoBehaviour
 		
 		if (overallEventIndex >= maxEvents)
 		{
-			//GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
-			SceneManager.LoadScene("ShipBase"); //TODO temp please remove after milestone
+			GameManager.instance.ChangeInGameState(InGameStates.Ending);
 		}
 
 		eventActive = false;

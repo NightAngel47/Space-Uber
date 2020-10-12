@@ -35,10 +35,12 @@ public class SpawnObject : MonoBehaviour
     {
         foreach (GameObject room in availableRooms)
         {
+            //g is the button that is created
             GameObject g = Instantiate(buttonPrefab, buttonPanel.transform);
             //g.transform.SetParent(buttonPanel.transform);
-            g.GetComponent<Button>().onClick.AddListener(() => SpawnRoom(room));
-            g.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = room.name;
+            g.GetComponent<Button>().onClick.AddListener(() => SpawnRoom(room)); //spawn a room upon clicking the button
+            g.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = room.name; //Set G's title to the room's name
+            g.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = room.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
         }
     }
 
