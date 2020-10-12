@@ -3,11 +3,11 @@ An encrypted signal reaches your ship, its source less than a thousand kilometer
 
 == Black_Market ==
 You divert your flight plan into the shadow of a nearby gas giant. You coast into a tower-shaped space station covered in radio antennas, its hangar giving you ample space to land. A broker, wrapped in several suits, cuff-links, and masks, boards your ship. They welcome you to the black market and offer you their wares.
-* [Flashclones (-Credits, +Crew, ILLEGAL)]
+* [Flashclones (-100 Credits, +5 Crew)]
 -> Flashclones
-* [Nuclear Weapons (-Credits, +Weapons, ILLEGAL)]
+* [Nuclear Weapons (-100 Credits, +10 Weapons)]
 -> Nuclear_Weapons
-* [Rations (-Credits, +Food, ILLEGAL)]
+* [Rations (-100 Credits, +20 Food)]
 -> Rations
 * [Leave]
 You decide that none of the black market's options are worth the money or ire from local authorities.
