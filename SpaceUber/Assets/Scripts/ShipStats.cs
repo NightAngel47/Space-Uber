@@ -7,7 +7,6 @@
 
 using System;
 using UnityEngine;
-using TMPro;
 using System.Collections.Generic;
 using NaughtyAttributes;
 
@@ -29,21 +28,6 @@ public class ShipStats : MonoBehaviour
     [SerializeField, Tooltip("Starting amount of ship health"), Foldout("Starting Ship Stats")]
     private int startingShipHealth;
 
-    [Foldout("Ship Stats UI Objects")]
-    public TMP_Text creditsText;
-    [Foldout("Ship Stats UI Objects")]
-    public TMP_Text energyText;
-    [Foldout("Ship Stats UI Objects")]
-    public TMP_Text securityText;
-    [Foldout("Ship Stats UI Objects")]
-    public TMP_Text shipWeaponsText;
-    [Foldout("Ship Stats UI Objects")]
-    public TMP_Text crewText;
-    [Foldout("Ship Stats UI Objects")]
-    public TMP_Text foodText;
-    [Foldout("Ship Stats UI Objects")]
-    public TMP_Text shipHealthText;
-
     private List<RoomStats> rooms;
 
     private int credits;
@@ -54,89 +38,100 @@ public class ShipStats : MonoBehaviour
     private int crewMax;
     private int crewRemaining;
     private int food;
-    private int foodPerTick;
+    private int foodPerTick; 
     private int shipHealthMax;
     private int shipHealthCurrent;
 
-    void Start()
-    {
-        credits = startingCredits;
-        energyMax = startingEnergy;
-        energyRemaining = startingEnergy;
-        security = startingSecurity;
-        shipWeapons = startingShipWeapons;
-        crewMax = startingCrew;
-        crewRemaining = startingCrew;
-        food = startingFood;
-        foodPerTick = 0;
-        shipHealthMax = startingShipHealth;
-        shipHealthCurrent = startingShipHealth;
+    /// <summary>
+    /// Reference to the ship stats UI class.
+    /// </summary>
+    private ShipStatsUI shipStatsUI;
 
-        UpdateShipStatsUI();
+    private void Awake()
+    {
+        shipStatsUI = GetComponent<ShipStatsUI>();
     }
 
-    /// <summary>
-    /// Updates the UI to reflect the ship's current stats
-    /// </summary>
-    public void UpdateShipStatsUI()
+    private void Start()
     {
-        creditsText.text = "Credits: " + credits.ToString();
-        energyText.text = "Energy: " + energyRemaining.ToString() + " / " + energyMax.ToString();
-        securityText.text = "Security: " + security.ToString();
-        shipWeaponsText.text = "Ship Weapons: " + shipWeapons.ToString();
-        crewText.text = "Crew: " + crewRemaining.ToString() + " / " + crewMax.ToString();
-        foodText.text = "Food: " + food.ToString() + " + " + foodPerTick.ToString();
-        shipHealthText.text = "Hull Durability: " + shipHealthCurrent.ToString() + " / " + shipHealthMax.ToString();
+        UpdateCreditsAmount(startingCredits);
+        UpdateEnergyAmount(startingEnergy, startingEnergy);
+        UpdateSecurityAmount(startingSecurity);
+        UpdateShipWeaponsAmount(startingShipWeapons);
+        UpdateCrewAmount(startingCrew, startingCrew);
+        UpdateFoodAmount(startingFood);
+        UpdateHullDurabilityAmount(startingShipHealth, startingShipHealth);
     }
 
     public void UpdateCreditsAmount(int creditAmount)
     {
         credits += creditAmount;
-        UpdateShipStatsUI();
+        
+        shipStatsUI.UpdateCreditsUI(credits);
     }
 
     public void UpdateEnergyAmount(int energyRemainingAmount, int energyMaxAmount = 0)
     {
         energyMax += energyMaxAmount;
         energyRemaining += energyRemainingAmount;
-        UpdateShipStatsUI();
+        
+        shipStatsUI.UpdateEnergyUI(energyRemaining, energyMax);
     }
 
     public void UpdateSecurityAmount(int securityAmount)
     {
         security += securityAmount;
-        UpdateShipStatsUI();
+        
+        shipStatsUI.UpdateSecurityUI(security);
     }
 
     public void UpdateShipWeaponsAmount(int shipWeaponsAmount)
     {
         shipWeapons += shipWeaponsAmount;
-        UpdateShipStatsUI();
+        
+        shipStatsUI.UpdateShipWeaponsUI(shipWeapons);
     }
 
     public void UpdateCrewAmount(int crewRemainingAmount, int crewMaxAmount = 0)
     {
         crewMax += crewMaxAmount;
         crewRemaining += crewRemainingAmount;
-        UpdateShipStatsUI();
+        
+        shipStatsUI.UpdateCrewUI(crewRemaining, crewMax);
     }
 
     public void UpdateFoodAmount(int foodAmount)
     {
         food += foodAmount;
-        UpdateShipStatsUI();
+        
+        shipStatsUI.UpdateFoodUI(food, foodPerTick);
     }
 
     public void UpdateFoodPerTickAmount(int foodPerTickAmount)
     {
         foodPerTick += foodPerTickAmount;
-        UpdateShipStatsUI();
+        
+        shipStatsUI.UpdateFoodUI(food, foodPerTick);
     }
 
     public void UpdateHullDurabilityAmount(int hullDurabilityRemainingAmount, int hullDurabilityMax = 0)
     {
         shipHealthMax += hullDurabilityMax;
         shipHealthCurrent += hullDurabilityRemainingAmount;
-        UpdateShipStatsUI();
+        
+        shipStatsUI.UpdateHullUI(shipHealthCurrent, shipHealthMax);
     }
+
+    public int GetCredits()
+    {
+        return credits;
+    }
+
+    public int Credits { get; set; }
+    public int EnergyRemaining { get; set; }
+    public int Security { get; set; }
+    public int ShipWeapons { get; set; }
+    public int CrewRemaining { get; set; }
+    public int Food { get; set; }
+    public int ShipHealthCurrent { get; set; }
 }
