@@ -77,26 +77,26 @@ public class ObjectScript : MonoBehaviour
 
     public void OnMouseOver()
     {
-        if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true)
-        {
-            //buttons.SetActive(true);
-            parentObj.GetComponent<RoomStats>().SubtractRoomStats();
-            Edit();
-        }
-
-        if (Input.GetMouseButton(1))
-        {
-            //buttons.SetActive(true);
-            if (ObjectMover.hasPlaced == true)
-            {
-                parentObj.GetComponent<RoomStats>().SubtractRoomStats();
-            }
-            Delete();
-        }
-
-        //TODO might need to allow seeing room stats outside of ship building, however this was done to not have them show during events
         if (GameManager.currentGameState == InGameStates.ShipBuilding) 
         {
+            if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true)
+            {
+                //buttons.SetActive(true);
+                parentObj.GetComponent<RoomStats>().SubtractRoomStats();
+                Edit();
+            }
+
+            if (Input.GetMouseButton(1))
+            {
+                //buttons.SetActive(true);
+                if (ObjectMover.hasPlaced == true)
+                {
+                    parentObj.GetComponent<RoomStats>().SubtractRoomStats();
+                }
+                Delete();
+            }
+            
+            //TODO might need to allow seeing room stats outside of ship building, however this was done to not have them show during events
             hoverUiPanel.SetActive(true);
         }
     }
@@ -112,15 +112,16 @@ public class ObjectScript : MonoBehaviour
         c.a = 1;
         gameObject.GetComponent<SpriteRenderer>().color = c;
         c.a = .5f;
-        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust, moveDistance);
+        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust);
         parentObj.AddComponent<ObjectMover>();
+        parentObj.GetComponent<ObjectMover>().SetMoveDis(moveDistance);
         ObjectMover.hasPlaced = false;
     }
 
     public void Delete()
     {
         //buttons.SetActive(false);
-        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust, moveDistance);
+        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust);
         ObjectMover.hasPlaced = true;
         Destroy(parentObj);
     }

@@ -314,8 +314,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 749125899}
   m_HandleRect: {fileID: 749125898}
   m_Direction: 2
-  m_Value: 0.9999998
-  m_Size: 0.6011904
+  m_Value: 1
+  m_Size: 0.60119045
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -679,8 +679,8 @@ MonoBehaviour:
     - row: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
     - row: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
     - row: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
-  xVarAdjust: 2.3
-  yVarAdjust: 2.3
+  xVarAdjust: 0
+  yVarAdjust: 0
 --- !u!4 &810855496
 Transform:
   m_ObjectHideFlags: 0
@@ -1340,7 +1340,7 @@ MonoBehaviour:
   buttonPrefab: {fileID: 2428309925023011877, guid: df24a7f9f614f11469dbbebd4ecb3d64,
     type: 3}
   buttonPanel: {fileID: 1751713099}
-  spawnLoc: {x: -2.3, y: -2.3}
+  spawnLoc: {x: 0, y: 0}
 --- !u!4 &1719975905
 Transform:
   m_ObjectHideFlags: 0

@@ -4,8 +4,8 @@ A warning comes from the engine room. A malfunction is causing the engine to ove
     -->Survive
     -->Sacrifice
 }
-+ [Salvage Parts (-Credits)] -> Repair
-+ [Leave It Be (-HP over time)] -> Leave
++ [Salvage Parts (-100 Credits)] -> Repair
++ [Leave It Be (-20 Hull Durability)] -> Leave
 
 
 === Survive ===
