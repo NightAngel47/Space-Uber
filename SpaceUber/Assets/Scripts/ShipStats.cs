@@ -2,7 +2,7 @@
  * ShipStats.cs
  * Author(s): Grant Frey
  * Created on: 9/14/2020 (en-US)
- * Description: 
+ * Description:
  */
 
 using System;
@@ -38,9 +38,10 @@ public class ShipStats : MonoBehaviour
     private int crewMax;
     private int crewRemaining;
     private int food;
-    private int foodPerTick; 
+    private int foodPerTick;
     private int shipHealthMax;
     private int shipHealthCurrent;
+    private int crewMorale;
 
     /// <summary>
     /// Reference to the ship stats UI class.
@@ -66,7 +67,7 @@ public class ShipStats : MonoBehaviour
     public void UpdateCreditsAmount(int creditAmount)
     {
         credits += creditAmount;
-        
+
         shipStatsUI.UpdateCreditsUI(credits);
     }
 
@@ -74,21 +75,21 @@ public class ShipStats : MonoBehaviour
     {
         energyMax += energyMaxAmount;
         energyRemaining += energyRemainingAmount;
-        
+
         shipStatsUI.UpdateEnergyUI(energyRemaining, energyMax);
     }
 
     public void UpdateSecurityAmount(int securityAmount)
     {
         security += securityAmount;
-        
+
         shipStatsUI.UpdateSecurityUI(security);
     }
 
     public void UpdateShipWeaponsAmount(int shipWeaponsAmount)
     {
         shipWeapons += shipWeaponsAmount;
-        
+
         shipStatsUI.UpdateShipWeaponsUI(shipWeapons);
     }
 
@@ -96,21 +97,21 @@ public class ShipStats : MonoBehaviour
     {
         crewMax += crewMaxAmount;
         crewRemaining += crewRemainingAmount;
-        
+
         shipStatsUI.UpdateCrewUI(crewRemaining, crewMax);
     }
 
     public void UpdateFoodAmount(int foodAmount)
     {
         food += foodAmount;
-        
+
         shipStatsUI.UpdateFoodUI(food, foodPerTick);
     }
 
     public void UpdateFoodPerTickAmount(int foodPerTickAmount)
     {
         foodPerTick += foodPerTickAmount;
-        
+
         shipStatsUI.UpdateFoodUI(food, foodPerTick);
     }
 
@@ -118,7 +119,7 @@ public class ShipStats : MonoBehaviour
     {
         shipHealthMax += hullDurabilityMax;
         shipHealthCurrent += hullDurabilityRemainingAmount;
-        
+
         shipStatsUI.UpdateHullUI(shipHealthCurrent, shipHealthMax);
     }
 
@@ -134,4 +135,10 @@ public class ShipStats : MonoBehaviour
     public int CrewRemaining { get; set; }
     public int Food { get; set; }
     public int ShipHealthCurrent { get; set; }
+
+    public void UpdateCrewMorale(int crewMoraleAmount)
+    {
+        crewMorale += crewMoraleAmount;
+        UpdateShipStatsUI();
+    }
 }
