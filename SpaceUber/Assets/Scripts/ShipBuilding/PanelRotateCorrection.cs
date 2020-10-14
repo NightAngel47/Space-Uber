@@ -9,15 +9,8 @@ using UnityEngine;
 
 public class PanelRotateCorrection : MonoBehaviour
 {
-    Vector3 pos;
-    void Awake()
-    {
-        pos = transform.position;
-    }
-
     void LateUpdate()
     {
-        transform.position = pos;
         transform.rotation = Quaternion.identity;
     }
 }
