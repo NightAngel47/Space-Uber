@@ -139,6 +139,7 @@ public class ShipStats : MonoBehaviour
     public void UpdateCrewMorale(int crewMoraleAmount)
     {
         crewMorale += crewMoraleAmount;
-        UpdateShipStatsUI();
+        // TODO update to work with changes from development
+        //UpdateShipStatsUI();
     }
 }
