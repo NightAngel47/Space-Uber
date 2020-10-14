@@ -12,7 +12,7 @@ using UnityEngine;
 
 public class RoomStats : MonoBehaviour
 {
-    private List<Resource> resources = new List<Resource>();
+    public List<Resource> resources { get; private set; } = new List<Resource>();
 
     public int minCrew;
     public int maxCrew;
@@ -113,7 +113,7 @@ public class RoomStats : MonoBehaviour
                     break;
             }
         }
-        AddRoomStats();
+        //AddRoomStats();
     }
 
     /// <summary>
@@ -121,6 +121,7 @@ public class RoomStats : MonoBehaviour
     /// </summary>
     public void AddRoomStats()
     {
+        shipStats.UpdateCreditsAmount(-price);
         shipStats.UpdateCreditsAmount(credits);
         shipStats.UpdateEnergyAmount(energy, energy);
         shipStats.UpdateSecurityAmount(security);
@@ -136,8 +137,9 @@ public class RoomStats : MonoBehaviour
     /// </summary>
     public void SubtractRoomStats()
     {
+        shipStats.UpdateCreditsAmount(price);
         shipStats.UpdateCreditsAmount(-credits);
-        shipStats.UpdateEnergyAmount(-energy, energy);
+        shipStats.UpdateEnergyAmount(-energy, -energy);
         shipStats.UpdateSecurityAmount(-security);
         shipStats.UpdateShipWeaponsAmount(-shipWeapons);
         shipStats.UpdateCrewAmount(-crew, crew);

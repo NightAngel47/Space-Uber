@@ -15,6 +15,8 @@ MonoBehaviour:
   choiceName: Tell truth
   resourcesChanged: 
   amountChanged: 
+  isRandomOutcome: 0
+  probabilities: []
 --- !u!114 &6474429830264255827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,6 +32,8 @@ MonoBehaviour:
   choiceName: Lie
   resourcesChanged: 
   amountChanged: 
+  isRandomOutcome: 0
+  probabilities: []
 --- !u!1001 &8001145685272615783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79,6 +83,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 590547f0f90b4e240bae3ce3624bd2ca,
         type: 3}
+    - target: {fileID: 4656191228972796407, guid: 2cf18f7b38f9c76429097f95022bf7d6,
+        type: 3}
+      propertyPath: eventBGM
+      value: Engine Delivery
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 2cf18f7b38f9c76429097f95022bf7d6,
         type: 3}
       propertyPath: m_Name
