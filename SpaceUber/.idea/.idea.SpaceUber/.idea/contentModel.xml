@@ -6,6 +6,7 @@
     <e p="D:\GitHub\Space-Uber\SpaceUber" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="_ACTools" t="Include">
@@ -59,6 +60,9 @@
         <e p="DataTypes" t="Include">
           <e p="ShapeType.cs" t="Include" />
         </e>
+        <e p="Editor" t="Include">
+          <e p="CustPropertyDrawer.cs" t="Include" />
+        </e>
         <e p="Plugins" t="Include">
           <e p="GitHub" t="Include">
             <e p="Editor" t="Include">
@@ -68,20 +72,216 @@
               <e p="UnityAPIWrapper.cs" t="Include" />
             </e>
           </e>
+          <e p="Ink" t="Include">
+            <e p="Core" t="Include">
+              <e p="Editor" t="Include">
+                <e p="Compiler" t="Include">
+                  <e p="Auto Compiler" t="Include">
+                    <e p="InkPostProcessor.cs" t="Include" />
+                  </e>
+                  <e p="InkCompiler.cs" t="Include" />
+                </e>
+                <e p="Ink Library" t="Include">
+                  <e p="InkCompilerLog.cs" t="Include" />
+                  <e p="InkFile.cs" t="Include" />
+                  <e p="InkLibrary.cs" t="Include" />
+                  <e p="InkLibraryEditor.cs" t="Include" />
+                  <e p="InkMetaFile.cs" t="Include" />
+                  <e p="InkMetaLibrary.cs" t="Include" />
+                </e>
+                <e p="Ink Settings" t="Include">
+                  <e p="InkSettings.cs" t="Include" />
+                  <e p="InkSettingsEditor.cs" t="Include" />
+                </e>
+                <e p="InkEditorUtils.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Example" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="BasicInkExample.cs" t="Include" />
+                <e p="Editor" t="Include">
+                  <e p="BasicInkExampleEditor.cs" t="Include" />
+                </e>
+                <e p="QuitGameOnKeypress.cs" t="Include" />
+              </e>
+            </e>
+            <e p="InkLibs" t="Include">
+              <e p="Ink-Libraries.asmdef" t="Include" />
+              <e p="InkCompiler" t="Include">
+                <e p="CharacterRange.cs" t="Include" />
+                <e p="CharacterSet.cs" t="Include" />
+                <e p="CommandLineInput.cs" t="Include" />
+                <e p="Compiler.cs" t="Include" />
+                <e p="FileHandler.cs" t="Include" />
+                <e p="InkParser" t="Include">
+                  <e p="CommentEliminator.cs" t="Include" />
+                  <e p="InkParser.cs" t="Include" />
+                  <e p="InkParser_AuthorWarning.cs" t="Include" />
+                  <e p="InkParser_CharacterRanges.cs" t="Include" />
+                  <e p="InkParser_Choices.cs" t="Include" />
+                  <e p="InkParser_CommandLineInput.cs" t="Include" />
+                  <e p="InkParser_Conditional.cs" t="Include" />
+                  <e p="InkParser_Content.cs" t="Include" />
+                  <e p="InkParser_Divert.cs" t="Include" />
+                  <e p="InkParser_Expressions.cs" t="Include" />
+                  <e p="InkParser_Include.cs" t="Include" />
+                  <e p="InkParser_Knot.cs" t="Include" />
+                  <e p="InkParser_Logic.cs" t="Include" />
+                  <e p="InkParser_Sequences.cs" t="Include" />
+                  <e p="InkParser_Statements.cs" t="Include" />
+                  <e p="InkParser_Tags.cs" t="Include" />
+                  <e p="InkParser_Whitespace.cs" t="Include" />
+                </e>
+                <e p="InkStringConversionExtensions.cs" t="Include" />
+                <e p="ParsedHierarchy" t="Include">
+                  <e p="AuthorWarning.cs" t="Include" />
+                  <e p="Choice.cs" t="Include" />
+                  <e p="Conditional.cs" t="Include" />
+                  <e p="ConditionalSingleBranch.cs" t="Include" />
+                  <e p="ConstantDeclaration.cs" t="Include" />
+                  <e p="ContentList.cs" t="Include" />
+                  <e p="Divert.cs" t="Include" />
+                  <e p="DivertTarget.cs" t="Include" />
+                  <e p="Expression.cs" t="Include" />
+                  <e p="ExternalDeclaration.cs" t="Include" />
+                  <e p="FlowBase.cs" t="Include" />
+                  <e p="FlowLevel.cs" t="Include" />
+                  <e p="FunctionCall.cs" t="Include" />
+                  <e p="Gather.cs" t="Include" />
+                  <e p="INamedContent.cs" t="Include" />
+                  <e p="IncludedFile.cs" t="Include" />
+                  <e p="IWeavePoint.cs" t="Include" />
+                  <e p="Knot.cs" t="Include" />
+                  <e p="List.cs" t="Include" />
+                  <e p="ListDefinition.cs" t="Include" />
+                  <e p="Number.cs" t="Include" />
+                  <e p="Object.cs" t="Include" />
+                  <e p="Path.cs" t="Include" />
+                  <e p="Return.cs" t="Include" />
+                  <e p="Sequence.cs" t="Include" />
+                  <e p="Stitch.cs" t="Include" />
+                  <e p="Story.cs" t="Include" />
+                  <e p="StringExpression.cs" t="Include" />
+                  <e p="Text.cs" t="Include" />
+                  <e p="TunnelOnwards.cs" t="Include" />
+                  <e p="VariableAssignment.cs" t="Include" />
+                  <e p="VariableReference.cs" t="Include" />
+                  <e p="Weave.cs" t="Include" />
+                  <e p="Wrap.cs" t="Include" />
+                </e>
+                <e p="Plugins" t="Include">
+                  <e p="Plugin.cs" t="Include" />
+                  <e p="PluginManager.cs" t="Include" />
+                </e>
+                <e p="Stats.cs" t="Include" />
+                <e p="StringParser" t="Include">
+                  <e p="StringParser.cs" t="Include" />
+                  <e p="StringParserState.cs" t="Include" />
+                </e>
+              </e>
+              <e p="InkRuntime" t="Include">
+                <e p="CallStack.cs" t="Include" />
+                <e p="Choice.cs" t="Include" />
+                <e p="ChoicePoint.cs" t="Include" />
+                <e p="Container.cs" t="Include" />
+                <e p="ControlCommand.cs" t="Include" />
+                <e p="DebugMetadata.cs" t="Include" />
+                <e p="Divert.cs" t="Include" />
+                <e p="Error.cs" t="Include" />
+                <e p="Glue.cs" t="Include" />
+                <e p="INamedContent.cs" t="Include" />
+                <e p="InkList.cs" t="Include" />
+                <e p="JsonSerialisation.cs" t="Include" />
+                <e p="ListDefinition.cs" t="Include" />
+                <e p="ListDefinitionsOrigin.cs" t="Include" />
+                <e p="NativeFunctionCall.cs" t="Include" />
+                <e p="Object.cs" t="Include" />
+                <e p="Path.cs" t="Include" />
+                <e p="Pointer.cs" t="Include" />
+                <e p="Profiler.cs" t="Include" />
+                <e p="PushPop.cs" t="Include" />
+                <e p="SearchResult.cs" t="Include" />
+                <e p="SimpleJson.cs" t="Include" />
+                <e p="StatePatch.cs" t="Include" />
+                <e p="Story.cs" t="Include" />
+                <e p="StoryException.cs" t="Include" />
+                <e p="StoryState.cs" t="Include" />
+                <e p="StringJoinExtension.cs" t="Include" />
+                <e p="Tag.cs" t="Include" />
+                <e p="Value.cs" t="Include" />
+                <e p="VariableAssignment.cs" t="Include" />
+                <e p="VariableReference.cs" t="Include" />
+                <e p="VariablesState.cs" t="Include" />
+                <e p="Void.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Tools" t="Include">
+              <e p="Build Validation" t="Include">
+                <e p="Editor" t="Include">
+                  <e p="InkPreBuildValidationCheck.cs" t="Include" />
+                </e>
+              </e>
+              <e p="File Icons" t="Include">
+                <e p="Editor" t="Include">
+                  <e p="InkBrowserIcons.cs" t="Include" />
+                  <e p="Resources" t="Include">
+                    <e p="InkDefaultTemplate.txt" t="Include" />
+                  </e>
+                </e>
+              </e>
+              <e p="Ink Inspector" t="Include">
+                <e p="Editor" t="Include">
+                  <e p="DefaultAssetEditor.cs" t="Include" />
+                  <e p="DefaultAssetInspector.cs" t="Include" />
+                  <e p="InkInspector.cs" t="Include" />
+                </e>
+              </e>
+              <e p="Player Window" t="Include">
+                <e p="Editor" t="Include">
+                  <e p="InkPlayerWindow.cs" t="Include" />
+                </e>
+                <e p="InkHistoryContentItem.cs" t="Include" />
+              </e>
+            </e>
+          </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="GridTestScripts" t="Include">
-            <e p="ArrayLayout.cs" t="Include" />
-            <e p="CustPropertyDrawer.cs" t="Include" />
-            <e p="ObjectMover.cs" t="Include" />
-            <e p="ObjectScript.cs" t="Include" />
-            <e p="SpawnObject.cs" t="Include" />
-            <e p="SpotChecker.cs" t="Include" />
+          <e p="AdditiveSceneManager.cs" t="Include" />
+          <e p="AudioManager.cs" t="Include" />
+          <e p="DragAndDropSprite.cs" t="Include" />
+          <e p="EndingRestartBehaviour.cs" t="Include" />
+          <e p="Event System" t="Include">
+            <e p="ChoiceOutcomes.cs" t="Include" />
+            <e p="EventManager.cs" t="Include" />
+            <e p="EventRequirements.cs" t="Include" />
+            <e p="EventSystem.cs" t="Include" />
+            <e p="InkDriverBase.cs" t="Include" />
+            <e p="TestInkStory.cs" t="Include" />
           </e>
+          <e p="EventCanvas.cs" t="Include" />
+          <e p="GameManager.cs" t="Include" />
+          <e p="MiniGame" t="Include">
+            <e p="EnergyLevelStabalizeMiniGame.cs" t="Include" />
+            <e p="MiniGameButton.cs" t="Include" />
+            <e p="MiniGameScoreManager.cs" t="Include" />
+          </e>
+          <e p="OverclockController.cs" t="Include" />
+          <e p="OverclockRoom.cs" t="Include" />
           <e p="Resource.cs" t="Include" />
           <e p="RoomStats.cs" t="Include" />
           <e p="RoomUIController.cs" t="Include" />
+          <e p="ShipBuilding" t="Include">
+            <e p="ArrayLayout.cs" t="Include" />
+            <e p="ObjectMover.cs" t="Include" />
+            <e p="ObjectScript.cs" t="Include" />
+            <e p="PanelRotateCorrection.cs" t="Include" />
+            <e p="ShipStatsHoverUI.cs" t="Include" />
+            <e p="SpawnObject.cs" t="Include" />
+            <e p="SpotChecker.cs" t="Include" />
+          </e>
           <e p="ShipStats.cs" t="Include" />
+          <e p="ShipStatsUI.cs" t="Include" />
+          <e p="TransitionGameStates.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
@@ -115,6 +315,7 @@
           </e>
         </e>
       </e>
+      <e p="Ink-Libraries.csproj" t="IncludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
       <e p="SpaceUber.sln" t="IncludeFlat" />

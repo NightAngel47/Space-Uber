@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129e010db1cde6d44a7d4c9316f48ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountChanged: 0
-  resourceType: 
+  choiceName: Sacrifice Engineers
+  resourcesChanged: 0400000004000000
+  amountChanged: 00000000feffffff
+  isRandomOutcome: 1
+  probabilities:
+  - 50
+  - 50
 --- !u!114 &-1115151063445593605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26,8 +31,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129e010db1cde6d44a7d4c9316f48ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountChanged: 0
-  resourceType: 
+  choiceName: Salvage Parts
+  resourcesChanged: 00000000
+  amountChanged: 9cffffff
+  isRandomOutcome: 0
+  probabilities: []
 --- !u!114 &3901002839951064822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40,8 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129e010db1cde6d44a7d4c9316f48ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountChanged: 0
-  resourceType: 
+  choiceName: Leave It Be
+  resourcesChanged: 07000000
+  amountChanged: ecffffff
+  isRandomOutcome: 0
+  probabilities: []
 --- !u!1001 &4240106722889990801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69,7 +80,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inkJSONAsset
       value: 
-      objectReference: {fileID: 4900000, guid: 9ec51497a89f13945a9a7b6d3b01fb0c, type: 3}
+      objectReference: {fileID: 4900000, guid: ca6dd8d1b38885f42a0edb92e4e02cbe, type: 3}
     - target: {fileID: 4656191228972796407, guid: 2cf18f7b38f9c76429097f95022bf7d6,
         type: 3}
       propertyPath: choiceOutcomes.Array.data[0]
@@ -96,6 +107,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 4904d50f27add704088b729c2278bcee,
         type: 3}
+    - target: {fileID: 4656191228972796407, guid: 2cf18f7b38f9c76429097f95022bf7d6,
+        type: 3}
+      propertyPath: eventBGM
+      value: Engine Malfunction
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 2cf18f7b38f9c76429097f95022bf7d6,
         type: 3}
       propertyPath: m_Name
