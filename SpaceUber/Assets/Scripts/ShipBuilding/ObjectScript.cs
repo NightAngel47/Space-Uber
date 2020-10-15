@@ -23,6 +23,8 @@ public class ObjectScript : MonoBehaviour
     public int shapeType;
     public int objectNum;
 
+    [SerializeField] private bool usedRoom = false;
+
     [SerializeField] private ShapeType shapeDataTemplate = null;
 
     [Foldout("Data")]
@@ -75,6 +77,11 @@ public class ObjectScript : MonoBehaviour
         ResetData();
     }
 
+    public void UpdateUsedRoom()
+    {
+        usedRoom = true;
+    }
+
     public void OnMouseOver()
     {
         if (GameManager.currentGameState == InGameStates.ShipBuilding) 
@@ -89,10 +96,16 @@ public class ObjectScript : MonoBehaviour
             if (Input.GetMouseButton(1))
             {
                 //buttons.SetActive(true);
-                if (ObjectMover.hasPlaced == true)
+                if (ObjectMover.hasPlaced == true && usedRoom == false)
                 {
                     parentObj.GetComponent<RoomStats>().SubtractRoomStats();
                 }
+
+                if(ObjectMover.hasPlaced == true && usedRoom == true)
+                {
+                    parentObj.GetComponent<RoomStats>().SubtractRoomStatsReducedPrice();
+                }
+
                 Delete();
             }
             

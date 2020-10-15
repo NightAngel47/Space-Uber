@@ -56,6 +56,11 @@ public class GameManager : MonoBehaviour
                         ObjectMover.hasPlaced = true;
                         Destroy(FindObjectOfType<ObjectMover>().gameObject);
                     }
+                    ObjectScript[] rooms = FindObjectsOfType<ObjectScript>();
+                    foreach(ObjectScript o in rooms)
+                    {
+                        o.UpdateUsedRoom();
+                    }
                     asm.UnloadScene("ShipBuilding");
                     StartCoroutine(EventSystem.instance.Travel());
                     break;
