@@ -37,7 +37,7 @@ public class DragAndDropSprite : MonoBehaviour
 
 	private void OnMouseEnter() { mousedOver = true;  }
 	private void OnMouseExit() { mousedOver = false; }
-	private void OnMouseDown() { if (mousedOver) { isBeingDraged = true; } }
+	private void OnMouseDown() { isBeingDraged = true; }
 	private void OnMouseUp() 
     { 
         isBeingDraged = false;

@@ -10,6 +10,8 @@ using TMPro;
 
 public class MiniGameScoreManager : MonoBehaviour
 {
+    public static MiniGameTool selectedTool;
+    [SerializeField] MiniGameCrop[] crops;
     [SerializeField] TMP_Text scoreText;
     int score = 0;
 
