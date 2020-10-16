@@ -13,7 +13,6 @@ public class DragAndDropSprite : MonoBehaviour
     MiniGameScoreManager scoreManager;
     Vector3 originalPosition;
     bool isBeingDraged = false;
-    bool mousedOver = false;
     bool isOverTarget = false;
 
     void Start()
@@ -35,8 +34,6 @@ public class DragAndDropSprite : MonoBehaviour
         }
     }
 
-	private void OnMouseEnter() { mousedOver = true;  }
-	private void OnMouseExit() { mousedOver = false; }
 	private void OnMouseDown() { isBeingDraged = true; }
 	private void OnMouseUp() 
     { 

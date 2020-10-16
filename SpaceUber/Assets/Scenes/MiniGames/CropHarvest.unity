@@ -378,7 +378,7 @@ MonoBehaviour:
   isWatered: 0
   isTrimmed: 1
   isFertilized: 0
-  stage: 2
+  stage: 4
   unfertilizedSoil: {fileID: 7223251799278012158, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
   fertilizedSoil: {fileID: -5323379147761251417, guid: 9c3f05afeb7fdcf45a49448daa49141f,
@@ -386,6 +386,10 @@ MonoBehaviour:
   unwateredSeed: {fileID: 547639170991173132, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
   wateredSeed: {fileID: 2839770625265591479, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+    type: 3}
+  unwateredSprout: {fileID: 8544887547276016033, guid: 2e8d92a88230feb4694253b2786398a7,
+    type: 3}
+  watererSprout: {fileID: -8788243674362555083, guid: 2e8d92a88230feb4694253b2786398a7,
     type: 3}
   unwateredUntrimmedMiddling: {fileID: -1802375507474033870, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
@@ -400,6 +404,13 @@ MonoBehaviour:
     type: 3}
   plantImage: {fileID: 65438759}
   targetTag: MiniGameCropContainer
+  growthTicTime: 1
+  growthPerTic: 1
+  maxGrowthPerStage: 3
+  waterDecayPerTic: 1
+  maxWaterLevel: 3
+  pruneDecayerTic: 1
+  maxPruneLevel: 3
 --- !u!114 &224673469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,7 +503,7 @@ RectTransform:
   m_LocalScale: {x: 0.45215333, y: 0.4181064, z: 1}
   m_Children: []
   m_Father: {fileID: 1001686353}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -511,7 +522,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ce36f04ff7f1a498ba3046362f427b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: HarvestableCrop
   toolType: 3
 --- !u!114 &433350680
 MonoBehaviour:
@@ -631,7 +641,7 @@ RectTransform:
   m_LocalScale: {x: 0.45215333, y: 0.4181064, z: 1}
   m_Children: []
   m_Father: {fileID: 1001686353}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -650,7 +660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ce36f04ff7f1a498ba3046362f427b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: HarvestableCrop
   toolType: 0
 --- !u!114 &513089645
 MonoBehaviour:
@@ -837,7 +846,7 @@ MonoBehaviour:
   isWatered: 0
   isTrimmed: 0
   isFertilized: 0
-  stage: 0
+  stage: 4
   unfertilizedSoil: {fileID: 7223251799278012158, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
   fertilizedSoil: {fileID: -5323379147761251417, guid: 9c3f05afeb7fdcf45a49448daa49141f,
@@ -845,6 +854,10 @@ MonoBehaviour:
   unwateredSeed: {fileID: 547639170991173132, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
   wateredSeed: {fileID: 2839770625265591479, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+    type: 3}
+  unwateredSprout: {fileID: 8544887547276016033, guid: 2e8d92a88230feb4694253b2786398a7,
+    type: 3}
+  watererSprout: {fileID: -8788243674362555083, guid: 2e8d92a88230feb4694253b2786398a7,
     type: 3}
   unwateredUntrimmedMiddling: {fileID: -1802375507474033870, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
@@ -859,6 +872,13 @@ MonoBehaviour:
     type: 3}
   plantImage: {fileID: 1795074271}
   targetTag: MiniGameCropContainer
+  growthTicTime: 1
+  growthPerTic: 1
+  maxGrowthPerStage: 3
+  waterDecayPerTic: 1
+  maxWaterLevel: 3
+  pruneDecayerTic: 1
+  maxPruneLevel: 3
 --- !u!114 &755795119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1383,6 +1403,7 @@ RectTransform:
   - {fileID: 755795117}
   - {fileID: 1584123253}
   - {fileID: 224673467}
+  - {fileID: 1408866441}
   - {fileID: 1324546720}
   - {fileID: 1612854041}
   - {fileID: 1143599214}
@@ -1467,7 +1488,7 @@ RectTransform:
   m_LocalScale: {x: 0.45215333, y: 0.4181064, z: 1}
   m_Children: []
   m_Father: {fileID: 1001686353}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1486,7 +1507,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ce36f04ff7f1a498ba3046362f427b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: HarvestableCrop
   toolType: 1
 --- !u!114 &1143599216
 MonoBehaviour:
@@ -1720,9 +1740,8 @@ RectTransform:
   m_LocalScale: {x: 0.45215335, y: 0.4181064, z: 1}
   m_Children:
   - {fileID: 1659108671}
-  - {fileID: 1408866441}
   m_Father: {fileID: 1001686353}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1765,7 +1784,7 @@ MonoBehaviour:
   isWatered: 0
   isTrimmed: 0
   isFertilized: 0
-  stage: 2
+  stage: 4
   unfertilizedSoil: {fileID: 7223251799278012158, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
   fertilizedSoil: {fileID: -5323379147761251417, guid: 9c3f05afeb7fdcf45a49448daa49141f,
@@ -1773,6 +1792,10 @@ MonoBehaviour:
   unwateredSeed: {fileID: 547639170991173132, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
   wateredSeed: {fileID: 2839770625265591479, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+    type: 3}
+  unwateredSprout: {fileID: 8544887547276016033, guid: 2e8d92a88230feb4694253b2786398a7,
+    type: 3}
+  watererSprout: {fileID: -8788243674362555083, guid: 2e8d92a88230feb4694253b2786398a7,
     type: 3}
   unwateredUntrimmedMiddling: {fileID: -1802375507474033870, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
@@ -1787,6 +1810,13 @@ MonoBehaviour:
     type: 3}
   plantImage: {fileID: 1659108673}
   targetTag: MiniGameCropContainer
+  growthTicTime: 1
+  growthPerTic: 1
+  maxGrowthPerStage: 3
+  waterDecayPerTic: 1
+  maxWaterLevel: 3
+  pruneDecayerTic: 1
+  maxPruneLevel: 3
 --- !u!114 &1324546723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1953,16 +1983,16 @@ RectTransform:
   m_GameObject: {fileID: 1408866440}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.45215335, y: 0.4181064, z: 1}
   m_Children:
   - {fileID: 109214721}
-  m_Father: {fileID: 1324546720}
-  m_RootOrder: 1
+  m_Father: {fileID: 1001686353}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.6927576, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -3.0299995, y: 0.52000004}
+  m_SizeDelta: {x: -12.861597, y: -2.1265802}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!50 &1408866442
 Rigidbody2D:
@@ -2000,7 +2030,7 @@ MonoBehaviour:
   isWatered: 0
   isTrimmed: 0
   isFertilized: 0
-  stage: 3
+  stage: 4
   unfertilizedSoil: {fileID: 7223251799278012158, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
   fertilizedSoil: {fileID: -5323379147761251417, guid: 9c3f05afeb7fdcf45a49448daa49141f,
@@ -2008,6 +2038,10 @@ MonoBehaviour:
   unwateredSeed: {fileID: 547639170991173132, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
   wateredSeed: {fileID: 2839770625265591479, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+    type: 3}
+  unwateredSprout: {fileID: 8544887547276016033, guid: 2e8d92a88230feb4694253b2786398a7,
+    type: 3}
+  watererSprout: {fileID: -8788243674362555083, guid: 2e8d92a88230feb4694253b2786398a7,
     type: 3}
   unwateredUntrimmedMiddling: {fileID: -1802375507474033870, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
@@ -2022,6 +2056,13 @@ MonoBehaviour:
     type: 3}
   plantImage: {fileID: 109214723}
   targetTag: MiniGameCropContainer
+  growthTicTime: 1
+  growthPerTic: 1
+  maxGrowthPerStage: 3
+  waterDecayPerTic: 1
+  maxWaterLevel: 3
+  pruneDecayerTic: 1
+  maxPruneLevel: 3
 --- !u!114 &1408866444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2187,7 +2228,7 @@ MonoBehaviour:
   isWatered: 0
   isTrimmed: 0
   isFertilized: 0
-  stage: 2
+  stage: 4
   unfertilizedSoil: {fileID: 7223251799278012158, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
   fertilizedSoil: {fileID: -5323379147761251417, guid: 9c3f05afeb7fdcf45a49448daa49141f,
@@ -2195,6 +2236,10 @@ MonoBehaviour:
   unwateredSeed: {fileID: 547639170991173132, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
   wateredSeed: {fileID: 2839770625265591479, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+    type: 3}
+  unwateredSprout: {fileID: 8544887547276016033, guid: 2e8d92a88230feb4694253b2786398a7,
+    type: 3}
+  watererSprout: {fileID: -8788243674362555083, guid: 2e8d92a88230feb4694253b2786398a7,
     type: 3}
   unwateredUntrimmedMiddling: {fileID: -1802375507474033870, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
@@ -2209,6 +2254,13 @@ MonoBehaviour:
     type: 3}
   plantImage: {fileID: 981966382}
   targetTag: MiniGameCropContainer
+  growthTicTime: 1
+  growthPerTic: 1
+  maxGrowthPerStage: 3
+  waterDecayPerTic: 1
+  maxWaterLevel: 3
+  pruneDecayerTic: 1
+  maxPruneLevel: 3
 --- !u!114 &1584123255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2367,7 +2419,7 @@ RectTransform:
   m_LocalScale: {x: 0.45215333, y: 0.4181064, z: 1}
   m_Children: []
   m_Father: {fileID: 1001686353}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2386,7 +2438,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ce36f04ff7f1a498ba3046362f427b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: HarvestableCrop
   toolType: 2
 --- !u!114 &1597724232
 MonoBehaviour:
@@ -2505,7 +2556,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1001686353}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

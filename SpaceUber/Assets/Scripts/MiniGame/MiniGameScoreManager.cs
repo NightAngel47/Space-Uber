@@ -10,14 +10,14 @@ using TMPro;
 
 public class MiniGameScoreManager : MonoBehaviour
 {
-    public static MiniGameTool selectedTool;
-    [SerializeField] MiniGameCrop[] crops;
-    [SerializeField] TMP_Text scoreText;
+    public static MiniGameTool selectedTool = null;
+    [SerializeField] MiniGameCrop[] crops = null;
+    [SerializeField] TMP_Text scoreText = null;
     int score = 0;
 
     void Update()
     {
-        scoreText.text = "Crops Collected: " + score;
+        scoreText.text = "Score: " + score;
     }
 
     public void IncrementScore() { score++; }

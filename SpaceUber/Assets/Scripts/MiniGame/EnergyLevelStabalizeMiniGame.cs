@@ -13,14 +13,13 @@ using UnityEngine.UI;
 
 public class EnergyLevelStabalizeMiniGame : MonoBehaviour
 {
-	[SerializeField] Slider[] sliders;
-	[SerializeField] MiniGameButton[] buttonSwitches;
-	[SerializeField] TMP_Text optimizationText;
-	[SerializeField] GameObject[] powerBarIndicators;
+	[SerializeField] Slider[] sliders = null;
+	[SerializeField] MiniGameButton[] buttonSwitches = null;
+	[SerializeField] TMP_Text optimizationText = null;
+	[SerializeField] GameObject[] powerBarIndicators = null;
 	[Tooltip("This is the percentage added to the total optimization")]
-	[SerializeField] uint difficultyAdjustment;
-	float[] sliderTargets;
-	int[] buttonSwitchTargets;
+	float[] sliderTargets = null;
+	int[] buttonSwitchTargets = null;
 
 
 	private void Start()

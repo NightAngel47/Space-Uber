@@ -10,20 +10,15 @@ using UnityEngine.UI;
 
 public class MiniGameTool : MonoBehaviour
 {
-    [SerializeField] string targetTag;
-    MiniGameScoreManager scoreManager;
-    public MiniGameToolType toolType;
-    Vector3 originalPosition;
+    public MiniGameToolType toolType = MiniGameToolType.Clippers;
+    Vector3 originalPosition = Vector3.zero;
     bool isBeingDraged = false;
-    bool mousedOver = false;
-    bool isOverTarget = false;
-    int originalLayer;
+    int originalLayer = 0;
 
     void Start()
     {
         originalLayer = gameObject.layer;
         originalPosition = transform.position;
-        scoreManager = GameObject.FindGameObjectWithTag("MiniGameScoreManager").GetComponent<MiniGameScoreManager>();
     }
 
     void Update()
@@ -55,11 +50,6 @@ public class MiniGameTool : MonoBehaviour
             MiniGameScoreManager.selectedTool = this;
             gameObject.layer = 2;
     }
-    
-
-    private void OnTriggerEnter2D(Collider2D collision) { if (collision.CompareTag(targetTag)) { isOverTarget = true; } }
-
-    private void OnTriggerExit2D(Collider2D collision) { if (collision.CompareTag(targetTag)) { isOverTarget = false; } }
 }
 
 public enum MiniGameToolType { WateringCan, Fertilizer, Clippers, Seed }
