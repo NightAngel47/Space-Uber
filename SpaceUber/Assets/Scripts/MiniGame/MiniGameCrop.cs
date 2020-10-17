@@ -6,8 +6,6 @@
  */
 
 using System.Collections;
-using UnityEditor;
-using UnityEditor.U2D.Sprites;
 using UnityEngine;
 using UnityEngine.UI;
 
