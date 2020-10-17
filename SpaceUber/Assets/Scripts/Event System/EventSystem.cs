@@ -229,4 +229,12 @@ public class EventSystem : MonoBehaviour
 		
 		return thisEvent;
 	}
+
+	/// <summary>
+	/// Copies the events from the selected story job
+	/// </summary>
+	public void TakeEvents(Job newJob)
+	{
+		storyEvents = newJob.events;
+	}
 }
