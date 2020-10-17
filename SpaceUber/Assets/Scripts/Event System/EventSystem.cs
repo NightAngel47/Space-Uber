@@ -1,8 +1,11 @@
 /*
  * EventSystem.cs
- * Author(s): #Greg Brandt#, Scott Acker, Steven Drovie
+ * Author(s): Greg Brandt, Scott Acker, Steven Drovie
  * Created on: 9/17/2020 (en-US)
- * Description:
+ * Description: Controls how and when events spawn. Events are sorted into random and story lists
+ * Random events are chosen randomly, but story events are played in order.
+ * There is a random chance for an event to play every x seconds, with the chance increasing each time
+ * When the number of events played reaches the maxEvents number, the job ends
  */
 
 using System.Collections;
@@ -36,7 +39,9 @@ public class EventSystem : MonoBehaviour
 	private int storyEventIndex = 0;
 	//how many random events have passed. Tells code how many events to ignore at the start of the list
 	private int randomEventIndex = 0;
-	
+
+	public bool doingTasks = false;
+	public GameObject eventWarning;
 
 	private void Awake()
 	{
@@ -46,37 +51,39 @@ public class EventSystem : MonoBehaviour
 
 		ship = FindObjectOfType<ShipStats>();
 		asm = FindObjectOfType<AdditiveSceneManager>();
+
+		eventWarning.SetActive(false);
 	}
 
 	public IEnumerator Travel()
 	{
-		//float travelTicker = 0;
-		
 		while (GameManager.currentGameState == InGameStates.Events)
 		{
-			//int chanceOfEvent = 1;
-			//while(!WillRunEvent(chanceOfEvent))
-			//{
-			//	isTraveling = true;
-			//	++chanceOfEvent;
-			//	yield return new WaitForSeconds(travelTicTime);
+			yield return new WaitForSeconds(20); //start with one big chunk of time
 
-			//}
+			//run random chances for event to take place
+			int chanceOfEvent = 1;
+			while (!WillRunEvent(chanceOfEvent))
+			{
+				print("Did not pick an event");
+				isTraveling = true;
+				++chanceOfEvent;
+				yield return new WaitForSeconds(travelTicTime);
+			}
 
-			isTraveling = true;
-			yield return new WaitForSeconds(travelTicTime);
+			eventWarning.SetActive(true);
+			yield return new WaitUntil(() => !doingTasks);
+			eventWarning.SetActive(false);
 
 			// Load Event_General Scene for upcoming event
 			asm.LoadSceneMerged("Event_General");
-			
 			yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_General").isLoaded);
 
 			eventCanvas = FindObjectOfType<EventCanvas>();
 			
 			//Time to decide on an event
-
 			//story events happen every other time 
-			if (overallEventIndex % 2 == 1 && overallEventIndex != 0) //if it's an even-numbered event 
+			if (overallEventIndex % 2 == 1 && overallEventIndex != 0) //if it's an even-numbered event, do a story 
 			{
 				CreateEvent(storyEvents[storyEventIndex]);
 				storyEventIndex++;
@@ -102,6 +109,11 @@ public class EventSystem : MonoBehaviour
 		isTraveling = false;
 	}
 
+	/// <summary>
+	/// Spawns the event (Gameobject prefab) chosen in Travel().
+	/// Assigns the proper canvas to the created InkDriverBase script
+	/// </summary>
+	/// <param name="newEvent"></param>
 	public void CreateEvent(GameObject newEvent)
 	{
 		eventInstance = Instantiate(newEvent, eventCanvas.canvas.transform);
@@ -118,6 +130,10 @@ public class EventSystem : MonoBehaviour
 		overallEventIndex++;
 	}
 
+	/// <summary>
+	/// Ends the event that is currently running.
+	/// If the max number of events has been reached, go to the ending
+	/// </summary>
 	public void ConcludeEvent()
 	{
 		print("Concluded Event");
@@ -129,9 +145,11 @@ public class EventSystem : MonoBehaviour
 			Destroy(eventInstance);
 		}
 
+		//Go back to travel scene
 		asm.UnloadScene("Event_General");
 		AudioManager.instance.PlayMusicWithTransition("General Theme");
 		
+		//Potentially end the job entirely
 		if (overallEventIndex >= maxEvents)
 		{
 			GameManager.instance.ChangeInGameState(InGameStates.Ending);
@@ -156,6 +174,7 @@ public class EventSystem : MonoBehaviour
 
 		
 	}
+
 	/// <summary>
 	/// Picks a random event to spawn. The random numbers include the eventIndex to the count of storyEvents list
 	/// When an event is picked, it is moved to the start of the list and cannot be picked again.
