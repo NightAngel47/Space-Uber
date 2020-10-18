@@ -19,20 +19,14 @@ public class EventSystem : MonoBehaviour
 	public static EventSystem instance;
 	private ShipStats ship;
 	private AdditiveSceneManager asm;
-
-	//how many events will happen in this journey
-	public int maxEvents = 3;
-	[SerializeField] private List<GameObject> storyEvents;
-	[SerializeField] private List<GameObject> randomEvents;
-
 	private EventCanvas eventCanvas;
 
-	GameObject eventInstance;
-
-	//time inbetween possible event triggers
-	float travelTicTime = 5;
-	bool isTraveling = false;
-	bool eventActive = false;
+	[Tooltip("How many events will happen in this journey")]
+	public int maxEvents = 3;
+	[Tooltip("Narrative-focused events that will play in this specific order")]
+	[SerializeField] private List<GameObject> storyEvents;
+	[Tooltip("Miscellaneous events that occur in a random order")]
+	[SerializeField] private List<GameObject> randomEvents;
 
 	//how many events (story and random) have occurred
 	private int overallEventIndex = 0;
@@ -41,8 +35,26 @@ public class EventSystem : MonoBehaviour
 	//how many random events have passed. Tells code how many events to ignore at the start of the list
 	private int randomEventIndex = 0;
 
-	public bool doingTasks = false;
-	public GameObject eventWarning;
+	GameObject eventInstance;
+
+	[Tooltip("How many seconds it will take to attempt an event roll")]
+	[SerializeField] private float eventChanceFreq = 5;
+
+	[Tooltip("How many seconds before the first event roll")]
+	[SerializeField] private float timeBeforeEventRoll = 20;
+
+	[Tooltip("How much the percentage chance of rolling an event will increase per failure")]
+	[SerializeField] private float chanceIncreasePerFreq = 20;
+
+	[Tooltip("Initial percentage chance of rolling an event")]
+	[SerializeField] private float startingEventChance = 5;
+
+	
+	private bool isTraveling = false;
+	private bool eventActive = false;
+
+	[HideInInspector] public bool doingTasks = false;
+	[SerializeField] private GameObject eventWarning;
 
 	private void Awake()
 	{
@@ -58,18 +70,18 @@ public class EventSystem : MonoBehaviour
 
 	public IEnumerator Travel()
 	{
+		float chanceOfEvent = startingEventChance;
 		while (GameManager.currentGameState == InGameStates.Events)
 		{
-			yield return new WaitForSeconds(20); //start with one big chunk of time
+			yield return new WaitForSeconds(timeBeforeEventRoll); //start with one big chunk of time
 
 			//run random chances for event to take place
-			int chanceOfEvent = 1;
 			while (!WillRunEvent(chanceOfEvent))
 			{
 				print("Did not pick an event");
 				isTraveling = true;
-				++chanceOfEvent;
-				yield return new WaitForSeconds(travelTicTime);
+				chanceOfEvent+= chanceIncreasePerFreq;
+				yield return new WaitForSeconds(eventChanceFreq);
 			}
 
 			eventWarning.SetActive(true);
@@ -164,9 +176,9 @@ public class EventSystem : MonoBehaviour
 	/// </summary>
 	/// <param name="chances">The number of times that the event chance has failed. The higher it is, the more likely an event</param>
 	/// <returns></returns>
-	private bool WillRunEvent(int chances)
+	private bool WillRunEvent(float chances)
 	{
-		int rng = Random.Range(1, 5);
+		float rng = Random.Range(0, 101);
 
 		if (rng <= chances)
 		{ return true; }
@@ -191,18 +203,17 @@ public class EventSystem : MonoBehaviour
 		{
 			int eventNum = Random.Range(randomEventIndex, randomEvents.Count);
 			thisEvent = randomEvents[eventNum];
+			List<EventRequirements> requirements = thisEvent.GetComponent<InkDriverBase>().requiredStats;
 
 			//if the event chosen has requirements that are not met
-			if (thisEvent.GetComponent<EventRequirements>() && !thisEvent.GetComponent<EventRequirements>().MatchesRequirements(ship))
+			if (!HasRequiredStats(requirements))
 			{
-				EventRequirements requirements = thisEvent.GetComponent<EventRequirements>();
-
 				//copies the current index
 				int newIndex = randomEventIndex;
 				List<GameObject> newRandomEvents = randomEvents;
 
 				//Copies the list to shuffle until it finds a new event to do or runs out of ideas
-				while (requirements.MatchesRequirements(ship) && newIndex != randomEvents.Count)
+				while (!HasRequiredStats(requirements) && newIndex != randomEvents.Count)
 				{
 					//choose an event to check
 					int newNum = Random.Range(newIndex, newRandomEvents.Count);
@@ -234,5 +245,20 @@ public class EventSystem : MonoBehaviour
 	public void TakeEvents(Job newJob)
 	{
 		storyEvents = newJob.events;
+	}
+
+	private bool HasRequiredStats(List<EventRequirements> selectedRequirements)
+	{
+		bool result = true;
+
+		foreach(EventRequirements required in selectedRequirements)
+		{
+			if(!required.MatchesRequirements(ship))
+			{
+				result = false;
+				break;
+			}
+		}
+		return result;
 	}
 }

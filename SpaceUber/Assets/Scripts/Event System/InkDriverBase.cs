@@ -47,13 +47,14 @@ public class InkDriverBase : MonoBehaviour
     /// <summary>
     /// Whether the latest bit of text is done printing so it can show the choices
     /// </summary>
-    public bool donePrinting = true;
-    public bool showingChoices = false;
-    private bool canEnd = false; //if the event can end. Based on player clicking at end of interaction
+    private bool donePrinting = true;
+    private bool showingChoices = false;
 
+    [SerializeField] public List<EventRequirements> requiredStats;
     
     [Dropdown("eventMusicTracks")]
     public string eventBGM;
+   
     private List<string> eventMusicTracks
     {
         get
@@ -77,7 +78,6 @@ public class InkDriverBase : MonoBehaviour
 
     private void Update()
     {
-        //Save for potential implementation of story.Continue() instead of continueMaximally()
         if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && !showingChoices && donePrinting)
         {
             Refresh();
@@ -164,23 +164,6 @@ public class InkDriverBase : MonoBehaviour
         // Set the text from new story block
         string text = GetNextStoryBlock();
         StartCoroutine(PrintText(text));
-
-
-        //// Get the tags from the current story lines (if any)
-        //List<string> tags = story.currentTags;
-
-        //// If there are tags for character names specifically, use the first one in front of the text.
-        ////Otherwise, just show the text.
-        //if (tags.Count > 0)
-        //{
-        //    textBox.text = tags[0] + ": " + text;
-        //}
-        //else
-        //{
-        //    textBox.text = text;
-        //}
-
-
     }
 
     /// <summary>
@@ -210,7 +193,6 @@ public class InkDriverBase : MonoBehaviour
             }
         }
 
-        print(text);
         return text;
     }
 
