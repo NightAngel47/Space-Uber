@@ -56,8 +56,8 @@ public class GameManager : MonoBehaviour
                         ObjectMover.hasPlaced = true;
                         Destroy(FindObjectOfType<ObjectMover>().gameObject);
                     }
-                    ObjectScript[] rooms = FindObjectsOfType<ObjectScript>();
-                    foreach(ObjectScript o in rooms)
+                    RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+                    foreach(RoomStats o in rooms)
                     {
                         o.UpdateUsedRoom();
                     }

@@ -44,6 +44,8 @@ public class RoomStats : MonoBehaviour
 
     ShipStats shipStats;
 
+    [SerializeField] private bool usedRoom = false;
+
     void Start()
     {
         shipStats = FindObjectOfType<ShipStats>();
@@ -57,6 +59,11 @@ public class RoomStats : MonoBehaviour
         //    SubtractRoomStats();
         //    Destroy(this.gameObject);
         //}
+    }
+
+    public void UpdateUsedRoom()
+    {
+        usedRoom = true;
     }
 
     /// <summary>
@@ -140,20 +147,15 @@ public class RoomStats : MonoBehaviour
     /// </summary>
     public void SubtractRoomStats()
     {
-        shipStats.UpdateCreditsAmount(price);
-        shipStats.UpdateCreditsAmount(-credits);
-        shipStats.UpdateEnergyAmount(-energy, -energy);
-        shipStats.UpdateSecurityAmount(-security);
-        shipStats.UpdateShipWeaponsAmount(-shipWeapons);
-        shipStats.UpdateCrewAmount(-crew, crew);
-        shipStats.UpdateFoodAmount(-food);
-        shipStats.UpdateFoodPerTickAmount(-foodPerTick);
-        shipStats.UpdateHullDurabilityAmount(-shipHealth, shipHealth);
-    }
-
-    public void SubtractRoomStatsReducedPrice()
-    {
-        shipStats.UpdateCreditsAmount((int)(price * priceReducationPercent));
+        if(usedRoom == true)
+        {
+            shipStats.UpdateCreditsAmount((int)(price * priceReducationPercent));
+        }
+        else
+        {
+            shipStats.UpdateCreditsAmount(price);
+        }
+        
         shipStats.UpdateCreditsAmount(-credits);
         shipStats.UpdateEnergyAmount(-energy, -energy);
         shipStats.UpdateSecurityAmount(-security);
