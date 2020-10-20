@@ -25,7 +25,7 @@ public class MiniGameCrop : MonoBehaviour
     [SerializeField] Sprite unwateredTrimmedMiddling = null;
     [SerializeField] Sprite wateredUntrimmedMiddling = null;
     [SerializeField] Sprite wateredTrimmedMiddling = null;
-    [SerializeField] Sprite harvestable = null;
+    [SerializeField] GameObject harvestableCropPrefab = null;
     [SerializeField] GameObject deadLeavesPrefab = null;
     [SerializeField] Image plantImage = null;
     [Tooltip("Tag of crop container")]
@@ -45,106 +45,88 @@ public class MiniGameCrop : MonoBehaviour
     [Tooltip("Amount of prune level before crop needs to be pruned again")]
     [SerializeField] float maxPruneLevel = 1;
     float waterLevel = 1;
-    float pruneLevel = 1;
+    public float pruneLevel = 1;
 
     float growth = 0;
     bool isGrowing = false;
-    bool isBeingDraged = false;
-    bool isOverTarget = false;
+    bool hasBeenPlanted = false;
+    bool isHarvestable = false;
 
+    //Plant image gets hidden by setting its color to transparent. This is used to restort plant image color when it is not being hidden.
     Color originalColor;
-    MiniGameScoreManager scoreManager;
-    Vector3 originalPosition;
+    CropHarvestMiniGame miniGameManager;
 
     private void Start()
 	{
         originalColor = plantImage.color;
-        originalPosition = transform.position;
-        scoreManager = GameObject.FindGameObjectWithTag("MiniGameScoreManager").GetComponent<MiniGameScoreManager>();
+        miniGameManager = GameObject.FindGameObjectWithTag("MiniGameScoreManager").GetComponent<CropHarvestMiniGame>();
+
+        harvestableCropPrefab = Instantiate(harvestableCropPrefab, transform.position, new Quaternion(), transform.parent);
+        harvestableCropPrefab.SetActive(false);
+        //Let minGameManager know how many crops are needed to beat the mini game
+        miniGameManager.IncrementRequiredScore();
     }
 
 	void Update()
     {
         if(stage == CropStage.Seedling && !isGrowing) { StartCoroutine(Grow()); }
+
+        //Midlings do not need to be trimmed
         if(stage != CropStage.Midling) { isTrimmed = true; pruneLevel = maxPruneLevel; }
-        if (stage == CropStage.Harvestable) 
+
+        //Expose harvestable crop so the player can drag it into the bin
+        if (stage == CropStage.Harvestable && !isHarvestable) 
         {
-            isWatered = true;
-            waterLevel = maxWaterLevel;
-            isTrimmed = true;
-            pruneLevel = maxPruneLevel;
+            isHarvestable = true;
+            harvestableCropPrefab.SetActive(true);
         }
+
         ShowHidePlantImage();
 
 		if (isFertilized) { GetComponent<Image>().sprite = fertilizedSoil; }
         else { GetComponent<Image>().sprite = unfertilizedSoil; }
 
         ChoosePlantImage();
+    }
 
-        FollowCursor();
-    }
-    private void OnMouseUp()
-    {
-        isBeingDraged = false;
-        if (isOverTarget)
-        {
-            stage = CropStage.Unplanted;
-            scoreManager.IncrementScore();
-        }
-        else { plantImage.transform.position = originalPosition; }
-    }
     private void OnMouseDown()
     {
-        if (MiniGameScoreManager.selectedTool != null)
+        if (CropHarvestMiniGame.selectedTool != null)
         {
-            if (MiniGameScoreManager.selectedTool.toolType == MiniGameToolType.Clippers && !isTrimmed) 
+            if (CropHarvestMiniGame.selectedTool.toolType == MiniGameToolType.Clippers && !isTrimmed) 
             {
                 isTrimmed = true;
-                Vector3 deadLeafPosition = originalPosition;
+                Vector3 deadLeafPosition = transform.position;
                 deadLeafPosition.y -= 1.5f;
-                Instantiate(deadLeavesPrefab, deadLeafPosition, new Quaternion(), transform);
+                Instantiate(deadLeavesPrefab, deadLeafPosition, new Quaternion(), transform.parent);
+
+                //Let mini game manager know that dead leaves are required to be thrown away in order to win.
+                miniGameManager.IncrementRequiredScore();
                 pruneLevel = maxPruneLevel;
-                scoreManager.IncrementScore();
             }
-            if (MiniGameScoreManager.selectedTool.toolType == MiniGameToolType.WateringCan && !isWatered) 
+            if (CropHarvestMiniGame.selectedTool.toolType == MiniGameToolType.WateringCan && !isWatered) 
             { 
                 isWatered = true;
                 waterLevel = maxWaterLevel;
-                scoreManager.IncrementScore();
             }
-            if (MiniGameScoreManager.selectedTool.toolType == MiniGameToolType.Fertilizer && !isFertilized) 
+            if (CropHarvestMiniGame.selectedTool.toolType == MiniGameToolType.Fertilizer && !isFertilized && !hasBeenPlanted) 
             {
+                hasBeenPlanted = true;
                 isFertilized = true;
-                scoreManager.IncrementScore();
             }
-             if (MiniGameScoreManager.selectedTool.toolType == MiniGameToolType.Seed && isFertilized && stage == CropStage.Unplanted)
+             if (CropHarvestMiniGame.selectedTool.toolType == MiniGameToolType.Seed && isFertilized && stage == CropStage.Unplanted)
             { 
                 stage = CropStage.Seedling;
-                scoreManager.IncrementScore();
             }
         }
-        else if (stage == CropStage.Harvestable) { isBeingDraged = true; }
-
-    }
-    private void OnTriggerEnter2D(Collider2D collision) { if (collision.CompareTag(targetTag)) { isOverTarget = true; } }
-
-    private void OnTriggerExit2D(Collider2D collision) { if (collision.CompareTag(targetTag)) { isOverTarget = false; } }
-
-    void FollowCursor()
-	{
-        if (isBeingDraged)
-        {
-            Vector3 mousePosition;
-            mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            mousePosition.z = 0.0f;
-            plantImage.gameObject.transform.position = mousePosition;
-        }
     }
 
+    /// <summary>
+    /// Plant image is show or hidden based off of crop stage
+    /// </summary>
     void ShowHidePlantImage()
 	{ 
-        if (stage != CropStage.Unplanted)
+        if (stage != CropStage.Unplanted && stage != CropStage.Harvestable)
         {
             isFertilized = true;
             plantImage.color = originalColor;
@@ -152,6 +134,9 @@ public class MiniGameCrop : MonoBehaviour
         else { plantImage.color = Color.clear; }
     }
 
+    /// <summary>
+    /// Crop image is chosen based off of stage, if it needs watered and or trimmed
+    /// </summary>
     void ChoosePlantImage()
 	{
         switch (stage)
@@ -169,9 +154,6 @@ public class MiniGameCrop : MonoBehaviour
                 else if (!isWatered && isTrimmed) { plantImage.sprite = unwateredTrimmedMiddling; }
                 else if (isWatered && !isTrimmed) { plantImage.sprite = wateredUntrimmedMiddling; }
                 else if (!isWatered && !isTrimmed) { plantImage.sprite = unwateredUntrimmedMiddling; }
-                break;
-            case CropStage.Harvestable:
-                plantImage.sprite = harvestable;
                 break;
         }
     }
@@ -193,16 +175,19 @@ public class MiniGameCrop : MonoBehaviour
 		{
             yield return new WaitForSeconds(growthTicTime);
 
-            if (isTrimmed) { waterLevel -= waterDecayPerTic; }
+            waterLevel -= waterDecayPerTic; 
             if( waterLevel < 0) { waterLevel = 0; }
 
+            //Prevents situations where the water and prune level drain back to back making it so the plant doesn't grow
             if (isWatered) pruneLevel -= pruneDecayerTic;
             if(pruneLevel < 0 ) { pruneLevel = 0; }
 
             if(waterLevel == 0f) { isWatered = false; }
             if(pruneLevel == 0f) { isTrimmed = false; }
 
+            //Plant only grows if it is watered and trimmed
             if(isWatered && isTrimmed) { growth += growthPerTic; }
+
             if(growth > maxGrowthPerStage)
 			{
                 growth = 0;

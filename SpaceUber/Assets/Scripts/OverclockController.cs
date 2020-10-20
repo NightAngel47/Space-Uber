@@ -10,20 +10,34 @@ using UnityEngine;
 
 public class OverclockController : MonoBehaviour
 {
+    public static OverclockController instance;
     ShipStats shipStats;
 
     //If a room is already being overclocked
     public bool overclocking = false;
+    public bool miniGameInProgress = false;
 
-    void Start()
+	private void Awake()
+	{
+		if (!instance) { instance = this; DontDestroyOnLoad(gameObject); }
+        else { Destroy(gameObject); }
+	}
+
+	void Start()
     {
         shipStats = FindObjectOfType<ShipStats>();
     }
 
-    void Update()
-    {
-        
-    }
+    public void StartMiniGame(string miniGame)
+	{
+        FindObjectOfType<AdditiveSceneManager>().LoadSceneSeperate(miniGame);
+	}
+
+    public void EndMiniGame(string miniGame, bool succsess)
+	{
+        //TODO If successful change stats
+        FindObjectOfType<AdditiveSceneManager>().UnloadScene(miniGame);
+	}
 
     public void CallStartOverclocking(int moraleAmount, string resourceType = null, int resourceAmount = 0)
     {

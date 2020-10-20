@@ -11,13 +11,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnergyLevelStabalizeMiniGame : MonoBehaviour
+public class EnergyLevelStabalizeMiniGame : MiniGame
 {
 	[SerializeField] Slider[] sliders = null;
 	[SerializeField] MiniGameButton[] buttonSwitches = null;
 	[SerializeField] TMP_Text optimizationText = null;
 	[SerializeField] GameObject[] powerBarIndicators = null;
-	[Tooltip("This is the percentage added to the total optimization")]
 	float[] sliderTargets = null;
 	int[] buttonSwitchTargets = null;
 
@@ -32,7 +31,14 @@ public class EnergyLevelStabalizeMiniGame : MonoBehaviour
 	private void Update()
 	{
 		List<float> optimizationLevels = new List<float>();
-		for (int i = 0; i < sliders.Length; i++) { optimizationLevels.Add(1.2f - (Mathf.Abs(sliderTargets[i] - sliders[i].value))); }
+		for (int i = 0; i < sliders.Length; i++) 
+		{
+			//Adjust slider values to only have 1 of 5 values [0.2, 0.4, 0.6, 0.8, 1]
+			float num = 1 - (Mathf.Abs(sliderTargets[i] - sliders[i].value));
+			float roundedNum = num*100;
+			roundedNum = Mathf.RoundToInt((roundedNum / 20f)+0.49f);
+			optimizationLevels.Add(roundedNum/5f); 
+		}
 		for (int i = 0; i < buttonSwitches.Length; i++) { optimizationLevels.Add(1 - (Mathf.Abs(buttonSwitchTargets[i] - buttonSwitches[i].value))); }
 		int total = 0;
 		//add the rounded 
@@ -45,6 +51,7 @@ public class EnergyLevelStabalizeMiniGame : MonoBehaviour
 
 		if(total > 100) { total = 100; }
 		optimizationText.text = (total + "%");
+		if(total == 100) { EndMiniGameSuccess(); }
 	}
 
 	void RandomizeTargets()

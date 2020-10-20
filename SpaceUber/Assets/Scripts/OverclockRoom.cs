@@ -6,12 +6,13 @@
  */
 
 using NaughtyAttributes;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class OverclockRoom : MonoBehaviour
 {
-
+    //Move to OverclockController? ********************************************Start
     [Dropdown("resourceTypes")]
     public string resourceType;
 
@@ -28,23 +29,26 @@ public class OverclockRoom : MonoBehaviour
 
     public int crewMoraleAmount;
 
+    //Move to OverclockController? **************************************************End
+
     OverclockController overclockController;
+    [Tooltip("Name of mini game scene")]
+    [SerializeField] string miniGame;
 
     void Start()
     {
         overclockController = FindObjectOfType<OverclockController>();
     }
 
-    void Update()
+	private void OnMouseDown()
     {
-        
-    }
+        //Restrict to not activate during room placement?
 
-    void OnMouseOver()
-    {
-        if (Input.GetMouseButtonDown(0) && !overclockController.overclocking)
+        if (!overclockController.overclocking && !overclockController.miniGameInProgress)
         {
-            overclockController.CallStartOverclocking(crewMoraleAmount, resourceType, resourceAmount);
+
+            overclockController.StartMiniGame(miniGame);
+            //overclockController.CallStartOverclocking(crewMoraleAmount, resourceType, resourceAmount);
         }
     }
 }

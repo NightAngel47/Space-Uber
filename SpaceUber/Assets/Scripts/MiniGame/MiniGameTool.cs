@@ -32,14 +32,14 @@ public class MiniGameTool : MonoBehaviour
             mousePosition.z = 0.0f;
             transform.position = mousePosition;
         }
-        if(MiniGameScoreManager.selectedTool != this) 
+        if(CropHarvestMiniGame.selectedTool != this) 
         {
             isBeingDraged = false;
             transform.position = originalPosition;
         }
         if (Input.GetMouseButtonDown(1))
         {
-            MiniGameScoreManager.selectedTool = null;
+            CropHarvestMiniGame.selectedTool = null;
             gameObject.layer = originalLayer;
         }
     }
@@ -47,7 +47,7 @@ public class MiniGameTool : MonoBehaviour
     private void OnMouseDown() 
     {
             isBeingDraged = true;
-            MiniGameScoreManager.selectedTool = this;
+            CropHarvestMiniGame.selectedTool = this;
             gameObject.layer = 2;
     }
 }

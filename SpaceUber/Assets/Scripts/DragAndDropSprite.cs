@@ -10,7 +10,7 @@ using UnityEngine;
 public class DragAndDropSprite : MonoBehaviour
 {
     [SerializeField] string targetTag;
-    MiniGameScoreManager scoreManager;
+    CropHarvestMiniGame miniGameManager;
     Vector3 originalPosition;
     bool isBeingDraged = false;
     bool isOverTarget = false;
@@ -18,7 +18,7 @@ public class DragAndDropSprite : MonoBehaviour
     void Start()
     {
         originalPosition = transform.position;
-        scoreManager = GameObject.FindGameObjectWithTag("MiniGameScoreManager").GetComponent<MiniGameScoreManager>();
+        miniGameManager = GameObject.FindGameObjectWithTag("MiniGameScoreManager").GetComponent<CropHarvestMiniGame>();
     }
 
     void Update()
@@ -41,7 +41,7 @@ public class DragAndDropSprite : MonoBehaviour
         if (isOverTarget)
         {
             Destroy(gameObject);
-            scoreManager.IncrementScore();
+            miniGameManager.IncrementScore();
         }
         else { transform.position = originalPosition; }
     }
