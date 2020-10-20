@@ -30,12 +30,13 @@ public class OverclockController : MonoBehaviour
 
     public void StartMiniGame(string miniGame)
 	{
-        FindObjectOfType<AdditiveSceneManager>().LoadSceneSeperate(miniGame);
+        FindObjectOfType<AdditiveSceneManager>().LoadSceneMerged(miniGame);
 	}
 
     public void EndMiniGame(string miniGame, bool succsess)
 	{
         //TODO If successful change stats
+        //if cropharvent + w.e to food
         FindObjectOfType<AdditiveSceneManager>().UnloadScene(miniGame);
 	}
 
@@ -54,12 +55,6 @@ public class OverclockController : MonoBehaviour
         overclocking = true;
         switch (resourceType)
         {
-            case "Credits":
-                shipStats.UpdateCreditsAmount(resourceAmount);
-                break;
-            case "Energy":
-                shipStats.UpdateEnergyAmount(resourceAmount, resourceAmount);
-                break;
             case "Security":
                 shipStats.UpdateSecurityAmount(resourceAmount);
                 break;

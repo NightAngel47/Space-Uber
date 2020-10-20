@@ -12,14 +12,12 @@ public class CropHarvestMiniGame : MiniGame
 {
     public static MiniGameTool selectedTool = null;
     [SerializeField] MiniGameCrop[] crops = null;
-    [SerializeField] TMP_Text scoreText = null;
     int requiredScore;
     int score = 0;
     bool gameOver = false;
 
 	void Update()
     {
-        scoreText.text = "Score: " + score;
         if(score == requiredScore&&!gameOver) { gameOver = true; EndMiniGameSuccess();  }
     }
 

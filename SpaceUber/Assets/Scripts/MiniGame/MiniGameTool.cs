@@ -14,11 +14,13 @@ public class MiniGameTool : MonoBehaviour
     Vector3 originalPosition = Vector3.zero;
     bool isBeingDraged = false;
     int originalLayer = 0;
+    Camera cam;
 
     void Start()
     {
         originalLayer = gameObject.layer;
         originalPosition = transform.position;
+        cam = Camera.main;
     }
 
     void Update()
@@ -28,7 +30,7 @@ public class MiniGameTool : MonoBehaviour
             //Follow cursor
             Vector3 mousePosition;
             mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            mousePosition = cam.ScreenToWorldPoint(mousePosition);
             mousePosition.z = 0.0f;
             transform.position = mousePosition;
         }
