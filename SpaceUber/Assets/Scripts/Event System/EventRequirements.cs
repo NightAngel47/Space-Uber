@@ -21,7 +21,8 @@ public struct EventRequirements
         FOOD,
         WEAPONS,
         SECURITY,
-        CREDITS
+        CREDITS,
+        //MORALE
     }
 
     [Tooltip("The resource you would like to be compared")]
@@ -57,6 +58,9 @@ public struct EventRequirements
             case ResourceType.SECURITY:
                 shipStat = thisShip.Security;
                 break;
+            //case ResourceType.MORALE:
+            //    shipStat = thisShip.Morale;
+            //    break;
             case ResourceType.CREDITS:
                 shipStat = thisShip.Credits;
                 break;

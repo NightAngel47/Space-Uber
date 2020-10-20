@@ -38,15 +38,6 @@ public class ChoiceOutcomes : MonoBehaviour
         Stock
     }
 
-    //private List<string> resourceTypes
-    //{
-    //    get
-    //    {
-    //        return new List<string>() { "", "Credits", "Energy", "Security",
-    //    "Ship Weapons", "Crew", "Food", "Food Per Tick", "Hull Durability", "Stock" };
-    //    }
-    //}
-
     void Start()
     {
         shipStats = FindObjectOfType<ShipStats>();

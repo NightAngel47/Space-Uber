@@ -8,24 +8,29 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using System.Collections.Generic;
 
 public class Job : MonoBehaviour
 {
-    public List<GameObject> events;
+    public List<GameObject> storyEvents;
+    public List<GameObject> randomEvents;
 
     public string jobName;
     public string description;
-    public JobSelectScreen jobSelect;
-    public Button buttonPrefab;
+    public int payout;
+
+    [HideInInspector] public JobSelectScreen jobSelect;
+    [HideInInspector] public Button buttonPrefab;
   
     public void ShowButton(Transform buttonGroup)
     {
         Button thisButton = Instantiate(buttonPrefab, buttonGroup);
-
+        thisButton.GetComponentInChildren<TMP_Text>().text = jobName + "\n" + payout + " credits";
+        
         // Set listener
         thisButton.onClick.AddListener(delegate {
-            jobSelect.ChoiceChosen(this);
+            jobSelect.SelectJob(this);
         });
     }
 }

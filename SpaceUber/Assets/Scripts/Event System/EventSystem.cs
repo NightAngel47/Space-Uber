@@ -55,6 +55,7 @@ public class EventSystem : MonoBehaviour
 
 	[HideInInspector] public bool doingTasks = false;
 	[SerializeField] private GameObject eventWarning;
+	private Job currentJob;
 
 	private void Awake()
 	{
@@ -64,8 +65,12 @@ public class EventSystem : MonoBehaviour
 
 		ship = FindObjectOfType<ShipStats>();
 		asm = FindObjectOfType<AdditiveSceneManager>();
-
-		eventWarning.SetActive(false);
+		
+		if(eventWarning != null)
+		{
+			eventWarning.SetActive(false);
+		}
+		
 	}
 
 	public IEnumerator Travel()
@@ -84,9 +89,15 @@ public class EventSystem : MonoBehaviour
 				yield return new WaitForSeconds(eventChanceFreq);
 			}
 
-			eventWarning.SetActive(true);
+			if (eventWarning != null)
+			{
+				eventWarning.SetActive(true);
+			}
 			yield return new WaitUntil(() => !doingTasks);
-			eventWarning.SetActive(false);
+			if (eventWarning != null)
+			{
+				eventWarning.SetActive(false);
+			}
 
 			// Load Event_General Scene for upcoming event
 			asm.LoadSceneMerged("Event_General");
@@ -165,6 +176,7 @@ public class EventSystem : MonoBehaviour
 		//Potentially end the job entirely
 		if (overallEventIndex >= maxEvents)
 		{
+			ship.Credits += currentJob.payout;
 			GameManager.instance.ChangeInGameState(InGameStates.Ending);
 		}
 
@@ -242,18 +254,14 @@ public class EventSystem : MonoBehaviour
 		return thisEvent;
 	}
 
-	public void TakeEvents(Job newJob)
-	{
-		storyEvents = newJob.events;
-	}
 
 	private bool HasRequiredStats(List<EventRequirements> selectedRequirements)
 	{
 		bool result = true;
 
-		foreach(EventRequirements required in selectedRequirements)
+		foreach (EventRequirements required in selectedRequirements)
 		{
-			if(!required.MatchesRequirements(ship))
+			if (!required.MatchesRequirements(ship))
 			{
 				result = false;
 				break;
@@ -261,4 +269,17 @@ public class EventSystem : MonoBehaviour
 		}
 		return result;
 	}
+
+	/// <summary>
+	/// Takes the events supplied in newJob and applies them to the event lists here
+	/// </summary>
+	/// <param name="newJob"></param>
+	public void TakeEvents(Job newJob)
+	{
+		storyEvents = newJob.storyEvents;
+		randomEvents = newJob.randomEvents;
+		currentJob = newJob;
+	}
+
+	
 }
