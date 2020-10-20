@@ -44,6 +44,10 @@ public class GameManager : MonoBehaviour
                     {
                         asm.UnloadScene("PromptScreen_End");
                     }
+                    if (SceneManager.GetSceneByName("Space BG").isLoaded)
+                    {
+                        asm.UnloadScene("Space BG");
+                    }
                     asm.LoadSceneSeperate("PromptScreen_Start"); // TODO Change to Job List when we have it
                     break;
                 case InGameStates.ShipBuilding:
@@ -57,6 +61,7 @@ public class GameManager : MonoBehaviour
                         Destroy(FindObjectOfType<ObjectMover>().gameObject);
                     }
                     asm.UnloadScene("ShipBuilding");
+                    asm.LoadSceneSeperate("Space BG");
                     StartCoroutine(EventSystem.instance.Travel());
                     break;
                 case InGameStates.Ending:

@@ -9,25 +9,14 @@ using UnityEngine;
 
 public class BackgroundScrollRepeat : MonoBehaviour
 {
-    private BoxCollider2D boxCollider;
-
-    private Rigidbody2D rb;
-
     private float width;
-
-    public float speed;
+    [SerializeField] private float speed;
 
     // Start is called before the first frame update
     void Start()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
-        rb = GetComponent<Rigidbody2D>();
-
-        width = boxCollider.size.x;
-        rb.velocity = new Vector2(speed, 0);
-
-
-        
+        width = GetComponent<SpriteRenderer>().size.x;
+        GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
     }
 
     // Update is called once per frame
