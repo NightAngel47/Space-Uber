@@ -5,8 +5,10 @@
  * Description: 
  */
 
-using Boo.Lang;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class JobSelectScreen : MonoBehaviour
 {
@@ -14,9 +16,24 @@ public class JobSelectScreen : MonoBehaviour
     [SerializeField] private Transform buttonGroup;
     private EventSystem es;
 
+    public GameObject detailsPanel;
+
+    private TMP_Text titleBox;
+    private TMP_Text descriptionBox;
+    private TMP_Text rewardBox;
+
+    private Job selectedJob;
+
     public void Start()
     {
         es = GameObject.FindObjectOfType<EventSystem>();
+
+        titleBox = GameObject.FindGameObjectWithTag("Header").GetComponent<TMP_Text>();
+        descriptionBox = GameObject.FindGameObjectWithTag("Body").GetComponent<TMP_Text>();
+        rewardBox = GameObject.FindGameObjectWithTag("Misc Text").GetComponent<TMP_Text>();
+
+        HideDetails();
+        ShowJobs();
     }
 
     private void ShowJobs()
@@ -29,12 +46,35 @@ public class JobSelectScreen : MonoBehaviour
         }
     }
 
+    public void ShowDetails(Job selectedJob)
+    {
+        detailsPanel.SetActive(true);
+        titleBox.text = selectedJob.jobName;
+        descriptionBox.text = selectedJob.description;
+        rewardBox.text = selectedJob.payout + " credits";
+    }
+    public void HideDetails()
+    {
+        detailsPanel.SetActive(false);
+    }
+
+    public void SelectJob(Job selected)
+    {
+        selectedJob = selected;
+        ShowDetails(selectedJob);
+    }
+
     public void ChoiceChosen(Job chosen)
     {
         es.TakeEvents(chosen);
-        foreach(GameObject button in buttonGroup.transform)
+        foreach (var button in buttonGroup.transform.GetComponentsInChildren<Button>())
         {
-            Destroy(button);
+            Destroy(button.gameObject);
+        }
+
+        foreach (var text in transform.GetComponentsInChildren<TMP_Text>())
+        {
+            Destroy(text.gameObject);
         }
     }
 }
