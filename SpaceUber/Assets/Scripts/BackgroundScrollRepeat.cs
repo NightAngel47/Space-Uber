@@ -22,7 +22,7 @@ public class BackgroundScrollRepeat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x < -width)
+        if (transform.position.x > width)
         {
             Reposition();
         }
@@ -30,7 +30,7 @@ public class BackgroundScrollRepeat : MonoBehaviour
 
     private void Reposition()
     {
-        Vector2 vector = new Vector2(width * 2f, 0);
+        Vector2 vector = new Vector2(width * -2f, 0);
         transform.position = (Vector2)transform.position + vector;
     }
 }
