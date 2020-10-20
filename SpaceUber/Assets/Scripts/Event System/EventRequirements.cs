@@ -33,22 +33,6 @@ public struct EventRequirements
     [Tooltip("Check this if you would like to check if the ship resource is LESS than the number supplied")]
     public bool lessThan;
     
-
-    //[Tooltip("Positive to check if greater than x, negative to check if less than x")]
-    //public int hullRequired;
-    //[Tooltip("Positive to check if greater than x, negative to check if less than x")]
-    //public int energyRequired;
-    //[Tooltip("Positive to check if greater than x, negative to check if less than x")]
-    //public int crewRequired;
-    //[Tooltip("Positive to check if greater than x, negative to check if less than x")]
-    //public int foodRequired;
-    //[Tooltip("Positive to check if greater than x, negative to check if less than x")]
-    //public int weaponsRequired;
-    //[Tooltip("Positive to check if greater than x, negative to check if less than x")]
-    //public int securityRequired;
-    //[Tooltip("Positive to check if greater than x, negative to check if less than x")]
-    //public int creditsRequired;
-
     public bool MatchesRequirements(ShipStats thisShip)
     {
         bool result;

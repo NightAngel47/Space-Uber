@@ -16,33 +16,16 @@ public class Job : MonoBehaviour
 
     public string jobName;
     public string description;
-
+    public JobSelectScreen jobSelect;
     public Button buttonPrefab;
-    public Transform buttonGroup;
-    private EventSystem es;
-
-    public void Start()
-    {
-        es = GameObject.FindObjectOfType<EventSystem>();
-    }
-
-    public void ShowButton()
+  
+    public void ShowButton(Transform buttonGroup)
     {
         Button thisButton = Instantiate(buttonPrefab, buttonGroup);
 
         // Set listener
         thisButton.onClick.AddListener(delegate {
-            AssignJobs();
+            jobSelect.ChoiceChosen(this);
         });
     }
-
-    /// <summary>
-    /// Assigns this jobs events to the event system
-    /// </summary>
-    void AssignJobs()
-    {
-        es.TakeEvents(this);
-    }
-
-
 }
