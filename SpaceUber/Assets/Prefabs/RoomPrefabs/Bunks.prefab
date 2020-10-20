@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceType: Crew
   resourceIcon: {fileID: 21300000, guid: eb3218bd599b7834da6e92588a3f5200, type: 3}
-  amount: 5
+  amount: 3
 --- !u!1001 &3664837688621549389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -115,7 +115,7 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: price
-      value: 120
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -126,6 +126,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxCrew
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: priceReducationPercent
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}

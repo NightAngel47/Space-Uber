@@ -140,7 +140,7 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomDescription
-      value: A place to grow food on a ship. Increases food per tick.
+      value: A place to grow food on a ship.+5 food per tick.
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -166,6 +166,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxPower
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: priceReducationPercent
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
