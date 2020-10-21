@@ -89,6 +89,7 @@ public class EventSystem : MonoBehaviour
 				yield return new WaitForSeconds(eventChanceFreq);
 			}
 
+			//Event warning code
 			if (eventWarning != null)
 			{
 				eventWarning.SetActive(true);

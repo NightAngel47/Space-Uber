@@ -73,7 +73,7 @@ public class InkDriverBase : MonoBehaviour
         backgroundUI.sprite = backgroundImage;
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
 
-
+        
     }
 
     private void Update()
@@ -200,9 +200,12 @@ public class InkDriverBase : MonoBehaviour
     // Currently causes a stackoverflow error
     public void ClearUI()
     {
-        foreach (var button in buttonGroup.transform.GetComponentsInChildren<Button>())
+        if (buttonGroup != null)
         {
-            Destroy(button.gameObject);
+            foreach (var button in buttonGroup.transform.GetComponentsInChildren<Button>())
+            {
+                Destroy(button.gameObject);
+            }
         }
 
         foreach (var text in transform.GetComponentsInChildren<TMP_Text>())

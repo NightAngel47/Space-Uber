@@ -8,37 +8,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections;
 
 public class JobSelectScreen : MonoBehaviour
 {
     [SerializeField] private List<GameObject> availableJobs;
-    [SerializeField] private Transform buttonGroup;
+    private Transform buttonGroup;
     private EventSystem es;
 
-    public GameObject detailsPanel;
+    private JobSelectCanvas jsc;
+    private GameObject detailsPanel;
 
     private TMP_Text titleBox;
     private TMP_Text descriptionBox;
-    private TMP_Text rewardBox;
+    private TMP_Text payoutBox;
 
     private Job selectedJob;
 
     public void Start()
     {
+        StartCoroutine(RefreshJobs());
+    }
+
+    public IEnumerator RefreshJobs()
+    {
+        yield return new WaitUntil(() => SceneManager.GetSceneByName("JobPicker").isLoaded);
         es = GameObject.FindObjectOfType<EventSystem>();
-
-        titleBox = GameObject.FindGameObjectWithTag("Header").GetComponent<TMP_Text>();
-        descriptionBox = GameObject.FindGameObjectWithTag("Body").GetComponent<TMP_Text>();
-        rewardBox = GameObject.FindGameObjectWithTag("Misc Text").GetComponent<TMP_Text>();
-
-        HideDetails();
-        ShowJobs();
+        jsc = GameObject.FindObjectOfType<JobSelectCanvas>();
+        titleBox = jsc.titleBox;
+        descriptionBox = jsc.descriptionBox;
+        payoutBox = jsc.rewardBox;
+        detailsPanel = jsc.detailsPanel;
     }
 
     private void ShowJobs()
     {
-        foreach(GameObject i in availableJobs)
+        print("Showing jobs");
+        foreach (GameObject i in availableJobs)
         {
             Job thisJob = i.GetComponent<Job>();
             thisJob.jobSelect = this;
@@ -51,8 +59,9 @@ public class JobSelectScreen : MonoBehaviour
         detailsPanel.SetActive(true);
         titleBox.text = selectedJob.jobName;
         descriptionBox.text = selectedJob.description;
-        rewardBox.text = selectedJob.payout + " credits";
+        payoutBox.text = selectedJob.payout + " credits";
     }
+
     public void HideDetails()
     {
         detailsPanel.SetActive(false);
