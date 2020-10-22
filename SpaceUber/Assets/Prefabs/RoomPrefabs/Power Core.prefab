@@ -134,6 +134,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
+      propertyPath: mouseOverAudio.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
       propertyPath: shapeType
       value: 3
       objectReference: {fileID: 0}
@@ -148,6 +153,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 3bbc1218ec681524da75e852e1a67ca4,
         type: 2}
+    - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: mouseOverAudio.Array.data[0]
+      value: Pulse 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: mouseOverAudio.Array.data[1]
+      value: Pulse 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: mouseOverAudio.Array.data[2]
+      value: Pulse 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: mouseOverAudio.Array.data[3]
+      value: Pulse 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5881200089251463111, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -253,6 +278,51 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: SFXs.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: Placements.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: SFXs.Array.data[0]
+      value: Rotation 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: SFXs.Array.data[1]
+      value: Rotation 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: SFXs.Array.data[2]
+      value: Rotation 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: SFXs.Array.data[3]
+      value: Rotation 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: SFXs.Array.data[4]
+      value: Rotation 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: Placements.Array.data[0]
+      value: Power Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: Placements.Array.data[1]
+      value: Alien Subdue 2
       objectReference: {fileID: 0}
     - target: {fileID: 8053823772464388611, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
