@@ -133,7 +133,17 @@ public class AudioManager : MonoBehaviour
                 foreach(Sound sound in currentlyPlayingAmbience) { sound.ScaleVolume(ambienceVolume * masterVolume); }
             }
         }
-	}
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            masterVolume = masterVolume + 0.05f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            masterVolume = masterVolume - 0.05f;
+        }
+    }
 
     /// <summary>
     /// //Initializes GameObjects, give them names, attach an AudioSource, assign the AudioSource to a Sound object.

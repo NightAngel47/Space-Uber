@@ -28,10 +28,10 @@ public class SpotChecker : MonoBehaviour
 
     public void FillSpots(GameObject cube, int rotate) //called when object is attempted to be placed
     {
-        int shapeType = cube.gameObject.GetComponentInChildren<ObjectScript>().shapeType;
-        int objectNum = cube.gameObject.GetComponentInChildren<ObjectScript>().objectNum;
+        int shapeType = cube.GetComponent<ObjectScript>().shapeType;
+        int objectNum = cube.GetComponent<ObjectScript>().objectNum;
         GameObject gridPosBase = cube.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
-        List<Vector2> gridSpots = new List<Vector2>(cube.transform.GetChild(0).gameObject.GetComponent<ObjectScript>().shapeData.gridSpaces);
+        List<Vector2> gridSpots = new List<Vector2>(cube.GetComponent<ObjectScript>().shapeData.gridSpaces);
         cannotPlace = false;
 
         for (int i = 0; i < gridSpots.Count; i++)
@@ -46,7 +46,8 @@ public class SpotChecker : MonoBehaviour
                     {
                         cannotPlace = true; //lets user keep moving object
                         Debug.Log("Cannot place here");
-
+                        ObjectMover.hasPlaced = true;
+                        Destroy(cube);
                         return;
                     }
                 }
@@ -59,7 +60,8 @@ public class SpotChecker : MonoBehaviour
                     {
                         cannotPlace = true; //lets user keep moving object
                         Debug.Log("Cannot place here");
-
+                        ObjectMover.hasPlaced = true;
+                        Destroy(cube);
                         return;
                     }
                 }
@@ -73,7 +75,8 @@ public class SpotChecker : MonoBehaviour
                     {
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
-
+                    ObjectMover.hasPlaced = true;
+                    Destroy(cube);
                     return;
                 }
             }
@@ -86,7 +89,8 @@ public class SpotChecker : MonoBehaviour
                 {
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
-
+                    ObjectMover.hasPlaced = true;
+                    Destroy(cube);
                     return;
                 }
             }
@@ -99,7 +103,8 @@ public class SpotChecker : MonoBehaviour
                 {
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
-
+                    ObjectMover.hasPlaced = true;
+                    Destroy(cube);
                     return;
                 }
             }
@@ -112,7 +117,8 @@ public class SpotChecker : MonoBehaviour
                 {
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
-
+                    ObjectMover.hasPlaced = true;
+                    Destroy(cube);
                     return;
                 }
             }
@@ -169,7 +175,7 @@ public class SpotChecker : MonoBehaviour
     public void RemoveSpots(GameObject cube, int rotate) //when the object is edited and moved, erase prev spot
     {
         GameObject gridPosBase = cube.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
-        List<Vector2> gridSpots = new List<Vector2>(cube.transform.GetChild(0).gameObject.GetComponent<ObjectScript>().shapeData.gridSpaces);
+        List<Vector2> gridSpots = new List<Vector2>(cube.GetComponent<ObjectScript>().shapeData.gridSpaces);
 
         for (int i = 0; i < gridSpots.Count; i++)
         {
