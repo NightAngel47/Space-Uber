@@ -48,11 +48,11 @@ public class GameManager : MonoBehaviour
                     {
                         asm.UnloadScene("Space BG");
                     }
-                    asm.LoadSceneSeperate("PromptScreen_Start"); // TODO Change to Job List when we have it
+                    asm.LoadSceneSeperate("JobPicker"); // TODO Change to Job List when we have it
                     break;
                 case InGameStates.ShipBuilding:
                     asm.LoadSceneSeperate("ShipBuilding");
-                    asm.UnloadScene("PromptScreen_Start");
+                    asm.UnloadScene("JobPicker");
                     break;
                 case InGameStates.Events:
                     if (!ObjectMover.hasPlaced) // Remove left over room from ship building before moving to events
