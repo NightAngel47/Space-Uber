@@ -17,11 +17,12 @@ public class ObjectScript : MonoBehaviour
     [Foldout("Data")]
     public int rotAdjust = 1;
     private GameObject parentObj;
-    private float moveDistance;
     public static Color c;
 
     public int shapeType;
     public int objectNum;
+
+    public string[] mouseOverAudio;
 
     [SerializeField] private ShapeType shapeDataTemplate = null;
 
@@ -55,16 +56,15 @@ public class ObjectScript : MonoBehaviour
     private void Start()
     {
         //rotAdjust = false;
-        c = gameObject.GetComponent<SpriteRenderer>().color;
+        c = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
         c.a = 0.5f;
-        parentObj = transform.parent.gameObject;
-        moveDistance = parentObj.GetComponent<ObjectMover>().GetMoveDis();
+        //parentObj = transform.parent.gameObject;
         
-        roomNameUI.text = parentObj.GetComponent<RoomStats>().roomName;
-        roomDescUI.text = parentObj.GetComponent<RoomStats>().roomDescription;
-        roomPrice.text = parentObj.GetComponent<RoomStats>().price.ToString();
+        roomNameUI.text = gameObject.GetComponent<RoomStats>().roomName;
+        roomDescUI.text = gameObject.GetComponent<RoomStats>().roomDescription;
+        roomPrice.text = gameObject.GetComponent<RoomStats>().price.ToString();
 
-        foreach (var resource in parentObj.GetComponent<RoomStats>().resources)
+        foreach (var resource in gameObject.GetComponent<RoomStats>().resources)
         {
             GameObject resourceGO = Instantiate(resourceUI, statsUI);
             resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = resource.resourceIcon; // resource icon
@@ -82,7 +82,7 @@ public class ObjectScript : MonoBehaviour
             if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true)
             {
                 //buttons.SetActive(true);
-                parentObj.GetComponent<RoomStats>().SubtractRoomStats();
+                gameObject.GetComponent<RoomStats>().SubtractRoomStats();
                 Edit();
             }
 
@@ -91,8 +91,9 @@ public class ObjectScript : MonoBehaviour
                 //buttons.SetActive(true);
                 if (ObjectMover.hasPlaced == true)
                 {
-                    parentObj.GetComponent<RoomStats>().SubtractRoomStats();
+                    gameObject.GetComponent<RoomStats>().SubtractRoomStats();
                 }
+
                 Delete();
             }
             
@@ -101,29 +102,34 @@ public class ObjectScript : MonoBehaviour
         }
     }
 
+    public void OnMouseEnter()
+    {
+        AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length)]);
+    }
+
+
     public void OnMouseExit()
     {
         hoverUiPanel.SetActive(false);
     }
 
     public void Edit()
-    {
-        //buttons.SetActive(false);
+    {  
         c.a = 1;
-        gameObject.GetComponent<SpriteRenderer>().color = c;
+        gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
         c.a = .5f;
-        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust);
-        parentObj.AddComponent<ObjectMover>();
-        parentObj.GetComponent<ObjectMover>().SetMoveDis(moveDistance);
+        SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
+        gameObject.GetComponent<ObjectMover>().enabled = true;
+        gameObject.GetComponent<ObjectMover>().TurnOnBeingDragged();
         ObjectMover.hasPlaced = false;
     }
 
     public void Delete()
     {
         //buttons.SetActive(false);
-        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust);
+        SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
         ObjectMover.hasPlaced = true;
-        Destroy(parentObj);
+        Destroy(gameObject);
     }
 
     private void ResetData()
@@ -137,6 +143,8 @@ public class ObjectScript : MonoBehaviour
         rotBoundsUp = shapeData.rotBoundsUp;
 
         rotAdjustVal = shapeData.rotAdjustVal;
+
+        gameObject.GetComponent<ObjectMover>().UpdateMouseBounds(boundsDown, boundsUp, boundsLeft, boundsRight);
     }
 
     public void UpdateHoverUIData(string n, string d, string s)
