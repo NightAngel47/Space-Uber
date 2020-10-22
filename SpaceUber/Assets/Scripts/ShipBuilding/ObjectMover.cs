@@ -23,6 +23,9 @@ public class ObjectMover : MonoBehaviour
     private float minY;
     private float maxY;
 
+    public string[] SFXs;
+    public string[] Placements;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -104,7 +107,9 @@ public class ObjectMover : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q))
         {
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, 90);
-            
+            AudioManager.instance.PlaySFX(SFXs[Random.Range(0, SFXs.Length)]);
+
+
 
             if ((os.shapeType != 0 || os.shapeType != 1 || os.shapeType != 3) && (os.rotAdjust == 1 || os.rotAdjust == 3))
             {
@@ -128,7 +133,7 @@ public class ObjectMover : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E))
         {
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, -90);
-
+            AudioManager.instance.PlaySFX(SFXs[Random.Range(0, SFXs.Length)]);
 
             if ((os.shapeType != 0 || os.shapeType != 1 || os.shapeType != 3) && (os.rotAdjust == 1 || os.rotAdjust == 3))
             {
@@ -155,6 +160,7 @@ public class ObjectMover : MonoBehaviour
         if (FindObjectOfType<ShipStats>().GetCredits() >= gameObject.GetComponent<RoomStats>().price)
         {
             SpotChecker.instance.FillSpots(gameObject, os.rotAdjust);
+            AudioManager.instance.PlaySFX(Placements[Random.Range(0, Placements.Length)]);
 
             if (SpotChecker.cannotPlace == false)
             {
