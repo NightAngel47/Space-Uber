@@ -5,10 +5,12 @@
  * Provides a central manager to play audio sounds and transitions music tracks: 
  */
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using Random = UnityEngine.Random;
 
 //Serialized wrapper of AudioSource. These are declared in the AudioManager inspector and initialized on Start.
 [System.Serializable]
@@ -117,7 +119,29 @@ public class AudioManager : MonoBehaviour
         PlayMusicWithTransition("General Theme");
     }
 
-	private void FixedUpdate()
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            masterVolume += 1f * Time.deltaTime;
+            if (masterVolume < 0)
+                masterVolume = 0;
+        }
+
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            masterVolume -= 1f * Time.deltaTime;
+            if (masterVolume > 1)
+                masterVolume = 1;
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            isMuted = !isMuted;
+        }
+    }
+
+    private void FixedUpdate()
 	{
         //Ensures the volume can be adjusted by player dynamically. 
         if (currentlyPlayingMusic != null)
@@ -132,16 +156,6 @@ public class AudioManager : MonoBehaviour
                 currentlyPlayingMusic.ScaleVolume(musicVolume * masterVolume); 
                 foreach(Sound sound in currentlyPlayingAmbience) { sound.ScaleVolume(ambienceVolume * masterVolume); }
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            masterVolume = masterVolume + 0.05f;
-        }
-
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            masterVolume = masterVolume - 0.05f;
         }
     }
 
