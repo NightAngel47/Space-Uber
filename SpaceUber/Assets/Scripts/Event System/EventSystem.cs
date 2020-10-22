@@ -145,10 +145,9 @@ public class EventSystem : MonoBehaviour
 
 		if (eventInstance.TryGetComponent(out InkDriverBase inkDriver))
 		{
-			inkDriver.titleBox = eventCanvas.titleBox;
-			inkDriver.textBox = eventCanvas.textBox;
-			inkDriver.backgroundUI = eventCanvas.backgroundImage;
-			inkDriver.buttonGroup = eventCanvas.buttonGroup;
+			inkDriver.AssignUIFromEventSystem(eventCanvas.titleBox, eventCanvas.textBox,
+				eventCanvas.backgroundImage, eventCanvas.buttonGroup);
+			
 		}
 
 		eventActive = true;
