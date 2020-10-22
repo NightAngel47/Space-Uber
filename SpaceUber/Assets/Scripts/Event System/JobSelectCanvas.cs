@@ -16,4 +16,6 @@ public class JobSelectCanvas : MonoBehaviour
     public TMP_Text descriptionBox;
     public TMP_Text rewardBox;
     public Transform buttonGroup;
+
+    public Button confirmButton;
 }

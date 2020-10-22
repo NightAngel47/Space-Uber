@@ -27,9 +27,11 @@ public class JobSelectScreen : MonoBehaviour
 
     private Job selectedJob;
 
+
     public void Start()
     {
         StartCoroutine(RefreshJobs());
+
     }
 
     public IEnumerator RefreshJobs()
@@ -37,20 +39,31 @@ public class JobSelectScreen : MonoBehaviour
         yield return new WaitUntil(() => SceneManager.GetSceneByName("JobPicker").isLoaded);
         es = GameObject.FindObjectOfType<EventSystem>();
         jsc = GameObject.FindObjectOfType<JobSelectCanvas>();
+        
         titleBox = jsc.titleBox;
         descriptionBox = jsc.descriptionBox;
         payoutBox = jsc.rewardBox;
         detailsPanel = jsc.detailsPanel;
+        buttonGroup = jsc.buttonGroup;
+
+        jsc.confirmButton.onClick.AddListener(delegate {
+            ChoiceChosen(selectedJob);
+        });
+
+        HideDetails();
+        ShowJobs();
+
+
     }
 
     private void ShowJobs()
     {
-        print("Showing jobs");
         foreach (GameObject i in availableJobs)
         {
             Job thisJob = i.GetComponent<Job>();
             thisJob.jobSelect = this;
             thisJob.ShowButton(buttonGroup);
+            print("Showing job " + i);
         }
     }
 

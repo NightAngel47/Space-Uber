@@ -7,7 +7,7 @@
 
 using UnityEngine;
 
-public class WormholeDriver : MonoBehaviour
+public class WormholeDriver : InkDriverBase
 {
     void Start()
     {

@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
                     {
                         asm.UnloadScene("Space BG");
                     }
-                    asm.LoadSceneSeperate("JobPicker"); // TODO Change to Job List when we have it
+                    asm.LoadSceneMerged("JobPicker");
                     break;
                 case InGameStates.ShipBuilding:
                     asm.LoadSceneSeperate("ShipBuilding");
