@@ -5,7 +5,6 @@
  * Description: Stores information about the requirements for each job
  */
 
-using Boo.Lang;
 using System;
 using UnityEngine;
 
