@@ -63,6 +63,7 @@ public class SecurityMiniGame : MiniGame
 
     void GenerateCode()
     {
+        foreach(CodeBlock block in codeSegments) { block.gameObject.SetActive(true); }
         ScrambleCodeBlocks();
         requiredCode = "";
         availableCode = "";

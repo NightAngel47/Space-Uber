@@ -21,5 +21,6 @@ public class CodeBlock : MonoBehaviour
 	public void InputCode()
 	{
 		miniGameManager.InputCode(codeText.text);
+		gameObject.SetActive(false);
 	}
 }
