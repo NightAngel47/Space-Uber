@@ -6,45 +6,28 @@
  */
 
 using NaughtyAttributes;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class OverclockRoom : MonoBehaviour
 {
+    [Tooltip("Name of mini game scene")]
+    [SerializeField] string miniGame;
+    float cooldownTime = 5;
 
-    [Dropdown("resourceTypes")]
-    public string resourceType;
-
-    private List<string> resourceTypes
-    {
-        get
+	private void OnMouseDown()
+    { 
+        if (!OverclockController.instance.overclocking && !OverclockController.instance.miniGameInProgress)
         {
-            return new List<string>() { "", "Credits", "Energy", "Security",
-        "Ship Weapons", "Crew", "Food", "Food Per Tick", "Hull Durability", "Stock" };
+
+            OverclockController.instance.StartMiniGame(miniGame);
         }
     }
 
-    public int resourceAmount;
-
-    public int crewMoraleAmount;
-
-    OverclockController overclockController;
-
-    void Start()
-    {
-        overclockController = FindObjectOfType<OverclockController>();
-    }
-
-    void Update()
-    {
-        
-    }
-
-    void OnMouseOver()
-    {
-        if (Input.GetMouseButtonDown(0) && !overclockController.overclocking)
-        {
-            overclockController.CallStartOverclocking(crewMoraleAmount, resourceType, resourceAmount);
-        }
-    }
+    IEnumerator Cooldown()
+	{
+        //OverclockController.instance.cooldownTime
+        yield return new WaitForSeconds(cooldownTime);
+	}
 }

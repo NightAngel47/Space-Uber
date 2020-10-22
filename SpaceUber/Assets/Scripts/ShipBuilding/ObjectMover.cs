@@ -53,17 +53,17 @@ public class ObjectMover : MonoBehaviour
             //Movement();
             RotateObject();
             //Placement();
-        }
+            
+            if(isBeingDragged)
+            {
+                //Follow cursor
+                Vector3 mousePosition;
+                mousePosition = Input.mousePosition;
+                mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+                mousePosition.z = 0.0f;
 
-        if(isBeingDragged)
-        {
-            //Follow cursor
-            Vector3 mousePosition;
-            mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            mousePosition.z = 0.0f;
-
-            transform.position = new Vector3(Mathf.Clamp(Mathf.Round(mousePosition.x), minX, maxX), Mathf.Clamp(Mathf.Round(mousePosition.y), minY, maxY), mousePosition.z);
+                transform.position = new Vector3(Mathf.Clamp(Mathf.Round(mousePosition.x), minX, maxX), Mathf.Clamp(Mathf.Round(mousePosition.y), minY, maxY), mousePosition.z);
+            }
         }
     }
 
@@ -108,9 +108,7 @@ public class ObjectMover : MonoBehaviour
         {
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, 90);
             AudioManager.instance.PlaySFX(SFXs[Random.Range(0, SFXs.Length)]);
-
-
-
+            
             if ((os.shapeType != 0 || os.shapeType != 1 || os.shapeType != 3) && (os.rotAdjust == 1 || os.rotAdjust == 3))
             {
                 gameObject.transform.GetChild(0).transform.position += os.rotAdjustVal;
@@ -157,6 +155,7 @@ public class ObjectMover : MonoBehaviour
 
     public void Placement()
     {
+        if (GameManager.currentGameState != InGameStates.ShipBuilding) return;
         if (FindObjectOfType<ShipStats>().GetCredits() >= gameObject.GetComponent<RoomStats>().price)
         {
             SpotChecker.instance.FillSpots(gameObject, os.rotAdjust);
