@@ -5,10 +5,9 @@
  * Description: 
  */
 
-using Boo.Lang;
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.XR.WSA.Input;
 
 public class AstroidEmitter : MonoBehaviour
 {

@@ -6,8 +6,6 @@
  */
 
 using System.Collections;
-using System.Security.AccessControl;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class Cannon : MonoBehaviour
