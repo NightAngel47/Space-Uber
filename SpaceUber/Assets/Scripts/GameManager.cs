@@ -65,7 +65,6 @@ public class GameManager : MonoBehaviour
         if (state == currentGameState) return;
         // Otherwise it sets the current state to the passed state.
         currentGameState = state;
-
         // Handles what scenes to Load/Unload using the AdditiveSceneManager, along with additional scene cleanup.
         switch (state)
         {
@@ -76,11 +75,11 @@ public class GameManager : MonoBehaviour
                     additiveSceneManager.UnloadScene("PromptScreen_End");
                 }
                 
-                additiveSceneManager.LoadSceneSeperate("PromptScreen_Start"); // TODO Change to Job List when we have it
+                additiveSceneManager.LoadSceneSeperate("JobPicker");
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
                 additiveSceneManager.LoadSceneSeperate("ShipBuilding");
-                additiveSceneManager.UnloadScene("PromptScreen_Start");
+                additiveSceneManager.UnloadScene("JobPicker");
                 break;
             case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
                 // Remove unplaced rooms from the ShipBuilding state
