@@ -68,36 +68,44 @@ public class GameManager : MonoBehaviour
         // Handles what scenes to Load/Unload using the AdditiveSceneManager, along with additional scene cleanup.
         switch (state)
         {
-            case InGameStates.JobSelect: // Loads PromptScreen_Start for the player to pick their job
-                // unload ending screen if replaying
-                if (SceneManager.GetSceneByName("PromptScreen_End").isLoaded) // TODO remove when we have menus
-                {
-                    additiveSceneManager.UnloadScene("PromptScreen_End");
-                }
-                
-                additiveSceneManager.LoadSceneSeperate("JobPicker");
-                break;
-            case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
-                additiveSceneManager.LoadSceneSeperate("ShipBuilding");
-                additiveSceneManager.UnloadScene("JobPicker");
-                break;
-            case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
-                // Remove unplaced rooms from the ShipBuilding state
-                if (!ObjectMover.hasPlaced)
-                {
-                    ObjectMover.hasPlaced = true;
-                    Destroy(FindObjectOfType<ObjectMover>().gameObject);
-                }
-                
-                additiveSceneManager.UnloadScene("ShipBuilding");
-                StartCoroutine(EventSystem.instance.Travel());
-                break;
-            case InGameStates.Ending: // Loads the PromptScreen_End when the player reaches a narrative ending.
-                additiveSceneManager.LoadSceneSeperate("PromptScreen_End");
-                break;
-            default: // Output Warning when the passed in game state doesn't have a transition setup.
-                Debug.LogWarning($"The passed in game state, {state.ToString()}, doesn't have a transition setup.");
-                break;
+          case InGameStates.JobSelect: // Loads PromptScreen_Start for the player to pick their job
+              // unload ending screen if replaying
+              if (SceneManager.GetSceneByName("PromptScreen_End").isLoaded) // TODO remove when we have menus
+              {
+                  additiveSceneManager.UnloadScene("PromptScreen_End");
+              }
+              if (SceneManager.GetSceneByName("Space BG").isLoaded)
+              {
+                  additiveSceneManager.UnloadScene("Space BG");
+              }
+
+              additiveSceneManager.LoadSceneSeperate("JobPicker");
+              break;
+          case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
+              additiveSceneManager.LoadSceneSeperate("ShipBuilding");
+              additiveSceneManager.UnloadScene("JobPicker");
+              break;
+          case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
+              // Remove unplaced rooms from the ShipBuilding state
+              if (!ObjectMover.hasPlaced)
+              {
+                  ObjectMover.hasPlaced = true;
+                  Destroy(FindObjectOfType<ObjectMover>().gameObject);
+              }
+              foreach(RoomStats room in FindObjectsOfType<RoomStats>())
+              { 
+                  room.UpdateUsedRoom();
+              }
+              additiveSceneManager.UnloadScene("ShipBuilding");
+              additiveSceneManager.LoadSceneSeperate("Space BG");
+              StartCoroutine(EventSystem.instance.Travel());
+              break;
+          case InGameStates.Ending: // Loads the PromptScreen_End when the player reaches a narrative ending.
+              additiveSceneManager.LoadSceneSeperate("PromptScreen_End");
+              break;
+          default: // Output Warning when the passed in game state doesn't have a transition setup.
+              Debug.LogWarning($"The passed in game state, {state.ToString()}, doesn't have a transition setup.");
+              break;
         }
     }
 }
