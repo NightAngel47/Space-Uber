@@ -37,7 +37,7 @@ public class DevelopmentAccess : MonoBehaviour
         }
         #endif
         
-        if (Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.F2))
         {
             if (inTest)
             {
