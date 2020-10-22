@@ -92,11 +92,10 @@ public class GameManager : MonoBehaviour
                   ObjectMover.hasPlaced = true;
                   Destroy(FindObjectOfType<ObjectMover>().gameObject);
               }
-               RoomStats[] rooms = FindObjectsOfType<RoomStats>();
-                foreach(RoomStats o in rooms)
-                {
-                    o.UpdateUsedRoom();
-                }
+              foreach(RoomStats room in FindObjectsOfType<RoomStats>())
+              { 
+                  room.UpdateUsedRoom();
+              }
               additiveSceneManager.UnloadScene("ShipBuilding");
               additiveSceneManager.LoadSceneSeperate("Space BG");
               StartCoroutine(EventSystem.instance.Travel());
