@@ -74,6 +74,10 @@ public class GameManager : MonoBehaviour
               {
                   additiveSceneManager.UnloadScene("PromptScreen_End");
               }
+              if (SceneManager.GetSceneByName("Space BG").isLoaded)
+              {
+                  additiveSceneManager.UnloadScene("Space BG");
+              }
 
               additiveSceneManager.LoadSceneSeperate("JobPicker");
               break;
@@ -94,6 +98,7 @@ public class GameManager : MonoBehaviour
                     o.UpdateUsedRoom();
                 }
               additiveSceneManager.UnloadScene("ShipBuilding");
+              additiveSceneManager.LoadSceneSeperate("Space BG");
               StartCoroutine(EventSystem.instance.Travel());
               break;
           case InGameStates.Ending: // Loads the PromptScreen_End when the player reaches a narrative ending.
