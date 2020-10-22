@@ -14,7 +14,7 @@ using System.Collections;
 
 public class JobSelectScreen : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> availableJobs;
+    [SerializeField] private List<Job> availableJobs;
     private Transform buttonGroup;
     private EventSystem es;
 
@@ -26,19 +26,18 @@ public class JobSelectScreen : MonoBehaviour
     private TMP_Text payoutBox;
 
     private Job selectedJob;
-
-
+    
     public void Start()
     {
+        es = FindObjectOfType<EventSystem>();
+        
         StartCoroutine(RefreshJobs());
-
     }
 
-    public IEnumerator RefreshJobs()
+    private IEnumerator RefreshJobs()
     {
         yield return new WaitUntil(() => SceneManager.GetSceneByName("JobPicker").isLoaded);
-        es = GameObject.FindObjectOfType<EventSystem>();
-        jsc = GameObject.FindObjectOfType<JobSelectCanvas>();
+        jsc = FindObjectOfType<JobSelectCanvas>();
         
         titleBox = jsc.titleBox;
         descriptionBox = jsc.descriptionBox;
@@ -58,16 +57,14 @@ public class JobSelectScreen : MonoBehaviour
 
     private void ShowJobs()
     {
-        foreach (GameObject i in availableJobs)
+        foreach (Job job in availableJobs)
         {
-            Job thisJob = i.GetComponent<Job>();
-            thisJob.jobSelect = this;
-            thisJob.ShowButton(buttonGroup);
-            print("Showing job " + i);
+            job.jobSelect = this;
+            job.ShowButton(buttonGroup);
         }
     }
 
-    public void ShowDetails(Job selectedJob)
+    private void ShowDetails()
     {
         detailsPanel.SetActive(true);
         titleBox.text = selectedJob.jobName;
@@ -75,7 +72,7 @@ public class JobSelectScreen : MonoBehaviour
         payoutBox.text = selectedJob.payout + " credits";
     }
 
-    public void HideDetails()
+    private void HideDetails()
     {
         detailsPanel.SetActive(false);
     }
@@ -83,10 +80,10 @@ public class JobSelectScreen : MonoBehaviour
     public void SelectJob(Job selected)
     {
         selectedJob = selected;
-        ShowDetails(selectedJob);
+        ShowDetails();
     }
 
-    public void ChoiceChosen(Job chosen)
+    private void ChoiceChosen(Job chosen)
     {
         es.TakeEvents(chosen);
         foreach (var button in buttonGroup.transform.GetComponentsInChildren<Button>())

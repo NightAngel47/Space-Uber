@@ -26,7 +26,7 @@ public class Job : MonoBehaviour
     public void ShowButton(Transform buttonGroup)
     {
         Button thisButton = Instantiate(buttonPrefab, buttonGroup);
-        thisButton.GetComponentInChildren<TMP_Text>().text = jobName + "\n" + payout + " credits";
+        thisButton.GetComponentInChildren<TMP_Text>().text = jobName + "\t" + payout + " credits";
         
         // Set listener
         thisButton.onClick.AddListener(delegate {
