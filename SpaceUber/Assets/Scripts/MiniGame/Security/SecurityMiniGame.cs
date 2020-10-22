@@ -11,57 +11,97 @@ using System.Collections;
 
 public class SecurityMiniGame : MiniGame
 {
-    [SerializeField] TMP_Text[] codeSegments;
-    [SerializeField] TMP_InputField input;
+    [SerializeField] CodeBlock[] codeSegments;
+    [SerializeField] TMP_Text codePreview;
+    [SerializeField] TMP_Text requiredSuccessesText;
     [SerializeField] float displayTime = 1;
     [SerializeField] GameObject tryAgainText;
-    string validChars = "abcdefghijklmnopqrstuvwsyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-    string requiredCode;
+    [SerializeField] int requiredSuccesses = 3;
+    [SerializeField] int minCodeLength = 3;
+    [SerializeField] int maxCodeLength = 5;
+    int successes = 0;
+    string validChars = "abcdefghijklmnopqrstuvwsyz1234567890";
+    string requiredCode = "";
+    string availableCode = "";
+    string inputCode = "";
 
-    void Start()
-    {
-        GenerateCode();
-    }
+    void Start() { GenerateCode(); }
 
     void Update()
     {
-		if (Input.GetKeyDown(KeyCode.Return)) 
+        requiredSuccessesText.text = "Required Successes: " + (requiredSuccesses - successes);
+		if (inputCode.Length == requiredCode.Length) 
         {
-            if(input.text == requiredCode) { EndMiniGameSuccess(); }
+            if (inputCode == requiredCode)
+            {
+                successes++;
+                if (successes == requiredSuccesses) { EndMiniGameSuccess(); }
+                else 
+                {
+                    inputCode = "";
+                    GenerateCode();
+                }
+            }
             else 
             {
-                input.text = ""; GenerateCode();
+                inputCode = ""; 
                 StartCoroutine(PromptTryAgain());
             }
         }
     }
 
-    void GenerateCode()
-	{
-        requiredCode = "";
-        foreach (TMP_Text codeSegment in codeSegments)
+    void ScrambleCodeBlocks()
+    {
+        for (int i = 0; i < codeSegments.Length - 1; i++)
         {
-            string code = validChars[Random.Range(0, validChars.Length)].ToString();
-            codeSegment.text = code;
-            requiredCode += code;
-            StartCoroutine(DisplayCode());
+            CodeBlock block = codeSegments[i];
+            int randomIndex = Random.Range(i + 1, codeSegments.Length);
+            codeSegments[i] = codeSegments[randomIndex];
+            codeSegments[randomIndex] = block;
         }
     }
+
+    void GenerateCode()
+    {
+        ScrambleCodeBlocks();
+        requiredCode = "";
+        availableCode = "";
+        foreach (CodeBlock codeSegment in codeSegments)
+        {
+            string code = validChars[Random.Range(0, validChars.Length)].ToString();
+            while (availableCode.Contains(code)) { code = validChars[Random.Range(0, validChars.Length)].ToString(); }
+            availableCode += code;
+            codeSegment.codeText.text = code;
+        }
+        int codeLenght = Random.Range(minCodeLength, maxCodeLength+1);
+        for(int i = 0; i < codeLenght; i++)
+		{
+            string code = availableCode[Random.Range(0, availableCode.Length)].ToString();
+            while (requiredCode.Contains(code)) { code = availableCode[Random.Range(0, availableCode.Length)].ToString(); }
+            requiredCode += code;
+        }
+        StartCoroutine(DisplayCode());
+    }
+
+    public void InputCode(string newCode) { inputCode += newCode; }
 
     IEnumerator PromptTryAgain()
 	{
         tryAgainText.SetActive(true);
         yield return new WaitForSeconds(3);
+        GenerateCode();
         tryAgainText.SetActive(false);
 	}
 
     IEnumerator DisplayCode()
 	{
-        foreach(TMP_Text codeSegment in codeSegments)
+        codePreview.text = "";
+        yield return new WaitForSeconds(1);
+        foreach(char codeSegment in requiredCode)
 		{
-            codeSegment.gameObject.SetActive(true);
+            codePreview.text = codeSegment.ToString();
             yield return new WaitForSeconds(displayTime);
-            codeSegment.gameObject.SetActive(false);
-		}
+            codePreview.text = "";
+        }
 	}
 }

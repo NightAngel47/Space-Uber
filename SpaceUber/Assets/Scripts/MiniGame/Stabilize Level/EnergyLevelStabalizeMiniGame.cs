@@ -49,7 +49,7 @@ public class EnergyLevelStabalizeMiniGame : MiniGame
 
 		for(int i = 0; i < powerBarIndicators.Length; i++) { powerBarIndicators[i].SetActive(i < indicatorNumber); }
 
-		if(total > 100) { total = 100; }
+		total += 50;
 		optimizationText.text = (total + "%");
 		if(total == 100) { EndMiniGameSuccess(); }
 	}
