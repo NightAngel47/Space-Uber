@@ -165,7 +165,7 @@ public class RoomStats : MonoBehaviour
         shipStats.UpdateEnergyAmount(-energy, -energy);
         shipStats.UpdateSecurityAmount(-security);
         shipStats.UpdateShipWeaponsAmount(-shipWeapons);
-        shipStats.UpdateCrewAmount(-crew, crew);
+        shipStats.UpdateCrewAmount(-crew, -crew);
         shipStats.UpdateFoodAmount(-food);
         shipStats.UpdateFoodPerTickAmount(-foodPerTick);
         shipStats.UpdateHullDurabilityAmount(-shipHealth, shipHealth);

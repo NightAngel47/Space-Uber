@@ -21,6 +21,8 @@ public class ObjectScript : MonoBehaviour
     public int shapeType;
     public int objectNum;
 
+    public string[] mouseOverAudio;
+
     [SerializeField] private ShapeType shapeDataTemplate = null;
 
     [Foldout("Data")]
@@ -108,6 +110,12 @@ public class ObjectScript : MonoBehaviour
             }
         }
     }
+
+    public void OnMouseEnter()
+    {
+        AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length)]);
+    }
+
 
     public void OnMouseExit()
     {
