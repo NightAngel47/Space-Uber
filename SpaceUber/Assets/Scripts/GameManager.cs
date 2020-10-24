@@ -16,7 +16,7 @@ using UnityEngine.SceneManagement;
 ///     Events          player can run into story and random events.
 ///     Ending          player has reached a narrative ending.
 /// </summary>
-public enum InGameStates { JobSelect, ShipBuilding, Events, Ending }
+public enum InGameStates { JobSelect, ShipBuilding, CrewManagement, Events, Ending }
 
 /// <summary>
 /// Manages the state of the game while the player is playing.
@@ -85,7 +85,12 @@ public class GameManager : MonoBehaviour
               additiveSceneManager.LoadSceneSeperate("ShipBuilding");
               additiveSceneManager.UnloadScene("JobPicker");
               break;
-          case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
+          case InGameStates.CrewManagement:
+              additiveSceneManager.UnloadScene("ShipBuilding");
+              additiveSceneManager.LoadSceneSeperate("CrewManagement");
+              ObjectScript[] os = FindObjectsOfType<ObjectScript>();
+              break;
+            case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
               // Remove unplaced rooms from the ShipBuilding state
               if (!ObjectMover.hasPlaced)
               {
