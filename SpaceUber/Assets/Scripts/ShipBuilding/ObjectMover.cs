@@ -50,17 +50,17 @@ public class ObjectMover : MonoBehaviour
             //Movement();
             RotateObject();
             //Placement();
-        }
 
-        if(isBeingDragged)
-        {
-            //Follow cursor
-            Vector3 mousePosition;
-            mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            mousePosition.z = 0.0f;
+            if (isBeingDragged)
+            {
+                //Follow cursor
+                Vector3 mousePosition;
+                mousePosition = Input.mousePosition;
+                mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+                mousePosition.z = 0.0f;
 
-            transform.position = new Vector3(Mathf.Clamp(Mathf.Round(mousePosition.x), minX, maxX), Mathf.Clamp(Mathf.Round(mousePosition.y), minY, maxY), mousePosition.z);
+                transform.position = new Vector3(Mathf.Clamp(Mathf.Round(mousePosition.x), minX, maxX), Mathf.Clamp(Mathf.Round(mousePosition.y), minY, maxY), mousePosition.z);
+            }
         }
     }
 
@@ -94,9 +94,12 @@ public class ObjectMover : MonoBehaviour
 
     private void OnMouseUp()
     {
-        isBeingDragged = false;
+        if (GameManager.currentGameState == InGameStates.ShipBuilding)
+        {
+            isBeingDragged = false;
 
-        Placement();
+            Placement();
+        }
     }
 
     public void RotateObject()

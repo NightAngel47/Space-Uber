@@ -77,7 +77,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85abcfb88d2be284cb798b37dc985349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: 
 --- !u!114 &4360159919716397346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,6 +95,7 @@ MonoBehaviour:
   maxPower: 0
   priceReducationPercent: 0
   price: 0
+  currentCrew: 0
   roomDescription: 
   roomName: 
   usedRoom: 0
@@ -123,6 +123,7 @@ MonoBehaviour:
   statsUI: {fileID: 1469962580707273063}
   resourceUI: {fileID: 5618234239035789467, guid: 6d68c7a8990bbd442b0c084eb1f4d1f2,
     type: 3}
+  crewPanel: {fileID: 0}
   boundsUp: 0
   boundsDown: 0
   boundsLeft: 0

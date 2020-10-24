@@ -679,8 +679,6 @@ MonoBehaviour:
     - row: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
     - row: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
     - row: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
-  xVarAdjust: 0
-  yVarAdjust: 0
 --- !u!4 &810855496
 Transform:
   m_ObjectHideFlags: 0
@@ -902,7 +900,7 @@ PrefabInstance:
     - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeToEvents
+      value: ChangeToCrewManagement
       objectReference: {fileID: 0}
     - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}
@@ -933,7 +931,7 @@ PrefabInstance:
     - target: {fileID: 2228287772260378586, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}
       propertyPath: m_text
-      value: Finish Ship >
+      value: Edit Crew >
       objectReference: {fileID: 0}
     - target: {fileID: 3503784335472469733, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}

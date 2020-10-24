@@ -16,7 +16,6 @@ public class ObjectScript : MonoBehaviour
 {
     [Foldout("Data")]
     public int rotAdjust = 1;
-    private GameObject parentObj;
     public static Color c;
 
     public int shapeType;
@@ -96,13 +95,26 @@ public class ObjectScript : MonoBehaviour
             }
             
             //TODO might need to allow seeing room stats outside of ship building, however this was done to not have them show during events
+            
+        }
+
+        if(GameManager.currentGameState == InGameStates.CrewManagement)
+        {
             hoverUiPanel.SetActive(true);
+
+            if (Input.GetMouseButton(0))
+            {
+                FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
+            }
         }
     }
 
     public void OnMouseExit()
     {
-        hoverUiPanel.SetActive(false);
+        if (GameManager.currentGameState == InGameStates.CrewManagement)
+        {
+            hoverUiPanel.SetActive(false);
+        }
     }
 
     public void Edit()

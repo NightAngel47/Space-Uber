@@ -9,7 +9,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum InGameStates { JobSelect, ShipBuilding, Events, Ending }
+public enum InGameStates { JobSelect, ShipBuilding, CrewManagement, Events, Ending }
 
 public class GameManager : MonoBehaviour
 {
@@ -49,6 +49,11 @@ public class GameManager : MonoBehaviour
                 case InGameStates.ShipBuilding:
                     asm.LoadSceneSeperate("ShipBuilding");
                     asm.UnloadScene("PromptScreen_Start");
+                    break;
+                case InGameStates.CrewManagement:
+                    asm.UnloadScene("ShipBuilding");
+                    asm.LoadSceneSeperate("CrewManagement");
+                    ObjectScript[] os = FindObjectsOfType<ObjectScript>();
                     break;
                 case InGameStates.Events:
                     if (!ObjectMover.hasPlaced) // Remove left over room from ship building before moving to events
