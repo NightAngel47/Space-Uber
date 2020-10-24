@@ -57,7 +57,8 @@ public class SpawnObject : MonoBehaviour
         if (ObjectMover.hasPlaced == true)
         {
             ObjectMover.hasPlaced = false;
-            GameObject g = Instantiate(ga, new Vector3(spawnLoc.x, spawnLoc.y, 0), Quaternion.identity);
+            GameObject g = Instantiate(ga, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0), Quaternion.identity);
+            g.GetComponent<ObjectMover>().TurnOnBeingDragged();
 
             //This is some vile copy+paste code. I should not hunt for solutions at 2 AM. Need to ask a real programmer for help about better implementation.
             //I want to customize each SpawnRoom button to have its own array of sound effects, but I'm not sure where to hook those two up other than during 

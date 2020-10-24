@@ -25,11 +25,20 @@ public class CrewManagement : MonoBehaviour
 
     private GameObject room;
 
+    private int minAssignableCrew;
+    private RoomStats[] currentRoomList;
+
     public void Start()
     {
         ss = FindObjectOfType<ShipStats>();
         crewRemainingText.text = "Crew Remaining: " + ss.GetRemainingCrew();
-        
+
+        currentRoomList = FindObjectsOfType<RoomStats>();
+
+        foreach(RoomStats r in currentRoomList)
+        {
+            minAssignableCrew += r.minCrew;
+        }
     }
 
     public void UpdateRoom(GameObject g)
@@ -61,12 +70,13 @@ public class CrewManagement : MonoBehaviour
         {
             rs.UpdateCurrentCrew(1);
             ss.UpdateCrewAmount(-1, 0);
+            minAssignableCrew--;
             crewRemainingText.text = "Crew Remaining: " + ss.GetRemainingCrew().ToString();
             roomPanel.transform.GetChild(5).gameObject.GetComponent<TextMeshProUGUI>().text = "Crew Assigned: " + room.GetComponent<RoomStats>().currentCrew.ToString();
 
-            if (ss.GetRemainingCrew() == 0)
+            if (minAssignableCrew <= 0)
             {
-                nextButton.SetActive(true);
+                nextButton.GetComponent<Button>().interactable = true;
             }
         }
     }
@@ -77,13 +87,30 @@ public class CrewManagement : MonoBehaviour
         {
             rs.UpdateCurrentCrew(-1);
             ss.UpdateCrewAmount(1, 0);
+            minAssignableCrew++;
             crewRemainingText.text = "Crew Remaining: " + ss.GetRemainingCrew().ToString();
             roomPanel.transform.GetChild(5).gameObject.GetComponent<TextMeshProUGUI>().text = "Crew Assigned: " + room.GetComponent<RoomStats>().currentCrew.ToString();
 
-            if (ss.GetRemainingCrew() > 0)
+            if (minAssignableCrew > 0)
             {
-                nextButton.SetActive(false);
+                nextButton.GetComponent<Button>().interactable = false;
             }
         }
+    }
+
+    public void LoseCrew(int crewLost)
+    {
+        RoomStats[] currentRoomList = FindObjectsOfType<RoomStats>();
+
+        do
+        {
+            int rand = Random.Range(0, currentRoomList.Length);
+
+            if (currentRoomList[rand].currentCrew > 0)
+            {
+                currentRoomList[rand].currentCrew -= 1;
+                crewLost -= 1;
+            }
+        } while (crewLost > 0);
     }
 }
