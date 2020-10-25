@@ -78,8 +78,14 @@ public class EventSystem : MonoBehaviour
 		float chanceOfEvent = startingEventChance;
 		while (GameManager.currentGameState == InGameStates.Events)
 		{
+            ship.StartTickEvents();
+            
 			yield return new WaitForSeconds(timeBeforeEventRoll); //start with one big chunk of time
-
+            if(GameManager.currentGameState != InGameStates.Events)
+            {
+                break;
+            }
+            
 			//run random chances for event to take place
 			while (!WillRunEvent(chanceOfEvent))
 			{
@@ -88,6 +94,10 @@ public class EventSystem : MonoBehaviour
 				chanceOfEvent+= chanceIncreasePerFreq;
 				yield return new WaitForSeconds(eventChanceFreq);
 			}
+            if(GameManager.currentGameState != InGameStates.Events)
+            {
+                break;
+            }
 
 			//Event warning code
 			if (eventWarning != null)
@@ -95,10 +105,16 @@ public class EventSystem : MonoBehaviour
 				eventWarning.SetActive(true);
 			}
 			yield return new WaitUntil(() => !doingTasks);
+            if(GameManager.currentGameState != InGameStates.Events)
+            {
+                break;
+            }
 			if (eventWarning != null)
 			{
 				eventWarning.SetActive(false);
 			}
+            
+            ship.PauseTickEvents();
 
 			// Load Event_General Scene for upcoming event
 			asm.LoadSceneMerged("Event_General");
@@ -112,8 +128,10 @@ public class EventSystem : MonoBehaviour
 			{
 				CreateEvent(storyEvents[storyEventIndex]);
 				storyEventIndex++;
-
+                
+                
 				yield return new WaitWhile((() => eventActive));
+                
 			}
 			else if (!eventActive && randomEventIndex < randomEvents.Count) //Pick a random event
 			{
@@ -123,6 +141,7 @@ public class EventSystem : MonoBehaviour
 				{
 					CreateEvent(newEvent);
 					randomEventIndex++;
+                    
 					yield return new WaitWhile((() => eventActive));
 				}
 				else
@@ -130,8 +149,11 @@ public class EventSystem : MonoBehaviour
 					ConcludeEvent();
 				}
 			}
+            
+            ship.UnpauseTickEvents();
 		}
 		isTraveling = false;
+        ship.StopTickEvents();
 	}
 
 	/// <summary>

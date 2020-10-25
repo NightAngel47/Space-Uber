@@ -50,8 +50,9 @@ public class ShipStats : MonoBehaviour
     private ShipStatsUI shipStatsUI;
     
     //tick variables
-    private int secondsPerTick = 7;
-    private bool ticksPaused = true;
+    private int secondsPerTick = 5;
+    private bool ticksPaused;
+    private bool tickStop = true;
     
     //mutiny calculations
     private int startingMorale = 100;
@@ -73,44 +74,51 @@ public class ShipStats : MonoBehaviour
         UpdateFoodAmount(startingFood);
         UpdateHullDurabilityAmount(startingShipHealth, startingShipHealth);
         UpdateCrewMorale(startingMorale);
-        StartCoroutine(TickUpdate());
     }
     
     private IEnumerator<YieldInstruction> TickUpdate()
     {
-        if(!ticksPaused)
+        while(!tickStop)
         {
+            while(ticksPaused)
+            {
+                yield return new WaitForFixedUpdate();
+            }
+            
             yield return new WaitForSeconds(secondsPerTick);
-        }
-        
-        while(ticksPaused)
-        {
-            yield return new WaitForFixedUpdate();
-        }
-        //yield return new WaitWhile(() => ticksPaused);
-        
-        food += foodPerTick;
-        food -= crewRemaining;
-        if(food < 0)
-        {
-            crewMorale += (food * foodMoraleDamageMultiplier);
-            food = 0;
-        }
-        
-        if(crewMorale < 0)
-        {
-            crewMorale = 0;
-        }
-        
-        float mutinyChance = (maxMutinyMorale - crewMorale) * zeroMoraleMutinyChance / maxMutinyMorale;
-        if(mutinyChance > UnityEngine.Random.value)
-        {
-            //mutiny
-        }
-        
-        if(shipHealthCurrent <= 0)
-        {
-            //die
+            
+            while(ticksPaused)
+            {
+                yield return new WaitForFixedUpdate();
+            }
+            //yield return new WaitWhile(() => ticksPaused);
+            
+            food += foodPerTick;
+            food -= crewRemaining;
+            if(food < 0)
+            {
+                crewMorale += (food * foodMoraleDamageMultiplier);
+                food = 0;
+            }
+            
+            if(crewMorale < 0)
+            {
+                crewMorale = 0;
+            }
+            
+            shipStatsUI.UpdateFoodUI(food, foodPerTick);
+            //UpdateMoraleShipStatsUI();
+            
+            float mutinyChance = (maxMutinyMorale - crewMorale) * zeroMoraleMutinyChance / maxMutinyMorale;
+            if(mutinyChance > UnityEngine.Random.value)
+            {
+                GameManager.instance.ChangeInGameState(InGameStates.Mutiny);
+            }
+            
+            if(shipHealthCurrent <= 0)
+            {
+                GameManager.instance.ChangeInGameState(InGameStates.Death);
+            }
         }
     }
     
@@ -122,6 +130,21 @@ public class ShipStats : MonoBehaviour
     public void UnpauseTickEvents()
     {
         ticksPaused = false;
+    }
+    
+    public void StopTickEvents()
+    {
+        tickStop = true;
+    }
+    
+    public void StartTickEvents()
+    {
+        if(tickStop)
+        {
+            tickStop = false;
+            ticksPaused = false;
+            StartCoroutine(TickUpdate());
+        }
     }
     
     public void UpdateCreditsAmount(int creditAmount)

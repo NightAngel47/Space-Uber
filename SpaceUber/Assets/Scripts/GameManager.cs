@@ -16,7 +16,7 @@ using UnityEngine.SceneManagement;
 ///     Events          player can run into story and random events.
 ///     Ending          player has reached a narrative ending.
 /// </summary>
-public enum InGameStates { JobSelect, ShipBuilding, Events, Ending }
+public enum InGameStates { JobSelect, ShipBuilding, Events, Ending, Mutiny, Death }
 
 /// <summary>
 /// Manages the state of the game while the player is playing.
@@ -102,6 +102,12 @@ public class GameManager : MonoBehaviour
               break;
           case InGameStates.Ending: // Loads the PromptScreen_End when the player reaches a narrative ending.
               additiveSceneManager.LoadSceneSeperate("PromptScreen_End");
+              break;
+          case InGameStates.Mutiny: // Loads the PromptScreen_End when the player reaches a narrative ending.
+              additiveSceneManager.LoadSceneSeperate("PromptScreen_Mutiny");
+              break;
+          case InGameStates.Death: // Loads the PromptScreen_End when the player reaches a narrative ending.
+              additiveSceneManager.LoadSceneSeperate("PromptScreen_Death");
               break;
           default: // Output Warning when the passed in game state doesn't have a transition setup.
               Debug.LogWarning($"The passed in game state, {state.ToString()}, doesn't have a transition setup.");
