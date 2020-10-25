@@ -198,7 +198,7 @@ public class EventSystem : MonoBehaviour
 		//Potentially end the job entirely
 		if (overallEventIndex >= maxEvents)
 		{
-			ship.Credits += currentJob.payout;
+			ship.CashPayout();
 			GameManager.instance.ChangeInGameState(InGameStates.Ending);
 		}
 

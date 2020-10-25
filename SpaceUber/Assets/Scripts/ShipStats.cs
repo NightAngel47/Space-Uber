@@ -27,10 +27,13 @@ public class ShipStats : MonoBehaviour
     private int startingFood;
     [SerializeField, Tooltip("Starting amount of ship health"), Foldout("Starting Ship Stats")]
     private int startingShipHealth;
+    [SerializeField, Tooltip("Starting amount of crewMorale"), Foldout("Starting Ship Stats")]
+    private int startingMorale;
     
     private List<RoomStats> rooms;
     
     private int credits;
+    private int payout;
     private int energyMax;
     private int energyRemaining;
     private int security;
@@ -55,7 +58,6 @@ public class ShipStats : MonoBehaviour
     private bool tickStop = true;
     
     //mutiny calculations
-    private int startingMorale = 100;
     private int maxMutinyMorale = 60;
     private float zeroMoraleMutinyChance = 0.75f;
     
@@ -67,6 +69,7 @@ public class ShipStats : MonoBehaviour
     private void Start()
     {
         UpdateCreditsAmount(startingCredits);
+        payout = 0;
         UpdateEnergyAmount(startingEnergy, startingEnergy);
         UpdateSecurityAmount(startingSecurity);
         UpdateShipWeaponsAmount(startingShipWeapons);
@@ -209,6 +212,17 @@ public class ShipStats : MonoBehaviour
     public int GetCredits()
     {
         return credits;
+    }
+    
+    public void AddPayout(int ammount)
+    {
+        payout += ammount;
+    }
+    
+    public void CashPayout()
+    {
+        UpdateCreditsAmount(payout);
+        payout = 0;
     }
     
     public bool HasEnoughPower()
