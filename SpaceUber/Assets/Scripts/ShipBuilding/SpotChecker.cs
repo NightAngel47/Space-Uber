@@ -47,7 +47,7 @@ public class SpotChecker : MonoBehaviour
                         cannotPlace = true; //lets user keep moving object
                         Debug.Log("Cannot place here");
                         ObjectMover.hasPlaced = true;
-                        Destroy(cube);
+                        //Destroy(cube);
                         return;
                     }
                 }
@@ -61,7 +61,7 @@ public class SpotChecker : MonoBehaviour
                         cannotPlace = true; //lets user keep moving object
                         Debug.Log("Cannot place here");
                         ObjectMover.hasPlaced = true;
-                        Destroy(cube);
+                        //Destroy(cube);
                         return;
                     }
                 }
@@ -76,7 +76,7 @@ public class SpotChecker : MonoBehaviour
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
                     ObjectMover.hasPlaced = true;
-                    Destroy(cube);
+                    //Destroy(cube);
                     return;
                 }
             }
@@ -90,7 +90,7 @@ public class SpotChecker : MonoBehaviour
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
                     ObjectMover.hasPlaced = true;
-                    Destroy(cube);
+                    //Destroy(cube);
                     return;
                 }
             }
@@ -104,7 +104,7 @@ public class SpotChecker : MonoBehaviour
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
                     ObjectMover.hasPlaced = true;
-                    Destroy(cube);
+                    //Destroy(cube);
                     return;
                 }
             }
@@ -118,7 +118,7 @@ public class SpotChecker : MonoBehaviour
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
                     ObjectMover.hasPlaced = true;
-                    Destroy(cube);
+                    //Destroy(cube);
                     return;
                 }
             }

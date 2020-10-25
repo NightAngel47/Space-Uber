@@ -52,6 +52,9 @@ public class ObjectScript : MonoBehaviour
 
     [Foldout("Data")]
     public Vector3 rotAdjustVal;
+
+    public bool clickAgain = true;
+
     private void Start()
     {
         //rotAdjust = false;
@@ -74,9 +77,19 @@ public class ObjectScript : MonoBehaviour
         ResetData();
     }
 
+    public void TurnOnClickAgain()
+    {
+        clickAgain = true;
+    }
+
+    public void TurnOffClickAgain()
+    {
+        clickAgain = false;
+    }
+
     public void OnMouseOver()
     {
-        if (GameManager.currentGameState == InGameStates.ShipBuilding) 
+        if (GameManager.currentGameState == InGameStates.ShipBuilding && clickAgain == true) 
         {
             if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true)
             {

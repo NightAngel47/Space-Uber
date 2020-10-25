@@ -54,7 +54,7 @@ public class ObjectMover : MonoBehaviour
             RotateObject();
             //Placement();
 
-            if (isBeingDragged)
+            if (isBeingDragged == true)
             {
                 //Follow cursor
                 Vector3 mousePosition;
@@ -63,6 +63,12 @@ public class ObjectMover : MonoBehaviour
                 mousePosition.z = 0.0f;
 
                 transform.position = new Vector3(Mathf.Clamp(Mathf.Round(mousePosition.x), minX, maxX), Mathf.Clamp(Mathf.Round(mousePosition.y), minY, maxY), mousePosition.z);
+
+                if(Input.GetMouseButtonDown(0))
+                {
+                    isBeingDragged = false;
+                    Placement();
+                }
             }
         }
     }
@@ -89,20 +95,26 @@ public class ObjectMover : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (mousedOver)
+        if (GameManager.currentGameState == InGameStates.ShipBuilding)
         {
-            isBeingDragged = true;
+            if (mousedOver && hasPlaced == true && gameObject.GetComponent<ObjectScript>().clickAgain == true)
+            {
+                if (isBeingDragged == false)
+                {
+                    isBeingDragged = true;
+                }
+            }
         }
     }
 
     private void OnMouseUp()
     {
-        if (GameManager.currentGameState == InGameStates.ShipBuilding)
-        {
-            isBeingDragged = false;
+        //if (GameManager.currentGameState == InGameStates.ShipBuilding)
+        //{
+        //    isBeingDragged = false;
 
-            Placement();
-        }
+        //    Placement();
+        //}
     }
 
     public void RotateObject()
@@ -169,19 +181,35 @@ public class ObjectMover : MonoBehaviour
                 gameObject.GetComponent<RoomStats>().AddRoomStats();
 
                 hasPlaced = true;
+
+                StartCoroutine("ClickWait");
+
                 gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = ObjectScript.c;
                 gameObject.GetComponent<ObjectMover>().enabled = false;
+            }
+
+            else
+            {
+                TurnOnBeingDragged();
             }
         }
 
         else
         {
             Debug.Log("Cannot Afford");
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
-
+    public IEnumerator ClickWait()
+    {
+        yield return new WaitForSeconds(.1f);
+        ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
+        foreach (ObjectScript r in otherRooms)
+        {
+            r.TurnOnClickAgain();
+        }
+    }
 
 
 
