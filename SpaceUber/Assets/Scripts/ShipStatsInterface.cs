@@ -121,4 +121,9 @@ public class ShipStatsInterface : MonoBehaviour
     {
         ship.UpdateCrewMorale(crewMoraleAmount);
     }
+    
+    public void PayCrew(int ammount)
+    {
+        ship.PayCrew(ammount);
+    }
 }

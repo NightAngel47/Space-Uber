@@ -34,6 +34,8 @@ public class ShipStats : MonoBehaviour
     
     private int credits;
     private int payout;
+    private int crewPaymentDefault = 5;
+    private int crewPaymentMoraleMultiplier = 10;
     private int energyMax;
     private int energyRemaining;
     private int security;
@@ -241,8 +243,19 @@ public class ShipStats : MonoBehaviour
     public void UpdateCrewMorale(int crewMoraleAmount)
     {
         crewMorale += crewMoraleAmount;
+        if(crewMorale < 0)
+        {
+            crewMorale = 0;
+        }
         // TODO update to work with changes from development
         //UpdateShipStatsUI();
+    }
+    
+    public void PayCrew(int ammount)
+    {
+        UpdateCreditsAmount(-1 * ammount * crewRemaining);
+        int BadMoraleMultiplier = (maxMutinyMorale - crewMorale) * crewPaymentMoraleMultiplier / maxMutinyMorale;
+        UpdateCrewMorale(BadMoraleMultiplier * (ammount - crewPaymentDefault));
     }
 }
 

@@ -199,7 +199,7 @@ public class EventSystem : MonoBehaviour
 		if (overallEventIndex >= maxEvents)
 		{
 			ship.CashPayout();
-			GameManager.instance.ChangeInGameState(InGameStates.Ending);
+			GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);
 		}
 
 		eventActive = false;
