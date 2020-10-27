@@ -8,37 +8,45 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.UI;
 
 public class SecurityMiniGame : MiniGame
 {
+    [SerializeField] Toggle[] successTrackers;
     [SerializeField] CodeBlock[] codeSegments;
     [SerializeField] TMP_Text codePreview;
-    [SerializeField] TMP_Text requiredSuccessesText;
     [SerializeField] float displayTime = 1;
     [SerializeField] GameObject tryAgainText;
-    [SerializeField] int requiredSuccesses = 3;
     [SerializeField] int minCodeLength = 3;
     [SerializeField] int maxCodeLength = 5;
-    int successes = 0;
-    string validChars = "abcdefghijklmnopqrstuvwsyz1234567890";
+    public int successes = 0;
+    string validChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
     string requiredCode = "";
     string availableCode = "";
     string inputCode = "";
-
-    void Start() { GenerateCode(); }
+    [SerializeField] int startCodeLength = 3;
+    [SerializeField] bool hideInput = true;
+    
+    void Start() 
+    { 
+        GenerateCode(); 
+        foreach(Toggle toggle in successTrackers) { toggle.isOn = false; }
+    }
 
     void Update()
     {
-        requiredSuccessesText.text = "Required Successes: " + (requiredSuccesses - successes);
-		if (inputCode.Length == requiredCode.Length) 
+		if (inputCode.Length == requiredCode.Length && inputCode.Length > 0) 
         {
             if (inputCode == requiredCode)
             {
+                inputCode = "";
                 successes++;
-                if (successes == requiredSuccesses) { EndMiniGameSuccess(); }
+                for (int i = 0; i < successes; i++) { successTrackers[i].isOn = true; }
+                for(int i = successes; i < successTrackers.Length; i++) { successTrackers[i].isOn = false; }
+                if (successes == successTrackers.Length) { Debug.Log("win"); EndMiniGameSuccess(); }
                 else 
                 {
-                    inputCode = "";
+                    Debug.Log("");
                     GenerateCode();
                 }
             }
@@ -74,8 +82,7 @@ public class SecurityMiniGame : MiniGame
             availableCode += code;
             codeSegment.codeText.text = code;
         }
-        int codeLenght = Random.Range(minCodeLength, maxCodeLength+1);
-        for(int i = 0; i < codeLenght; i++)
+        for(int i = 0; i < startCodeLength+successes; i++)
 		{
             string code = availableCode[Random.Range(0, availableCode.Length)].ToString();
             while (requiredCode.Contains(code)) { code = availableCode[Random.Range(0, availableCode.Length)].ToString(); }
@@ -96,6 +103,7 @@ public class SecurityMiniGame : MiniGame
 
     IEnumerator DisplayCode()
 	{
+        if (hideInput) { foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(false); } }
         codePreview.text = "";
         yield return new WaitForSeconds(1);
         foreach(char codeSegment in requiredCode)
@@ -104,5 +112,6 @@ public class SecurityMiniGame : MiniGame
             yield return new WaitForSeconds(displayTime);
             codePreview.text = "";
         }
-	}
+        if (hideInput) { foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(true); } }
+    }
 }
