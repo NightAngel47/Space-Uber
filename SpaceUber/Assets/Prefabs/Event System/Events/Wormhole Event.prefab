@@ -13,14 +13,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Go inside wormhole
+  isRandomOutcome: 1
   resourcesChanged: 05000000070000000400000000000000
   amountChanged: 0a0000000a000000e7fffffffa000000
-  isRandomOutcome: 1
   probabilities:
   - 35
   - 35
   - 15
   - 15
+  multipleRandomOutcomes:
+  - resourcesChanged: 0000000005000000
+    amountChanged: 64000000f6ffffff
+  - resourcesChanged: 07000000
+    amountChanged: ecffffff
+  - resourcesChanged: 04000000
+    amountChanged: feffffff
+  - resourcesChanged: 00000000
+    amountChanged: fa000000
 --- !u!114 &-3775472013781600469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34,14 +43,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Leave it
+  isRandomOutcome: 0
   resourcesChanged: 
   amountChanged: 
-  isRandomOutcome: 0
   probabilities:
   - 35
   - 35
   - 15
   - 15
+  multipleRandomOutcomes: []
 --- !u!114 &8048941373036566775
 MonoBehaviour:
   m_ObjectHideFlags: 0
