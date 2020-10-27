@@ -119,7 +119,7 @@ public class ObjectMover : MonoBehaviour
 
     public void RotateObject()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.Q) && os.canRotate == true)
         {
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, 90);
             AudioManager.instance.PlaySFX(SFXs[Random.Range(0, SFXs.Length)]);
@@ -143,7 +143,7 @@ public class ObjectMover : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.E) && os.canRotate == true)
         {
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, -90);
             AudioManager.instance.PlaySFX(SFXs[Random.Range(0, SFXs.Length)]);

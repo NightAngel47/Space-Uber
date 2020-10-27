@@ -16,6 +16,7 @@ public class SpotChecker : MonoBehaviour
     public ArrayLayout spots;
 
     public static bool cannotPlace = false; //bool for when the spot is filled
+    private bool nextToRoom = true;
     public static SpotChecker instance;
 
     private void Awake()
@@ -34,6 +35,11 @@ public class SpotChecker : MonoBehaviour
         List<Vector2> gridSpots = new List<Vector2>(cube.GetComponent<ObjectScript>().shapeData.gridSpaces);
         cannotPlace = false;
 
+        if (cube.GetComponent<ObjectScript>().nextToRoom == true)
+        {
+            nextToRoom = false;
+        }
+
         for (int i = 0; i < gridSpots.Count; i++)
         {
             if(shapeType == 2) //these objects only have two different rotations
@@ -47,8 +53,13 @@ public class SpotChecker : MonoBehaviour
                         cannotPlace = true; //lets user keep moving object
                         Debug.Log("Cannot place here");
                         ObjectMover.hasPlaced = true;
-                        //Destroy(cube);
                         return;
+                    }
+
+                    else if (cube.GetComponent<ObjectScript>().nextToRoom == true)
+                    {
+                        NextToRoomCheck((int)Math.Round(cube.transform.position.y + gridSpots[i].y),
+                            (int)Math.Round(cube.transform.position.x + gridSpots[i].x), cube);
                     }
                 }
 
@@ -61,8 +72,13 @@ public class SpotChecker : MonoBehaviour
                         cannotPlace = true; //lets user keep moving object
                         Debug.Log("Cannot place here");
                         ObjectMover.hasPlaced = true;
-                        //Destroy(cube);
                         return;
+                    }
+
+                    else if (cube.GetComponent<ObjectScript>().nextToRoom == true)
+                    {
+                        NextToRoomCheck((int)Math.Round(cube.transform.position.y + gridSpots[i].x),
+                            (int)Math.Round(cube.transform.position.x + gridSpots[i].y), cube);
                     }
                 }
             }
@@ -76,8 +92,13 @@ public class SpotChecker : MonoBehaviour
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
                     ObjectMover.hasPlaced = true;
-                    //Destroy(cube);
                     return;
+                }
+
+                else if (cube.GetComponent<ObjectScript>().nextToRoom == true)
+                {
+                    NextToRoomCheck((int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].y),
+                        (int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].x), cube);
                 }
             }
 
@@ -90,8 +111,13 @@ public class SpotChecker : MonoBehaviour
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
                     ObjectMover.hasPlaced = true;
-                    //Destroy(cube);
                     return;
+                }
+
+                else if (cube.GetComponent<ObjectScript>().nextToRoom == true)
+                {
+                    NextToRoomCheck((int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].x - 1),
+                        (int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].y), cube);
                 }
             }
 
@@ -104,8 +130,13 @@ public class SpotChecker : MonoBehaviour
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
                     ObjectMover.hasPlaced = true;
-                    //Destroy(cube);
                     return;
+                }
+
+                else if (cube.GetComponent<ObjectScript>().nextToRoom == true)
+                {
+                    NextToRoomCheck((int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].y - 1),
+                        (int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].x - 1), cube);
                 }
             }
 
@@ -118,10 +149,22 @@ public class SpotChecker : MonoBehaviour
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
                     ObjectMover.hasPlaced = true;
-                    //Destroy(cube);
                     return;
                 }
+
+                else if(cube.GetComponent<ObjectScript>().nextToRoom == true)
+                {
+                    NextToRoomCheck((int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].x),
+                        (int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].y - 1), cube);
+                }
             }
+        }
+
+        if(nextToRoom == false)
+        {
+            cannotPlace = true;
+            Debug.Log("Cannot place here");
+            return;
         }
 
         if (cannotPlace == false)
@@ -201,6 +244,57 @@ public class SpotChecker : MonoBehaviour
             {
                 spots.rows[(int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].x)]
                     .row[(int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].y - 1)] = 0;
+            }
+        }
+    }
+
+    public void NextToRoomCheck(int y, int x, GameObject cube)
+    {
+        if (y < 5) //# neesd to change to dynamically update with different ship sizes
+        {
+            if (spots.rows[y + 1].row[x] != cube.GetComponent<ObjectScript>().nextToRoomNum && nextToRoom != true)
+            {
+                nextToRoom = false;
+            }
+            else
+            {
+                nextToRoom = true;
+            }
+        }
+
+        if (y > 0)
+        {
+            if (spots.rows[y - 1].row[x] != cube.GetComponent<ObjectScript>().nextToRoomNum && nextToRoom != true)
+            {
+                nextToRoom = false;
+            }
+            else
+            {
+                nextToRoom = true;
+            }
+        }
+
+        if (x < 9) //# neesd to change to dynamically update with different ship sizes
+        {
+            if (spots.rows[y].row[x + 1] != cube.GetComponent<ObjectScript>().nextToRoomNum && nextToRoom != true)
+            {
+                nextToRoom = false;
+            }
+            else
+            {
+                nextToRoom = true;
+            }
+        }
+
+        if (x > 0)
+        {
+            if (spots.rows[y].row[x - 1] != cube.GetComponent<ObjectScript>().nextToRoomNum && nextToRoom != true)
+            {
+                nextToRoom = false;
+            }
+            else
+            {
+                nextToRoom = true;
             }
         }
     }
