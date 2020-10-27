@@ -21,12 +21,10 @@ public class EventSystem : MonoBehaviour
 	private AdditiveSceneManager asm;
 	private EventCanvas eventCanvas;
 
-	[Tooltip("How many events will happen in this journey")]
-	public int maxEvents = 3;
-	[Tooltip("Narrative-focused events that will play in this specific order")]
-	[SerializeField] private List<GameObject> storyEvents;
-	[Tooltip("Miscellaneous events that occur in a random order")]
-	[SerializeField] private List<GameObject> randomEvents;
+	
+	private int maxEvents = 3;
+	private List<GameObject> storyEvents;
+	private List<GameObject> randomEvents;
 
 	//how many events (story and random) have occurred
 	private int overallEventIndex = 0;
