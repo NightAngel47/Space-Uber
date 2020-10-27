@@ -66,32 +66,28 @@ public class SpawnObject : MonoBehaviour
                 r.TurnOffClickAgain();
             }
 
-            //This is some vile copy+paste code. I should not hunt for solutions at 2 AM. Need to ask a real programmer for help about better implementation.
-            //I want to customize each SpawnRoom button to have its own array of sound effects, but I'm not sure where to hook those two up other than during 
-            //the instantiation of new pieces.
-            if (ga.name == "Power Core")
+            switch (ga.name)
             {
-                AudioManager.instance.PlaySFX(purchasePowerCore[Random.Range(0, purchasePowerCore.Length)]);
-            }
-            if (ga.name == "Hydroponics")
-            {
-                AudioManager.instance.PlaySFX(purchaseHydroponics[Random.Range(0, purchaseHydroponics.Length)]);
-            }
-            if (ga.name == "Brig")
-            {
-                AudioManager.instance.PlaySFX(purchaseBrig[Random.Range(0, purchaseBrig.Length)]);
-            }
-            if (ga.name == "Storage")
-            {
-                AudioManager.instance.PlaySFX(purchaseStorage[Random.Range(0, purchaseStorage.Length)]);
-            }
-            if (ga.name == "Bunks")
-            {
-                AudioManager.instance.PlaySFX(purchaseBunks[Random.Range(0, purchaseBunks.Length)]);
-            }
-            if (ga.name == "Medbay")
-            {
-                AudioManager.instance.PlaySFX(purchaseMedbay[Random.Range(0, purchaseMedbay.Length)]);
+                case "Power Core":
+                    AudioManager.instance.PlaySFX(purchasePowerCore[Random.Range(0, purchasePowerCore.Length)]);
+                    break;
+                case "Hydroponics":
+                    AudioManager.instance.PlaySFX(purchaseHydroponics[Random.Range(0, purchaseHydroponics.Length)]);
+                    break;
+                case "Brig":
+                    AudioManager.instance.PlaySFX(purchaseBrig[Random.Range(0, purchaseBrig.Length)]);
+                    break;
+                case "Storage":
+                    AudioManager.instance.PlaySFX(purchaseStorage[Random.Range(0, purchaseStorage.Length)]);
+                    break;
+                case "Bunks":
+                    AudioManager.instance.PlaySFX(purchaseBunks[Random.Range(0, purchaseBunks.Length)]);
+                    break;
+                case "Medbay":
+                    AudioManager.instance.PlaySFX(purchaseMedbay[Random.Range(0, purchaseMedbay.Length)]);
+                    break;
+                default:
+                    break;
             }
         }
     }
