@@ -14,6 +14,7 @@ public class Cannon : MonoBehaviour
 	[SerializeField] GameObject rocketPrefab = null;
 	[SerializeField] Transform barrel;
 	[SerializeField] float coolDown;
+	[SerializeField] GameObject[] coolDownIndicators;
 	bool canFire = true;
 	Camera cam;
 	private void Start()
@@ -43,8 +44,16 @@ public class Cannon : MonoBehaviour
 	
 	IEnumerator CoolDown()
 	{
+		float timeElapsed = 0;
 		canFire = false;
-		yield return new WaitForSeconds(coolDown);
+		while (timeElapsed < coolDown)
+		{
+			int indicatorNumber = Mathf.RoundToInt(timeElapsed / coolDown * coolDownIndicators.Length)+1;
+
+			for (int i = 0; i < coolDownIndicators.Length; i++) { coolDownIndicators[i].SetActive(i < indicatorNumber); }
+			yield return new WaitForSeconds(0.1f);
+			timeElapsed += 0.1f;
+		}
 		canFire = true;
 	}
 }
