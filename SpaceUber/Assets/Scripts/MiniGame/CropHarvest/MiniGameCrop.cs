@@ -8,13 +8,16 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using Boo.Lang;
 
 public class MiniGameCrop : MonoBehaviour
 {
-    public bool isWatered = false;
-    public bool isTrimmed = false;
-    public bool isFertilized = false;
-    public CropStage stage = CropStage.Seedling;
+    bool isWatered = false;
+    bool isTrimmed = false;
+    bool isFertilized = false;
+    CropStage stage = CropStage.Unplanted;
+    [SerializeField] TMP_Text cropText;
     [SerializeField] Sprite unfertilizedSoil = null;
     [SerializeField] Sprite fertilizedSoil = null;
     [SerializeField] Sprite unwateredSeed = null;
@@ -28,8 +31,6 @@ public class MiniGameCrop : MonoBehaviour
     [SerializeField] GameObject harvestableCropPrefab = null;
     [SerializeField] GameObject deadLeavesPrefab = null;
     [SerializeField] Image plantImage = null;
-    [Tooltip("Tag of crop container")]
-    [SerializeField] string targetTag = "";
     [Tooltip("Amount of seconds a growth tic takes.")]
     [SerializeField] float growthTicTime = 1;
     [Tooltip("Amount of growth added per tic")]
@@ -45,12 +46,19 @@ public class MiniGameCrop : MonoBehaviour
     [Tooltip("Amount of prune level before crop needs to be pruned again")]
     [SerializeField] float maxPruneLevel = 1;
     float waterLevel = 1;
-    public float pruneLevel = 1;
+    float pruneLevel = 1;
 
     float growth = 0;
     bool isGrowing = false;
     bool hasBeenPlanted = false;
     bool isHarvestable = false;
+
+    List<string> cropNeeds = new List<string>();
+    string needsWater = "Needs Watered";
+    string needsFertilizer = "Needs Fertilizer";
+    string needsPruned = "Needs Pruned";
+    string readyToHarvest = "Ready To Harvest";
+    string needsPlanted = "Needs To Be Planted";
 
     //Plant image gets hidden by setting its color to transparent. This is used to restort plant image color when it is not being hidden.
     Color originalColor;
@@ -65,11 +73,23 @@ public class MiniGameCrop : MonoBehaviour
         harvestableCropPrefab.SetActive(false);
         //Let minGameManager know how many crops are needed to beat the mini game
         miniGameManager.IncrementRequiredScore();
+        StartCoroutine(DisplayNeeds());
     }
 
 	void Update()
     {
-        if(stage == CropStage.Seedling && !isGrowing) { StartCoroutine(Grow()); }
+        if(!isFertilized && !cropNeeds.Contains(needsFertilizer)) { cropNeeds.Add(needsFertilizer); }
+        else if(isFertilized && cropNeeds.Contains(needsFertilizer)) { cropNeeds.Remove(needsFertilizer); }
+        if (!isWatered && !cropNeeds.Contains(needsWater) && stage != CropStage.Unplanted) { cropNeeds.Add(needsWater); }
+        else if (isWatered && cropNeeds.Contains(needsWater)) { cropNeeds.Remove(needsWater); }
+        if (!isTrimmed && !cropNeeds.Contains(needsPruned)) { cropNeeds.Add(needsPruned); }
+        else if (isTrimmed && cropNeeds.Contains(needsPruned)) { cropNeeds.Remove(needsPruned); }
+        if (isFertilized && !cropNeeds.Contains(needsPlanted) && stage == CropStage.Unplanted) { cropNeeds.Add(needsPlanted); }
+        else if((!isFertilized || stage != CropStage.Unplanted) && cropNeeds.Contains(needsWater)) { cropNeeds.Remove(needsPlanted); }
+        if(stage == CropStage.Harvestable && !cropNeeds.Contains(readyToHarvest) && harvestableCropPrefab) { cropNeeds.Add(readyToHarvest); }
+        else if (cropNeeds.Contains(readyToHarvest)) { cropNeeds.Remove(readyToHarvest); }
+
+        if (stage == CropStage.Seedling && !isGrowing) { StartCoroutine(Grow()); }
 
         //Midlings do not need to be trimmed
         if(stage != CropStage.Midling) { isTrimmed = true; pruneLevel = maxPruneLevel; }
@@ -165,6 +185,22 @@ public class MiniGameCrop : MonoBehaviour
             case CropStage.Seedling: stage = CropStage.Sprout; break;
             case CropStage.Sprout: stage = CropStage.Midling; break;
             case CropStage.Midling: stage = CropStage.Harvestable; break;
+		}
+	}
+
+    IEnumerator DisplayNeeds()
+	{
+        while(true)
+		{
+            int i = 0;
+            while(i < cropNeeds.Count)
+			{
+                cropText.text = cropNeeds[i];
+                i++;
+                yield return new WaitForSeconds(1);
+            }
+            if (cropNeeds.Count == 0) { cropText.text = ""; }
+            yield return new WaitForEndOfFrame();
 		}
 	}
 

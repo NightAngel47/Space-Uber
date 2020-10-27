@@ -27,12 +27,23 @@ public class MiniGameTool : MonoBehaviour
     {
         if (isBeingDraged)
         {
+            if(toolType == MiniGameToolType.WateringCan) 
+            {
+				if (!GetComponentInChildren<ParticleSystem>().isPlaying) { GetComponentInChildren<ParticleSystem>().Play(); }
+            }
             //Follow cursor
             Vector3 mousePosition;
             mousePosition = Input.mousePosition;
             mousePosition = cam.ScreenToWorldPoint(mousePosition);
             mousePosition.z = 0.0f;
             transform.position = mousePosition;
+        }
+		else
+		{
+            if (toolType == MiniGameToolType.WateringCan)
+            {
+                if (GetComponentInChildren<ParticleSystem>().isPlaying) { GetComponentInChildren<ParticleSystem>().Stop(); }
+            }
         }
         if(CropHarvestMiniGame.selectedTool != this) 
         {
