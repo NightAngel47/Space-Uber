@@ -26,6 +26,8 @@ public class SecurityMiniGame : MiniGame
     string inputCode = "";
     [SerializeField] int startCodeLength = 3;
     [SerializeField] bool hideInput = true;
+    [SerializeField] Color highlightColor;
+    [SerializeField] Color originalButtonColor;
     
     void Start() 
     { 
@@ -57,6 +59,8 @@ public class SecurityMiniGame : MiniGame
             }
         }
     }
+
+    public Color GetHighlightColor() { return highlightColor; }
 
     void ScrambleCodeBlocks()
     {
@@ -112,6 +116,13 @@ public class SecurityMiniGame : MiniGame
             yield return new WaitForSeconds(displayTime);
             codePreview.text = "";
         }
-        if (hideInput) { foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(true); } }
+        if (hideInput)
+        { 
+            foreach (CodeBlock block in codeSegments) 
+            { 
+                block.gameObject.SetActive(true);
+                block.GetComponent<Image>().color = originalButtonColor;
+            } 
+        }
     }
 }

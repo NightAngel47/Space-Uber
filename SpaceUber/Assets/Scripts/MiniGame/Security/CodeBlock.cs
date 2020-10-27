@@ -7,6 +7,7 @@
 
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CodeBlock : MonoBehaviour
 {
@@ -21,6 +22,6 @@ public class CodeBlock : MonoBehaviour
 	public void InputCode()
 	{
 		miniGameManager.InputCode(codeText.text);
-		gameObject.SetActive(false);
+		GetComponent<Image>().color = miniGameManager.GetHighlightColor();
 	}
 }
