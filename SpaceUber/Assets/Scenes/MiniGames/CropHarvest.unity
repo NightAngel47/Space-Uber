@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 39106569}
   - component: {fileID: 39106573}
   m_Layer: 0
-  m_Name: CropPlaceHolder (9)
+  m_Name: Crop Planter 1
   m_TagString: HarvestableCrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,12 +226,12 @@ MonoBehaviour:
   plantImage: {fileID: 1515721170}
   targetTag: MiniGameCropContainer
   growthTicTime: 1
-  growthPerTic: 1
+  growthPerTic: 3
   maxGrowthPerStage: 3
   waterDecayPerTic: 1
   maxWaterLevel: 3
   pruneDecayerTic: 1
-  maxPruneLevel: 6
+  maxPruneLevel: 3
   pruneLevel: 1
 --- !u!114 &39106571
 MonoBehaviour:
@@ -689,7 +689,7 @@ GameObject:
   - component: {fileID: 443275155}
   - component: {fileID: 443275159}
   m_Layer: 0
-  m_Name: CropPlaceHolder (11)
+  m_Name: Crop Planter 3
   m_TagString: HarvestableCrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -779,12 +779,12 @@ MonoBehaviour:
   plantImage: {fileID: 427783746}
   targetTag: MiniGameCropContainer
   growthTicTime: 1
-  growthPerTic: 1
+  growthPerTic: 3
   maxGrowthPerStage: 3
   waterDecayPerTic: 1
   maxWaterLevel: 3
   pruneDecayerTic: 1
-  maxPruneLevel: 6
+  maxPruneLevel: 3
   pruneLevel: 1
 --- !u!114 &443275157
 MonoBehaviour:
@@ -1659,7 +1659,7 @@ GameObject:
   - component: {fileID: 1159097372}
   - component: {fileID: 1159097376}
   m_Layer: 0
-  m_Name: CropPlaceHolder (10)
+  m_Name: Crop Planter 2
   m_TagString: HarvestableCrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1749,12 +1749,12 @@ MonoBehaviour:
   plantImage: {fileID: 1166045170}
   targetTag: MiniGameCropContainer
   growthTicTime: 1
-  growthPerTic: 1
+  growthPerTic: 3
   maxGrowthPerStage: 3
   waterDecayPerTic: 1
   maxWaterLevel: 3
   pruneDecayerTic: 1
-  maxPruneLevel: 6
+  maxPruneLevel: 3
   pruneLevel: 1
 --- !u!114 &1159097374
 MonoBehaviour:
@@ -2070,7 +2070,7 @@ GameObject:
   - component: {fileID: 1408866442}
   - component: {fileID: 1408866446}
   m_Layer: 0
-  m_Name: CropPlaceHolder (8)
+  m_Name: Crop Planter 4
   m_TagString: HarvestableCrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2160,12 +2160,12 @@ MonoBehaviour:
   plantImage: {fileID: 109214723}
   targetTag: MiniGameCropContainer
   growthTicTime: 1
-  growthPerTic: 1
+  growthPerTic: 3
   maxGrowthPerStage: 3
   waterDecayPerTic: 1
   maxWaterLevel: 3
   pruneDecayerTic: 1
-  maxPruneLevel: 6
+  maxPruneLevel: 3
   pruneLevel: 1
 --- !u!114 &1408866444
 MonoBehaviour:
