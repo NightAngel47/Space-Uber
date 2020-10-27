@@ -21,6 +21,10 @@ public class ObjectScript : MonoBehaviour
     public int shapeType;
     public int objectNum;
 
+    public bool canRotate;  //true can rotate | false cannot rotate
+    public bool nextToRoom; //true required next to x room | false no condition 
+    public int nextToRoomNum;
+
     public string[] mouseOverAudio;
 
     [SerializeField] private ShapeType shapeDataTemplate = null;
