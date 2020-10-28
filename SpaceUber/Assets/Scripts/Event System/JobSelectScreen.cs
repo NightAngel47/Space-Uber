@@ -27,6 +27,8 @@ public class JobSelectScreen : MonoBehaviour
 
     private Job selectedJob;
     
+    public ShipStats ship;
+    
     public void Start()
     {
         es = FindObjectOfType<EventSystem>();
@@ -85,6 +87,7 @@ public class JobSelectScreen : MonoBehaviour
 
     private void ChoiceChosen(Job chosen)
     {
+        ship.AddPayout(selectedJob.payout);
         es.TakeEvents(chosen);
         foreach (var button in buttonGroup.transform.GetComponentsInChildren<Button>())
         {

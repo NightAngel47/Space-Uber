@@ -1,11 +1,18 @@
-Something catches your attention in the space between the stars. A distortion in space where light is warped, bent, and trapped in the cosmic maw of a wormhole. As you draw closer a nearby star is ripped from its position in the void and stretched into stellar spaghetti as it crosses the event horizon. A quick number crunch reveals that there is only a small chance that the same would happen to your ship should you venture closer.
-+ [Approach Wormhole] 
-{shuffle:
-    -->MinorDamage
-    -->Pranked
-    -->Money
-    -->Shuffle
-}
+VAR randomEnd = -> MinorDamage
+
+VAR minorDamageEnd = -> MinorDamage
+VAR prankedEnd = -> Pranked
+VAR moneyEnd = -> Money
+VAR shuffleEnd = -> Shuffle
+
+Something catches your attention in the space between the stars. A distortion in space where light is warped, bent, and trapped in the cosmic maw of a wormhole. As you draw closer a nearby star is ripped from its position in the void and stretched into stellar spaghetti as it crosses the event horizon. A quick number crunch reveals that there is only a small chance that the same would happen to your ship should you venture closer. #RandomizeOutcome
++ [Approach Wormhole] ->randomEnd 
+//{shuffle:
+//    -->MinorDamage
+//    -->Pranked
+//    -->Money
+//    -->Shuffle
+//}
 + [Leave it be] -> Leave
 
 === Leave ===

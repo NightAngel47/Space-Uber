@@ -29,17 +29,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2828524699034471178}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.6070498}
-  m_LocalScale: {x: 0.31586716, y: 0.6186051, z: 0.9987515}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.6050434}
+  m_LocalScale: {x: 0.3154728, y: 0.6178328, z: 0.9975046}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.401, y: -2.39}
-  m_SizeDelta: {x: 1.3297894, y: 1.0602784}
+  m_AnchoredPosition: {x: -8.776, y: -0.642}
+  m_SizeDelta: {x: 1.7435281, y: 1.541945}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &2828524699034471176
 Animator:
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f100193a1ef73c34ebc93158e67f0a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upwardSpeed: 7
+  upwardSpeed: 10
   scaleSpeed: 0.05
 --- !u!50 &2828524699034471181
 Rigidbody2D:

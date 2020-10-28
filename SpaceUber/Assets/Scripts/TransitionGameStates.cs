@@ -30,4 +30,9 @@ public class TransitionGameStates : MonoBehaviour
     {
         GameManager.instance.ChangeInGameState(InGameStates.CrewManagement);
     }
+    
+    public void ChangeToEnd()
+    {
+        GameManager.instance.ChangeInGameState(InGameStates.Ending);
+    }
 }
