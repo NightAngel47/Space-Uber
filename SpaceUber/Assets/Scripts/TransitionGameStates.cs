@@ -24,4 +24,9 @@ public class TransitionGameStates : MonoBehaviour
     {
         GameManager.instance.ChangeInGameState(InGameStates.Events);
     }
+    
+    public void ChangeToEnd()
+    {
+        GameManager.instance.ChangeInGameState(InGameStates.Ending);
+    }
 }

@@ -16,11 +16,11 @@ using UnityEngine.SceneManagement;
 ///     Events          player can run into story and random events.
 ///     Ending          player has reached a narrative ending.
 /// </summary>
-public enum InGameStates { JobSelect, ShipBuilding, Events, Ending }
+public enum InGameStates { JobSelect, ShipBuilding, Events, Ending, Mutiny, Death ,CrewPayment }
 
 /// <summary>
 /// Manages the state of the game while the player is playing.
-/// Calls the AdditiveSceneManager to mange scens on state chagnes.
+/// Calls the AdditiveSceneManager to manage scenes on state changes.
 /// </summary>
 public class GameManager : MonoBehaviour
 {
@@ -74,6 +74,14 @@ public class GameManager : MonoBehaviour
               {
                   additiveSceneManager.UnloadScene("PromptScreen_End");
               }
+              if (SceneManager.GetSceneByName("PromptScreen_Death").isLoaded) // TODO remove when we have menus
+              {
+                  additiveSceneManager.UnloadScene("PromptScreen_Death");
+              }
+              if (SceneManager.GetSceneByName("PromptScreen_Mutiny").isLoaded) // TODO remove when we have menus
+              {
+                  additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
+              }
               if (SceneManager.GetSceneByName("Space BG").isLoaded)
               {
                   additiveSceneManager.UnloadScene("Space BG");
@@ -100,8 +108,18 @@ public class GameManager : MonoBehaviour
               additiveSceneManager.LoadSceneSeperate("Space BG");
               StartCoroutine(EventSystem.instance.Travel());
               break;
+          case InGameStates.CrewPayment:
+              additiveSceneManager.LoadSceneSeperate("CrewPayment");
+              break;
           case InGameStates.Ending: // Loads the PromptScreen_End when the player reaches a narrative ending.
+              additiveSceneManager.UnloadScene("CrewPayment");
               additiveSceneManager.LoadSceneSeperate("PromptScreen_End");
+              break;
+          case InGameStates.Mutiny: // Loads the PromptScreen_Mutiny when the player reaches a mutiny.
+              additiveSceneManager.LoadSceneSeperate("PromptScreen_Mutiny");
+              break;
+          case InGameStates.Death: // Loads the PromptScreen_Death when the player reaches a death.
+              additiveSceneManager.LoadSceneSeperate("PromptScreen_Death");
               break;
           default: // Output Warning when the passed in game state doesn't have a transition setup.
               Debug.LogWarning($"The passed in game state, {state.ToString()}, doesn't have a transition setup.");
