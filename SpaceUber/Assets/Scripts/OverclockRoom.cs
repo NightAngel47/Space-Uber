@@ -17,11 +17,17 @@ public class OverclockRoom : MonoBehaviour
     bool cooledDown = true;
 
 	private void OnMouseDown()
-    { 
-        if (!OverclockController.instance.overclocking && GameManager.currentGameState == InGameStates.Events && cooledDown)
-        {
-            OverclockController.instance.StartMiniGame(miniGame, this);
-        }
+    {
+	    // TODO replace with proper UI call
+	    PlayMiniGame();
+    }
+
+    public void PlayMiniGame()
+    {
+	    if (!OverclockController.instance.overclocking && GameManager.currentGameState == InGameStates.Events && cooledDown)
+	    {
+		    OverclockController.instance.StartMiniGame(miniGame, this);
+	    }
     }
 
     public void StartCoolDown() { StartCoroutine(Cooldown()); }
