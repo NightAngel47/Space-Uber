@@ -19,10 +19,11 @@ public class OverclockController : MonoBehaviour
     [SerializeField] float securityBaseAdjustment = 1;
     [SerializeField] float shipWeaponsBaseAdjustment = 1;
     [SerializeField] float hullDurabilityBaseAdjustment = 1;
+    public float cooldownTime = 5;
 
     //If a room is already being overclocked
     public bool overclocking = false;
-    public bool miniGameInProgress = false;
+    OverclockRoom activeRoom;
 
 	private void Awake()
 	{
@@ -32,10 +33,16 @@ public class OverclockController : MonoBehaviour
 
 	void Start() { shipStats = FindObjectOfType<ShipStats>(); }
 
-    public void StartMiniGame(MiniGameType miniGame) { FindObjectOfType<AdditiveSceneManager>().LoadSceneMerged(miniGame.ToString()); }
+    public void StartMiniGame(MiniGameType miniGame, OverclockRoom room) 
+    {
+        activeRoom = room;
+        EventSystem.instance.doingTasks = true;
+        FindObjectOfType<AdditiveSceneManager>().LoadSceneMerged(miniGame.ToString()); 
+    }
 
     public void EndMiniGame(MiniGameType miniGame, bool succsess, float statModification)
 	{
+        EventSystem.instance.doingTasks = false;
         if(succsess)
 		{
             if (miniGame == MiniGameType.Security) { shipStats.UpdateSecurityAmount( Mathf.RoundToInt(securityBaseAdjustment * statModification)); }
@@ -44,6 +51,8 @@ public class OverclockController : MonoBehaviour
             if (miniGame == MiniGameType.StabilizeEnergyLevels) { shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullDurabilityBaseAdjustment * statModification)); }
         }
         FindObjectOfType<AdditiveSceneManager>().UnloadScene(miniGame.ToString());
+		if (succsess && activeRoom) { activeRoom.StartCoolDown(); }
+        activeRoom = null;
 	}
 
     public void CallStartOverclocking(int moraleAmount, string resourceType = null, int resourceAmount = 0)

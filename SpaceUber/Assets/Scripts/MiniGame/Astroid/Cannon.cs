@@ -11,10 +11,11 @@ using UnityEngine;
 public class Cannon : MonoBehaviour
 {
 	[SerializeField] bool left = false;
-	[SerializeField] GameObject rocketPrefab = null;
+	[SerializeField] GameObject projectilePrefab = null;
 	[SerializeField] Transform barrel;
 	[SerializeField] float coolDown;
 	[SerializeField] GameObject[] coolDownIndicators;
+	[SerializeField] GameObject projectileParent;
 	bool canFire = true;
 	Camera cam;
 	private void Start()
@@ -35,10 +36,9 @@ public class Cannon : MonoBehaviour
 		{
 			if ((left && Input.GetMouseButtonDown(1)) || (!left && Input.GetMouseButtonDown(0)))
 			{
-				Instantiate(rocketPrefab, barrel.position, transform.rotation, transform.parent); 
+				Instantiate(projectilePrefab, barrel.position, transform.rotation, projectileParent.transform); 
 				StartCoroutine(CoolDown());
 			}
-			if (!left && Input.GetMouseButtonDown(0)) { Instantiate(rocketPrefab, barrel.position, transform.rotation, transform.parent); StartCoroutine(CoolDown()); }
 		}
 	}
 	
