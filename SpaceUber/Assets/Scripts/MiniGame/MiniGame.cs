@@ -13,11 +13,11 @@ public class MiniGame : MonoBehaviour
 
 	public void EndMiniGameEarly()
 	{
-        OverclockController.instance.EndMiniGame(miniGameSceneName, false);
+        OverclockController.instance.EndMiniGame(miniGameSceneName, false, 1);
 	}
 
-    public void EndMiniGameSuccess()
+    public void EndMiniGameSuccess(float statModification)
 	{
-        OverclockController.instance.EndMiniGame(miniGameSceneName, true);
+        OverclockController.instance.EndMiniGame(miniGameSceneName, true, statModification);
     }
 }

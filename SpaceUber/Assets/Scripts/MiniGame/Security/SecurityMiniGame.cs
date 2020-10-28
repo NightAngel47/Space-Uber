@@ -45,7 +45,7 @@ public class SecurityMiniGame : MiniGame
                 successes++;
                 for (int i = 0; i < successes; i++) { successTrackers[i].isOn = true; }
                 for(int i = successes; i < successTrackers.Length; i++) { successTrackers[i].isOn = false; }
-                if (successes == successTrackers.Length) { Debug.Log("win"); EndMiniGameSuccess(); }
+                if (successes == successTrackers.Length) { Debug.Log("win"); EndMiniGameSuccess(1); }
                 else 
                 {
                     Debug.Log("");
