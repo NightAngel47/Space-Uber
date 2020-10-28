@@ -10,7 +10,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using NaughtyAttributes;
 
-//[CreateAssetMenu(fileName = "new Ship Stats", menuName = "Ship Stats")]
 public class ShipStats : MonoBehaviour
 {
     [SerializeField ,Tooltip("Starting amount of credits"), Foldout("Starting Ship Stats")]
@@ -47,7 +46,7 @@ public class ShipStats : MonoBehaviour
     private int foodMoraleDamageMultiplier = 2;
     private int shipHealthMax;
     private int shipHealthCurrent;
-    private int crewMorale;
+    //private int crewMorale;
     
     /// <summary>
     /// Reference to the ship stats UI class.
@@ -78,7 +77,7 @@ public class ShipStats : MonoBehaviour
         UpdateCrewAmount(startingCrew, startingCrew);
         UpdateFoodAmount(startingFood);
         UpdateHullDurabilityAmount(startingShipHealth, startingShipHealth);
-        UpdateCrewMorale(startingMorale);
+        //UpdateCrewMorale(startingMorale);
     }
     
     private IEnumerator<YieldInstruction> TickUpdate()
@@ -98,27 +97,26 @@ public class ShipStats : MonoBehaviour
             }
             //yield return new WaitWhile(() => ticksPaused);
             
-            food += foodPerTick;
-            food -= crewRemaining;
+            food += foodPerTick - crewRemaining;
             if(food < 0)
             {
-                crewMorale += (food * foodMoraleDamageMultiplier);
+                //crewMorale += (food * foodMoraleDamageMultiplier);
                 food = 0;
             }
             
-            if(crewMorale < 0)
-            {
-                crewMorale = 0;
-            }
+            //if(crewMorale < 0)
+            //{
+            //    crewMorale = 0;
+            //}
             
             shipStatsUI.UpdateFoodUI(food, foodPerTick);
             //UpdateMoraleShipStatsUI();
             
-            float mutinyChance = (maxMutinyMorale - crewMorale) * zeroMoraleMutinyChance / maxMutinyMorale;
-            if(mutinyChance > UnityEngine.Random.value)
-            {
-                GameManager.instance.ChangeInGameState(InGameStates.Mutiny);
-            }
+            //float mutinyChance = (maxMutinyMorale - crewMorale) * zeroMoraleMutinyChance / maxMutinyMorale;
+            //if(mutinyChance > UnityEngine.Random.value)
+            //{
+            //    GameManager.instance.ChangeInGameState(InGameStates.Mutiny);
+            //}
             
             if(shipHealthCurrent <= 0)
             {
@@ -240,22 +238,22 @@ public class ShipStats : MonoBehaviour
     public int Food { get; set; }
     public int ShipHealthCurrent { get; set; }
     
-    public void UpdateCrewMorale(int crewMoraleAmount)
-    {
-        crewMorale += crewMoraleAmount;
-        if(crewMorale < 0)
-        {
-            crewMorale = 0;
-        }
-        // TODO update to work with changes from development
-        //UpdateShipStatsUI();
-    }
+    //public void UpdateCrewMorale(int crewMoraleAmount)
+    //{
+    //    crewMorale += crewMoraleAmount;
+    //    if(crewMorale < 0)
+    //    {
+    //        crewMorale = 0;
+    //    }
+    //    // TODO update to work with changes from development
+    //    //UpdateShipStatsUI();
+    //}
     
     public void PayCrew(int ammount)
     {
-        UpdateCreditsAmount(-1 * ammount * crewRemaining);
-        int BadMoraleMultiplier = (maxMutinyMorale - crewMorale) * crewPaymentMoraleMultiplier / maxMutinyMorale;
-        UpdateCrewMorale(BadMoraleMultiplier * (ammount - crewPaymentDefault));
+        UpdateCreditsAmount(-ammount * crewRemaining);
+        //int BadMoraleMultiplier = (maxMutinyMorale - crewMorale) * crewPaymentMoraleMultiplier / maxMutinyMorale;
+        //UpdateCrewMorale(BadMoraleMultiplier * (ammount - crewPaymentDefault));
     }
 }
 

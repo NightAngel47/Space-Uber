@@ -117,10 +117,10 @@ public class ShipStatsInterface : MonoBehaviour
     public int ShipHealthCurrent { get; set; }
      */
     
-    public void UpdateCrewMorale(int crewMoraleAmount)
-    {
-        ship.UpdateCrewMorale(crewMoraleAmount);
-    }
+    //public void UpdateCrewMorale(int crewMoraleAmount)
+    //{
+    //    ship.UpdateCrewMorale(crewMoraleAmount);
+    //}
     
     public void PayCrew(int ammount)
     {

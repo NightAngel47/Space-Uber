@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 4360159919716397346}
   - component: {fileID: 5740368950282066039}
   - component: {fileID: 24717508544903462}
+  - component: {fileID: 2641448655269380362}
   m_Layer: 0
   m_Name: RoomPrefabBase
   m_TagString: Untagged
@@ -77,7 +78,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85abcfb88d2be284cb798b37dc985349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: 
+  SFXs: []
+  Placements: []
 --- !u!114 &4360159919716397346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,6 +116,7 @@ MonoBehaviour:
   rotAdjust: 1
   shapeType: 0
   objectNum: 0
+  mouseOverAudio: []
   shapeDataTemplate: {fileID: 0}
   shapeData: {fileID: 0}
   hoverUiPanel: {fileID: 6034342293036555717}
@@ -159,6 +162,19 @@ PolygonCollider2D:
       - {x: -0.5, y: 0.5}
       - {x: 0.5, y: 0.5}
       - {x: 0.5, y: -0.5}
+--- !u!114 &2641448655269380362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8354016038451866568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e51455a10ea4ad45b76de9e7edfc5c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miniGame: 
 --- !u!1 &8502931638391405075
 GameObject:
   m_ObjectHideFlags: 0
