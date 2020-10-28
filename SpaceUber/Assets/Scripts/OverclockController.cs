@@ -8,105 +8,56 @@
 using System.Collections;
 using UnityEngine;
 
+public enum MiniGameType { None, CropHarvest, Security, Asteroids, StabilizeEnergyLevels}
+
 public class OverclockController : MonoBehaviour
 {
     public static OverclockController instance;
-    ShipStats shipStats;
+    private ShipStats shipStats;
+    private AdditiveSceneManager additiveSceneManager;
+
+    [SerializeField] float foodBaseAdjustment = 1;
+    [SerializeField] float securityBaseAdjustment = 1;
+    [SerializeField] float shipWeaponsBaseAdjustment = 1;
+    [SerializeField] float hullDurabilityBaseAdjustment = 1;
+    public float cooldownTime = 5;
 
     //If a room is already being overclocked
     public bool overclocking = false;
-    public bool miniGameInProgress = false;
+    OverclockRoom activeRoom;
 
 	private void Awake()
 	{
-		if (!instance) { instance = this; DontDestroyOnLoad(gameObject); }
+		if (!instance) { instance = this; }
         else { Destroy(gameObject); }
 	}
 
-	void Start()
+    void Start()
     {
         shipStats = FindObjectOfType<ShipStats>();
+        additiveSceneManager = FindObjectOfType<AdditiveSceneManager>();
     }
 
-    public void StartMiniGame(string miniGame)
-	{
-        FindObjectOfType<AdditiveSceneManager>().LoadSceneMerged(miniGame);
-	}
-
-    public void EndMiniGame(string miniGame, bool succsess)
-	{
-        //TODO If successful change stats
-        //if cropharvent + w.e to food
-        FindObjectOfType<AdditiveSceneManager>().UnloadScene(miniGame);
-	}
-
-    public void CallStartOverclocking(int moraleAmount, string resourceType = null, int resourceAmount = 0)
+    public void StartMiniGame(MiniGameType miniGame, OverclockRoom room)
     {
-        StartCoroutine(StartOverclocking(moraleAmount, resourceType, resourceAmount));
-    }
-
-    public void CallStopOverClocking(string resourceType = null, int resourceAmount = 0)
-    {
-        StartCoroutine(StopOverclocking(resourceType, resourceAmount));
-    }
-
-    private IEnumerator StartOverclocking(int moraleAmount, string resourceType = "", int resourceAmount = 0)
-    {
+        if (miniGame == MiniGameType.None) return; // check for implemented mini-game
         overclocking = true;
-        switch (resourceType)
-        {
-            case "Security":
-                shipStats.UpdateSecurityAmount(resourceAmount);
-                break;
-            case "Ship Weapons":
-                shipStats.UpdateShipWeaponsAmount(resourceAmount);
-                break;
-            case "Food":
-                shipStats.UpdateFoodAmount(resourceAmount);
-                break;
-            case "Food Per Tick":
-                shipStats.UpdateFoodPerTickAmount(resourceAmount);
-                break;
-            case "Hull Durability":
-                shipStats.UpdateHullDurabilityAmount(resourceAmount);
-                break;
-            default:
-                break;
-        }
-        shipStats.UpdateCrewMorale(moraleAmount);
-        yield return new WaitForSecondsRealtime(5.0f);
-        StartCoroutine(StopOverclocking(resourceType, resourceAmount));
+        activeRoom = room;
+        additiveSceneManager.LoadSceneMerged(miniGame.ToString()); 
     }
 
-    private IEnumerator StopOverclocking(string resourceType = "", int resourceAmount = 0)
-    {
+    public void EndMiniGame(MiniGameType miniGame, bool succsess, float statModification = 0)
+	{
         overclocking = false;
-        switch (resourceType)
-        {
-            case "Credits":
-                shipStats.UpdateCreditsAmount(-resourceAmount);
-                break;
-            case "Energy":
-                shipStats.UpdateEnergyAmount(-resourceAmount, -resourceAmount);
-                break;
-            case "Security":
-                shipStats.UpdateSecurityAmount(-resourceAmount);
-                break;
-            case "Ship Weapons":
-                shipStats.UpdateShipWeaponsAmount(-resourceAmount);
-                break;
-            case "Food":
-                shipStats.UpdateFoodAmount(-resourceAmount);
-                break;
-            case "Food Per Tick":
-                shipStats.UpdateFoodPerTickAmount(-resourceAmount);
-                break;
-            case "Hull Durability":
-                shipStats.UpdateHullDurabilityAmount(-resourceAmount);
-                break;
-            default:
-                break;
+        if(succsess)
+		{
+            if (miniGame == MiniGameType.Security) { shipStats.UpdateSecurityAmount( Mathf.RoundToInt(securityBaseAdjustment * statModification)); }
+            if (miniGame == MiniGameType.Asteroids) { shipStats.UpdateShipWeaponsAmount(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification)); }
+            if (miniGame == MiniGameType.CropHarvest) { shipStats.UpdateFoodAmount(Mathf.RoundToInt(foodBaseAdjustment * statModification)); }
+            if (miniGame == MiniGameType.StabilizeEnergyLevels) { shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullDurabilityBaseAdjustment * statModification)); }
         }
-        yield return null;
-    }
+        additiveSceneManager.UnloadScene(miniGame.ToString());
+		if (succsess && activeRoom) { activeRoom.StartCoolDown(); }
+        activeRoom = null;
+	}
 }

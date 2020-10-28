@@ -53,7 +53,6 @@ public class EventSystem : MonoBehaviour
 	private bool isTraveling = false;
 	private bool eventActive = false;
 
-	[HideInInspector] public bool doingTasks = false;
 	[SerializeField] private GameObject eventWarning;
 	private Job currentJob;
 
@@ -94,7 +93,7 @@ public class EventSystem : MonoBehaviour
 			{
 				eventWarning.SetActive(true);
 			}
-			yield return new WaitUntil(() => !doingTasks);
+			yield return new WaitUntil(() => !OverclockController.instance.overclocking);
 			if (eventWarning != null)
 			{
 				eventWarning.SetActive(false);

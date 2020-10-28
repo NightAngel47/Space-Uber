@@ -14,10 +14,12 @@ public class MiniGameButton : MonoBehaviour
 	[SerializeField] Sprite onSprite = null;
 	[SerializeField]Sprite offSprite = null;
 
-	public void OnMouseDown()
+	public void OnMouseDown() { ChangeValue(); }
+
+	public void ChangeValue()
 	{
 		isOn = !isOn;
-		if(isOn) { GetComponent<SpriteRenderer>().sprite = onSprite; value = 1; }
+		if (isOn) { GetComponent<SpriteRenderer>().sprite = onSprite; value = 1; }
 		else { GetComponent<SpriteRenderer>().sprite = offSprite; value = 0; }
 	}
 }
