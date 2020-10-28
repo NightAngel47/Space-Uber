@@ -18,8 +18,7 @@ public class OverclockRoom : MonoBehaviour
 
 	private void OnMouseDown()
     { 
-        if (!OverclockController.instance.overclocking && !EventSystem.instance.doingTasks
-            && GameManager.currentGameState == InGameStates.Events && cooledDown)
+        if (!OverclockController.instance.overclocking && GameManager.currentGameState == InGameStates.Events && cooledDown)
         {
             OverclockController.instance.StartMiniGame(miniGame, this);
         }

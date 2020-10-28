@@ -8,12 +8,13 @@
 using System.Collections;
 using UnityEngine;
 
-public enum MiniGameType { NONE, CropHarvest, Security, Asteroids, StabilizeEnergyLevels}
+public enum MiniGameType { None, CropHarvest, Security, Asteroids, StabilizeEnergyLevels}
 
 public class OverclockController : MonoBehaviour
 {
     public static OverclockController instance;
-    ShipStats shipStats;
+    private ShipStats shipStats;
+    private AdditiveSceneManager additiveSceneManager;
 
     [SerializeField] float foodBaseAdjustment = 1;
     [SerializeField] float securityBaseAdjustment = 1;
@@ -27,22 +28,27 @@ public class OverclockController : MonoBehaviour
 
 	private void Awake()
 	{
-		if (!instance) { instance = this; DontDestroyOnLoad(gameObject); }
+		if (!instance) { instance = this; }
         else { Destroy(gameObject); }
 	}
 
-	void Start() { shipStats = FindObjectOfType<ShipStats>(); }
-
-    public void StartMiniGame(MiniGameType miniGame, OverclockRoom room) 
+    void Start()
     {
-        activeRoom = room;
-        EventSystem.instance.doingTasks = true;
-        FindObjectOfType<AdditiveSceneManager>().LoadSceneMerged(miniGame.ToString()); 
+        shipStats = FindObjectOfType<ShipStats>();
+        additiveSceneManager = FindObjectOfType<AdditiveSceneManager>();
     }
 
-    public void EndMiniGame(MiniGameType miniGame, bool succsess, float statModification)
+    public void StartMiniGame(MiniGameType miniGame, OverclockRoom room)
+    {
+        if (miniGame == MiniGameType.None) return; // check for implemented mini-game
+        overclocking = true;
+        activeRoom = room;
+        additiveSceneManager.LoadSceneMerged(miniGame.ToString()); 
+    }
+
+    public void EndMiniGame(MiniGameType miniGame, bool succsess, float statModification = 0)
 	{
-        EventSystem.instance.doingTasks = false;
+        overclocking = false;
         if(succsess)
 		{
             if (miniGame == MiniGameType.Security) { shipStats.UpdateSecurityAmount( Mathf.RoundToInt(securityBaseAdjustment * statModification)); }
@@ -50,11 +56,11 @@ public class OverclockController : MonoBehaviour
             if (miniGame == MiniGameType.CropHarvest) { shipStats.UpdateFoodAmount(Mathf.RoundToInt(foodBaseAdjustment * statModification)); }
             if (miniGame == MiniGameType.StabilizeEnergyLevels) { shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullDurabilityBaseAdjustment * statModification)); }
         }
-        FindObjectOfType<AdditiveSceneManager>().UnloadScene(miniGame.ToString());
+        additiveSceneManager.UnloadScene(miniGame.ToString());
 		if (succsess && activeRoom) { activeRoom.StartCoolDown(); }
         activeRoom = null;
 	}
-
+    /* NOT USED
     public void CallStartOverclocking(int moraleAmount, string resourceType = null, int resourceAmount = 0)
     {
         StartCoroutine(StartOverclocking(moraleAmount, resourceType, resourceAmount));
@@ -75,13 +81,13 @@ public class OverclockController : MonoBehaviour
         if (resourceType == MiniGameType.StabilizeEnergyLevels.ToString()) { shipStats.UpdateHullDurabilityAmount(resourceAmount); }
         
         shipStats.UpdateCrewMorale(moraleAmount);
-        yield return new WaitForSecondsRealtime(5.0f);
         StopOverclocking(resourceType, resourceAmount);
+        yield return new WaitForSecondsRealtime(cooldownTime);
+        overclocking = false;
     }
 
     private void StopOverclocking(string resourceType = "", int resourceAmount = 0)
     {
-        overclocking = false;
         switch (resourceType)
         {
             case "Credits":
@@ -109,4 +115,5 @@ public class OverclockController : MonoBehaviour
                 break;
         }
     }
+    */
 }
