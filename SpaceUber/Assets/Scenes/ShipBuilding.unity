@@ -679,8 +679,6 @@ MonoBehaviour:
     - row: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
     - row: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
     - row: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
-  xVarAdjust: 0
-  yVarAdjust: 0
 --- !u!4 &810855496
 Transform:
   m_ObjectHideFlags: 0
@@ -902,7 +900,7 @@ PrefabInstance:
     - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeToEvents
+      value: ChangeToCrewManagement
       objectReference: {fileID: 0}
     - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}
@@ -933,7 +931,7 @@ PrefabInstance:
     - target: {fileID: 2228287772260378586, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}
       propertyPath: m_text
-      value: Finish Ship >
+      value: Edit Crew >
       objectReference: {fileID: 0}
     - target: {fileID: 3503784335472469733, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}
@@ -1337,10 +1335,50 @@ MonoBehaviour:
   - {fileID: 2183719037287948709, guid: 4e71fa7e67cf7b541bca97aec4cbe550, type: 3}
   - {fileID: 4698225446512667781, guid: 3276e4d066dec2642a6967a5c5382cd6, type: 3}
   - {fileID: 3137658316760035225, guid: 9d5591caf8b2d194d93f4235ccef4368, type: 3}
+  - {fileID: 8126311785656295561, guid: bd3486c8ec84ce34699860b7b4043003, type: 3}
+  - {fileID: 1938445007120941431, guid: 798f301b1cf117b4998c0786bed615dc, type: 3}
+  - {fileID: 816404918989633343, guid: 9381c65313cdc214da190c44eb342913, type: 3}
+  - {fileID: 3474015011074417767, guid: cfd8eb7be5fb0c846a9fe0173687b2ea, type: 3}
+  - {fileID: 4836928456875332943, guid: 3116085d363497349b86fe4e1204ab42, type: 3}
+  - {fileID: 7855348245664385523, guid: e2262463b86b938499dc8f0223533d9b, type: 3}
+  - {fileID: 5148412143511151209, guid: 2fbc504003ca84945aaaa7622517c854, type: 3}
+  - {fileID: 1376141286253478483, guid: 78ccb9d11f90f1d4d865b27438b7dcb2, type: 3}
+  - {fileID: 7228324483266889721, guid: 2fd36777bb0d2ae4b996c20338f1bdfe, type: 3}
+  - {fileID: 6119187300953705731, guid: 7f1047f1d4ed51947b91743afdcd000a, type: 3}
   buttonPrefab: {fileID: 2428309925023011877, guid: df24a7f9f614f11469dbbebd4ecb3d64,
     type: 3}
   buttonPanel: {fileID: 1751713099}
   spawnLoc: {x: 0, y: 0}
+  purchasePowerCore:
+  - Purchase Core 1
+  - Purchase Core 2
+  - Purchase Core 3
+  purchaseHydroponics:
+  - Arp 1
+  - Arp 2
+  - Arp 3
+  - Arp 4
+  - Arp 5
+  purchaseBrig:
+  - Alien Noise 1
+  - Alien Noise 2
+  - Alien Noise 3
+  - Alien Noise 4
+  - Alien Noise 5
+  - Alien Noise 6
+  - Alien Noise 7
+  - Alien Noise 8
+  purchaseStorage:
+  - Arp 1
+  - Arp 2
+  - Arp 3
+  - Arp 4
+  - Arp 5
+  purchaseBunks:
+  - Purchase Bunks 1
+  - Purchase Bunks 2
+  purchaseMedbay:
+  - Purchase Medbay
 --- !u!4 &1719975905
 Transform:
   m_ObjectHideFlags: 0
