@@ -49,7 +49,7 @@ public class EventSystem : MonoBehaviour
 
 	
 	private bool isTraveling = false;
-	private bool eventActive = false;
+	public bool eventActive { get; private set; } = false;
 
 	[SerializeField] private GameObject eventWarning;
 	private Job currentJob;
@@ -102,10 +102,6 @@ public class EventSystem : MonoBehaviour
 				eventWarning.SetActive(true);
 			}
 			yield return new WaitUntil(() => !OverclockController.instance.overclocking);
-      if(GameManager.currentGameState != InGameStates.Events)
-      {
-          break;
-      }
 			if (eventWarning != null)
 			{
 				eventWarning.SetActive(false);
@@ -113,7 +109,7 @@ public class EventSystem : MonoBehaviour
             
             ship.PauseTickEvents();
 
-			// Load Event_General Scene for upcoming event
+			// Load Event_General Scene for upcoming event // TODO will have to change based on story vs random event
 			asm.LoadSceneMerged("Event_General");
 			yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_General").isLoaded);
 

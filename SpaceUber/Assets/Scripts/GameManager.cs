@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         // Handles what scenes to Load/Unload using the AdditiveSceneManager, along with additional scene cleanup.
         switch (state)
         {
-          case InGameStates.JobSelect: // Loads PromptScreen_Start for the player to pick their job
+          case InGameStates.JobSelect: // Loads Jobpicker for the player to pick their job
               // unload ending screen if replaying
               if (SceneManager.GetSceneByName("PromptScreen_End").isLoaded) // TODO remove when we have menus
               {
