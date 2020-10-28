@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class MiniGame : MonoBehaviour
 {
-    [SerializeField] string miniGameSceneName;
+	[SerializeField] MiniGameType miniGameSceneName;
 
 	public void EndMiniGameEarly()
 	{

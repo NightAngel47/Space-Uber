@@ -8,15 +8,12 @@
 using System.Collections;
 using UnityEngine;
 
+public enum MiniGameType { NONE, CropHarvest, Security, Asteroids, StabilizeEnergyLevels}
+
 public class OverclockController : MonoBehaviour
 {
     public static OverclockController instance;
     ShipStats shipStats;
-
-    [SerializeField] string foodMiniGameSceneName = "CropHarvest";
-    [SerializeField] string securityMiniGameSceneName = "Security";
-    [SerializeField] string shipWeaponsMiniGameSceneName = "Asteroids";
-    [SerializeField] string hullDurabilityMiniGameSceneName = "StabilizeEnergyLevels";
 
     [SerializeField] float foodBaseAdjustment = 1;
     [SerializeField] float securityBaseAdjustment = 1;
@@ -35,18 +32,18 @@ public class OverclockController : MonoBehaviour
 
 	void Start() { shipStats = FindObjectOfType<ShipStats>(); }
 
-    public void StartMiniGame(string miniGame) { FindObjectOfType<AdditiveSceneManager>().LoadSceneMerged(miniGame); }
+    public void StartMiniGame(MiniGameType miniGame) { FindObjectOfType<AdditiveSceneManager>().LoadSceneMerged(miniGame.ToString()); }
 
-    public void EndMiniGame(string miniGame, bool succsess, float statModification)
+    public void EndMiniGame(MiniGameType miniGame, bool succsess, float statModification)
 	{
         if(succsess)
 		{
-            if (miniGame == securityMiniGameSceneName) { shipStats.UpdateSecurityAmount( Mathf.RoundToInt(securityBaseAdjustment * statModification)); }
-            if (miniGame == shipWeaponsMiniGameSceneName) { shipStats.UpdateShipWeaponsAmount(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification)); }
-            if (miniGame == foodMiniGameSceneName) { shipStats.UpdateFoodAmount(Mathf.RoundToInt(foodBaseAdjustment * statModification)); }
-            if (miniGame == hullDurabilityMiniGameSceneName) { shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullDurabilityBaseAdjustment * statModification)); }
+            if (miniGame == MiniGameType.Security) { shipStats.UpdateSecurityAmount( Mathf.RoundToInt(securityBaseAdjustment * statModification)); }
+            if (miniGame == MiniGameType.Asteroids) { shipStats.UpdateShipWeaponsAmount(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification)); }
+            if (miniGame == MiniGameType.CropHarvest) { shipStats.UpdateFoodAmount(Mathf.RoundToInt(foodBaseAdjustment * statModification)); }
+            if (miniGame == MiniGameType.StabilizeEnergyLevels) { shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullDurabilityBaseAdjustment * statModification)); }
         }
-        FindObjectOfType<AdditiveSceneManager>().UnloadScene(miniGame);
+        FindObjectOfType<AdditiveSceneManager>().UnloadScene(miniGame.ToString());
 	}
 
     public void CallStartOverclocking(int moraleAmount, string resourceType = null, int resourceAmount = 0)
@@ -62,11 +59,11 @@ public class OverclockController : MonoBehaviour
     private IEnumerator StartOverclocking(int moraleAmount, string resourceType = "", int resourceAmount = 0)
     {
         overclocking = true;
-        if (resourceType == securityMiniGameSceneName){ shipStats.UpdateSecurityAmount(resourceAmount); }
-        if (resourceType == shipWeaponsMiniGameSceneName){ shipStats.UpdateShipWeaponsAmount(resourceAmount); }
-        if (resourceType == foodMiniGameSceneName){ shipStats.UpdateFoodAmount(resourceAmount); }
+        if (resourceType == MiniGameType.Security.ToString()){ shipStats.UpdateSecurityAmount(resourceAmount); }
+        if (resourceType == MiniGameType.Asteroids.ToString()){ shipStats.UpdateShipWeaponsAmount(resourceAmount); }
+        if (resourceType == MiniGameType.CropHarvest.ToString()){ shipStats.UpdateFoodAmount(resourceAmount); }
         if (resourceType == "Food Per Tick") {shipStats.UpdateFoodPerTickAmount(resourceAmount); }
-        if (resourceType == hullDurabilityMiniGameSceneName) { shipStats.UpdateHullDurabilityAmount(resourceAmount); }
+        if (resourceType == MiniGameType.StabilizeEnergyLevels.ToString()) { shipStats.UpdateHullDurabilityAmount(resourceAmount); }
         
         shipStats.UpdateCrewMorale(moraleAmount);
         yield return new WaitForSecondsRealtime(5.0f);

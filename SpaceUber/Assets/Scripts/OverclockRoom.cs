@@ -13,7 +13,7 @@ using UnityEngine;
 public class OverclockRoom : MonoBehaviour
 {
     [Tooltip("Name of mini game scene")]
-    [SerializeField] string miniGame;
+    [SerializeField] MiniGameType miniGame;
     float cooldownTime = 5;
 
 	private void OnMouseDown()
