@@ -93,7 +93,7 @@ public class ObjectScript : MonoBehaviour
 
     public void OnMouseOver()
     {
-        if (GameManager.currentGameState == InGameStates.ShipBuilding && clickAgain == true) 
+        if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true) 
         {
             if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true)
             {
@@ -117,7 +117,7 @@ public class ObjectScript : MonoBehaviour
             
         }
 
-        if(GameManager.currentGameState == InGameStates.CrewManagement)
+        if(GameManager.instance.currentGameState == InGameStates.CrewManagement)
         {
             hoverUiPanel.SetActive(true);
 
@@ -136,7 +136,7 @@ public class ObjectScript : MonoBehaviour
 
     public void OnMouseExit()
     {
-        if (GameManager.currentGameState == InGameStates.CrewManagement)
+        if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
         {
             hoverUiPanel.SetActive(false);
         }

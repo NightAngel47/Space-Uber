@@ -13,21 +13,30 @@ using UnityEngine;
 public class OverclockRoom : MonoBehaviour
 {
     [Tooltip("Name of mini game scene")]
-    [SerializeField] string miniGame;
-    float cooldownTime = 5;
+    [SerializeField] MiniGameType miniGame;
+    bool cooledDown = true;
 
 	private void OnMouseDown()
-    { 
-        if (!OverclockController.instance.overclocking && !OverclockController.instance.miniGameInProgress)
-        {
-
-            OverclockController.instance.StartMiniGame(miniGame);
-        }
+    {
+	    // TODO replace with proper UI call
+	    PlayMiniGame();
     }
+
+    public void PlayMiniGame()
+    {
+	    if (GameManager.instance.currentGameState == InGameStates.Events 
+	        && !EventSystem.instance.eventActive && !OverclockController.instance.overclocking && cooledDown)
+	    {
+		    OverclockController.instance.StartMiniGame(miniGame, this);
+	    }
+    }
+
+    public void StartCoolDown() { StartCoroutine(Cooldown()); }
 
     IEnumerator Cooldown()
 	{
-        //OverclockController.instance.cooldownTime
-        yield return new WaitForSeconds(cooldownTime);
+        cooledDown = false;
+        yield return new WaitForSeconds(OverclockController.instance.cooldownTime);
+        cooledDown = true;
 	}
 }
