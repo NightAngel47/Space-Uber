@@ -3,20 +3,24 @@
 // Credits: Kee Gamedev on YouTube - https://www.youtube.com/watch?v=P3hcopOkpa8
 // Follow video for setup. The only change I made was to make speed public for the sake of adjustment.
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BackgroundScrollRepeat : MonoBehaviour
 {
+    private Rigidbody2D rigidbody2D;
+    
     private float width;
     [SerializeField] private float speed;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        rigidbody2D = GetComponent<Rigidbody2D>();
+    }
+
     void Start()
     {
         width = GetComponent<SpriteRenderer>().size.x;
-        GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
+        rigidbody2D.velocity = new Vector2(speed, 0);
     }
 
     // Update is called once per frame
@@ -26,11 +30,20 @@ public class BackgroundScrollRepeat : MonoBehaviour
         {
             Reposition();
         }
+
+        // Toggle when background should be moving
+        if (rigidbody2D.velocity.magnitude > 0 && GameManager.instance.currentGameState != InGameStates.Events)
+        {
+            rigidbody2D.velocity = Vector2.zero;
+        }
+        else if (rigidbody2D.velocity.magnitude <= 0 && GameManager.instance.currentGameState == InGameStates.Events)
+        {
+            rigidbody2D.velocity = new Vector2(speed, 0);
+        }
     }
 
     private void Reposition()
     {
-        Vector2 vector = new Vector2(width * -2f, 0);
-        transform.position = (Vector2)transform.position + vector;
+        transform.position += new Vector3(width * -2f, 0, 0);
     }
 }

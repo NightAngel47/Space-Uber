@@ -73,12 +73,12 @@ public class EventSystem : MonoBehaviour
 	public IEnumerator Travel()
 	{
 		float chanceOfEvent = startingEventChance;
-		while (GameManager.currentGameState == InGameStates.Events)
+		while (GameManager.instance.currentGameState == InGameStates.Events)
 		{
             ship.StartTickEvents();
             
 			yield return new WaitForSeconds(timeBeforeEventRoll); //start with one big chunk of time
-            if(GameManager.currentGameState != InGameStates.Events)
+            if(GameManager.instance.currentGameState != InGameStates.Events)
             {
                 break;
             }
@@ -91,7 +91,7 @@ public class EventSystem : MonoBehaviour
 				chanceOfEvent+= chanceIncreasePerFreq;
 				yield return new WaitForSeconds(eventChanceFreq);
 			}
-            if(GameManager.currentGameState != InGameStates.Events)
+            if(GameManager.instance.currentGameState != InGameStates.Events)
             {
                 break;
             }
