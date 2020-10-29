@@ -16,7 +16,7 @@ using UnityEngine.SceneManagement;
 ///     Events          player can run into story and random events.
 ///     Ending          player has reached a narrative ending.
 /// </summary>
-public enum InGameStates { JobSelect, ShipBuilding, Events, Ending, Mutiny, Death ,CrewPayment }
+public enum InGameStates { JobSelect, ShipBuilding, CrewManagement, Events, Ending, Mutiny, Death ,CrewPayment }
 
 /// <summary>
 /// Manages the state of the game while the player is playing.
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     public static InGameStates currentGameState { get; private set; } = InGameStates.JobSelect;
 
     /// <summary>
-    /// Reference to the AdditiveSceneManager used to 
+    /// Reference to the AdditiveSceneManager used to
     /// Load/Unload scenes additvely when the game state changes.
     /// </summary>
     private AdditiveSceneManager additiveSceneManager;
@@ -93,7 +93,12 @@ public class GameManager : MonoBehaviour
               additiveSceneManager.LoadSceneSeperate("ShipBuilding");
               additiveSceneManager.UnloadScene("JobPicker");
               break;
-          case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
+          case InGameStates.CrewManagement:
+              additiveSceneManager.UnloadScene("ShipBuilding");
+              additiveSceneManager.LoadSceneSeperate("CrewManagement");
+              ObjectScript[] os = FindObjectsOfType<ObjectScript>();
+              break;
+            case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
               // Remove unplaced rooms from the ShipBuilding state
               if (!ObjectMover.hasPlaced)
               {
@@ -101,7 +106,7 @@ public class GameManager : MonoBehaviour
                   Destroy(FindObjectOfType<ObjectMover>().gameObject);
               }
               foreach(RoomStats room in FindObjectsOfType<RoomStats>())
-              { 
+              {
                   room.UpdateUsedRoom();
               }
               additiveSceneManager.UnloadScene("ShipBuilding");

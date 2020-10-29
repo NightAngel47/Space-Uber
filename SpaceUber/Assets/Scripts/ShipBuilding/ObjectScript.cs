@@ -16,11 +16,14 @@ public class ObjectScript : MonoBehaviour
 {
     [Foldout("Data")]
     public int rotAdjust = 1;
-    private GameObject parentObj;
     public static Color c;
 
     public int shapeType;
     public int objectNum;
+
+    public bool canRotate;  //true can rotate | false cannot rotate
+    public bool nextToRoom; //true required next to x room | false no condition 
+    public int nextToRoomNum;
 
     public string[] mouseOverAudio;
 
@@ -53,6 +56,9 @@ public class ObjectScript : MonoBehaviour
 
     [Foldout("Data")]
     public Vector3 rotAdjustVal;
+
+    public bool clickAgain = true;
+
     private void Start()
     {
         //rotAdjust = false;
@@ -75,9 +81,19 @@ public class ObjectScript : MonoBehaviour
         ResetData();
     }
 
+    public void TurnOnClickAgain()
+    {
+        clickAgain = true;
+    }
+
+    public void TurnOffClickAgain()
+    {
+        clickAgain = false;
+    }
+
     public void OnMouseOver()
     {
-        if (GameManager.currentGameState == InGameStates.ShipBuilding) 
+        if (GameManager.currentGameState == InGameStates.ShipBuilding && clickAgain == true) 
         {
             if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true)
             {
@@ -98,7 +114,17 @@ public class ObjectScript : MonoBehaviour
             }
             
             //TODO might need to allow seeing room stats outside of ship building, however this was done to not have them show during events
+            
+        }
+
+        if(GameManager.currentGameState == InGameStates.CrewManagement)
+        {
             hoverUiPanel.SetActive(true);
+
+            if (Input.GetMouseButton(0))
+            {
+                FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
+            }
         }
     }
 
@@ -110,7 +136,10 @@ public class ObjectScript : MonoBehaviour
 
     public void OnMouseExit()
     {
-        hoverUiPanel.SetActive(false);
+        if (GameManager.currentGameState == InGameStates.CrewManagement)
+        {
+            hoverUiPanel.SetActive(false);
+        }
     }
 
     public void Edit()
