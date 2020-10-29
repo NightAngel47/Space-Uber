@@ -130,7 +130,10 @@ public class ObjectScript : MonoBehaviour
 
     public void OnMouseEnter()
     {
-        AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length)]);
+        if (!EventSystem.instance.eventActive && !OverclockController.instance.overclocking)
+        {
+            AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length)]);
+        }
     }
 
 
