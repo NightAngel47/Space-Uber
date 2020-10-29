@@ -63,7 +63,7 @@ public class ObjectScript : MonoBehaviour
     {
         //rotAdjust = false;
         c = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
-        c.a = 0.5f;
+        c.a = 1;
         //parentObj = transform.parent.gameObject;
         
         roomNameUI.text = gameObject.GetComponent<RoomStats>().roomName;
@@ -150,9 +150,9 @@ public class ObjectScript : MonoBehaviour
             r.TurnOffClickAgain();
         }
 
-        c.a = 1;
-        gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
         c.a = .5f;
+        gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
+        c.a = 1;
         SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
         gameObject.GetComponent<ObjectMover>().enabled = true;
         gameObject.GetComponent<ObjectMover>().TurnOnBeingDragged();

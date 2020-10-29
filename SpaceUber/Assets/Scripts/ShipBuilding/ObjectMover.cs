@@ -31,7 +31,7 @@ public class ObjectMover : MonoBehaviour
     void Start()
     {
         c = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
-        c.a = 1;
+        c.a = .5f;
         gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
         os = gameObject.GetComponent<ObjectScript>();
 
@@ -69,6 +69,11 @@ public class ObjectMover : MonoBehaviour
                 {
                     isBeingDragged = false;
                     Placement();
+                }
+
+                if(Input.GetMouseButtonDown(1))
+                {
+                    os.Delete();
                 }
             }
         }
