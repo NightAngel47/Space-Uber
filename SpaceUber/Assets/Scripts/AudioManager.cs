@@ -321,7 +321,7 @@ public class AudioManager : MonoBehaviour
             while (timeElapsed < fadeTime)
             {
                 //Set volume to the percentage of time that has elapsed over fade time
-                sound.SetVolume( startVolume *  (fadeStart - (fadeInOrOut * timeElapsed / fadeTime)));
+                sound.SetVolume((startVolume *  (fadeStart - (fadeInOrOut * timeElapsed / fadeTime)))*masterVolume);
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
