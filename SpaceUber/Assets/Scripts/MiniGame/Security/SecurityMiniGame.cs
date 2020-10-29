@@ -8,60 +8,121 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.UI;
 
 public class SecurityMiniGame : MiniGame
 {
-    [SerializeField] TMP_Text[] codeSegments;
-    [SerializeField] TMP_InputField input;
+    [SerializeField] Toggle[] successTrackers;
+    [SerializeField] CodeBlock[] codeSegments;
+    [SerializeField] TMP_Text codePreview;
     [SerializeField] float displayTime = 1;
     [SerializeField] GameObject tryAgainText;
-    string validChars = "abcdefghijklmnopqrstuvwsyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-    string requiredCode;
-
-    void Start()
-    {
-        GenerateCode();
+    [SerializeField] int minCodeLength = 3;
+    [SerializeField] int maxCodeLength = 5;
+    public int successes = 0;
+    string validChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    string requiredCode = "";
+    string availableCode = "";
+    string inputCode = "";
+    [SerializeField] int startCodeLength = 3;
+    [SerializeField] bool hideInput = true;
+    [SerializeField] Color highlightColor;
+    [SerializeField] Color originalButtonColor;
+    
+    void Start() 
+    { 
+        GenerateCode(); 
+        foreach(Toggle toggle in successTrackers) { toggle.isOn = false; }
     }
 
     void Update()
     {
-		if (Input.GetKeyDown(KeyCode.Return)) 
+		if (inputCode.Length == requiredCode.Length && inputCode.Length > 0) 
         {
-            if(input.text == requiredCode) { EndMiniGameSuccess(); }
+            if (inputCode == requiredCode)
+            {
+                inputCode = "";
+                successes++;
+                for (int i = 0; i < successes; i++) { successTrackers[i].isOn = true; }
+                for(int i = successes; i < successTrackers.Length; i++) { successTrackers[i].isOn = false; }
+                if (successes == successTrackers.Length) { Debug.Log("win"); EndMiniGameSuccess(1); }
+                else 
+                {
+                    Debug.Log("");
+                    GenerateCode();
+                }
+            }
             else 
             {
-                input.text = ""; GenerateCode();
+                inputCode = ""; 
                 StartCoroutine(PromptTryAgain());
             }
         }
     }
 
-    void GenerateCode()
-	{
-        requiredCode = "";
-        foreach (TMP_Text codeSegment in codeSegments)
+    public Color GetHighlightColor() { return highlightColor; }
+
+    void ScrambleCodeBlocks()
+    {
+        for (int i = 0; i < codeSegments.Length - 1; i++)
         {
-            string code = validChars[Random.Range(0, validChars.Length)].ToString();
-            codeSegment.text = code;
-            requiredCode += code;
-            StartCoroutine(DisplayCode());
+            CodeBlock block = codeSegments[i];
+            int randomIndex = Random.Range(i + 1, codeSegments.Length);
+            codeSegments[i] = codeSegments[randomIndex];
+            codeSegments[randomIndex] = block;
         }
     }
+
+    void GenerateCode()
+    {
+        foreach(CodeBlock block in codeSegments) { block.gameObject.SetActive(true); }
+        ScrambleCodeBlocks();
+        requiredCode = "";
+        availableCode = "";
+        foreach (CodeBlock codeSegment in codeSegments)
+        {
+            string code = validChars[Random.Range(0, validChars.Length)].ToString();
+            while (availableCode.Contains(code)) { code = validChars[Random.Range(0, validChars.Length)].ToString(); }
+            availableCode += code;
+            codeSegment.codeText.text = code;
+        }
+        for(int i = 0; i < startCodeLength+successes; i++)
+		{
+            string code = availableCode[Random.Range(0, availableCode.Length)].ToString();
+            while (requiredCode.Contains(code)) { code = availableCode[Random.Range(0, availableCode.Length)].ToString(); }
+            requiredCode += code;
+        }
+        StartCoroutine(DisplayCode());
+    }
+
+    public void InputCode(string newCode) { inputCode += newCode; }
 
     IEnumerator PromptTryAgain()
 	{
         tryAgainText.SetActive(true);
         yield return new WaitForSeconds(3);
+        GenerateCode();
         tryAgainText.SetActive(false);
 	}
 
     IEnumerator DisplayCode()
 	{
-        foreach(TMP_Text codeSegment in codeSegments)
+        if (hideInput) { foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(false); } }
+        codePreview.text = "";
+        yield return new WaitForSeconds(1);
+        foreach(char codeSegment in requiredCode)
 		{
-            codeSegment.gameObject.SetActive(true);
+            codePreview.text = codeSegment.ToString();
             yield return new WaitForSeconds(displayTime);
-            codeSegment.gameObject.SetActive(false);
-		}
-	}
+            codePreview.text = "";
+        }
+        if (hideInput)
+        { 
+            foreach (CodeBlock block in codeSegments) 
+            { 
+                block.gameObject.SetActive(true);
+                block.GetComponent<Image>().color = originalButtonColor;
+            } 
+        }
+    }
 }

@@ -42,7 +42,7 @@ public class InkDriverBase : MonoBehaviour
     /// <summary>
     /// The story itself being read
     /// </summary>
-    private Story story;
+    protected Story story;
 
     /// <summary>
     /// Whether the latest bit of text is done printing so it can show the choices
@@ -74,6 +74,14 @@ public class InkDriverBase : MonoBehaviour
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
 
         
+    }
+
+    public void AssignUIFromEventSystem(TMP_Text title, TMP_Text text, Image background, Transform buttonSpace)
+    {
+        titleBox = title;
+        textBox = text;
+        backgroundUI = background;
+        buttonGroup = buttonSpace;
     }
 
     private void Update()
@@ -170,11 +178,35 @@ public class InkDriverBase : MonoBehaviour
     /// When one of the buttons gets clicked, supply that given choice to the system.
     /// </summary>
     /// <param name="choice"></param>
-    void OnClickChoiceButton(Choice choice)
+    private void OnClickChoiceButton(Choice choice)
     {
+        
+
         story.ChooseChoiceIndex(choice.index);
         Refresh();
         showingChoices = false;
+    }
+
+    //exists to be overriden by child scripts
+    protected virtual void RandomizeEnding()
+    {
+        //This is hardcoded for the wormhole event until I can get it to work universally
+        int rng = Random.Range(1, 5);
+        switch (rng)
+        {
+            case 1:
+                story.variablesState["randomEnd"] = story.variablesState["minorDamageEnd"];
+                break;
+            case 2:
+                story.variablesState["randomEnd"] = story.variablesState["prankedEnd"];
+                break;
+            case 3:
+                story.variablesState["randomEnd"] = story.variablesState["moneyEnd"];
+                break;
+            case 4:
+                story.variablesState["randomEnd"] = story.variablesState["shuffleEnd"];
+                break;
+        }
     }
 
     /// <summary>
@@ -190,6 +222,18 @@ public class InkDriverBase : MonoBehaviour
             while((text == "\n" || text == "\r" || text == "\t") && story.canContinue)
             {
                 text = story.Continue();
+            }
+
+            List<string> tags = story.currentTags;
+            
+            if (tags.Count > 0)
+            {
+                print("There are tags");
+                if (tags[0] == "RandomizeOutcome")
+                {
+                    print("Randomize end");
+                    RandomizeEnding();
+                }
             }
         }
 
