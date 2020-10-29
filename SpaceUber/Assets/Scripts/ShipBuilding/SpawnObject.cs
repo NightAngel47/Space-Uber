@@ -26,6 +26,16 @@ public class SpawnObject : MonoBehaviour
     public string[] purchaseStorage;
     public string[] purchaseBunks;
     public string[] purchaseMedbay;
+    public string[] purchaseVIP;
+    public string[] purchaseArmor;
+    public string[] purchaseGuns;
+    public string[] purchaseCoreTerminal;
+    public string[] purchaseEnergyCannon;
+    public string[] purchasePhotonTorpedoes;
+    public string[] purchasePantry;
+    public string[] purchaseShieldGenerator;
+    public string[] purchaseTeleporter;
+    public string[] purchaseWarpDrive;
 
     public void Start()
     {
@@ -85,6 +95,36 @@ public class SpawnObject : MonoBehaviour
                     break;
                 case "Medbay":
                     AudioManager.instance.PlaySFX(purchaseMedbay[Random.Range(0, purchaseMedbay.Length)]);
+                    break;
+                case "VIP Lounge":
+                    AudioManager.instance.PlaySFX(purchaseVIP[Random.Range(0, purchaseVIP.Length)]);
+                    break;
+                case "Armor Plating":
+                    AudioManager.instance.PlaySFX(purchaseArmor[Random.Range(0, purchaseArmor.Length)]);
+                    break;
+                case "Armory":
+                    AudioManager.instance.PlaySFX(purchaseGuns[Random.Range(0, purchaseGuns.Length)]);
+                    break;
+                case "Core Changing Terminal":
+                    AudioManager.instance.PlaySFX(purchaseCoreTerminal[Random.Range(0, purchaseCoreTerminal.Length)]);
+                    break;
+                case "Energy Cannon":
+                    AudioManager.instance.PlaySFX(purchaseEnergyCannon[Random.Range(0, purchaseEnergyCannon.Length)]);
+                    break;
+                case "Photon Torpedoes":
+                    AudioManager.instance.PlaySFX(purchasePhotonTorpedoes[Random.Range(0, purchasePhotonTorpedoes.Length)]);
+                    break;
+                case "Pantry":
+                    AudioManager.instance.PlaySFX(purchasePantry[Random.Range(0, purchasePantry.Length)]);
+                    break;
+                case "Shield Generator":
+                    AudioManager.instance.PlaySFX(purchaseShieldGenerator[Random.Range(0, purchaseShieldGenerator.Length)]);
+                    break;
+                case "Teleportation Station":
+                    AudioManager.instance.PlaySFX(purchaseTeleporter[Random.Range(0, purchaseTeleporter.Length)]);
+                    break;
+                case "Warp Drive":
+                    AudioManager.instance.PlaySFX(purchaseWarpDrive[Random.Range(0, purchaseWarpDrive.Length)]);
                     break;
                 default:
                     break;
