@@ -21,12 +21,10 @@ public class EventSystem : MonoBehaviour
 	private AdditiveSceneManager asm;
 	private EventCanvas eventCanvas;
 
-	[Tooltip("How many events will happen in this journey")]
-	public int maxEvents = 3;
-	[Tooltip("Narrative-focused events that will play in this specific order")]
-	[SerializeField] private List<GameObject> storyEvents;
-	[Tooltip("Miscellaneous events that occur in a random order")]
-	[SerializeField] private List<GameObject> randomEvents;
+	
+	private int maxEvents = 3;
+	private List<GameObject> storyEvents;
+	private List<GameObject> randomEvents;
 
 	//how many events (story and random) have occurred
 	private int overallEventIndex = 0;
@@ -51,9 +49,8 @@ public class EventSystem : MonoBehaviour
 
 	
 	private bool isTraveling = false;
-	private bool eventActive = false;
+	public bool eventActive { get; private set; } = false;
 
-	[HideInInspector] public bool doingTasks = false;
 	[SerializeField] private GameObject eventWarning;
 	private Job currentJob;
 
@@ -76,10 +73,16 @@ public class EventSystem : MonoBehaviour
 	public IEnumerator Travel()
 	{
 		float chanceOfEvent = startingEventChance;
-		while (GameManager.currentGameState == InGameStates.Events)
+		while (GameManager.instance.currentGameState == InGameStates.Events)
 		{
+            ship.StartTickEvents();
+            
 			yield return new WaitForSeconds(timeBeforeEventRoll); //start with one big chunk of time
-
+            if(GameManager.instance.currentGameState != InGameStates.Events)
+            {
+                break;
+            }
+            
 			//run random chances for event to take place
 			while (!WillRunEvent(chanceOfEvent))
 			{
@@ -88,19 +91,25 @@ public class EventSystem : MonoBehaviour
 				chanceOfEvent+= chanceIncreasePerFreq;
 				yield return new WaitForSeconds(eventChanceFreq);
 			}
+            if(GameManager.instance.currentGameState != InGameStates.Events)
+            {
+                break;
+            }
 
 			//Event warning code
 			if (eventWarning != null)
 			{
 				eventWarning.SetActive(true);
 			}
-			yield return new WaitUntil(() => !doingTasks);
+			yield return new WaitUntil(() => !OverclockController.instance.overclocking);
 			if (eventWarning != null)
 			{
 				eventWarning.SetActive(false);
 			}
+            
+            ship.PauseTickEvents();
 
-			// Load Event_General Scene for upcoming event
+			// Load Event_General Scene for upcoming event // TODO will have to change based on story vs random event
 			asm.LoadSceneMerged("Event_General");
 			yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_General").isLoaded);
 
@@ -112,8 +121,10 @@ public class EventSystem : MonoBehaviour
 			{
 				CreateEvent(storyEvents[storyEventIndex]);
 				storyEventIndex++;
-
+                
+                
 				yield return new WaitWhile((() => eventActive));
+                
 			}
 			else if (!eventActive && randomEventIndex < randomEvents.Count) //Pick a random event
 			{
@@ -123,6 +134,7 @@ public class EventSystem : MonoBehaviour
 				{
 					CreateEvent(newEvent);
 					randomEventIndex++;
+                    
 					yield return new WaitWhile((() => eventActive));
 				}
 				else
@@ -130,8 +142,11 @@ public class EventSystem : MonoBehaviour
 					ConcludeEvent();
 				}
 			}
+            
+            ship.UnpauseTickEvents();
 		}
 		isTraveling = false;
+        ship.StopTickEvents();
 	}
 
 	/// <summary>
@@ -145,10 +160,9 @@ public class EventSystem : MonoBehaviour
 
 		if (eventInstance.TryGetComponent(out InkDriverBase inkDriver))
 		{
-			inkDriver.titleBox = eventCanvas.titleBox;
-			inkDriver.textBox = eventCanvas.textBox;
-			inkDriver.backgroundUI = eventCanvas.backgroundImage;
-			inkDriver.buttonGroup = eventCanvas.buttonGroup;
+			inkDriver.AssignUIFromEventSystem(eventCanvas.titleBox, eventCanvas.textBox,
+				eventCanvas.backgroundImage, eventCanvas.buttonGroup);
+			
 		}
 
 		eventActive = true;
@@ -177,8 +191,8 @@ public class EventSystem : MonoBehaviour
 		//Potentially end the job entirely
 		if (overallEventIndex >= maxEvents)
 		{
-			ship.Credits += currentJob.payout;
-			GameManager.instance.ChangeInGameState(InGameStates.Ending);
+			ship.CashPayout();
+			GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);
 		}
 
 		eventActive = false;

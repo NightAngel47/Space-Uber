@@ -56,7 +56,7 @@ public class Sound
     /// </summary>
     public void PlayOnce()
     {
-        source.volume = volume * (1 + Random.Range(-volumeVarience / 2, volumeVarience / 2));
+        source.volume = source.volume * (1 + Random.Range(-volumeVarience / 2, volumeVarience / 2));
         source.pitch = pitch * (1 + Random.Range(-pitchVarience / 2, pitchVarience / 2)); ;
         source.Play();
     }

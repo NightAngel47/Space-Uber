@@ -48,13 +48,13 @@ public class ObjectMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.currentGameState == InGameStates.ShipBuilding)
+        if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
         {
             //Movement();
             RotateObject();
             //Placement();
-            
-            if(isBeingDragged)
+
+            if (isBeingDragged == true)
             {
                 //Follow cursor
                 Vector3 mousePosition;
@@ -63,6 +63,12 @@ public class ObjectMover : MonoBehaviour
                 mousePosition.z = 0.0f;
 
                 transform.position = new Vector3(Mathf.Clamp(Mathf.Round(mousePosition.x), minX, maxX), Mathf.Clamp(Mathf.Round(mousePosition.y), minY, maxY), mousePosition.z);
+
+                if(Input.GetMouseButtonDown(0))
+                {
+                    isBeingDragged = false;
+                    Placement();
+                }
             }
         }
     }
@@ -77,38 +83,47 @@ public class ObjectMover : MonoBehaviour
         isBeingDragged = false;
     }
 
-    private void OnMouseEnter() 
-    { 
-        mousedOver = true; 
+    private void OnMouseEnter()
+    {
+        mousedOver = true;
     }
 
-    private void OnMouseExit() 
-    { 
-        mousedOver = false; 
+    private void OnMouseExit()
+    {
+        mousedOver = false;
     }
 
-    private void OnMouseDown() 
-    { 
-        if (mousedOver) 
-        { 
-            isBeingDragged = true; 
-        } 
+    private void OnMouseDown()
+    {
+        if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
+        {
+            if (mousedOver && hasPlaced == true && gameObject.GetComponent<ObjectScript>().clickAgain == true)
+            {
+                if (isBeingDragged == false)
+                {
+                    isBeingDragged = true;
+                }
+            }
+        }
     }
 
     private void OnMouseUp()
     {
-        isBeingDragged = false;
+        //if (GameManager.currentGameState == InGameStates.ShipBuilding)
+        //{
+        //    isBeingDragged = false;
 
-        Placement();
+        //    Placement();
+        //}
     }
 
     public void RotateObject()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.Q) && os.canRotate == true)
         {
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, 90);
             AudioManager.instance.PlaySFX(SFXs[Random.Range(0, SFXs.Length)]);
-            
+
             if ((os.shapeType != 0 || os.shapeType != 1 || os.shapeType != 3) && (os.rotAdjust == 1 || os.rotAdjust == 3))
             {
                 gameObject.transform.GetChild(0).transform.position += os.rotAdjustVal;
@@ -128,7 +143,7 @@ public class ObjectMover : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.E) && os.canRotate == true)
         {
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, -90);
             AudioManager.instance.PlaySFX(SFXs[Random.Range(0, SFXs.Length)]);
@@ -155,7 +170,7 @@ public class ObjectMover : MonoBehaviour
 
     public void Placement()
     {
-        if (GameManager.currentGameState != InGameStates.ShipBuilding) return;
+        if (GameManager.instance.currentGameState != InGameStates.ShipBuilding) return;
         if (FindObjectOfType<ShipStats>().GetCredits() >= gameObject.GetComponent<RoomStats>().price)
         {
             SpotChecker.instance.FillSpots(gameObject, os.rotAdjust);
@@ -166,21 +181,37 @@ public class ObjectMover : MonoBehaviour
                 gameObject.GetComponent<RoomStats>().AddRoomStats();
 
                 hasPlaced = true;
+
+                StartCoroutine("ClickWait");
+
                 gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = ObjectScript.c;
                 gameObject.GetComponent<ObjectMover>().enabled = false;
+            }
+
+            else
+            {
+                TurnOnBeingDragged();
             }
         }
 
         else
         {
             Debug.Log("Cannot Afford");
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
-    
+    public IEnumerator ClickWait()
+    {
+        yield return new WaitForSeconds(.1f);
+        ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
+        foreach (ObjectScript r in otherRooms)
+        {
+            r.TurnOnClickAgain();
+        }
+    }
 
-    
+
 
     //public void LayoutPlacement() //for spawning from layout to make sure they act as if they were placed normallys
     //{

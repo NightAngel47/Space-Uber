@@ -13,7 +13,13 @@ using System.Collections.Generic;
 
 public class Job : MonoBehaviour
 {
+    [Tooltip("How many events will happen in this journey")]
+    public int maxEvents = 3;
+
+    [Tooltip("Narrative-focused events that will play in this specific order")]
     public List<GameObject> storyEvents;
+
+    [Tooltip("Miscellaneous events that occur in a random order")]
     public List<GameObject> randomEvents;
 
     public string jobName;

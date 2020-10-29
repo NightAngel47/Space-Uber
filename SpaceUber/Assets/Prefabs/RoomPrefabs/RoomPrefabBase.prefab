@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 4360159919716397346}
   - component: {fileID: 5740368950282066039}
   - component: {fileID: 24717508544903462}
+  - component: {fileID: 2641448655269380362}
   m_Layer: 0
   m_Name: RoomPrefabBase
   m_TagString: Untagged
@@ -75,9 +76,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85abcfb88d2be284cb798b37dc985349, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetTag: 
+  m_Name:
+  m_EditorClassIdentifier:
+  SFXs: []
+  Placements: []
 --- !u!114 &4360159919716397346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,16 +90,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9737dedef52a2fc46ab85f491529aa9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   minCrew: 0
   maxCrew: 0
   minPower: 0
   maxPower: 0
   priceReducationPercent: 0
   price: 0
-  roomDescription: 
-  roomName: 
+  currentCrew: 0
+  roomDescription:
+  roomName:
   usedRoom: 0
 --- !u!114 &5740368950282066039
 MonoBehaviour:
@@ -109,11 +112,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de71410e4ad3cef4588918fac4fa5848, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   rotAdjust: 1
   shapeType: 0
   objectNum: 0
+  canRotate: 1
+  nextToRoom: 0
+  nextToRoomNum: 0
+  mouseOverAudio: []
   shapeDataTemplate: {fileID: 0}
   shapeData: {fileID: 0}
   hoverUiPanel: {fileID: 6034342293036555717}
@@ -130,6 +137,7 @@ MonoBehaviour:
   rotBoundsRight: 0
   rotBoundsUp: 0
   rotAdjustVal: {x: 0, y: 0, z: 0}
+  clickAgain: 1
 --- !u!60 &24717508544903462
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -143,7 +151,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.5, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -159,6 +167,19 @@ PolygonCollider2D:
       - {x: -0.5, y: 0.5}
       - {x: 0.5, y: 0.5}
       - {x: 0.5, y: -0.5}
+--- !u!114 &2641448655269380362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8354016038451866568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e51455a10ea4ad45b76de9e7edfc5c0, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  miniGame:
 --- !u!1 &8502931638391405075
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,8 +634,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!114 &1490363902090806832 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5777082011305844270, guid: 5f78c9af3ff57d449ac79c58b17aab86,
@@ -625,8 +646,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!114 &2574847907479183456 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7438035556500207742, guid: 5f78c9af3ff57d449ac79c58b17aab86,
@@ -637,8 +658,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!224 &1469962580707273063 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5829026004088353145, guid: 5f78c9af3ff57d449ac79c58b17aab86,
