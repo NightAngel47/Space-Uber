@@ -48,7 +48,7 @@ public class ObjectMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.currentGameState == InGameStates.ShipBuilding)
+        if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
         {
             //Movement();
             RotateObject();
@@ -95,7 +95,7 @@ public class ObjectMover : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (GameManager.currentGameState == InGameStates.ShipBuilding)
+        if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
         {
             if (mousedOver && hasPlaced == true && gameObject.GetComponent<ObjectScript>().clickAgain == true)
             {
@@ -170,7 +170,7 @@ public class ObjectMover : MonoBehaviour
 
     public void Placement()
     {
-        if (GameManager.currentGameState != InGameStates.ShipBuilding) return;
+        if (GameManager.instance.currentGameState != InGameStates.ShipBuilding) return;
         if (FindObjectOfType<ShipStats>().GetCredits() >= gameObject.GetComponent<RoomStats>().price)
         {
             SpotChecker.instance.FillSpots(gameObject, os.rotAdjust);

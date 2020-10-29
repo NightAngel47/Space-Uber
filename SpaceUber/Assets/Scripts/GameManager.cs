@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// The current state that the player is at within the game.
     /// </summary>
-    public static InGameStates currentGameState { get; private set; } = InGameStates.JobSelect;
+    public InGameStates currentGameState { get; private set; } = InGameStates.JobSelect;
 
     /// <summary>
     /// Reference to the AdditiveSceneManager used to
@@ -68,67 +68,64 @@ public class GameManager : MonoBehaviour
         // Handles what scenes to Load/Unload using the AdditiveSceneManager, along with additional scene cleanup.
         switch (state)
         {
-          case InGameStates.JobSelect: // Loads Jobpicker for the player to pick their job
-              // unload ending screen if replaying
-              if (SceneManager.GetSceneByName("PromptScreen_End").isLoaded) // TODO remove when we have menus
-              {
+            case InGameStates.JobSelect: // Loads Jobpicker for the player to pick their job
+                // unload ending screen if replaying
+                if (SceneManager.GetSceneByName("PromptScreen_End").isLoaded) // TODO remove when we have menus
+                {
                   additiveSceneManager.UnloadScene("PromptScreen_End");
-              }
-              if (SceneManager.GetSceneByName("PromptScreen_Death").isLoaded) // TODO remove when we have menus
-              {
+                }
+                if (SceneManager.GetSceneByName("PromptScreen_Death").isLoaded) // TODO remove when we have menus
+                {
                   additiveSceneManager.UnloadScene("PromptScreen_Death");
-              }
-              if (SceneManager.GetSceneByName("PromptScreen_Mutiny").isLoaded) // TODO remove when we have menus
-              {
+                }
+                if (SceneManager.GetSceneByName("PromptScreen_Mutiny").isLoaded) // TODO remove when we have menus
+                {
                   additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
-              }
-              if (SceneManager.GetSceneByName("Space BG").isLoaded)
-              {
-                  additiveSceneManager.UnloadScene("Space BG");
-              }
+                }
 
-              additiveSceneManager.LoadSceneSeperate("JobPicker");
-              break;
-          case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
-              additiveSceneManager.LoadSceneSeperate("ShipBuilding");
-              additiveSceneManager.UnloadScene("JobPicker");
-              break;
-          case InGameStates.CrewManagement:
-              additiveSceneManager.UnloadScene("ShipBuilding");
-              additiveSceneManager.LoadSceneSeperate("CrewManagement");
-              ObjectScript[] os = FindObjectsOfType<ObjectScript>();
-              break;
+                additiveSceneManager.LoadSceneSeperate("Starport BG");
+                additiveSceneManager.LoadSceneSeperate("JobPicker");
+                break;
+            case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
+                additiveSceneManager.UnloadScene("JobPicker");
+                additiveSceneManager.LoadSceneSeperate("ShipBuilding");
+                break;
+            case InGameStates.CrewManagement:
+                additiveSceneManager.UnloadScene("ShipBuilding");
+                additiveSceneManager.LoadSceneSeperate("CrewManagement");
+                ObjectScript[] os = FindObjectsOfType<ObjectScript>();
+                break; 
             case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
-              // Remove unplaced rooms from the ShipBuilding state
-              if (!ObjectMover.hasPlaced)
-              {
+                additiveSceneManager.UnloadScene("CrewManagement");
+                additiveSceneManager.UnloadScene("Starport BG");
+                // Remove unplaced rooms from the ShipBuilding state
+                if (!ObjectMover.hasPlaced)
+                {
                   ObjectMover.hasPlaced = true;
                   Destroy(FindObjectOfType<ObjectMover>().gameObject);
-              }
-              foreach(RoomStats room in FindObjectsOfType<RoomStats>())
-              {
+                }
+                foreach(RoomStats room in FindObjectsOfType<RoomStats>())
+                {
                   room.UpdateUsedRoom();
-              }
-              additiveSceneManager.UnloadScene("ShipBuilding");
-              additiveSceneManager.LoadSceneSeperate("Space BG");
-              StartCoroutine(EventSystem.instance.Travel());
-              break;
-          case InGameStates.CrewPayment:
-              additiveSceneManager.LoadSceneSeperate("CrewPayment");
-              break;
-          case InGameStates.Ending: // Loads the PromptScreen_End when the player reaches a narrative ending.
-              additiveSceneManager.UnloadScene("CrewPayment");
-              additiveSceneManager.LoadSceneSeperate("PromptScreen_End");
-              break;
-          case InGameStates.Mutiny: // Loads the PromptScreen_Mutiny when the player reaches a mutiny.
-              additiveSceneManager.LoadSceneSeperate("PromptScreen_Mutiny");
-              break;
-          case InGameStates.Death: // Loads the PromptScreen_Death when the player reaches a death.
-              additiveSceneManager.LoadSceneSeperate("PromptScreen_Death");
-              break;
-          default: // Output Warning when the passed in game state doesn't have a transition setup.
-              Debug.LogWarning($"The passed in game state, {state.ToString()}, doesn't have a transition setup.");
-              break;
+                }
+                StartCoroutine(EventSystem.instance.Travel());
+                break;
+            case InGameStates.CrewPayment:
+                additiveSceneManager.LoadSceneSeperate("CrewPayment");
+                break;
+            case InGameStates.Ending: // Loads the PromptScreen_End when the player reaches a narrative ending.
+                additiveSceneManager.UnloadScene("CrewPayment");
+                additiveSceneManager.LoadSceneSeperate("PromptScreen_End");
+                break;
+            case InGameStates.Mutiny: // Loads the PromptScreen_Mutiny when the player reaches a mutiny.
+                additiveSceneManager.LoadSceneSeperate("PromptScreen_Mutiny");
+                break;
+            case InGameStates.Death: // Loads the PromptScreen_Death when the player reaches a death.
+                additiveSceneManager.LoadSceneSeperate("PromptScreen_Death");
+                break;
+            default: // Output Warning when the passed in game state doesn't have a transition setup.
+                Debug.LogWarning($"The passed in game state, {state.ToString()}, doesn't have a transition setup.");
+                break;
         }
     }
 }
