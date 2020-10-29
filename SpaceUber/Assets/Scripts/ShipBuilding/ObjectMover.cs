@@ -17,6 +17,7 @@ public class ObjectMover : MonoBehaviour
 
     private bool isBeingDragged = false;
     private bool mousedOver = false;
+    private bool canPlace = true;
 
     private float minX;
     private float maxX;
@@ -64,7 +65,7 @@ public class ObjectMover : MonoBehaviour
 
                 transform.position = new Vector3(Mathf.Clamp(Mathf.Round(mousePosition.x), minX, maxX), Mathf.Clamp(Mathf.Round(mousePosition.y), minY, maxY), mousePosition.z);
 
-                if(Input.GetMouseButtonDown(0))
+                if(Input.GetMouseButtonDown(0) && canPlace == true)
                 {
                     isBeingDragged = false;
                     Placement();
@@ -76,6 +77,8 @@ public class ObjectMover : MonoBehaviour
     public void TurnOnBeingDragged()
     {
         isBeingDragged = true;
+        canPlace = false;
+        StartCoroutine(WaitToPlace());
     }
 
     public void TurnOffBeingDragged()
@@ -182,7 +185,8 @@ public class ObjectMover : MonoBehaviour
 
                 hasPlaced = true;
 
-                StartCoroutine("ClickWait");
+                
+                StartCoroutine(ClickWait());
 
                 gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = ObjectScript.c;
                 gameObject.GetComponent<ObjectMover>().enabled = false;
@@ -203,12 +207,19 @@ public class ObjectMover : MonoBehaviour
 
     public IEnumerator ClickWait()
     {
+        os.TurnOffClickAgain();
         yield return new WaitForSeconds(.1f);
         ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
         foreach (ObjectScript r in otherRooms)
         {
             r.TurnOnClickAgain();
         }
+    }
+
+    public IEnumerator WaitToPlace()
+    {
+        yield return new WaitForSeconds(.1f);
+        canPlace = true;
     }
 
 

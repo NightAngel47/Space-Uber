@@ -250,9 +250,9 @@ public class SpotChecker : MonoBehaviour
 
     public void NextToRoomCheck(int y, int x, GameObject cube)
     {
-        if (y < 5) //# neesd to change to dynamically update with different ship sizes
+        if (y < 5) //# needs to change to dynamically update with different ship sizes
         {
-            if (spots.rows[y + 1].row[x] != cube.GetComponent<ObjectScript>().nextToRoomNum && nextToRoom != true)
+            if (spots.rows[y + 1].row[x] != cube.GetComponent<ObjectScript>().nextToRoomNum && nextToRoom == false)
             {
                 nextToRoom = false;
             }
@@ -264,7 +264,7 @@ public class SpotChecker : MonoBehaviour
 
         if (y > 0)
         {
-            if (spots.rows[y - 1].row[x] != cube.GetComponent<ObjectScript>().nextToRoomNum && nextToRoom != true)
+            if (spots.rows[y - 1].row[x] != cube.GetComponent<ObjectScript>().nextToRoomNum && nextToRoom == false)
             {
                 nextToRoom = false;
             }
@@ -274,9 +274,9 @@ public class SpotChecker : MonoBehaviour
             }
         }
 
-        if (x < 9) //# neesd to change to dynamically update with different ship sizes
+        if (x < 9) //# needs to change to dynamically update with different ship sizes
         {
-            if (spots.rows[y].row[x + 1] != cube.GetComponent<ObjectScript>().nextToRoomNum && nextToRoom != true)
+            if (spots.rows[y].row[x + 1] != cube.GetComponent<ObjectScript>().nextToRoomNum && nextToRoom == false)
             {
                 nextToRoom = false;
             }
@@ -288,7 +288,7 @@ public class SpotChecker : MonoBehaviour
 
         if (x > 0)
         {
-            if (spots.rows[y].row[x - 1] != cube.GetComponent<ObjectScript>().nextToRoomNum && nextToRoom != true)
+            if (spots.rows[y].row[x - 1] != cube.GetComponent<ObjectScript>().nextToRoomNum && nextToRoom == false)
             {
                 nextToRoom = false;
             }
