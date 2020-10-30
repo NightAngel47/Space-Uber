@@ -9,13 +9,13 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class EventSonar : MonoBehaviour
 {
     public float spinRate = 5f;
 
     public List<GameObject> dots;
-    private List<Vector3> dotPositions;
     [HideInInspector] public int dotsShown = 0;
 
     public GameObject bar;
@@ -23,14 +23,8 @@ public class EventSonar : MonoBehaviour
 
     private void Start()
     {
-        
         bar.transform.localPosition = Vector3.zero;
-        
-        for(int i = 0; i < dots.Count; i++)
-        {
-            dotPositions[i] = dots[i].transform.position;
-            HideDot(dots[i]);
-        }
+        HideAllDots();
     }
 
     private void FixedUpdate()
@@ -40,32 +34,79 @@ public class EventSonar : MonoBehaviour
         bar.transform.Rotate(Vector3.back * Time.deltaTime * (360/spinRate));
     }
 
-    public void ShowDot(GameObject dot)
+    /// <summary>
+    /// Resets sonar to default state
+    /// </summary>
+    public void ResetSonar()
     {
-        dot.SetActive(true);
-        dot.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-        DotPulse(dot);
+        HideAllDots();
+        StopCoroutine(Spin());
+        StartCoroutine(Spin());
     }
 
+    /// <summary>
+    /// Hides the entire sonar UI object
+    /// </summary>
+    public void HideSonar()
+    {
+        gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Displays the entire sonar UI object
+    /// </summary>
+    public void ShowSonar()
+    {
+        gameObject.SetActive(true);
+    }
+
+
+    /// <summary>
+    /// Shows the next dot, randomly sets its position, and activates the DotPulse method
+    /// </summary>
+    public void ShowNextDot()
+    {
+        if(dotsShown != dots.Count)
+        {
+            GameObject dot = dots[dotsShown];
+            dot.SetActive(true);
+            dotsShown++;
+            StartCoroutine(DotPulse(dot));
+        }
+    }
+
+    /// <summary>
+    /// Hides all existing dots on the sonar
+    /// </summary>
     public void HideAllDots()
     {
         for (int i = 0; i < dots.Count; i++)
         {
-            HideDot(dots[i]);
+            dots[i].SetActive(false);
         }
-    }
-    public void HideDot(GameObject dot)
-    {
-        dot.SetActive(false);
+        dotsShown = 0;
     }
 
-    private void DotPulse(GameObject dot)
+    /// <summary>
+    /// Makes the visible dots start to pulse.
+    /// </summary>
+    /// <param name="dot"></param>
+    private IEnumerator DotPulse(GameObject dot)
     {
+        dot.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        
         //decrease opacity
-        dot.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, Mathf.Lerp(1, 0, spinRate));
-        ShowDot(dot);
+        dot.GetComponent<Image>().color = new Color(1, 1, 1, Mathf.Lerp(1, 0, spinRate * Time.deltaTime));
+
+        yield return new WaitForSeconds(spinRate);
+        
     }
 
+
+    /// <summary>
+    /// Makes the bar at the center of the bar spin around
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator Spin()
     {
         yield return new WaitForSeconds(spinRate);
