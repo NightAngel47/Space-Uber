@@ -90,9 +90,7 @@ public class EventSystem : MonoBehaviour
             
 			//run random chances for event to take place
 			while (!WillRunEvent(chanceOfEvent))
-			{
-				print("Did not pick an event");
-				
+			{				
 				isTraveling = true;
 				chanceOfEvent+= chanceIncreasePerFreq;
 				yield return new WaitForSeconds(eventChanceFreq);
@@ -267,12 +265,7 @@ public class EventSystem : MonoBehaviour
 					newIndex++;
 				}
 
-				print("There were no other events to run.");
 				return null;
-			}
-			else
-			{
-				print("Meets requirements");
 			}
 
 			randomEvents.RemoveAt(eventNum);

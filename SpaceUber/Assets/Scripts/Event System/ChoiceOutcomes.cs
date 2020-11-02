@@ -10,11 +10,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class ChoiceOutcomes : MonoBehaviour
+public struct ChoiceOutcomes
 {
-    [Tooltip("To keep track of which choice this is")]
-    public string choiceName;
     public bool isRandomOutcome;
+
     [HideIf("isRandomOutcome")]
     public List<ResourceType> resourcesChanged;
     [HideIf("isRandomOutcome")]
@@ -26,7 +25,7 @@ public class ChoiceOutcomes : MonoBehaviour
     public MultipleRandom[] multipleRandomOutcomes;
 
     private float outcomeChance;
-    private float choiceThreshold = 0f;
+    private float choiceThreshold ;
 
     [System.Serializable]
     public class MultipleRandom

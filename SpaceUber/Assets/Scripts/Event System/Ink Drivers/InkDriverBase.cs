@@ -37,7 +37,7 @@ public class InkDriverBase : MonoBehaviour
     private float textPrintSpeed = 0.1f;
 
     [SerializeField, Tooltip("The list of choice outcomes for this event.")] 
-    private List<ChoiceOutcomes> choiceOutcomes = new List<ChoiceOutcomes>();
+    private List<EventChoice> choicesAvailable = new List<EventChoice>();
 
     /// <summary>
     /// The story itself being read
@@ -146,7 +146,9 @@ public class InkDriverBase : MonoBehaviour
                 TMP_Text choiceText = choiceButton.GetComponentInChildren<TMP_Text>();
                 choiceText.text = " " + (choice.index + 1) + ". " + choice.text;
 
-                // Set listener
+                choicesAvailable[choice.index].ControlChoice(thisShip,choiceButton, story);
+                
+                // Set listener for the sake of knowing when to refresh
                 choiceButton.onClick.AddListener(delegate {
                     OnClickChoiceButton(choice);
                 });
@@ -155,7 +157,7 @@ public class InkDriverBase : MonoBehaviour
                 
                 // Have on click also call the outcome choice to update the ship stats
                 choiceButton.onClick.AddListener(delegate {
-                    choiceOutcomes[choice.index].ChoiceChange(thisShip);
+                    choicesAvailable[choice.index].SelectChoice(thisShip);
                 });
             }
         }
@@ -181,8 +183,6 @@ public class InkDriverBase : MonoBehaviour
     /// <param name="choice"></param>
     private void OnClickChoiceButton(Choice choice)
     {
-        
-
         story.ChooseChoiceIndex(choice.index);
         Refresh();
         showingChoices = false;
@@ -191,23 +191,7 @@ public class InkDriverBase : MonoBehaviour
     //exists to be overriden by child scripts
     protected virtual void RandomizeEnding()
     {
-        //This is hardcoded for the wormhole event until I can get it to work universally
-        int rng = Random.Range(1, 5);
-        switch (rng)
-        {
-            case 1:
-                story.variablesState["randomEnd"] = story.variablesState["minorDamageEnd"];
-                break;
-            case 2:
-                story.variablesState["randomEnd"] = story.variablesState["prankedEnd"];
-                break;
-            case 3:
-                story.variablesState["randomEnd"] = story.variablesState["moneyEnd"];
-                break;
-            case 4:
-                story.variablesState["randomEnd"] = story.variablesState["shuffleEnd"];
-                break;
-        }
+        
     }
 
     /// <summary>
@@ -225,17 +209,7 @@ public class InkDriverBase : MonoBehaviour
                 text = story.Continue();
             }
 
-            List<string> tags = story.currentTags;
             
-            if (tags.Count > 0)
-            {
-                print("There are tags");
-                if (tags[0] == "RandomizeOutcome")
-                {
-                    print("Randomize end");
-                    RandomizeEnding();
-                }
-            }
         }
 
         return text;
