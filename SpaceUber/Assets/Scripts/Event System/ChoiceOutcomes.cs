@@ -14,15 +14,11 @@ public struct ChoiceOutcomes
 {
     public bool isRandomOutcome;
 
-    [HideIf("isRandomOutcome")]
-    public List<ResourceType> resourcesChanged;
-    [HideIf("isRandomOutcome")]
-    public List<int> amountChanged;
+    [SerializeField, HideIf("isRandomOutcome")] private List<ResourceType> resourcesChanged;
+    [SerializeField, HideIf("isRandomOutcome")] private List<int> amountChanged;
 
-    [ShowIf("isRandomOutcome")]
-    public List<float> probabilities;
-    [ShowIf("isRandomOutcome")]
-    public MultipleRandom[] multipleRandomOutcomes;
+    [SerializeField, ShowIf("isRandomOutcome")] private List<float> probabilities;
+    [SerializeField, ShowIf("isRandomOutcome")] private MultipleRandom[] multipleRandomOutcomes;
 
     private float outcomeChance;
     private float choiceThreshold ;
