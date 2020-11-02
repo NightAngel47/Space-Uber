@@ -26,12 +26,12 @@ public class InkDriverBase : MonoBehaviour
     [SerializeField, Tooltip("Attach the prefab of a choice button to this")] 
     private Button buttonPrefab;
 
-    [SerializeField, Tooltip("The transform parent to spawn choices under")]
-    [HideInInspector]public Transform buttonGroup;
-    
-    [HideInInspector] public TMP_Text titleBox;
-    [HideInInspector] public TMP_Text textBox;
-    [HideInInspector] public Image backgroundUI;
+
+    private Transform buttonGroup;    
+    private TMP_Text titleBox;
+    private TMP_Text textBox;
+    private Image backgroundUI;
+    private ShipStats thisShip;
 
     [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
     private float textPrintSpeed = 0.1f;
@@ -50,7 +50,7 @@ public class InkDriverBase : MonoBehaviour
     private bool donePrinting = true;
     private bool showingChoices = false;
 
-    [SerializeField] public List<EventRequirements> requiredStats;
+    [SerializeField] public List<Requirements> requiredStats;
     
     [Dropdown("eventMusicTracks")]
     public string eventBGM;
@@ -76,12 +76,13 @@ public class InkDriverBase : MonoBehaviour
         
     }
 
-    public void AssignUIFromEventSystem(TMP_Text title, TMP_Text text, Image background, Transform buttonSpace)
+    public void AssignUIFromEventSystem(TMP_Text title, TMP_Text text, Image background, Transform buttonSpace, ShipStats ship)
     {
         titleBox = title;
         textBox = text;
         backgroundUI = background;
         buttonGroup = buttonSpace;
+        thisShip = ship;
     }
 
     private void Update()
@@ -154,7 +155,7 @@ public class InkDriverBase : MonoBehaviour
                 
                 // Have on click also call the outcome choice to update the ship stats
                 choiceButton.onClick.AddListener(delegate {
-                    choiceOutcomes[choice.index].ChoiceChange();
+                    choiceOutcomes[choice.index].ChoiceChange(thisShip);
                 });
             }
         }

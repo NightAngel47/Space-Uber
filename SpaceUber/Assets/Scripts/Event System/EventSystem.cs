@@ -171,7 +171,7 @@ public class EventSystem : MonoBehaviour
 		if (eventInstance.TryGetComponent(out InkDriverBase inkDriver))
 		{
 			inkDriver.AssignUIFromEventSystem(eventCanvas.titleBox, eventCanvas.textBox,
-				eventCanvas.backgroundImage, eventCanvas.buttonGroup);
+				eventCanvas.backgroundImage, eventCanvas.buttonGroup, ship);
 			
 		}
 
@@ -243,7 +243,7 @@ public class EventSystem : MonoBehaviour
 		{
 			int eventNum = Random.Range(randomEventIndex, randomEvents.Count);
 			thisEvent = randomEvents[eventNum];
-			List<EventRequirements> requirements = thisEvent.GetComponent<InkDriverBase>().requiredStats;
+			List<Requirements> requirements = thisEvent.GetComponent<InkDriverBase>().requiredStats;
 
 			//if the event chosen has requirements that are not met
 			if (!HasRequiredStats(requirements))
@@ -283,11 +283,11 @@ public class EventSystem : MonoBehaviour
 	}
 
 
-	private bool HasRequiredStats(List<EventRequirements> selectedRequirements)
+	private bool HasRequiredStats(List<Requirements> selectedRequirements)
 	{
 		bool result = true;
 
-		foreach (EventRequirements required in selectedRequirements)
+		foreach (Requirements required in selectedRequirements)
 		{
 			if (!required.MatchesRequirements(ship))
 			{

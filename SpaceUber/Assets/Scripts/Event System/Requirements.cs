@@ -2,16 +2,16 @@
  * EventRequirements.cs
  * Author(s): Scott Acker
  * Created on: 9/25/2020 
- * Description: Stores information about the requirements for each job
+ * Description: Stores information about the requirements of either a choice or a job. Serializable and meant to be applied to 
+ * different classes as a variable, not a script
  */
 
 using System;
 using UnityEngine;
 
 [Serializable]
-public struct EventRequirements
+public struct Requirements
 {
-
     public enum ResourceType
     {
         HULL,
