@@ -181,7 +181,14 @@ public class ObjectMover : MonoBehaviour
         if (GameManager.instance.currentGameState != InGameStates.ShipBuilding) return;
         if (FindObjectOfType<ShipStats>().GetCredits() >= gameObject.GetComponent<RoomStats>().price)
         {
-            SpotChecker.instance.FillSpots(gameObject, os.rotAdjust);
+            if (os.needsSpecificLocation == false)
+            {
+                SpotChecker.instance.FillSpots(gameObject, os.rotAdjust);
+            }
+            else
+            {
+                SpotChecker.instance.SpecificSpotCheck(gameObject, os.rotAdjust);
+            }
             AudioManager.instance.PlaySFX(Placements[Random.Range(0, Placements.Length)]);
 
             if (SpotChecker.cannotPlace == false)
