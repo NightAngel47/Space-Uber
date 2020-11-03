@@ -151,6 +151,9 @@ public class EventSystem : MonoBehaviour
 				}
 			}
             
+			//set up the sonar for the next event
+			sonar.ShowSonar();
+			sonar.ResetSonar();
             ship.UnpauseTickEvents();
 		}
 		isTraveling = false;
