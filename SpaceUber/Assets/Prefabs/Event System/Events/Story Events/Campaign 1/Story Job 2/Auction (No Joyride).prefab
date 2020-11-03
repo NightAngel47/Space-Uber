@@ -1,5 +1,89 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9123125362624318223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456221594767662622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  choiceName: Buy Energy Crystal
+  hasRequirements: 0
+  choiceRequirements: []
+  outcome:
+    isRandomOutcome: 0
+    resourcesChanged: 0000000001000000
+    amountChanged: ceffffff32000000
+    probabilities: []
+    multipleRandomOutcomes: []
+--- !u!114 &-8922936291258961113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456221594767662622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  choiceName: Buy Military Weaponry
+  hasRequirements: 0
+  choiceRequirements: []
+  outcome:
+    isRandomOutcome: 0
+    resourcesChanged: 0000000003000000
+    amountChanged: 9cffffff19000000
+    probabilities: []
+    multipleRandomOutcomes: []
+--- !u!114 &1466500520111740020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456221594767662622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  choiceName: Buy Exotic Foods
+  hasRequirements: 0
+  choiceRequirements: []
+  outcome:
+    isRandomOutcome: 0
+    resourcesChanged: 0000000005000000
+    amountChanged: 3200000019000000
+    probabilities: []
+    multipleRandomOutcomes: []
+--- !u!114 &8883094620010444510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456221594767662622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  choiceName: Buy Nothing
+  hasRequirements: 0
+  choiceRequirements: []
+  outcome:
+    isRandomOutcome: 0
+    resourcesChanged: 
+    amountChanged: 
+    probabilities: []
+    multipleRandomOutcomes: []
 --- !u!1001 &7100027917751785446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -129,3 +213,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 492e23da0c4f0a84188d48989e322a6d, type: 3}
+--- !u!1 &2456221594767662622 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7100027917751785446}
+  m_PrefabAsset: {fileID: 0}
