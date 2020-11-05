@@ -797,7 +797,35 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1189387799359244916, guid: f28eb72492af95543b9a16f4aa0eb319,
         type: 3}
+      propertyPath: availableJobs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189387799359244916, guid: f28eb72492af95543b9a16f4aa0eb319,
+        type: 3}
       propertyPath: availableJobs.Array.data[0]
+      value: 
+      objectReference: {fileID: 3860401292826842150, guid: c6f7c594a5a8ab84b996b72114b1a407,
+        type: 3}
+    - target: {fileID: 1189387799359244916, guid: f28eb72492af95543b9a16f4aa0eb319,
+        type: 3}
+      propertyPath: ship
+      value: 
+      objectReference: {fileID: 6273300031087700529}
+    - target: {fileID: 1189387799359244916, guid: f28eb72492af95543b9a16f4aa0eb319,
+        type: 3}
+      propertyPath: availableJobs.Array.data[1]
+      value: 
+      objectReference: {fileID: 3860401292826842150, guid: c6f7c594a5a8ab84b996b72114b1a407,
+        type: 3}
+    - target: {fileID: 1189387799359244916, guid: f28eb72492af95543b9a16f4aa0eb319,
+        type: 3}
+      propertyPath: availableJobs.Array.data[2]
+      value: 
+      objectReference: {fileID: 3860401292826842150, guid: c6f7c594a5a8ab84b996b72114b1a407,
+        type: 3}
+    - target: {fileID: 1189387799359244916, guid: f28eb72492af95543b9a16f4aa0eb319,
+        type: 3}
+      propertyPath: availableJobs.Array.data[3]
       value: 
       objectReference: {fileID: 3860401292826842150, guid: c6f7c594a5a8ab84b996b72114b1a407,
         type: 3}
@@ -1013,6 +1041,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Audio Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: fadeOutTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfd00d5985b7e774da68f5c929635ee4, type: 3}
@@ -1310,7 +1343,7 @@ PrefabInstance:
     - target: {fileID: 6273300032395514629, guid: 17581060db283ed4a8d97970348901ea,
         type: 3}
       propertyPath: startingCredits
-      value: 500
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 6273300032395514629, guid: 17581060db283ed4a8d97970348901ea,
         type: 3}
@@ -1336,6 +1369,11 @@ PrefabInstance:
         type: 3}
       propertyPath: startingFood
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6273300032395514629, guid: 17581060db283ed4a8d97970348901ea,
+        type: 3}
+      propertyPath: startingMorale
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6273300032395514630, guid: 17581060db283ed4a8d97970348901ea,
         type: 3}
@@ -1404,3 +1442,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17581060db283ed4a8d97970348901ea, type: 3}
+--- !u!114 &6273300031087700529 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6273300032395514629, guid: 17581060db283ed4a8d97970348901ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 6273300031087700528}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34392dd657a58b644a069c7ba801d184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

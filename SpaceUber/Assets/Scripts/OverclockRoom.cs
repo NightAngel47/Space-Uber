@@ -24,7 +24,8 @@ public class OverclockRoom : MonoBehaviour
 
     public void PlayMiniGame()
     {
-	    if (!OverclockController.instance.overclocking && GameManager.currentGameState == InGameStates.Events && cooledDown)
+	    if (GameManager.instance.currentGameState == InGameStates.Events 
+	        && !EventSystem.instance.eventActive && !OverclockController.instance.overclocking && cooledDown)
 	    {
 		    OverclockController.instance.StartMiniGame(miniGame, this);
 	    }
