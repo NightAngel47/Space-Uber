@@ -20,7 +20,7 @@ public class SecurityMiniGame : MiniGame
     [SerializeField] int minCodeLength = 3;
     [SerializeField] int maxCodeLength = 5;
     public int successes = 0;
-    string validChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    string validChars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
     string requiredCode = "";
     string availableCode = "";
     string inputCode = "";
