@@ -24,6 +24,8 @@ public class ObjectScript : MonoBehaviour
     public bool canRotate;  //true can rotate | false cannot rotate
     public bool nextToRoom; //true required next to x room | false no condition 
     public int nextToRoomNum;
+    public bool needsSpecificLocation;
+    public static bool CalledFromSpawn = false;
 
     public string[] mouseOverAudio;
 
@@ -63,7 +65,7 @@ public class ObjectScript : MonoBehaviour
     {
         //rotAdjust = false;
         c = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
-        c.a = 0.5f;
+        c.a = 1;
         //parentObj = transform.parent.gameObject;
         
         roomNameUI.text = gameObject.GetComponent<RoomStats>().roomName;
@@ -84,11 +86,23 @@ public class ObjectScript : MonoBehaviour
     public void TurnOnClickAgain()
     {
         clickAgain = true;
+        CalledFromSpawn = false;
     }
 
     public void TurnOffClickAgain()
     {
         clickAgain = false;
+
+        if(nextToRoom == true && CalledFromSpawn == false)
+        {
+            bool check = SpotChecker.instance.NextToRoomCall(gameObject, rotAdjust);
+            if (check == false)
+            {
+                Debug.Log("Room not placed next to required room, it has been auto removed");
+                SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
+                Destroy(gameObject);
+            }
+        }
     }
 
     public void OnMouseOver()
@@ -147,19 +161,22 @@ public class ObjectScript : MonoBehaviour
 
     public void Edit()
     {
-        ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
-        foreach (ObjectScript r in otherRooms)
-        {
-            r.TurnOffClickAgain();
-        }
-
-        c.a = 1;
-        gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
         c.a = .5f;
+        gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
+        c.a = 1;
         SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
         gameObject.GetComponent<ObjectMover>().enabled = true;
         gameObject.GetComponent<ObjectMover>().TurnOnBeingDragged();
         ObjectMover.hasPlaced = false;
+
+        ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
+        foreach (ObjectScript r in otherRooms)
+        {
+            if (r != gameObject.GetComponent<ObjectScript>())
+            {
+                r.TurnOffClickAgain();
+            }
+        }
     }
 
     public void Delete()
@@ -167,6 +184,11 @@ public class ObjectScript : MonoBehaviour
         //buttons.SetActive(false);
         SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
         ObjectMover.hasPlaced = true;
+        ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
+        foreach (ObjectScript r in otherRooms)
+        {
+            r.TurnOnClickAgain();
+        }
         Destroy(gameObject);
     }
 

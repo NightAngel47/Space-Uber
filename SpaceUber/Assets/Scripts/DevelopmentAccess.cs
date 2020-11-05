@@ -42,14 +42,30 @@ public class DevelopmentAccess : MonoBehaviour
             if (inTest)
             {
                 inTest = false;
+                Debug.LogWarning("Loading ShipBase from MiniGames Testing Menu");
                 SceneManager.LoadScene("ShipBase");
                 GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
             }
             else
             {
                 inTest = true;
+                Debug.LogWarning("Loading MiniGames Testing Menu");
                 SceneManager.LoadScene("MiniGames Testing Menu");
             }
         }
+
+        #if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            Debug.LogWarning("Time scale double speed");
+            Time.timeScale = 2;
+        }
+        
+        if (Input.GetKeyUp(KeyCode.F1))
+        {
+            Debug.LogWarning("Time scale normal speed");
+            Time.timeScale = 1;
+        }
+        #endif
     }
 }

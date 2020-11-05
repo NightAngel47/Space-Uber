@@ -2,7 +2,8 @@
  * ChoiceOutcomes.cs
  * Author(s): Sam Ferstein
  * Created on: 9/18/2020 (en-US)
- * Description:
+ * Description: Controls all outcomes of choices. When the player chooses to do something, code is directed here to determine the effects
+ * Effects are written in the inspector
  */
 
 using NaughtyAttributes;
@@ -10,24 +11,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class ChoiceOutcomes : MonoBehaviour
+public struct ChoiceOutcomes
 {
-    [Tooltip("To keep track of which choice this is")]
-    public string choiceName;
-    ShipStats shipStats;
-    public bool isRandomOutcome;
-    [HideIf("isRandomOutcome")]
-    public List<ResourceType> resourcesChanged;
-    [HideIf("isRandomOutcome")]
-    public List<int> amountChanged;
+    
 
-    [ShowIf("isRandomOutcome")]
-    public List<float> probabilities;
-    [ShowIf("isRandomOutcome")]
-    public MultipleRandom[] multipleRandomOutcomes;
+    public bool isRandomOutcome;
+
+    [SerializeField, HideIf("isRandomOutcome")] private List<ResourceType> resourcesChanged;
+    [SerializeField, HideIf("isRandomOutcome")] private List<int> amountChanged;
+
+    [SerializeField, ShowIf("isRandomOutcome")] private List<float> probabilities;
+    [SerializeField, ShowIf("isRandomOutcome")] private MultipleRandom[] multipleRandomOutcomes;
 
     private float outcomeChance;
-    private float choiceThreshold = 0f;
+    private float choiceThreshold ;
 
     [System.Serializable]
     public class MultipleRandom
@@ -35,15 +32,16 @@ public class ChoiceOutcomes : MonoBehaviour
         public List<ResourceType> resourcesChanged;
         public List<int> amountChanged;
     }
+    
 
     void Start()
     {
-        shipStats = FindObjectOfType<ShipStats>();
+        //shipStats = FindObjectOfType<ShipStats>();
     }
 
-    public void ChoiceChange()
+    public void StatChange(ShipStats ship)
     {
-        if (shipStats != null)
+        if (ship != null)
         {
             if (isRandomOutcome)
             {
@@ -58,28 +56,28 @@ public class ChoiceOutcomes : MonoBehaviour
                             switch (multipleRandomOutcomes[i].resourcesChanged[j])
                             {
                                 case ResourceType.Credits:
-                                    shipStats.UpdateCreditsAmount(multipleRandomOutcomes[i].amountChanged[j]);
+                                    ship.UpdateCreditsAmount(multipleRandomOutcomes[i].amountChanged[j]);
                                     break;
                                 case ResourceType.Energy:
-                                    shipStats.UpdateEnergyAmount(multipleRandomOutcomes[i].amountChanged[j]);
+                                    ship.UpdateEnergyAmount(multipleRandomOutcomes[i].amountChanged[j]);
                                     break;
                                 case ResourceType.Security:
-                                    shipStats.UpdateSecurityAmount(multipleRandomOutcomes[i].amountChanged[j]);
+                                    ship.UpdateSecurityAmount(multipleRandomOutcomes[i].amountChanged[j]);
                                     break;
                                 case ResourceType.ShipWeapons:
-                                    shipStats.UpdateShipWeaponsAmount(multipleRandomOutcomes[i].amountChanged[j]);
+                                    ship.UpdateShipWeaponsAmount(multipleRandomOutcomes[i].amountChanged[j]);
                                     break;
                                 case ResourceType.Crew:
-                                    shipStats.UpdateCrewAmount(multipleRandomOutcomes[i].amountChanged[j]);
+                                    ship.UpdateCrewAmount(multipleRandomOutcomes[i].amountChanged[j]);
                                     break;
                                 case ResourceType.Food:
-                                    shipStats.UpdateFoodAmount(multipleRandomOutcomes[i].amountChanged[j]);
+                                    ship.UpdateFoodAmount(multipleRandomOutcomes[i].amountChanged[j]);
                                     break;
                                 case ResourceType.FoodPerTick:
-                                    shipStats.UpdateFoodPerTickAmount(multipleRandomOutcomes[i].amountChanged[j]);
+                                    ship.UpdateFoodPerTickAmount(multipleRandomOutcomes[i].amountChanged[j]);
                                     break;
                                 case ResourceType.HullDurability:
-                                    shipStats.UpdateHullDurabilityAmount(multipleRandomOutcomes[i].amountChanged[j]);
+                                    ship.UpdateHullDurabilityAmount(multipleRandomOutcomes[i].amountChanged[j]);
                                     break;
                                 default:
                                     break;
@@ -96,28 +94,28 @@ public class ChoiceOutcomes : MonoBehaviour
                     switch (resourcesChanged[i])
                     {
                         case ResourceType.Credits:
-                            shipStats.UpdateCreditsAmount(amountChanged[i]);
+                            ship.UpdateCreditsAmount(amountChanged[i]);
                             break;
                         case ResourceType.Energy:
-                            shipStats.UpdateEnergyAmount(amountChanged[i]);
+                            ship.UpdateEnergyAmount(amountChanged[i]);
                             break;
                         case ResourceType.Security:
-                            shipStats.UpdateSecurityAmount(amountChanged[i]);
+                            ship.UpdateSecurityAmount(amountChanged[i]);
                             break;
                         case ResourceType.ShipWeapons:
-                            shipStats.UpdateShipWeaponsAmount(amountChanged[i]);
+                            ship.UpdateShipWeaponsAmount(amountChanged[i]);
                             break;
                         case ResourceType.Crew:
-                            shipStats.UpdateCrewAmount(amountChanged[i]);
+                            ship.UpdateCrewAmount(amountChanged[i]);
                             break;
                         case ResourceType.Food:
-                            shipStats.UpdateFoodAmount(amountChanged[i]);
+                            ship.UpdateFoodAmount(amountChanged[i]);
                             break;
                         case ResourceType.FoodPerTick:
-                            shipStats.UpdateFoodPerTickAmount(amountChanged[i]);
+                            ship.UpdateFoodPerTickAmount(amountChanged[i]);
                             break;
                         case ResourceType.HullDurability:
-                            shipStats.UpdateHullDurabilityAmount(amountChanged[i]);
+                            ship.UpdateHullDurabilityAmount(amountChanged[i]);
                             break;
                         default:
                             break;
