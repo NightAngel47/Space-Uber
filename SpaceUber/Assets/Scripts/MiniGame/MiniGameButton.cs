@@ -20,7 +20,7 @@ public class MiniGameButton : MonoBehaviour
 	public void ChangeValue()
 	{
 		isOn = !isOn;
-		if (isOn) { GetComponent<Image>().sprite = onSprite; value = 1; }
-		else { GetComponent<Image>().sprite = offSprite; value = 0; }
+		if (isOn) { GetComponent<SpriteRenderer>().sprite = onSprite; value = 1; }
+		else { GetComponent<SpriteRenderer>().sprite = offSprite; value = 0; }
 	}
 }
