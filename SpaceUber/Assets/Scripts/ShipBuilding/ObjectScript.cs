@@ -146,7 +146,13 @@ public class ObjectScript : MonoBehaviour
     }
 
     public void Edit()
-    {  
+    {
+        ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
+        foreach (ObjectScript r in otherRooms)
+        {
+            r.TurnOffClickAgain();
+        }
+
         c.a = 1;
         gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
         c.a = .5f;
