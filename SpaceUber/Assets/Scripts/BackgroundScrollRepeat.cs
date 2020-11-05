@@ -19,7 +19,8 @@ public class BackgroundScrollRepeat : MonoBehaviour
 
     void Start()
     {
-        width = GetComponent<SpriteRenderer>().size.x;
+        width = GetComponent<SpriteRenderer>().bounds.size.x;
+        print("W:" + width);
         rigidbody2D.velocity = new Vector2(speed, 0);
     }
 
@@ -44,6 +45,6 @@ public class BackgroundScrollRepeat : MonoBehaviour
 
     private void Reposition()
     {
-        transform.position += new Vector3(width * -2f, 0, 0);
+        transform.position -= new Vector3(width * 2f, 0, 0);
     }
 }
