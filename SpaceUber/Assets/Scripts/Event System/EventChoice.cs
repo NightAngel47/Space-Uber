@@ -14,6 +14,16 @@ using NaughtyAttributes;
 
 public class EventChoice : MonoBehaviour
 {
+    [Dropdown("thisCampaign")]
+    public string campaign;
+    private List<string> thisCampaign
+    {
+        get
+        {
+            return new List<string>() { "NA", "Catering to the Rich" };
+        }
+    }
+
     [SerializeField] private string choiceName;
     [SerializeField] private bool hasRequirements;
     [SerializeField, ShowIf("hasRequirements")] private List<Requirements> choiceRequirements;
@@ -65,7 +75,7 @@ public class EventChoice : MonoBehaviour
         //    RandomizeEnding();
         //}
 
-        outcome.ChoiceChange(ship);
+        outcome.StatChange(ship);
        
     }
 

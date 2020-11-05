@@ -2,7 +2,8 @@
  * ChoiceOutcomes.cs
  * Author(s): Sam Ferstein
  * Created on: 9/18/2020 (en-US)
- * Description:
+ * Description: Controls all outcomes of choices. When the player chooses to do something, code is directed here to determine the effects
+ * Effects are written in the inspector
  */
 
 using NaughtyAttributes;
@@ -12,6 +13,8 @@ using UnityEngine;
 [System.Serializable]
 public struct ChoiceOutcomes
 {
+    
+
     public bool isRandomOutcome;
 
     [SerializeField, HideIf("isRandomOutcome")] private List<ResourceType> resourcesChanged;
@@ -29,13 +32,14 @@ public struct ChoiceOutcomes
         public List<ResourceType> resourcesChanged;
         public List<int> amountChanged;
     }
+    
 
     void Start()
     {
         //shipStats = FindObjectOfType<ShipStats>();
     }
 
-    public void ChoiceChange(ShipStats ship)
+    public void StatChange(ShipStats ship)
     {
         if (ship != null)
         {
