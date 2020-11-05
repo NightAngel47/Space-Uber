@@ -10,6 +10,7 @@ using UnityEditor;
 using System.Collections;
 
 [CustomPropertyDrawer(typeof(ArrayLayout))]
+[CustomPropertyDrawer(typeof(ArrayLayoutBool))]
 public class CustPropertyDrawer : PropertyDrawer
 {
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)

@@ -16,7 +16,7 @@ public class SpotChecker : MonoBehaviour
     public ArrayLayout spots;
 
     public static bool cannotPlace = false; //bool for when the spot is filled
-    private bool nextToRoom = true;
+    private bool isNextToRoom = true;
     public static SpotChecker instance;
 
     private void Awake()
@@ -37,7 +37,12 @@ public class SpotChecker : MonoBehaviour
 
         if (cube.GetComponent<ObjectScript>().nextToRoom == true)
         {
-            nextToRoom = false;
+            isNextToRoom = false;
+        }
+
+        else
+        {
+            isNextToRoom = true;
         }
 
         for (int i = 0; i < gridSpots.Count; i++)
@@ -160,7 +165,7 @@ public class SpotChecker : MonoBehaviour
             }
         }
 
-        if(nextToRoom == false)
+        if(isNextToRoom == false)
         {
             cannotPlace = true;
             Debug.Log("Cannot place here");
@@ -248,53 +253,253 @@ public class SpotChecker : MonoBehaviour
         }
     }
 
+    public void SpecificSpotCheck(GameObject cube, int rotate)
+    {
+        int shapeType = cube.GetComponent<ObjectScript>().shapeType;
+        int objectNum = cube.GetComponent<ObjectScript>().objectNum;
+        GameObject gridPosBase = cube.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+        List<Vector2> gridSpots = new List<Vector2>(cube.GetComponent<ObjectScript>().shapeData.gridSpaces);
+        cannotPlace = false;
+
+        for (int i = 0; i < gridSpots.Count; i++)
+        {
+            if (shapeType == 2) //these objects only have two different rotations
+            {
+                if (rotate == 1 || rotate == 3)
+                {
+                    if (spots.rows[(int)Math.Round(cube.transform.position.y + gridSpots[i].y)]
+                        .row[(int)Math.Round(cube.transform.position.x + gridSpots[i].x)] != 0 || 
+                        cube.GetComponent<SpecificLocationData>().specficLocations.rows[(int)Math.Round(cube.transform.position.y + gridSpots[i].y)]
+                        .row[(int)Math.Round(cube.transform.position.x + gridSpots[i].x)] == false)
+                    {
+                        cannotPlace = true; //lets user keep moving object
+                        Debug.Log("Not Required Location");
+                        ObjectMover.hasPlaced = true;
+                        return;
+                    }
+                }
+
+                if (rotate == 2 || rotate == 4)
+                {
+                    if (spots.rows[(int)Math.Round(cube.transform.position.y + gridSpots[i].x)]
+                        .row[(int)Math.Round(cube.transform.position.x + gridSpots[i].y)] != 0 ||
+                        cube.GetComponent<SpecificLocationData>().specficLocations.rows[(int)Math.Round(cube.transform.position.y + gridSpots[i].x)]
+                        .row[(int)Math.Round(cube.transform.position.x + gridSpots[i].y)] == false)
+                    {
+                        cannotPlace = true; //lets user keep moving object
+                        Debug.Log("Not Required Location");
+                        ObjectMover.hasPlaced = true;
+                        return;
+                    }
+                }
+            }
+
+            if (rotate == 1)
+            {
+                if (spots.rows[(int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].y)]
+                    .row[(int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].x)] != 0 ||
+                    cube.GetComponent<SpecificLocationData>().specficLocations.rows[(int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].y)]
+                    .row[(int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].x)] == false)
+                {
+                    cannotPlace = true; //lets user keep moving object
+                    Debug.Log("Not Required Location");
+                    ObjectMover.hasPlaced = true;
+                    return;
+                }
+            }
+
+            if (rotate == 2)
+            {
+                if (spots.rows[(int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].x - 1)]
+                    .row[(int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].y)] != 0 ||
+                    cube.GetComponent<SpecificLocationData>().specficLocations.rows[(int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].x - 1)]
+                    .row[(int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].y)] == false)
+                {
+                    cannotPlace = true; //lets user keep moving object
+                    Debug.Log("Not Required Location");
+                    ObjectMover.hasPlaced = true;
+                    return;
+                }
+
+            }
+
+            if (rotate == 3)
+            {
+                if (spots.rows[(int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].y - 1)]
+                    .row[(int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].x - 1)] != 0 ||
+                    cube.GetComponent<SpecificLocationData>().specficLocations.rows[(int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].y - 1)]
+                    .row[(int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].x - 1)] == false)
+                {
+                    cannotPlace = true; //lets user keep moving object
+                    Debug.Log("Not Required Location");
+                    ObjectMover.hasPlaced = true;
+                    return;
+                }
+            }
+
+            if (rotate == 4)
+            {
+                if (spots.rows[(int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].x)]
+                        .row[(int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].y - 1)] != 0 ||
+                        cube.GetComponent<SpecificLocationData>().specficLocations.rows[(int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].x)]
+                        .row[(int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].y - 1)] == false)
+                {
+                    cannotPlace = true; //lets user keep moving object
+                    Debug.Log("Not Required Location");
+                    ObjectMover.hasPlaced = true;
+                    return;
+                }
+            }
+        }
+
+        if (cannotPlace == false)
+        {
+            for (int i = 0; i < gridSpots.Count; i++)
+            {
+                if (shapeType == 2) //these objects only have two different rotations
+                {
+                    if (rotate == 1 || rotate == 3)
+                    {
+                        spots.rows[(int)Math.Round(cube.transform.position.y + gridSpots[i].y)]
+                            .row[(int)Math.Round(cube.transform.position.x + gridSpots[i].x)] = objectNum;
+                        continue;
+                    }
+
+                    if (rotate == 2 || rotate == 4)
+                    {
+                        spots.rows[(int)Math.Round(cube.transform.position.y + gridSpots[i].x)]
+                            .row[(int)Math.Round(cube.transform.position.x + gridSpots[i].y)] = objectNum;
+                        continue;
+                    }
+                }
+
+                if (rotate == 1)
+                {
+                    spots.rows[(int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].y)]
+                        .row[(int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].x)] = objectNum;
+                }
+
+                if (rotate == 2)
+                {
+                    spots.rows[(int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].x - 1)]
+                        .row[(int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].y)] = objectNum;
+                }
+
+                if (rotate == 3)
+                {
+                    spots.rows[(int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].y - 1)]
+                        .row[(int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].x - 1)] = objectNum;
+                }
+
+                if (rotate == 4)
+                {
+                    spots.rows[(int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].x)]
+                        .row[(int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].y - 1)] = objectNum;
+                }
+            }
+        }
+    }
+
+    public bool NextToRoomCall(GameObject cube, int rotate) //when only next to room needs to be called
+    {
+        int shapeType = cube.GetComponent<ObjectScript>().shapeType;
+        GameObject gridPosBase = cube.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+        List<Vector2> gridSpots = new List<Vector2>(cube.GetComponent<ObjectScript>().shapeData.gridSpaces);
+
+        isNextToRoom = false;
+
+        for (int i = 0; i < gridSpots.Count; i++)
+        {
+            if (shapeType == 2) //these objects only have two different rotations
+            {
+                if (rotate == 1 || rotate == 3)
+                {
+                    NextToRoomCheck((int)Math.Round(cube.transform.position.y + gridSpots[i].y),
+                        (int)Math.Round(cube.transform.position.x + gridSpots[i].x), cube);
+                }
+
+                if (rotate == 2 || rotate == 4)
+                {
+                    NextToRoomCheck((int)Math.Round(cube.transform.position.y + gridSpots[i].x),
+                        (int)Math.Round(cube.transform.position.x + gridSpots[i].y), cube);
+                }
+            }
+
+            if (rotate == 1)
+            {
+                NextToRoomCheck((int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].y),
+                    (int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].x), cube);
+            }
+
+            if (rotate == 2)
+            {
+                NextToRoomCheck((int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].x - 1),
+                    (int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].y), cube);
+            }
+
+            if (rotate == 3)
+            {
+                NextToRoomCheck((int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].y - 1),
+                    (int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].x - 1), cube);
+            }
+
+            if (rotate == 4)
+            {
+                NextToRoomCheck((int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].x),
+                    (int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].y - 1), cube);
+            }
+        }
+
+        return isNextToRoom;
+    }
+
     public void NextToRoomCheck(int y, int x, GameObject cube)
     {
         if (y < 5) //# needs to change to dynamically update with different ship sizes
         {
-            if (spots.rows[y + 1].row[x] != cube.GetComponent<ObjectScript>().nextToRoomNum && nextToRoom == false)
+            if (spots.rows[y + 1].row[x] != cube.GetComponent<ObjectScript>().nextToRoomNum && isNextToRoom == false)
             {
-                nextToRoom = false;
+                isNextToRoom = false;
             }
             else
             {
-                nextToRoom = true;
+                isNextToRoom = true;
             }
         }
 
         if (y > 0)
         {
-            if (spots.rows[y - 1].row[x] != cube.GetComponent<ObjectScript>().nextToRoomNum && nextToRoom == false)
+            if (spots.rows[y - 1].row[x] != cube.GetComponent<ObjectScript>().nextToRoomNum && isNextToRoom == false)
             {
-                nextToRoom = false;
+                isNextToRoom = false;
             }
             else
             {
-                nextToRoom = true;
+                isNextToRoom = true;
             }
         }
 
         if (x < 9) //# needs to change to dynamically update with different ship sizes
         {
-            if (spots.rows[y].row[x + 1] != cube.GetComponent<ObjectScript>().nextToRoomNum && nextToRoom == false)
+            if (spots.rows[y].row[x + 1] != cube.GetComponent<ObjectScript>().nextToRoomNum && isNextToRoom == false)
             {
-                nextToRoom = false;
+                isNextToRoom = false;
             }
             else
             {
-                nextToRoom = true;
+                isNextToRoom = true;
             }
         }
 
         if (x > 0)
         {
-            if (spots.rows[y].row[x - 1] != cube.GetComponent<ObjectScript>().nextToRoomNum && nextToRoom == false)
+            if (spots.rows[y].row[x - 1] != cube.GetComponent<ObjectScript>().nextToRoomNum && isNextToRoom == false)
             {
-                nextToRoom = false;
+                isNextToRoom = false;
             }
             else
             {
-                nextToRoom = true;
+                isNextToRoom = true;
             }
         }
     }
