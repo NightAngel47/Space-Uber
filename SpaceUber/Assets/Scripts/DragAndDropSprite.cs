@@ -11,13 +11,10 @@ public class DragAndDropSprite : MonoBehaviour
 {
     [SerializeField] string targetTag;
     CropHarvestMiniGame miniGameManager;
-    Vector3 originalPosition;
     bool isBeingDraged = false;
-    bool isOverTarget = false;
 
     void Start()
     {
-        originalPosition = transform.position;
         miniGameManager = GameObject.FindGameObjectWithTag("MiniGameScoreManager").GetComponent<CropHarvestMiniGame>();
     }
 
@@ -33,20 +30,17 @@ public class DragAndDropSprite : MonoBehaviour
             transform.position = mousePosition;
         }
     }
-
-	private void OnMouseDown() { isBeingDraged = true; }
-	private void OnMouseUp() 
+	private void OnMouseDown() 
     { 
-        isBeingDraged = false;
-        if (isOverTarget)
+        isBeingDraged = !isBeingDraged;
+    }
+
+	private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag(targetTag)) 
         {
             Destroy(gameObject);
             miniGameManager.IncrementScore();
-        }
-        else { transform.position = originalPosition; }
+        } 
     }
-
-	private void OnTriggerEnter2D(Collider2D collision) { if(collision.CompareTag(targetTag)) { isOverTarget = true; } }
-
-	private void OnTriggerExit2D(Collider2D collision) { if (collision.CompareTag(targetTag)) { isOverTarget = false; } }
 }

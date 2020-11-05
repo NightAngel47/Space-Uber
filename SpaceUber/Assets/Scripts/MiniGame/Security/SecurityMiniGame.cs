@@ -20,7 +20,7 @@ public class SecurityMiniGame : MiniGame
     [SerializeField] int minCodeLength = 3;
     [SerializeField] int maxCodeLength = 5;
     public int successes = 0;
-    string validChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    string validChars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
     string requiredCode = "";
     string availableCode = "";
     string inputCode = "";
@@ -45,7 +45,7 @@ public class SecurityMiniGame : MiniGame
                 successes++;
                 for (int i = 0; i < successes; i++) { successTrackers[i].isOn = true; }
                 for(int i = successes; i < successTrackers.Length; i++) { successTrackers[i].isOn = false; }
-                if (successes == successTrackers.Length) { Debug.Log("win"); EndMiniGameSuccess(1); }
+                if (successes == successTrackers.Length) { Debug.Log("win"); EndMiniGameSuccess(); }
                 else 
                 {
                     Debug.Log("");
