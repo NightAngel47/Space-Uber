@@ -71,6 +71,7 @@ public class SpawnObject : MonoBehaviour
             g.GetComponent<ObjectMover>().TurnOnBeingDragged();
 
             ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
+            ObjectScript.CalledFromSpawn = true;
             foreach(ObjectScript r in otherRooms)
             {
                 r.TurnOffClickAgain();
