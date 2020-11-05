@@ -157,6 +157,7 @@ public class EventSystem : MonoBehaviour
             ship.UnpauseTickEvents();
 		}
 		isTraveling = false;
+		sonar.HideSonar();
         ship.StopTickEvents();
 	}
 
