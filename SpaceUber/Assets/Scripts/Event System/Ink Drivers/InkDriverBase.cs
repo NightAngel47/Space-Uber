@@ -36,8 +36,7 @@ public class InkDriverBase : MonoBehaviour
     [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
     private float textPrintSpeed = 0.1f;
 
-    [SerializeField, Tooltip("The list of choice outcomes for this event.")] 
-    private List<EventChoice> choicesAvailable = new List<EventChoice>();
+    private EventChoice[] choicesAvailable;
 
     /// <summary>
     /// The story itself being read
@@ -73,7 +72,7 @@ public class InkDriverBase : MonoBehaviour
         backgroundUI.sprite = backgroundImage;
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
 
-        
+        choicesAvailable = GetComponents<EventChoice>();
     }
 
     public void AssignUIFromEventSystem(TMP_Text title, TMP_Text text, Image background, Transform buttonSpace, ShipStats ship)
