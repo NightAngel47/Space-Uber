@@ -69,6 +69,8 @@ public class JobListUI : MonoBehaviour
         {
             jobUI.ClearSelectedBackground();
         }
+        
+        continueButton.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -79,5 +81,7 @@ public class JobListUI : MonoBehaviour
         selectedJobNameText.text = "";
         selectedJobDescText.text = "";
         selectedJobPayText.text = "";
+        
+        continueButton.gameObject.SetActive(false);
     }
 }
