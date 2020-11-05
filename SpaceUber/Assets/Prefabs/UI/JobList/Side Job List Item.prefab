@@ -790,7 +790,7 @@ PrefabInstance:
     - target: {fileID: 4517905643514316489, guid: 6a1fddf44c6c2124e905e4b03a0480ab,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 929
       objectReference: {fileID: 0}
     - target: {fileID: 4517905643514316489, guid: 6a1fddf44c6c2124e905e4b03a0480ab,
         type: 3}
@@ -805,7 +805,7 @@ PrefabInstance:
     - target: {fileID: 4517905643514316489, guid: 6a1fddf44c6c2124e905e4b03a0480ab,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4517905643514316489, guid: 6a1fddf44c6c2124e905e4b03a0480ab,
         type: 3}
@@ -815,7 +815,7 @@ PrefabInstance:
     - target: {fileID: 4517905643514316489, guid: 6a1fddf44c6c2124e905e4b03a0480ab,
         type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4517905643514316489, guid: 6a1fddf44c6c2124e905e4b03a0480ab,
         type: 3}
@@ -832,6 +832,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Side Job List Item
       objectReference: {fileID: 0}
+    - target: {fileID: 6957575525960293230, guid: 6a1fddf44c6c2124e905e4b03a0480ab,
+        type: 3}
+      propertyPath: isSideJob
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957575525960293230, guid: 6a1fddf44c6c2124e905e4b03a0480ab,
+        type: 3}
+      propertyPath: sideJobPayText
+      value: 
+      objectReference: {fileID: 4784524718699096564}
+    - target: {fileID: 6957575525960293230, guid: 6a1fddf44c6c2124e905e4b03a0480ab,
+        type: 3}
+      propertyPath: sideJobLengthText
+      value: 
+      objectReference: {fileID: 7063722103345326856}
     - target: {fileID: 7070825999940590986, guid: 6a1fddf44c6c2124e905e4b03a0480ab,
         type: 3}
       propertyPath: m_SizeDelta.x
