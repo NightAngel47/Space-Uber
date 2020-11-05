@@ -8,24 +8,22 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using System.Collections.Generic;
 
 public class Job : MonoBehaviour
 {
-    public List<GameObject> events;
+    [Tooltip("How many events will happen in this journey")]
+    public int maxEvents = 3;
+
+    [Tooltip("Narrative-focused events that will play in this specific order")]
+    public List<GameObject> storyEvents;
+
+    [Tooltip("Miscellaneous events that occur in a random order")]
+    public List<GameObject> randomEvents;
 
     public string jobName;
     public string description;
-    public JobSelectScreen jobSelect;
-    public Button buttonPrefab;
-  
-    public void ShowButton(Transform buttonGroup)
-    {
-        Button thisButton = Instantiate(buttonPrefab, buttonGroup);
-
-        // Set listener
-        thisButton.onClick.AddListener(delegate {
-            jobSelect.ChoiceChosen(this);
-        });
-    }
+    public int payout;
+    public bool isSideJob;
 }

@@ -16,12 +16,16 @@ public class ObjectScript : MonoBehaviour
 {
     [Foldout("Data")]
     public int rotAdjust = 1;
-    private GameObject parentObj;
-    private float moveDistance;
     public static Color c;
 
     public int shapeType;
     public int objectNum;
+
+    public bool canRotate;  //true can rotate | false cannot rotate
+    public bool nextToRoom; //true required next to x room | false no condition 
+    public int nextToRoomNum;
+
+    public string[] mouseOverAudio;
 
     [SerializeField] private ShapeType shapeDataTemplate = null;
 
@@ -52,19 +56,21 @@ public class ObjectScript : MonoBehaviour
 
     [Foldout("Data")]
     public Vector3 rotAdjustVal;
+
+    public bool clickAgain = true;
+
     private void Start()
     {
         //rotAdjust = false;
-        c = gameObject.GetComponent<SpriteRenderer>().color;
+        c = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
         c.a = 0.5f;
-        parentObj = transform.parent.gameObject;
-        moveDistance = parentObj.GetComponent<ObjectMover>().GetMoveDis();
+        //parentObj = transform.parent.gameObject;
         
-        roomNameUI.text = parentObj.GetComponent<RoomStats>().roomName;
-        roomDescUI.text = parentObj.GetComponent<RoomStats>().roomDescription;
-        roomPrice.text = parentObj.GetComponent<RoomStats>().price.ToString();
+        roomNameUI.text = gameObject.GetComponent<RoomStats>().roomName;
+        roomDescUI.text = gameObject.GetComponent<RoomStats>().roomDescription;
+        roomPrice.text = gameObject.GetComponent<RoomStats>().price.ToString();
 
-        foreach (var resource in parentObj.GetComponent<RoomStats>().resources)
+        foreach (var resource in gameObject.GetComponent<RoomStats>().resources)
         {
             GameObject resourceGO = Instantiate(resourceUI, statsUI);
             resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = resource.resourceIcon; // resource icon
@@ -75,14 +81,24 @@ public class ObjectScript : MonoBehaviour
         ResetData();
     }
 
+    public void TurnOnClickAgain()
+    {
+        clickAgain = true;
+    }
+
+    public void TurnOffClickAgain()
+    {
+        clickAgain = false;
+    }
+
     public void OnMouseOver()
     {
-        if (GameManager.currentGameState == InGameStates.ShipBuilding) 
+        if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true) 
         {
             if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true)
             {
                 //buttons.SetActive(true);
-                parentObj.GetComponent<RoomStats>().SubtractRoomStats();
+                gameObject.GetComponent<RoomStats>().SubtractRoomStats();
                 Edit();
             }
 
@@ -91,39 +107,67 @@ public class ObjectScript : MonoBehaviour
                 //buttons.SetActive(true);
                 if (ObjectMover.hasPlaced == true)
                 {
-                    parentObj.GetComponent<RoomStats>().SubtractRoomStats();
+                    gameObject.GetComponent<RoomStats>().SubtractRoomStats();
                 }
+
                 Delete();
             }
             
             //TODO might need to allow seeing room stats outside of ship building, however this was done to not have them show during events
+            
+        }
+
+        if(GameManager.instance.currentGameState == InGameStates.CrewManagement)
+        {
             hoverUiPanel.SetActive(true);
+
+            if (Input.GetMouseButton(0))
+            {
+                FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
+            }
         }
     }
 
+    public void OnMouseEnter()
+    {
+        if (!EventSystem.instance.eventActive && !OverclockController.instance.overclocking)
+        {
+            AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length)]);
+        }
+    }
+
+
     public void OnMouseExit()
     {
-        hoverUiPanel.SetActive(false);
+        if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
+        {
+            hoverUiPanel.SetActive(false);
+        }
     }
 
     public void Edit()
     {
-        //buttons.SetActive(false);
+        ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
+        foreach (ObjectScript r in otherRooms)
+        {
+            r.TurnOffClickAgain();
+        }
+
         c.a = 1;
-        gameObject.GetComponent<SpriteRenderer>().color = c;
+        gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
         c.a = .5f;
-        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust);
-        parentObj.AddComponent<ObjectMover>();
-        parentObj.GetComponent<ObjectMover>().SetMoveDis(moveDistance);
+        SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
+        gameObject.GetComponent<ObjectMover>().enabled = true;
+        gameObject.GetComponent<ObjectMover>().TurnOnBeingDragged();
         ObjectMover.hasPlaced = false;
     }
 
     public void Delete()
     {
         //buttons.SetActive(false);
-        SpotChecker.instance.RemoveSpots(parentObj, rotAdjust);
+        SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
         ObjectMover.hasPlaced = true;
-        Destroy(parentObj);
+        Destroy(gameObject);
     }
 
     private void ResetData()
@@ -137,6 +181,8 @@ public class ObjectScript : MonoBehaviour
         rotBoundsUp = shapeData.rotBoundsUp;
 
         rotAdjustVal = shapeData.rotAdjustVal;
+
+        gameObject.GetComponent<ObjectMover>().UpdateMouseBounds(boundsDown, boundsUp, boundsLeft, boundsRight);
     }
 
     public void UpdateHoverUIData(string n, string d, string s)

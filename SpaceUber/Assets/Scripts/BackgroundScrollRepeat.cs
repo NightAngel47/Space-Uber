@@ -3,45 +3,48 @@
 // Credits: Kee Gamedev on YouTube - https://www.youtube.com/watch?v=P3hcopOkpa8
 // Follow video for setup. The only change I made was to make speed public for the sake of adjustment.
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BackgroundScrollRepeat : MonoBehaviour
 {
-    private BoxCollider2D boxCollider;
-
-    private Rigidbody2D rb;
-
+    private Rigidbody2D rigidbody2D;
+    
     private float width;
+    [SerializeField] private float speed;
 
-    public float speed;
+    private void Awake()
+    {
+        rigidbody2D = GetComponent<Rigidbody2D>();
+    }
 
-    // Start is called before the first frame update
     void Start()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
-        rb = GetComponent<Rigidbody2D>();
-
-        width = boxCollider.size.x;
-        rb.velocity = new Vector2(speed, 0);
-
-
-        
+        width = GetComponent<SpriteRenderer>().bounds.size.x;
+        print("W:" + width);
+        rigidbody2D.velocity = new Vector2(speed, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x < -width)
+        if (transform.position.x > width)
         {
             Reposition();
+        }
+
+        // Toggle when background should be moving
+        if (rigidbody2D.velocity.magnitude > 0 && GameManager.instance.currentGameState != InGameStates.Events)
+        {
+            rigidbody2D.velocity = Vector2.zero;
+        }
+        else if (rigidbody2D.velocity.magnitude <= 0 && GameManager.instance.currentGameState == InGameStates.Events)
+        {
+            rigidbody2D.velocity = new Vector2(speed, 0);
         }
     }
 
     private void Reposition()
     {
-        Vector2 vector = new Vector2(width * 2f, 0);
-        transform.position = (Vector2)transform.position + vector;
+        transform.position -= new Vector3(width * 2f, 0, 0);
     }
 }

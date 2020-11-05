@@ -2,96 +2,86 @@
  * ChoiceOutcomes.cs
  * Author(s): Sam Ferstein
  * Created on: 9/18/2020 (en-US)
- * Description:
+ * Description: Controls all outcomes of choices. When the player chooses to do something, code is directed here to determine the effects
+ * Effects are written in the inspector
  */
 
 using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChoiceOutcomes : MonoBehaviour
+[System.Serializable]
+public struct ChoiceOutcomes
 {
-    [Tooltip("To keep track of which choice this is")]
-    public string choiceName;
-    ShipStats shipStats;
-    public List<ResourceType> resourcesChanged;
-    public List<int> amountChanged;
+    
 
     public bool isRandomOutcome;
-    [ShowIf("isRandomOutcome")]
-    public List<float> probabilities;
+
+    [SerializeField, HideIf("isRandomOutcome")] private List<ResourceType> resourcesChanged;
+    [SerializeField, HideIf("isRandomOutcome")] private List<int> amountChanged;
+
+    [SerializeField, ShowIf("isRandomOutcome")] private List<float> probabilities;
+    [SerializeField, ShowIf("isRandomOutcome")] private MultipleRandom[] multipleRandomOutcomes;
 
     private float outcomeChance;
-    private float choiceThreshold = 0f;
+    private float choiceThreshold ;
 
-
-    public enum ResourceType
+    [System.Serializable]
+    public class MultipleRandom
     {
-        Credits,
-        Energy,
-        Security,
-        ShipWeapons,
-        Crew,
-        Food,
-        FoodPerTick,
-        HullDurability,
-        Stock
+        public List<ResourceType> resourcesChanged;
+        public List<int> amountChanged;
     }
-
-    //private List<string> resourceTypes
-    //{
-    //    get
-    //    {
-    //        return new List<string>() { "", "Credits", "Energy", "Security",
-    //    "Ship Weapons", "Crew", "Food", "Food Per Tick", "Hull Durability", "Stock" };
-    //    }
-    //}
+    
 
     void Start()
     {
-        shipStats = FindObjectOfType<ShipStats>();
-        outcomeChance = Random.Range(0f, 100f);
+        //shipStats = FindObjectOfType<ShipStats>();
     }
 
-    public void ChoiceChange()
+    public void StatChange(ShipStats ship)
     {
-        if (shipStats != null)
+        if (ship != null)
         {
             if (isRandomOutcome)
             {
+                outcomeChance = Random.Range(0f, 100f);
                 for (int i = 0; i < probabilities.Count; i++)
                 {
                     choiceThreshold += probabilities[i];
                     if (outcomeChance <= choiceThreshold)
                     {
-                        switch (resourcesChanged[i])
+                        for(int j = 0; j < multipleRandomOutcomes[i].resourcesChanged.Count; j++)
                         {
-                            case ResourceType.Credits:
-                                shipStats.UpdateCreditsAmount(amountChanged[i]);
-                                break;
-                            case ResourceType.Energy:
-                                shipStats.UpdateEnergyAmount(amountChanged[i]);
-                                break;
-                            case ResourceType.Security:
-                                shipStats.UpdateSecurityAmount(amountChanged[i]);
-                                break;
-                            case ResourceType.ShipWeapons:
-                                shipStats.UpdateShipWeaponsAmount(amountChanged[i]);
-                                break;
-                            case ResourceType.Crew:
-                                shipStats.UpdateCrewAmount(amountChanged[i]);
-                                break;
-                            case ResourceType.Food:
-                                shipStats.UpdateFoodAmount(amountChanged[i]);
-                                break;
-                            case ResourceType.FoodPerTick:
-                                shipStats.UpdateFoodPerTickAmount(amountChanged[i]);
-                                break;
-                            case ResourceType.HullDurability:
-                                shipStats.UpdateHullDurabilityAmount(amountChanged[i]);
-                                break;
-                            default:
-                                break;
+                            switch (multipleRandomOutcomes[i].resourcesChanged[j])
+                            {
+                                case ResourceType.Credits:
+                                    ship.UpdateCreditsAmount(multipleRandomOutcomes[i].amountChanged[j]);
+                                    break;
+                                case ResourceType.Energy:
+                                    ship.UpdateEnergyAmount(multipleRandomOutcomes[i].amountChanged[j]);
+                                    break;
+                                case ResourceType.Security:
+                                    ship.UpdateSecurityAmount(multipleRandomOutcomes[i].amountChanged[j]);
+                                    break;
+                                case ResourceType.ShipWeapons:
+                                    ship.UpdateShipWeaponsAmount(multipleRandomOutcomes[i].amountChanged[j]);
+                                    break;
+                                case ResourceType.Crew:
+                                    ship.UpdateCrewAmount(multipleRandomOutcomes[i].amountChanged[j]);
+                                    break;
+                                case ResourceType.Food:
+                                    ship.UpdateFoodAmount(multipleRandomOutcomes[i].amountChanged[j]);
+                                    break;
+                                case ResourceType.FoodPerTick:
+                                    ship.UpdateFoodPerTickAmount(multipleRandomOutcomes[i].amountChanged[j]);
+                                    break;
+                                case ResourceType.HullDurability:
+                                    ship.UpdateHullDurabilityAmount(multipleRandomOutcomes[i].amountChanged[j]);
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                         return;
                     }
@@ -104,28 +94,28 @@ public class ChoiceOutcomes : MonoBehaviour
                     switch (resourcesChanged[i])
                     {
                         case ResourceType.Credits:
-                            shipStats.UpdateCreditsAmount(amountChanged[i]);
+                            ship.UpdateCreditsAmount(amountChanged[i]);
                             break;
                         case ResourceType.Energy:
-                            shipStats.UpdateEnergyAmount(amountChanged[i]);
+                            ship.UpdateEnergyAmount(amountChanged[i]);
                             break;
                         case ResourceType.Security:
-                            shipStats.UpdateSecurityAmount(amountChanged[i]);
+                            ship.UpdateSecurityAmount(amountChanged[i]);
                             break;
                         case ResourceType.ShipWeapons:
-                            shipStats.UpdateShipWeaponsAmount(amountChanged[i]);
+                            ship.UpdateShipWeaponsAmount(amountChanged[i]);
                             break;
                         case ResourceType.Crew:
-                            shipStats.UpdateCrewAmount(amountChanged[i]);
+                            ship.UpdateCrewAmount(amountChanged[i]);
                             break;
                         case ResourceType.Food:
-                            shipStats.UpdateFoodAmount(amountChanged[i]);
+                            ship.UpdateFoodAmount(amountChanged[i]);
                             break;
                         case ResourceType.FoodPerTick:
-                            shipStats.UpdateFoodPerTickAmount(amountChanged[i]);
+                            ship.UpdateFoodPerTickAmount(amountChanged[i]);
                             break;
                         case ResourceType.HullDurability:
-                            shipStats.UpdateHullDurabilityAmount(amountChanged[i]);
+                            ship.UpdateHullDurabilityAmount(amountChanged[i]);
                             break;
                         default:
                             break;
@@ -136,4 +126,17 @@ public class ChoiceOutcomes : MonoBehaviour
         }
 
     }
+}
+
+public enum ResourceType
+{
+    Credits,
+    Energy,
+    Security,
+    ShipWeapons,
+    Crew,
+    Food,
+    FoodPerTick,
+    HullDurability,
+    Stock
 }
