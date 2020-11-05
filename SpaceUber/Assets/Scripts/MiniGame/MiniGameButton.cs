@@ -6,13 +6,14 @@
  */
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MiniGameButton : MonoBehaviour
 {
     [HideInInspector] public bool isOn = false;
 	[HideInInspector] public int value = 0;
 	[SerializeField] Sprite onSprite = null;
-	[SerializeField]Sprite offSprite = null;
+	[SerializeField] Sprite offSprite = null;
 
 	public void OnMouseDown() { ChangeValue(); }
 

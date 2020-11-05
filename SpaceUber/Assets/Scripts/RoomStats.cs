@@ -25,7 +25,7 @@ public class RoomStats : MonoBehaviour
     [Tooltip("How many credits the room costs to place")]
     public int price;
 
-    int currentCrew;
+    public int currentCrew;
 
     [ResizableTextArea]
     public string roomDescription;
@@ -64,6 +64,11 @@ public class RoomStats : MonoBehaviour
     public void UpdateUsedRoom()
     {
         usedRoom = true;
+    }
+
+    public void UpdateCurrentCrew(int crew)
+    {
+        currentCrew += crew;
     }
 
     /// <summary>
