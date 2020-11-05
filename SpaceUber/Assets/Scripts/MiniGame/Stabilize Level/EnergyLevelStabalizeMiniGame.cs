@@ -26,7 +26,11 @@ public class EnergyLevelStabalizeMiniGame : MiniGame
 	private void Start()
 	{
 		InitializeGame();
-		while(CalculatePowerLevel() == 100) { InitializeGame(); }
+		int absoluteSum = 0;
+		int goal = 50;
+		int result = 0;
+		while ((absoluteSum = Mathf.Abs((result = CalculatePowerLevel())-goal)) < 10) { Debug.Log(absoluteSum + " " + result); InitializeGame(); }
+		Debug.Log(absoluteSum + " " + result);
 	}
 	public List<float> optimizationLevels;
 	
