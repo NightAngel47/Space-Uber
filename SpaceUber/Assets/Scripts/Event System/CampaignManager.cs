@@ -11,8 +11,10 @@ using UnityEngine;
 
 public class CampaignManager : MonoBehaviour
 {
+    public static CampaignManager instance;
     public enum Campaign
     {
+        N_A,
         CateringToTheRich
     }
     public Campaign currentCamp;
@@ -26,6 +28,8 @@ public class CampaignManager : MonoBehaviour
 
     public int ctr_VIPTrust = 50;
     public int ctr_cloneTrust = 50;
+
+    
     #endregion
 
 }

@@ -14,21 +14,13 @@ using NaughtyAttributes;
 
 public class EventChoice : MonoBehaviour
 {
-    [Dropdown("thisCampaign")]
-    public string campaign;
-    private List<string> thisCampaign
-    {
-        get
-        {
-            return new List<string>() { "NA", "Catering to the Rich" };
-        }
-    }
+    
 
     [SerializeField] private string choiceName;
     [SerializeField] private bool hasRequirements;
     [SerializeField, ShowIf("hasRequirements")] private List<Requirements> choiceRequirements;
-    [SerializeField] private ChoiceOutcomes outcome;
-    private bool hasRandomOutcome;
+    [SerializeField] private List<ChoiceOutcomes> outcomes;
+    //[SerializeField] private bool hasRandomOutcome;
     protected Story story;
 
     // Start is called before the first frame update
@@ -60,7 +52,6 @@ public class EventChoice : MonoBehaviour
         {
             myButton.interactable = true;
             story = thisStory;
-            hasRandomOutcome = outcome.isRandomOutcome;
         }
         else
         {
@@ -68,6 +59,10 @@ public class EventChoice : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Tells the outcome object to start applying changes.
+    /// </summary>
+    /// <param name="ship"></param>
     public void SelectChoice(ShipStats ship)
     {
         //if(hasRandomOutcome)
@@ -75,16 +70,23 @@ public class EventChoice : MonoBehaviour
         //    RandomizeEnding();
         //}
 
-        outcome.StatChange(ship);
-       
+        foreach(ChoiceOutcomes outcome in outcomes)
+        {
+            outcome.StatChange(ship);
+        }
+
     }
 
+    /// <summary>
+    /// Randomly choose which ending that the choice will end with. Requires an Ink variable called numberOfRandomEndings
+    /// as well as knot variables called "endingOne", "endingTwo" and so on.
+    /// </summary>
     private void RandomizeEnding()
     {
-        var numberOfEndingsRaw = story.variablesState["numberOfEndings"];
+        var numberOfEndingsRaw = story.variablesState["numberOfRandomEndings"];
         int endingNum = (int)numberOfEndingsRaw;
 
-        //This is hardcoded for the wormhole event until I can get it to work universally
+        
         int rng = Random.Range(1, endingNum);
         switch (rng)
         {

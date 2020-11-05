@@ -127,7 +127,8 @@ public class EventSystem : MonoBehaviour
 			//story events happen every other time 
 			if (overallEventIndex % 2 == 1 && overallEventIndex != 0) //if it's an even-numbered event, do a story 
 			{
-				CreateEvent(storyEvents[storyEventIndex]);
+				GameObject newEvent = FindNextStoryEvent();
+				CreateEvent(newEvent);
 				storyEventIndex++;
                 
                 
@@ -229,6 +230,28 @@ public class EventSystem : MonoBehaviour
 
 
 	}
+
+	private GameObject FindNextStoryEvent()
+    {
+		GameObject result = storyEvents[storyEventIndex];
+		for(int i = storyEventIndex; i < storyEvents.Count; i++)
+        {
+			GameObject thisEvent = storyEvents[i];
+			List<Requirements> requirements = thisEvent.GetComponent<InkDriverBase>().requiredStats;
+			
+			if(HasRequiredStats(requirements))
+            {
+				result = thisEvent;
+				break;
+            }
+			else
+            {
+				++storyEventIndex;
+            }
+		}
+
+		return result;
+    }
 
 	/// <summary>
 	/// Picks a random event to spawn. The random numbers include the eventIndex to the count of storyEvents list

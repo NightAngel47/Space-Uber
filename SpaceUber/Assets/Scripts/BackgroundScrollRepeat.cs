@@ -20,7 +20,6 @@ public class BackgroundScrollRepeat : MonoBehaviour
     void Start()
     {
         width = GetComponent<SpriteRenderer>().bounds.size.x;
-        print("W:" + width);
         rigidbody2D.velocity = new Vector2(speed, 0);
     }
 

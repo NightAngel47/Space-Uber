@@ -15,21 +15,28 @@ MonoBehaviour:
   choiceName: Leave it be
   hasRequirements: 0
   choiceRequirements:
-  - selectedResource: 0
+  - isNarrativeRequirement: 0
+    selectedResource: 0
     requiredAmount: 0
     lessThan: 0
-  - selectedResource: 0
+    ctrBoolRequirements: 
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  - isNarrativeRequirement: 0
+    selectedResource: 0
     requiredAmount: 0
     lessThan: 0
-  - selectedResource: 0
+    ctrBoolRequirements: 
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  - isNarrativeRequirement: 0
+    selectedResource: 0
     requiredAmount: 0
     lessThan: 0
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 
-    amountChanged: 
-    probabilities: []
-    multipleRandomOutcomes: []
+    ctrBoolRequirements: 
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  outcomes: []
 --- !u!114 &3613679431614302388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,25 +52,14 @@ MonoBehaviour:
   choiceName: Go in the Wormhole
   hasRequirements: 0
   choiceRequirements:
-  - selectedResource: 0
+  - isNarrativeRequirement: 0
+    selectedResource: 0
     requiredAmount: 0
     lessThan: 0
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-  outcome:
-    isRandomOutcome: 1
-    resourcesChanged: 05000000070000000400000000000000
-    amountChanged: 0a000000e7fffffffefffffffa000000
-    probabilities:
-    - 35
-    - 35
-    - 15
-    - 15
-    multipleRandomOutcomes: []
+    ctrBoolRequirements: 
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  outcomes: []
 --- !u!1001 &2626420981659780162
 PrefabInstance:
   m_ObjectHideFlags: 0
