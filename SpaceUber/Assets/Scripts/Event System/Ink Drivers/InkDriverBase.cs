@@ -26,18 +26,17 @@ public class InkDriverBase : MonoBehaviour
     [SerializeField, Tooltip("Attach the prefab of a choice button to this")] 
     private Button buttonPrefab;
 
-    [SerializeField, Tooltip("The transform parent to spawn choices under")]
-    [HideInInspector]public Transform buttonGroup;
-    
-    [HideInInspector] public TMP_Text titleBox;
-    [HideInInspector] public TMP_Text textBox;
-    [HideInInspector] public Image backgroundUI;
+
+    private Transform buttonGroup;    
+    private TMP_Text titleBox;
+    private TMP_Text textBox;
+    private Image backgroundUI;
+    private ShipStats thisShip;
 
     [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
     private float textPrintSpeed = 0.1f;
 
-    [SerializeField, Tooltip("The list of choice outcomes for this event.")] 
-    private List<ChoiceOutcomes> choiceOutcomes = new List<ChoiceOutcomes>();
+    private EventChoice[] choicesAvailable;
 
     /// <summary>
     /// The story itself being read
@@ -50,7 +49,7 @@ public class InkDriverBase : MonoBehaviour
     private bool donePrinting = true;
     private bool showingChoices = false;
 
-    [SerializeField] public List<EventRequirements> requiredStats;
+    [SerializeField] public List<Requirements> requiredStats;
     
     [Dropdown("eventMusicTracks")]
     public string eventBGM;
@@ -73,15 +72,16 @@ public class InkDriverBase : MonoBehaviour
         backgroundUI.sprite = backgroundImage;
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
 
-        
+        choicesAvailable = GetComponents<EventChoice>();
     }
 
-    public void AssignUIFromEventSystem(TMP_Text title, TMP_Text text, Image background, Transform buttonSpace)
+    public void AssignUIFromEventSystem(TMP_Text title, TMP_Text text, Image background, Transform buttonSpace, ShipStats ship)
     {
         titleBox = title;
         textBox = text;
         backgroundUI = background;
         buttonGroup = buttonSpace;
+        thisShip = ship;
     }
 
     private void Update()
@@ -145,7 +145,9 @@ public class InkDriverBase : MonoBehaviour
                 TMP_Text choiceText = choiceButton.GetComponentInChildren<TMP_Text>();
                 choiceText.text = " " + (choice.index + 1) + ". " + choice.text;
 
-                // Set listener
+                choicesAvailable[choice.index].ControlChoice(thisShip,choiceButton, story);
+                
+                // Set listener for the sake of knowing when to refresh
                 choiceButton.onClick.AddListener(delegate {
                     OnClickChoiceButton(choice);
                 });
@@ -154,7 +156,7 @@ public class InkDriverBase : MonoBehaviour
                 
                 // Have on click also call the outcome choice to update the ship stats
                 choiceButton.onClick.AddListener(delegate {
-                    choiceOutcomes[choice.index].ChoiceChange();
+                    choicesAvailable[choice.index].SelectChoice(thisShip);
                 });
             }
         }
@@ -180,8 +182,6 @@ public class InkDriverBase : MonoBehaviour
     /// <param name="choice"></param>
     private void OnClickChoiceButton(Choice choice)
     {
-        
-
         story.ChooseChoiceIndex(choice.index);
         Refresh();
         showingChoices = false;
@@ -190,23 +190,7 @@ public class InkDriverBase : MonoBehaviour
     //exists to be overriden by child scripts
     protected virtual void RandomizeEnding()
     {
-        //This is hardcoded for the wormhole event until I can get it to work universally
-        int rng = Random.Range(1, 5);
-        switch (rng)
-        {
-            case 1:
-                story.variablesState["randomEnd"] = story.variablesState["minorDamageEnd"];
-                break;
-            case 2:
-                story.variablesState["randomEnd"] = story.variablesState["prankedEnd"];
-                break;
-            case 3:
-                story.variablesState["randomEnd"] = story.variablesState["moneyEnd"];
-                break;
-            case 4:
-                story.variablesState["randomEnd"] = story.variablesState["shuffleEnd"];
-                break;
-        }
+        
     }
 
     /// <summary>
@@ -224,17 +208,7 @@ public class InkDriverBase : MonoBehaviour
                 text = story.Continue();
             }
 
-            List<string> tags = story.currentTags;
             
-            if (tags.Count > 0)
-            {
-                print("There are tags");
-                if (tags[0] == "RandomizeOutcome")
-                {
-                    print("Randomize end");
-                    RandomizeEnding();
-                }
-            }
         }
 
         return text;
