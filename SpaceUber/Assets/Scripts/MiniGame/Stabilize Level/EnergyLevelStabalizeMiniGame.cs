@@ -41,7 +41,7 @@ public class EnergyLevelStabalizeMiniGame : MiniGame
 
 		total += 50;
 		optimizationText.text = (total + "%");
-		if (total == 100) { EndMiniGameSuccess(1); }
+		if (total == 100) { EndMiniGameSuccess(); }
 		
 	}
 

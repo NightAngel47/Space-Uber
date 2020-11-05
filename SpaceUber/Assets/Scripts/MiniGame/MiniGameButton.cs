@@ -6,20 +6,21 @@
  */
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MiniGameButton : MonoBehaviour
 {
     [HideInInspector] public bool isOn = false;
 	[HideInInspector] public int value = 0;
 	[SerializeField] Sprite onSprite = null;
-	[SerializeField]Sprite offSprite = null;
+	[SerializeField] Sprite offSprite = null;
 
 	public void OnMouseDown() { ChangeValue(); }
 
 	public void ChangeValue()
 	{
 		isOn = !isOn;
-		if (isOn) { GetComponent<SpriteRenderer>().sprite = onSprite; value = 1; }
-		else { GetComponent<SpriteRenderer>().sprite = offSprite; value = 0; }
+		if (isOn) { GetComponent<Image>().sprite = onSprite; value = 1; }
+		else { GetComponent<Image>().sprite = offSprite; value = 0; }
 	}
 }

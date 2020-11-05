@@ -10,14 +10,27 @@ using UnityEngine;
 public class MiniGame : MonoBehaviour
 {
 	[SerializeField] MiniGameType miniGameSceneName;
+	[SerializeField] protected float statModification = 1;
+	[SerializeField] GameObject gameWinScreen;
+
+	private void Start()
+	{
+		gameWinScreen.SetActive(false);
+	}
 
 	public void EndMiniGameEarly()
 	{
         OverclockController.instance.EndMiniGame(miniGameSceneName, false);
 	}
 
-    public void EndMiniGameSuccess(float statModification)
+    public void EndMiniGameSuccess()
 	{
-        OverclockController.instance.EndMiniGame(miniGameSceneName, true, statModification);
+		gameWinScreen.SetActive(true);
     }
+
+	public void ConfirmMiniGameSuccess()
+	{
+		gameWinScreen.SetActive(false);
+		OverclockController.instance.EndMiniGame(miniGameSceneName, true, statModification);
+	}
 }
