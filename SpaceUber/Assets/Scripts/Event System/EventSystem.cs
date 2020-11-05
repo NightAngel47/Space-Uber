@@ -52,6 +52,7 @@ public class EventSystem : MonoBehaviour
 	public bool eventActive { get; private set; } = false;
 
 	[SerializeField] private GameObject eventWarning;
+	[SerializeField] private EventSonar sonar;
 	private Job currentJob;
 
 	private void Awake()
@@ -67,11 +68,15 @@ public class EventSystem : MonoBehaviour
 		{
 			eventWarning.SetActive(false);
 		}
-		
+		sonar.HideSonar();
 	}
 
 	public IEnumerator Travel()
 	{
+		//set up the sonar
+		sonar.ShowSonar();
+		sonar.ResetSonar();
+
 		float chanceOfEvent = startingEventChance;
 		while (GameManager.instance.currentGameState == InGameStates.Events)
 		{
@@ -85,8 +90,7 @@ public class EventSystem : MonoBehaviour
             
 			//run random chances for event to take place
 			while (!WillRunEvent(chanceOfEvent))
-			{
-				print("Did not pick an event");
+			{				
 				isTraveling = true;
 				chanceOfEvent+= chanceIncreasePerFreq;
 				yield return new WaitForSeconds(eventChanceFreq);
@@ -96,17 +100,21 @@ public class EventSystem : MonoBehaviour
                 break;
             }
 
-			//Event warning code
+			//Activate the warning for the next event now
 			if (eventWarning != null)
 			{
 				eventWarning.SetActive(true);
 			}
+
+			//wait until there is no longer an overclock microgame happening
 			yield return new WaitUntil(() => !OverclockController.instance.overclocking);
+			
+			//turn off the event warning because an event is about to begin
 			if (eventWarning != null)
 			{
 				eventWarning.SetActive(false);
 			}
-            
+			sonar.HideSonar();
             ship.PauseTickEvents();
 
 			// Load Event_General Scene for upcoming event // TODO will have to change based on story vs random event
@@ -143,9 +151,13 @@ public class EventSystem : MonoBehaviour
 				}
 			}
             
+			//set up the sonar for the next event
+			sonar.ShowSonar();
+			sonar.ResetSonar();
             ship.UnpauseTickEvents();
 		}
 		isTraveling = false;
+		sonar.HideSonar();
         ship.StopTickEvents();
 	}
 
@@ -161,7 +173,7 @@ public class EventSystem : MonoBehaviour
 		if (eventInstance.TryGetComponent(out InkDriverBase inkDriver))
 		{
 			inkDriver.AssignUIFromEventSystem(eventCanvas.titleBox, eventCanvas.textBox,
-				eventCanvas.backgroundImage, eventCanvas.buttonGroup);
+				eventCanvas.backgroundImage, eventCanvas.buttonGroup, ship);
 			
 		}
 
@@ -205,10 +217,13 @@ public class EventSystem : MonoBehaviour
 	/// <returns></returns>
 	private bool WillRunEvent(float chances)
 	{
+		sonar.ShowNextDot();
 		float rng = Random.Range(0, 101);
 
 		if (rng <= chances)
-		{ return true; }
+		{
+			return true; 
+		}
 		else
 		{ return false; }
 
@@ -230,7 +245,7 @@ public class EventSystem : MonoBehaviour
 		{
 			int eventNum = Random.Range(randomEventIndex, randomEvents.Count);
 			thisEvent = randomEvents[eventNum];
-			List<EventRequirements> requirements = thisEvent.GetComponent<InkDriverBase>().requiredStats;
+			List<Requirements> requirements = thisEvent.GetComponent<InkDriverBase>().requiredStats;
 
 			//if the event chosen has requirements that are not met
 			if (!HasRequiredStats(requirements))
@@ -254,12 +269,7 @@ public class EventSystem : MonoBehaviour
 					newIndex++;
 				}
 
-				print("There were no other events to run.");
 				return null;
-			}
-			else
-			{
-				print("Meets requirements");
 			}
 
 			randomEvents.RemoveAt(eventNum);
@@ -270,11 +280,11 @@ public class EventSystem : MonoBehaviour
 	}
 
 
-	private bool HasRequiredStats(List<EventRequirements> selectedRequirements)
+	private bool HasRequiredStats(List<Requirements> selectedRequirements)
 	{
 		bool result = true;
 
-		foreach (EventRequirements required in selectedRequirements)
+		foreach (Requirements required in selectedRequirements)
 		{
 			if (!required.MatchesRequirements(ship))
 			{
