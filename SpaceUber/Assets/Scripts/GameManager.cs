@@ -6,6 +6,7 @@
  *              Uses the AdditiveSceneManager to Load/Unload scenes for each state.
  */
 
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -54,6 +55,11 @@ public class GameManager : MonoBehaviour
         additiveSceneManager = FindObjectOfType<AdditiveSceneManager>();
     }
 
+    private void Start()
+    {
+        ChangeInGameState(InGameStates.JobSelect);
+    }
+
     /// <summary>
     /// Changes the current game state to the passed in game state.
     /// Uses the AdditiveSceneManager to Load/Unload scenes.
@@ -84,10 +90,10 @@ public class GameManager : MonoBehaviour
                 }
 
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
-                additiveSceneManager.LoadSceneSeperate("JobPicker");
+                additiveSceneManager.LoadSceneSeperate("Interface_JobList");
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
-                additiveSceneManager.UnloadScene("JobPicker");
+                additiveSceneManager.UnloadScene("Interface_JobList");
                 additiveSceneManager.LoadSceneSeperate("ShipBuilding");
                 break;
             case InGameStates.CrewManagement:

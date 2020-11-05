@@ -16,7 +16,7 @@ public class AstroidMiniGame : MiniGame
 
 	private void Update()
 	{
-		scoreText.text = "Astroids Required: " + requiredAstroids;
+		scoreText.text = "Astroids Remaining: " + requiredAstroids;
 		if(requiredAstroids == 0) { EndMiniGameSuccess(1); }
 	}
 }
