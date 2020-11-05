@@ -13,16 +13,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Flashclones
-  hasRequirements: 0
+  hasRequirements: 1
   choiceRequirements:
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-  - selectedResource: 0
-    requiredAmount: 0
+  - selectedResource: 6
+    requiredAmount: 100
     lessThan: 0
   outcome:
     isRandomOutcome: 0
@@ -43,16 +37,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Nuclear  Weapons
-  hasRequirements: 0
+  hasRequirements: 1
   choiceRequirements:
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-  - selectedResource: 0
-    requiredAmount: 0
+  - selectedResource: 6
+    requiredAmount: 100
     lessThan: 0
   outcome:
     isRandomOutcome: 0
@@ -73,16 +61,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Rations
-  hasRequirements: 0
+  hasRequirements: 1
   choiceRequirements:
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-  - selectedResource: 0
-    requiredAmount: 0
+  - selectedResource: 6
+    requiredAmount: 50
     lessThan: 0
   outcome:
     isRandomOutcome: 0
@@ -141,7 +123,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inkJSONAsset
       value: 
-      objectReference: {fileID: 4900000, guid: e508b1ff6180c424e8f03fe69987d6d1, type: 3}
+      objectReference: {fileID: 4900000, guid: 11da81a5cb1841148a03ffa4f8dab1c6, type: 3}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: backgroundImage

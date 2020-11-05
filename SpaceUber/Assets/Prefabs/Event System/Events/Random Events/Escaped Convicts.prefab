@@ -1,98 +1,48 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-697075633655672090
+--- !u!114 &-5004747824266422818
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7272458766203768250}
+  m_GameObject: {fileID: 7281746092743587932}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  choiceName: Risk Engineers
+  choiceName: Report Convicts to Authorities
   hasRequirements: 0
-  choiceRequirements:
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 0400000004000000
-    amountChanged: 00000000feffffff
-    probabilities:
-    - 50
-    - 50
-    multipleRandomOutcomes: []
---- !u!114 &2140244599831650841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7272458766203768250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  choiceName: Salvage Parts
-  hasRequirements: 0
-  choiceRequirements:
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
+  choiceRequirements: []
   outcome:
     isRandomOutcome: 0
     resourcesChanged: 00000000
-    amountChanged: ecffffff
+    amountChanged: 64000000
     probabilities: []
     multipleRandomOutcomes: []
---- !u!114 &8030095105267936054
+--- !u!114 &1558781045663292811
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7272458766203768250}
+  m_GameObject: {fileID: 7281746092743587932}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  choiceName: Leave it be
+  choiceName: Integrate Convicts into Crew
   hasRequirements: 0
-  choiceRequirements:
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
+  choiceRequirements: []
   outcome:
     isRandomOutcome: 0
-    resourcesChanged: 07000000
-    amountChanged: ecffffff
+    resourcesChanged: 04000000
+    amountChanged: 03000000
     probabilities: []
     multipleRandomOutcomes: []
---- !u!1001 &2626420981659780162
+--- !u!1001 &2707763151342367140
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -101,69 +51,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: choiceOutcomes.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: choicesAvailable.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
       propertyPath: inkJSONAsset
       value: 
-      objectReference: {fileID: 4900000, guid: 032837a60d204974fa59a7a8d7987f44, type: 3}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: backgroundImage
-      value: 
-      objectReference: {fileID: 21300000, guid: 4904d50f27add704088b729c2278bcee,
-        type: 3}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: eventBGM
-      value: Engine Malfunction
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: choiceOutcomes.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: choiceOutcomes.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: choiceOutcomes.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4900000, guid: 1c311ad1eb93e934b85b5028208f41fd, type: 3}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: eventName
-      value: Engine Malfunction
+      value: Escaped Convicts
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: choicesAvailable.Array.data[0]
-      value: 
-      objectReference: {fileID: -697075633655672090}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: choicesAvailable.Array.data[1]
-      value: 
-      objectReference: {fileID: 2140244599831650841}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: choicesAvailable.Array.data[2]
-      value: 
-      objectReference: {fileID: 8030095105267936054}
+      propertyPath: eventBGM
+      value: General Theme
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name
-      value: Engine Malfunction
+      value: Escaped Convicts
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -272,9 +176,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 492e23da0c4f0a84188d48989e322a6d, type: 3}
---- !u!1 &7272458766203768250 stripped
+--- !u!1 &7281746092743587932 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
     type: 3}
-  m_PrefabInstance: {fileID: 2626420981659780162}
+  m_PrefabInstance: {fileID: 2707763151342367140}
   m_PrefabAsset: {fileID: 0}
