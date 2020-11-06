@@ -88,7 +88,7 @@ public class ShipStatsInterface : MonoBehaviour
     
     public int GetCredits()
     {
-        return ship.GetCredits();
+        return ship.Credits;
     }
     
     public void AddPayout(int ammount)

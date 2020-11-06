@@ -63,6 +63,7 @@ public class Requirements
 
     public bool MatchesRequirements(ShipStats thisShip)
     {
+        thisShip.PrintShipStats();
         bool result = true;
 
         if (!isNarrativeRequirement)
@@ -96,7 +97,6 @@ public class Requirements
                     break;
             }
 
-            Debug.Log("Comparing ship's" + shipStat + " to required " + requiredAmount);
             if (lessThan)
             {
                 result = shipStat < requiredAmount;

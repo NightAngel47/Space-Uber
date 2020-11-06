@@ -19,7 +19,7 @@ public class JobUI : MonoBehaviour, IPointerClickHandler
     [SerializeField] private TMP_Text jobNameText;
     [SerializeField] private Image selectBgImg;
 
-    [SerializeField] private bool isSideJob;
+    [SerializeField] private bool isSideJob = false;
     [SerializeField, ShowIf("isSideJob")] private TMP_Text sideJobPayText;
     [SerializeField, ShowIf("isSideJob")] private TMP_Text sideJobLengthText;
 

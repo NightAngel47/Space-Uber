@@ -31,7 +31,7 @@ public class CrewManagement : MonoBehaviour
     public void Start()
     {
         ss = FindObjectOfType<ShipStats>();
-        crewRemainingText.text = "Crew Remaining: " + ss.GetRemainingCrew();
+        crewRemainingText.text = "Crew Remaining: " + ss.CrewRemaining;
 
         currentRoomList = FindObjectsOfType<RoomStats>();
 
@@ -66,12 +66,12 @@ public class CrewManagement : MonoBehaviour
 
     public void AddCrew()
     {
-        if (ss.GetRemainingCrew() > 0 && rs.currentCrew < room.GetComponent<RoomStats>().maxCrew)
+        if (ss.CrewRemaining > 0 && rs.currentCrew < room.GetComponent<RoomStats>().maxCrew)
         {
             rs.UpdateCurrentCrew(1);
             ss.UpdateCrewAmount(-1, 0);
             minAssignableCrew--;
-            crewRemainingText.text = "Crew Remaining: " + ss.GetRemainingCrew().ToString();
+            crewRemainingText.text = "Crew Remaining: " + ss.CrewRemaining.ToString();
             roomPanel.transform.GetChild(5).gameObject.GetComponent<TextMeshProUGUI>().text = "Crew Assigned: " + room.GetComponent<RoomStats>().currentCrew.ToString();
 
             if (minAssignableCrew <= 0)
@@ -88,7 +88,7 @@ public class CrewManagement : MonoBehaviour
             rs.UpdateCurrentCrew(-1);
             ss.UpdateCrewAmount(1, 0);
             minAssignableCrew++;
-            crewRemainingText.text = "Crew Remaining: " + ss.GetRemainingCrew().ToString();
+            crewRemainingText.text = "Crew Remaining: " + ss.CrewRemaining.ToString();
             roomPanel.transform.GetChild(5).gameObject.GetComponent<TextMeshProUGUI>().text = "Crew Assigned: " + room.GetComponent<RoomStats>().currentCrew.ToString();
 
             if (minAssignableCrew > 0)
