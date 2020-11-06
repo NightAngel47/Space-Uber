@@ -1,4 +1,4 @@
-A warning comes from the engine room. A malfunction is causing the engine to overheat, and the intense temperature may cause damage to the ship. You can risk engineers to fix it, use other parts of the ship to do the repairs, or leave it be and hope for the best.
+The chief engineer, Ratchet, contacts you, "There seems to be a problem with the engine. It's starting to overheat, and if something isn't done soon, it might cause some damage to the hull. A few parts are malfunctioning, and they need to be fixed. We could have some crew members suit up and do the work, but I don't trust the protection suits the company issued us. We could make it safer if we use parts from around the ship, but they would have to be replaced."
 * [Risk Engineers (50% chance to lose some crew)]
 {shuffle:
     -->Survive
