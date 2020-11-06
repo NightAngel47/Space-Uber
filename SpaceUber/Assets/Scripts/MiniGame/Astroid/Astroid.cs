@@ -80,7 +80,7 @@ public class Astroid : MonoBehaviour
         {
             exploded = true;
             GetComponent<Image>().color = new Color(0, 0, 0, 0);
-            int meteoriteNumber = Random.Range(3, meteoritePrefabs.Length);
+            int meteoriteNumber = Random.Range(1, meteoritePrefabs.Length);
             explosion = Instantiate(explosion, transform.position, new Quaternion(), transform.parent);
             explosion.transform.localScale = transform.localScale;
             for (int i = 0; i <= meteoriteNumber; i++)
