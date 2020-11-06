@@ -14,8 +14,7 @@ using NaughtyAttributes;
 
 public class EventChoice : MonoBehaviour
 {
-    
-
+    private InkDriverBase driver;
     [SerializeField] private string choiceName;
     [SerializeField] private bool hasRequirements;
 
@@ -26,6 +25,9 @@ public class EventChoice : MonoBehaviour
     [SerializeField, ShowIf("hasRandomEnding")] private List<MultipleRandom> randomEndingOutcomes;
     protected Story story;
     private int randomizedResult;
+
+    [SerializeField] bool hasSubsequentChoices;
+    [SerializeField, ShowIf("hasSubsequentChoices")] private List<EventChoice> subsequentChoices;
 
     [System.Serializable]
     public class MultipleRandom
@@ -40,11 +42,12 @@ public class EventChoice : MonoBehaviour
     /// </summary>
     /// <param name="ship"></param>
     /// <param name="myButton"></param>
-    public void ControlChoice(ShipStats ship, Button myButton, Story thisStory)
+    public void CreateChoice(ShipStats ship, Button myButton, Story thisStory, InkDriverBase thisDriver)
     {
         bool requirementMatch = true;
+        driver = thisDriver;
 
-        if(hasRequirements)
+        if (hasRequirements)
         {
             //if anything in choiceRequirements does not match, this bool is automatically false
             for (int i = 0; i < choiceRequirements.Count; i++)
@@ -66,6 +69,7 @@ public class EventChoice : MonoBehaviour
         else
         {
             myButton.interactable = false;
+            print("I cannot let you pick this.");
         }
     }
 
@@ -75,6 +79,7 @@ public class EventChoice : MonoBehaviour
     /// <param name="ship"></param>
     public void SelectChoice(ShipStats ship)
     {
+        
         if (hasRandomEnding)
         {
             print("We have decided on outcomes #" + randomizedResult);
@@ -95,9 +100,7 @@ public class EventChoice : MonoBehaviour
                 outcome.StatChange(ship);
             }
         }
-
-        
-
+        driver.TakeSubsequentChoices(subsequentChoices);
     }
 
     /// <summary>

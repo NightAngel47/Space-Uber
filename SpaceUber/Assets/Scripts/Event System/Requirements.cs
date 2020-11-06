@@ -96,13 +96,14 @@ public class Requirements
                     break;
             }
 
-            if (!lessThan)
+            Debug.Log("Comparing ship's" + shipStat + " to required " + requiredAmount);
+            if (lessThan)
             {
-                result = shipStat > requiredAmount;
+                result = shipStat < requiredAmount;
             }
             else
             {
-                result = shipStat < requiredAmount;
+                result = shipStat > requiredAmount;
             }
         }
         else

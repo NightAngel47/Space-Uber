@@ -21,13 +21,13 @@ public class InkDriverBase : MonoBehaviour
 
     [SerializeField] private string eventName;
     [SerializeField] private Sprite backgroundImage;
-    
+
     //A prefab of the button we will generate every time a choice is needed
-    [SerializeField, Tooltip("Attach the prefab of a choice button to this")] 
+    [SerializeField, Tooltip("Attach the prefab of a choice button to this")]
     private Button buttonPrefab;
 
 
-    private Transform buttonGroup;    
+    private Transform buttonGroup;
     private TMP_Text titleBox;
     private TMP_Text textBox;
     private Image backgroundUI;
@@ -36,7 +36,9 @@ public class InkDriverBase : MonoBehaviour
     [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
     private float textPrintSpeed = 0.1f;
 
-    private EventChoice[] choicesAvailable;
+    [SerializeField, Tooltip("The first set of choices that a player will reach.")] 
+    private List<EventChoice> firstChoices;
+    private List<EventChoice> availableChoices;
 
     /// <summary>
     /// The story itself being read
@@ -72,7 +74,7 @@ public class InkDriverBase : MonoBehaviour
         backgroundUI.sprite = backgroundImage;
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
 
-        choicesAvailable = GetComponents<EventChoice>();
+        availableChoices = firstChoices;
     }
 
     public void AssignUIFromEventSystem(TMP_Text title, TMP_Text text, Image background, Transform buttonSpace, ShipStats ship)
@@ -145,7 +147,7 @@ public class InkDriverBase : MonoBehaviour
                 TMP_Text choiceText = choiceButton.GetComponentInChildren<TMP_Text>();
                 choiceText.text = " " + (choice.index + 1) + ". " + choice.text;
 
-                choicesAvailable[choice.index].ControlChoice(thisShip,choiceButton, story);
+                availableChoices[choice.index].CreateChoice(thisShip,choiceButton, story,this);
                 
                 // Set listener for the sake of knowing when to refresh
                 choiceButton.onClick.AddListener(delegate {
@@ -156,7 +158,7 @@ public class InkDriverBase : MonoBehaviour
                 
                 // Have on click also call the outcome choice to update the ship stats
                 choiceButton.onClick.AddListener(delegate {
-                    choicesAvailable[choice.index].SelectChoice(thisShip);
+                    availableChoices[choice.index].SelectChoice(thisShip);
                 });
             }
         }
@@ -187,10 +189,13 @@ public class InkDriverBase : MonoBehaviour
         showingChoices = false;
     }
 
-    //exists to be overriden by child scripts
-    protected virtual void RandomizeEnding()
+    /// <summary>
+    /// Takes any subsequent choices from the EventChoice selected and applies them to the file
+    /// </summary>
+    /// <param name="nextChoices"></param>
+    public void TakeSubsequentChoices(List<EventChoice> nextChoices)
     {
-        
+        availableChoices = nextChoices;
     }
 
     /// <summary>
@@ -212,7 +217,7 @@ public class InkDriverBase : MonoBehaviour
             {
                 if(story.currentTags[0] == "randomEnd")
                 {
-                    foreach (EventChoice eventChoose in choicesAvailable)
+                    foreach (EventChoice eventChoose in availableChoices)
                     {
                         if (eventChoose.hasRandomEnding)
                         { eventChoose.RandomizeEnding(); }
