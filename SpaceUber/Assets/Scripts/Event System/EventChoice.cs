@@ -23,10 +23,15 @@ public class EventChoice : MonoBehaviour
 
     [SerializeField] private bool hasRandomEnding;
     [SerializeField, HideIf("hasRandomEnding")] private List<ChoiceOutcomes> outcomes;
-    [SerializeField, ShowIf("hasRandomEnding")] private List<ChoiceOutcomes> randomEndingOutcomes;
-    [SerializeField, ShowIf("hasRandomEnding"), AllowNesting] private List<float> probabilities;
+    [SerializeField, ShowIf("hasRandomEnding")] private List<MultipleRandom> randomEndingOutcomes;
     protected Story story;
 
+    [System.Serializable]
+    public class MultipleRandom
+    {
+        public List<ChoiceOutcomes> outcomes;
+        public float probability;
+    }
     // Start is called before the first frame update
 
     /// <summary>
@@ -72,7 +77,15 @@ public class EventChoice : MonoBehaviour
         if (hasRandomEnding)
         {
             int rng = RandomizeEnding();
-            randomEndingOutcomes[rng].StatChange(ship);
+            foreach(MultipleRandom multRando in randomEndingOutcomes)
+            {
+                MultipleRandom thisSet = randomEndingOutcomes[rng];
+                foreach(ChoiceOutcomes choiceOutcome in thisSet.outcomes)
+                {
+                    choiceOutcome.StatChange(ship);
+                }
+
+            }
         }
         else
         {
@@ -95,9 +108,19 @@ public class EventChoice : MonoBehaviour
         //var numberOfEndingsRaw = story.variablesState["numberOfRandomEndings"];
         //int endingNum = (int)numberOfEndingsRaw;
 
-        
-        int rng = Random.Range(1, randomEndingOutcomes.Count);
-        switch (rng)
+        int result = 1;
+        float choiceThreshold = 0;
+        float outcomeChance = Random.Range(0f, 100f);
+        for (int i = 0; i < randomEndingOutcomes.Count; i++)
+        {
+            choiceThreshold += randomEndingOutcomes[i].probability; //adds the probability of the next element to choice threshold
+            if (outcomeChance <= choiceThreshold) //if the outcome chance is lower than the threshold, we pick this event
+            {
+                result = i;
+            }
+        }
+
+        switch (result)
         {
             case 1:
                 story.variablesState["randomEnd"] = story.variablesState["endingOne"];
@@ -112,6 +135,7 @@ public class EventChoice : MonoBehaviour
                 story.variablesState["randomEnd"] = story.variablesState["endingFour"];
                 break;
         }
-        return rng;
+
+        return result;
     }
 }

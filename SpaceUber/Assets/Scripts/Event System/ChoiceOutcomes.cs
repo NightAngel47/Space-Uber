@@ -13,15 +13,10 @@ using UnityEngine;
 [System.Serializable]
 public class ChoiceOutcomes
 {
-    public bool isSetStatOutcome;
-    public bool isRandomOutcome;
     public bool isNarrativeOutcome;
 
-    [SerializeField, ShowIf("isSetStatOutcome"), AllowNesting] private ResourceType resource;
-    [SerializeField, ShowIf("isSetStatOutcome"), AllowNesting] private int amount;
-
-    [SerializeField, ShowIf("isRandomOutcome"), AllowNesting] private List<float> probabilities;
-    [SerializeField, ShowIf("isRandomOutcome"), AllowNesting] private MultipleRandom[] multipleRandomOutcomes;
+    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] private ResourceType resource;
+    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] private int amount;
 
     [Dropdown("cateringToRichBools"), SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting]
     private string ctrBoolOutcomes;
@@ -32,71 +27,13 @@ public class ChoiceOutcomes
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting]
     private int VIPTrustChange;
 
-    private float outcomeChance;
-    private float choiceThreshold ;
-
-    [System.Serializable]
-    public class MultipleRandom
-    {
-        public List<ResourceType> resourcesChanged;
-        public List<int> amountChanged;
-    }
-    
-
-    void Start()
-    {
-        //shipStats = FindObjectOfType<ShipStats>();
-    }
 
     public void StatChange(ShipStats ship)
     {
         if (ship != null)
         {
-            if (isRandomOutcome)
-            {
-                outcomeChance = Random.Range(0f, 100f);
-                for (int i = 0; i < probabilities.Count; i++)
-                {
-                    choiceThreshold += probabilities[i];
-                    if (outcomeChance <= choiceThreshold)
-                    {
-                        for(int j = 0; j < multipleRandomOutcomes[i].resourcesChanged.Count; j++)
-                        {
-                            switch (multipleRandomOutcomes[i].resourcesChanged[j])
-                            {
-                                case ResourceType.Credits:
-                                    ship.UpdateCreditsAmount(multipleRandomOutcomes[i].amountChanged[j]);
-                                    break;
-                                case ResourceType.Energy:
-                                    ship.UpdateEnergyAmount(multipleRandomOutcomes[i].amountChanged[j]);
-                                    break;
-                                case ResourceType.Security:
-                                    ship.UpdateSecurityAmount(multipleRandomOutcomes[i].amountChanged[j]);
-                                    break;
-                                case ResourceType.ShipWeapons:
-                                    ship.UpdateShipWeaponsAmount(multipleRandomOutcomes[i].amountChanged[j]);
-                                    break;
-                                case ResourceType.Crew:
-                                    ship.UpdateCrewAmount(multipleRandomOutcomes[i].amountChanged[j]);
-                                    break;
-                                case ResourceType.Food:
-                                    ship.UpdateFoodAmount(multipleRandomOutcomes[i].amountChanged[j]);
-                                    break;
-                                case ResourceType.FoodPerTick:
-                                    ship.UpdateFoodPerTickAmount(multipleRandomOutcomes[i].amountChanged[j]);
-                                    break;
-                                case ResourceType.HullDurability:
-                                    ship.UpdateHullDurabilityAmount(multipleRandomOutcomes[i].amountChanged[j]);
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                        return;
-                    }
-                }
-            }
-            else if (!isRandomOutcome)
+            
+           if (!isNarrativeOutcome)
             {
                 switch (resource)
                 {
@@ -128,7 +65,7 @@ public class ChoiceOutcomes
                         break;
                 }
             }
-            else if(isNarrativeOutcome)
+            else 
             {
                 CampaignManager campMan = CampaignManager.instance;
                 switch (campMan.currentCamp)
