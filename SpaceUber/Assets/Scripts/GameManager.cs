@@ -75,48 +75,30 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case InGameStates.JobSelect: // Loads Jobpicker for the player to pick their job
-                // unload ending screen if replaying
-                if (SceneManager.GetSceneByName("PromptScreen_End").isLoaded) // TODO remove when we have menus
-                {
-                  additiveSceneManager.UnloadScene("PromptScreen_End");
-                }
-                if (SceneManager.GetSceneByName("PromptScreen_Death").isLoaded) // TODO remove when we have menus
-                {
-                  additiveSceneManager.UnloadScene("PromptScreen_Death");
-                }
-                if (SceneManager.GetSceneByName("PromptScreen_Mutiny").isLoaded) // TODO remove when we have menus
-                {
-                  additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
-                }
+                // unload scenes for replayability
+                // TODO will need to change when we have proper menus
+                additiveSceneManager.UnloadScene("PromptScreen_End");
+                additiveSceneManager.UnloadScene("PromptScreen_Death");
+                additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
 
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
                 additiveSceneManager.LoadSceneSeperate("Interface_JobList");
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
-                if (SceneManager.GetSceneByName("Interface_JobList").isLoaded)
-                {
-                    additiveSceneManager.UnloadScene("Interface_JobList");
-                }
-                
-                // unload crew management if going back to ship building
-                if (SceneManager.GetSceneByName("CrewManagement").isLoaded)
-                {
-                    additiveSceneManager.UnloadScene("CrewManagement");
-                }
-                
+                additiveSceneManager.UnloadScene("Interface_JobList");
+                additiveSceneManager.UnloadScene("CrewManagement");
+
                 additiveSceneManager.LoadSceneSeperate("ShipBuilding");
                 break;
             case InGameStates.CrewManagement:
-                if (SceneManager.GetSceneByName("ShipBuilding").isLoaded)
-                {
-                    additiveSceneManager.UnloadScene("ShipBuilding");
-                }
+                additiveSceneManager.UnloadScene("ShipBuilding");
                 
                 additiveSceneManager.LoadSceneSeperate("CrewManagement");
                 break; 
             case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
                 additiveSceneManager.UnloadScene("CrewManagement");
                 additiveSceneManager.UnloadScene("Starport BG");
+                
                 // Remove unplaced rooms from the ShipBuilding state
                 if (!ObjectMover.hasPlaced)
                 {
