@@ -1,8 +1,8 @@
 As you approach the resort planet, the VIPs are talking in their lounge. A few are starting to  panic again, figuring  that you are most likely going to deliver them into the jaws of death. One member decries that she will never see her wife or kids again. Another bemoans that he won't be able to see his company flourish. 
 Olivia Whitwer calls for everyone's attention, and as the room quiets down and starts to speak: "Now my faith in the ship's AI or any of its crew is just as lacking as all of yours is, but we need to keep  calm. If the AI tries anything, we can band together. Despite our losses there are still many of us, and relatively few of them. Our main goal is to stay alive, and once we get back to civilization, we can look into what has happened so far and do something about this ship.
 As you receive an alert that you are in close range of the planet, you consider the options you have before you. You could go ahead to the dock where the clones are planning their ambush, although if any of your clients notice you are heading towards the wrong destination they may act against you. You could also go ahead and deliver the elites to the party, although the clones are likely to attempt something.
-+ [Approach Party] -> Party
-+ [Approach Trap] -> Trap
++ [Bring VIPs to Party] -> Party
++ [Bring VIPs to Ambush] -> Trap
 
 === Party ===
 You decide to take the elites to the party. Although at first hesitant to disembark, a few of your clients recognize the location from their previous visits. Encouraged, the VIPs get off your ship quickly, albeit with an air of caution. As they are stepping off you pick up a few snippets of conversation. A few are chatting about your payment, with their opinions differing somewhat. "No way in hell am I paying," is the position of one disgruntled exec, while another states "Well, they did deliver us to our destination."
