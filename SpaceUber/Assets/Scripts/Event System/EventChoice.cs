@@ -21,10 +21,11 @@ public class EventChoice : MonoBehaviour
 
     [SerializeField, ShowIf("hasRequirements")] private List<Requirements> choiceRequirements;
 
-    [SerializeField] private bool hasRandomEnding;
+    [SerializeField] public bool hasRandomEnding;
     [SerializeField, HideIf("hasRandomEnding")] private List<ChoiceOutcomes> outcomes;
     [SerializeField, ShowIf("hasRandomEnding")] private List<MultipleRandom> randomEndingOutcomes;
     protected Story story;
+    private int randomizedResult;
 
     [System.Serializable]
     public class MultipleRandom
@@ -76,10 +77,10 @@ public class EventChoice : MonoBehaviour
     {
         if (hasRandomEnding)
         {
-            int rng = RandomizeEnding();
+            print("We have decided on outcomes #" + randomizedResult);
             foreach(MultipleRandom multRando in randomEndingOutcomes)
             {
-                MultipleRandom thisSet = randomEndingOutcomes[rng];
+                MultipleRandom thisSet = randomEndingOutcomes[randomizedResult];
                 foreach(ChoiceOutcomes choiceOutcome in thisSet.outcomes)
                 {
                     choiceOutcome.StatChange(ship);
@@ -102,40 +103,48 @@ public class EventChoice : MonoBehaviour
     /// <summary>
     /// Randomly choose which ending that the choice will end with. Requires an Ink variable called numberOfRandomEndings
     /// as well as knot variables called "endingOne", "endingTwo" and so on.
+    /// Called by InkDriverBase the moment it sees a "randomizeEnding" tag, technically before a choice is chosen.
     /// </summary>
-    private int RandomizeEnding()
+    public void RandomizeEnding()
     {
+        print("Choice name: " + choiceName);
+
         //var numberOfEndingsRaw = story.variablesState["numberOfRandomEndings"];
         //int endingNum = (int)numberOfEndingsRaw;
 
         int result = 1;
         float choiceThreshold = 0;
         float outcomeChance = Random.Range(0f, 100f);
+        print("Rolled a " + outcomeChance);
+
         for (int i = 0; i < randomEndingOutcomes.Count; i++)
         {
             choiceThreshold += randomEndingOutcomes[i].probability; //adds the probability of the next element to choice threshold
-            if (outcomeChance <= choiceThreshold) //if the outcome chance is lower than the threshold, we pick this event
+            print("Choice threshold is now: " + choiceThreshold + "%");
+            if (outcomeChance <= choiceThreshold || (i == randomEndingOutcomes.Count)) //if the outcome chance is lower than the threshold, we pick this event
             {
                 result = i;
+                break;
             }
+
         }
 
         switch (result)
         {
-            case 1:
+            case 0:
                 story.variablesState["randomEnd"] = story.variablesState["endingOne"];
                 break;
-            case 2:
+            case 1:
                 story.variablesState["randomEnd"] = story.variablesState["endingTwo"];
                 break;
-            case 3:
+            case 2:
                 story.variablesState["randomEnd"] = story.variablesState["endingThree"];
                 break;
-            case 4:
+            case 3:
                 story.variablesState["randomEnd"] = story.variablesState["endingFour"];
                 break;
         }
 
-        return result;
+        randomizedResult = result;
     }
 }

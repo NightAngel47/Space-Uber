@@ -208,7 +208,17 @@ public class InkDriverBase : MonoBehaviour
                 text = story.Continue();
             }
 
-            
+            if(story.currentTags.Count != 0)
+            {
+                if(story.currentTags[0] == "randomEnd")
+                {
+                    foreach (EventChoice eventChoose in choicesAvailable)
+                    {
+                        if (eventChoose.hasRandomEnding)
+                        { eventChoose.RandomizeEnding(); }
+                    }
+                }
+            }
         }
 
         return text;

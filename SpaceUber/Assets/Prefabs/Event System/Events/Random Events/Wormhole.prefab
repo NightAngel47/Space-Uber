@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  choiceName: Leave it be
+  choiceName: Go in the Wormhole
   hasRequirements: 0
   choiceRequirements:
   - isNarrativeRequirement: 0
@@ -23,25 +23,33 @@ MonoBehaviour:
     ctrTrustRequirements: 0
     cloneTrustRequirement: 0
     VIPTrustRequirement: 0
-  - isNarrativeRequirement: 0
-    selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-    ctrBoolRequirements: 
-    ctrTrustRequirements: 0
-    cloneTrustRequirement: 0
-    VIPTrustRequirement: 0
-  - isNarrativeRequirement: 0
-    selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-    ctrBoolRequirements: 
-    ctrTrustRequirements: 0
-    cloneTrustRequirement: 0
-    VIPTrustRequirement: 0
   hasRandomEnding: 0
   outcomes: []
-  randomEndingOutcomes: []
+  randomEndingOutcomes:
+  - outcomes:
+    - isNarrativeOutcome: 0
+      resource: 0
+      amount: 50
+      ctrBoolOutcomes: 
+      cloneTrustChange: 0
+      VIPTrustChange: 0
+    probability: 33
+  - outcomes:
+    - isNarrativeOutcome: 0
+      resource: 4
+      amount: 10
+      ctrBoolOutcomes: 
+      cloneTrustChange: 0
+      VIPTrustChange: 0
+    probability: 33
+  - outcomes:
+    - isNarrativeOutcome: 0
+      resource: 1
+      amount: 60
+      ctrBoolOutcomes: 
+      cloneTrustChange: 0
+      VIPTrustChange: 0
+    probability: 33
 --- !u!114 &3613679431614302388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,7 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  choiceName: Go in the Wormhole
+  choiceName: Leave it Alone
   hasRequirements: 0
   choiceRequirements:
   - isNarrativeRequirement: 0
@@ -65,13 +73,25 @@ MonoBehaviour:
     ctrTrustRequirements: 0
     cloneTrustRequirement: 0
     VIPTrustRequirement: 0
-  hasRandomEnding: 1
+  hasRandomEnding: 0
   outcomes: []
   randomEndingOutcomes:
-  - outcomes: []
-    probability: 0
-  - outcomes: []
-    probability: 0
+  - outcomes:
+    - isNarrativeOutcome: 0
+      resource: 0
+      amount: 50
+      ctrBoolOutcomes: 
+      cloneTrustChange: 0
+      VIPTrustChange: 0
+    probability: 70
+  - outcomes:
+    - isNarrativeOutcome: 0
+      resource: 4
+      amount: 10
+      ctrBoolOutcomes: 
+      cloneTrustChange: 0
+      VIPTrustChange: 0
+    probability: 30
 --- !u!1001 &2626420981659780162
 PrefabInstance:
   m_ObjectHideFlags: 0
