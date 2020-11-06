@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ObjectScript.cs
  * Author(s): Sydney
  * Created on: #CREATIONDATE#
@@ -109,6 +109,15 @@ public class ObjectScript : MonoBehaviour
     {
         if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true) 
         {
+            if (ObjectMover.hasPlaced == true)
+            {
+                hoverUiPanel.SetActive(true);
+            }
+            else if (hoverUiPanel.activeSelf)
+            {
+                hoverUiPanel.SetActive(false);
+            }
+            
             if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true)
             {
                 //buttons.SetActive(true);
@@ -146,14 +155,14 @@ public class ObjectScript : MonoBehaviour
     {
         if (!EventSystem.instance.eventActive && !OverclockController.instance.overclocking)
         {
-            AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length)]);
+            AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length-1)]);
         }
     }
 
 
     public void OnMouseExit()
     {
-        if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
+        if (hoverUiPanel.activeSelf)
         {
             hoverUiPanel.SetActive(false);
         }
