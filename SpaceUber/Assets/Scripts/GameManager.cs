@@ -93,13 +93,26 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.LoadSceneSeperate("Interface_JobList");
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
-                additiveSceneManager.UnloadScene("Interface_JobList");
+                if (SceneManager.GetSceneByName("Interface_JobList").isLoaded)
+                {
+                    additiveSceneManager.UnloadScene("Interface_JobList");
+                }
+                
+                // unload crew management if going back to ship building
+                if (SceneManager.GetSceneByName("CrewManagement").isLoaded)
+                {
+                    additiveSceneManager.UnloadScene("CrewManagement");
+                }
+                
                 additiveSceneManager.LoadSceneSeperate("ShipBuilding");
                 break;
             case InGameStates.CrewManagement:
-                additiveSceneManager.UnloadScene("ShipBuilding");
+                if (SceneManager.GetSceneByName("ShipBuilding").isLoaded)
+                {
+                    additiveSceneManager.UnloadScene("ShipBuilding");
+                }
+                
                 additiveSceneManager.LoadSceneSeperate("CrewManagement");
-                ObjectScript[] os = FindObjectsOfType<ObjectScript>();
                 break; 
             case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
                 additiveSceneManager.UnloadScene("CrewManagement");
