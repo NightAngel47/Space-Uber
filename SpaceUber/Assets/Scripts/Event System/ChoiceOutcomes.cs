@@ -14,7 +14,7 @@ using UnityEngine;
 public class ChoiceOutcomes
 {
     public bool isSetStatOutcome;
-    public bool isRandomStatOutcome;
+    public bool isRandomOutcome;
     public bool isNarrativeOutcome;
 
     [SerializeField, ShowIf("isSetStatOutcome"), AllowNesting] private ResourceType resource;
@@ -52,7 +52,7 @@ public class ChoiceOutcomes
     {
         if (ship != null)
         {
-            if (isRandomStatOutcome)
+            if (isRandomOutcome)
             {
                 outcomeChance = Random.Range(0f, 100f);
                 for (int i = 0; i < probabilities.Count; i++)
@@ -96,7 +96,7 @@ public class ChoiceOutcomes
                     }
                 }
             }
-            else if (!isRandomStatOutcome)
+            else if (!isRandomOutcome)
             {
                 switch (resource)
                 {

@@ -26,27 +26,36 @@ public class Requirements
         CREDITS,
         //MORALE
     }
-    public bool isNarrativeRequirement;
+    [Tooltip("If the requirement is narrative-based")]
+    [SerializeField, AllowNesting]
+    private bool isNarrativeRequirement;
 
     [Tooltip("The resource you would like to be compared")]
-    [SerializeField, HideIf("isnarrativeRequirement"), AllowNesting]
+    [SerializeField, HideIf("isNarrativeRequirement"), AllowNesting]
     private ResourceType selectedResource;
     
     [Tooltip("How much of this resources is required for an event to run")]
-    [SerializeField, HideIf("isnarrativeRequirement"), AllowNesting]
+    [SerializeField, HideIf("isNarrativeRequirement"), AllowNesting]
     private int requiredAmount;
 
-    [Tooltip("Check this if you would like to check if the ship resource is LESS than the number supplied")]
-    [SerializeField, HideIf("isnarrativeRequirement"),AllowNesting]
+    [Tooltip("Click this if you would like to check if the ship resource is LESS than the number supplied")]
+    [SerializeField, HideIf("isNarrativeRequirement"),AllowNesting]
     private bool lessThan;
 
+    [Tooltip("Select one item from this dropdown list. The selected variable must be true for this event to run")]
     [Dropdown("cateringToRichBools"), SerializeField, ShowIf("isNarrativeRequirement"), AllowNesting]
     private string ctrBoolRequirements;
 
+    [Tooltip("Click this if you would like to check trust variables for Catering to the Rich")]
     [SerializeField, ShowIf("isNarrativeRequirement"), AllowNesting]
+    private bool ctrTrustRequirements = false;
+
+    [Tooltip("The minimum trust the clones must have in the player")]
+    [SerializeField, ShowIf("ctrTrustRequirements"), AllowNesting]
     private int cloneTrustRequirement;
 
-    [SerializeField, ShowIf("isNarrativeRequirement"), AllowNesting] 
+    [Tooltip("The minimum trust the VIPS must have in the player")]
+    [SerializeField, ShowIf("ctrTrustRequirements"), AllowNesting] 
     private int VIPTrustRequirement;
 
     //
@@ -120,10 +129,13 @@ public class Requirements
                             result = campMan.ctr_tellVIPsAboutClones;
                             break;
                         case "N_A":
-                            bool VIPResult = campMan.ctr_VIPTrust > VIPTrustRequirement;
-                            bool cloneResult = campMan.ctr_cloneTrust > cloneTrustRequirement;
-                            result = VIPResult && cloneResult;
                             break;
+                    }
+                    if(ctrTrustRequirements)
+                    {
+                        bool VIPResult = campMan.ctr_VIPTrust > VIPTrustRequirement;
+                        bool cloneResult = campMan.ctr_cloneTrust > cloneTrustRequirement;
+                        result = VIPResult && cloneResult;
                     }
                     break;
             }

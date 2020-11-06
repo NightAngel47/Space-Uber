@@ -55,6 +55,8 @@ public class EventSystem : MonoBehaviour
 	[SerializeField] private EventSonar sonar;
 	private Job currentJob;
 
+	private string lastEventTitle;
+
 	private void Awake()
 	{
 		//Singleton pattern
@@ -231,25 +233,42 @@ public class EventSystem : MonoBehaviour
 
 	}
 
+	/// <summary>
+	/// Finds the next story event by cycling through all possible versions of the next story event. 
+	/// </summary>
+	/// <returns></returns>
 	private GameObject FindNextStoryEvent()
     {
-		GameObject result = storyEvents[storyEventIndex];
-		for(int i = storyEventIndex; i < storyEvents.Count; i++)
+		GameObject result = storyEvents[ storyEventIndex];
+		bool found = false;
+
+		for (int i = storyEventIndex; i < storyEvents.Count; i++)
         {
-			GameObject thisEvent = storyEvents[i];
-			List<Requirements> requirements = thisEvent.GetComponent<InkDriverBase>().requiredStats;
+			if(!found)
+            {
+				GameObject thisEvent = storyEvents[i];
+				List<Requirements> requirements = thisEvent.GetComponent<InkDriverBase>().requiredStats;
+
+				//grabs first eight letters of ink file name to check the naming code
+				string thisEventTitle = thisEvent.GetComponent<InkDriverBase>().inkJSONAsset.name.Substring(0, 8); 
+
+				if (lastEventTitle == thisEventTitle) //if this is not a variation of the same event as the last one, check requirements
+				{
+					if (HasRequiredStats(requirements))
+					{
+						result = thisEvent;
+						found = true;
+					}
+				}
+				else //if it's the same event as the last one we played, just keep going.
+				{
+					++storyEventIndex;
+				}
+			}
 			
-			if(HasRequiredStats(requirements))
-            {
-				result = thisEvent;
-				break;
-            }
-			else
-            {
-				++storyEventIndex;
-            }
 		}
 
+		lastEventTitle = result.GetComponent<InkDriverBase>().inkJSONAsset.name.Substring(0, 8);
 		return result;
     }
 
@@ -303,12 +322,18 @@ public class EventSystem : MonoBehaviour
 	}
 
 
+	/// <summary>
+	/// Runs through the list of requirements for a job and determines if each and every one is met
+	/// </summary>
+	/// <param name="selectedRequirements"></param>
+	/// <returns></returns>
 	private bool HasRequiredStats(List<Requirements> selectedRequirements)
 	{
 		bool result = true;
 
 		foreach (Requirements required in selectedRequirements)
 		{
+			//break the loop the second that one requirement doesn't match
 			if (!required.MatchesRequirements(ship))
 			{
 				result = false;

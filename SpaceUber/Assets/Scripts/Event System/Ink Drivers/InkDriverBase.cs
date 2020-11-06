@@ -17,7 +17,7 @@ using TMPro;
 public class InkDriverBase : MonoBehaviour
 {
     [SerializeField, Tooltip("Attach the.JSON file you want read to this")]
-    private TextAsset inkJSONAsset;
+    public TextAsset inkJSONAsset;
 
     [SerializeField] private string eventName;
     [SerializeField] private Sprite backgroundImage;
@@ -115,7 +115,7 @@ public class InkDriverBase : MonoBehaviour
             runningIndex++;
 
             //click to instantly finish text,
-            if(Input.GetKeyDown(KeyCode.Return))
+            if(Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
             {
                 tempString = text;
             }

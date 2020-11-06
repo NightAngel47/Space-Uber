@@ -18,9 +18,13 @@ public class EventChoice : MonoBehaviour
 
     [SerializeField] private string choiceName;
     [SerializeField] private bool hasRequirements;
+
     [SerializeField, ShowIf("hasRequirements")] private List<Requirements> choiceRequirements;
-    [SerializeField] private List<ChoiceOutcomes> outcomes;
-    //[SerializeField] private bool hasRandomOutcome;
+
+    [SerializeField] private bool hasRandomEnding;
+    [SerializeField, HideIf("hasRandomEnding")] private List<ChoiceOutcomes> outcomes;
+    [SerializeField, ShowIf("hasRandomEnding")] private List<ChoiceOutcomes> randomEndingOutcomes;
+    [SerializeField, ShowIf("hasRandomEnding"), AllowNesting] private List<float> probabilities;
     protected Story story;
 
     // Start is called before the first frame update
@@ -65,15 +69,20 @@ public class EventChoice : MonoBehaviour
     /// <param name="ship"></param>
     public void SelectChoice(ShipStats ship)
     {
-        //if(hasRandomOutcome)
-        //{
-        //    RandomizeEnding();
-        //}
-
-        foreach(ChoiceOutcomes outcome in outcomes)
+        if (hasRandomEnding)
         {
-            outcome.StatChange(ship);
+            int rng = RandomizeEnding();
+            randomEndingOutcomes[rng].StatChange(ship);
         }
+        else
+        {
+            foreach (ChoiceOutcomes outcome in outcomes)
+            {
+                outcome.StatChange(ship);
+            }
+        }
+
+        
 
     }
 
@@ -81,13 +90,13 @@ public class EventChoice : MonoBehaviour
     /// Randomly choose which ending that the choice will end with. Requires an Ink variable called numberOfRandomEndings
     /// as well as knot variables called "endingOne", "endingTwo" and so on.
     /// </summary>
-    private void RandomizeEnding()
+    private int RandomizeEnding()
     {
-        var numberOfEndingsRaw = story.variablesState["numberOfRandomEndings"];
-        int endingNum = (int)numberOfEndingsRaw;
+        //var numberOfEndingsRaw = story.variablesState["numberOfRandomEndings"];
+        //int endingNum = (int)numberOfEndingsRaw;
 
         
-        int rng = Random.Range(1, endingNum);
+        int rng = Random.Range(1, randomEndingOutcomes.Count);
         switch (rng)
         {
             case 1:
@@ -103,5 +112,6 @@ public class EventChoice : MonoBehaviour
                 story.variablesState["randomEnd"] = story.variablesState["endingFour"];
                 break;
         }
+        return rng;
     }
 }
