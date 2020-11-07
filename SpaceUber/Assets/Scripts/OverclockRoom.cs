@@ -39,4 +39,9 @@ public class OverclockRoom : MonoBehaviour
         yield return new WaitForSeconds(OverclockController.instance.cooldownTime);
         cooledDown = true;
 	}
+
+    public MiniGameType GetMiniGame()
+    {
+        return miniGame;
+    }
 }

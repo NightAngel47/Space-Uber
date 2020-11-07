@@ -12,6 +12,8 @@ using NaughtyAttributes;
 
 public class ShipStats : MonoBehaviour
 {
+    public enum resources{ Credits, Energy, Security, ShipWeapons, Crew, Food, FoodPerTick, HullDurability, Stock}
+
     [SerializeField ,Tooltip("Starting amount of credits"), Foldout("Starting Ship Stats")]
     private int startingCredits;
     [SerializeField, Tooltip("Starting amount of energy"), Foldout("Starting Ship Stats")]
