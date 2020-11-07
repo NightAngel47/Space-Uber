@@ -116,6 +116,8 @@ public class SecurityMiniGame : MiniGame
             yield return new WaitForSeconds(displayTime);
             codePreview.text = "";
         }
+
+        inputCode = "";
         if (hideInput)
         { 
             foreach (CodeBlock block in codeSegments) 

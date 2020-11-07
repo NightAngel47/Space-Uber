@@ -68,8 +68,9 @@ public class MiniGameCrop : MonoBehaviour
 	{
         originalColor = plantImage.color;
         miniGameManager = GameObject.FindGameObjectWithTag("MiniGameScoreManager").GetComponent<CropHarvestMiniGame>();
-
-        harvestableCropPrefab = Instantiate(harvestableCropPrefab, transform.position, new Quaternion(), transform.parent);
+        Vector3 position = transform.position;
+        position.z -= 0.1f;
+        harvestableCropPrefab = Instantiate(harvestableCropPrefab, position, new Quaternion(), transform.parent);
         harvestableCropPrefab.SetActive(false);
         //Let minGameManager know how many crops are needed to beat the mini game
         miniGameManager.IncrementRequiredScore();
