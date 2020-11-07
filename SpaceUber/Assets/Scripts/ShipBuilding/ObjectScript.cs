@@ -140,7 +140,7 @@ public class ObjectScript : MonoBehaviour
             
         }
 
-        if(GameManager.instance.currentGameState == InGameStates.CrewManagement)
+        if(GameManager.instance.currentGameState == InGameStates.CrewManagement || GameManager.instance.currentGameState == InGameStates.Events)
         {
             hoverUiPanel.SetActive(true);
 

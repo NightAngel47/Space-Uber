@@ -34,6 +34,7 @@ public class CrewManagement : MonoBehaviour
     public GameObject overclockButton;
     public GameObject statAndNumPrefab;
     public GameObject outputObject;
+    public GameObject[] sceneButtons;
 
     private List<GameObject> addedStats = new List<GameObject>();
 
@@ -191,5 +192,15 @@ public class CrewManagement : MonoBehaviour
     public void StartOverclockGame()
     {
         room.GetComponent<OverclockRoom>().PlayMiniGame();
+    }
+
+    public void TurnOnOverclockButton()
+    {
+        overclockButton.SetActive(true);
+
+        for(int i = 0; i < sceneButtons.Length; i++)
+        {
+            sceneButtons[i].SetActive(false);
+        }
     }
 }

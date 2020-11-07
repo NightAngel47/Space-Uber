@@ -16,12 +16,6 @@ public class OverclockRoom : MonoBehaviour
     [SerializeField] MiniGameType miniGame;
     bool cooledDown = true;
 
-	private void OnMouseDown()
-    {
-	    // TODO replace with proper UI call
-	    PlayMiniGame();
-    }
-
     public void PlayMiniGame()
     {
 	    if (GameManager.instance.currentGameState == InGameStates.Events 
