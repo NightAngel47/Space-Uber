@@ -216,18 +216,22 @@ public class InkDriverBase : MonoBehaviour
             }
 
             //check for random ending within story
-            if(story.currentTags.Count != 0)
-            {
-                if(story.currentTags.Contains("randomEnd"))
-                {
-                    print("Random ending detected");
-                    foreach (EventChoice eventChoose in availableChoices)
-                    {
-                        if (eventChoose.hasRandomEnding)
-                        { eventChoose.RandomizeEnding(story); }
-                    }
-                }
-            }
+            //if(story.currentTags.Count != 0)
+            //{
+            //    if(story.currentTags.Contains("randomEnd"))
+            //    {
+            //        print("Random ending detected");
+            //        foreach (EventChoice eventChoose in availableChoices)
+            //        {
+            //            print("Choice name: " + eventChoose.choiceName);
+            //            if (eventChoose.hasRandomEnding)
+            //            { 
+            //                print("Going to randomize a choice");
+            //                eventChoose.RandomizeEnding(story); 
+            //            }
+            //        }
+            //    }
+            //}
         }
 
         return text;

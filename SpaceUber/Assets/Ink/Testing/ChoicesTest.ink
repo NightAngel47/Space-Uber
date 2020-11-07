@@ -6,13 +6,13 @@ VAR endingTwo = ->BotsGet
 "What do you want to do?"
 
 
-* [Buy Repairs. -50 Credits] "50 credits removed" 
+* [Buy Repairs. -50 Credits]
     -> BuyRobots
-* [Leave it broken. -50 Hull] "The ship took damage" #Dan
+* [Leave it broken. -50 Hull]
     -> DONE
 
 === BuyRobots===
-    "How about some bots?"
+    "How about some bots?" #randomEnd
     * [Yes]
     -> randomEnd
    
@@ -28,3 +28,12 @@ VAR endingTwo = ->BotsGet
     "Just as requested"
     ->DONE
     
+===function RandomizeEnding(rng)===
+{ 
+    - rng == 1: 
+        ~randomEnd = endingOne
+    - rng == 2:
+        ~randomEnd = endingTwo
+    -else
+        ~randomEnd = endingTwo
+}

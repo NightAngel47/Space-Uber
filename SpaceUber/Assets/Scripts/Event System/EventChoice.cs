@@ -15,7 +15,7 @@ using NaughtyAttributes;
 public class EventChoice : MonoBehaviour
 {
     private InkDriverBase driver;
-    [SerializeField] private string choiceName;
+    [SerializeField] public string choiceName;
     [SerializeField] private bool hasRequirements;
 
     [SerializeField, ShowIf("hasRequirements")] private List<Requirements> choiceRequirements;
@@ -69,8 +69,14 @@ public class EventChoice : MonoBehaviour
         else
         {
             myButton.interactable = false;
-            print("I cannot let you pick this.");
         }
+
+        //randomize which ending we'll have from the start
+        if (hasRandomEnding)
+        {
+            RandomizeEnding(story);
+        }
+
     }
 
     /// <summary>
@@ -79,10 +85,11 @@ public class EventChoice : MonoBehaviour
     /// <param name="ship"></param>
     public void SelectChoice(ShipStats ship)
     {
-        
+        driver.TakeSubsequentChoices(subsequentChoices);
+
         if (hasRandomEnding)
         {
-            print("We have decided on outcomes #" + randomizedResult);
+            print("We have decided on outcome #" + randomizedResult);
             foreach(MultipleRandom multRando in randomEndingOutcomes)
             {
                 MultipleRandom thisSet = randomEndingOutcomes[randomizedResult];
@@ -100,7 +107,7 @@ public class EventChoice : MonoBehaviour
                 outcome.StatChange(ship, driver.campMan);
             }
         }
-        driver.TakeSubsequentChoices(subsequentChoices);
+        
     }
 
     /// <summary>
@@ -111,8 +118,6 @@ public class EventChoice : MonoBehaviour
     public void RandomizeEnding(Story thisStory)
     {
         story = thisStory;
-        //var numberOfEndingsRaw = story.variablesState["numberOfRandomEndings"];
-        //int endingNum = (int)numberOfEndingsRaw;
 
         int result = 0;
         float choiceThreshold = 0;
@@ -121,7 +126,9 @@ public class EventChoice : MonoBehaviour
         for (int i = 0; i < randomEndingOutcomes.Count; i++)
         {
             choiceThreshold += randomEndingOutcomes[i].probability; //adds the probability of the next element to choice threshold
-            if (outcomeChance <= choiceThreshold || (i == randomEndingOutcomes.Count)) //if the outcome chance is lower than the threshold, we pick this event
+
+            //if the outcome chance is lower than the threshold, we pick this event
+            if (outcomeChance <= choiceThreshold || (i == randomEndingOutcomes.Count)) 
             {
                 result = i;
                 break;
@@ -129,21 +136,23 @@ public class EventChoice : MonoBehaviour
 
         }
 
-        switch (result)
-        {
-            case 0:
-                story.variablesState["randomEnd"] = story.variablesState["endingOne"];
-                break;
-            case 1:
-                story.variablesState["randomEnd"] = story.variablesState["endingTwo"];
-                break;
-            case 2:
-                story.variablesState["randomEnd"] = story.variablesState["endingThree"];
-                break;
-            case 3:
-                story.variablesState["randomEnd"] = story.variablesState["endingFour"];
-                break;
-        }
+        story.EvaluateFunction("RandomizeEnding", result);
+
+        //switch (result)
+        //{
+        //    case 0:
+        //        story.variablesState["randomEnd"] = story.variablesState["endingOne"];
+        //        break;
+        //    case 1:
+        //        story.variablesState["randomEnd"] = story.variablesState["endingTwo"];
+        //        break;
+        //    case 2:
+        //        story.variablesState["randomEnd"] = story.variablesState["endingThree"];
+        //        break;
+        //    case 3:
+        //        story.variablesState["randomEnd"] = story.variablesState["endingFour"];
+        //        break;
+        //}
 
         randomizedResult = result;
     }

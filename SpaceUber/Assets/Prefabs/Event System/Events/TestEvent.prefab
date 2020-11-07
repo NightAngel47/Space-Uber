@@ -46,7 +46,7 @@ MonoBehaviour:
   choiceRequirements: []
   hasRandomEnding: 0
   outcomes:
-  - outcomeName: 
+  - outcomeName: Lose Hull
     isNarrativeOutcome: 0
     resource: 7
     amount: -50
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Buy Bots
-  hasRequirements: 1
+  hasRequirements: 0
   choiceRequirements:
   - isNarrativeRequirement: 0
     selectedResource: 6
@@ -79,16 +79,16 @@ MonoBehaviour:
     ctrTrustRequirements: 0
     cloneTrustRequirement: 0
     VIPTrustRequirement: 0
-  hasRandomEnding: 0
+  hasRandomEnding: 1
   outcomes:
-  - outcomeName: 
+  - outcomeName: +Crew
     isNarrativeOutcome: 0
     resource: 4
     amount: 5
     ctrBoolOutcomes: 
     cloneTrustChange: 0
     VIPTrustChange: 0
-  - outcomeName: 
+  - outcomeName: Lose Credits
     isNarrativeOutcome: 0
     resource: 0
     amount: -50
@@ -96,8 +96,15 @@ MonoBehaviour:
     cloneTrustChange: 0
     VIPTrustChange: 0
   randomEndingOutcomes:
-  - outcomes: []
-    probability: 10
+  - outcomes:
+    - outcomeName: Broken Bots
+      isNarrativeOutcome: 0
+      resource: 0
+      amount: -10
+      ctrBoolOutcomes: 
+      cloneTrustChange: 0
+      VIPTrustChange: 0
+    probability: 50
   - outcomes:
     - outcomeName: Get those bots
       isNarrativeOutcome: 0
@@ -106,7 +113,7 @@ MonoBehaviour:
       ctrBoolOutcomes: 
       cloneTrustChange: 0
       VIPTrustChange: 0
-    probability: 90
+    probability: 50
   hasSubsequentChoices: 0
   subsequentChoices: []
 --- !u!114 &8152075466295786839
@@ -156,6 +163,11 @@ PrefabInstance:
       propertyPath: firstChoices.Array.data[1]
       value: 
       objectReference: {fileID: 5564376485450080086}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: eventBGM
+      value: General Theme
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name
