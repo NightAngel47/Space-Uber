@@ -102,7 +102,6 @@ public class Astroid : MonoBehaviour
                 if(miniGameManager.requiredAstroids > 0)miniGameManager.requiredAstroids--;
                 yield return new WaitForSeconds(1f); 
             }
-            Destroy(explosion);
             foreach (GameObject meteorite in meteorites) { Destroy(meteorite); }
             Destroy(this);
         }
