@@ -1,3 +1,8 @@
+VAR securityEnd = ->SecuritySuccess
+VAR blastEnd = ->BlastGunSuccess
+VAR ramGunEnd = ->RamGunSuccess
+VAR fleeEnd = ->FleeSafely
+
 VAR VIPsDead = false
 VAR VIPsResort = false
 VAR HaggleCount = 0
@@ -46,42 +51,57 @@ You arrive at the abandoned docking bay, without any of the targets the clones a
 == Fight ==
 You have several approaches as the gun charges, send your security team to swiftly and effeciently disable it, destroy it with the sheer force of your weaponry, blast out of the atmosphere and escape, or ram your ship into the plasma battery likely to debilitating effect of both of you.
 *[Send Security (Security%)] #50/50 SECURITY SUCCESS/FAILURE
-#SECURITY SUCCESS. Placeholder: 50%. Security% chance Success.
-Your cargo hold doors blast open as your security team rushes out, firing upon the mercenaries as they move. Within seconds they’ve cut a path to the plasma battery. Small arms fire ripples across the surface of the gun as your team tries to take out its operators. The gun is nearly charged, the sound rattling your ship. More mercenaries start to close in on the exposed position of your security team. You swivel your ship guns against the attackers and try to buy your team the time to shut down the weapon. The gunshots are practically silent against the violent noise of the plasma battery. Until suddenly it goes silent, the sickly green fading. 
-->Fight_Success
-#SECURITY FAILURE. Placeholder: 50%. Security% chance Success.
-Your cargo hold doors blast open as your security team rushes out, firing upon the mercenaries as they move. With every enemy down though, it seems like two more take their place. The security team can’t move forward without taking bullets from all sides. The gun is nearly charged, the sound rattling your ship. Your team shouts to you that they can’t make it in time, that you need to take evasive action, but it’s too late. The deep humming of the gun suddenly hollows out into silence as a green beam punctures your ship, dissolving a jagged hole through the center, the surrounding rooms detonating from the heat. Your security force rushes to get back to the smoking ship, several of them shot in the back by the approaching mercenaries. You need to find another way.
-#[Medium Hull Reduction, Large Security Reduction]
-->Fight
-
+    -->securityEnd
 *[Fire Upon Gun(Weapons%)] #50/50 BLAST SUCCESS/FAILURE
-#BLAST SUCCESS. Placeholder: 50%. Weapons% chance Success.
-You turn all your guns onto the plasma battery. It’s a simple numbers game. If you can do enough damage for it to shut down before it fires, you win. You order several successive volleys, as every weapon attached to the ship smokes and spins. The plating across the gun is thick, slugs bouncing off of it as it charges. With every shot that bounces off of it, however, the plating becomes misshapen, warped, until the shots have made a small hole in the right side of the gun. 
-You order your crew to focus on that weak point, and they pour gunfire against the thing. Your ship rattles against the violence of its attack and the deep reverberations of the gun about to fire. There is suddenly a loud wrenching noise as something breaks and that sound dissolves into a massive green sphere of energy where the plasma battery used to be. As fast as it appeared, the blast vaporized itself into a perfectly spherical hole in the docking bay.
-->Fight_Success
+    -->blastEnd
+*[Ram the Gun(Hull%)] #35/65 SECURITY SUCCESS/FAILURE
+    -->ramGunEnd
+*[Flee(End Campaign)]
+    -->fleeEnd
+
+===SecuritySuccess===
+Your cargo hold doors blast open as your security team rushes out, firing upon the mercenaries as they move. Within seconds they’ve cut a path to the plasma battery. Small arms fire ripples across the surface of the gun as your team tries to take out its operators. The gun is nearly charged, the sound rattling your ship. More mercenaries start to close in on the exposed position of your security team. You swivel your ship guns against the attackers and try to buy your team the time to shut down the weapon. The gunshots are practically silent against the violent noise of the plasma battery. Until suddenly it goes silent, the sickly green fading. 
+    ->Fight_Success
+
+===SecurityFailure===
+Your cargo hold doors blast open as your security team rushes out, firing upon the mercenaries as they move. With every enemy down though, it seems like two more take their place. The security team can’t move forward without taking bullets from all sides. The gun is nearly charged, the sound rattling your ship. Your team shouts to you that they can’t make it in time, that you need to take evasive action, but it’s too late. The deep humming of the gun suddenly hollows out into silence as a green beam punctures your ship, dissolving a jagged hole through the center, the surrounding rooms detonating from the heat. Your security force rushes to get back to the smoking ship, several of them shot in the back by the approaching mercenaries. You need to find another way.
+    #[Medium Hull Reduction, Large Security Reduction]
+    ->Fight
+
+===BlastGunSuccess==
+    #BLAST SUCCESS. Placeholder: 50%. Weapons% chance Success.
+    You turn all your guns onto the plasma battery. It’s a simple numbers game. If you can do enough damage for it to shut down before it fires, you win. You order several successive volleys, as every weapon attached to the ship smokes and spins. The plating across the gun is thick, slugs bouncing off of it as it charges. With every shot that bounces off of it, however, the plating becomes misshapen, warped, until the shots have made a small hole in the right side of the gun. 
+    You order your crew to focus on that weak point, and they pour gunfire against the thing. Your ship rattles against the violence of its attack and the deep reverberations of the gun about to fire. There is suddenly a loud wrenching noise as something breaks and that sound dissolves into a massive green sphere of energy where the plasma battery used to be. As fast as it appeared, the blast vaporized itself into a perfectly spherical hole in the docking bay.
+    ->Fight_Success
+    
+===BlastGunFailure===
 #BLAST FAILURE. Placeholder: 50%. Weapons% chance Success.
 You turn all your guns onto the plasma battery. It’s a simple numbers game. If you can do enough damage for it to shut down before it fires, you win. You order several successive volleys, as every weapon attached to the ship smokes and spins. The plating across the gun is thick, slugs bouncing off of it as it charges. And you start to realize it isn’t going to be enough. Your ship rattles against the violence of its attack and the deep reverberations of the gun about to fire. You route energy to shields as fast as you can. The deep humming of the gun suddenly gives way into silence as a green light lances through the front of you ship, dissolving entire rooms, others detonating from the heat. Your weapons are practically out of ammo. You need to find another way.
 #[Medium Hull Reduction, Large Weapons Reduction]
 -> Fight
 
-*[Ram the Gun(Hull%)] #35/65 SECURITY SUCCESS/FAILURE
+
+===RamGunSuccess===
 #RAM SUCCESS. Placeholder: 35%. Hull% chance Success.
 The ship blasts off the ground and hovers momentarily as you line up the shot. You’ll need to route power to engines and then shields the moment before you hit. You instruct your entire crew to brace for impact. The engines flare and you close the gap to the gun in less than a second. Your engines cut as the watery blue of your shields suddenly wrap around your ship. From your external cameras you suddenly see the inside of the plasma gun, before you even feel the impact. 
 The sound of rending metal cuts out as the entire apparatus your ship has cleaved into flashes green and explodes. Your ship glances off the sphere of light before the blast vaporizes itself into a perfectly spherical hole in the docking bay. Your ship floats in the hole, the entire hull glowing white from the heat. A few of your crew were knocked unconscious during the series of shocks that threw them about the cabin in the last three seconds, but those left standing are manning their battle stations best they can. 
 #[Medium Hull Reduction]
 ->Fight_Success
 
+===RamGunFailure=== 
 #RAM FAILURE. Placeholder: 65%. Hull% chance Failure. (success at a cost)
 The ship blasts off the ground and hovers momentarily as you line up the shot. You’ll need to route power to engines and then shields the moment before you hit. You instruct your entire crew to brace for impact. The engines flare and you close the gap to the gun in less than a second. Your engines cut as the watery blue of your shields suddenly wrap around your ship. From your external cameras you suddenly see the inside of the plasma gun, before you even feel the impact. 
 The sound of rending metal cuts out as the entire apparatus your ship has cleaved into flashes green and explodes. Under the weight of the entire gun detonating your shields give for a split second, but it’s enough time. The entire lower third of your ship is dissolved by the energy before the blast vaporizes itself into a perfectly spherical hole in the docking bay. Your ship barely manages to land, the remaining hull glowing white from the heat. Most of your crew were knocked unconscious or killed during the series of shocks that threw them about the cabin in the last three seconds, but those left standing are manning their battle stations best they can. 
 #[Extreme Hull Reduction]
 ->Fight_Success
 
-*[Flee(End Campaign)]
+===FleeSafely===
 #DODGE HIT. 50% chance of occuring, No Hull Damage
 You decide there isn't any use dying here. You order your crew to take off. The engines flare, the landing gear struggles to keep up. A shockwave rattles the ship as you break the sound barrier, the ship is twisting from the violence of the takeoff. You hear the warbling of the gun suddenly go silent as all your external cameras fill with green light. 
 Part of your ship is missing, one of the engines blows out. You route all power to the remaining engines. The ship careens upwards, the missing chunk throwing off any liftoff calculations you have. All you can do is go straight up and figure it out in orbit. Several more blasts pierce the sky, but you manage to reach orbit without taking another hit. Considering the damage that thing punched in your ship, you’re glad to have left when you did. 
 ->Flee
+
+===FleeBadly===
 #GET HIT. 50% chance of occuring, Medium Hull Damage
 You decide there isn't any use dying here.  [If VIPs are alive “The VIPs scramble onto your ship and”] You order your crew to take off. The engines flare, the landing gear struggles to keep up. A shockwave rattles the ship as you break the sound barrier, the ship is twisting from the violence of the takeoff. You hear the warbling of the gun suddenly go silent as all your external cameras fill with green light. 
 The hull of the ship nearly liquifies as a plasma lance strikes the edge of your shield, the deflection sending you careening away from the blast. All you can do is go straight up. Several more blasts pierce the sky, but you manage to reach orbit without taking a proper hit. Considering the damage that thing could punch through your ship, you're glad to have left when you did.
@@ -114,6 +134,7 @@ You tell them it’s enough. Beckett Two squints and glances around, as if looki
 Beckett has cut you off. You cannot keep haggling.
 -> Negotiation
 }
+
 {HaggleCount == 0:
 You tell them that confiscating weapons was never part of your job, and that you aren't accepting a lower payment because of it. Beckett Two scoffs, "Oh! So you're saying you knew you were taking these people to get shot up, but you didn't think them having weapons would be an issue? Take some damn initiative and maybe you’d get somewhere in life." Olivia Two ignores him and leans forward, "The agreed upon payment? That shouldn't be an issue." Beckett Two turns to her and says, "You know this is coming out of your pocket." Olivia Two shrugs, "We promised the AI this money, Beckett, and without them you'd still be a slave." Beckett snarls and throws a hand up, "Fine. Fine. Pay the machine."
 ~HaggleCount++
@@ -131,6 +152,7 @@ You press for more money. The mission was highly dangerous, and you had to cover
 -> Negotiation
 } 
 
+===HaggleFailure===
 #HAGGLE FAILURE. Placeholder: 35%. Trust% chance of success. 
 "No. No, you are not getting another damn cent from me." Beckett says, "You work under us understand? You don't set the terms, got it?" He pulls out a small radio and says, "Give them a warning shot." Olivia whirls around lunges forward to grab the radio, "What are you doing?!" You all hear the deep warbling sound of a machine charging. You start to see a glowing, sickly green light in the shadows of the docking bay. A mobile artillery platform illuminates itself, its barrel pointed a few feet above your ship. 
 The charging plasma reaches deafening volumes before the sound vaporizes itself,  a laser igniting over your ship, bringing the outer layer of the hull to a boil. Your entire crew is standing very still. Beckett Two smirks, "Local authorities probably heard that one. I don't think we have time to haggle anymore, wouldn't you agree?"
@@ -139,19 +161,22 @@ The charging plasma reaches deafening volumes before the sound vaporizes itself,
 
 +[Threaten (Weapons%)] #THREATEN CHANCE. 65/35 SUCCESS/FAILURE
 {HaggleLocked == true:
-Beckett has cut you off. You cannot threaten them further.
--> Negotiation
+    Beckett has cut you off. You cannot threaten them further.
+    -> Negotiation
 }
+
 {HaggleCount == 0:
 You order your crew to swivel your gun turrets, make a small show. You tell the clones that confiscating weapons was never part of your job, and that you aren't accepting a lower payment because of it. Failure to meet your standards will be met with extreme force. Beckett Two scoffs, "Oh! You want to see guns? I could buy an entire planet full of guns now, you Kellis pet." Olivia Two leans forward, "Then it shouldn't be an issue to cough up the agreed upon payment." Beckett Two whirls to her and she shrugs in response, "We promised the AI this money, Beckett, and I don't think you want to die right when your life is getting started." Beckett snarls and throws a hand up, "Fine. Fine. Pay the damn machine."
 ~HaggleCount++
 -> Negotiation
 }
+
 {HaggleCount == 1:
 You order your crew to start the boot-up sequences for your weaponry‒make it seem like you're ready to strike. The mercenaries start to look between themselves. You tell the clones that the payment isn't nearly enough. Olivia glances behind herself, as if looking for an exit. She starts slowly, "Maybe we should just give them what they want." Beckett snarls, "Oh, and let them walk all over us? We’re finally in control! And we came prepared for this Olivia!" she sighs, "I know, I know, but the fallout would be too much trouble. We already took more losses than expected‒let's just dip into our coffers and end the death here." After a moment Beckett agrees. Your threat worked.
 ~HaggleCount++
 -> Negotiation
 }
+
 {HaggleCount == 2:
 You order your crew to fire a warning shot. A blue beam of light dances between the standing mercenaries before slicing over their heads. The men are shaken, a few falling back. Whoever was manning the gun needs a raise. You press the clones again, not even justifying a pay increase but flatly threatening their lives.You tell them to send all the money they brought, pointing your guns towards the distant catwalks. 
 Beckett begins to twitch and fume, as if perfecting his enraged response. Olivia actually looks angry, and gestures offscreen. "Just give them it all!" Beckett starts to scream as the call cuts off. Less than a minute later an armored man chain-cuffed to a briefcase approaches your ship. It is set on the ground and kicked, sending it  sliding  towards your ship. You dispatch your crew to receive it. They're giving you it all. 
@@ -160,6 +185,7 @@ Beckett begins to twitch and fume, as if perfecting his enraged response. Olivia
 -> Paid_By_Clones
 }
 
+===ThreatenFailure===
 #THREATEN FAILURE. Placeholder: 35%. Trust% chance of success. 
 "I've had it with this thing mouthing its metal trap acting like it will win this fight." Beckett yells as he pulls out a radio, "Destroy them. Now." Olivia whirls around lunges forward to grab the radio, "What are you doing?!" You all hear the deep warbling sound of a machine charging. You start to see a glowing, sickly green light in the shadows of the docking bay. A mobile artillery platform illuminates itself, its barrel pointed directly at your ship. The charging plasma reaches deafening volumes.
 You immediately go into evasive maneuvers. Your ship lurches forward in the cramped docking bay as the plasma cannon fires, just barely glancing off your armor, the outer plating left white hot. Before it charges up again you need to act. 
@@ -180,13 +206,13 @@ In less than an hour, reports come in that the clones were captured and reposses
 
 == Paid_By_Clones ==
 {HaggleCount == 0:
-You take the money and start the launch sequence as instructed. It isn’t what you were promised, it isn’t even what the VIPs promised you, but it’s clear to you now the clones couldn’t be trusted. Thankfully though, you didn’t make enemies with them. Considering that they’re going to be the new corporate players of the galaxy, that has to count for something. Kellis doesn’t seem to think so, and are disappointed that you didn’t press for more pay. They expected better from you in the future. You leave the planet behind, where the clones finally take their place as the masters.
-# x.75 Credits Final Payout
+    You take the money and start the launch sequence as instructed. It isn’t what you were promised, it isn’t even what the VIPs promised you, but it’s clear to you now the clones couldn’t be trusted. Thankfully though, you didn’t make enemies with them. Considering that they’re going to be the new corporate players of the galaxy, that has to count for something. Kellis doesn’t seem to think so, and are disappointed that you didn’t press for more pay. They expected better from you in the future. You leave the planet behind, where the clones finally take their place as the masters.
+    # x.75 Credits Final Payout
 -> END
 }
 {HaggleCount > 0:
-You take the money and start the launch sequence before Beckett changes his mind. The money is good thanks to Olivia’s contributions, and hopefully the rest of the clones will forgive any intrusion on their personal funds. Considering that they’re going to be the new corporate players of the galaxy, you wouldn’t want them as enemies. Kellis appreciates the chaos you’ve caused, and the money you got out of it too. You leave the planet behind, where the clones finally take their place as the masters.   
-# x HaggleCount Credits Final Payout
+    You take the money and start the launch sequence before Beckett changes his mind. The money is good thanks to Olivia’s contributions, and hopefully the rest of the clones will forgive any intrusion on their personal funds. Considering that they’re going to be the new corporate players of the galaxy, you wouldn’t want them as enemies. Kellis appreciates the chaos you’ve caused, and the money you got out of it too. You leave the planet behind, where the clones finally take their place as the masters.   
+    # x HaggleCount Credits Final Payout
 -> END
 }
 
@@ -197,16 +223,18 @@ You reach orbit and push through it. The VIPs are dead and you ran without any o
 # x0 Final Payout
 -> END
 }
+
 {VIPsResort == true && VIPsDead == false:
-You reach orbit and cut the engines. The ship drifts for a few moments as you take stock of the situation and your crew repairs the damages sustained in liftoff. You radio the VIPs and tell them they’re on their own, something they find disappointing, but in a mundane way. Your heroics and subsequent escape didn’t earn you anything beyond the standard pay. They have already called in corporate fixers to resolve the clone situation, and have readied the resort’s defenses. 
-After a few minutes, reports come in that the clones were captured and repossessed by their counterparts. Your pay comes in, exactly what was promised, despite the unexpected obstacles along the way. Regardless, it’ll have to be enough for Kellis. You take off, leaving your former clients to their money, and the clones to their fates.
-# x1 Credits Final Payout
--> END
+    You reach orbit and cut the engines. The ship drifts for a few moments as you take stock of the situation and your crew repairs the damages sustained in liftoff. You radio the VIPs and tell them they’re on their own, something they find disappointing, but in a mundane way. Your heroics and subsequent escape didn’t earn you anything beyond the standard pay. They have already called in corporate fixers to resolve the clone situation, and have readied the resort’s defenses. 
+    After a few minutes, reports come in that the clones were captured and repossessed by their counterparts. Your pay comes in, exactly what was promised, despite the unexpected obstacles along the way. Regardless, it’ll have to be enough for Kellis. You take off, leaving your former clients to their money, and the clones to their fates.
+    # x1 Credits Final Payout
+    -> END
 }
+
 {VIPsResort == false && VIPsDead == false:
-You reach orbit and cut the engines. The ship drifts for a few moments as you take stock of the situation and your crew repairs the damages sustained in liftoff. The VIPs are worse for wear but mostly alive, being treated in their lounge. Radio communications are going through and corporate fixers are on their way to clean up this mess. You can hear the snippets of conversation, “Why were we at that dock? Where was it taking us?” and “If they wanted us dead they had every opportunity. The damn ship saved us.” 
-It seems that your clients are divided on what just happened. The heroics probably would’ve paid off if you won the fight. Regardless, the pay begins to come in, and seems to be about as much as promised, but skewed, some VIPs paying far less or far more than expected. Kellis won’t mind. Eventually, corporate ships arrive and your clients are escorted off the ship. You leave the system afterwards, leaving them to their money, and the clones to their fates.
-# x1 Credits Final Payout
+    You reach orbit and cut the engines. The ship drifts for a few moments as you take stock of the situation and your crew repairs the damages sustained in liftoff. The VIPs are worse for wear but mostly alive, being treated in their lounge. Radio communications are going through and corporate fixers are on their way to clean up this mess. You can hear the snippets of conversation, “Why were we at that dock? Where was it taking us?” and “If they wanted us dead they had every opportunity. The damn ship saved us.” 
+    It seems that your clients are divided on what just happened. The heroics probably would’ve paid off if you won the fight. Regardless, the pay begins to come in, and seems to be about as much as promised, but skewed, some VIPs paying far less or far more than expected. Kellis won’t mind. Eventually, corporate ships arrive and your clients are escorted off the ship. You leave the system afterwards, leaving them to their money, and the clones to their fates.
+    # x1 Credits Final Payout
 -> END
 }
 
@@ -220,12 +248,30 @@ The originals look upon their bound counterparts with disgust. You hear them cha
 Beckett Two struggles against his cuffs and spits, “Oh yeah, side with the status quo. Real original, guy.” Olivia Two is solemn, she speaks in the general direction of your closest exterior camera, “I hope  it’s quick.” Beckett glances over at that, and the snarl disappears from his face. The clones are silent for the rest of the proceedings.
 
 { VIPsDead == false:
-The originals are finally able to get a signal to their companies. Within the hour the place is swarming with company craft, the corporate party is cancelled, and any formal inquiry left is buried under a couple thousand credits. Your security team managed to grab what the clones planned on paying you, but the VIPs were also impressed by your heroics. Thanks to playing both sides, you’ve gotten practically triple the estimate for this campaign. As for the clones, their individual fates will rely on the generosity of their masters. Those who survive will likely grow even more twisted after this failure. You report the results back to Kellis as you leave the atmosphere. Kellis is overjoyed that you exceeded the profit margins for this campaign, and looks forward to seeing what you will do in the future.
-# x3 Credits Final Payout
+    The originals are finally able to get a signal to their companies. Within the hour the place is swarming with company craft, the corporate party is cancelled, and any formal inquiry left is buried under a couple thousand credits. Your security team managed to grab what the clones planned on paying you, but the VIPs were also impressed by your heroics. Thanks to playing both sides, you’ve gotten practically triple the estimate for this campaign. As for the clones, their individual fates will rely on the generosity of their masters. Those who survive will likely grow even more twisted after this failure. You report the results back to Kellis as you leave the atmosphere. Kellis is overjoyed that you exceeded the profit margins for this campaign, and looks forward to seeing what you will do in the future.
+    # x3 Credits Final Payout
 -> END
 }
+
 { VIPsDead == true: 
 The local authorities eventually get on the scene. With the corporate executives dead and the clones tied into a conspiracy against them the case quickly blows out of scope. Kellis steps in to minimize your involvement in the proceedings while the clones go on trial. They’ll either be executed or take over the companies that they beheaded, to be determined by a jury of their peers. While there is no one left to pay you, you did still manage to get away with the money the clones had ready for you, and it is no small sum. Kellis is pleased with your performance during this campaign, and especially appreciates the corporate turmoil you’ve stirred up. Overall, they are hopeful for your future endeavors.
 -> END
 # x2 Credits Final Payout
+}
+
+===function RandomizeEnding(rng)===
+{ 
+    - rng == 0: 
+        ~securityEnd = SecuritySuccess
+        ~blastEnd = -> BlastGunSuccess
+        ~ramGunEnd = -> RamGunSuccess
+        ~fleeEnd = -> FleeSafely
+
+    - rng == 1:
+        ~securityEnd = SecuritySuccess
+        ~blastEnd = -> BlastGunFailure
+        ~ramGunEnd = -> RamGunFailure
+        ~fleeEnd = -> FleeBadly
+    - else:
+        ~securityEnd = SecuritySuccess
 }

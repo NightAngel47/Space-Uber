@@ -347,12 +347,23 @@ public class EventSystem : MonoBehaviour
 	/// Takes the events supplied in newJob and applies them to the event lists here
 	/// </summary>
 	/// <param name="newJob"></param>
-	public void TakeEvents(Job newJob)
+	public void TakeStoryEvents(Job newJob)
 	{
 		storyEvents = newJob.storyEvents;
 		randomEvents = newJob.randomEvents;
 		currentJob = newJob;
 	}
+
+	public void TakeRandomEvents(List<Job> sideJobs)
+    {
+		foreach(Job newJob in sideJobs)
+        {
+			foreach(GameObject newEvent in newJob.storyEvents)
+            {
+
+            }
+        }
+    }
 
 	
 }

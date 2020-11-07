@@ -17,7 +17,8 @@ public class JobManager : MonoBehaviour
     [SerializeField] private ShipStats ship;
     [SerializeField] private List<Job> availableJobs;
     private JobListUI jobListUI;
-    private Job selectedJob;
+    private Job selectedMainJob;
+    private List<Job> selectedSideJobs;
     
     private EventSystem es;
 
@@ -28,6 +29,10 @@ public class JobManager : MonoBehaviour
         StartCoroutine(UpdateJobList());
     }
 
+    /// <summary>
+    /// Once the Job Picker scene is loaded, the manager finds all UI, creates buttons for each job, and adds listeners to them
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator UpdateJobList()
     {
         yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_JobList").isLoaded);
@@ -41,27 +46,27 @@ public class JobManager : MonoBehaviour
         }
         
         jobListUI.continueButton.onClick.AddListener(delegate {
-            ChoiceChosen(selectedJob);
+            FinalizeJobSelection(selectedMainJob);
         });
     }
 
     public void SelectJob(Job selected)
     {
-        if (selected != selectedJob)
+        if (selected != selectedMainJob)
         {
-            selectedJob = selected;
-            jobListUI.ShowSelectedJobDetails(selectedJob);
+            selectedMainJob = selected;
+            jobListUI.ShowSelectedJobDetails(selectedMainJob);
         }
         else
         {
-            selectedJob = null;
+            selectedMainJob = null;
             jobListUI.ClearSelectedJobDetails();
         }
     }
 
-    private void ChoiceChosen(Job chosen)
+    private void FinalizeJobSelection(Job chosen)
     {
-        ship.AddPayout(selectedJob.payout);
-        es.TakeEvents(chosen);
+        ship.AddPayout(selectedMainJob.payout);
+        es.TakeStoryEvents(chosen);
     }
 }
