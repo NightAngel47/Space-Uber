@@ -59,6 +59,15 @@ public class GameManager : MonoBehaviour
     {
         ChangeInGameState(InGameStates.JobSelect);
     }
+    
+    private void Update()
+    {
+        // I was getting errors in scripts trying to access GameManager.instance.  Hopefully this fixes it.
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     /// <summary>
     /// Changes the current game state to the passed in game state.
