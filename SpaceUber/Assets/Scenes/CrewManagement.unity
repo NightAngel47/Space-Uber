@@ -728,6 +728,11 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8558105511487986718, guid: 89badd9c5d064914d9b438ecaddea6cc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8867218113466798884, guid: 89badd9c5d064914d9b438ecaddea6cc,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1092,6 +1097,9 @@ MonoBehaviour:
   statAndNumPrefab: {fileID: 3420480323077555833, guid: 7d0e7b910954e3c4ca69105523c9741a,
     type: 3}
   outputObject: {fileID: 1352478813}
+  sceneButtons:
+  - {fileID: 289140597}
+  - {fileID: 1636583401}
 --- !u!114 &1352478809 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8943541890187642965, guid: 89badd9c5d064914d9b438ecaddea6cc,

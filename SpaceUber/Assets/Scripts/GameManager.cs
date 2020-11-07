@@ -105,7 +105,6 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.LoadSceneSeperate("CrewManagement");
                 break; 
             case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
-                additiveSceneManager.UnloadScene("CrewManagement");
                 additiveSceneManager.UnloadScene("Starport BG");
                 
                 // Remove unplaced rooms from the ShipBuilding state
