@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -626,6 +626,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe5d639606919114a9b48eb746a06bc6, type: 3}
+--- !u!1 &1350692054 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4483520058602272388, guid: fe5d639606919114a9b48eb746a06bc6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1350692053}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1350692055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350692054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5768881bdd8e44a4885dc80638d40276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCamp: 1
+  ctr_sideWithScientist: 0
+  ctr_killBeckett: 0
+  ctr_killedAtSafari: 0
+  ctr_tellVIPsAboutClones: 0
+  ctr_VIPTrust: 50
+  ctr_cloneTrust: 50
 --- !u!1 &1650171997
 GameObject:
   m_ObjectHideFlags: 0
