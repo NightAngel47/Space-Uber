@@ -14,7 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceType: Ship Weapons
   resourceIcon: {fileID: 21300000, guid: 4285b6f4aa4fdd64c9d571a6e596b4cd, type: 3}
-  amount: 5
+  amount: 3
+--- !u!114 &8481597375965305403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4836928456875332943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428a7a5658cb52f44872bb548985baee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  specficLocations:
+    rows:
+    - row: 01010101010101010101
+    - row: 01010101010101010101
+    - row: 01010000000000000101
+    - row: 01010000000000000101
+    - row: 01010101010101010101
+    - row: 01010101010101010101
+    - row: 00000000000000000000
+    - row: 00000000000000000000
+    - row: 00000000000000000000
+    - row: 00000000000000000000
 --- !u!1001 &3517123974311886471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75,12 +99,13 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: price
-      value: 125
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomDescription
-      value: Shoots powerful torpedoes at foes. Must be placed on side of the ship.
+      value: Shoots powerful torpedoes at foes. +3 Weapons. Must be placed on side
+        of the ship.
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -127,6 +152,11 @@ PrefabInstance:
         type: 3}
       propertyPath: mouseOverAudio.Array.data[3]
       value: Load Torp 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: needsSpecificLocation
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6635282969121139961, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}

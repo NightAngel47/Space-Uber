@@ -44,6 +44,8 @@ public class RoomStats : MonoBehaviour
 
     ShipStats shipStats;
 
+    public bool flatOutput;
+
     [SerializeField] private bool usedRoom = false;
 
     void Start()
@@ -96,39 +98,125 @@ public class RoomStats : MonoBehaviour
     /// </summary>
     private void GetStats()
     {
-        foreach(Resource resource in resources)
+        int crewRange = maxCrew - minCrew + 1;
+        float percent = (float)(maxCrew - 1) / (float)crewRange;
+        
+
+        foreach (Resource resource in resources)
+        {
+            resource.minAmount = resource.amount - (int)(resource.amount * percent);
+            if (flatOutput == true)
+            {
+                switch (resource.resourceType)
+                {
+                    case "Credits":
+                        credits += resource.amount;
+                        break;
+                    case "Energy":
+                        energy += resource.amount;
+                        break;
+                    case "Security":
+                        security += resource.amount;
+                        break;
+                    case "Ship Weapons":
+                        shipWeapons += resource.amount;
+                        break;
+                    case "Crew":
+                        crew += resource.amount;
+                        break;
+                    case "Food":
+                        food += resource.amount;
+                        break;
+                    case "Food Per Tick":
+                        foodPerTick += resource.amount;
+                        break;
+                    case "Hull Durability":
+                        shipHealth += resource.amount;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            else
+            {
+                switch (resource.resourceType)
+                {
+                    case "Credits":
+                        credits += resource.minAmount;
+                        break;
+                    case "Energy":
+                        energy += resource.minAmount;
+                        break;
+                    case "Security":
+                        security += resource.minAmount;
+                        break;
+                    case "Ship Weapons":
+                        shipWeapons += resource.minAmount;
+                        break;
+                    case "Crew":
+                        crew += resource.minAmount;
+                        break;
+                    case "Food":
+                        food += resource.minAmount;
+                        break;
+                    case "Food Per Tick":
+                        foodPerTick += resource.minAmount;
+                        break;
+                    case "Hull Durability":
+                        shipHealth += resource.minAmount;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
+    public void UpdateRoomStats()
+    {
+        SubtractRoomStats();
+        foreach (Resource resource in resources)
         {
             switch (resource.resourceType)
             {
                 case "Credits":
-                    credits += resource.amount;
+                    //credits -= resource.minAmount;
+                    credits = resource.activeAmount;
                     break;
                 case "Energy":
-                    energy += resource.amount;
+                    //energy -= resource.minAmount;
+                    energy = resource.activeAmount;
                     break;
                 case "Security":
-                    security += resource.amount;
+                    //security -= resource.minAmount;
+                    security = resource.activeAmount;
                     break;
                 case "Ship Weapons":
-                    shipWeapons += resource.amount;
+                    //shipWeapons -= resource.minAmount;
+                    shipWeapons = resource.activeAmount;
                     break;
                 case "Crew":
-                    crew += resource.amount;
+                    //crew -= resource.minAmount;
+                    crew = resource.activeAmount;
                     break;
                 case "Food":
-                    food += resource.amount;
+                    //food -= resource.minAmount;
+                    food = resource.activeAmount;
                     break;
                 case "Food Per Tick":
-                    foodPerTick += resource.amount;
+                    //foodPerTick -= resource.minAmount;
+                    foodPerTick = resource.activeAmount;
                     break;
                 case "Hull Durability":
-                    shipHealth += resource.amount;
+                    //shipHealth -= resource.minAmount;
+                    shipHealth = resource.activeAmount;
                     break;
                 default:
                     break;
             }
         }
-        //AddRoomStats();
+        AddRoomStats();
     }
 
     /// <summary>
