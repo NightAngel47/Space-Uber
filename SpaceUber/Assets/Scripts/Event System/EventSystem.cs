@@ -20,7 +20,7 @@ public class EventSystem : MonoBehaviour
 	private ShipStats ship;
 	private AdditiveSceneManager asm;
 	private EventCanvas eventCanvas;
-
+	private CampaignManager campMan;
 	
 	private int maxEvents = 3;
 	private List<GameObject> storyEvents;
@@ -65,6 +65,7 @@ public class EventSystem : MonoBehaviour
 
 		ship = FindObjectOfType<ShipStats>();
 		asm = FindObjectOfType<AdditiveSceneManager>();
+		campMan = GetComponent<CampaignManager>();
 		
 		if(eventWarning != null)
 		{
@@ -175,8 +176,8 @@ public class EventSystem : MonoBehaviour
 
 		if (eventInstance.TryGetComponent(out InkDriverBase inkDriver))
 		{
-			inkDriver.AssignUIFromEventSystem(eventCanvas.titleBox, eventCanvas.textBox,
-				eventCanvas.backgroundImage, eventCanvas.buttonGroup, ship);
+			inkDriver.AssignStatusFromEventSystem(eventCanvas.titleBox, eventCanvas.textBox,
+				eventCanvas.backgroundImage, eventCanvas.buttonGroup, ship, campMan);
 			
 		}
 
@@ -190,7 +191,6 @@ public class EventSystem : MonoBehaviour
 	/// </summary>
 	public void ConcludeEvent()
 	{
-		print("Concluded Event");
 		eventInstance.GetComponent<InkDriverBase>().ClearUI();
 
 		//in case a random event isn't chosen
@@ -334,7 +334,7 @@ public class EventSystem : MonoBehaviour
 		foreach (Requirements required in selectedRequirements)
 		{
 			//break the loop the second that one requirement doesn't match
-			if (!required.MatchesRequirements(ship))
+			if (!required.MatchesRequirements(ship, campMan))
 			{
 				result = false;
 				break;

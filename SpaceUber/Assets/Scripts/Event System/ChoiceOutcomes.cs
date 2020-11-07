@@ -28,7 +28,7 @@ public class ChoiceOutcomes
     private int VIPTrustChange;
 
 
-    public void StatChange(ShipStats ship)
+    public void StatChange(ShipStats ship, CampaignManager campMan)
     {
         if (ship != null)
         {
@@ -67,7 +67,6 @@ public class ChoiceOutcomes
             }
             else 
             {
-                CampaignManager campMan = CampaignManager.instance;
                 switch (campMan.currentCamp)
                 {
                     //for catering to the rich campaign

@@ -17,10 +17,10 @@ MonoBehaviour:
   choiceRequirements: []
   hasRandomEnding: 0
   outcomes:
-  - isNarrativeOutcome: 0
+  - isNarrativeOutcome: 1
     resource: 0
     amount: -50
-    ctrBoolOutcomes: 
+    ctrBoolOutcomes: Side With Scientist
     cloneTrustChange: 0
     VIPTrustChange: 0
   randomEndingOutcomes: []
@@ -69,7 +69,7 @@ MonoBehaviour:
   choiceName: Buy Bots
   hasRequirements: 1
   choiceRequirements:
-  - isNarrativeRequirement: 0
+  - isNarrativeRequirement: 1
     selectedResource: 6
     requiredAmount: 50
     lessThan: 0

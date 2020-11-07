@@ -16,7 +16,7 @@ using TMPro;
 
 public class InkDriverBase : MonoBehaviour
 {
-    [SerializeField, Tooltip("Attach the.JSON file you want read to this")]
+    [Tooltip("Attach the.JSON file you want read to this")]
     public TextAsset inkJSONAsset;
 
     [SerializeField] private string eventName;
@@ -26,7 +26,7 @@ public class InkDriverBase : MonoBehaviour
     [SerializeField, Tooltip("Attach the prefab of a choice button to this")]
     private Button buttonPrefab;
 
-
+    [HideInInspector]public CampaignManager campMan;
     private Transform buttonGroup;
     private TMP_Text titleBox;
     private TMP_Text textBox;
@@ -77,13 +77,15 @@ public class InkDriverBase : MonoBehaviour
         availableChoices = firstChoices;
     }
 
-    public void AssignUIFromEventSystem(TMP_Text title, TMP_Text text, Image background, Transform buttonSpace, ShipStats ship)
+    public void AssignStatusFromEventSystem(TMP_Text title, TMP_Text text, Image background, Transform buttonSpace, 
+        ShipStats ship, CampaignManager campaignManager)
     {
         titleBox = title;
         textBox = text;
         backgroundUI = background;
         buttonGroup = buttonSpace;
         thisShip = ship;
+        campMan = campaignManager;
     }
 
     private void Update()

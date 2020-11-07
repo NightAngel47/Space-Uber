@@ -11,7 +11,6 @@ using UnityEngine;
 
 public class CampaignManager : MonoBehaviour
 {
-    public static CampaignManager instance;
     public enum Campaign
     {
         N_A,

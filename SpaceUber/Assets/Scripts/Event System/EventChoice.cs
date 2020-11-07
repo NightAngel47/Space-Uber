@@ -52,7 +52,7 @@ public class EventChoice : MonoBehaviour
             //if anything in choiceRequirements does not match, this bool is automatically false
             for (int i = 0; i < choiceRequirements.Count; i++)
             {
-                if (!choiceRequirements[i].MatchesRequirements(ship))
+                if (!choiceRequirements[i].MatchesRequirements(ship, driver.campMan))
                 {
                     requirementMatch = false;
                 }
@@ -88,7 +88,7 @@ public class EventChoice : MonoBehaviour
                 MultipleRandom thisSet = randomEndingOutcomes[randomizedResult];
                 foreach(ChoiceOutcomes choiceOutcome in thisSet.outcomes)
                 {
-                    choiceOutcome.StatChange(ship);
+                    choiceOutcome.StatChange(ship, driver.campMan);
                 }
 
             }
@@ -97,7 +97,7 @@ public class EventChoice : MonoBehaviour
         {
             foreach (ChoiceOutcomes outcome in outcomes)
             {
-                outcome.StatChange(ship);
+                outcome.StatChange(ship, driver.campMan);
             }
         }
         driver.TakeSubsequentChoices(subsequentChoices);

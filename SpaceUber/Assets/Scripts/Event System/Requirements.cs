@@ -27,7 +27,7 @@ public class Requirements
     }
     [Tooltip("If the requirement is narrative-based")]
     [SerializeField, AllowNesting]
-    private bool isNarrativeRequirement;
+    private bool isNarrativeRequirement = false;
 
     [Tooltip("The resource you would like to be compared")]
     [SerializeField, HideIf("isNarrativeRequirement"), AllowNesting]
@@ -39,7 +39,7 @@ public class Requirements
 
     [Tooltip("Click this if you would like to check if the ship resource is LESS than the number supplied")]
     [SerializeField, HideIf("isNarrativeRequirement"),AllowNesting]
-    private bool lessThan;
+    private bool lessThan = false;
 
     [Tooltip("Select one item from this dropdown list. The selected variable must be true for this event to run")]
     [Dropdown("cateringToRichBools"), SerializeField, ShowIf("isNarrativeRequirement"), AllowNesting]
@@ -61,9 +61,8 @@ public class Requirements
     //public string campaign;
     //[HideInInspector] public List<string> PossibleCampaigns => new List<string>() { "NA", "Catering to the Rich" };
 
-    public bool MatchesRequirements(ShipStats thisShip)
+    public bool MatchesRequirements(ShipStats thisShip, CampaignManager campMan)
     {
-        thisShip.PrintShipStats();
         bool result = true;
 
         if (!isNarrativeRequirement)
@@ -108,7 +107,6 @@ public class Requirements
         }
         else
         {
-            CampaignManager campMan = CampaignManager.instance;
             switch(campMan.currentCamp)
             {
                 //for catering to the rich campaign
