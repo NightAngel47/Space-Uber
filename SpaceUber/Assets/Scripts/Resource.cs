@@ -20,6 +20,8 @@ public class Resource : MonoBehaviour
     public Sprite resourceIcon;
     
     public int amount;
+    public int activeAmount = 0;
+    public int minAmount;
 
     void Start()
     {
