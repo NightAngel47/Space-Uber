@@ -122,6 +122,7 @@ public class ObjectScript : MonoBehaviour
             {
                 //buttons.SetActive(true);
                 gameObject.GetComponent<RoomStats>().SubtractRoomStats();
+                AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
                 Edit();
             }
 
@@ -131,6 +132,7 @@ public class ObjectScript : MonoBehaviour
                 if (ObjectMover.hasPlaced == true)
                 {
                     gameObject.GetComponent<RoomStats>().SubtractRoomStats();
+                    AudioManager.instance.PlaySFX("Sell");
                 }
 
                 Delete();
@@ -148,14 +150,6 @@ public class ObjectScript : MonoBehaviour
             {
                 FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
             }
-        }
-    }
-
-    public void OnMouseEnter()
-    {
-        if (!EventSystem.instance.eventActive && !OverclockController.instance.overclocking)
-        {
-            AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length-1)]);
         }
     }
 
