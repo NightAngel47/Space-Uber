@@ -30,10 +30,10 @@ VAR endingTwo = ->BotsGet
     
 ===function RandomizeEnding(rng)===
 { 
-    - rng == 1: 
-        ~randomEnd = endingOne
-    - rng == 2:
-        ~randomEnd = endingTwo
-    -else
-        ~randomEnd = endingTwo
+    - rng == 0: 
+        ~randomEnd = BrokenBots
+    - rng == 1:
+        ~randomEnd = BotsGet
+    -else:
+        ~randomEnd = BotsGet
 }
