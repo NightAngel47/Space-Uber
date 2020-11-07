@@ -7,6 +7,7 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cannon : MonoBehaviour
 {
@@ -16,10 +17,13 @@ public class Cannon : MonoBehaviour
 	[SerializeField] float coolDown;
 	[SerializeField] GameObject[] coolDownIndicators;
 	[SerializeField] GameObject projectileParent;
+	[SerializeField] Image coolDownBarIndicator;
+	float coolDownBarWidth;
 	bool canFire = true;
 	Camera cam;
 	private void Start()
 	{
+		coolDownBarWidth = coolDownBarIndicator.rectTransform.rect.width;
 		cam = Camera.main;
 	}
 	private void Update()
@@ -46,14 +50,18 @@ public class Cannon : MonoBehaviour
 	{
 		float timeElapsed = 0;
 		canFire = false;
+		float x = coolDownBarIndicator.rectTransform.rect.x;
+		float y = coolDownBarIndicator.rectTransform.rect.y;
+		float height = coolDownBarIndicator.rectTransform.rect.height;
 		while (timeElapsed < coolDown)
 		{
 			int indicatorNumber = Mathf.RoundToInt(timeElapsed / coolDown * coolDownIndicators.Length)+1;
-
-			for (int i = 0; i < coolDownIndicators.Length; i++) { coolDownIndicators[i].SetActive(i < indicatorNumber); }
-			yield return new WaitForSeconds(0.1f);
-			timeElapsed += 0.1f;
+			coolDownBarIndicator.rectTransform.sizeDelta = new Vector2(coolDownBarWidth * (timeElapsed / coolDown), height);
+			Debug.Log(coolDownBarIndicator.rectTransform.rect.width);
+			yield return new WaitForSeconds(0.01f);
+			timeElapsed += 0.01f;
 		}
+		coolDownBarIndicator.rectTransform.sizeDelta = new Vector2(coolDownBarWidth, height);
 		canFire = true;
 	}
 }
