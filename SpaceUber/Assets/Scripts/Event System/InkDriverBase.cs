@@ -215,14 +215,16 @@ public class InkDriverBase : MonoBehaviour
                 text = story.Continue();
             }
 
+            //check for random ending within story
             if(story.currentTags.Count != 0)
             {
-                if(story.currentTags[0] == "randomEnd")
+                if(story.currentTags.Contains("randomEnd"))
                 {
+                    print("Random ending detected");
                     foreach (EventChoice eventChoose in availableChoices)
                     {
                         if (eventChoose.hasRandomEnding)
-                        { eventChoose.RandomizeEnding(); }
+                        { eventChoose.RandomizeEnding(story); }
                     }
                 }
             }

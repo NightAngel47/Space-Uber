@@ -108,22 +108,19 @@ public class EventChoice : MonoBehaviour
     /// as well as knot variables called "endingOne", "endingTwo" and so on.
     /// Called by InkDriverBase the moment it sees a "randomizeEnding" tag, technically before a choice is chosen.
     /// </summary>
-    public void RandomizeEnding()
+    public void RandomizeEnding(Story thisStory)
     {
-        print("Choice name: " + choiceName);
-
+        story = thisStory;
         //var numberOfEndingsRaw = story.variablesState["numberOfRandomEndings"];
         //int endingNum = (int)numberOfEndingsRaw;
 
-        int result = 1;
+        int result = 0;
         float choiceThreshold = 0;
         float outcomeChance = Random.Range(0f, 100f);
-        print("Rolled a " + outcomeChance);
 
         for (int i = 0; i < randomEndingOutcomes.Count; i++)
         {
             choiceThreshold += randomEndingOutcomes[i].probability; //adds the probability of the next element to choice threshold
-            print("Choice threshold is now: " + choiceThreshold + "%");
             if (outcomeChance <= choiceThreshold || (i == randomEndingOutcomes.Count)) //if the outcome chance is lower than the threshold, we pick this event
             {
                 result = i;

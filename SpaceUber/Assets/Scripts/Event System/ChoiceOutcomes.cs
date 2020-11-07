@@ -13,6 +13,7 @@ using UnityEngine;
 [System.Serializable]
 public class ChoiceOutcomes
 {
+    public string outcomeName;
     public bool isNarrativeOutcome;
 
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] private ResourceType resource;

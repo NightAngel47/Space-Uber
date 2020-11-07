@@ -17,7 +17,8 @@ MonoBehaviour:
   choiceRequirements: []
   hasRandomEnding: 0
   outcomes:
-  - isNarrativeOutcome: 1
+  - outcomeName: 
+    isNarrativeOutcome: 0
     resource: 0
     amount: -50
     ctrBoolOutcomes: Side With Scientist
@@ -45,7 +46,8 @@ MonoBehaviour:
   choiceRequirements: []
   hasRandomEnding: 0
   outcomes:
-  - isNarrativeOutcome: 0
+  - outcomeName: 
+    isNarrativeOutcome: 0
     resource: 7
     amount: -50
     ctrBoolOutcomes: 
@@ -69,7 +71,7 @@ MonoBehaviour:
   choiceName: Buy Bots
   hasRequirements: 1
   choiceRequirements:
-  - isNarrativeRequirement: 1
+  - isNarrativeRequirement: 0
     selectedResource: 6
     requiredAmount: 50
     lessThan: 0
@@ -79,19 +81,32 @@ MonoBehaviour:
     VIPTrustRequirement: 0
   hasRandomEnding: 0
   outcomes:
-  - isNarrativeOutcome: 0
+  - outcomeName: 
+    isNarrativeOutcome: 0
     resource: 4
     amount: 5
     ctrBoolOutcomes: 
     cloneTrustChange: 0
     VIPTrustChange: 0
-  - isNarrativeOutcome: 0
+  - outcomeName: 
+    isNarrativeOutcome: 0
     resource: 0
     amount: -50
     ctrBoolOutcomes: 
     cloneTrustChange: 0
     VIPTrustChange: 0
-  randomEndingOutcomes: []
+  randomEndingOutcomes:
+  - outcomes: []
+    probability: 10
+  - outcomes:
+    - outcomeName: Get those bots
+      isNarrativeOutcome: 0
+      resource: 0
+      amount: -50
+      ctrBoolOutcomes: 
+      cloneTrustChange: 0
+      VIPTrustChange: 0
+    probability: 90
   hasSubsequentChoices: 0
   subsequentChoices: []
 --- !u!114 &8152075466295786839

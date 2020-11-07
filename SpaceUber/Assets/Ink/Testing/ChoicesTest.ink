@@ -1,6 +1,9 @@
-VAR name = "Player"
-VAR shipIntegrity = 7
-"What do you want to do?."
+VAR randomEnd = -> BrokenBots
+
+VAR endingOne = ->BrokenBots
+VAR endingTwo = ->BotsGet
+
+"What do you want to do?"
 
 
 * [Buy Repairs. -50 Credits] "50 credits removed" 
@@ -11,8 +14,17 @@ VAR shipIntegrity = 7
 === BuyRobots===
     "How about some bots?"
     * [Yes]
-    "Cool, here ya go."
-    -> DONE
+    -> randomEnd
+   
     * [No]
     "Alright, see ya."
     -> DONE
+    
+===BrokenBots===
+    "Sorry, all of our bots are actually broken."
+    ->DONE
+
+===BotsGet===
+    "Just as requested"
+    ->DONE
+    
