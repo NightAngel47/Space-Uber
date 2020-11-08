@@ -1606,6 +1606,83 @@ MonoBehaviour:
     pitch: 1
     volumeVarience: 0.25
     pitchVarience: 0.1
+  - name: Display
+    clip: {fileID: 8300000, guid: b581392bdc97de046871895ef882b459, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0.05
+    pitchVarience: 0.08
+  - name: Clippers 1
+    clip: {fileID: 8300000, guid: 6c3eafb3cda0acb4cb291c272da47779, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.15
+  - name: Clippers 2
+    clip: {fileID: 8300000, guid: 4ae73f0e396867841a602d8bf492873b, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.15
+  - name: Clippers 3
+    clip: {fileID: 8300000, guid: 2bee69579199a4b4c90121af9cd9e2d5, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.15
+  - name: Watering 1
+    clip: {fileID: 8300000, guid: 034f89147541b0a4ea59a250d44377f0, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.15
+  - name: Watering 2
+    clip: {fileID: 8300000, guid: 3878645ecf1eb4e4ab262ba1576a570e, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.15
+  - name: Watering 3
+    clip: {fileID: 8300000, guid: 0489d47768bdf0f47bc002b03c038aa0, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.15
+  - name: Fert 1
+    clip: {fileID: 8300000, guid: 18730d15b5d86074992d8e66bc0e3d74, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.15
+  - name: Fert 2
+    clip: {fileID: 8300000, guid: 56768c948006bde469518ef2207e4041, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.15
+    pitchVarience: 0.15
+  - name: Plant 1
+    clip: {fileID: 8300000, guid: 17b31bd9a859d434a95bfb220c85e708, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0.15
+    pitchVarience: 0.15
+  - name: Plant 2
+    clip: {fileID: 8300000, guid: b62ad0612eae388489d2238d0f673bc1, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0.15
+    pitchVarience: 0.15
   ambientTracks:
   - name: Warbling White Noise
     clip: {fileID: 8300000, guid: 6d140a3d68eb54947857dc1f58801017, type: 3}
