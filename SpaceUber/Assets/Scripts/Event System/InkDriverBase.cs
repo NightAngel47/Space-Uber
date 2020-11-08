@@ -154,6 +154,7 @@ public class InkDriverBase : MonoBehaviour
                 TMP_Text choiceText = choiceButton.GetComponentInChildren<TMP_Text>();
                 choiceText.text = " " + (choice.index + 1) + ". " + choice.text;
 
+                print("Creating choice ");
                 availableChoices[choice.index].CreateChoice(thisShip,choiceButton, story,this);
                 
                 // Set listener for the sake of knowing when to refresh
@@ -220,23 +221,6 @@ public class InkDriverBase : MonoBehaviour
                 text = story.Continue();
             }
 
-            //check for random ending within story
-            //if(story.currentTags.Count != 0)
-            //{
-            //    if(story.currentTags.Contains("randomEnd"))
-            //    {
-            //        print("Random ending detected");
-            //        foreach (EventChoice eventChoose in availableChoices)
-            //        {
-            //            print("Choice name: " + eventChoose.choiceName);
-            //            if (eventChoose.hasRandomEnding)
-            //            { 
-            //                print("Going to randomize a choice");
-            //                eventChoose.RandomizeEnding(story); 
-            //            }
-            //        }
-            //    }
-            //}
         }
 
         return text;
