@@ -1480,13 +1480,171 @@ MonoBehaviour:
     pitch: 1
     volumeVarience: 0.25
     pitchVarience: 0
-  ambientTracks: []
+  - name: Sell
+    clip: {fileID: 8300000, guid: 5e47c6df9f6807b49b5a588766be1dc6, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0
+  - name: Overclock
+    clip: {fileID: 8300000, guid: d279aec6ec15ec048868ba921a967fe3, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: De-Overclock
+    clip: {fileID: 8300000, guid: e475d7b77aa30d84ca36b5179bda8e92, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Sonar Blip
+    clip: {fileID: 8300000, guid: 040f4f7ae641851458aa15eb84c16ce2, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.15
+    pitchVarience: 0.05
+  - name: Press 1
+    clip: {fileID: 8300000, guid: 9be77f3ebbf1f2e469547ab8e1047e9e, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Press 2
+    clip: {fileID: 8300000, guid: 448cec4fb349eda40a33981669246976, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Press 3
+    clip: {fileID: 8300000, guid: 10ba01fc243a50f4eb5c50ca0b979910, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Press 4
+    clip: {fileID: 8300000, guid: 48dcb8b7a03ecf049b16a8932c2c33bf, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Press 5
+    clip: {fileID: 8300000, guid: cfd6037e9449f0942bc55217ccc6b5ad, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Press 6
+    clip: {fileID: 8300000, guid: 9c147897e2b278043ab0fc5345140e94, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Press 7
+    clip: {fileID: 8300000, guid: 5c8c831ed46770d4cb4ce56dabbb9407, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Press 8
+    clip: {fileID: 8300000, guid: c96b8868b32c67e4b885fcae5a531989, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Press 9
+    clip: {fileID: 8300000, guid: 699ec1e483d4b754eaeb435b5af33517, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Press 10
+    clip: {fileID: 8300000, guid: 67a13e847aa08cd4d88e73cc1dc19929, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Slider
+    clip: {fileID: 8300000, guid: 87102308c9093944abfb9a9d1f3e5da4, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.4
+  - name: Switch 1
+    clip: {fileID: 8300000, guid: 3aabe3b55105e2b45ba65c6151b43a31, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Switch 2
+    clip: {fileID: 8300000, guid: 3f02900a1350a5741ba10ced881c09a2, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Switch 3
+    clip: {fileID: 8300000, guid: b5b9955ea0f060d4dbcbd513acd61455, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  ambientTracks:
+  - name: Warbling White Noise
+    clip: {fileID: 8300000, guid: 6d140a3d68eb54947857dc1f58801017, type: 3}
+    mixer: {fileID: -1070410809799078073, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 1
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: White Noise 1
+    clip: {fileID: 8300000, guid: 0d5d167227cbd264e936b35dd45b4336, type: 3}
+    mixer: {fileID: -1070410809799078073, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 1
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: White Noise 2
+    clip: {fileID: 8300000, guid: 6e9cdbd2bf4dfe945a8d11ced03f8a2e, type: 3}
+    mixer: {fileID: -1070410809799078073, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 1
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: White Noise 3
+    clip: {fileID: 8300000, guid: 6e4f185779f187247bef3bc6ebd042b9, type: 3}
+    mixer: {fileID: -1070410809799078073, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 1
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
   currentlyPlayingAmbience: []
   masterVolume: 1
   sfxVolume: 1
   musicVolume: 1
   ambienceVolume: 1
-  fadeOutTime: 2.25
+  fadeOutTime: 2
   trackOverlapTime: 1.25
   fadeInTime: 3.25
   isMuted: 0

@@ -43,6 +43,7 @@ public class OverclockController : MonoBehaviour
         if (miniGame == MiniGameType.None) return; // check for implemented mini-game
         overclocking = true;
         activeRoom = room;
+        AudioManager.instance.PlaySFX("Overclock");
         additiveSceneManager.LoadSceneMerged(miniGame.ToString()); 
     }
 
@@ -57,7 +58,7 @@ public class OverclockController : MonoBehaviour
             if (miniGame == MiniGameType.StabilizeEnergyLevels) { shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullDurabilityBaseAdjustment * statModification)); }
         }
         additiveSceneManager.UnloadScene(miniGame.ToString());
-		if (succsess && activeRoom) { activeRoom.StartCoolDown(); }
+        if (succsess && activeRoom) { activeRoom.StartCoolDown(); AudioManager.instance.PlaySFX("De-Overclock"); }
         activeRoom = null;
 	}
 }
