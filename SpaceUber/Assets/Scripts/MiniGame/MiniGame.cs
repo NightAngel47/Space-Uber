@@ -13,10 +13,12 @@ public class MiniGame : MonoBehaviour
 	[SerializeField] protected float statModification = 1;
 	[SerializeField] GameObject gameWinScreen;
     public string[] Successes;
+    bool winSound = false;
 
     private void Start()
 	{
 		gameWinScreen.SetActive(false);
+        winSound = false;
 	}
 
 	public void EndMiniGameEarly()
@@ -28,7 +30,12 @@ public class MiniGame : MonoBehaviour
     public void EndMiniGameSuccess()
 	{
 		gameWinScreen.SetActive(true);
-        AudioManager.instance.PlaySFX(Successes[Random.Range(0, Successes.Length - 1)]);
+
+        if (winSound == false)
+        {
+            AudioManager.instance.PlaySFX(Successes[Random.Range(0, Successes.Length - 1)]);
+            winSound = true;
+        }
     }
 
 	public void ConfirmMiniGameSuccess()

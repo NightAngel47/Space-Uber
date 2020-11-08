@@ -70,7 +70,7 @@ public class ObjectScript : MonoBehaviour
         
         roomNameUI.text = gameObject.GetComponent<RoomStats>().roomName;
         roomDescUI.text = gameObject.GetComponent<RoomStats>().roomDescription;
-        //roomPrice.text = gameObject.GetComponent<RoomStats>().price.ToString(); //Caused errors when trying to test, remember to un-comment
+        roomPrice.text = gameObject.GetComponent<RoomStats>().price.ToString(); //Caused errors when trying to test, remember to un-comment
 
         foreach (var resource in gameObject.GetComponent<RoomStats>().resources)
         {
