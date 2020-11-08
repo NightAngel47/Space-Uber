@@ -357,8 +357,14 @@ public class EventSystem : MonoBehaviour
 	/// <param name="newJob"></param>
 	public void TakeStoryEvents(Job newJob)
 	{
-		storyEvents = newJob.events;
+		storyEvents = newJob.storyEvents;
 		currentJob = newJob;
+
+		foreach (GameObject newEvent in newJob.storyEvents)
+		{
+			randomEvents.Add(newEvent);
+		}
+
 		maxEvents = newJob.maxEvents;
 	}
 
@@ -366,7 +372,7 @@ public class EventSystem : MonoBehaviour
     {
 		foreach(Job newJob in sideJobs)
         {
-			foreach(GameObject newEvent in newJob.events)
+			foreach(GameObject newEvent in newJob.randomEvents)
             {
 				randomEvents.Add(newEvent);
             }
