@@ -79,6 +79,41 @@ MonoBehaviour:
     pitch: 0
     volumeVarience: 0
     pitchVarience: 0
+  - name: Clone Ambush Intro
+    clip: {fileID: 8300000, guid: f2b300a8efa398440abacbf63d968123, type: 3}
+    mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 0
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Safari Tampering
+    clip: {fileID: 8300000, guid: 4945e552a91294848ab7d50ca966e80b, type: 3}
+    mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.9
+    pitch: 0
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Clone Ambush Negotiation
+    clip: {fileID: 8300000, guid: 338fa4bc60cdbf447aa707e27e974119, type: 3}
+    mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.65
+    pitch: 0
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Clone Ambush Fight
+    clip: {fileID: 8300000, guid: fd2a6c07482c0dc408fedf698d161c1c, type: 3}
+    mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.555
+    pitch: 0
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ejection
+    clip: {fileID: 8300000, guid: 48d3e79d12e9a08479a20f643fe68f40, type: 3}
+    mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 1
+    pitch: 0
+    volumeVarience: 0
+    pitchVarience: 0
   sfxTracks:
   - name: Alien Noise 1
     clip: {fileID: 8300000, guid: 0a9ac1b09bcb2334aaa5eed41303d6ce, type: 3}
@@ -1444,7 +1479,7 @@ MonoBehaviour:
   sfxVolume: 1
   musicVolume: 1
   ambienceVolume: 1
-  fadeOutTime: 2.25
+  fadeOutTime: 2
   trackOverlapTime: 1.25
   fadeInTime: 3.25
   isMuted: 0
