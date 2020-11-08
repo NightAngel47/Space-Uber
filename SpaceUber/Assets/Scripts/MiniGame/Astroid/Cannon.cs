@@ -21,7 +21,8 @@ public class Cannon : MonoBehaviour
 	float coolDownBarWidth;
 	bool canFire = true;
 	Camera cam;
-	private void Start()
+    public string[] fireCannon;
+    private void Start()
 	{
 		coolDownBarWidth = coolDownBarIndicator.rectTransform.rect.width;
 		cam = Camera.main;
@@ -40,8 +41,9 @@ public class Cannon : MonoBehaviour
 		{
 			if ((left && Input.GetMouseButtonDown(1)) || (!left && Input.GetMouseButtonDown(0)))
 			{
-				Instantiate(projectilePrefab, barrel.position, transform.rotation, projectileParent.transform); 
-				StartCoroutine(CoolDown());
+				Instantiate(projectilePrefab, barrel.position, transform.rotation, projectileParent.transform);
+                AudioManager.instance.PlaySFX(fireCannon[Random.Range(0, fireCannon.Length - 1)]);
+                StartCoroutine(CoolDown());
 			}
 		}
 	}
@@ -62,6 +64,7 @@ public class Cannon : MonoBehaviour
 			timeElapsed += 0.01f;
 		}
 		coolDownBarIndicator.rectTransform.sizeDelta = new Vector2(coolDownBarWidth, height);
-		canFire = true;
+        AudioManager.instance.PlaySFX("Ready to Fire");
+        canFire = true;
 	}
 }

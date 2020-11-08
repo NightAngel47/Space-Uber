@@ -12,6 +12,7 @@ public class Rocket : MonoBehaviour
 {
     [SerializeField] float upwardSpeed;
     [SerializeField] float scaleSpeed;
+    public string[] breakAsteroid;
     void Start()
     {
         StartCoroutine(DecreaseScale());
@@ -31,6 +32,7 @@ public class Rocket : MonoBehaviour
         Astroid astroid = other.GetComponent<Astroid>();
 		if (astroid) 
         {
+            AudioManager.instance.PlaySFX(breakAsteroid[Random.Range(0, breakAsteroid.Length - 1)]);
             astroid.StartExploding();
             Destroy(gameObject);
         }

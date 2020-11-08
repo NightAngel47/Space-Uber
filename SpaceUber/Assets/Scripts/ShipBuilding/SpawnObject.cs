@@ -19,7 +19,6 @@ public class SpawnObject : MonoBehaviour
     [SerializeField] private GameObject buttonPanel;
     [SerializeField] private Vector2 spawnLoc;
 
-    //TONS of copy+paste arrays. These might be necessary, but the stuff farther down isn't. Need to ask a real programmer for help about better implementation. - Jake
     public string[] purchasePowerCore;
     public string[] purchaseHydroponics;
     public string[] purchaseBrig;

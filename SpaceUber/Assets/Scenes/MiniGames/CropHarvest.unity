@@ -229,6 +229,20 @@ MonoBehaviour:
   maxWaterLevel: 3
   pruneDecayerTic: 1
   maxPruneLevel: 3
+  trimCropSFX:
+  - Trim 1
+  - Trim 2
+  - Trim 3
+  waterCropSFX:
+  - Watering 1
+  - Watering 2
+  - Watering 3
+  fertilizeCropSFX:
+  - Fert 1
+  - Fert 2
+  plantCropSFX:
+  - Plant 1
+  - Plant 2
 --- !u!114 &39106571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,6 +969,20 @@ MonoBehaviour:
   maxWaterLevel: 3
   pruneDecayerTic: 1
   maxPruneLevel: 3
+  trimCropSFX:
+  - Trim 1
+  - Trim 2
+  - Trim 3
+  waterCropSFX:
+  - Watering 1
+  - Watering 2
+  - Watering 3
+  fertilizeCropSFX:
+  - Fert 1
+  - Fert 2
+  plantCropSFX:
+  - Plant 1
+  - Plant 2
 --- !u!114 &443275157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1190,6 +1218,12 @@ MonoBehaviour:
   miniGameSceneName: 1
   statModification: 1
   gameWinScreen: {fileID: 1278146651}
+  Successes:
+  - Arp 1
+  - Arp 2
+  - Arp 3
+  - Arp 4
+  - Arp 5
   crops: []
 --- !u!4 &660907015
 Transform:
@@ -6819,6 +6853,20 @@ MonoBehaviour:
   maxWaterLevel: 3
   pruneDecayerTic: 1
   maxPruneLevel: 3
+  trimCropSFX:
+  - Trim 1
+  - Trim 2
+  - Trim 3
+  waterCropSFX:
+  - Watering 1
+  - Watering 2
+  - Watering 3
+  fertilizeCropSFX:
+  - Fert 1
+  - Fert 2
+  plantCropSFX:
+  - Plant 1
+  - Plant 2
 --- !u!114 &1159097374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7509,6 +7557,20 @@ MonoBehaviour:
   maxWaterLevel: 3
   pruneDecayerTic: 1
   maxPruneLevel: 3
+  trimCropSFX:
+  - Trim 1
+  - Trim 2
+  - Trim 3
+  waterCropSFX:
+  - Watering 1
+  - Watering 2
+  - Watering 3
+  fertilizeCropSFX:
+  - Fert 1
+  - Fert 2
+  plantCropSFX:
+  - Plant 1
+  - Plant 2
 --- !u!114 &1408866444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9112,6 +9174,7 @@ GameObject:
   - component: {fileID: 2081707900}
   - component: {fileID: 2081707899}
   - component: {fileID: 2081707898}
+  - component: {fileID: 2081707901}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -9193,6 +9256,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2081707901}
+        m_MethodName: ClickPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2081707899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9230,6 +9304,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2081707896}
   m_CullTransparentMesh: 0
+--- !u!114 &2081707901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081707896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 093fe5c779844da489ca1f98d9bcb5a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Clicks:
+  - Confirm 1
+  - Confirm 2
+  - Confirm 3
 --- !u!1 &2096939099
 GameObject:
   m_ObjectHideFlags: 0
