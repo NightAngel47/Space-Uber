@@ -150,6 +150,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stat Bar Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2694391760355496411, guid: 2881fb45785837144aa48e81ba17090b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2694391760355496415, guid: 2881fb45785837144aa48e81ba17090b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1190,6 +1195,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
         type: 3}
+      propertyPath: ambientTracks.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.size
+      value: 201
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
       propertyPath: fadeOutTime
       value: 2
       objectReference: {fileID: 0}
@@ -1297,6 +1312,141 @@ PrefabInstance:
         type: 3}
       propertyPath: musicTracks.Array.data[9].volume
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6d140a3d68eb54947857dc1f58801017, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[0].name
+      value: Warbling White Noise
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[0].mixer
+      value: 
+      objectReference: {fileID: -1070410809799078073, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0d5d167227cbd264e936b35dd45b4336, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[1].name
+      value: White Noise 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[1].mixer
+      value: 
+      objectReference: {fileID: -1070410809799078073, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[0].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[0].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[1].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[1].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6e9cdbd2bf4dfe945a8d11ced03f8a2e, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[2].mixer
+      value: 
+      objectReference: {fileID: -1070410809799078073, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[2].name
+      value: White Noise 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[2].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[2].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6e4f185779f187247bef3bc6ebd042b9, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[3].name
+      value: White Noise 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[3].mixer
+      value: 
+      objectReference: {fileID: -1070410809799078073, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[3].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: ambientTracks.Array.data[3].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[200].name
+      value: Sell
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[200].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5e47c6df9f6807b49b5a588766be1dc6, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[200].mixer
+      value: 
+      objectReference: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[200].volume
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[200].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[200].volumeVarience
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfd00d5985b7e774da68f5c929635ee4, type: 3}
