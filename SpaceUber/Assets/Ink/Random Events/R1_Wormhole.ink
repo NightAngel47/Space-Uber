@@ -32,7 +32,7 @@ As you approach the umbral blot, the alarms start blaring and the gravitational 
     - rng == 1:
         ~randomEnd = Pranked
     - rng == 2:
-        ~randomEnd = Pranked
+        ~randomEnd = Money
     - rng == 3:
         ~randomEnd = Shuffle
     - else:
