@@ -38,11 +38,11 @@ public class JobUI : MonoBehaviour, IPointerClickHandler
         {
             sideJobPayText.text = job.payout.ToString() + " Credits";
 
-            switch (job.maxEvents)
+            switch (job.maxRandomEvents)
             {
                 //TODO add other cases for other side job lengths
                 default:
-                    sideJobLengthText.text = "Length: +" + job.maxEvents + " Event(s)";
+                    sideJobLengthText.text = "Length: +" + job.maxRandomEvents + " Event(s)";
                     Debug.LogWarning("UI not setup for side job length");
                     break;
             }

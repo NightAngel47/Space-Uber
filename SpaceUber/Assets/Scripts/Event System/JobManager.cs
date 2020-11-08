@@ -25,7 +25,6 @@ public class JobManager : MonoBehaviour
 
     public void RefreshJobList()
     {
-        print("here 2");
         StartCoroutine(UpdateJobList());
     }
     
@@ -37,7 +36,6 @@ public class JobManager : MonoBehaviour
     {
         yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_JobList").isLoaded);
         jobListUI = FindObjectOfType<JobListUI>();
-        print("here 3");
 
         foreach (Job job in campaignManager.campaigns[(int)campaignManager.currentCamp].campaignJobs)
         {

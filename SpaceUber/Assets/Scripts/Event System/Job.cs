@@ -19,10 +19,10 @@ public class Job : MonoBehaviour
      HideIf("isSideJob")]
     public int campaignIndexAvailable = 0;
     
-    [Tooltip("How many events will happen in this journey"),HideIf("isSideJob")]
-    public int maxEvents = 3;
+    [Tooltip("How many random events will happen in this journey")]
+    public int maxRandomEvents = 3;
 
-    [Tooltip("The story events included in this job"),HideIf("isSideJob")]
+    [Tooltip("The story events included in this job"),HideIf("isSideJob"), ReorderableList]
     public List<GameObject> storyEvents;
 
     [Tooltip("The random events that will be included in this job")]

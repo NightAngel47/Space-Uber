@@ -22,7 +22,7 @@ public class EventSystem : MonoBehaviour
 	private EventCanvas eventCanvas;
 	private CampaignManager campMan;
 	
-	private int maxEvents = 3;
+	private int maxEvents = 0;
 	private List<GameObject> storyEvents = new List<GameObject>();
 	private List<GameObject> randomEvents = new List<GameObject>();
 
@@ -232,6 +232,7 @@ public class EventSystem : MonoBehaviour
 		storyEventIndex = 0;
 		randomEventIndex = 0;
 		eventInstance = null;
+		lastEventTitle = "";
 	}
 
 	/// <summary>
@@ -260,20 +261,21 @@ public class EventSystem : MonoBehaviour
 	/// <returns></returns>
 	private GameObject FindNextStoryEvent()
     {
-		GameObject result = storyEvents[ storyEventIndex];
+		GameObject result = storyEvents[storyEventIndex];
 		bool found = false;
-
+		
+		// search for the next event with the correct variation
 		for (int i = storyEventIndex; i < storyEvents.Count; i++)
-        {
+		{
 			if(!found)
-            {
+			{
 				GameObject thisEvent = storyEvents[i];
 				List<Requirements> requirements = thisEvent.GetComponent<InkDriverBase>().requiredStats;
 
 				//grabs first eight letters of ink file name to check the naming code
 				string thisEventTitle = thisEvent.GetComponent<InkDriverBase>().inkJSONAsset.name.Substring(0, 8); 
 
-				if (lastEventTitle == thisEventTitle) //if this is not a variation of the same event as the last one, check requirements
+				if (lastEventTitle != thisEventTitle) //if this is not a variation of the same event as the last one, check requirements
 				{
 					if (HasRequiredStats(requirements))
 					{
@@ -286,7 +288,6 @@ public class EventSystem : MonoBehaviour
 					++storyEventIndex;
 				}
 			}
-			
 		}
 
 		lastEventTitle = result.GetComponent<InkDriverBase>().inkJSONAsset.name.Substring(0, 8);
@@ -373,7 +374,8 @@ public class EventSystem : MonoBehaviour
 		storyEvents.AddRange(newJob.storyEvents);
 		randomEvents.AddRange(newJob.randomEvents);
 		currentJob = newJob;
-		maxEvents = newJob.maxEvents;
+		maxEvents += newJob.storyEvents.Count;
+		maxEvents += newJob.maxRandomEvents;
 	}
 
 	public void TakeSideJobEvents(List<Job> sideJobs)
@@ -381,6 +383,7 @@ public class EventSystem : MonoBehaviour
 		foreach(Job newJob in sideJobs)
         {
 	        randomEvents.AddRange(newJob.randomEvents);
+	        maxEvents += newJob.maxRandomEvents;
         }
     }
 }
