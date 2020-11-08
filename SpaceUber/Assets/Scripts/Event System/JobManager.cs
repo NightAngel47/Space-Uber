@@ -18,7 +18,7 @@ public class JobManager : MonoBehaviour
     [SerializeField] private List<Job> availableJobs;
     private JobListUI jobListUI;
     private Job selectedMainJob;
-    private List<Job> selectedSideJobs;
+    private List<Job> selectedSideJobs = new List<Job>();
     
     private EventSystem es;
 
@@ -46,27 +46,45 @@ public class JobManager : MonoBehaviour
         }
         
         jobListUI.continueButton.onClick.AddListener(delegate {
-            FinalizeJobSelection(selectedMainJob);
+            FinalizeJobSelection();
         });
     }
 
     public void SelectJob(Job selected)
     {
-        if (selected != selectedMainJob)
+        if(!selected.isSideJob)
         {
-            selectedMainJob = selected;
-            jobListUI.ShowSelectedJobDetails(selectedMainJob);
+            if (selected != selectedMainJob)
+            {
+                selectedMainJob = selected;
+                jobListUI.ShowSelectedJobDetails(selectedMainJob);
+            }
+            else
+            {
+                selectedMainJob = null;
+                jobListUI.ClearSelectedJobDetails();
+            }
         }
         else
         {
-            selectedMainJob = null;
-            jobListUI.ClearSelectedJobDetails();
+            if (!selectedSideJobs.Contains(selected))
+            {
+                selectedSideJobs.Add(selected);
+            }
+            else
+            {
+                selectedSideJobs.Remove(selected);
+            }
+            jobListUI.UpdateSideJobCount(selectedSideJobs.Count);
+          
         }
+        
     }
 
-    private void FinalizeJobSelection(Job chosen)
+    private void FinalizeJobSelection()
     {
         ship.AddPayout(selectedMainJob.payout);
-        es.TakeStoryEvents(chosen);
+        es.TakeStoryEvents(selectedMainJob);
+        es.TakeRandomEvents(selectedSideJobs);
     }
 }

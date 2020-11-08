@@ -19,6 +19,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
+      propertyPath: events.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
+        type: 3}
       propertyPath: maxEvents
       value: 2
       objectReference: {fileID: 0}
@@ -45,6 +50,23 @@ PrefabInstance:
       value: This is a test of the Bradley University Emergency Notification system.
         This is only a test.
       objectReference: {fileID: 0}
+    - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
+        type: 3}
+      propertyPath: isSideJob
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
+        type: 3}
+      propertyPath: events.Array.data[0]
+      value: 
+      objectReference: {fileID: 7272458766203768250, guid: 268f29224e6f6a44792e29eb7275c082,
+        type: 3}
+    - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
+        type: 3}
+      propertyPath: events.Array.data[1]
+      value: 
+      objectReference: {fileID: 3760127036658443676, guid: 14b8276ecc135e54ca9306a2f0b4439c,
+        type: 3}
     - target: {fileID: 6620000524830208261, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
       propertyPath: m_LocalPosition.x

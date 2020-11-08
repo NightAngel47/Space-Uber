@@ -10,13 +10,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using NaughtyAttributes;
 
 public class Job : MonoBehaviour
 {
-    [Tooltip("How many events will happen in this journey")]
+    [Tooltip("How many events will happen in this journey"),HideIf("isSideJob")]
     public int maxEvents = 3;
 
-    [Tooltip("Narrative-focused events that will play in this specific order")]
+    [Tooltip("The events included in this job")]
     public List<GameObject> events;
 
     public string jobName;
