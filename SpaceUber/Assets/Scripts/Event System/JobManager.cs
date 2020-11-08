@@ -15,20 +15,20 @@ using System.Collections;
 public class JobManager : MonoBehaviour
 {
     [SerializeField] private ShipStats ship;
-    [SerializeField] private List<Job> availableJobs;
+    [SerializeField] private CampaignManager campaignManager;
+    [SerializeField] private EventSystem es;
+
     private JobListUI jobListUI;
     private Job selectedMainJob;
-    private List<Job> selectedSideJobs = new List<Job>();
     
-    private EventSystem es;
+    private List<Job> selectedSideJobs = new List<Job>();
 
-    public void Start()
+    public void RefreshJobList()
     {
-        es = FindObjectOfType<EventSystem>();
-        
+        print("here 2");
         StartCoroutine(UpdateJobList());
     }
-
+    
     /// <summary>
     /// Once the Job Picker scene is loaded, the manager finds all UI, creates buttons for each job, and adds listeners to them
     /// </summary>
@@ -37,17 +37,20 @@ public class JobManager : MonoBehaviour
     {
         yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_JobList").isLoaded);
         jobListUI = FindObjectOfType<JobListUI>();
+        print("here 3");
 
-        foreach (var job in availableJobs)
+        foreach (Job job in campaignManager.campaigns[(int)campaignManager.currentCamp].campaignJobs)
         {
             // Show available job currently handles both primary and side jobs,
             // might need to change when side jobs are added
-            jobListUI.ShowAvailableJob(job);
+            if (job.campaignIndexAvailable == campaignManager.campaigns[(int) campaignManager.currentCamp].currentCampaignJobIndex ||
+                job.isSideJob)
+            {
+                jobListUI.ShowAvailableJob(job);
+            }
         }
         
-        jobListUI.continueButton.onClick.AddListener(delegate {
-            FinalizeJobSelection();
-        });
+        jobListUI.continueButton.onClick.AddListener(FinalizeJobSelection);
     }
 
     public void SelectJob(Job selected)
@@ -76,15 +79,14 @@ public class JobManager : MonoBehaviour
                 selectedSideJobs.Remove(selected);
             }
             jobListUI.UpdateSideJobCount(selectedSideJobs.Count);
-          
         }
-        
     }
 
     private void FinalizeJobSelection()
     {
         ship.AddPayout(selectedMainJob.payout);
-        es.TakeStoryEvents(selectedMainJob);
-        es.TakeRandomEvents(selectedSideJobs);
+        es.TakeStoryJobEvents(selectedMainJob);
+        es.TakeSideJobEvents(selectedSideJobs);
+        campaignManager.campaigns[(int) campaignManager.currentCamp].currentCampaignJobIndex++;
     }
 }

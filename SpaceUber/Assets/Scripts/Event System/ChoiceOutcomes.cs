@@ -66,31 +66,32 @@ public class ChoiceOutcomes
                         break;
                 }
             }
-            else 
+            else
             {
                 switch (campMan.currentCamp)
                 {
                     //for catering to the rich campaign
-                    case CampaignManager.Campaign.CateringToTheRich:
-                        
+                    case Campaigns.CateringToTheRich:
+                        CampaignManager.CateringToTheRich campaign = (CampaignManager.CateringToTheRich) campMan.campaigns[(int)Campaigns.CateringToTheRich];
+
                         //alter the trust variables
-                        campMan.ctr_cloneTrust += cloneTrustChange;
-                        campMan.ctr_VIPTrust += VIPTrustChange;
+                        campaign.ctr_cloneTrust += cloneTrustChange;
+                        campaign.ctr_VIPTrust += VIPTrustChange;
 
                         //the selected bool will become true
                         switch (ctrBoolOutcomes)
                         {
                             case "Side With Scientist":
-                                campMan.ctr_sideWithScientist = true;
+                                campaign.ctr_sideWithScientist = true;
                                 break;
                             case "Kill Beckett":
-                                campMan.ctr_killBeckett = true;
+                                campaign.ctr_killBeckett = true;
                                 break;
                             case "Killed At Safari":
-                                campMan.ctr_killedAtSafari = true;
+                                campaign.ctr_killedAtSafari = true;
                                 break;
                             case "Tell VIPs About Clones":
-                                campMan.ctr_tellVIPsAboutClones = true;
+                                campaign.ctr_tellVIPsAboutClones = true;
                                 break;
                         }
                         break;

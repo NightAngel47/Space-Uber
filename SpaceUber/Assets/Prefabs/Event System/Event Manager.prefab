@@ -44,9 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 648b2c3348e353845b943affc2f53023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomEvents: []
-  eventChanceFreq: 5
-  timeBeforeEventRoll: 20
+  eventChanceFreq: 10
+  timeBeforeEventRoll: 40
   chanceIncreasePerFreq: 20
   startingEventChance: 5
   eventWarning: {fileID: 0}
@@ -63,10 +62,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5768881bdd8e44a4885dc80638d40276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentCamp: 1
-  ctr_sideWithScientist: 0
-  ctr_killBeckett: 0
-  ctr_killedAtSafari: 0
-  ctr_tellVIPsAboutClones: 0
-  ctr_VIPTrust: 50
-  ctr_cloneTrust: 50
+  currentCamp: 0
+  campaigns:
+  - currentCampaignJob: 0
+    campaignJobs:
+    - {fileID: 8540514368881411038, guid: 866e169925d796141a9c9a289f6ab14b, type: 3}
+    - {fileID: 5220517419898165771, guid: c62f3617dc87b6b46a337fff6ecae31d, type: 3}
+    - {fileID: 7978123787042214769, guid: 5e4ed31cb67c3d3419b551439c781aaf, type: 3}

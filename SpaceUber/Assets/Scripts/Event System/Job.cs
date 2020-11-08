@@ -14,6 +14,11 @@ using NaughtyAttributes;
 
 public class Job : MonoBehaviour
 {
+    [Tooltip("Determines when in the campaign sequence should this job be available to the player. " +
+             "For example: if set to 0 then it will appear as part of the list of available first jobs in this campaign."), 
+     HideIf("isSideJob")]
+    public int campaignIndexAvailable = 0;
+    
     [Tooltip("How many events will happen in this journey"),HideIf("isSideJob")]
     public int maxEvents = 3;
 

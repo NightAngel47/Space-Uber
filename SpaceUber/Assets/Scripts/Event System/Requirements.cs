@@ -110,29 +110,31 @@ public class Requirements
             switch(campMan.currentCamp)
             {
                 //for catering to the rich campaign
-                case CampaignManager.Campaign.CateringToTheRich:
+                case Campaigns.CateringToTheRich:
+                    CampaignManager.CateringToTheRich campaign = (CampaignManager.CateringToTheRich) campMan.campaigns[(int)Campaigns.CateringToTheRich];
+                    
                     //check if the selected bool is true or not
                     switch(ctrBoolRequirements)
                     {
                         case "Side With Scientist":
-                            result = campMan.ctr_sideWithScientist;
+                            result = campaign.ctr_sideWithScientist;
                             break;
                         case "Kill Beckett":
-                            result = campMan.ctr_killBeckett;
+                            result = campaign.ctr_killBeckett;
                             break;
                         case "Killed At Safari":
-                            result = campMan.ctr_killedAtSafari;
+                            result = campaign.ctr_killedAtSafari;
                             break;
                         case "Tell VIPs About Clones":
-                            result = campMan.ctr_tellVIPsAboutClones;
+                            result = campaign.ctr_tellVIPsAboutClones;
                             break;
                         case "N_A":
                             break;
                     }
                     if(ctrTrustRequirements)
                     {
-                        bool VIPResult = campMan.ctr_VIPTrust > VIPTrustRequirement;
-                        bool cloneResult = campMan.ctr_cloneTrust > cloneTrustRequirement;
+                        bool VIPResult = campaign.ctr_VIPTrust > VIPTrustRequirement;
+                        bool cloneResult = campaign.ctr_cloneTrust > cloneTrustRequirement;
                         result = VIPResult && cloneResult;
                     }
                     break;

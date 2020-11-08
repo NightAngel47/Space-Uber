@@ -23,8 +23,8 @@ public class EventSystem : MonoBehaviour
 	private CampaignManager campMan;
 	
 	private int maxEvents = 3;
-	private List<GameObject> storyEvents;
-	private List<GameObject> randomEvents;
+	private List<GameObject> storyEvents = new List<GameObject>();
+	private List<GameObject> randomEvents = new List<GameObject>();
 
 	//how many events (story and random) have occurred
 	private int overallEventIndex = 0;
@@ -126,7 +126,7 @@ public class EventSystem : MonoBehaviour
 			//story events happen every other time 
 			if (overallEventIndex % 2 == 1 && overallEventIndex != 0) //if it's an even-numbered event, do a story 
 			{
-				// Load Event_General Scene for upcoming event // TODO will have to change based on story vs random event
+				// Load Event_General Scene for upcoming event
 				asm.LoadSceneMerged("Event_General");
 				yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_General").isLoaded);
 
@@ -145,7 +145,7 @@ public class EventSystem : MonoBehaviour
 
 				if (newEvent != null) //check to be sure a random event was still chosen
 				{
-					// Load Event_General Scene for upcoming event 
+					// Load Event_CharacterFocused Scene for upcoming event 
 					asm.LoadSceneMerged("Event_CharacterFocused");
 					yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
 
@@ -214,11 +214,24 @@ public class EventSystem : MonoBehaviour
 		//Potentially end the job entirely
 		if (overallEventIndex >= maxEvents)
 		{
+			ClearEventSystem();
 			ship.CashPayout();
 			GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);
 		}
 
 		eventActive = false;
+	}
+	
+	private void ClearEventSystem()
+	{
+		storyEvents.Clear();
+		randomEvents.Clear();
+		currentJob = null;
+		maxEvents = 0;
+		overallEventIndex = 0;
+		storyEventIndex = 0;
+		randomEventIndex = 0;
+		eventInstance = null;
 	}
 
 	/// <summary>
@@ -355,29 +368,19 @@ public class EventSystem : MonoBehaviour
 	/// Takes the events supplied in newJob and applies them to the event lists here
 	/// </summary>
 	/// <param name="newJob"></param>
-	public void TakeStoryEvents(Job newJob)
+	public void TakeStoryJobEvents(Job newJob)
 	{
-		storyEvents = newJob.storyEvents;
+		storyEvents.AddRange(newJob.storyEvents);
+		randomEvents.AddRange(newJob.randomEvents);
 		currentJob = newJob;
-
-		foreach (GameObject newEvent in newJob.storyEvents)
-		{
-			randomEvents.Add(newEvent);
-		}
-
 		maxEvents = newJob.maxEvents;
 	}
 
-	public void TakeRandomEvents(List<Job> sideJobs)
+	public void TakeSideJobEvents(List<Job> sideJobs)
     {
 		foreach(Job newJob in sideJobs)
         {
-			foreach(GameObject newEvent in newJob.randomEvents)
-            {
-				randomEvents.Add(newEvent);
-            }
+	        randomEvents.AddRange(newJob.randomEvents);
         }
     }
-
-	
 }

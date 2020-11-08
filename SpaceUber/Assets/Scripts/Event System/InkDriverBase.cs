@@ -37,8 +37,8 @@ public class InkDriverBase : MonoBehaviour
     private float textPrintSpeed = 0.1f;
 
     [SerializeField, Tooltip("The first set of choices that a player will reach.")] 
-    private List<EventChoice> firstChoices;
-    private List<EventChoice> availableChoices;
+    private List<EventChoice> firstChoices = new List<EventChoice>();
+    private List<EventChoice> availableChoices = new List<EventChoice>();
 
     /// <summary>
     /// The story itself being read
@@ -153,21 +153,25 @@ public class InkDriverBase : MonoBehaviour
                 // Gets the text from the button prefab
                 TMP_Text choiceText = choiceButton.GetComponentInChildren<TMP_Text>();
                 choiceText.text = " " + (choice.index + 1) + ". " + choice.text;
-
-                print("Creating choice ");
-                availableChoices[choice.index].CreateChoice(thisShip,choiceButton, story,this);
                 
                 // Set listener for the sake of knowing when to refresh
                 choiceButton.onClick.AddListener(delegate {
                     OnClickChoiceButton(choice);
                 });
-                //The delegate keyword is used to pass a method as a parameter to the AddListenerer() function.
-                //Whenever a button is clicked, the function onClickChoiceButton() function is used.
+
+                if (choice.index < availableChoices.Count)
+                {
+                    availableChoices[choice.index].CreateChoice(thisShip,choiceButton, story,this);
                 
-                // Have on click also call the outcome choice to update the ship stats
-                choiceButton.onClick.AddListener(delegate {
-                    availableChoices[choice.index].SelectChoice(thisShip);
-                });
+                    // Have on click also call the outcome choice to update the ship stats
+                    choiceButton.onClick.AddListener(delegate {
+                        availableChoices[choice.index].SelectChoice(thisShip);
+                    });
+                }
+                else
+                {
+                    Debug.LogWarning($"There was not EventChoice available for choice index: {choice.index}");
+                }
             }
         }
     }

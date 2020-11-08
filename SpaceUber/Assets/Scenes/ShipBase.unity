@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -549,6 +549,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1350692055, guid: fe5d639606919114a9b48eb746a06bc6, type: 3}
+      propertyPath: campaigns.Array.data[0].campaignJobs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350692055, guid: fe5d639606919114a9b48eb746a06bc6, type: 3}
+      propertyPath: campaigns.Array.data[0].campaignJobs.Array.data[1]
+      value: 
+      objectReference: {fileID: 5220517419898165771, guid: c62f3617dc87b6b46a337fff6ecae31d,
+        type: 3}
+    - target: {fileID: 1350692055, guid: fe5d639606919114a9b48eb746a06bc6, type: 3}
+      propertyPath: campaigns.Array.data[0].campaignJobs.Array.data[2]
+      value: 
+      objectReference: {fileID: 7978123787042214769, guid: 5e4ed31cb67c3d3419b551439c781aaf,
+        type: 3}
     - target: {fileID: 4483520058602272388, guid: fe5d639606919114a9b48eb746a06bc6,
         type: 3}
       propertyPath: m_Name
@@ -619,18 +633,32 @@ PrefabInstance:
       propertyPath: sonar
       value: 
       objectReference: {fileID: 59633017}
-    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
-        type: 3}
-      propertyPath: timeBeforeEventRoll
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
-        type: 3}
-      propertyPath: eventChanceFreq
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe5d639606919114a9b48eb746a06bc6, type: 3}
+--- !u!114 &1350692055 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1350692055, guid: fe5d639606919114a9b48eb746a06bc6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1350692053}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5768881bdd8e44a4885dc80638d40276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1350692056 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1350692053}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 648b2c3348e353845b943affc2f53023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1650171997
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,38 +971,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1189387799359244916, guid: f28eb72492af95543b9a16f4aa0eb319,
         type: 3}
-      propertyPath: availableJobs.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1189387799359244916, guid: f28eb72492af95543b9a16f4aa0eb319,
-        type: 3}
-      propertyPath: availableJobs.Array.data[0]
-      value: 
-      objectReference: {fileID: 3860401292826842150, guid: c6f7c594a5a8ab84b996b72114b1a407,
-        type: 3}
-    - target: {fileID: 1189387799359244916, guid: f28eb72492af95543b9a16f4aa0eb319,
-        type: 3}
       propertyPath: ship
       value: 
       objectReference: {fileID: 6273300031087700529}
     - target: {fileID: 1189387799359244916, guid: f28eb72492af95543b9a16f4aa0eb319,
         type: 3}
-      propertyPath: availableJobs.Array.data[1]
+      propertyPath: campaignManager
       value: 
-      objectReference: {fileID: 7435386658398052473, guid: cfe42dddcb1beb844b84ecd338538fae,
-        type: 3}
+      objectReference: {fileID: 1350692055}
     - target: {fileID: 1189387799359244916, guid: f28eb72492af95543b9a16f4aa0eb319,
         type: 3}
-      propertyPath: availableJobs.Array.data[2]
+      propertyPath: es
       value: 
-      objectReference: {fileID: 4601257109117620087, guid: d06588e6b657b3a4e9e976e40f05a377,
-        type: 3}
-    - target: {fileID: 1189387799359244916, guid: f28eb72492af95543b9a16f4aa0eb319,
-        type: 3}
-      propertyPath: availableJobs.Array.data[3]
-      value: 
-      objectReference: {fileID: 7435386658398052473, guid: cfe42dddcb1beb844b84ecd338538fae,
-        type: 3}
+      objectReference: {fileID: 1350692056}
     - target: {fileID: 1189387799359244922, guid: f28eb72492af95543b9a16f4aa0eb319,
         type: 3}
       propertyPath: m_Name
