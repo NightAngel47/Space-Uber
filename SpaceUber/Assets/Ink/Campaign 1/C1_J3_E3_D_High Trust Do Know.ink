@@ -2,6 +2,8 @@ VAR securityEnd = ->SecuritySuccess
 VAR blastEnd = ->BlastGunSuccess
 VAR ramGunEnd = ->RamGunSuccess
 VAR fleeEnd = ->FleeSafely
+VAR haggleEnd = -> HaggleSuccess
+VAR threatenEnd = -> ThreatenSuccess
 
 VAR VIPsDead = false
 VAR VIPsResort = false
@@ -120,6 +122,26 @@ You can accept their offer, but persuasion or threats could increase your payout
 You've gotten all the money you can from the clones. You should accept the offer before they change their minds.
 }
 *[Accept Pay]
+    ->AcceptPay
+
+
++[Haggle (Trust%)] #HAGGLE CHANCE. 65/35 SUCCESS/FAILURE
+{HaggleLocked == true:
+    Beckett has cut you off. You cannot keep haggling.
+    -> Negotiation
+-else:
+    ->haggleEnd
+}
+
++[Threaten (Weapons%)] #THREATEN CHANCE. 65/35 SUCCESS/FAILURE
+{HaggleLocked == true:
+    Beckett has cut you off. You cannot threaten them further.
+    -> Negotiation
+-else:
+    ->threatenEnd
+}
+
+===AcceptPay==
 {HaggleCount == 0:
 You tell them you’re not leaving without your money, but you don’t want any trouble. "Good boy," Beckett Two laughs, "Even easier than I thought." Olivia Two doesn't seem to respond to Beckett's taunt, but gestures off-screen. Less than a minute later an armored man, chain-cuffed to a briefcase, approaches your ship. It is set on the ground and kicked, sending it sliding towards your ship. You dispatch your crew to retrieve it. While the mercenaries and clones watch the ship you tally your money. They're only giving you three fourths of what was promised, but it’s better than a hail of bullets. "All deals are final." Olivia Two says, "It was a pleasure. I hope we can all forget this ever happened."
 -> Paid_By_Clones
@@ -129,12 +151,7 @@ You tell them it’s enough. Beckett Two squints and glances around, as if looki
 -> Paid_By_Clones
 }
 
-+[Haggle (Trust%)] #HAGGLE CHANCE. 65/35 SUCCESS/FAILURE
-{HaggleLocked == true:
-Beckett has cut you off. You cannot keep haggling.
--> Negotiation
-}
-
+===HaggleSuccess===
 {HaggleCount == 0:
 You tell them that confiscating weapons was never part of your job, and that you aren't accepting a lower payment because of it. Beckett Two scoffs, "Oh! So you're saying you knew you were taking these people to get shot up, but you didn't think them having weapons would be an issue? Take some damn initiative and maybe you’d get somewhere in life." Olivia Two ignores him and leans forward, "The agreed upon payment? That shouldn't be an issue." Beckett Two turns to her and says, "You know this is coming out of your pocket." Olivia Two shrugs, "We promised the AI this money, Beckett, and without them you'd still be a slave." Beckett snarls and throws a hand up, "Fine. Fine. Pay the machine."
 ~HaggleCount++
@@ -159,12 +176,9 @@ The charging plasma reaches deafening volumes before the sound vaporizes itself,
 ~HaggleLocked = true
 -> Negotiation
 
-+[Threaten (Weapons%)] #THREATEN CHANCE. 65/35 SUCCESS/FAILURE
-{HaggleLocked == true:
-    Beckett has cut you off. You cannot threaten them further.
-    -> Negotiation
-}
 
+
+===ThreatenSuccess===
 {HaggleCount == 0:
 You order your crew to swivel your gun turrets, make a small show. You tell the clones that confiscating weapons was never part of your job, and that you aren't accepting a lower payment because of it. Failure to meet your standards will be met with extreme force. Beckett Two scoffs, "Oh! You want to see guns? I could buy an entire planet full of guns now, you Kellis pet." Olivia Two leans forward, "Then it shouldn't be an issue to cough up the agreed upon payment." Beckett Two whirls to her and she shrugs in response, "We promised the AI this money, Beckett, and I don't think you want to die right when your life is getting started." Beckett snarls and throws a hand up, "Fine. Fine. Pay the damn machine."
 ~HaggleCount++
@@ -266,12 +280,22 @@ The local authorities eventually get on the scene. With the corporate executives
         ~blastEnd = -> BlastGunSuccess
         ~ramGunEnd = -> RamGunSuccess
         ~fleeEnd = -> FleeSafely
+        ~haggleEnd = -> HaggleSuccess
+        ~threatenEnd = -> ThreatenSuccess
 
     - rng == 1:
         ~securityEnd = SecuritySuccess
         ~blastEnd = -> BlastGunFailure
         ~ramGunEnd = -> RamGunFailure
         ~fleeEnd = -> FleeBadly
+        ~haggleEnd = -> HaggleSuccess
+        ~threatenEnd = -> ThreatenSuccess
+        
     - else:
         ~securityEnd = SecuritySuccess
+        ~blastEnd = -> BlastGunFailure
+        ~ramGunEnd = -> RamGunFailure
+        ~fleeEnd = -> FleeBadly
+        ~haggleEnd = -> HaggleSuccess
+        ~threatenEnd = -> ThreatenSuccess
 }

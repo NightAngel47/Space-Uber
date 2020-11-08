@@ -2,6 +2,8 @@ VAR securityEnd = ->SecuritySuccess
 VAR blastEnd = ->BlastGunSuccess
 VAR ramGunEnd = ->RamGunSuccess
 VAR fleeEnd = ->FleeSafely
+VAR haggleEnd = -> HaggleSuccess
+VAR threatenEnd = -> ThreatenSuccess
 
 VAR HaggleCount = 0
 VAR HaggleLocked = false
@@ -124,27 +126,33 @@ You tell them it’s enough. Beckett Two squints and glances around, as if looki
 }
 
 +[Haggle (Trust%)] #HAGGLE CHANCE. 65/35 SUCCESS/FAILURE
-{HaggleLocked == true:
-Beckett has cut you off. You cannot keep haggling.
--> Negotiation
-}
-{HaggleCount == 0:
-You tell them that confiscating weapons was never part of your job, and that you aren't accepting a lower payment because of it. Beckett Two scoffs, "Oh! So you're saying you knew you were taking these people to get shot up, but you didn't think them having weapons would be an issue? Take some damn initiative and maybe you’d get somewhere in life." Olivia Two ignores him and leans forward, "The agreed upon payment? That shouldn't be an issue." Beckett Two turns to her and says, "You know this is coming out of your pocket." Olivia Two shrugs, "We promised the AI this money, Beckett, and without them you'd still be a slave." Beckett snarls and throws a hand up, "Fine. Fine. Pay the machine."
-~HaggleCount++
--> Negotiation
-}
-{HaggleCount == 1:
-You press for more money. The mission was highly dangerous, and you had to cover for the clones. You argue that the suspicions levied against you were never in the plan. Beckett Two rolls his eyes, "Oh yeah? Well they wouldn't be after you if you had done  a better job covering your tracks." Olivia Two thinks to herself, "That being said, you are right  that most employees would crack under that kind of pressure. You are something else." she turns to Beckett, "We have all the money in the world now, Beckett, so what's a few more credits?" Beckett has fallen more into a state of annoyance than rage, he waves his hand as if signalling for an execution. "Fine! Now that that's settled, anything else?"
-~HaggleCount++
--> Negotiation
-}
-{HaggleCount == 2:
-"Oh you're really pressing your luck now, buddy." Beckett snaps  "You're literally standing in an ambush site. Do you know the kind of holes we could put in your ship?" Olivia starts to explain your pay raise, but falters. The price is getting higher than anyone expected. "How about we leave it there." she says, hoping that will sate Beckett. His eyes look dead from the exchange, "It ends here." he parrots back.
-~HaggleCount++
-~HaggleLocked = true
--> Negotiation
-} 
+    ->haggleEnd
++[Threaten (Weapons%)] #THREATEN CHANCE. 65/35 SUCCESS/FAILURE
+    -> threatenEnd
 
+===HaggleSuccess===
+    {HaggleLocked == true:
+    Beckett has cut you off. You cannot keep haggling.
+    -> Negotiation
+    }
+    {HaggleCount == 0:
+    You tell them that confiscating weapons was never part of your job, and that you aren't accepting a lower payment because of it. Beckett Two scoffs, "Oh! So you're saying you knew you were taking these people to get shot up, but you didn't think them having weapons would be an issue? Take some damn initiative and maybe you’d get somewhere in life." Olivia Two ignores him and leans forward, "The agreed upon payment? That shouldn't be an issue." Beckett Two turns to her and says, "You know this is coming out of your pocket." Olivia Two shrugs, "We promised the AI this money, Beckett, and without them you'd still be a slave." Beckett snarls and throws a hand up, "Fine. Fine. Pay the machine."
+    ~HaggleCount++
+    -> Negotiation
+    }
+    {HaggleCount == 1:
+    You press for more money. The mission was highly dangerous, and you had to cover for the clones. You argue that the suspicions levied against you were never in the plan. Beckett Two rolls his eyes, "Oh yeah? Well they wouldn't be after you if you had done  a better job covering your tracks." Olivia Two thinks to herself, "That being said, you are right  that most employees would crack under that kind of pressure. You are something else." she turns to Beckett, "We have all the money in the world now, Beckett, so what's a few more credits?" Beckett has fallen more into a state of annoyance than rage, he waves his hand as if signalling for an execution. "Fine! Now that that's settled, anything else?"
+    ~HaggleCount++
+    -> Negotiation
+    }
+    {HaggleCount == 2:
+    "Oh you're really pressing your luck now, buddy." Beckett snaps  "You're literally standing in an ambush site. Do you know the kind of holes we could put in your ship?" Olivia starts to explain your pay raise, but falters. The price is getting higher than anyone expected. "How about we leave it there." she says, hoping that will sate Beckett. His eyes look dead from the exchange, "It ends here." he parrots back.
+    ~HaggleCount++
+    ~HaggleLocked = true
+    -> Negotiation
+    } 
+
+===HaggleFailure===
 #HAGGLE FAILURE. Placeholder: 35%. Trust% chance of success. 
 "No. No, you are not getting another damn cent from me." Beckett says, "You work under us understand? You don't set the terms, got it?" He pulls out a small radio and says, "Give them a warning shot." Olivia whirls around lunges forward to grab the radio, "What are you doing?!" You all hear the deep warbling sound of a machine charging. You start to see a glowing, sickly green light in the shadows of the docking bay. A mobile artillery platform illuminates itself, its barrel pointed a few feet above your ship. 
 The charging plasma reaches deafening volumes before the sound vaporizes itself,  a laser igniting over your ship, bringing the outer layer of the hull to a boil. Your entire crew is standing very still. Beckett Two smirks, "Local authorities probably heard that one. I don't think we have time to haggle anymore, wouldn't you agree?"
@@ -152,28 +160,32 @@ The charging plasma reaches deafening volumes before the sound vaporizes itself,
 -> Negotiation
 
 +[Threaten (Weapons%)] #THREATEN CHANCE. 65/35 SUCCESS/FAILURE
-{HaggleLocked == true:
-Beckett has cut you off. You cannot threaten them further.
--> Negotiation
-}
-{HaggleCount == 0:
-You order your crew to swivel your gun turrets, make a small show. You tell the clones that confiscating weapons was never part of your job, and that you aren't accepting a lower payment because of it. Failure to meet your standards will be met with extreme force. Beckett Two scoffs, "Oh! You want to see guns? I could buy an entire planet full of guns now, you Kellis pet." Olivia Two leans forward, "Then it shouldn't be an issue to cough up the agreed upon payment." Beckett Two whirls to her and she shrugs in response, "We promised the AI this money, Beckett, and I don't think you want to die right when your life is getting started." Beckett snarls and throws a hand up, "Fine. Fine. Pay the damn machine."
-~HaggleCount++
--> Negotiation
-}
-{HaggleCount == 1:
-You order your crew to start the boot-up sequences for your weaponry‒make it seem like you're ready to strike. The mercenaries start to look between themselves. You tell the clones that the payment isn't nearly enough. Olivia glances behind herself, as if looking for an exit. She starts slowly, "Maybe we should just give them what they want." Beckett snarls, "Oh, and let them walk all over us? We’re finally in control! And we came prepared for this Olivia!" she sighs, "I know, I know, but the fallout would be too much trouble. We already took more losses than expected‒let's just dip into our coffers and end the death here." After a moment Beckett agrees. Your threat worked.
-~HaggleCount++
--> Negotiation
-}
-{HaggleCount == 2:
-You order your crew to fire a warning shot. A blue beam of light dances between the standing mercenaries before slicing over their heads. The men are shaken, a few falling back. Whoever was manning the gun needs a raise. You press the clones again, not even justifying a pay increase but flatly threatening their lives.You tell them to send all the money they brought, pointing your guns towards the distant catwalks. 
-Beckett begins to twitch and fume, as if perfecting his enraged response. Olivia actually looks angry, and gestures offscreen. "Just give them it all!" Beckett starts to scream as the call cuts off. Less than a minute later an armored man chain-cuffed to a briefcase approaches your ship. It is set on the ground and kicked, sending it  sliding  towards your ship. You dispatch your crew to receive it. They're giving you it all. 
-~HaggleCount++
-~HaggleLocked = true
--> Paid_By_Clones
-}
+    -> threatenEnd
+    
+===ThreatenSuccess===
+    {HaggleLocked == true:
+    Beckett has cut you off. You cannot threaten them further.
+    -> Negotiation
+    }
+    {HaggleCount == 0:
+    You order your crew to swivel your gun turrets, make a small show. You tell the clones that confiscating weapons was never part of your job, and that you aren't accepting a lower payment because of it. Failure to meet your standards will be met with extreme force. Beckett Two scoffs, "Oh! You want to see guns? I could buy an entire planet full of guns now, you Kellis pet." Olivia Two leans forward, "Then it shouldn't be an issue to cough up the agreed upon payment." Beckett Two whirls to her and she shrugs in response, "We promised the AI this money, Beckett, and I don't think you want to die right when your life is getting started." Beckett snarls and throws a hand up, "Fine. Fine. Pay the damn machine."
+    ~HaggleCount++
+    -> Negotiation
+    }
+    {HaggleCount == 1:
+    You order your crew to start the boot-up sequences for your weaponry‒make it seem like you're ready to strike. The mercenaries start to look between themselves. You tell the clones that the payment isn't nearly enough. Olivia glances behind herself, as if looking for an exit. She starts slowly, "Maybe we should just give them what they want." Beckett snarls, "Oh, and let them walk all over us? We’re finally in control! And we came prepared for this Olivia!" she sighs, "I know, I know, but the fallout would be too much trouble. We already took more losses than expected‒let's just dip into our coffers and end the death here." After a moment Beckett agrees. Your threat worked.
+    ~HaggleCount++
+    -> Negotiation
+    }
+    {HaggleCount == 2:
+    You order your crew to fire a warning shot. A blue beam of light dances between the standing mercenaries before slicing over their heads. The men are shaken, a few falling back. Whoever was manning the gun needs a raise. You press the clones again, not even justifying a pay increase but flatly threatening their lives.You tell them to send all the money they brought, pointing your guns towards the distant catwalks. 
+    Beckett begins to twitch and fume, as if perfecting his enraged response. Olivia actually looks angry, and gestures offscreen. "Just give them it all!" Beckett starts to scream as the call cuts off. Less than a minute later an armored man chain-cuffed to a briefcase approaches your ship. It is set on the ground and kicked, sending it  sliding  towards your ship. You dispatch your crew to receive it. They're giving you it all. 
+    ~HaggleCount++
+    ~HaggleLocked = true
+    -> Paid_By_Clones
+    }
 
+===ThreatenFailure===
 #THREATEN FAILURE. Placeholder: 35%. Trust% chance of success. 
 "I've had it with this thing mouthing its metal trap acting like it will win this fight." Beckett yells as he pulls out a radio, "Destroy them. Now." Olivia whirls around lunges forward to grab the radio, "What are you doing?!" You all hear the deep warbling sound of a machine charging. You start to see a glowing, sickly green light in the shadows of the docking bay. A mobile artillery platform illuminates itself, its barrel pointed directly at your ship. The charging plasma reaches deafening volumes.
 You immediately go into evasive maneuvers. Your ship lurches forward in the cramped docking bay as the plasma cannon fires, just barely glancing off your armor, the outer plating left white hot. Before it charges up again you need to act. 
@@ -224,12 +236,22 @@ The local authorities eventually get on the scene. With the corporate executives
         ~blastEnd = -> BlastGunSuccess
         ~ramGunEnd = -> RamGunSuccess
         ~fleeEnd = -> FleeSafely
+        ~haggleEnd = -> HaggleSuccess
+        ~threatenEnd = -> ThreatenSuccess
 
     - rng == 1:
         ~securityEnd = SecuritySuccess
         ~blastEnd = -> BlastGunFailure
         ~ramGunEnd = -> RamGunFailure
         ~fleeEnd = -> FleeBadly
+        ~haggleEnd = -> HaggleSuccess
+        ~threatenEnd = -> ThreatenSuccess
+        
     - else:
         ~securityEnd = SecuritySuccess
+        ~blastEnd = -> BlastGunFailure
+        ~ramGunEnd = -> RamGunFailure
+        ~fleeEnd = -> FleeBadly
+        ~haggleEnd = -> HaggleSuccess
+        ~threatenEnd = -> ThreatenSuccess
 }
