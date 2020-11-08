@@ -118,7 +118,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6721175994234762801}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+          type: 3}
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Deny 1
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7296543267302033125
 GameObject:
   m_ObjectHideFlags: 0

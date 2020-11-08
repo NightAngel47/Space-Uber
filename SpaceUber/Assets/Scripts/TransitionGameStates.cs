@@ -24,6 +24,7 @@ public class TransitionGameStates : MonoBehaviour
     {
         GameManager.instance.ChangeInGameState(InGameStates.Events);
         //TODO add overclock button turn on, currently adding it so it appears but needs to be better can remove tag when updated
+        FindObjectOfType<CrewManagement>().TurnOnOverclockButton();
     }
 
     public void ChangeToCrewManagement()
