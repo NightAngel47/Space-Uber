@@ -1613,21 +1613,21 @@ MonoBehaviour:
     pitch: 1
     volumeVarience: 0.05
     pitchVarience: 0.08
-  - name: Clippers 1
+  - name: Trim 1
     clip: {fileID: 8300000, guid: 6c3eafb3cda0acb4cb291c272da47779, type: 3}
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
     volume: 0.65
     pitch: 1
     volumeVarience: 0.25
     pitchVarience: 0.15
-  - name: Clippers 2
+  - name: Trim 2
     clip: {fileID: 8300000, guid: 4ae73f0e396867841a602d8bf492873b, type: 3}
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
     volume: 0.65
     pitch: 1
     volumeVarience: 0.25
     pitchVarience: 0.15
-  - name: Clippers 3
+  - name: Trim 3
     clip: {fileID: 8300000, guid: 2bee69579199a4b4c90121af9cd9e2d5, type: 3}
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
     volume: 0.65
@@ -1683,6 +1683,55 @@ MonoBehaviour:
     pitch: 1
     volumeVarience: 0.15
     pitchVarience: 0.15
+  - name: Hull Damage
+    clip: {fileID: 8300000, guid: 48282811b61b23141a8c7c92687d06a0, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Fire 1
+    clip: {fileID: 8300000, guid: 027a0063b52e65e45a3dca6052c80ece, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Fire 2
+    clip: {fileID: 8300000, guid: da5ac442fa5248b45b7d67d1950488a6, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Fire 3
+    clip: {fileID: 8300000, guid: 30e6bf65f2c47ce4b9cdba1836656ef5, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Break 1
+    clip: {fileID: 8300000, guid: a53d5926b02cc67488cf30d2f7de980f, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Break 2
+    clip: {fileID: 8300000, guid: 98256ef62f42ead468ecad88b5a1378b, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Break 3
+    clip: {fileID: 8300000, guid: 98256ef62f42ead468ecad88b5a1378b, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
   ambientTracks:
   - name: Warbling White Noise
     clip: {fileID: 8300000, guid: 6d140a3d68eb54947857dc1f58801017, type: 3}
