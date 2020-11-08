@@ -15,21 +15,35 @@ MonoBehaviour:
   choiceName: Say the Engine Works (Lie)
   hasRequirements: 0
   choiceRequirements:
-  - selectedResource: 0
+  - isNarrativeRequirement: 0
+    selectedResource: 0
     requiredAmount: 0
     lessThan: 0
-  - selectedResource: 0
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  - isNarrativeRequirement: 0
+    selectedResource: 0
     requiredAmount: 0
     lessThan: 0
-  - selectedResource: 0
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  - isNarrativeRequirement: 0
+    selectedResource: 0
     requiredAmount: 0
     lessThan: 0
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 
-    amountChanged: 
-    probabilities: []
-    multipleRandomOutcomes: []
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  hasRandomEnding: 0
+  outcomes: []
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!114 &2540406321473515038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,21 +59,35 @@ MonoBehaviour:
   choiceName: Say the Engine Malfunctioned
   hasRequirements: 0
   choiceRequirements:
-  - selectedResource: 0
+  - isNarrativeRequirement: 0
+    selectedResource: 0
     requiredAmount: 0
     lessThan: 0
-  - selectedResource: 0
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  - isNarrativeRequirement: 0
+    selectedResource: 0
     requiredAmount: 0
     lessThan: 0
-  - selectedResource: 0
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  - isNarrativeRequirement: 0
+    selectedResource: 0
     requiredAmount: 0
     lessThan: 0
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 
-    amountChanged: 
-    probabilities: []
-    multipleRandomOutcomes: []
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  hasRandomEnding: 0
+  outcomes: []
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!1001 &2626420981659780162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75,6 +103,11 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: choicesAvailable.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
@@ -116,6 +149,16 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: choicesAvailable.Array.data[1]
+      value: 
+      objectReference: {fileID: 2540406321473515038}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[0]
+      value: 
+      objectReference: {fileID: 41640522226986136}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[1]
       value: 
       objectReference: {fileID: 2540406321473515038}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,

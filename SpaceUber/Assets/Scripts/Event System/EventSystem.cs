@@ -24,7 +24,7 @@ public class EventSystem : MonoBehaviour
 	
 	private int maxEvents = 3;
 	private List<GameObject> storyEvents;
-	private List<GameObject> randomEvents;
+	public List<GameObject> randomEvents;
 
 	//how many events (story and random) have occurred
 	private int overallEventIndex = 0;
@@ -120,21 +120,22 @@ public class EventSystem : MonoBehaviour
 			sonar.HideSonar();
             ship.PauseTickEvents();
 
-			// Load Event_General Scene for upcoming event // TODO will have to change based on story vs random event
-			asm.LoadSceneMerged("Event_General");
-			yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_General").isLoaded);
-
-			eventCanvas = FindObjectOfType<EventCanvas>();
+			
 
 			//Time to decide on an event
 			//story events happen every other time 
 			if (overallEventIndex % 2 == 1 && overallEventIndex != 0) //if it's an even-numbered event, do a story 
 			{
+				// Load Event_General Scene for upcoming event // TODO will have to change based on story vs random event
+				asm.LoadSceneMerged("Event_General");
+				yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_General").isLoaded);
+
+				eventCanvas = FindObjectOfType<EventCanvas>();
+
 				GameObject newEvent = FindNextStoryEvent();
 				CreateEvent(newEvent);
 				storyEventIndex++;
-                
-                
+
 				yield return new WaitWhile((() => eventActive));
                 
 			}
@@ -144,6 +145,12 @@ public class EventSystem : MonoBehaviour
 
 				if (newEvent != null) //check to be sure a random event was still chosen
 				{
+					// Load Event_General Scene for upcoming event 
+					asm.LoadSceneMerged("Event_CharacterFocused");
+					yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
+
+					eventCanvas = FindObjectOfType<EventCanvas>();
+
 					CreateEvent(newEvent);
 					randomEventIndex++;
                     
@@ -201,6 +208,7 @@ public class EventSystem : MonoBehaviour
 
 		//Go back to travel scene
 		asm.UnloadScene("Event_General");
+		asm.UnloadScene("Event_CharacterFocused");
 		AudioManager.instance.PlayMusicWithTransition("General Theme");
 
 		//Potentially end the job entirely

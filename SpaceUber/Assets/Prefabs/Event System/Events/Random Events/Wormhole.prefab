@@ -27,7 +27,8 @@ MonoBehaviour:
   outcomes: []
   randomEndingOutcomes:
   - outcomes:
-    - isNarrativeOutcome: 0
+    - outcomeName: 
+      isNarrativeOutcome: 0
       resource: 0
       amount: 50
       ctrBoolOutcomes: 
@@ -35,7 +36,8 @@ MonoBehaviour:
       VIPTrustChange: 0
     probability: 33
   - outcomes:
-    - isNarrativeOutcome: 0
+    - outcomeName: 
+      isNarrativeOutcome: 0
       resource: 4
       amount: 10
       ctrBoolOutcomes: 
@@ -43,13 +45,16 @@ MonoBehaviour:
       VIPTrustChange: 0
     probability: 33
   - outcomes:
-    - isNarrativeOutcome: 0
+    - outcomeName: 
+      isNarrativeOutcome: 0
       resource: 1
       amount: 60
       ctrBoolOutcomes: 
       cloneTrustChange: 0
       VIPTrustChange: 0
     probability: 33
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!114 &3613679431614302388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +82,8 @@ MonoBehaviour:
   outcomes: []
   randomEndingOutcomes:
   - outcomes:
-    - isNarrativeOutcome: 0
+    - outcomeName: 
+      isNarrativeOutcome: 0
       resource: 0
       amount: 50
       ctrBoolOutcomes: 
@@ -85,13 +91,16 @@ MonoBehaviour:
       VIPTrustChange: 0
     probability: 70
   - outcomes:
-    - isNarrativeOutcome: 0
+    - outcomeName: 
+      isNarrativeOutcome: 0
       resource: 4
       amount: 10
       ctrBoolOutcomes: 
       cloneTrustChange: 0
       VIPTrustChange: 0
     probability: 30
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!1001 &2626420981659780162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111,6 +120,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
+      propertyPath: firstChoices.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
       propertyPath: inkJSONAsset
       value: 
       objectReference: {fileID: 4900000, guid: ffefd9b9fc4c8f94586a0cd83583a0f9, type: 3}
@@ -118,7 +132,7 @@ PrefabInstance:
         type: 3}
       propertyPath: backgroundImage
       value: 
-      objectReference: {fileID: 21300000, guid: 0a96ac10ca130534e9aec004c2a63879,
+      objectReference: {fileID: 21300000, guid: 997bb9b91348ade4cac4a3c28d9c260c,
         type: 3}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -148,6 +162,16 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: choicesAvailable.Array.data[1]
+      value: 
+      objectReference: {fileID: 3613679431614302388}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[0]
+      value: 
+      objectReference: {fileID: 313058547253982998}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[1]
       value: 
       objectReference: {fileID: 3613679431614302388}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,

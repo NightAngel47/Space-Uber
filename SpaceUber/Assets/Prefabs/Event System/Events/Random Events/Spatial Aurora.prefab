@@ -15,12 +15,11 @@ MonoBehaviour:
   choiceName: Blind Pilots
   hasRequirements: 0
   choiceRequirements: []
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 07000000
-    amountChanged: f1ffffff
-    probabilities: []
-    multipleRandomOutcomes: []
+  hasRandomEnding: 0
+  outcomes: []
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!114 &7354196431891729396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36,15 +35,11 @@ MonoBehaviour:
   choiceName: Expose Crew to Aurora
   hasRequirements: 0
   choiceRequirements: []
-  outcome:
-    isRandomOutcome: 1
-    resourcesChanged: 050000000400000001000000
-    amountChanged: f6fffffffdffffff14000000
-    probabilities:
-    - 40
-    - 30
-    - 30
-    multipleRandomOutcomes: []
+  hasRandomEnding: 0
+  outcomes: []
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!1001 &801454342898154975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52,6 +47,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: eventName
@@ -67,6 +67,22 @@ PrefabInstance:
       propertyPath: eventBGM
       value: General Theme
       objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[0]
+      value: 
+      objectReference: {fileID: -1855157877099772188}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[1]
+      value: 
+      objectReference: {fileID: 7354196431891729396}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: backgroundImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 997bb9b91348ade4cac4a3c28d9c260c,
+        type: 3}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name

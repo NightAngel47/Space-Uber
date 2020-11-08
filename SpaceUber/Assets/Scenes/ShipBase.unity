@@ -622,7 +622,12 @@ PrefabInstance:
     - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
         type: 3}
       propertyPath: timeBeforeEventRoll
-      value: 40
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
+        type: 3}
+      propertyPath: eventChanceFreq
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe5d639606919114a9b48eb746a06bc6, type: 3}
@@ -964,7 +969,7 @@ PrefabInstance:
     - target: {fileID: 1189387799359244916, guid: f28eb72492af95543b9a16f4aa0eb319,
         type: 3}
       propertyPath: availableJobs.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1189387799359244916, guid: f28eb72492af95543b9a16f4aa0eb319,
         type: 3}
