@@ -1190,8 +1190,118 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
         type: 3}
+      propertyPath: musicTracks.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
       propertyPath: fadeOutTime
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[5].name
+      value: Clone Ambush Intro
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[5].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f2b300a8efa398440abacbf63d968123, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[5].mixer
+      value: 
+      objectReference: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[5].volume
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[6].name
+      value: Safari Tampering
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[6].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4945e552a91294848ab7d50ca966e80b, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[6].mixer
+      value: 
+      objectReference: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[6].volume
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[7].name
+      value: Clone Ambush Negotiation
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[7].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 338fa4bc60cdbf447aa707e27e974119, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[7].mixer
+      value: 
+      objectReference: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[7].volume
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[8].name
+      value: Clone Ambush Fight
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[8].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: fd2a6c07482c0dc408fedf698d161c1c, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[8].mixer
+      value: 
+      objectReference: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[8].volume
+      value: 0.555
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[9].name
+      value: Ejection
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[9].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 48d3e79d12e9a08479a20f643fe68f40, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[9].mixer
+      value: 
+      objectReference: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[9].volume
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfd00d5985b7e774da68f5c929635ee4, type: 3}
