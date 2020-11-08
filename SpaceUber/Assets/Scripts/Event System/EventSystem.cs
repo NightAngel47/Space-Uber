@@ -24,7 +24,7 @@ public class EventSystem : MonoBehaviour
 	
 	private int maxEvents = 3;
 	private List<GameObject> storyEvents;
-	public List<GameObject> randomEvents;
+	private List<GameObject> randomEvents;
 
 	//how many events (story and random) have occurred
 	private int overallEventIndex = 0;
@@ -36,10 +36,10 @@ public class EventSystem : MonoBehaviour
 	GameObject eventInstance;
 
 	[Tooltip("How many seconds it will take to attempt an event roll")]
-	[SerializeField] private float eventChanceFreq = 5;
+	[SerializeField] private float eventChanceFreq = 10;
 
 	[Tooltip("How many seconds before the first event roll")]
-	[SerializeField] private float timeBeforeEventRoll = 20;
+	[SerializeField] private float timeBeforeEventRoll = 40;
 
 	[Tooltip("How much the percentage chance of rolling an event will increase per failure")]
 	[SerializeField] private float chanceIncreasePerFreq = 20;
