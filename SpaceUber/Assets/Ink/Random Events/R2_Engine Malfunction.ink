@@ -3,7 +3,7 @@ VAR randomEnd = -> Survive
 
 The chief engineer, Ratchet, contacts you, "There seems to be a problem with the engine. It's starting to overheat, and if something isn't done soon, it might cause some damage to the hull. A few parts are malfunctioning, and they need to be fixed. We could have some crew members suit up and do the work, but I don't trust the protection suits the company issued us. We could make it safer if we use parts from around the ship, but they would have to be replaced."
 * [Risk Engineers (50% chance to lose some crew)]
-    -->randomEnd
+    ->randomEnd
 + [Salvage Parts (-100 Credits)] -> Repair
 + [Leave It Be (-20 Hull Durability)] -> Leave
 
@@ -27,9 +27,9 @@ You leave the engine be and hope for the best. While the engine manages to stay 
 ===function RandomizeEnding(rng)===
 { 
     - rng == 0: 
-        ~randomEnd = Survive
+        ~randomEnd = -> Survive
     - rng == 1:
-        ~randomEnd = Sacrifice
+        ~randomEnd = -> Sacrifice
     - else:
-        ~randomEnd = Sacrifice
+        ~randomEnd = -> Sacrifice
 }
