@@ -5,7 +5,7 @@ The metal door to your office flies open and slams the wall with such force the 
 + [Force the door open (-100 Credits)]
 -> ForceTheDoorOpen
 + [Wait for engineers (???)] 
-    -->randomEnd
+    ->randomEnd
 
 ==ForceTheDoorOpen==
 Option 1: Force the door open (-100 Credits)

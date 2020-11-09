@@ -5,7 +5,7 @@ The hinges of the door to your office crack in many different places as Lexa thr
 + [Bribe (-100 Credits)]
 -> Bribe
 + [Fight (???)] #(50% FightWin (+100 credits) 50% FightLose (--hull --weapons))
-    -->randomEnd
+    ->randomEnd
 
 
 ==Bribe==

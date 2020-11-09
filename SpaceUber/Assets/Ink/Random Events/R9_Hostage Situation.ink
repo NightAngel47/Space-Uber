@@ -4,7 +4,7 @@ The head of security, Lexa, contacts you,  "It seems we have a situation. A crew
 + [Comply (-50 Credits, -2 Food, -1 Crew)] 
 -> Comply
 * [Take Her Out (???)] #(50% Chance - 1 Crew, 50 Chance -2 Crew)
-    -->randomEnd
+    ->randomEnd
 
 === Comply ===
 You order that her demands be met. Giving her the food and credits she asked for, you allow her to be picked up by another ship. True to her word, she lets the hostage go, completely unharmed. Although you alert the authorities afterward, it is unlikely you will get back any of the credits.

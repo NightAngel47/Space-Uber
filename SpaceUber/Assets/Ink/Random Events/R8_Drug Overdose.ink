@@ -3,10 +3,10 @@ VAR randomEnd2 = -> Survive2
 
 The head doctor, Kelly, calls you, calm despite worried voices in the background, "It seems that one of the crew member's was misusing a recreational drug. He’s here in the medbay suffering an overdose. He might not survive the night. I am asking for permission to administer some Conaxel to help stabilize him." Pausing, she lets out a brief sigh, "I can understand if you refuse. Our stock of Conaxel is small and refilling it will cost some credits. Plus, while it would bolster his chances to survive, it wouldn't guarantee it."
 * [Don't Use Medicine ]#(60% Chance - 1 Crew)
-    -->randomEnd
+    ->randomEnd
 
 * [Use Medicine ]#(20% Chance - 1 Crew -20 Credits)
-    -->randomEnd2
+    ->randomEnd2
 
 === Survive1 ===
 You tell Kelly to hold off on using the medicine, as it would be a waste to use it and have the crewman die on you anyway. Luckily, he manages to survive the night anyway. Kelly says that he will be able to get back to work in a day or two.
