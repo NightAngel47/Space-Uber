@@ -23,9 +23,9 @@ Lexa gives you a devious smirk and an appreciative nod before slamming her fist 
 ===function RandomizeEnding(rng)===
 { 
     - rng == 0: 
-        ~randomEnd = FightWin
+        ~randomEnd = -> FightWin
     - rng == 1:
-        ~randomEnd = FightLose
+        ~randomEnd = -> FightLose
     - else:
-        ~randomEnd = FightWin
+        ~randomEnd = -> FightWin
 }

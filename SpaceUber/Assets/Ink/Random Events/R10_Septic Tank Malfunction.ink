@@ -29,12 +29,12 @@ You decide to fix the problem remotely. Using various on-board systems, you mana
 ===function RandomizeEnding(rng)===
 { 
     - rng == 0: 
-        ~randomEnd = Fix1
-        ~randomEnd2 = Fix2
+        ~randomEnd = -> Fix1
+        ~randomEnd2 = -> Fix2
     - rng == 1:
-        ~randomEnd = Drown
-        ~randomEnd2 = Damage
+        ~randomEnd = -> Drown
+        ~randomEnd2 = -> Damage
     -else:
-        ~randomEnd = Drown
-        ~randomEnd2 = Damage
+        ~randomEnd = -> Drown
+        ~randomEnd2 = -> Damage
 }

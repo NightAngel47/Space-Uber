@@ -23,9 +23,9 @@ You give Lexa the go ahead. 20 minutes later the entire ship violently shakes. D
 ===function RandomizeEnding(rng)===
 { 
     - rng == 0: 
-        ~randomEnd = ForceTheDoorOpen
+        ~randomEnd = -> ForceTheDoorOpen
     - rng == 1:
-        ~randomEnd = CrewLives
+        ~randomEnd = -> CrewLives
     - else:
-        ~randomEnd = CrewDies
+        ~randomEnd = -> CrewDies
 }

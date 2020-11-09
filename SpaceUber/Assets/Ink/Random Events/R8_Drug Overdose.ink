@@ -27,12 +27,12 @@ You have Kelly administer the Conaxel. Unfortunately, while the medicine stabili
 ===function RandomizeEnding(rng)===
 { 
     - rng == 0: 
-        ~randomEnd = Survive1
-        ~randomEnd2 = Survive2
+        ~randomEnd = -> Survive1
+        ~randomEnd2 = -> Survive2
     - rng == 1:
-        ~randomEnd = Dies1
-        ~randomEnd2 = Dies2
+        ~randomEnd = -> Dies1
+        ~randomEnd2 = -> Dies2
     - else:
-         ~randomEnd = Dies1
-        ~randomEnd2 = Dies2
+         ~randomEnd = -> Dies1
+        ~randomEnd2 = -> Dies2
 }

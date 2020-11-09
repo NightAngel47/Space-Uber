@@ -27,9 +27,9 @@ You leave the engine be and hope for the best. While the engine manages to stay 
 ===function RandomizeEnding(rng)===
 { 
     - rng == 0: 
-        ~randomEnd = Survive
+        ~randomEnd = -> Survive
     - rng == 1:
-        ~randomEnd = Sacrifice
+        ~randomEnd = -> Sacrifice
     - else:
-        ~randomEnd = Sacrifice
+        ~randomEnd = -> Sacrifice
 }

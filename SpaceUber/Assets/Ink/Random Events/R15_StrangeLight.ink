@@ -2,13 +2,13 @@ Lanri rushes into your office. She plants her feet to stop quickly before realiz
 
 + [Shine the light on the crops (++Food)]
 -> ShineTheLightOnTheCrops
-+ [Continue to eat the food (++Power)]
--> ContinueToEatTheFood
++ [Shine the light on the solar panels (++Power)]
+-> SolarPanels
 
 ==ShineTheLightOnTheCrops==
 You tell her to focus the light on the ship’s crops. Almost as if by some form of magic, the crops grow exponentially over the next couple hours. Giving you more food than you thought you would have anytime soon.
 -> END
 
-==ContinueToEatTheFood==
+==SolarPanels==
 You tell her to focus the light on the ship’s solar panels Almost as if by some form of magic, the solar panels charge exponentially. With each individual panel reaching max capacity in mere minutes before the energy in them is stored. You now have a surplus of power at your disposal.
 -> END

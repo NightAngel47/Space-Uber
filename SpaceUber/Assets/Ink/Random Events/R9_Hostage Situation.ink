@@ -21,7 +21,7 @@ You order your security crew to take her out. While they manage to take her down
 ===function RandomizeEnding(rng)===
 { 
     - rng == 0: 
-        ~randomEnd = Kill1
+        ~randomEnd = -> Kill1
     -else:
-        ~randomEnd = Kill2
+        ~randomEnd = -> Kill2
 }
