@@ -48,8 +48,8 @@ public class CrewManagement : MonoBehaviour
         TurnOffPanel();
 
         currentRoomList = FindObjectsOfType<RoomStats>();
-
-        overclockButton.interactable = false;
+        
+        overclockButton.gameObject.SetActive(false);
 
         foreach(RoomStats r in currentRoomList)
         {
@@ -97,37 +97,50 @@ public class CrewManagement : MonoBehaviour
 
         UpdateOutput();
 
-        if (room.GetComponent<OverclockRoom>().GetMiniGame() == MiniGameType.Security)
+        if (GameManager.instance.currentGameState != InGameStates.Events && overclockButton.interactable)
         {
-            //security
-            GameObject resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
-            //resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = ; // resource icon
-            resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Security"; // resource name
-            overtimeStats.Add(resourceGO);
+            overclockButton.interactable = false;
+        }
+        else if(!overclockButton.interactable && GameManager.instance.currentGameState == InGameStates.Events)
+        {
+            overclockButton.interactable = true;
         }
 
-        if (room.GetComponent<OverclockRoom>().GetMiniGame() == MiniGameType.Asteroids)
+        GameObject resourceGO;
+        switch (room.GetComponent<OverclockRoom>().GetMiniGame())
         {
-            //shipweapons
-            GameObject resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
-            resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Ship Weapons"; // resource name
-            overtimeStats.Add(resourceGO);
-        }
-
-        if (room.GetComponent<OverclockRoom>().GetMiniGame() == MiniGameType.CropHarvest)
-        {
-            //food amount
-            GameObject resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
-            resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Food Amount";
-            overtimeStats.Add(resourceGO);
-        }
-
-        if (room.GetComponent<OverclockRoom>().GetMiniGame() == MiniGameType.StabilizeEnergyLevels)
-        {
-            //Hull Durability
-            GameObject resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
-            resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Hull Durability";
-            overtimeStats.Add(resourceGO);
+            case MiniGameType.Security:
+                //security
+                resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
+                //resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = ; // resource icon
+                resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Security"; // resource name
+                overtimeStats.Add(resourceGO);
+                overclockButton.gameObject.SetActive(true);
+                break;
+            case MiniGameType.Asteroids:
+                //shipweapons
+                resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
+                resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Ship Weapons";
+                overtimeStats.Add(resourceGO);
+                overclockButton.gameObject.SetActive(true);
+                break;
+            case MiniGameType.CropHarvest:
+                //food amount
+                resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
+                resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Food Amount";
+                overtimeStats.Add(resourceGO);
+                overclockButton.gameObject.SetActive(true);
+                break;
+            case MiniGameType.StabilizeEnergyLevels:
+                //Hull Durability
+                resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
+                resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Energy";
+                overtimeStats.Add(resourceGO);
+                overclockButton.gameObject.SetActive(true);
+                break;
+            default:
+                overclockButton.gameObject.SetActive(false);
+                break;
         }
     }
 
@@ -260,7 +273,7 @@ public class CrewManagement : MonoBehaviour
     {
         if (room.GetComponent<OverclockRoom>().GetMiniGame() != MiniGameType.None)
         {
-            overclockButton.interactable = true;
+            overclockButton.gameObject.SetActive(true);
         }
 
         for(int i = 0; i < sceneButtons.Length; i++)
