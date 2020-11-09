@@ -12,16 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  campaign: 
   choiceName: Refuse
   hasRequirements: 0
   choiceRequirements: []
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 00000000
-    amountChanged: ceffffff
-    probabilities: []
-    multipleRandomOutcomes: []
+  hasRandomEnding: 0
+  outcomes: []
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!114 &-1907378110280664186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34,16 +32,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  campaign: 
   choiceName: Let Pilot Bale
   hasRequirements: 0
   choiceRequirements: []
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 07000000
-    amountChanged: ecffffff
-    probabilities: []
-    multipleRandomOutcomes: []
+  hasRandomEnding: 0
+  outcomes: []
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!1001 &5154615253213552427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61,6 +57,11 @@ PrefabInstance:
       propertyPath: inkJSONAsset
       value: 
       objectReference: {fileID: 4900000, guid: f2cec13e975f2c54e84f470cdba3d8f0, type: 3}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: eventBGM
+      value: General Theme
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name

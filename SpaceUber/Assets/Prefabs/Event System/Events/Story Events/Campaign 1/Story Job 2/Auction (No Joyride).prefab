@@ -15,12 +15,11 @@ MonoBehaviour:
   choiceName: Buy Energy Crystal
   hasRequirements: 0
   choiceRequirements: []
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 0000000001000000
-    amountChanged: ceffffff32000000
-    probabilities: []
-    multipleRandomOutcomes: []
+  hasRandomEnding: 0
+  outcomes: []
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!114 &-8922936291258961113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36,12 +35,11 @@ MonoBehaviour:
   choiceName: Buy Military Weaponry
   hasRequirements: 0
   choiceRequirements: []
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 0000000003000000
-    amountChanged: 9cffffff19000000
-    probabilities: []
-    multipleRandomOutcomes: []
+  hasRandomEnding: 0
+  outcomes: []
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!114 &1466500520111740020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,12 +55,11 @@ MonoBehaviour:
   choiceName: Buy Exotic Foods
   hasRequirements: 0
   choiceRequirements: []
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 0000000005000000
-    amountChanged: 3200000019000000
-    probabilities: []
-    multipleRandomOutcomes: []
+  hasRandomEnding: 0
+  outcomes: []
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!114 &8883094620010444510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,12 +75,11 @@ MonoBehaviour:
   choiceName: Buy Nothing
   hasRequirements: 0
   choiceRequirements: []
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 
-    amountChanged: 
-    probabilities: []
-    multipleRandomOutcomes: []
+  hasRandomEnding: 0
+  outcomes: []
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!1001 &7100027917751785446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101,6 +97,11 @@ PrefabInstance:
       propertyPath: inkJSONAsset
       value: 
       objectReference: {fileID: 4900000, guid: 0cbc975a5b357014dbbd33cc6f9428d8, type: 3}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: eventBGM
+      value: Clone Ambush Intro
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name
