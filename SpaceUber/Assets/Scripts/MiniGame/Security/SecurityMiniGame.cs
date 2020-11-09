@@ -123,6 +123,8 @@ public class SecurityMiniGame : MiniGame
             codePreview.text = "";
             AudioManager.instance.PlaySFX(DisplaySound[Random.Range(0, DisplaySound.Length - 1)]);
         }
+
+        inputCode = "";
         if (hideInput)
         { 
             foreach (CodeBlock block in codeSegments) 
