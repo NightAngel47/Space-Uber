@@ -24,6 +24,13 @@ MonoBehaviour:
     ctrBoolOutcomes: Kill Beckett
     cloneTrustChange: 0
     VIPTrustChange: 0
+  - outcomeName: Kill Him
+    isNarrativeOutcome: 1
+    resource: 0
+    amount: 0
+    ctrBoolOutcomes: N_A
+    cloneTrustChange: 0
+    VIPTrustChange: -1
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []
@@ -43,7 +50,14 @@ MonoBehaviour:
   hasRequirements: 0
   choiceRequirements: []
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: Let Him Live
+    isNarrativeOutcome: 1
+    resource: 0
+    amount: 0
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 1
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []

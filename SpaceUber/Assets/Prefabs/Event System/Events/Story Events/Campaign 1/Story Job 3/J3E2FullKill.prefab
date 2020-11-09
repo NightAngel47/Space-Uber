@@ -38,7 +38,14 @@ MonoBehaviour:
   hasRequirements: 0
   choiceRequirements: []
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: '"Your clones are trying to kill you."'
+    isNarrativeOutcome: 1
+    resource: 0
+    amount: 0
+    ctrBoolOutcomes: Tell VIPs About Clones
+    cloneTrustChange: 0
+    VIPTrustChange: 1
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []
@@ -58,7 +65,14 @@ MonoBehaviour:
   hasRequirements: 0
   choiceRequirements: []
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: '"The Kellis Corporation might have done it."'
+    isNarrativeOutcome: 1
+    resource: 0
+    amount: 0
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: -1
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []
@@ -78,7 +92,14 @@ MonoBehaviour:
   hasRequirements: 0
   choiceRequirements: []
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: '"They deserved it."'
+    isNarrativeOutcome: 1
+    resource: 0
+    amount: 0
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: -1
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []
@@ -98,7 +119,14 @@ MonoBehaviour:
   hasRequirements: 0
   choiceRequirements: []
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: '"One of you might have done it."'
+    isNarrativeOutcome: 1
+    resource: 0
+    amount: 0
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: -1
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []

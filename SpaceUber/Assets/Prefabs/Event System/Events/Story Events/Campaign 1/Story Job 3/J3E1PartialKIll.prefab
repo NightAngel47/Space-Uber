@@ -16,7 +16,14 @@ MonoBehaviour:
   hasRequirements: 0
   choiceRequirements: []
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: '"Yes."'
+    isNarrativeOutcome: 1
+    resource: 0
+    amount: 0
+    ctrBoolOutcomes: N_A
+    cloneTrustChange: 0
+    VIPTrustChange: -1
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []
@@ -36,7 +43,14 @@ MonoBehaviour:
   hasRequirements: 0
   choiceRequirements: []
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: '"No."'
+    isNarrativeOutcome: 1
+    resource: 0
+    amount: 0
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 1
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []
