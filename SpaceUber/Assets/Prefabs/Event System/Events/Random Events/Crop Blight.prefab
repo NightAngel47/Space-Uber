@@ -16,7 +16,14 @@ MonoBehaviour:
   hasRequirements: 0
   choiceRequirements: []
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: Cull Crops
+    isNarrativeOutcome: 0
+    resource: 5
+    amount: -30
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []
@@ -36,7 +43,14 @@ MonoBehaviour:
   hasRequirements: 0
   choiceRequirements: []
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: Mulch Crew
+    isNarrativeOutcome: 0
+    resource: 4
+    amount: -1
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []
@@ -64,7 +78,14 @@ MonoBehaviour:
     cloneTrustRequirement: 0
     VIPTrustRequirement: 0
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: Synthesize Cure
+    isNarrativeOutcome: 0
+    resource: 0
+    amount: -25
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []

@@ -16,7 +16,14 @@ MonoBehaviour:
   hasRequirements: 0
   choiceRequirements: []
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: Report Convicts to Authorities
+    isNarrativeOutcome: 0
+    resource: 0
+    amount: 100
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []
@@ -36,7 +43,14 @@ MonoBehaviour:
   hasRequirements: 0
   choiceRequirements: []
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: Integrate Convicts into Crew
+    isNarrativeOutcome: 0
+    resource: 4
+    amount: 3
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []

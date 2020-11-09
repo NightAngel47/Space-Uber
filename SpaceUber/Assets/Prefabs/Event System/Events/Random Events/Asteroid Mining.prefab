@@ -13,10 +13,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Help Blast Apart Asteroid
-  hasRequirements: 0
-  choiceRequirements: []
+  hasRequirements: 1
+  choiceRequirements:
+  - isNarrativeRequirement: 0
+    selectedResource: 4
+    requiredAmount: 20
+    lessThan: 0
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: Help Blast Apart Asteroid
+    isNarrativeOutcome: 0
+    resource: 3
+    amount: -20
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  - outcomeName: Help Blast Apart Asteroids
+    isNarrativeOutcome: 0
+    resource: 0
+    amount: 100
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []
@@ -33,10 +55,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Hire Miners
-  hasRequirements: 0
-  choiceRequirements: []
+  hasRequirements: 1
+  choiceRequirements:
+  - isNarrativeRequirement: 0
+    selectedResource: 6
+    requiredAmount: 100
+    lessThan: 0
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: Hire Miners
+    isNarrativeOutcome: 0
+    resource: 0
+    amount: -100
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  - outcomeName: Hire Miners
+    isNarrativeOutcome: 0
+    resource: 4
+    amount: 3
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []
@@ -56,7 +100,14 @@ MonoBehaviour:
   hasRequirements: 0
   choiceRequirements: []
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: Repair Ship
+    isNarrativeOutcome: 0
+    resource: 7
+    amount: 30
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []

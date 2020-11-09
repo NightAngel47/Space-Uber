@@ -39,9 +39,27 @@ MonoBehaviour:
     ctrTrustRequirements: 0
     cloneTrustRequirement: 0
     VIPTrustRequirement: 0
-  hasRandomEnding: 0
+  hasRandomEnding: 1
   outcomes: []
-  randomEndingOutcomes: []
+  randomEndingOutcomes:
+  - outcomes:
+    - outcomeName: Risk Engineers
+      isNarrativeOutcome: 0
+      resource: 4
+      amount: 0
+      ctrBoolOutcomes: 
+      cloneTrustChange: 0
+      VIPTrustChange: 0
+    probability: 50
+  - outcomes:
+    - outcomeName: Risk Engineers
+      isNarrativeOutcome: 0
+      resource: 4
+      amount: -2
+      ctrBoolOutcomes: 
+      cloneTrustChange: 0
+      VIPTrustChange: 0
+    probability: 50
   hasSubsequentChoices: 0
   subsequentChoices: []
 --- !u!114 &2140244599831650841
@@ -57,34 +75,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Salvage Parts
-  hasRequirements: 0
+  hasRequirements: 1
   choiceRequirements:
   - isNarrativeRequirement: 0
-    selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-    ctrBoolRequirements: 
-    ctrTrustRequirements: 0
-    cloneTrustRequirement: 0
-    VIPTrustRequirement: 0
-  - isNarrativeRequirement: 0
-    selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-    ctrBoolRequirements: 
-    ctrTrustRequirements: 0
-    cloneTrustRequirement: 0
-    VIPTrustRequirement: 0
-  - isNarrativeRequirement: 0
-    selectedResource: 0
-    requiredAmount: 0
+    selectedResource: 6
+    requiredAmount: 20
     lessThan: 0
     ctrBoolRequirements: 
     ctrTrustRequirements: 0
     cloneTrustRequirement: 0
     VIPTrustRequirement: 0
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: Salvage Parts
+    isNarrativeOutcome: 0
+    resource: 0
+    amount: -20
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []
@@ -128,7 +137,14 @@ MonoBehaviour:
     cloneTrustRequirement: 0
     VIPTrustRequirement: 0
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: Leave it be
+    isNarrativeOutcome: 0
+    resource: 7
+    amount: -15
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []

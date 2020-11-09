@@ -1,87 +1,60 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1855157877099772188
+--- !u!114 &-7710635598168629112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5440712538747958311}
+  m_GameObject: {fileID: 6306040093369528802}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  choiceName: Blind Pilots
+  choiceName: Shine on the Crops
   hasRequirements: 0
   choiceRequirements: []
   hasRandomEnding: 0
   outcomes:
-  - outcomeName: Blind Pilots
+  - outcomeName: Shine on the Crops
     isNarrativeOutcome: 0
-    resource: 7
-    amount: -10
+    resource: 5
+    amount: 50
     ctrBoolOutcomes: 
     cloneTrustChange: 0
     VIPTrustChange: 0
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []
---- !u!114 &7354196431891729396
+--- !u!114 &465251989817556686
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5440712538747958311}
+  m_GameObject: {fileID: 6306040093369528802}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  choiceName: Expose Crew to Aurora
+  choiceName: Shine on the Solar Panels
   hasRequirements: 0
   choiceRequirements: []
-  hasRandomEnding: 1
+  hasRandomEnding: 0
   outcomes:
-  - outcomeName: 
+  - outcomeName: Shine on the Solar Panels
     isNarrativeOutcome: 0
-    resource: 0
-    amount: 0
+    resource: 1
+    amount: 10
     ctrBoolOutcomes: 
     cloneTrustChange: 0
     VIPTrustChange: 0
-  randomEndingOutcomes:
-  - outcomes:
-    - outcomeName: Expose Crew to Aurora
-      isNarrativeOutcome: 0
-      resource: 5
-      amount: -10
-      ctrBoolOutcomes: 
-      cloneTrustChange: 0
-      VIPTrustChange: 0
-    probability: 40
-  - outcomes:
-    - outcomeName: Expose Crew to Aurora
-      isNarrativeOutcome: 0
-      resource: 4
-      amount: -2
-      ctrBoolOutcomes: 
-      cloneTrustChange: 0
-      VIPTrustChange: 0
-    probability: 30
-  - outcomes:
-    - outcomeName: Expose Crew to Aurora
-      isNarrativeOutcome: 0
-      resource: 1
-      amount: 20
-      ctrBoolOutcomes: 
-      cloneTrustChange: 0
-      VIPTrustChange: 0
-    probability: 30
+  randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []
---- !u!1001 &801454342898154975
+--- !u!1001 &1665649396280195098
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -95,39 +68,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: eventName
-      value: Spatial Aurora
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
       propertyPath: inkJSONAsset
       value: 
-      objectReference: {fileID: 4900000, guid: 94e0e66e7799e9040aa0dd915e1bfe61, type: 3}
+      objectReference: {fileID: 4900000, guid: 5e04474854dff41278f06a320cf7d8e3, type: 3}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: eventBGM
-      value: Wormhole
+      propertyPath: eventName
+      value: Soothing Light
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: firstChoices.Array.data[0]
       value: 
-      objectReference: {fileID: -1855157877099772188}
+      objectReference: {fileID: -7710635598168629112}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: firstChoices.Array.data[1]
       value: 
-      objectReference: {fileID: 7354196431891729396}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: backgroundImage
-      value: 
-      objectReference: {fileID: 21300000, guid: 997bb9b91348ade4cac4a3c28d9c260c,
-        type: 3}
+      objectReference: {fileID: 465251989817556686}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name
-      value: Spatial Aurora
+      value: Strange Light
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -236,9 +198,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 492e23da0c4f0a84188d48989e322a6d, type: 3}
---- !u!1 &5440712538747958311 stripped
+--- !u!1 &6306040093369528802 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
     type: 3}
-  m_PrefabInstance: {fileID: 801454342898154975}
+  m_PrefabInstance: {fileID: 1665649396280195098}
   m_PrefabAsset: {fileID: 0}
