@@ -5,12 +5,14 @@
  * Description: Interface for object after its placed, checks if it is deleted or edited and sets that up
  */
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class ObjectScript : MonoBehaviour
 {
@@ -62,6 +64,7 @@ public class ObjectScript : MonoBehaviour
         c.a = 1;
         //parentObj = transform.parent.gameObject;
         
+        FindObjectOfType<EditCrewButton>().CheckForRooms();
         
         ResetData();
     }
@@ -175,6 +178,7 @@ public class ObjectScript : MonoBehaviour
         {
             r.TurnOnClickAgain();
         }
+
         Destroy(gameObject);
     }
 
@@ -191,5 +195,10 @@ public class ObjectScript : MonoBehaviour
         rotAdjustVal = shapeData.rotAdjustVal;
 
         gameObject.GetComponent<ObjectMover>().UpdateMouseBounds(boundsDown, boundsUp, boundsLeft, boundsRight);
+    }
+
+    private void OnDestroy()
+    {
+        FindObjectOfType<EditCrewButton>()?.CheckForRooms();
     }
 }
