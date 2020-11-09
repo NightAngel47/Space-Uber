@@ -47,11 +47,11 @@ public class RoomStats : MonoBehaviour
     public bool flatOutput;
 
     public bool usedRoom = false;
-
+    
     void Start()
     {
         shipStats = FindObjectOfType<ShipStats>();
-        StartCoroutine(LateStart(0.25f));
+        StartCoroutine(LateStart(Time.deltaTime));
     }
 
     void Update()
@@ -102,7 +102,6 @@ public class RoomStats : MonoBehaviour
         int crewRange = maxCrew - minCrew + 1;
         float percent = (float)(maxCrew - 1) / (float)crewRange;
         
-
         foreach (Resource resource in resources)
         {
             resource.minAmount = resource.amount - (int)(resource.amount * percent);
@@ -138,7 +137,6 @@ public class RoomStats : MonoBehaviour
                         break;
                 }
             }
-
             else
             {
                 switch (resource.resourceType)
