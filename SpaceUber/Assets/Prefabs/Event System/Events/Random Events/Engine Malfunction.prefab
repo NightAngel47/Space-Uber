@@ -15,23 +15,53 @@ MonoBehaviour:
   choiceName: Risk Engineers
   hasRequirements: 0
   choiceRequirements:
-  - selectedResource: 0
+  - isNarrativeRequirement: 0
+    selectedResource: 0
     requiredAmount: 0
     lessThan: 0
-  - selectedResource: 0
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  - isNarrativeRequirement: 0
+    selectedResource: 0
     requiredAmount: 0
     lessThan: 0
-  - selectedResource: 0
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  - isNarrativeRequirement: 0
+    selectedResource: 0
     requiredAmount: 0
     lessThan: 0
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 0400000004000000
-    amountChanged: 00000000feffffff
-    probabilities:
-    - 50
-    - 50
-    multipleRandomOutcomes: []
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  hasRandomEnding: 1
+  outcomes: []
+  randomEndingOutcomes:
+  - outcomes:
+    - outcomeName: Risk Engineers
+      isNarrativeOutcome: 0
+      resource: 4
+      amount: 0
+      ctrBoolOutcomes: 
+      cloneTrustChange: 0
+      VIPTrustChange: 0
+    probability: 50
+  - outcomes:
+    - outcomeName: Risk Engineers
+      isNarrativeOutcome: 0
+      resource: 4
+      amount: -2
+      ctrBoolOutcomes: 
+      cloneTrustChange: 0
+      VIPTrustChange: 0
+    probability: 50
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!114 &2140244599831650841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,23 +75,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Salvage Parts
-  hasRequirements: 0
+  hasRequirements: 1
   choiceRequirements:
-  - selectedResource: 0
-    requiredAmount: 0
+  - isNarrativeRequirement: 0
+    selectedResource: 6
+    requiredAmount: 20
     lessThan: 0
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-  - selectedResource: 0
-    requiredAmount: 0
-    lessThan: 0
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 00000000
-    amountChanged: ecffffff
-    probabilities: []
-    multipleRandomOutcomes: []
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  hasRandomEnding: 0
+  outcomes:
+  - outcomeName: Salvage Parts
+    isNarrativeOutcome: 0
+    resource: 0
+    amount: -20
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!114 &8030095105267936054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,21 +112,42 @@ MonoBehaviour:
   choiceName: Leave it be
   hasRequirements: 0
   choiceRequirements:
-  - selectedResource: 0
+  - isNarrativeRequirement: 0
+    selectedResource: 0
     requiredAmount: 0
     lessThan: 0
-  - selectedResource: 0
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  - isNarrativeRequirement: 0
+    selectedResource: 0
     requiredAmount: 0
     lessThan: 0
-  - selectedResource: 0
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  - isNarrativeRequirement: 0
+    selectedResource: 0
     requiredAmount: 0
     lessThan: 0
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 07000000
-    amountChanged: ecffffff
-    probabilities: []
-    multipleRandomOutcomes: []
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  hasRandomEnding: 0
+  outcomes:
+  - outcomeName: Leave it be
+    isNarrativeOutcome: 0
+    resource: 7
+    amount: -15
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!1001 &2626420981659780162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -107,6 +163,11 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: choicesAvailable.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
@@ -158,6 +219,21 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: choicesAvailable.Array.data[2]
+      value: 
+      objectReference: {fileID: 8030095105267936054}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[0]
+      value: 
+      objectReference: {fileID: -697075633655672090}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[1]
+      value: 
+      objectReference: {fileID: 2140244599831650841}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[2]
       value: 
       objectReference: {fileID: 8030095105267936054}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,

@@ -15,13 +15,25 @@ MonoBehaviour:
   choiceName: Return Beckett to his Cabin
   hasRequirements: 0
   choiceRequirements: []
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 00000000
-    amountChanged: 9cffffff
-    probabilities:
-    - 0
-    multipleRandomOutcomes: []
+  hasRandomEnding: 0
+  outcomes:
+  - outcomeName: Return Beckett to his Cabin
+    isNarrativeOutcome: 0
+    resource: 0
+    amount: -50
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  - outcomeName: Return Beckett to his Cabin
+    isNarrativeOutcome: 1
+    resource: 0
+    amount: -50
+    ctrBoolOutcomes: Side With Scientist
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!114 &-5695262398809685012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37,12 +49,25 @@ MonoBehaviour:
   choiceName: Side With Beckett
   hasRequirements: 0
   choiceRequirements: []
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 0000000005000000
-    amountChanged: 6400000014000000
-    probabilities: []
-    multipleRandomOutcomes: []
+  hasRandomEnding: 0
+  outcomes:
+  - outcomeName: 
+    isNarrativeOutcome: 0
+    resource: 0
+    amount: 100
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  - outcomeName: 
+    isNarrativeOutcome: 0
+    resource: 5
+    amount: -20
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!114 &6289558145923270937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,12 +83,11 @@ MonoBehaviour:
   choiceName: Stay out of it
   hasRequirements: 0
   choiceRequirements: []
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 
-    amountChanged: 
-    probabilities: []
-    multipleRandomOutcomes: []
+  hasRandomEnding: 0
+  outcomes: []
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!1001 &5913400911196508409
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71,6 +95,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: inkJSONAsset
@@ -81,6 +110,26 @@ PrefabInstance:
       propertyPath: eventName
       value: Irritating Beckett
       objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: eventBGM
+      value: Clone Ambush Negotiation
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[0]
+      value: 
+      objectReference: {fileID: -7613047049512640604}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[1]
+      value: 
+      objectReference: {fileID: -5695262398809685012}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[2]
+      value: 
+      objectReference: {fileID: 6289558145923270937}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name

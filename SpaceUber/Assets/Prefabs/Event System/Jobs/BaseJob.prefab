@@ -43,11 +43,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd68c508ffd5eb945bc7e1498153d90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  campaignIndexAvailable: 0
+  maxEvents: 3
   storyEvents: []
-  randomEvents: []
+  randomEvents:
+  - {fileID: 3760127036658443676, guid: 14b8276ecc135e54ca9306a2f0b4439c, type: 3}
+  - {fileID: 7272458766203768250, guid: e3907cd05e63d00419977294d582a7ef, type: 3}
+  - {fileID: 1294792575043363425, guid: 48fd16a5df56693469757992a15fca94, type: 3}
+  - {fileID: 7272458766203768250, guid: dab763296623e11449313cd8d6fa49a6, type: 3}
+  - {fileID: 7272458766203768250, guid: 8fb7fbb1a5152c9459c5f4562b61a01b, type: 3}
+  - {fileID: 7281746092743587932, guid: 11239c8128bdab54c8ba36e94d03b4dd, type: 3}
+  - {fileID: 5440712538747958311, guid: ea18b057f6d1a8d4e920348236061563, type: 3}
+  - {fileID: 7272458766203768250, guid: 268f29224e6f6a44792e29eb7275c082, type: 3}
   jobName: This is an example
   description: This is an example
   payout: 500
-  jobSelect: {fileID: 0}
-  buttonPrefab: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
-    type: 3}
+  isSideJob: 0

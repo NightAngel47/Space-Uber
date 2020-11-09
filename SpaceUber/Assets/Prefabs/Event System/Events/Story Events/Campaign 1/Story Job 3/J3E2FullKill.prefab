@@ -1,0 +1,312 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5823988349471023985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5820552610143934635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  choiceName: '"I am investigating these deaths." (Lie)'
+  hasRequirements: 0
+  choiceRequirements: []
+  hasRandomEnding: 0
+  outcomes: []
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 1
+  subsequentChoices:
+  - {fileID: -3400880101159647791}
+  - {fileID: 5415415519172487197}
+--- !u!114 &-4406615469400871617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5820552610143934635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  choiceName: '"Your clones are trying to kill you."'
+  hasRequirements: 0
+  choiceRequirements: []
+  hasRandomEnding: 0
+  outcomes:
+  - outcomeName: '"Your clones are trying to kill you."'
+    isNarrativeOutcome: 1
+    resource: 0
+    amount: 0
+    ctrBoolOutcomes: Tell VIPs About Clones
+    cloneTrustChange: 0
+    VIPTrustChange: 1
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
+--- !u!114 &-3400880101159647791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5820552610143934635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  choiceName: '"The Kellis Corporation might have done it."'
+  hasRequirements: 0
+  choiceRequirements: []
+  hasRandomEnding: 0
+  outcomes:
+  - outcomeName: '"The Kellis Corporation might have done it."'
+    isNarrativeOutcome: 1
+    resource: 0
+    amount: 0
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: -1
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
+--- !u!114 &-3263766113710567943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5820552610143934635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  choiceName: '"They deserved it."'
+  hasRequirements: 0
+  choiceRequirements: []
+  hasRandomEnding: 0
+  outcomes:
+  - outcomeName: '"They deserved it."'
+    isNarrativeOutcome: 1
+    resource: 0
+    amount: 0
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: -1
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
+--- !u!114 &5415415519172487197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5820552610143934635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  choiceName: '"One of you might have done it."'
+  hasRequirements: 0
+  choiceRequirements: []
+  hasRandomEnding: 0
+  outcomes:
+  - outcomeName: '"One of you might have done it."'
+    isNarrativeOutcome: 1
+    resource: 0
+    amount: 0
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: -1
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
+--- !u!1001 &1177933755427098963
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: requiredStats.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: inkJSONAsset
+      value: 
+      objectReference: {fileID: 4900000, guid: 5d896dc3efc1bec41a200c75b124654b, type: 3}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: requiredStats.Array.data[0].isNarrativeRequirement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: requiredStats.Array.data[1].isNarrativeRequirement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: requiredStats.Array.data[0].ctrBoolRequirements
+      value: Kill Beckett
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: requiredStats.Array.data[1].ctrBoolRequirements
+      value: Killed At Safari
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[0]
+      value: 
+      objectReference: {fileID: -5823988349471023985}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[1]
+      value: 
+      objectReference: {fileID: -4406615469400871617}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[2]
+      value: 
+      objectReference: {fileID: -3263766113710567943}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: eventBGM
+      value: Ejection
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_Name
+      value: J3E2FullKill
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 492e23da0c4f0a84188d48989e322a6d, type: 3}
+--- !u!1 &5820552610143934635 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1177933755427098963}
+  m_PrefabAsset: {fileID: 0}
