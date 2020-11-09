@@ -87,6 +87,9 @@ public class ChoiceOutcomes
                             case "Kill Beckett":
                                 campaign.ctr_killBeckett = true;
                                 break;
+                            case "Let Bale Pilot":
+                                campaign.ctr_letBalePilot = true;
+                                break;
                             case "Killed At Safari":
                                 campaign.ctr_killedAtSafari = true;
                                 break;
@@ -106,7 +109,7 @@ public class ChoiceOutcomes
     {
         get
         {
-            return new List<string>() { "N_A", "Side With Scientist", "Kill Beckett", "Killed At Safari", "Tell VIPs About Clones" };
+            return new List<string>() { "N_A", "Side With Scientist", "Kill Beckett", "Let Bale Pilot", "Killed At Safari", "Tell VIPs About Clones" };
         }
     }
 }

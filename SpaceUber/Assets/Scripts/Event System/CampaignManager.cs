@@ -33,6 +33,7 @@ public class CampaignManager : MonoBehaviour
     {
         public bool ctr_sideWithScientist;
         public bool ctr_killBeckett;
+        public bool ctr_letBalePilot;
         public bool ctr_killedAtSafari;
         public bool ctr_tellVIPsAboutClones;
 
