@@ -137,7 +137,6 @@ public class EventSystem : MonoBehaviour
 				storyEventIndex++;
 
 				yield return new WaitWhile((() => eventActive));
-                
 			}
 			else if (!eventActive && randomEventIndex < randomEvents.Count) //Pick a random event
 			{

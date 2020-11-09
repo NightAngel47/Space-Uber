@@ -61,6 +61,14 @@ public class CrewManagement : MonoBehaviour
             nextButton.interactable = false;
         }
     }
+    
+    private void Update()
+    {
+        if (statPanel.activeSelf && EventSystem.instance.eventActive)
+        {
+            TurnOffPanel();
+        }
+    }
 
     public void UpdateRoom(GameObject g)
     {
@@ -69,9 +77,7 @@ public class CrewManagement : MonoBehaviour
             Destroy(overtimeStats[i]);
         }
         overtimeStats.Clear();
-
-
-
+        
         room = g;
         rs = room.GetComponent<RoomStats>();
 
