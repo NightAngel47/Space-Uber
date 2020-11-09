@@ -46,12 +46,14 @@ public class RoomStats : MonoBehaviour
 
     public bool flatOutput;
 
-    [SerializeField] private bool usedRoom = false;
+    public bool usedRoom = false;
 
+    [SerializeField] private RoomTooltipUI roomTooltipUI;
+    
     void Start()
     {
         shipStats = FindObjectOfType<ShipStats>();
-        StartCoroutine(LateStart(0.25f));
+        StartCoroutine(LateStart(Time.deltaTime));
     }
 
     void Update()
@@ -66,6 +68,7 @@ public class RoomStats : MonoBehaviour
     public void UpdateUsedRoom()
     {
         usedRoom = true;
+        roomTooltipUI.RoomIsUsed();
     }
 
     public void UpdateCurrentCrew(int crew)
@@ -101,7 +104,6 @@ public class RoomStats : MonoBehaviour
         int crewRange = maxCrew - minCrew + 1;
         float percent = (float)(maxCrew - 1) / (float)crewRange;
         
-
         foreach (Resource resource in resources)
         {
             resource.minAmount = resource.amount - (int)(resource.amount * percent);
@@ -137,7 +139,6 @@ public class RoomStats : MonoBehaviour
                         break;
                 }
             }
-
             else
             {
                 switch (resource.resourceType)

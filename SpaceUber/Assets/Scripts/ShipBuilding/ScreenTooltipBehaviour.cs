@@ -5,18 +5,26 @@
  * Description: 
  */
 
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ShipStatsHoverUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ScreenTooltipBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField] private GameObject tooltip;
+
+    private void Start()
+    {
+        tooltip.SetActive(false);
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
-        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        tooltip.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        tooltip.SetActive(false);
     }
 }

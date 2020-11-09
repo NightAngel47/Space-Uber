@@ -70,5 +70,6 @@ public class OverclockController : MonoBehaviour
             }
         }
         activeRoom = null;
+        FindObjectOfType<CrewManagement>().crewManagementText.SetActive(true);
 	}
 }
