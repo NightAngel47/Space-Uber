@@ -4,7 +4,8 @@ In addition to monitoring that the weapons are working, you can also remotely tu
 + [Make Sure the Safari Goes Well] -> Nothing
 
 === Sabotage ===
-You make your decision, and as you arrive at the planet Artemis V, the group of elites sets off on the safari. They venture deep into the alien jungles, making their way deep into territory teeming with various deadly beasts. When they sight their first quarry, Yorkshire readies his weapon. Right before he fires, you remotely kill the weapons capabilities. Panic ensues among the elites, and the cloned beast, sensing their fear and confusion, strikes. The cries of terror and smell of blood attract more of the ancient creatures, who proceed to tear apart the remaining members of the hunting party. Once the whole group has been made extinct, you erase the records showing you tampered with the guns and send out a 'rescue party' to retrieve the weapons and what parts they can find of the elites. You hope that you get by even with a noticeable gap in your records.
+You make your decision, and as you arrive at the planet Artemis V, the group of elites sets off on the safari. They venture deep into the alien jungles, making their way deep into territory teeming with various deadly beasts. When they sight their first quarry, Yorkshire readies his weapon. Right before he fires, you remotely kill the weapons capabilities. 
+Panic ensues among the elites, and the cloned beast, sensing their fear and confusion, strikes. The cries of terror and smell of blood attract more of the ancient creatures, who proceed to tear apart the remaining members of the hunting party. Once the whole group has been made extinct, you erase the records showing you tampered with the guns and send out a 'rescue party' to retrieve the weapons and what parts they can find of the elites. You hope that you get by even with a noticeable gap in your records.
 -> END
 
 === Nothing ===
