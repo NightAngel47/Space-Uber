@@ -5,7 +5,6 @@
  * Description: 
  */
 
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -16,7 +15,8 @@ public class CrewManagement : MonoBehaviour
     private int crewAddAmount = 1;
     private ShipStats ss;
     private RoomStats rs;
-    public TextMeshProUGUI crewRemainingText;
+    public TMP_Text crewRemainingText;
+    public GameObject crewManagementText;
     public GameObject nextButton;
     public GameObject roomText;
     public GameObject costsText;
@@ -240,6 +240,8 @@ public class CrewManagement : MonoBehaviour
 
     public void StartOverclockGame()
     {
+        TurnOffPanel();
+        crewManagementText.SetActive(false);
         room.GetComponent<OverclockRoom>().PlayMiniGame();
     }
 

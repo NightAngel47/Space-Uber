@@ -47,6 +47,8 @@ public class RoomStats : MonoBehaviour
     public bool flatOutput;
 
     public bool usedRoom = false;
+
+    [SerializeField] private RoomTooltipUI roomTooltipUI;
     
     void Start()
     {
@@ -66,7 +68,7 @@ public class RoomStats : MonoBehaviour
     public void UpdateUsedRoom()
     {
         usedRoom = true;
-        GetComponentInChildren<RoomTooltipUI>().RoomIsUsed();
+        roomTooltipUI.RoomIsUsed();
     }
 
     public void UpdateCurrentCrew(int crew)
