@@ -13,10 +13,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Buy Energy Crystal
-  hasRequirements: 0
-  choiceRequirements: []
+  hasRequirements: 1
+  choiceRequirements:
+  - isNarrativeRequirement: 0
+    selectedResource: 6
+    requiredAmount: 50
+    lessThan: 0
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: Buy Energy Crystal
+    isNarrativeOutcome: 0
+    resource: 1
+    amount: 50
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  - outcomeName: Buy Energy Crystal
+    isNarrativeOutcome: 0
+    resource: 0
+    amount: -50
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []
@@ -33,10 +55,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Buy Military Weaponry
-  hasRequirements: 0
-  choiceRequirements: []
+  hasRequirements: 1
+  choiceRequirements:
+  - isNarrativeRequirement: 0
+    selectedResource: 6
+    requiredAmount: 100
+    lessThan: 0
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: Buy Military Weaponry
+    isNarrativeOutcome: 0
+    resource: 3
+    amount: 25
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  - outcomeName: Buy Military Weaponry
+    isNarrativeOutcome: 0
+    resource: 0
+    amount: -100
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []
@@ -53,10 +97,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Buy Exotic Foods
-  hasRequirements: 0
-  choiceRequirements: []
+  hasRequirements: 1
+  choiceRequirements:
+  - isNarrativeRequirement: 0
+    selectedResource: 6
+    requiredAmount: 50
+    lessThan: 0
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
   hasRandomEnding: 0
-  outcomes: []
+  outcomes:
+  - outcomeName: Buy Exotic Foods
+    isNarrativeOutcome: 0
+    resource: 5
+    amount: 25
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  - outcomeName: Buy Exotic Foods
+    isNarrativeOutcome: 0
+    resource: 0
+    amount: -50
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
   randomEndingOutcomes: []
   hasSubsequentChoices: 0
   subsequentChoices: []
@@ -89,6 +155,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
+      propertyPath: firstChoices.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: requiredStats.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
       propertyPath: eventName
       value: Auction
       objectReference: {fileID: 0}
@@ -101,6 +177,31 @@ PrefabInstance:
         type: 3}
       propertyPath: eventBGM
       value: Clone Ambush Intro
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[0]
+      value: 
+      objectReference: {fileID: -8077920932677557972}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[1]
+      value: 
+      objectReference: {fileID: -7656137457122395840}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[2]
+      value: 
+      objectReference: {fileID: -2785506584514473936}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[3]
+      value: 
+      objectReference: {fileID: 2729732562126321217}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: requiredStats.Array.data[0].isNarrativeRequirement
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
