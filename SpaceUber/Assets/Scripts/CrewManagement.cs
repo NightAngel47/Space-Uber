@@ -181,7 +181,7 @@ public class CrewManagement : MonoBehaviour
             rs.UpdateCurrentCrew(1);
             ss.UpdateCrewAmount(-1, 0);
             minAssignableCrew--;
-            crewRemainingText.text = "Crew Remaining: " + ss.GetRemainingCrew().ToString();
+            crewRemainingText.text = "Crew Remaining: " + ss.CrewRemaining;
             crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats();
@@ -200,7 +200,7 @@ public class CrewManagement : MonoBehaviour
             rs.UpdateCurrentCrew(-1);
             ss.UpdateCrewAmount(1, 0);
             minAssignableCrew++;
-            crewRemainingText.text = "Crew Remaining: " + ss.GetRemainingCrew().ToString();
+            crewRemainingText.text = "Crew Remaining: " + ss.CrewRemaining;
             crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats();
