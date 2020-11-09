@@ -79,14 +79,1733 @@ MonoBehaviour:
     pitch: 0
     volumeVarience: 0
     pitchVarience: 0
-  sfxTracks: []
-  ambientTracks: []
+  - name: Clone Ambush Intro
+    clip: {fileID: 8300000, guid: f2b300a8efa398440abacbf63d968123, type: 3}
+    mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 0
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Safari Tampering
+    clip: {fileID: 8300000, guid: 4945e552a91294848ab7d50ca966e80b, type: 3}
+    mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.9
+    pitch: 0
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Clone Ambush Negotiation
+    clip: {fileID: 8300000, guid: 338fa4bc60cdbf447aa707e27e974119, type: 3}
+    mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.65
+    pitch: 0
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Clone Ambush Fight
+    clip: {fileID: 8300000, guid: fd2a6c07482c0dc408fedf698d161c1c, type: 3}
+    mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.555
+    pitch: 0
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ejection
+    clip: {fileID: 8300000, guid: 48d3e79d12e9a08479a20f643fe68f40, type: 3}
+    mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 1
+    pitch: 0
+    volumeVarience: 0
+    pitchVarience: 0
+  sfxTracks:
+  - name: Alien Noise 1
+    clip: {fileID: 8300000, guid: 0a9ac1b09bcb2334aaa5eed41303d6ce, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.5
+  - name: Alien Noise 2
+    clip: {fileID: 8300000, guid: b0187fb7f4e0f904c85ee0ae81cba805, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.5
+  - name: Alien Noise 3
+    clip: {fileID: 8300000, guid: 5fc955b350319e742b2358457a0c4c08, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.5
+  - name: Alien Noise 4
+    clip: {fileID: 8300000, guid: da3f1b96a15cce841a9a49f6ef658b92, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.5
+  - name: Alien Noise 5
+    clip: {fileID: 8300000, guid: f6366834368c1d94685e366019b4f488, type: 3}
+    mixer: {fileID: 0}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.5
+  - name: Alien Noise 6
+    clip: {fileID: 8300000, guid: 6ec84206a5bdd2244b8c74e2b19bf300, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.5
+  - name: Alien Noise 7
+    clip: {fileID: 8300000, guid: 7a2549c74a32e1f4cb7e780a8168868e, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.5
+  - name: Alien Noise 8
+    clip: {fileID: 8300000, guid: cccdb060bb915ed498082d77d08b41a7, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.5
+  - name: Alien Subdue 1
+    clip: {fileID: 8300000, guid: 8f78f600ceaf1a34bad066f146d48f17, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.2
+    pitchVarience: 0
+  - name: Alien Subdue 2
+    clip: {fileID: 8300000, guid: d67476a7a77d9eb4f99713ab3c9c7d62, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.2
+    pitchVarience: 0
+  - name: Alien Subdue 3
+    clip: {fileID: 8300000, guid: 3e0ebd892858d4d438be069116c896c6, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.2
+    pitchVarience: 0
+  - name: Alien Subdue 4
+    clip: {fileID: 8300000, guid: d8b9d7aa35c855f49843371da3042216, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.2
+    pitchVarience: 0
+  - name: Rotation 1
+    clip: {fileID: 8300000, guid: c67c137ea0adf9f4589cd6636f023793, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.18
+    pitch: 1
+    volumeVarience: 0.2
+    pitchVarience: 0.25
+  - name: Rotation 2
+    clip: {fileID: 8300000, guid: 0104c17973c489d42abe0b0c7230ce42, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.18
+    pitch: 1
+    volumeVarience: 0.2
+    pitchVarience: 0.25
+  - name: Rotation 3
+    clip: {fileID: 8300000, guid: 932b545287d17e445809bcd2ed042371, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Rotation 4
+    clip: {fileID: 8300000, guid: 03453aadcc024f14ea67c06d03819463, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Rotation 5
+    clip: {fileID: 8300000, guid: 058a0cdd190a1bd41bfab4b26a65b7a6, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Cheer 1
+    clip: {fileID: 8300000, guid: d4ea36e66c7ecc947825545e8641af7d, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Cheer 2
+    clip: {fileID: 8300000, guid: b8dd3a0ea6ac4e542831a39f70675ef3, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Cheer 3
+    clip: {fileID: 8300000, guid: cb1deff45ac4da4459c9f49f251d0fff, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.19
+    pitch: 1
+    volumeVarience: 0.2
+    pitchVarience: 0.1
+  - name: Cheer 4
+    clip: {fileID: 8300000, guid: 0b9c10cb10a00604b8b7f4c0ea37d94b, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Cheer 5
+    clip: {fileID: 8300000, guid: 02dd3448ba7947b4a9f9104becd1c8e7, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Grumble 1
+    clip: {fileID: 8300000, guid: dee6fa30fd3b1214b9989f1aa155fd0b, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.05
+  - name: Grumble 2
+    clip: {fileID: 8300000, guid: 62f93bdc216eeaa4fa3f0d2dece82230, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.05
+  - name: Grumble 3
+    clip: {fileID: 8300000, guid: 4216979a4ad7e2248b268dd3d94411fc, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.05
+  - name: Grumble 4
+    clip: {fileID: 8300000, guid: 1331731ba2c2d4a4a8d89e6d48198ea3, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.05
+  - name: Grumble 5
+    clip: {fileID: 8300000, guid: cf650a33d5523a444af888bc11785382, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.05
+  - name: Grumble 6
+    clip: {fileID: 8300000, guid: e2d460c400a31804586eaca4adf49467, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.05
+  - name: Grumble 7
+    clip: {fileID: 8300000, guid: 76547749b2be42440afed193435a5eb7, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.05
+  - name: Grumble 8
+    clip: {fileID: 8300000, guid: f901d186ae86b1d41b6b7ad7bc556398, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.5
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.05
+  - name: Grumble 9
+    clip: {fileID: 8300000, guid: 1f74c62db6b1c214a9a2d2e08340b732, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.05
+  - name: Grumble 10
+    clip: {fileID: 8300000, guid: e6e22caa7f6e29642a8ea23c8c22d6c6, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.05
+  - name: Arp 1
+    clip: {fileID: 8300000, guid: a589d1f0bfdc4ed4d8f792243629cf9a, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 2
+    clip: {fileID: 8300000, guid: 3f30b8fbf3feac144a107d58f98e0f66, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 3
+    clip: {fileID: 8300000, guid: fd2af701ec93c4f408886a54d9e02538, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 4
+    clip: {fileID: 8300000, guid: 80e200d8ac095e044bca18b23717c8fe, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 5
+    clip: {fileID: 8300000, guid: 7e26b33fa3831964399e214eb0db71da, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 6
+    clip: {fileID: 8300000, guid: 0b77606c7ad8ba14299a680984fcbcdb, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 7
+    clip: {fileID: 8300000, guid: 3f7699c9afb88984cb1104c3aa0962d4, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 8
+    clip: {fileID: 8300000, guid: 57e9380e5373a1e47900ebefe507221b, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 9
+    clip: {fileID: 8300000, guid: 72b674d4d97eaee438b439116291462a, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 10
+    clip: {fileID: 8300000, guid: b961cfa0f65d5724382c97526505c26d, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 11
+    clip: {fileID: 8300000, guid: 8bcc77ec397552b4eb2c035f2ed97b8c, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 12
+    clip: {fileID: 8300000, guid: 5e5728463e5c3fe47831c203a744c8bb, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 13
+    clip: {fileID: 8300000, guid: 90210c12acb3e6642bc5305d14d146de, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 14
+    clip: {fileID: 8300000, guid: 136018d84e52a204895095480485eb15, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 15
+    clip: {fileID: 8300000, guid: 6e145e5d89faf444b9c74312cc327332, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 16
+    clip: {fileID: 8300000, guid: 4193efed335734e4fac9aa2b9735ee9b, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 17
+    clip: {fileID: 8300000, guid: 95a908a090447f547a16c568fbe08705, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 18
+    clip: {fileID: 8300000, guid: bb0844b8d734db14596e4431d872aa48, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 19
+    clip: {fileID: 8300000, guid: ae74b3c480352384e8542cb5c51e917e, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 20
+    clip: {fileID: 8300000, guid: 66d407d516a33224bb48356e92eb2893, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 21
+    clip: {fileID: 8300000, guid: edaa05d0b93c3ce499f8019ec1e5815d, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 22
+    clip: {fileID: 8300000, guid: 14fe940c98ce923429af4784c6c2e7ff, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 23
+    clip: {fileID: 8300000, guid: 8ad714f34591b094bb20b813d9ee7c26, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 24
+    clip: {fileID: 8300000, guid: c4e763f796933fd4897a66a7a900560f, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 25
+    clip: {fileID: 8300000, guid: 8c3f4ac208d034f4db281109c65e59de, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 26
+    clip: {fileID: 8300000, guid: 7576caee55868da468f5abb44e53e44d, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 27
+    clip: {fileID: 8300000, guid: 0e2026bc9020cbb40b7f46626bb916af, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 28
+    clip: {fileID: 8300000, guid: a9d411a8753c55444a38f127eefc4763, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 29
+    clip: {fileID: 8300000, guid: 2c4c8235bcb14cd48870bddf5e2a0ebc, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 30
+    clip: {fileID: 8300000, guid: c3065c58eae604943a05fbfe57baf64e, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 31
+    clip: {fileID: 8300000, guid: e811d0eaa38deea44abc815adfe1862b, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 32
+    clip: {fileID: 8300000, guid: 7663a53c7dcae534b99a3e672ded6901, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 33
+    clip: {fileID: 8300000, guid: ca3cca5c796f3df44978f25211a58186, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 34
+    clip: {fileID: 8300000, guid: 5885b1e1d7a1a3c4f99da2c89801fccc, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 35
+    clip: {fileID: 8300000, guid: 171e1c15ee920c4409c83b0cbefc16d6, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 36
+    clip: {fileID: 8300000, guid: d96c6465567c0564fa109363a5b5fbc7, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 37
+    clip: {fileID: 8300000, guid: e5d36cdb3ec7d134292f1321a0284552, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 38
+    clip: {fileID: 8300000, guid: 27c2dd51dc31b744382fe7bb4e404428, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 39
+    clip: {fileID: 8300000, guid: 22a4e196753f8ed44afb64401403c89a, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 40
+    clip: {fileID: 8300000, guid: 37cbcd18aec6ae44ea164eb09fa2a341, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 41
+    clip: {fileID: 8300000, guid: 3d885e6b80b19f147bcdfee6b1c5f3bc, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 42
+    clip: {fileID: 8300000, guid: c152a35ec4da7ee4d99b00ad9c955b84, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 43
+    clip: {fileID: 8300000, guid: 007a07a4f1e43274da7216404c46b522, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 44
+    clip: {fileID: 8300000, guid: fe37d28031b7fd84eaeef28c3b2aa5d3, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Arp 45
+    clip: {fileID: 8300000, guid: ac49f101a7c33a344826d3c8235b45a9, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Drip 1
+    clip: {fileID: 8300000, guid: f094ddadb167c9349a6ce6e9038cf0cd, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Drip 2
+    clip: {fileID: 8300000, guid: 8b71c2bac3975a842987e9a1133c4678, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Drip 3
+    clip: {fileID: 8300000, guid: a2f3f27c4a05dc94e951f063856a4110, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Drip 4
+    clip: {fileID: 8300000, guid: f5100f47105d3a14391c5a374b3c51b7, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Drip 5
+    clip: {fileID: 8300000, guid: 2c1ed66803444a44094cad8c14d673e7, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Drip 6
+    clip: {fileID: 8300000, guid: d0afcdd86c759b24ca8266204d38ccf4, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Drip 7
+    clip: {fileID: 8300000, guid: 17583c61eecc7ef4d8fee86d6c97827a, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Drip 8
+    clip: {fileID: 8300000, guid: d6bd8e2280df97a438c3eb2fe1878dfd, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Leaves 1
+    clip: {fileID: 8300000, guid: 60fc6f5caf436eb4a99f74e8ed72ce07, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Leaves 2
+    clip: {fileID: 8300000, guid: 79ff5ba0303aaae4cae6db533a27f5ad, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Leaves 3
+    clip: {fileID: 8300000, guid: 283cf7468a7a44244bde3142721de3fb, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Leaves 4
+    clip: {fileID: 8300000, guid: d91652fe72b844942a86fed2d3b29b16, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Leaves 5
+    clip: {fileID: 8300000, guid: 6a8e678f4922cfc4c9b2ace29cdad2f9, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Leaves 6
+    clip: {fileID: 8300000, guid: 571740835cc17a24a9981b3bb68324ff, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Leaves 7
+    clip: {fileID: 8300000, guid: 03c68a6fb6b1ed74baf214660794ab14, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Leaves 8
+    clip: {fileID: 8300000, guid: f75b61c62530c01499f5df85a9596be1, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: EKG
+    clip: {fileID: 8300000, guid: cdcee1d8aaba3d3499a507df30f27892, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.05
+    pitchVarience: 0
+  - name: Gauze Rip
+    clip: {fileID: 8300000, guid: 4a37889237debb34dbd1cefa829e6b6c, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.05
+  - name: Pulse 1
+    clip: {fileID: 8300000, guid: 93c804c3dd8b7b8458f1faa3a295b633, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Pulse 2
+    clip: {fileID: 8300000, guid: ff5cd222ea4224040b72b64da05ca3d6, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Pulse 3
+    clip: {fileID: 8300000, guid: fcbf6d1d9d6c35846a26b2bc1b5c4e58, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Forklift 1
+    clip: {fileID: 8300000, guid: a43b3754eff871e4fb9f09836abb3411, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.17
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Forklift 2
+    clip: {fileID: 8300000, guid: 315ecf65c23131044a4d6e36d932aa98, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.17
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Forklift 3
+    clip: {fileID: 8300000, guid: ca3b5937602721642bfe78e63af6e314, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.17
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Forklift 4
+    clip: {fileID: 8300000, guid: 680107b7b4a8b4d4993fdfed7a154829, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.17
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Power Up
+    clip: {fileID: 8300000, guid: b4dac9f137491294abac042371a83793, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.3
+  - name: Party
+    clip: {fileID: 8300000, guid: ea4af8a6752fba24cbdc486fb6f4438c, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0
+  - name: Piano 1
+    clip: {fileID: 8300000, guid: aa0eb5cb06ae4e14cb5220aa3af81207, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0
+  - name: Piano 2
+    clip: {fileID: 8300000, guid: 65d1c44f6b9fde04886612ebc48d2e28, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0
+  - name: Magnet 1
+    clip: {fileID: 8300000, guid: 1d56d518bb5dc6a468df3e89d7270b8d, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Magnet 2
+    clip: {fileID: 8300000, guid: 3d284479ac9ce61409d762b48fc13bd4, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Magnet 3
+    clip: {fileID: 8300000, guid: 201a63080eb74dc4195fb9997a690451, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Clang 1
+    clip: {fileID: 8300000, guid: d1970320c8db68c49b808f8d8b4d565b, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Clang 2
+    clip: {fileID: 8300000, guid: a4080f7c761fb6d4a88ba9fda7f0f49f, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Clang 3
+    clip: {fileID: 8300000, guid: d5f1a9e0d2b6d3a418d05a0245f665e5, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Clang 4
+    clip: {fileID: 8300000, guid: c4bc60b953a1e8343b1265819b55e604, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Clang 5
+    clip: {fileID: 8300000, guid: 0de4b65ac3ccc574982179657c888e96, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Future Gun 1
+    clip: {fileID: 8300000, guid: 9fdd77e89227b9943b61429aef0fc363, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Future Gun 2
+    clip: {fileID: 8300000, guid: 124f16414f2481a459eb7a95f1627aaa, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Future Gun 3
+    clip: {fileID: 8300000, guid: 73766c72d0768d047b86586772ea3851, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Future Gun 4
+    clip: {fileID: 8300000, guid: 4c31b11227e8af14d99eadd1e3c7ede1, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Future Gun 5
+    clip: {fileID: 8300000, guid: c4b450e940f86e1428ace0fc20326389, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Future Gun 6
+    clip: {fileID: 8300000, guid: 74b0b1d58b2935a408ed1e3a5f736f44, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Gun 1
+    clip: {fileID: 8300000, guid: 3ed3c6af45802fe4faa9201d4889be37, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Gun 2
+    clip: {fileID: 8300000, guid: 42715689fde04fa4d81082de19191932, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Gun 3
+    clip: {fileID: 8300000, guid: dd59f74541dac3640beb22dbb3bd3359, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Gun 4
+    clip: {fileID: 8300000, guid: 0896d842f4b3854459b8d5fa64d282af, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Gun 5
+    clip: {fileID: 8300000, guid: b11f180a13eea914e94b2a9eafcfc587, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Gun 6
+    clip: {fileID: 8300000, guid: 6d0718b89b3a5f44abfe10d2c0a0880a, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Keyboard 1
+    clip: {fileID: 8300000, guid: 60097705e1258f44495f6437a947acae, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.35
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.2
+  - name: Keyboard 2
+    clip: {fileID: 8300000, guid: c67716a49c39dfe4695e0fa6d7cc3855, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.35
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.2
+  - name: Keyboard 3
+    clip: {fileID: 8300000, guid: 28b6eb7fc5dfbcb4387ac40120515f30, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.35
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.2
+  - name: Power Up 2
+    clip: {fileID: 8300000, guid: 4668d5c68edbfcc42964b451ec62363d, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Charge 1
+    clip: {fileID: 8300000, guid: d2178c50c07a4494b8f623823af95d50, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Charge 2
+    clip: {fileID: 8300000, guid: 808a56476e26afe47ac626e00402e6a1, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Charge 3
+    clip: {fileID: 8300000, guid: fde96fc656d47de45940e850a32c4751, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Charge 4
+    clip: {fileID: 8300000, guid: de258e6d756305b41a73876a3a849581, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Energy Fire
+    clip: {fileID: 8300000, guid: f1a45b16fa9d50446860d1edfba7af6e, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.2
+    pitchVarience: 0.25
+  - name: Load Torp 1
+    clip: {fileID: 8300000, guid: 0e507ce63f34ae646b995036568fe303, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Load Torp 2
+    clip: {fileID: 8300000, guid: fa623fde9a36c8144a2121c8f46d9e5d, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Load Torp 3
+    clip: {fileID: 8300000, guid: 70300646ed6d641449dc61897ffdb1f4, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Load Torp 4
+    clip: {fileID: 8300000, guid: a52956e6dd5f9914eae9f6f21ce36790, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Launch 1
+    clip: {fileID: 8300000, guid: ed2c6d88ad7fd2746bf2164f0e59b25c, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.18
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Launch 2
+    clip: {fileID: 8300000, guid: 3b7e4a09d3e2b6d46bf94e959dba63f5, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.18
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Launch 3
+    clip: {fileID: 8300000, guid: eb33652c1bd852a4d83be940b850a423, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.18
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Eat 1
+    clip: {fileID: 8300000, guid: 1cf5be6b178269d4e86e750d8cb88a84, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Eat 2
+    clip: {fileID: 8300000, guid: 08262c55bead2a24ca3d4c03bcbae462, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Eat 3
+    clip: {fileID: 8300000, guid: 789375a142541b94d9aaa911a77158fb, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Eat 4
+    clip: {fileID: 8300000, guid: 423e0eec2e63bc243a2caf0a04c4ae83, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Eat 5
+    clip: {fileID: 8300000, guid: 022c5f2cf5332824ebde9899c934e25d, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Eat 6
+    clip: {fileID: 8300000, guid: 45ce8aba5067c60479d869c860751378, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Rustle 1
+    clip: {fileID: 8300000, guid: ec5ab48b4eed2db408ad542add22d665, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.35
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Rustle 2
+    clip: {fileID: 8300000, guid: 28334eb35efdbe449b3e1bdfa7604a77, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.35
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Rustle 3
+    clip: {fileID: 8300000, guid: ccd5ca4708b977c41808ee2bd8d65ef6, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.35
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Rustle 4
+    clip: {fileID: 8300000, guid: 96578a3bd4d92de4c93895bd60d70f50, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.35
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Generate 1
+    clip: {fileID: 8300000, guid: 6d8a6d4f3f551e749bc06f91115ca806, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Generate 2
+    clip: {fileID: 8300000, guid: e5b3ae46e269eeb438858729943b00d4, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Generate 3
+    clip: {fileID: 8300000, guid: 88891b967e496bb44b3fdde7d2e90813, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Generate 4
+    clip: {fileID: 8300000, guid: da14b6fddc2030e4096a4089813d2de6, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Generate 5
+    clip: {fileID: 8300000, guid: 76247f70e31acf7419b05b2237ceb50c, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Shield 1
+    clip: {fileID: 8300000, guid: 49896ca4c88ba1b4fb18df8df5403fe0, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Shield 2
+    clip: {fileID: 8300000, guid: c53a65475694f6b44bdadc01095aefa1, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Shield 3
+    clip: {fileID: 8300000, guid: c27afc3b9dd85de4fa0738809f7a28ca, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Shield 4
+    clip: {fileID: 8300000, guid: 5f365a65618661444bc198dd131d4f4d, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Shield 5
+    clip: {fileID: 8300000, guid: e95b2733f7ce45544bd922b12a654676, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.2
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: WN 1
+    clip: {fileID: 8300000, guid: 358ba6c8b0982a346a16097366c143b9, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: WN 2
+    clip: {fileID: 8300000, guid: 9015e9de67b257447b4b39c5e7758ff1, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: WN 3
+    clip: {fileID: 8300000, guid: 8b4dd6ec48e11134fb4246477ecf0741, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Warp 1
+    clip: {fileID: 8300000, guid: e20e7aac5616c084faa1d96a3df1e037, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Warp 2
+    clip: {fileID: 8300000, guid: e41cbcfa1d40c3544a514f25fc584e49, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Warp 3
+    clip: {fileID: 8300000, guid: 4c3974f02d2a3454b8a07f8184c0156d, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Warp 4
+    clip: {fileID: 8300000, guid: 3e9a31bcee23b454daafad79a4e86740, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Warp 5
+    clip: {fileID: 8300000, guid: 5b01b460e13cf6e47b6ccd2751a18353, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Warp Drive Engage
+    clip: {fileID: 8300000, guid: f8992db476b597147b7d1325b414e8c6, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Core 1
+    clip: {fileID: 8300000, guid: bb6334aacaf1c1d4ebd46fed67cc66d9, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Core 2
+    clip: {fileID: 8300000, guid: d9c22c35626d71246b410c4768652d8e, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Core 3
+    clip: {fileID: 8300000, guid: 99ea981b24a2cc645bdaa0bb1ceed9c7, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Bunks 1
+    clip: {fileID: 8300000, guid: b4c798d301b106b4caa942c27ea3e542, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Bunks 2
+    clip: {fileID: 8300000, guid: db0213cc9aa9d8c4f9131981ca59342f, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Medbay
+    clip: {fileID: 8300000, guid: 872d67636d42465469718263f610ba5c, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.15
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0
+  - name: Purchase VIP
+    clip: {fileID: 8300000, guid: 47a28ad42623e4647a780f31ab2adb1c, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0
+  - name: Purchase Cannons 1
+    clip: {fileID: 8300000, guid: e0f30315e5a79b2468b35655dd4be3ac, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Cannons 2
+    clip: {fileID: 8300000, guid: 20b747f41dd30a346a202a299c81fdf1, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Cannons 3
+    clip: {fileID: 8300000, guid: 583ed90d2878b634bb146d6825024118, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Cannons 4
+    clip: {fileID: 8300000, guid: e6bf5e98561bab743850c089cd03dca1, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Torp 1
+    clip: {fileID: 8300000, guid: aa28982cde5289640931184c0d5e0771, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Torp 2
+    clip: {fileID: 8300000, guid: 682c7604fa14ebd4cbcc527b2e50948f, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Torp 3
+    clip: {fileID: 8300000, guid: 92cadcb6bd22fde47aabaab142b93156, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Teleport 1
+    clip: {fileID: 8300000, guid: 55d02e188848f4a428c025fd5fd09ead, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Teleport 2
+    clip: {fileID: 8300000, guid: 7bcfa6034b82259499ff9ab83678de00, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Teleport 3
+    clip: {fileID: 8300000, guid: c530b74d6a87c954f922f4dbc4985725, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Teleport 4
+    clip: {fileID: 8300000, guid: 9ff61cbd557039e4aaa8d623f9f877ea, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Warp 1
+    clip: {fileID: 8300000, guid: fc6c475ebccb0394194b262bb65e6ef6, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Warp 2
+    clip: {fileID: 8300000, guid: d51931a99d4fa104fabdd326222defd7, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Warp 3
+    clip: {fileID: 8300000, guid: d8549c8dad35b72418dca4b8bbefb27a, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Warp 4
+    clip: {fileID: 8300000, guid: ee6cba480a7f6744bbdd6ab99cfad74f, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Purchase Warp 5
+    clip: {fileID: 8300000, guid: fd7f038bc4f9f2d44b3016e4cb04848d, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Confirm 1
+    clip: {fileID: 8300000, guid: c0429e3eb2a2f184b84753acf9e29833, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0
+  - name: Confirm 2
+    clip: {fileID: 8300000, guid: 3df8b82d49c35e345b0df50dc9d66017, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0
+  - name: Confirm 3
+    clip: {fileID: 8300000, guid: 63d30ba8fd476b44b984958a0e069cc2, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0
+  - name: Deny 1
+    clip: {fileID: 8300000, guid: 41f727be6ad41b44dafac1022887530c, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.5
+  - name: Deny 2
+    clip: {fileID: 8300000, guid: 0117cdb55fa12364ab731d6cdc74a532, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0
+  - name: Deny 3
+    clip: {fileID: 8300000, guid: c0fcbb6d86c045e45a6bce46574ee906, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0
+  - name: Sell
+    clip: {fileID: 8300000, guid: 5e47c6df9f6807b49b5a588766be1dc6, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0
+  - name: Overclock
+    clip: {fileID: 8300000, guid: d279aec6ec15ec048868ba921a967fe3, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: De-Overclock
+    clip: {fileID: 8300000, guid: e475d7b77aa30d84ca36b5179bda8e92, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.45
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Sonar Blip
+    clip: {fileID: 8300000, guid: 040f4f7ae641851458aa15eb84c16ce2, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.15
+    pitchVarience: 0.05
+  - name: Press 1
+    clip: {fileID: 8300000, guid: 9be77f3ebbf1f2e469547ab8e1047e9e, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Press 2
+    clip: {fileID: 8300000, guid: 448cec4fb349eda40a33981669246976, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Press 3
+    clip: {fileID: 8300000, guid: 10ba01fc243a50f4eb5c50ca0b979910, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Press 4
+    clip: {fileID: 8300000, guid: 48dcb8b7a03ecf049b16a8932c2c33bf, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Press 5
+    clip: {fileID: 8300000, guid: cfd6037e9449f0942bc55217ccc6b5ad, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Press 6
+    clip: {fileID: 8300000, guid: 9c147897e2b278043ab0fc5345140e94, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Press 7
+    clip: {fileID: 8300000, guid: 5c8c831ed46770d4cb4ce56dabbb9407, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Press 8
+    clip: {fileID: 8300000, guid: c96b8868b32c67e4b885fcae5a531989, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Press 9
+    clip: {fileID: 8300000, guid: 699ec1e483d4b754eaeb435b5af33517, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Press 10
+    clip: {fileID: 8300000, guid: 67a13e847aa08cd4d88e73cc1dc19929, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Slider
+    clip: {fileID: 8300000, guid: 87102308c9093944abfb9a9d1f3e5da4, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.4
+  - name: Switch 1
+    clip: {fileID: 8300000, guid: 3aabe3b55105e2b45ba65c6151b43a31, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Switch 2
+    clip: {fileID: 8300000, guid: 3f02900a1350a5741ba10ced881c09a2, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Switch 3
+    clip: {fileID: 8300000, guid: b5b9955ea0f060d4dbcbd513acd61455, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.1
+  - name: Display
+    clip: {fileID: 8300000, guid: b581392bdc97de046871895ef882b459, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0.05
+    pitchVarience: 0.08
+  - name: Trim 1
+    clip: {fileID: 8300000, guid: 6c3eafb3cda0acb4cb291c272da47779, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.15
+  - name: Trim 2
+    clip: {fileID: 8300000, guid: 4ae73f0e396867841a602d8bf492873b, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.15
+  - name: Trim 3
+    clip: {fileID: 8300000, guid: 2bee69579199a4b4c90121af9cd9e2d5, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.15
+  - name: Watering 1
+    clip: {fileID: 8300000, guid: 034f89147541b0a4ea59a250d44377f0, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.15
+  - name: Watering 2
+    clip: {fileID: 8300000, guid: 3878645ecf1eb4e4ab262ba1576a570e, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.15
+  - name: Watering 3
+    clip: {fileID: 8300000, guid: 0489d47768bdf0f47bc002b03c038aa0, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.15
+  - name: Fert 1
+    clip: {fileID: 8300000, guid: 18730d15b5d86074992d8e66bc0e3d74, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.15
+  - name: Fert 2
+    clip: {fileID: 8300000, guid: 56768c948006bde469518ef2207e4041, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.15
+    pitchVarience: 0.15
+  - name: Plant 1
+    clip: {fileID: 8300000, guid: 17b31bd9a859d434a95bfb220c85e708, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0.15
+    pitchVarience: 0.15
+  - name: Plant 2
+    clip: {fileID: 8300000, guid: b62ad0612eae388489d2238d0f673bc1, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0.15
+    pitchVarience: 0.15
+  - name: Hull Damage
+    clip: {fileID: 8300000, guid: 48282811b61b23141a8c7c92687d06a0, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Fire 1
+    clip: {fileID: 8300000, guid: 027a0063b52e65e45a3dca6052c80ece, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Fire 2
+    clip: {fileID: 8300000, guid: da5ac442fa5248b45b7d67d1950488a6, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Fire 3
+    clip: {fileID: 8300000, guid: 30e6bf65f2c47ce4b9cdba1836656ef5, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Break 1
+    clip: {fileID: 8300000, guid: a53d5926b02cc67488cf30d2f7de980f, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Break 2
+    clip: {fileID: 8300000, guid: 98256ef62f42ead468ecad88b5a1378b, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  - name: Break 3
+    clip: {fileID: 8300000, guid: 98256ef62f42ead468ecad88b5a1378b, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.25
+  ambientTracks:
+  - name: Warbling White Noise
+    clip: {fileID: 8300000, guid: 6d140a3d68eb54947857dc1f58801017, type: 3}
+    mixer: {fileID: -1070410809799078073, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 1
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: White Noise 1
+    clip: {fileID: 8300000, guid: 0d5d167227cbd264e936b35dd45b4336, type: 3}
+    mixer: {fileID: -1070410809799078073, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 1
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: White Noise 2
+    clip: {fileID: 8300000, guid: 6e9cdbd2bf4dfe945a8d11ced03f8a2e, type: 3}
+    mixer: {fileID: -1070410809799078073, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 1
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: White Noise 3
+    clip: {fileID: 8300000, guid: 6e4f185779f187247bef3bc6ebd042b9, type: 3}
+    mixer: {fileID: -1070410809799078073, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 1
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
   currentlyPlayingAmbience: []
   masterVolume: 1
   sfxVolume: 1
   musicVolume: 1
   ambienceVolume: 1
-  fadeOutTime: 2.25
+  fadeOutTime: 2
   trackOverlapTime: 1.25
   fadeInTime: 3.25
   isMuted: 0

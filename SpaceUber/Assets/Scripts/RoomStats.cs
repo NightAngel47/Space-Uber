@@ -5,6 +5,7 @@
  * Description: 
  */
 
+using System;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,10 +20,13 @@ public class RoomStats : MonoBehaviour
     public int minPower;
     public int maxPower;
 
+    [Tooltip("Ex: .8 for 80% of the orginal price")]
+    public float priceReducationPercent;
+
     [Tooltip("How many credits the room costs to place")]
     public int price;
 
-    int currentCrew;
+    public int currentCrew;
 
     [ResizableTextArea]
     public string roomDescription;
@@ -41,10 +45,16 @@ public class RoomStats : MonoBehaviour
 
     ShipStats shipStats;
 
+    public bool flatOutput;
+
+    public bool usedRoom = false;
+
+    [SerializeField] private RoomTooltipUI roomTooltipUI;
+    
     void Start()
     {
         shipStats = FindObjectOfType<ShipStats>();
-        StartCoroutine(LateStart(0.25f));
+        StartCoroutine(LateStart(0.1f));
     }
 
     void Update()
@@ -54,6 +64,17 @@ public class RoomStats : MonoBehaviour
         //    SubtractRoomStats();
         //    Destroy(this.gameObject);
         //}
+    }
+
+    public void UpdateUsedRoom()
+    {
+        usedRoom = true;
+        roomTooltipUI.RoomIsUsed();
+    }
+
+    public void UpdateCurrentCrew(int crew)
+    {
+        currentCrew += crew;
     }
 
     /// <summary>
@@ -81,39 +102,123 @@ public class RoomStats : MonoBehaviour
     /// </summary>
     private void GetStats()
     {
-        foreach(Resource resource in resources)
+        int crewRange = maxCrew - minCrew + 1;
+        float percent = (float)(maxCrew - 1) / (float)crewRange;
+        
+        foreach (Resource resource in resources)
+        {
+            resource.minAmount = resource.amount - (int)(resource.amount * percent);
+            if (flatOutput == true)
+            {
+                switch (resource.resourceType)
+                {
+                    case "Credits":
+                        credits += resource.amount;
+                        break;
+                    case "Energy":
+                        energy += resource.amount;
+                        break;
+                    case "Security":
+                        security += resource.amount;
+                        break;
+                    case "Ship Weapons":
+                        shipWeapons += resource.amount;
+                        break;
+                    case "Crew":
+                        crew += resource.amount;
+                        break;
+                    case "Food":
+                        food += resource.amount;
+                        break;
+                    case "Food Per Tick":
+                        foodPerTick += resource.amount;
+                        break;
+                    case "Hull Durability":
+                        shipHealth += resource.amount;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                switch (resource.resourceType)
+                {
+                    case "Credits":
+                        credits += resource.minAmount;
+                        break;
+                    case "Energy":
+                        energy += resource.minAmount;
+                        break;
+                    case "Security":
+                        security += resource.minAmount;
+                        break;
+                    case "Ship Weapons":
+                        shipWeapons += resource.minAmount;
+                        break;
+                    case "Crew":
+                        crew += resource.minAmount;
+                        break;
+                    case "Food":
+                        food += resource.minAmount;
+                        break;
+                    case "Food Per Tick":
+                        foodPerTick += resource.minAmount;
+                        break;
+                    case "Hull Durability":
+                        shipHealth += resource.minAmount;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
+    public void UpdateRoomStats()
+    {
+        SubtractRoomStats();
+        foreach (Resource resource in resources)
         {
             switch (resource.resourceType)
             {
                 case "Credits":
-                    credits += resource.amount;
+                    //credits -= resource.minAmount;
+                    credits = resource.activeAmount;
                     break;
                 case "Energy":
-                    energy += resource.amount;
+                    //energy -= resource.minAmount;
+                    energy = resource.activeAmount;
                     break;
                 case "Security":
-                    security += resource.amount;
+                    //security -= resource.minAmount;
+                    security = resource.activeAmount;
                     break;
                 case "Ship Weapons":
-                    shipWeapons += resource.amount;
+                    //shipWeapons -= resource.minAmount;
+                    shipWeapons = resource.activeAmount;
                     break;
                 case "Crew":
-                    crew += resource.amount;
+                    //crew -= resource.minAmount;
+                    crew = resource.activeAmount;
                     break;
                 case "Food":
-                    food += resource.amount;
+                    //food -= resource.minAmount;
+                    food = resource.activeAmount;
                     break;
                 case "Food Per Tick":
-                    foodPerTick += resource.amount;
+                    //foodPerTick -= resource.minAmount;
+                    foodPerTick = resource.activeAmount;
                     break;
                 case "Hull Durability":
-                    shipHealth += resource.amount;
+                    //shipHealth -= resource.minAmount;
+                    shipHealth = resource.activeAmount;
                     break;
                 default:
                     break;
             }
         }
-        //AddRoomStats();
+        AddRoomStats();
     }
 
     /// <summary>
@@ -137,14 +242,27 @@ public class RoomStats : MonoBehaviour
     /// </summary>
     public void SubtractRoomStats()
     {
-        shipStats.UpdateCreditsAmount(price);
+        if(usedRoom == true)
+        {
+            shipStats.UpdateCreditsAmount((int)(price * priceReducationPercent));
+        }
+        else
+        {
+            shipStats.UpdateCreditsAmount(price);
+        }
+        
         shipStats.UpdateCreditsAmount(-credits);
         shipStats.UpdateEnergyAmount(-energy, -energy);
         shipStats.UpdateSecurityAmount(-security);
         shipStats.UpdateShipWeaponsAmount(-shipWeapons);
-        shipStats.UpdateCrewAmount(-crew, crew);
+        shipStats.UpdateCrewAmount(-crew, -crew);
         shipStats.UpdateFoodAmount(-food);
         shipStats.UpdateFoodPerTickAmount(-foodPerTick);
         shipStats.UpdateHullDurabilityAmount(-shipHealth, shipHealth);
+    }
+
+    private void OnDestroy()
+    {
+        shipStats.UpdateCrewAmount(currentCrew);
     }
 }

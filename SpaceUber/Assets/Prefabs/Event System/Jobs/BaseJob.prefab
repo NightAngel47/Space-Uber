@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6620000524830208263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6620000524830208261}
+  - component: {fileID: 6620000524830208260}
+  m_Layer: 0
+  m_Name: BaseJob
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6620000524830208261
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620000524830208263}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 426.3705, y: 503.04443, z: -133.1838}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6620000524830208260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620000524830208263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd68c508ffd5eb945bc7e1498153d90e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  campaignIndexAvailable: 0
+  maxEvents: 3
+  storyEvents: []
+  randomEvents:
+  - {fileID: 3760127036658443676, guid: 14b8276ecc135e54ca9306a2f0b4439c, type: 3}
+  - {fileID: 7272458766203768250, guid: e3907cd05e63d00419977294d582a7ef, type: 3}
+  - {fileID: 1294792575043363425, guid: 48fd16a5df56693469757992a15fca94, type: 3}
+  - {fileID: 7272458766203768250, guid: dab763296623e11449313cd8d6fa49a6, type: 3}
+  - {fileID: 7272458766203768250, guid: 8fb7fbb1a5152c9459c5f4562b61a01b, type: 3}
+  - {fileID: 7281746092743587932, guid: 11239c8128bdab54c8ba36e94d03b4dd, type: 3}
+  - {fileID: 5440712538747958311, guid: ea18b057f6d1a8d4e920348236061563, type: 3}
+  - {fileID: 7272458766203768250, guid: 268f29224e6f6a44792e29eb7275c082, type: 3}
+  jobName: This is an example
+  description: This is an example
+  payout: 500
+  isSideJob: 0

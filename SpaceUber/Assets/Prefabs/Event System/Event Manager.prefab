@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4483520058602272394}
   - component: {fileID: 4483520058602272395}
+  - component: {fileID: 1350692055}
   m_Layer: 0
   m_Name: Event Manager
   m_TagString: Untagged
@@ -43,9 +44,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 648b2c3348e353845b943affc2f53023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEvents: 3
-  storyEvents:
-  - {fileID: 8811855456129256297, guid: 284df52fb5378b543b71c9e78141873f, type: 3}
-  randomEvents:
-  - {fileID: 7062536059002245315, guid: 4b1df5fadbcd3004faef4ca92fd5ba4d, type: 3}
-  - {fileID: 4819145014956791667, guid: b753504c5ec1a67478ed86b8c1e0aa96, type: 3}
+  eventChanceFreq: 10
+  timeBeforeEventRoll: 40
+  chanceIncreasePerFreq: 20
+  startingEventChance: 5
+  eventWarning: {fileID: 0}
+  sonar: {fileID: 0}
+--- !u!114 &1350692055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4483520058602272388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5768881bdd8e44a4885dc80638d40276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCamp: 0
+  campaigns:
+  - currentCampaignJobIndex: 0
+    campaignJobs:
+    - {fileID: 8540514368881411038, guid: 866e169925d796141a9c9a289f6ab14b, type: 3}
+    - {fileID: 5220517419898165771, guid: c62f3617dc87b6b46a337fff6ecae31d, type: 3}
+    - {fileID: 7978123787042214769, guid: 5e4ed31cb67c3d3419b551439c781aaf, type: 3}

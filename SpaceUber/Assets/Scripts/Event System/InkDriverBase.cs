@@ -16,49 +16,51 @@ using TMPro;
 
 public class InkDriverBase : MonoBehaviour
 {
-    [SerializeField, Tooltip("Attach the.JSON file you want read to this")]
-    private TextAsset inkJSONAsset;
+    [Tooltip("Attach the.JSON file you want read to this")]
+    public TextAsset inkJSONAsset;
 
     [SerializeField] private string eventName;
     [SerializeField] private Sprite backgroundImage;
-    
+
     //A prefab of the button we will generate every time a choice is needed
-    [SerializeField, Tooltip("Attach the prefab of a choice button to this")] 
+    [SerializeField, Tooltip("Attach the prefab of a choice button to this")]
     private Button buttonPrefab;
 
-    [SerializeField, Tooltip("The transform parent to spawn choices under")]
-    [HideInInspector]public Transform buttonGroup;
-    
-    [HideInInspector] public TMP_Text titleBox;
-    [HideInInspector] public TMP_Text textBox;
-    [HideInInspector] public Image backgroundUI;
+    [HideInInspector]public CampaignManager campMan;
+    private Transform buttonGroup;
+    private TMP_Text titleBox;
+    private TMP_Text textBox;
+    private Image backgroundUI;
+    private ShipStats thisShip;
 
     [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
     private float textPrintSpeed = 0.1f;
 
-    [SerializeField, Tooltip("The list of choice outcomes for this event.")] 
-    private List<ChoiceOutcomes> choiceOutcomes = new List<ChoiceOutcomes>();
+    [SerializeField, Tooltip("The first set of choices that a player will reach.")]
+    private List<EventChoice> firstChoices = new List<EventChoice>();
+    private List<EventChoice> availableChoices = new List<EventChoice>();
 
     /// <summary>
     /// The story itself being read
     /// </summary>
-    private Story story;
+    protected Story story;
 
     /// <summary>
     /// Whether the latest bit of text is done printing so it can show the choices
     /// </summary>
-    public bool donePrinting = true;
-    public bool showingChoices = false;
-    private bool canEnd = false; //if the event can end. Based on player clicking at end of interaction
+    private bool donePrinting = true;
+    private bool showingChoices = false;
 
-    
+    [SerializeField] public List<Requirements> requiredStats;
+
     [Dropdown("eventMusicTracks")]
     public string eventBGM;
+
     private List<string> eventMusicTracks
     {
         get
         {
-            return new List<string>() { "", "General Theme", "Wormhole", "Engine Malfunction", "Engine Delivery", "Black Market"};
+            return new List<string>() { "", "General Theme", "Wormhole", "Engine Malfunction", "Engine Delivery", "Black Market", "Clone Ambush Intro", "Safari Tampering", "Clone Ambush Negotiation", "Clone Ambush Fight", "Ejection" };
         }
     }
 
@@ -72,12 +74,27 @@ public class InkDriverBase : MonoBehaviour
         backgroundUI.sprite = backgroundImage;
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
 
+        if(firstChoices.Count == 0)
+        {
+            EventChoice[] theseChoices = GetComponents<EventChoice>();
+            firstChoices = new List<EventChoice>(theseChoices);
+        }
+        availableChoices = firstChoices;
+    }
 
+    public void AssignStatusFromEventSystem(TMP_Text title, TMP_Text text, Image background, Transform buttonSpace,
+        ShipStats ship, CampaignManager campaignManager)
+    {
+        titleBox = title;
+        textBox = text;
+        backgroundUI = background;
+        buttonGroup = buttonSpace;
+        thisShip = ship;
+        campMan = campaignManager;
     }
 
     private void Update()
     {
-        //Save for potential implementation of story.Continue() instead of continueMaximally()
         if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && !showingChoices && donePrinting)
         {
             Refresh();
@@ -107,7 +124,7 @@ public class InkDriverBase : MonoBehaviour
             runningIndex++;
 
             //click to instantly finish text,
-            if(Input.GetKeyDown(KeyCode.Return))
+            if(Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
             {
                 tempString = text;
             }
@@ -127,6 +144,7 @@ public class InkDriverBase : MonoBehaviour
     {
         if(story.currentChoices.Count > 0)
         {
+            print("About to show " + story.currentChoices.Count + " choices");
             showingChoices = true;
             foreach (Choice choice in story.currentChoices)
             {
@@ -137,17 +155,24 @@ public class InkDriverBase : MonoBehaviour
                 TMP_Text choiceText = choiceButton.GetComponentInChildren<TMP_Text>();
                 choiceText.text = " " + (choice.index + 1) + ". " + choice.text;
 
-                // Set listener
+                // Set listener for the sake of knowing when to refresh
                 choiceButton.onClick.AddListener(delegate {
                     OnClickChoiceButton(choice);
                 });
-                //The delegate keyword is used to pass a method as a parameter to the AddListenerer() function.
-                //Whenever a button is clicked, the function onClickChoiceButton() function is used.
-                
-                // Have on click also call the outcome choice to update the ship stats
-                choiceButton.onClick.AddListener(delegate {
-                    choiceOutcomes[choice.index].ChoiceChange();
-                });
+
+                if (choice.index < availableChoices.Count)
+                {
+                    availableChoices[choice.index].CreateChoice(thisShip,choiceButton, story,this);
+
+                    // Have on click also call the outcome choice to update the ship stats
+                    choiceButton.onClick.AddListener(delegate {
+                        availableChoices[choice.index].SelectChoice(thisShip);
+                    });
+                }
+                else
+                {
+                    Debug.LogWarning($"There was not EventChoice available for choice index: {choice.index}");
+                }
             }
         }
     }
@@ -164,34 +189,26 @@ public class InkDriverBase : MonoBehaviour
         // Set the text from new story block
         string text = GetNextStoryBlock();
         StartCoroutine(PrintText(text));
-
-
-        //// Get the tags from the current story lines (if any)
-        //List<string> tags = story.currentTags;
-
-        //// If there are tags for character names specifically, use the first one in front of the text.
-        ////Otherwise, just show the text.
-        //if (tags.Count > 0)
-        //{
-        //    textBox.text = tags[0] + ": " + text;
-        //}
-        //else
-        //{
-        //    textBox.text = text;
-        //}
-
-
     }
 
     /// <summary>
     /// When one of the buttons gets clicked, supply that given choice to the system.
     /// </summary>
     /// <param name="choice"></param>
-    void OnClickChoiceButton(Choice choice)
+    private void OnClickChoiceButton(Choice choice)
     {
         story.ChooseChoiceIndex(choice.index);
         Refresh();
         showingChoices = false;
+    }
+
+    /// <summary>
+    /// Takes any subsequent choices from the EventChoice selected and applies them to the file
+    /// </summary>
+    /// <param name="nextChoices"></param>
+    public void TakeSubsequentChoices(List<EventChoice> nextChoices)
+    {
+        availableChoices = nextChoices;
     }
 
     /// <summary>
@@ -208,9 +225,9 @@ public class InkDriverBase : MonoBehaviour
             {
                 text = story.Continue();
             }
+
         }
 
-        print(text);
         return text;
     }
 
@@ -218,9 +235,12 @@ public class InkDriverBase : MonoBehaviour
     // Currently causes a stackoverflow error
     public void ClearUI()
     {
-        foreach (var button in buttonGroup.transform.GetComponentsInChildren<Button>())
+        if (buttonGroup != null)
         {
-            Destroy(button.gameObject);
+            foreach (var button in buttonGroup.transform.GetComponentsInChildren<Button>())
+            {
+                Destroy(button.gameObject);
+            }
         }
 
         foreach (var text in transform.GetComponentsInChildren<TMP_Text>())
