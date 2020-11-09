@@ -128,7 +128,8 @@ public class ObjectScript : MonoBehaviour
             
         }
 
-        if(GameManager.instance.currentGameState == InGameStates.CrewManagement || GameManager.instance.currentGameState == InGameStates.Events)
+        if(GameManager.instance.currentGameState == InGameStates.CrewManagement 
+           || (GameManager.instance.currentGameState == InGameStates.Events && !OverclockController.instance.overclocking))
         {
             roomTooltip.SetActive(true);
 
