@@ -19,6 +19,8 @@ public class SpawnObject : MonoBehaviour
     [SerializeField] private GameObject buttonPanel;
     [SerializeField] private Vector2 spawnLoc;
 
+    private GameObject lastSpawned;
+
     public string[] purchasePowerCore;
     public string[] purchaseHydroponics;
     public string[] purchaseBrig;
@@ -64,11 +66,11 @@ public class SpawnObject : MonoBehaviour
 
     public void SpawnRoom(GameObject ga)
     {
-        if (ObjectMover.hasPlaced == true)
+        if (lastSpawned == null || lastSpawned.GetComponent<ObjectMover>().enabled == false )
         {
             ObjectMover.hasPlaced = false;
-            GameObject g = Instantiate(ga, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0), Quaternion.identity);
-            g.GetComponent<ObjectMover>().TurnOnBeingDragged();
+            lastSpawned = Instantiate(ga, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0), Quaternion.identity);
+            lastSpawned.GetComponent<ObjectMover>().TurnOnBeingDragged();
 
             ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
             ObjectScript.CalledFromSpawn = true;
