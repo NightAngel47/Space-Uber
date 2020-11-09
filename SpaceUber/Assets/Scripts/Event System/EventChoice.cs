@@ -136,6 +136,9 @@ public class EventChoice : MonoBehaviour
 
         }
 
+
+        print("Random result was: " + result);
+
         story.EvaluateFunction("RandomizeEnding", result);
 
         //switch (result)

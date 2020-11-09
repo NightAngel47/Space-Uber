@@ -123,12 +123,11 @@ public class ObjectScript : MonoBehaviour
 
                 Delete();
             }
-            
-            //TODO might need to allow seeing room stats outside of ship building, however this was done to not have them show during events
-            
         }
 
-        if(GameManager.instance.currentGameState == InGameStates.CrewManagement || GameManager.instance.currentGameState == InGameStates.Events)
+        if(GameManager.instance.currentGameState == InGameStates.CrewManagement 
+           || GameManager.instance.currentGameState == InGameStates.Events 
+           && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive)
         {
             roomTooltip.SetActive(true);
 

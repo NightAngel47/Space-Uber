@@ -46,13 +46,13 @@ Despite your client's deaths and the heavy toll this trip has had on your ship a
 == Fight ==
 You have several approaches as the gun charges, send your security team to swiftly and effeciently disable it, destroy it with the sheer force of your weaponry, blast out of the atmosphere and escape, or ram your ship into the plasma battery likely to debilitating effect of both of you.
 *[Send Security (Security%)] #50/50 SECURITY SUCCESS/FAILURE
-    -->securityEnd
+    ->securityEnd
 *[Fire Upon Gun(Weapons%)] #50/50 BLAST SUCCESS/FAILURE
-    -->blastEnd
+    ->blastEnd
 *[Ram the Gun(Hull%)] #35/65 SECURITY SUCCESS/FAILURE
-    -->ramGunEnd
+    ->ramGunEnd
 *[Flee(End Campaign)]
-    -->fleeEnd
+    ->fleeEnd
 
 ===SecuritySuccess===
 Your cargo hold doors blast open as your security team rushes out, firing upon the mercenaries as they move. Within seconds they’ve cut a path to the plasma battery. Small arms fire ripples across the surface of the gun as your team tries to take out its operators. The gun is nearly charged, the sound rattling your ship. More mercenaries start to close in on the exposed position of your security team.

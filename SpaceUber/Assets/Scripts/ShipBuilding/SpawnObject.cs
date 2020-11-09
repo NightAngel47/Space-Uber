@@ -19,6 +19,8 @@ public class SpawnObject : MonoBehaviour
     [SerializeField] private GameObject buttonPanel;
     [SerializeField] private Vector2 spawnLoc;
 
+    private GameObject lastSpawned;
+
     public string[] purchasePowerCore;
     public string[] purchaseHydroponics;
     public string[] purchaseBrig;
@@ -64,72 +66,79 @@ public class SpawnObject : MonoBehaviour
 
     public void SpawnRoom(GameObject ga)
     {
-        if (ObjectMover.hasPlaced == true)
+        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price)
         {
-            ObjectMover.hasPlaced = false;
-            GameObject g = Instantiate(ga, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0), Quaternion.identity);
-            g.GetComponent<ObjectMover>().TurnOnBeingDragged();
-
-            ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
-            ObjectScript.CalledFromSpawn = true;
-            foreach(ObjectScript r in otherRooms)
+            if (lastSpawned == null || lastSpawned.GetComponent<ObjectMover>().enabled == false)
             {
-                r.TurnOffClickAgain();
-            }
+                ObjectMover.hasPlaced = false;
+                lastSpawned = Instantiate(ga, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0), Quaternion.identity);
+                lastSpawned.GetComponent<ObjectMover>().TurnOnBeingDragged();
 
-            switch (ga.name)
-            {
-                case "Power Core":
-                    AudioManager.instance.PlaySFX(purchasePowerCore[Random.Range(0, purchasePowerCore.Length-1)]);
-                    break;
-                case "Hydroponics":
-                    AudioManager.instance.PlaySFX(purchaseHydroponics[Random.Range(0, purchaseHydroponics.Length-1)]);
-                    break;
-                case "Brig":
-                    AudioManager.instance.PlaySFX(purchaseBrig[Random.Range(0, purchaseBrig.Length-1)]);
-                    break;
-                case "Storage":
-                    AudioManager.instance.PlaySFX(purchaseStorage[Random.Range(0, purchaseStorage.Length-1)]);
-                    break;
-                case "Bunks":
-                    AudioManager.instance.PlaySFX(purchaseBunks[Random.Range(0, purchaseBunks.Length-1)]);
-                    break;
-                case "Medbay":
-                    AudioManager.instance.PlaySFX(purchaseMedbay[Random.Range(0, purchaseMedbay.Length-1)]);
-                    break;
-                case "VIP Lounge":
-                    AudioManager.instance.PlaySFX(purchaseVIP[Random.Range(0, purchaseVIP.Length-1)]);
-                    break;
-                case "Armor Plating":
-                    AudioManager.instance.PlaySFX(purchaseArmor[Random.Range(0, purchaseArmor.Length-1)]);
-                    break;
-                case "Armory":
-                    AudioManager.instance.PlaySFX(purchaseGuns[Random.Range(0, purchaseGuns.Length-1)]);
-                    break;
-                case "Core Changing Terminal":
-                    AudioManager.instance.PlaySFX(purchaseCoreTerminal[Random.Range(0, purchaseCoreTerminal.Length-1)]);
-                    break;
-                case "Energy Cannon":
-                    AudioManager.instance.PlaySFX(purchaseEnergyCannon[Random.Range(0, purchaseEnergyCannon.Length-1)]);
-                    break;
-                case "Photon Torpedoes":
-                    AudioManager.instance.PlaySFX(purchasePhotonTorpedoes[Random.Range(0, purchasePhotonTorpedoes.Length-1)]);
-                    break;
-                case "Pantry":
-                    AudioManager.instance.PlaySFX(purchasePantry[Random.Range(0, purchasePantry.Length-1)]);
-                    break;
-                case "Shield Generator":
-                    AudioManager.instance.PlaySFX(purchaseShieldGenerator[Random.Range(0, purchaseShieldGenerator.Length-1)]);
-                    break;
-                case "Teleportation Station":
-                    AudioManager.instance.PlaySFX(purchaseTeleporter[Random.Range(0, purchaseTeleporter.Length-1)]);
-                    break;
-                case "Warp Drive":
-                    AudioManager.instance.PlaySFX(purchaseWarpDrive[Random.Range(0, purchaseWarpDrive.Length-1)]);
-                    break;
-                default:
-                    break;
+                ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
+                ObjectScript.CalledFromSpawn = true;
+                foreach (ObjectScript r in otherRooms)
+                {
+                    r.TurnOffClickAgain();
+                }
+
+                switch (ga.name)
+                {
+                    case "Power Core":
+                        AudioManager.instance.PlaySFX(purchasePowerCore[Random.Range(0, purchasePowerCore.Length - 1)]);
+                        break;
+                    case "Hydroponics":
+                        AudioManager.instance.PlaySFX(purchaseHydroponics[Random.Range(0, purchaseHydroponics.Length - 1)]);
+                        break;
+                    case "Brig":
+                        AudioManager.instance.PlaySFX(purchaseBrig[Random.Range(0, purchaseBrig.Length - 1)]);
+                        break;
+                    case "Storage":
+                        AudioManager.instance.PlaySFX(purchaseStorage[Random.Range(0, purchaseStorage.Length - 1)]);
+                        break;
+                    case "Bunks":
+                        AudioManager.instance.PlaySFX(purchaseBunks[Random.Range(0, purchaseBunks.Length - 1)]);
+                        break;
+                    case "Medbay":
+                        AudioManager.instance.PlaySFX(purchaseMedbay[Random.Range(0, purchaseMedbay.Length - 1)]);
+                        break;
+                    case "VIP Lounge":
+                        AudioManager.instance.PlaySFX(purchaseVIP[Random.Range(0, purchaseVIP.Length - 1)]);
+                        break;
+                    case "Armor Plating":
+                        AudioManager.instance.PlaySFX(purchaseArmor[Random.Range(0, purchaseArmor.Length - 1)]);
+                        break;
+                    case "Armory":
+                        AudioManager.instance.PlaySFX(purchaseGuns[Random.Range(0, purchaseGuns.Length - 1)]);
+                        break;
+                    case "Core Changing Terminal":
+                        AudioManager.instance.PlaySFX(purchaseCoreTerminal[Random.Range(0, purchaseCoreTerminal.Length - 1)]);
+                        break;
+                    case "Energy Cannon":
+                        AudioManager.instance.PlaySFX(purchaseEnergyCannon[Random.Range(0, purchaseEnergyCannon.Length - 1)]);
+                        break;
+                    case "Photon Torpedoes":
+                        AudioManager.instance.PlaySFX(purchasePhotonTorpedoes[Random.Range(0, purchasePhotonTorpedoes.Length - 1)]);
+                        break;
+                    case "Pantry":
+                        AudioManager.instance.PlaySFX(purchasePantry[Random.Range(0, purchasePantry.Length - 1)]);
+                        break;
+                    case "Shield Generator":
+                        AudioManager.instance.PlaySFX(purchaseShieldGenerator[Random.Range(0, purchaseShieldGenerator.Length - 1)]);
+                        break;
+                    case "Teleportation Station":
+                        AudioManager.instance.PlaySFX(purchaseTeleporter[Random.Range(0, purchaseTeleporter.Length - 1)]);
+                        break;
+                    case "Warp Drive":
+                        AudioManager.instance.PlaySFX(purchaseWarpDrive[Random.Range(0, purchaseWarpDrive.Length - 1)]);
+                        break;
+                    default:
+                        break;
+                }
             }
+        }
+        else
+        {
+            Debug.Log("Cannot Afford");
         }
     }
 }
