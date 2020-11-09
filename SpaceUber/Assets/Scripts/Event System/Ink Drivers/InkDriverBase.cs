@@ -58,7 +58,7 @@ public class InkDriverBase : MonoBehaviour
     {
         get
         {
-            return new List<string>() { "", "General Theme", "Wormhole", "Engine Malfunction", "Engine Delivery", "Black Market"};
+            return new List<string>() { "", "General Theme", "Wormhole", "Engine Malfunction", "Engine Delivery", "Black Market", "Ejection", "Clone Ambush Intro", "Clone Ambush Negotiation", "Clone Ambush Fight"  };
         }
     }
 

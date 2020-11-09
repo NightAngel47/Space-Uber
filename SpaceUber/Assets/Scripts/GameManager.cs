@@ -59,6 +59,15 @@ public class GameManager : MonoBehaviour
     {
         ChangeInGameState(InGameStates.JobSelect);
     }
+    
+    private void Update()
+    {
+        // I was getting errors in scripts trying to access GameManager.instance.  Hopefully this fixes it.
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     /// <summary>
     /// Changes the current game state to the passed in game state.
@@ -75,35 +84,29 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case InGameStates.JobSelect: // Loads Jobpicker for the player to pick their job
-                // unload ending screen if replaying
-                if (SceneManager.GetSceneByName("PromptScreen_End").isLoaded) // TODO remove when we have menus
-                {
-                  additiveSceneManager.UnloadScene("PromptScreen_End");
-                }
-                if (SceneManager.GetSceneByName("PromptScreen_Death").isLoaded) // TODO remove when we have menus
-                {
-                  additiveSceneManager.UnloadScene("PromptScreen_Death");
-                }
-                if (SceneManager.GetSceneByName("PromptScreen_Mutiny").isLoaded) // TODO remove when we have menus
-                {
-                  additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
-                }
+                // unload scenes for replayability
+                // TODO will need to change when we have proper menus
+                additiveSceneManager.UnloadScene("PromptScreen_End");
+                additiveSceneManager.UnloadScene("PromptScreen_Death");
+                additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
 
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
                 additiveSceneManager.LoadSceneSeperate("Interface_JobList");
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
                 additiveSceneManager.UnloadScene("Interface_JobList");
+                additiveSceneManager.UnloadScene("CrewManagement");
+
                 additiveSceneManager.LoadSceneSeperate("ShipBuilding");
                 break;
             case InGameStates.CrewManagement:
                 additiveSceneManager.UnloadScene("ShipBuilding");
+                
                 additiveSceneManager.LoadSceneSeperate("CrewManagement");
-                ObjectScript[] os = FindObjectsOfType<ObjectScript>();
                 break; 
             case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
-                additiveSceneManager.UnloadScene("CrewManagement");
                 additiveSceneManager.UnloadScene("Starport BG");
+                
                 // Remove unplaced rooms from the ShipBuilding state
                 if (!ObjectMover.hasPlaced)
                 {

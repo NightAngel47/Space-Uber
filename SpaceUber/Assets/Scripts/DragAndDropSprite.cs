@@ -12,6 +12,7 @@ public class DragAndDropSprite : MonoBehaviour
     [SerializeField] string targetTag;
     CropHarvestMiniGame miniGameManager;
     bool isBeingDraged = false;
+    public string[] IncrementSFX;
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class DragAndDropSprite : MonoBehaviour
     {
         if(collision.CompareTag(targetTag)) 
         {
+            AudioManager.instance.PlaySFX(IncrementSFX[Random.Range(0, IncrementSFX.Length - 1)]);
             Destroy(gameObject);
             miniGameManager.IncrementScore();
         } 
