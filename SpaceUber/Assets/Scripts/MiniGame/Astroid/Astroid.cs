@@ -80,7 +80,7 @@ public class Astroid : MonoBehaviour
         {
             exploded = true;
             GetComponent<Image>().color = new Color(0, 0, 0, 0);
-            int meteoriteNumber = Random.Range(3, meteoritePrefabs.Length);
+            int meteoriteNumber = Random.Range(1, meteoritePrefabs.Length);
             explosion = Instantiate(explosion, transform.position, new Quaternion(), transform.parent);
             explosion.transform.localScale = transform.localScale;
             for (int i = 0; i <= meteoriteNumber; i++)
@@ -102,7 +102,6 @@ public class Astroid : MonoBehaviour
                 if(miniGameManager.requiredAstroids > 0)miniGameManager.requiredAstroids--;
                 yield return new WaitForSeconds(1f); 
             }
-            Destroy(explosion);
             foreach (GameObject meteorite in meteorites) { Destroy(meteorite); }
             Destroy(this);
         }
@@ -112,6 +111,7 @@ public class Astroid : MonoBehaviour
 	{
         flashingIndicator = true;
         miniGameManager.damageText.SetActive(true);
+        AudioManager.instance.PlaySFX("Hull Damage");
         for (int i = 0; i <= 5; i++)
 		{
             yield return new WaitForSeconds(0.08f);

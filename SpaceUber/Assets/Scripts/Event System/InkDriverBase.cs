@@ -36,7 +36,7 @@ public class InkDriverBase : MonoBehaviour
     [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
     private float textPrintSpeed = 0.1f;
 
-    [SerializeField, Tooltip("The first set of choices that a player will reach.")] 
+    [SerializeField, Tooltip("The first set of choices that a player will reach.")]
     private List<EventChoice> firstChoices = new List<EventChoice>();
     private List<EventChoice> availableChoices = new List<EventChoice>();
 
@@ -52,10 +52,10 @@ public class InkDriverBase : MonoBehaviour
     private bool showingChoices = false;
 
     [SerializeField] public List<Requirements> requiredStats;
-    
+
     [Dropdown("eventMusicTracks")]
     public string eventBGM;
-   
+
     private List<string> eventMusicTracks
     {
         get
@@ -82,7 +82,7 @@ public class InkDriverBase : MonoBehaviour
         availableChoices = firstChoices;
     }
 
-    public void AssignStatusFromEventSystem(TMP_Text title, TMP_Text text, Image background, Transform buttonSpace, 
+    public void AssignStatusFromEventSystem(TMP_Text title, TMP_Text text, Image background, Transform buttonSpace,
         ShipStats ship, CampaignManager campaignManager)
     {
         titleBox = title;
@@ -153,7 +153,7 @@ public class InkDriverBase : MonoBehaviour
                 // Gets the text from the button prefab
                 TMP_Text choiceText = choiceButton.GetComponentInChildren<TMP_Text>();
                 choiceText.text = " " + (choice.index + 1) + ". " + choice.text;
-                
+
                 // Set listener for the sake of knowing when to refresh
                 choiceButton.onClick.AddListener(delegate {
                     OnClickChoiceButton(choice);
@@ -162,7 +162,7 @@ public class InkDriverBase : MonoBehaviour
                 if (choice.index < availableChoices.Count)
                 {
                     availableChoices[choice.index].CreateChoice(thisShip,choiceButton, story,this);
-                
+
                     // Have on click also call the outcome choice to update the ship stats
                     choiceButton.onClick.AddListener(delegate {
                         availableChoices[choice.index].SelectChoice(thisShip);

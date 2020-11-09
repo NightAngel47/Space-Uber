@@ -113,7 +113,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 929, y: 133}
+  m_SizeDelta: {x: 959, y: 133}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6957575525960293230
 MonoBehaviour:
@@ -132,6 +132,10 @@ MonoBehaviour:
   isSideJob: 0
   sideJobPayText: {fileID: 0}
   sideJobLengthText: {fileID: 0}
+  jobSelectSFX:
+  - Confirm 1
+  - Confirm 2
+  - Confirm 3
 --- !u!222 &2693251335723108202
 CanvasRenderer:
   m_ObjectHideFlags: 0

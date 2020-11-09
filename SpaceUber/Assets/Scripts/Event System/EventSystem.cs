@@ -108,6 +108,7 @@ public class EventSystem : MonoBehaviour
 			{
 				eventWarning.SetActive(true);
 			}
+			ship.PauseTickEvents();
 
 			//wait until there is no longer an overclock microgame happening
 			yield return new WaitUntil(() => !OverclockController.instance.overclocking);
@@ -118,7 +119,6 @@ public class EventSystem : MonoBehaviour
 				eventWarning.SetActive(false);
 			}
 			sonar.HideSonar();
-            ship.PauseTickEvents();
 
 			
 

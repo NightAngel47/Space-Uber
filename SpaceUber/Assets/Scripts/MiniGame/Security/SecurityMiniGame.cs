@@ -28,7 +28,11 @@ public class SecurityMiniGame : MiniGame
     [SerializeField] bool hideInput = true;
     [SerializeField] Color highlightColor;
     [SerializeField] Color originalButtonColor;
-    
+
+    public string[] Correct;
+    public string[] Incorrect;
+    public string[] DisplaySound;
+
     void Start() 
     { 
         GenerateCode(); 
@@ -43,6 +47,7 @@ public class SecurityMiniGame : MiniGame
             {
                 inputCode = "";
                 successes++;
+                AudioManager.instance.PlaySFX(Correct[Random.Range(0, Correct.Length - 1)]);
                 for (int i = 0; i < successes; i++) { successTrackers[i].isOn = true; }
                 for(int i = successes; i < successTrackers.Length; i++) { successTrackers[i].isOn = false; }
                 if (successes == successTrackers.Length) { Debug.Log("win"); EndMiniGameSuccess(); }
@@ -54,7 +59,8 @@ public class SecurityMiniGame : MiniGame
             }
             else 
             {
-                inputCode = ""; 
+                inputCode = "";
+                AudioManager.instance.PlaySFX(Incorrect[Random.Range(0, Incorrect.Length - 1)]);
                 StartCoroutine(PromptTryAgain());
             }
         }
@@ -115,6 +121,7 @@ public class SecurityMiniGame : MiniGame
             codePreview.text = codeSegment.ToString();
             yield return new WaitForSeconds(displayTime);
             codePreview.text = "";
+            AudioManager.instance.PlaySFX(DisplaySound[Random.Range(0, DisplaySound.Length - 1)]);
         }
         if (hideInput)
         { 

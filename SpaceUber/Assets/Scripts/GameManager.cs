@@ -77,6 +77,15 @@ public class GameManager : MonoBehaviour
         ChangeInGameState(InGameStates.JobSelect);
     }
 
+    private void Update()
+    {
+        // I was getting errors in scripts trying to access GameManager.instance.  Hopefully this fixes it.
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
     /// <summary>
     /// Changes the current game state to the passed in game state.
     /// Uses the AdditiveSceneManager to Load/Unload scenes.
@@ -96,7 +105,7 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("PromptScreen_End");
                 additiveSceneManager.UnloadScene("PromptScreen_Death");
                 additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
-                
+
                 additiveSceneManager.UnloadScene("CrewPayment");
 
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
@@ -105,16 +114,18 @@ public class GameManager : MonoBehaviour
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
                 additiveSceneManager.UnloadScene("Interface_JobList");
+                additiveSceneManager.UnloadScene("CrewManagement");
+
                 additiveSceneManager.LoadSceneSeperate("ShipBuilding");
                 break;
             case InGameStates.CrewManagement:
                 additiveSceneManager.UnloadScene("ShipBuilding");
+
                 additiveSceneManager.LoadSceneSeperate("CrewManagement");
-                ObjectScript[] os = FindObjectsOfType<ObjectScript>();
-                break; 
+                break;
             case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
-                additiveSceneManager.UnloadScene("CrewManagement");
                 additiveSceneManager.UnloadScene("Starport BG");
+
                 // Remove unplaced rooms from the ShipBuilding state
                 if (!ObjectMover.hasPlaced)
                 {

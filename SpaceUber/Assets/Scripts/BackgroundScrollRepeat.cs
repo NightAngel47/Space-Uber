@@ -32,11 +32,11 @@ public class BackgroundScrollRepeat : MonoBehaviour
         }
 
         // Toggle when background should be moving
-        if (rigidbody2D.velocity.magnitude > 0 && GameManager.instance.currentGameState != InGameStates.Events)
+        if (rigidbody2D != null && GameManager.instance != null && rigidbody2D.velocity.magnitude > 0 && GameManager.instance.currentGameState != InGameStates.Events)
         {
             rigidbody2D.velocity = Vector2.zero;
         }
-        else if (rigidbody2D.velocity.magnitude <= 0 && GameManager.instance.currentGameState == InGameStates.Events)
+        else if (rigidbody2D != null && GameManager.instance != null && rigidbody2D.velocity.magnitude <= 0 && GameManager.instance.currentGameState == InGameStates.Events)
         {
             rigidbody2D.velocity = new Vector2(speed, 0);
         }

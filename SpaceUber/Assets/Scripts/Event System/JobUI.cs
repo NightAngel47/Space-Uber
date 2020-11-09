@@ -23,6 +23,8 @@ public class JobUI : MonoBehaviour, IPointerClickHandler
     [SerializeField, ShowIf("isSideJob")] private TMP_Text sideJobPayText;
     [SerializeField, ShowIf("isSideJob")] private TMP_Text sideJobLengthText;
 
+    public string[] jobSelectSFX;
+
     private void Start()
     {
         jobManager = FindObjectOfType<JobManager>();
@@ -53,6 +55,7 @@ public class JobUI : MonoBehaviour, IPointerClickHandler
     {
         selectBgImg.enabled = !selectBgImg.enabled;
         jobManager.SelectJob(availableJob);
+        AudioManager.instance.PlaySFX(jobSelectSFX[Random.Range(0, jobSelectSFX.Length - 1)]);
     }
 
     public void ClearSelectedBackground()

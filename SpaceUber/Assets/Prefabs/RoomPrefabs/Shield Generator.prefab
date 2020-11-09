@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceType: Hull Durability
   resourceIcon: {fileID: 21300000, guid: 0debb1fcbafb17643af5888234dd7323, type: 3}
-  amount: 3
+  amount: 10
 --- !u!1001 &2228332728607482427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -87,6 +87,11 @@ PrefabInstance:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].y
       value: -0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: miniGame
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: minCrew
@@ -115,13 +120,12 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: price
-      value: 250
+      value: 95
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomDescription
-      value: Generates shields to prevent damage. Increases based on crew assigned
-        to the room.
+      value: Generates shields to prevent damage. +10 Hull Durability.
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
