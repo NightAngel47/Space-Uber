@@ -13,14 +13,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Help Blast Apart Asteroid
-  hasRequirements: 0
-  choiceRequirements: []
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 0300000000000000
-    amountChanged: ecffffff64000000
-    probabilities: []
-    multipleRandomOutcomes: []
+  hasRequirements: 1
+  choiceRequirements:
+  - isNarrativeRequirement: 0
+    selectedResource: 4
+    requiredAmount: 20
+    lessThan: 0
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  hasRandomEnding: 0
+  outcomes:
+  - outcomeName: Help Blast Apart Asteroid
+    isNarrativeOutcome: 0
+    resource: 3
+    amount: -20
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  - outcomeName: Help Blast Apart Asteroids
+    isNarrativeOutcome: 0
+    resource: 0
+    amount: 100
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!114 &-7947345655046538970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34,14 +55,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Hire Miners
-  hasRequirements: 0
-  choiceRequirements: []
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 0000000004000000
-    amountChanged: 9cffffff03000000
-    probabilities: []
-    multipleRandomOutcomes: []
+  hasRequirements: 1
+  choiceRequirements:
+  - isNarrativeRequirement: 0
+    selectedResource: 6
+    requiredAmount: 100
+    lessThan: 0
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  hasRandomEnding: 0
+  outcomes:
+  - outcomeName: Hire Miners
+    isNarrativeOutcome: 0
+    resource: 0
+    amount: -100
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  - outcomeName: Hire Miners
+    isNarrativeOutcome: 0
+    resource: 4
+    amount: 3
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!114 &5807209155070443241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,12 +99,18 @@ MonoBehaviour:
   choiceName: Repair Ship
   hasRequirements: 0
   choiceRequirements: []
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 07000000
-    amountChanged: 14000000
-    probabilities: []
-    multipleRandomOutcomes: []
+  hasRandomEnding: 0
+  outcomes:
+  - outcomeName: Repair Ship
+    isNarrativeOutcome: 0
+    resource: 7
+    amount: 30
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!1001 &8408425971164179556
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70,6 +118,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: inkJSONAsset
@@ -85,6 +138,27 @@ PrefabInstance:
       propertyPath: eventBGM
       value: General Theme
       objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[0]
+      value: 
+      objectReference: {fileID: -9014194474821353168}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[1]
+      value: 
+      objectReference: {fileID: -7947345655046538970}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[2]
+      value: 
+      objectReference: {fileID: 5807209155070443241}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: backgroundImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 997bb9b91348ade4cac4a3c28d9c260c,
+        type: 3}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name

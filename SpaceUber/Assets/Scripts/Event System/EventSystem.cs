@@ -20,11 +20,11 @@ public class EventSystem : MonoBehaviour
 	private ShipStats ship;
 	private AdditiveSceneManager asm;
 	private EventCanvas eventCanvas;
-
+	private CampaignManager campMan;
 	
-	private int maxEvents = 3;
-	private List<GameObject> storyEvents;
-	private List<GameObject> randomEvents;
+	private int maxEvents = 0;
+	private List<GameObject> storyEvents = new List<GameObject>();
+	private List<GameObject> randomEvents = new List<GameObject>();
 
 	//how many events (story and random) have occurred
 	private int overallEventIndex = 0;
@@ -36,10 +36,10 @@ public class EventSystem : MonoBehaviour
 	GameObject eventInstance;
 
 	[Tooltip("How many seconds it will take to attempt an event roll")]
-	[SerializeField] private float eventChanceFreq = 5;
+	[SerializeField] private float eventChanceFreq = 10;
 
 	[Tooltip("How many seconds before the first event roll")]
-	[SerializeField] private float timeBeforeEventRoll = 20;
+	[SerializeField] private float timeBeforeEventRoll = 40;
 
 	[Tooltip("How much the percentage chance of rolling an event will increase per failure")]
 	[SerializeField] private float chanceIncreasePerFreq = 20;
@@ -55,6 +55,8 @@ public class EventSystem : MonoBehaviour
 	[SerializeField] private EventSonar sonar;
 	private Job currentJob;
 
+	private string lastEventTitle;
+
 	private void Awake()
 	{
 		//Singleton pattern
@@ -63,6 +65,7 @@ public class EventSystem : MonoBehaviour
 
 		ship = FindObjectOfType<ShipStats>();
 		asm = FindObjectOfType<AdditiveSceneManager>();
+		campMan = GetComponent<CampaignManager>();
 		
 		if(eventWarning != null)
 		{
@@ -117,20 +120,22 @@ public class EventSystem : MonoBehaviour
 			}
 			sonar.HideSonar();
 
-			// Load Event_General Scene for upcoming event // TODO will have to change based on story vs random event
-			asm.LoadSceneMerged("Event_General");
-			yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_General").isLoaded);
-
-			eventCanvas = FindObjectOfType<EventCanvas>();
+			
 
 			//Time to decide on an event
 			//story events happen every other time 
 			if (overallEventIndex % 2 == 1 && overallEventIndex != 0) //if it's an even-numbered event, do a story 
 			{
-				CreateEvent(storyEvents[storyEventIndex]);
+				// Load Event_General Scene for upcoming event
+				asm.LoadSceneMerged("Event_General");
+				yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_General").isLoaded);
+
+				eventCanvas = FindObjectOfType<EventCanvas>();
+
+				GameObject newEvent = FindNextStoryEvent();
+				CreateEvent(newEvent);
 				storyEventIndex++;
-                
-                
+
 				yield return new WaitWhile((() => eventActive));
                 
 			}
@@ -140,6 +145,12 @@ public class EventSystem : MonoBehaviour
 
 				if (newEvent != null) //check to be sure a random event was still chosen
 				{
+					// Load Event_CharacterFocused Scene for upcoming event 
+					asm.LoadSceneMerged("Event_CharacterFocused");
+					yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
+
+					eventCanvas = FindObjectOfType<EventCanvas>();
+
 					CreateEvent(newEvent);
 					randomEventIndex++;
                     
@@ -172,8 +183,8 @@ public class EventSystem : MonoBehaviour
 
 		if (eventInstance.TryGetComponent(out InkDriverBase inkDriver))
 		{
-			inkDriver.AssignUIFromEventSystem(eventCanvas.titleBox, eventCanvas.textBox,
-				eventCanvas.backgroundImage, eventCanvas.buttonGroup, ship);
+			inkDriver.AssignStatusFromEventSystem(eventCanvas.titleBox, eventCanvas.textBox,
+				eventCanvas.backgroundImage, eventCanvas.buttonGroup, ship, campMan);
 			
 		}
 
@@ -187,7 +198,6 @@ public class EventSystem : MonoBehaviour
 	/// </summary>
 	public void ConcludeEvent()
 	{
-		print("Concluded Event");
 		eventInstance.GetComponent<InkDriverBase>().ClearUI();
 
 		//in case a random event isn't chosen
@@ -198,16 +208,31 @@ public class EventSystem : MonoBehaviour
 
 		//Go back to travel scene
 		asm.UnloadScene("Event_General");
+		asm.UnloadScene("Event_CharacterFocused");
 		AudioManager.instance.PlayMusicWithTransition("General Theme");
 
 		//Potentially end the job entirely
 		if (overallEventIndex >= maxEvents)
 		{
+			ClearEventSystem();
 			ship.CashPayout();
 			GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);
 		}
 
 		eventActive = false;
+	}
+	
+	private void ClearEventSystem()
+	{
+		storyEvents.Clear();
+		randomEvents.Clear();
+		currentJob = null;
+		maxEvents = 0;
+		overallEventIndex = 0;
+		storyEventIndex = 0;
+		randomEventIndex = 0;
+		eventInstance = null;
+		lastEventTitle = "";
 	}
 
 	/// <summary>
@@ -229,6 +254,45 @@ public class EventSystem : MonoBehaviour
 
 
 	}
+
+	/// <summary>
+	/// Finds the next story event by cycling through all possible versions of the next story event. 
+	/// </summary>
+	/// <returns></returns>
+	private GameObject FindNextStoryEvent()
+    {
+		GameObject result = storyEvents[storyEventIndex];
+		bool found = false;
+		
+		// search for the next event with the correct variation
+		for (int i = storyEventIndex; i < storyEvents.Count; i++)
+		{
+			if(!found)
+			{
+				GameObject thisEvent = storyEvents[i];
+				List<Requirements> requirements = thisEvent.GetComponent<InkDriverBase>().requiredStats;
+
+				//grabs first eight letters of ink file name to check the naming code
+				string thisEventTitle = thisEvent.GetComponent<InkDriverBase>().inkJSONAsset.name.Substring(0, 8); 
+
+				if (lastEventTitle != thisEventTitle) //if this is not a variation of the same event as the last one, check requirements
+				{
+					if (HasRequiredStats(requirements))
+					{
+						result = thisEvent;
+						found = true;
+					}
+				}
+				else //if it's the same event as the last one we played, just keep going.
+				{
+					++storyEventIndex;
+				}
+			}
+		}
+
+		lastEventTitle = result.GetComponent<InkDriverBase>().inkJSONAsset.name.Substring(0, 8);
+		return result;
+    }
 
 	/// <summary>
 	/// Picks a random event to spawn. The random numbers include the eventIndex to the count of storyEvents list
@@ -280,13 +344,19 @@ public class EventSystem : MonoBehaviour
 	}
 
 
+	/// <summary>
+	/// Runs through the list of requirements for a job and determines if each and every one is met
+	/// </summary>
+	/// <param name="selectedRequirements"></param>
+	/// <returns></returns>
 	private bool HasRequiredStats(List<Requirements> selectedRequirements)
 	{
 		bool result = true;
 
 		foreach (Requirements required in selectedRequirements)
 		{
-			if (!required.MatchesRequirements(ship))
+			//break the loop the second that one requirement doesn't match
+			if (!required.MatchesRequirements(ship, campMan))
 			{
 				result = false;
 				break;
@@ -299,12 +369,21 @@ public class EventSystem : MonoBehaviour
 	/// Takes the events supplied in newJob and applies them to the event lists here
 	/// </summary>
 	/// <param name="newJob"></param>
-	public void TakeEvents(Job newJob)
+	public void TakeStoryJobEvents(Job newJob)
 	{
-		storyEvents = newJob.storyEvents;
-		randomEvents = newJob.randomEvents;
+		storyEvents.AddRange(newJob.storyEvents);
+		randomEvents.AddRange(newJob.randomEvents);
 		currentJob = newJob;
+		maxEvents += newJob.storyEvents.Count;
+		maxEvents += newJob.maxRandomEvents;
 	}
 
-	
+	public void TakeSideJobEvents(List<Job> sideJobs)
+    {
+		foreach(Job newJob in sideJobs)
+        {
+	        randomEvents.AddRange(newJob.randomEvents);
+	        maxEvents += newJob.maxRandomEvents;
+        }
+    }
 }
