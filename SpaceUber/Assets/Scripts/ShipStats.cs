@@ -12,6 +12,8 @@ using NaughtyAttributes;
 
 public class ShipStats : MonoBehaviour
 {
+    public enum resources{ Credits, Energy, Security, ShipWeapons, Crew, Food, FoodPerTick, HullDurability, Stock}
+
     [SerializeField ,Tooltip("Starting amount of credits"), Foldout("Starting Ship Stats")]
     private int startingCredits;
     [SerializeField, Tooltip("Starting amount of energy"), Foldout("Starting Ship Stats")]
@@ -209,15 +211,15 @@ public class ShipStats : MonoBehaviour
         shipStatsUI.UpdateHullUI(shipHealthCurrent, shipHealthMax);
     }
 
-    public int GetCredits()
-    {
-        return credits;
-    }
+    //public int GetCredits()
+    //{
+    //    return credits;
+    //}
 
-    public int GetRemainingCrew()
-    {
-        return crewRemaining;
-    }
+    //public int GetRemainingCrew()
+    //{
+    //    return crewRemaining;
+    //}
 
     public void AddPayout(int ammount)
     {
@@ -235,13 +237,41 @@ public class ShipStats : MonoBehaviour
         return EnergyRemaining >= 0;
     }
 
-    public int Credits { get; set; }
-    public int EnergyRemaining { get; set; }
-    public int Security { get; set; }
-    public int ShipWeapons { get; set; }
-    public int CrewRemaining { get; set; }
-    public int Food { get; set; }
-    public int ShipHealthCurrent { get; set; }
+    public int Credits
+    {
+        get { return credits; }
+        set { credits = value; }
+    }
+    public int EnergyRemaining
+    {
+        get { return energyRemaining; }
+        set { energyRemaining = value; }
+    }
+    public int Security
+    {
+        get { return security; }
+        set { security = value; }
+    }
+    public int ShipWeapons
+    {
+        get { return shipWeapons; }
+        set { shipWeapons = value; }
+    }
+    public int CrewRemaining
+    {
+        get { return crewRemaining; }
+        set { crewRemaining = value; }
+    }
+    public int Food
+    {
+        get { return food; }
+        set { food = value; }
+    }
+    public int ShipHealthCurrent
+    {
+        get { return shipHealthCurrent; }
+        set { shipHealthCurrent = value; }
+    }
 
     //public void UpdateCrewMorale(int crewMoraleAmount)
     //{
@@ -254,6 +284,16 @@ public class ShipStats : MonoBehaviour
     //    //UpdateShipStatsUI();
     //}
 
+    public void PrintShipStats()
+    {
+        Debug.Log("Credits " + Credits);
+        Debug.Log("Energy " + EnergyRemaining);
+        Debug.Log("Security " + Security);
+        Debug.Log("ShipWeapons " + ShipWeapons);
+        Debug.Log("CrewRemaining " + CrewRemaining);
+        Debug.Log("Food " + Food); 
+        Debug.Log("ShipHealthCurrent " + ShipHealthCurrent);
+    }
     public void PayCrew(int ammount)
     {
         UpdateCreditsAmount(-ammount * crewRemaining);

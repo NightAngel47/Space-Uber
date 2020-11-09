@@ -16,12 +16,6 @@ public class OverclockRoom : MonoBehaviour
     [SerializeField] MiniGameType miniGame;
     bool cooledDown = true;
 
-	private void OnMouseDown()
-    {
-	    // TODO replace with proper UI call
-	    PlayMiniGame();
-    }
-
     public void PlayMiniGame()
     {
 	    if (GameManager.instance.currentGameState == InGameStates.Events 
@@ -39,4 +33,9 @@ public class OverclockRoom : MonoBehaviour
         yield return new WaitForSeconds(OverclockController.instance.cooldownTime);
         cooledDown = true;
 	}
+
+    public MiniGameType GetMiniGame()
+    {
+        return miniGame;
+    }
 }

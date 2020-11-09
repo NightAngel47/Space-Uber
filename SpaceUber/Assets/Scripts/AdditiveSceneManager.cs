@@ -300,5 +300,9 @@ public class AdditiveSceneManager : MonoBehaviour
                 addedSceneNames[i] = addedSceneNames[i+1];
             }
         }
+        else
+        {
+            Debug.LogWarning($"Scene: {scene} was not loaded, thus could not be unloaded.");
+        }
     }
 }

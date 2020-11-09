@@ -6,9 +6,8 @@
  *              Uses the AdditiveSceneManager to Load/Unload scenes for each state.
  */
 
-using System;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// The states that the game can be in:
@@ -17,7 +16,7 @@ using UnityEngine.SceneManagement;
 ///     Events          player can run into story and random events.
 ///     Ending          player has reached a narrative ending.
 /// </summary>
-public enum InGameStates { JobSelect, ShipBuilding, CrewManagement, Events, Ending, Mutiny, Death ,CrewPayment }
+public enum InGameStates { None, JobSelect, ShipBuilding, CrewManagement, Events, Ending, Mutiny, Death ,CrewPayment }
 
 /// <summary>
 /// Manages the state of the game while the player is playing.
@@ -33,13 +32,18 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// The current state that the player is at within the game.
     /// </summary>
-    public InGameStates currentGameState { get; private set; } = InGameStates.JobSelect;
+    public InGameStates currentGameState { get; private set; } = InGameStates.None;
 
     /// <summary>
     /// Reference to the AdditiveSceneManager used to
     /// Load/Unload scenes additvely when the game state changes.
     /// </summary>
     private AdditiveSceneManager additiveSceneManager;
+
+    /// <summary>
+    /// Reference to the JobManager used to refresh the job list in job select state
+    /// </summary>
+    private JobManager jobManager;
 
     /// <summary>
     /// Sets the instance of the GameManager using the Singleton pattern.
@@ -53,11 +57,33 @@ public class GameManager : MonoBehaviour
 
         // Sets the reference to the AdditiveSceneManager in the active scene.
         additiveSceneManager = FindObjectOfType<AdditiveSceneManager>();
+
+        // Sets the reference to the JobManager in the active scene
+        jobManager = FindObjectOfType<JobManager>();
     }
 
     private void Start()
     {
+        StartCoroutine(DelayedStart());
+    }
+
+    /// <summary>
+    /// Delay starting the game when loaded in.
+    /// This give the time for the additive scene manager to clear, before loading new scenes.
+    /// </summary>
+    private IEnumerator DelayedStart()
+    {
+        yield return new WaitForEndOfFrame();
         ChangeInGameState(InGameStates.JobSelect);
+    }
+
+    private void Update()
+    {
+        // I was getting errors in scripts trying to access GameManager.instance.  Hopefully this fixes it.
+        if (instance == null)
+        {
+            instance = this;
+        }
     }
 
     /// <summary>
@@ -76,34 +102,30 @@ public class GameManager : MonoBehaviour
         {
             case InGameStates.JobSelect: // Loads Jobpicker for the player to pick their job
                 // unload ending screen if replaying
-                if (SceneManager.GetSceneByName("PromptScreen_End").isLoaded) // TODO remove when we have menus
-                {
-                  additiveSceneManager.UnloadScene("PromptScreen_End");
-                }
-                if (SceneManager.GetSceneByName("PromptScreen_Death").isLoaded) // TODO remove when we have menus
-                {
-                  additiveSceneManager.UnloadScene("PromptScreen_Death");
-                }
-                if (SceneManager.GetSceneByName("PromptScreen_Mutiny").isLoaded) // TODO remove when we have menus
-                {
-                  additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
-                }
+                additiveSceneManager.UnloadScene("PromptScreen_End");
+                additiveSceneManager.UnloadScene("PromptScreen_Death");
+                additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
+
+                additiveSceneManager.UnloadScene("CrewPayment");
 
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
                 additiveSceneManager.LoadSceneSeperate("Interface_JobList");
+                jobManager.RefreshJobList();
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
                 additiveSceneManager.UnloadScene("Interface_JobList");
+                additiveSceneManager.UnloadScene("CrewManagement");
+
                 additiveSceneManager.LoadSceneSeperate("ShipBuilding");
                 break;
             case InGameStates.CrewManagement:
                 additiveSceneManager.UnloadScene("ShipBuilding");
+
                 additiveSceneManager.LoadSceneSeperate("CrewManagement");
-                ObjectScript[] os = FindObjectsOfType<ObjectScript>();
-                break; 
+                break;
             case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
-                additiveSceneManager.UnloadScene("CrewManagement");
                 additiveSceneManager.UnloadScene("Starport BG");
+
                 // Remove unplaced rooms from the ShipBuilding state
                 if (!ObjectMover.hasPlaced)
                 {

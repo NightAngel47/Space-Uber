@@ -1,18 +1,8 @@
 VAR randomEnd = -> MinorDamage
 
-VAR minorDamageEnd = -> MinorDamage
-VAR prankedEnd = -> Pranked
-VAR moneyEnd = -> Money
-VAR shuffleEnd = -> Shuffle
 
-Something catches your attention in the space between the stars. A distortion in space where light is warped, bent, and trapped in the cosmic maw of a wormhole. As you draw closer a nearby star is ripped from its position in the void and stretched into stellar spaghetti as it crosses the event horizon. A quick number crunch reveals that there is only a small chance that the same would happen to your ship should you venture closer. #RandomizeOutcome
+Something catches your attention in the space between the stars. A distortion in space where light is warped, bent, and trapped in the cosmic maw of a wormhole. As you draw closer a nearby star is ripped from its position in the void and stretched into stellar spaghetti as it crosses the event horizon. A quick number crunch reveals that there is only a small chance that the same would happen to your ship should you venture closer. 
 + [Approach Wormhole] ->randomEnd 
-//{shuffle:
-//    -->MinorDamage
-//    -->Pranked
-//    -->Money
-//    -->Shuffle
-//}
 + [Leave it be] -> Leave
 
 === Leave ===
@@ -34,3 +24,17 @@ As you approach the umbral blot, the alarms start blaring and the gravitational 
 === Shuffle ===
 As you approach the umbral blot, the alarms start blaring and the gravitational pull spikes. The closer end of the ship is wrenched into the void, and the ship begins to spin wildly. Your crew grip onto the walls and retch. When the spinning comes to a stop you realize that the wormhole is behind you now. Strangely, the plants onboard are significantly overgrown, overproducing food, and your crew seems to have aged by a few months.
 ->END
+
+===function RandomizeEnding(rng)===
+{ 
+    - rng == 0: 
+        ~randomEnd = MinorDamage
+    - rng == 1:
+        ~randomEnd = Pranked
+    - rng == 2:
+        ~randomEnd = Money
+    - rng == 3:
+        ~randomEnd = Shuffle
+    - else:
+        ~randomEnd = Shuffle
+}

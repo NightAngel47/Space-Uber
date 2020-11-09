@@ -16,15 +16,18 @@ A few of the VIPs deflate, seemingly relieved. Olivia instead leans closer, "You
 -> Infighting 
 
 == Kellis ==
-Olivia nods, "That makes sense. But if you're admitting it then you aren't with them... I suppose if they wanted to keep something from you they have backdoors to make you ignore evidence. That's tricky." after a moment of thought she continues, "You need someone else in on this, you could be compromised. How about you turn all the data over to us, and we could look it over?" The elites nod vigorously in agreement, they think they're in on the deal. You put together a data profile scrubbed of evidence of your involvement. You plant a few false leads which they may get to eventually, but it'll take far more time than they have.
+Olivia nods, "That makes sense. But if you're admitting it then you aren't with them... I suppose if they wanted to keep something from you they have backdoors to make you ignore evidence. That's tricky." after a moment of thought she continues, "You need someone else in on this, you could be compromised. How about you turn all the data over to us, and we could look it over?" 
+The elites nod vigorously in agreement, they think they're in on the deal. You put together a data profile scrubbed of evidence of your involvement. You plant a few false leads which they may get to eventually, but it'll take far more time than they have.
 -> END
 
 == Infighting ==
-Olivia freezes and immediately turns to the rest of them, voice taut, "Ok, no one start. For all we know this robotic captain of ours has been doing it." The eyes of the VIPs slowly drift, business competitors, buried hatchets, stray insults. Delicately, they all agree with Olivia, but you can tell their focus has shifted. Now they begin to cluster with another and talk about their businesses, shore up old alliances. None of them are thinking about you. Olivia remains at your terminal. She glares at you, "Nothing about your story explains why you haven't been able to catch the killer yet. We don't have access to the cameras, the doors, the weapons‒but you do. Don't think this is over."
+Olivia freezes and immediately turns to the rest of them, voice taut, "Ok, no one start. For all we know this robotic captain of ours has been doing it." The eyes of the VIPs slowly drift, business competitors, buried hatchets, stray insults. Delicately, they all agree with Olivia, but you can tell their focus has shifted. 
+Now they begin to cluster with another and talk about their businesses, shore up old alliances. None of them are thinking about you. Olivia remains at your terminal. She glares at you, "Nothing about your story explains why you haven't been able to catch the killer yet. We don't have access to the cameras, the doors, the weapons‒but you do. Don't think this is over."
 -> END
 
 == Reveal_Clones ==
-Olivia's eyes widen, realizing the obvious truth, "Oh fuck." she breathes out. Several of the elites put their fingers to hidden earpieces or implants, "We're cut off, I can't contact my company." one says. The entire group begins pacing, shaking, fidgeting. For once, they are not in control. "Ok ok." Olivia says, turning back to you, "Whatever their plan is, you can't follow it. Once we get back to civilized society, we can contact the right people and fix this. And... and you'll get your money of course." Your passengers are suddenly very polite, now that you're in control.
+Olivia's eyes widen, realizing the obvious truth, "Oh fuck." she breathes out. Several of the elites put their fingers to hidden earpieces or implants, "We're cut off, I can't contact my company." one says. The entire group begins pacing, shaking, fidgeting. For once, they are not in control. 
+"Ok ok." Olivia says, turning back to you, "Whatever their plan is, you can't follow it. Once we get back to civilized society, we can contact the right people and fix this. And... and you'll get your money of course." Your passengers are suddenly very polite, now that you're in control.
 -> END
 
 == Reveal_Intent ==

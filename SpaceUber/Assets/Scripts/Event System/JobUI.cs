@@ -19,9 +19,11 @@ public class JobUI : MonoBehaviour, IPointerClickHandler
     [SerializeField] private TMP_Text jobNameText;
     [SerializeField] private Image selectBgImg;
 
-    [SerializeField] private bool isSideJob;
+    [SerializeField] private bool isSideJob = false;
     [SerializeField, ShowIf("isSideJob")] private TMP_Text sideJobPayText;
     [SerializeField, ShowIf("isSideJob")] private TMP_Text sideJobLengthText;
+
+    public string[] jobSelectSFX;
 
     private void Start()
     {
@@ -38,11 +40,11 @@ public class JobUI : MonoBehaviour, IPointerClickHandler
         {
             sideJobPayText.text = job.payout.ToString() + " Credits";
 
-            switch (job.maxEvents)
+            switch (job.maxRandomEvents)
             {
                 //TODO add other cases for other side job lengths
                 default:
-                    sideJobLengthText.text = "Length: +" + job.maxEvents + " Event(s)";
+                    sideJobLengthText.text = "Length: +" + job.maxRandomEvents + " Event(s)";
                     Debug.LogWarning("UI not setup for side job length");
                     break;
             }
@@ -53,6 +55,7 @@ public class JobUI : MonoBehaviour, IPointerClickHandler
     {
         selectBgImg.enabled = !selectBgImg.enabled;
         jobManager.SelectJob(availableJob);
+        AudioManager.instance.PlaySFX(jobSelectSFX[Random.Range(0, jobSelectSFX.Length - 1)]);
     }
 
     public void ClearSelectedBackground()

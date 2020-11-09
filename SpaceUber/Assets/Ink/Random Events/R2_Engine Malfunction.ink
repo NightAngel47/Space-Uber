@@ -1,9 +1,9 @@
-A warning comes from the engine room. A malfunction is causing the engine to overheat, and the intense temperature may cause damage to the ship. You can risk engineers to fix it, use other parts of the ship to do the repairs, or leave it be and hope for the best.
+VAR randomEnd = -> Survive
+
+
+The chief engineer, Ratchet, contacts you, "There seems to be a problem with the engine. It's starting to overheat, and if something isn't done soon, it might cause some damage to the hull. A few parts are malfunctioning, and they need to be fixed. We could have some crew members suit up and do the work, but I don't trust the protection suits the company issued us. We could make it safer if we use parts from around the ship, but they would have to be replaced."
 * [Risk Engineers (50% chance to lose some crew)]
-{shuffle:
-    -->Survive
-    -->Sacrifice
-}
+    -->randomEnd
 + [Salvage Parts (-100 Credits)] -> Repair
 + [Leave It Be (-20 Hull Durability)] -> Leave
 
@@ -23,3 +23,13 @@ Not wanting to risk the lives of your engineers, you have the engine repaired wi
 === Leave ===
 You leave the engine be and hope for the best. While the engine manages to stay intact, its heat starts melting its surroundings, doing a good amount of damage to your ship's integrity.
 -> END
+
+===function RandomizeEnding(rng)===
+{ 
+    - rng == 0: 
+        ~randomEnd = Survive
+    - rng == 1:
+        ~randomEnd = Sacrifice
+    - else:
+        ~randomEnd = Sacrifice
+}

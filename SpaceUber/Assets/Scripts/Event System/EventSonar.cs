@@ -97,7 +97,7 @@ public class EventSonar : MonoBehaviour
         
         //decrease opacity
         dot.GetComponent<Image>().color = new Color(1, 1, 1, Mathf.Lerp(1, 0, spinRate * Time.deltaTime));
-
+        AudioManager.instance.PlaySFX("Sonar Blip");
         yield return new WaitForSeconds(spinRate);
         
     }
