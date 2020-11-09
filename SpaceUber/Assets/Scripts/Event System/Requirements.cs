@@ -6,11 +6,13 @@
  * different classes as a variable, not a script
  */
 
+using NaughtyAttributes;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public struct Requirements
+public class Requirements
 {
     public enum ResourceType
     {
@@ -23,57 +25,131 @@ public struct Requirements
         CREDITS,
         //MORALE
     }
+    [Tooltip("If the requirement is narrative-based")]
+    [SerializeField, AllowNesting]
+    private bool isNarrativeRequirement = false;
 
     [Tooltip("The resource you would like to be compared")]
-    public ResourceType selectedResource;
+    [SerializeField, HideIf("isNarrativeRequirement"), AllowNesting]
+    private ResourceType selectedResource;
     
     [Tooltip("How much of this resources is required for an event to run")]
-    public int requiredAmount;
+    [SerializeField, HideIf("isNarrativeRequirement"), AllowNesting]
+    private int requiredAmount;
 
-    [Tooltip("Check this if you would like to check if the ship resource is LESS than the number supplied")]
-    public bool lessThan;
-    
-    public bool MatchesRequirements(ShipStats thisShip)
+    [Tooltip("Click this if you would like to check if the ship resource is LESS than the number supplied")]
+    [SerializeField, HideIf("isNarrativeRequirement"),AllowNesting]
+    private bool lessThan = false;
+
+    [Tooltip("Select one item from this dropdown list. The selected variable must be true for this event to run")]
+    [Dropdown("cateringToRichBools"), SerializeField, ShowIf("isNarrativeRequirement"), AllowNesting]
+    private string ctrBoolRequirements;
+
+    [Tooltip("Click this if you would like to check trust variables for Catering to the Rich")]
+    [SerializeField, ShowIf("isNarrativeRequirement"), AllowNesting]
+    private bool ctrTrustRequirements = false;
+
+    [Tooltip("The minimum trust the clones must have in the player")]
+    [SerializeField, ShowIf("ctrTrustRequirements"), AllowNesting]
+    private int cloneTrustRequirement;
+
+    [Tooltip("The minimum trust the VIPS must have in the player")]
+    [SerializeField, ShowIf("ctrTrustRequirements"), AllowNesting] 
+    private int VIPTrustRequirement;
+
+    //
+    //public string campaign;
+    //[HideInInspector] public List<string> PossibleCampaigns => new List<string>() { "NA", "Catering to the Rich" };
+
+    public bool MatchesRequirements(ShipStats thisShip, CampaignManager campMan)
     {
-        bool result;
-        int shipStat = 0;
-        switch (selectedResource)
-        {
-            case ResourceType.HULL:
-                shipStat = thisShip.ShipHealthCurrent;
-                break;
-            case ResourceType.ENERGY:
-                shipStat = thisShip.EnergyRemaining;
-                break;
-            case ResourceType.CREW:
-                shipStat = thisShip.CrewRemaining;
-                break;
-            case ResourceType.FOOD:
-                shipStat = thisShip.Food;
-                break;
-            case ResourceType.WEAPONS:
-                shipStat = thisShip.ShipWeapons;
-                break;
-            case ResourceType.SECURITY:
-                shipStat = thisShip.Security;
-                break;
-            //case ResourceType.MORALE:
-            //    shipStat = thisShip.Morale;
-            //    break;
-            case ResourceType.CREDITS:
-                shipStat = thisShip.Credits;
-                break;
-        }
+        bool result = true;
 
-        if (!lessThan)
+        if (!isNarrativeRequirement)
         {
-            result = shipStat > requiredAmount;
+            int shipStat = 0;
+            switch (selectedResource)
+            {
+                case ResourceType.HULL:
+                    shipStat = thisShip.ShipHealthCurrent;
+                    break;
+                case ResourceType.ENERGY:
+                    shipStat = thisShip.EnergyRemaining;
+                    break;
+                case ResourceType.CREW:
+                    shipStat = thisShip.CrewRemaining;
+                    break;
+                case ResourceType.FOOD:
+                    shipStat = thisShip.Food;
+                    break;
+                case ResourceType.WEAPONS:
+                    shipStat = thisShip.ShipWeapons;
+                    break;
+                case ResourceType.SECURITY:
+                    shipStat = thisShip.Security;
+                    break;
+                //case ResourceType.MORALE:
+                //    shipStat = thisShip.Morale;
+                //    break;
+                case ResourceType.CREDITS:
+                    shipStat = thisShip.Credits;
+                    break;
+            }
+
+            if (lessThan)
+            {
+                result = shipStat < requiredAmount;
+            }
+            else
+            {
+                result = shipStat > requiredAmount;
+            }
         }
         else
         {
-            result = shipStat < requiredAmount;
+            switch(campMan.currentCamp)
+            {
+                //for catering to the rich campaign
+                case Campaigns.CateringToTheRich:
+                    CampaignManager.CateringToTheRich campaign = (CampaignManager.CateringToTheRich) campMan.campaigns[(int)Campaigns.CateringToTheRich];
+                    
+                    //check if the selected bool is true or not
+                    switch(ctrBoolRequirements)
+                    {
+                        case "Side With Scientist":
+                            result = campaign.ctr_sideWithScientist;
+                            break;
+                        case "Kill Beckett":
+                            result = campaign.ctr_killBeckett;
+                            break;
+                        case "Killed At Safari":
+                            result = campaign.ctr_killedAtSafari;
+                            break;
+                        case "Tell VIPs About Clones":
+                            result = campaign.ctr_tellVIPsAboutClones;
+                            break;
+                        case "N_A":
+                            break;
+                    }
+                    if(ctrTrustRequirements)
+                    {
+                        bool VIPResult = campaign.ctr_VIPTrust > VIPTrustRequirement;
+                        bool cloneResult = campaign.ctr_cloneTrust > cloneTrustRequirement;
+                        result = VIPResult && cloneResult;
+                    }
+                    break;
+            }
         }
+        
 
         return result;
+    }
+
+    private List<string> cateringToRichBools
+    {
+        get
+        {
+            return new List<string>() { "N_A", "Side With Scientist", "Kill Beckett", "Killed At Safari", "Tell VIPs About Clones" };
+        }
     }
 }

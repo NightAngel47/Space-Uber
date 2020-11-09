@@ -5,12 +5,14 @@
  * Description: Interface for object after its placed, checks if it is deleted or edited and sets that up
  */
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class ObjectScript : MonoBehaviour
 {
@@ -28,20 +30,14 @@ public class ObjectScript : MonoBehaviour
     public static bool CalledFromSpawn = false;
 
     public string[] mouseOverAudio;
+    
+    [SerializeField] private GameObject roomTooltip;
 
     [SerializeField] private ShapeType shapeDataTemplate = null;
 
     [Foldout("Data")]
     public ShapeType shapeData = null;
     public ShapeTypes shapeTypes => shapeData.St;
-
-    [SerializeField] private GameObject hoverUiPanel;
-    [SerializeField] private TMP_Text roomNameUI;
-    [SerializeField] private TMP_Text roomDescUI;
-    [SerializeField] private TMP_Text roomPrice;
-    [SerializeField] private Transform statsUI;
-    [SerializeField] private GameObject resourceUI;
-    
 
     [Foldout("Data")]
     public float boundsUp;
@@ -68,18 +64,8 @@ public class ObjectScript : MonoBehaviour
         c.a = 1;
         //parentObj = transform.parent.gameObject;
         
-        roomNameUI.text = gameObject.GetComponent<RoomStats>().roomName;
-        roomDescUI.text = gameObject.GetComponent<RoomStats>().roomDescription;
-        roomPrice.text = gameObject.GetComponent<RoomStats>().price.ToString();
-
-        foreach (var resource in gameObject.GetComponent<RoomStats>().resources)
-        {
-            GameObject resourceGO = Instantiate(resourceUI, statsUI);
-            resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = resource.resourceIcon; // resource icon
-            resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = resource.resourceType; // resource name
-            resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = resource.amount.ToString(); // resource amount
-        }
-
+        FindObjectOfType<EditCrewButton>().CheckForRooms();
+        
         ResetData();
     }
 
@@ -111,11 +97,11 @@ public class ObjectScript : MonoBehaviour
         {
             if (ObjectMover.hasPlaced == true)
             {
-                hoverUiPanel.SetActive(true);
+                roomTooltip.SetActive(true);
             }
-            else if (hoverUiPanel.activeSelf)
+            else if (roomTooltip.activeSelf)
             {
-                hoverUiPanel.SetActive(false);
+                roomTooltip.SetActive(false);
             }
             
             if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true)
@@ -144,7 +130,7 @@ public class ObjectScript : MonoBehaviour
 
         if(GameManager.instance.currentGameState == InGameStates.CrewManagement || GameManager.instance.currentGameState == InGameStates.Events)
         {
-            hoverUiPanel.SetActive(true);
+            roomTooltip.SetActive(true);
 
             if (Input.GetMouseButton(0))
             {
@@ -156,9 +142,9 @@ public class ObjectScript : MonoBehaviour
 
     public void OnMouseExit()
     {
-        if (hoverUiPanel.activeSelf)
+        if (roomTooltip.activeSelf)
         {
-            hoverUiPanel.SetActive(false);
+            roomTooltip.SetActive(false);
         }
     }
 
@@ -192,6 +178,7 @@ public class ObjectScript : MonoBehaviour
         {
             r.TurnOnClickAgain();
         }
+
         Destroy(gameObject);
     }
 
@@ -210,10 +197,8 @@ public class ObjectScript : MonoBehaviour
         gameObject.GetComponent<ObjectMover>().UpdateMouseBounds(boundsDown, boundsUp, boundsLeft, boundsRight);
     }
 
-    public void UpdateHoverUIData(string n, string d, string s)
+    private void OnDestroy()
     {
-        hoverUiPanel.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = n;
-        hoverUiPanel.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = d;
-        hoverUiPanel.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = s;
+        FindObjectOfType<EditCrewButton>()?.CheckForRooms();
     }
 }
