@@ -64,4 +64,12 @@ public class RoomTooltipUI : MonoBehaviour
         roomSellPrice.text = ((int)(roomStats.price * roomStats.priceReducationPercent)).ToString();
         roomUsedImg.SetActive(roomStats.usedRoom);
     }
+
+    private void Update()
+    {
+        if (gameObject.activeSelf && EventSystem.instance.eventActive)
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }

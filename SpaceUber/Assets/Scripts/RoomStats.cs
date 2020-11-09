@@ -54,7 +54,7 @@ public class RoomStats : MonoBehaviour
     void Start()
     {
         shipStats = FindObjectOfType<ShipStats>();
-        StartCoroutine(LateStart(Time.deltaTime));
+        StartCoroutine(LateStart(0.1f));
     }
 
     void Update()
