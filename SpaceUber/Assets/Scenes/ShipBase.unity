@@ -396,6 +396,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1002784701 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1834630419, guid: 2881fb45785837144aa48e81ba17090b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1002784688}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1036291355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -724,7 +730,7 @@ PrefabInstance:
         type: 3}
       propertyPath: eventWarning
       value: 
-      objectReference: {fileID: 1075280019}
+      objectReference: {fileID: 1002784701}
     - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
         type: 3}
       propertyPath: sonar
