@@ -213,7 +213,7 @@ public class ObjectMover : MonoBehaviour
         else
         {
             Debug.Log("Cannot Afford");
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
