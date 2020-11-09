@@ -52,17 +52,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inkJSONAsset: {fileID: 4900000, guid: 478adf17c9543ee4a893e41cbb624235, type: 3}
   eventName: Default
-  backgroundImage: {fileID: 21300000, guid: dc628be6ca803144883ebe42610da8c4, type: 3}
+  backgroundImage: {fileID: 21300000, guid: 55b8a2770408a8e44a586cee5b6c4f90, type: 3}
   buttonPrefab: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
     type: 3}
-  buttonGroup: {fileID: 0}
-  titleBox: {fileID: 0}
-  textBox: {fileID: 0}
-  backgroundUI: {fileID: 0}
+  campMan: {fileID: 0}
   textPrintSpeed: 0.01
-  choiceOutcomes: []
-  donePrinting: 1
-  showingChoices: 0
+  firstChoices: []
+  requiredStats: []
   eventBGM: 
 --- !u!222 &1311208582452319091
 CanvasRenderer:
