@@ -5,6 +5,7 @@
  * Description: 
  */
 
+using System;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
@@ -258,5 +259,10 @@ public class RoomStats : MonoBehaviour
         shipStats.UpdateFoodAmount(-food);
         shipStats.UpdateFoodPerTickAmount(-foodPerTick);
         shipStats.UpdateHullDurabilityAmount(-shipHealth, shipHealth);
+    }
+
+    private void OnDestroy()
+    {
+        shipStats.UpdateCrewAmount(currentCrew);
     }
 }

@@ -27,12 +27,10 @@ public class EditCrewButton : MonoBehaviour
     {
         if (FindObjectsOfType<RoomStats>().Length > 0)
         {
-            print("true");
             editCrewButton.interactable = true;
         }
         else
         {
-            print("false");
             editCrewButton.interactable = false;
         }
     }
