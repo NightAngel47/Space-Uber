@@ -13,15 +13,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Buy Energy Crystal
-  hasRequirements: 0
-  choiceRequirements: []
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 0000000001000000
-    amountChanged: ceffffff32000000
-    probabilities: []
-    multipleRandomOutcomes: []
---- !u!114 &-8922936291258961113
+  hasRequirements: 1
+  choiceRequirements:
+  - isNarrativeRequirement: 0
+    selectedResource: 6
+    requiredAmount: 50
+    lessThan: 0
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  hasRandomEnding: 0
+  outcomes:
+  - outcomeName: Buy Energy Crystal
+    isNarrativeOutcome: 0
+    resource: 1
+    amount: 50
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  - outcomeName: Buy Energy Crystal
+    isNarrativeOutcome: 0
+    resource: 0
+    amount: -50
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
+--- !u!114 &853902001264937578
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -34,14 +55,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Buy Military Weaponry
-  hasRequirements: 0
-  choiceRequirements: []
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 0000000003000000
-    amountChanged: 9cffffff19000000
-    probabilities: []
-    multipleRandomOutcomes: []
+  hasRequirements: 1
+  choiceRequirements:
+  - isNarrativeRequirement: 0
+    selectedResource: 6
+    requiredAmount: 100
+    lessThan: 0
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  hasRandomEnding: 0
+  outcomes:
+  - outcomeName: Buy Military Weaponry
+    isNarrativeOutcome: 0
+    resource: 3
+    amount: 25
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  - outcomeName: Buy Military Weaponry
+    isNarrativeOutcome: 0
+    resource: 0
+    amount: -100
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!114 &1466500520111740020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,14 +97,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceName: Buy Exotic Foods
-  hasRequirements: 0
-  choiceRequirements: []
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 0000000005000000
-    amountChanged: 3200000019000000
-    probabilities: []
-    multipleRandomOutcomes: []
+  hasRequirements: 1
+  choiceRequirements:
+  - isNarrativeRequirement: 0
+    selectedResource: 6
+    requiredAmount: 50
+    lessThan: 0
+    ctrBoolRequirements: 
+    ctrTrustRequirements: 0
+    cloneTrustRequirement: 0
+    VIPTrustRequirement: 0
+  hasRandomEnding: 0
+  outcomes:
+  - outcomeName: Buy Exotic Foods
+    isNarrativeOutcome: 0
+    resource: 5
+    amount: 25
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  - outcomeName: Buy Exotic Foods
+    isNarrativeOutcome: 0
+    resource: 0
+    amount: -50
+    ctrBoolOutcomes: 
+    cloneTrustChange: 0
+    VIPTrustChange: 0
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!114 &8883094620010444510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,12 +141,11 @@ MonoBehaviour:
   choiceName: Buy Nothing
   hasRequirements: 0
   choiceRequirements: []
-  outcome:
-    isRandomOutcome: 0
-    resourcesChanged: 
-    amountChanged: 
-    probabilities: []
-    multipleRandomOutcomes: []
+  hasRandomEnding: 0
+  outcomes: []
+  randomEndingOutcomes: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!1001 &7100027917751785446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,6 +153,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: requiredStats.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: eventName
@@ -101,6 +173,36 @@ PrefabInstance:
       propertyPath: inkJSONAsset
       value: 
       objectReference: {fileID: 4900000, guid: 0cbc975a5b357014dbbd33cc6f9428d8, type: 3}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: eventBGM
+      value: Clone Ambush Intro
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[0]
+      value: 
+      objectReference: {fileID: -9123125362624318223}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[1]
+      value: 
+      objectReference: {fileID: 853902001264937578}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[2]
+      value: 
+      objectReference: {fileID: 1466500520111740020}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: firstChoices.Array.data[3]
+      value: 
+      objectReference: {fileID: 8883094620010444510}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: requiredStats.Array.data[0].isNarrativeRequirement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name

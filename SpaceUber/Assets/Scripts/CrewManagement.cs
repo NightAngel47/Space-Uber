@@ -2,10 +2,9 @@
  * CrewManagement.cs
  * Author(s): Sydney
  * Created on: 10-20-20
- * Description: 
+ * Description:
  */
 
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -16,8 +15,9 @@ public class CrewManagement : MonoBehaviour
     private int crewAddAmount = 1;
     private ShipStats ss;
     private RoomStats rs;
-    public TextMeshProUGUI crewRemainingText;
-    public GameObject nextButton;
+    public TMP_Text crewRemainingText;
+    public GameObject crewManagementText;
+    public Button nextButton;
     public GameObject roomText;
     public GameObject costsText;
     public GameObject crewAmount;
@@ -31,7 +31,7 @@ public class CrewManagement : MonoBehaviour
     private int minAssignableCrew;
     private RoomStats[] currentRoomList;
 
-    public GameObject overclockButton;
+    public Button overclockButton;
     public GameObject statAndNumPrefab;
     public GameObject outputObject;
     public GameObject[] sceneButtons;
@@ -42,18 +42,23 @@ public class CrewManagement : MonoBehaviour
     public void Start()
     {
         ss = FindObjectOfType<ShipStats>();
-        crewRemainingText.text = "Crew Remaining: " + ss.GetRemainingCrew();
+        crewRemainingText.text = "Crew Remaining: " + ss.CrewRemaining;
 
         statPanel = gameObject.transform.GetChild(0).gameObject;
         TurnOffPanel();
 
         currentRoomList = FindObjectsOfType<RoomStats>();
 
-        overclockButton.SetActive(false);
+        overclockButton.interactable = false;
 
         foreach(RoomStats r in currentRoomList)
         {
             minAssignableCrew += r.minCrew;
+        }
+        
+        if (minAssignableCrew > 0)
+        {
+            nextButton.interactable = false;
         }
     }
 
@@ -65,7 +70,7 @@ public class CrewManagement : MonoBehaviour
         }
         overtimeStats.Clear();
 
-        
+
 
         room = g;
         rs = room.GetComponent<RoomStats>();
@@ -77,16 +82,16 @@ public class CrewManagement : MonoBehaviour
 
         roomText.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().roomName;
         costsText.transform.GetChild(1).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().price.ToString();
-        costsText.transform.GetChild(2).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().minPower.ToString() 
+        costsText.transform.GetChild(2).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().minPower.ToString()
             + " - " + room.GetComponent<RoomStats>().maxPower.ToString();
         roomText.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().roomDescription;
         crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
-        costsText.transform.GetChild(3).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().minCrew.ToString() 
+        costsText.transform.GetChild(3).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().minCrew.ToString()
             + " - " + room.GetComponent<RoomStats>().maxCrew.ToString();
 
         UpdateOutput();
 
-        if (room.GetComponent<OverclockRoom>().GetMiniGame() == MiniGameType.Security) 
+        if (room.GetComponent<OverclockRoom>().GetMiniGame() == MiniGameType.Security)
         {
             //security
             GameObject resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
@@ -95,7 +100,7 @@ public class CrewManagement : MonoBehaviour
             overtimeStats.Add(resourceGO);
         }
 
-        if (room.GetComponent<OverclockRoom>().GetMiniGame() == MiniGameType.Asteroids) 
+        if (room.GetComponent<OverclockRoom>().GetMiniGame() == MiniGameType.Asteroids)
         {
             //shipweapons
             GameObject resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
@@ -103,7 +108,7 @@ public class CrewManagement : MonoBehaviour
             overtimeStats.Add(resourceGO);
         }
 
-        if (room.GetComponent<OverclockRoom>().GetMiniGame() == MiniGameType.CropHarvest) 
+        if (room.GetComponent<OverclockRoom>().GetMiniGame() == MiniGameType.CropHarvest)
         {
             //food amount
             GameObject resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
@@ -111,7 +116,7 @@ public class CrewManagement : MonoBehaviour
             overtimeStats.Add(resourceGO);
         }
 
-        if (room.GetComponent<OverclockRoom>().GetMiniGame() == MiniGameType.StabilizeEnergyLevels) 
+        if (room.GetComponent<OverclockRoom>().GetMiniGame() == MiniGameType.StabilizeEnergyLevels)
         {
             //Hull Durability
             GameObject resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
@@ -160,7 +165,7 @@ public class CrewManagement : MonoBehaviour
             }
             else
             {
-                //just the assgined active amount 
+                //just the assgined active amount
                 //might need to do things here
             }
 
@@ -176,19 +181,19 @@ public class CrewManagement : MonoBehaviour
 
     public void AddCrew()
     {
-        if (ss.GetRemainingCrew() > 0 && rs.currentCrew < room.GetComponent<RoomStats>().maxCrew)
+        if (ss.CrewRemaining > 0 && rs.currentCrew < room.GetComponent<RoomStats>().maxCrew)
         {
             rs.UpdateCurrentCrew(1);
             ss.UpdateCrewAmount(-1, 0);
             minAssignableCrew--;
-            crewRemainingText.text = "Crew Remaining: " + ss.GetRemainingCrew().ToString();
+            crewRemainingText.text = "Crew Remaining: " + ss.CrewRemaining;
             crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats();
 
             if (minAssignableCrew <= 0)
             {
-                nextButton.GetComponent<Button>().interactable = true;
+                nextButton.interactable = true;
             }
         }
     }
@@ -200,14 +205,14 @@ public class CrewManagement : MonoBehaviour
             rs.UpdateCurrentCrew(-1);
             ss.UpdateCrewAmount(1, 0);
             minAssignableCrew++;
-            crewRemainingText.text = "Crew Remaining: " + ss.GetRemainingCrew().ToString();
+            crewRemainingText.text = "Crew Remaining: " + ss.CrewRemaining;
             crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats();
 
             if (minAssignableCrew > 0)
             {
-                nextButton.GetComponent<Button>().interactable = false;
+                nextButton.interactable = false;
             }
         }
     }
@@ -240,6 +245,8 @@ public class CrewManagement : MonoBehaviour
 
     public void StartOverclockGame()
     {
+        TurnOffPanel();
+        crewManagementText.SetActive(false);
         room.GetComponent<OverclockRoom>().PlayMiniGame();
     }
 
@@ -247,7 +254,7 @@ public class CrewManagement : MonoBehaviour
     {
         if (room.GetComponent<OverclockRoom>().GetMiniGame() != MiniGameType.None)
         {
-            overclockButton.SetActive(true);
+            overclockButton.interactable = true;
         }
 
         for(int i = 0; i < sceneButtons.Length; i++)

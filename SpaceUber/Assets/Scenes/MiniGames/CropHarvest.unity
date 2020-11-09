@@ -229,6 +229,20 @@ MonoBehaviour:
   maxWaterLevel: 3
   pruneDecayerTic: 1
   maxPruneLevel: 3
+  trimCropSFX:
+  - Trim 1
+  - Trim 2
+  - Trim 3
+  waterCropSFX:
+  - Watering 1
+  - Watering 2
+  - Watering 3
+  fertilizeCropSFX:
+  - Fert 1
+  - Fert 2
+  plantCropSFX:
+  - Plant 1
+  - Plant 2
 --- !u!114 &39106571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,6 +969,20 @@ MonoBehaviour:
   maxWaterLevel: 3
   pruneDecayerTic: 1
   maxPruneLevel: 3
+  trimCropSFX:
+  - Trim 1
+  - Trim 2
+  - Trim 3
+  waterCropSFX:
+  - Watering 1
+  - Watering 2
+  - Watering 3
+  fertilizeCropSFX:
+  - Fert 1
+  - Fert 2
+  plantCropSFX:
+  - Plant 1
+  - Plant 2
 --- !u!114 &443275157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1190,6 +1218,12 @@ MonoBehaviour:
   miniGameSceneName: 1
   statModification: 1
   gameWinScreen: {fileID: 1278146651}
+  Successes:
+  - Arp 1
+  - Arp 2
+  - Arp 3
+  - Arp 4
+  - Arp 5
   crops: []
 --- !u!4 &660907015
 Transform:
@@ -1473,11 +1507,6 @@ GameObject:
   - component: {fileID: 1001686353}
   - component: {fileID: 1001686355}
   - component: {fileID: 1001686354}
-  - component: {fileID: 1001686357}
-  - component: {fileID: 1001686360}
-  - component: {fileID: 1001686359}
-  - component: {fileID: 1001686358}
-  - component: {fileID: 1001686356}
   m_Layer: 5
   m_Name: MiniGamePanel
   m_TagString: Untagged
@@ -1555,131 +1584,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001686352}
   m_CullTransparentMesh: 0
---- !u!61 &1001686356
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1001686352}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.10519838, y: 4.4421463}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 17.754528, y: 0.11647034}
-  m_EdgeRadius: 0
---- !u!50 &1001686357
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1001686352}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
---- !u!61 &1001686358
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1001686352}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -8.974412, y: 0.03697157}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.063539505, y: 8.799851}
-  m_EdgeRadius: 0
---- !u!61 &1001686359
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1001686352}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.07443619, y: -6.2755556}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 17.771046, y: 3.4211144}
-  m_EdgeRadius: 0
---- !u!61 &1001686360
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1001686352}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 8.997278, y: 0.044247866}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.20221329, y: 8.711794}
-  m_EdgeRadius: 0
 --- !u!1 &1096859425
 GameObject:
   m_ObjectHideFlags: 0
@@ -6819,6 +6723,20 @@ MonoBehaviour:
   maxWaterLevel: 3
   pruneDecayerTic: 1
   maxPruneLevel: 3
+  trimCropSFX:
+  - Trim 1
+  - Trim 2
+  - Trim 3
+  waterCropSFX:
+  - Watering 1
+  - Watering 2
+  - Watering 3
+  fertilizeCropSFX:
+  - Fert 1
+  - Fert 2
+  plantCropSFX:
+  - Plant 1
+  - Plant 2
 --- !u!114 &1159097374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7509,6 +7427,20 @@ MonoBehaviour:
   maxWaterLevel: 3
   pruneDecayerTic: 1
   maxPruneLevel: 3
+  trimCropSFX:
+  - Trim 1
+  - Trim 2
+  - Trim 3
+  waterCropSFX:
+  - Watering 1
+  - Watering 2
+  - Watering 3
+  fertilizeCropSFX:
+  - Fert 1
+  - Fert 2
+  plantCropSFX:
+  - Plant 1
+  - Plant 2
 --- !u!114 &1408866444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9112,6 +9044,7 @@ GameObject:
   - component: {fileID: 2081707900}
   - component: {fileID: 2081707899}
   - component: {fileID: 2081707898}
+  - component: {fileID: 2081707901}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -9193,6 +9126,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2081707901}
+        m_MethodName: ClickPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2081707899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9230,6 +9174,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2081707896}
   m_CullTransparentMesh: 0
+--- !u!114 &2081707901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081707896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 093fe5c779844da489ca1f98d9bcb5a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Clicks:
+  - Confirm 1
+  - Confirm 2
+  - Confirm 3
 --- !u!1 &2096939099
 GameObject:
   m_ObjectHideFlags: 0

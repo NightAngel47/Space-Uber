@@ -14,8 +14,9 @@ public class MiniGameButton : MonoBehaviour
 	[HideInInspector] public int value = 0;
 	[SerializeField] Sprite onSprite = null;
 	[SerializeField] Sprite offSprite = null;
+    public string[] Press;
 
-	public void OnMouseDown() { ChangeValue(); }
+    public void OnMouseDown() { ChangeValue(); AudioManager.instance.PlaySFX(Press[Random.Range(0, Press.Length - 1)]); }
 
 	public void ChangeValue()
 	{

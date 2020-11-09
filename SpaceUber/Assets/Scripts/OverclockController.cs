@@ -25,6 +25,7 @@ public class OverclockController : MonoBehaviour
     //If a room is already being overclocked
     public bool overclocking = false;
     OverclockRoom activeRoom;
+    bool winSound = false;
 
 	private void Awake()
 	{
@@ -36,6 +37,7 @@ public class OverclockController : MonoBehaviour
     {
         shipStats = FindObjectOfType<ShipStats>();
         additiveSceneManager = FindObjectOfType<AdditiveSceneManager>();
+        winSound = false;
     }
 
     public void StartMiniGame(MiniGameType miniGame, OverclockRoom room)
@@ -43,6 +45,7 @@ public class OverclockController : MonoBehaviour
         if (miniGame == MiniGameType.None) return; // check for implemented mini-game
         overclocking = true;
         activeRoom = room;
+        AudioManager.instance.PlaySFX("Overclock");
         additiveSceneManager.LoadSceneMerged(miniGame.ToString()); 
     }
 
@@ -57,7 +60,16 @@ public class OverclockController : MonoBehaviour
             if (miniGame == MiniGameType.StabilizeEnergyLevels) { shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullDurabilityBaseAdjustment * statModification)); }
         }
         additiveSceneManager.UnloadScene(miniGame.ToString());
-		if (succsess && activeRoom) { activeRoom.StartCoolDown(); }
+        if (succsess && activeRoom)
+        {
+           activeRoom.StartCoolDown();
+            if (winSound == false)
+            {
+                AudioManager.instance.PlaySFX("De-Overclock");
+                winSound = true;
+            }
+        }
         activeRoom = null;
+        FindObjectOfType<CrewManagement>().crewManagementText.SetActive(true);
 	}
 }

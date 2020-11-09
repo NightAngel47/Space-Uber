@@ -53,6 +53,11 @@ public class MiniGameCrop : MonoBehaviour
     bool hasBeenPlanted = false;
     bool isHarvestable = false;
 
+    public string[] trimCropSFX;
+    public string[] waterCropSFX;
+    public string[] fertilizeCropSFX;
+    public string[] plantCropSFX;
+
     List<string> cropNeeds = new List<string>();
     string needsWater = "Needs Watered";
     string needsFertilizer = "Needs Fertilizer";
@@ -68,8 +73,9 @@ public class MiniGameCrop : MonoBehaviour
 	{
         originalColor = plantImage.color;
         miniGameManager = GameObject.FindGameObjectWithTag("MiniGameScoreManager").GetComponent<CropHarvestMiniGame>();
-
-        harvestableCropPrefab = Instantiate(harvestableCropPrefab, transform.position, new Quaternion(), transform.parent);
+        Vector3 position = transform.position;
+        position.z -= 0.1f;
+        harvestableCropPrefab = Instantiate(harvestableCropPrefab, position, new Quaternion(), transform.parent);
         harvestableCropPrefab.SetActive(false);
         //Let minGameManager know how many crops are needed to beat the mini game
         miniGameManager.IncrementRequiredScore();
@@ -119,6 +125,7 @@ public class MiniGameCrop : MonoBehaviour
                 Vector3 deadLeafPosition = transform.position;
                 deadLeafPosition.y -= 1.5f;
                 Instantiate(deadLeavesPrefab, deadLeafPosition, new Quaternion(), transform.parent);
+                AudioManager.instance.PlaySFX(trimCropSFX[Random.Range(0, trimCropSFX.Length - 1)]);
 
                 //Let mini game manager know that dead leaves are required to be thrown away in order to win.
                 miniGameManager.IncrementRequiredScore();
@@ -128,15 +135,18 @@ public class MiniGameCrop : MonoBehaviour
             { 
                 isWatered = true;
                 waterLevel = maxWaterLevel;
+                AudioManager.instance.PlaySFX(waterCropSFX[Random.Range(0, waterCropSFX.Length - 1)]);
             }
             if (CropHarvestMiniGame.selectedTool.toolType == MiniGameToolType.Fertilizer && !isFertilized && !hasBeenPlanted) 
             {
                 hasBeenPlanted = true;
                 isFertilized = true;
+                AudioManager.instance.PlaySFX(fertilizeCropSFX[Random.Range(0, fertilizeCropSFX.Length - 1)]);
             }
              if (CropHarvestMiniGame.selectedTool.toolType == MiniGameToolType.Seed && isFertilized && stage == CropStage.Unplanted)
             { 
                 stage = CropStage.Seedling;
+                AudioManager.instance.PlaySFX(plantCropSFX[Random.Range(0, plantCropSFX.Length - 1)]);
             }
         }
     }

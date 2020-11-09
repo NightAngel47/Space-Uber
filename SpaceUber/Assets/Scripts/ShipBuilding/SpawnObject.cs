@@ -19,7 +19,6 @@ public class SpawnObject : MonoBehaviour
     [SerializeField] private GameObject buttonPanel;
     [SerializeField] private Vector2 spawnLoc;
 
-    //TONS of copy+paste arrays. These might be necessary, but the stuff farther down isn't. Need to ask a real programmer for help about better implementation. - Jake
     public string[] purchasePowerCore;
     public string[] purchaseHydroponics;
     public string[] purchaseBrig;
@@ -54,11 +53,12 @@ public class SpawnObject : MonoBehaviour
         foreach (GameObject room in availableRooms)
         {
             //g is the button that is created
-            GameObject g = Instantiate(buttonPrefab, buttonPanel.transform);
+            GameObject roomButton = Instantiate(buttonPrefab, buttonPanel.transform);
             //g.transform.SetParent(buttonPanel.transform);
-            g.GetComponent<Button>().onClick.AddListener(() => SpawnRoom(room)); //spawn a room upon clicking the button
-            g.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.name; //Set G's title to the room's name
-            g.transform.GetChild(3).gameObject.GetComponent<Image>().sprite = room.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+            roomButton.GetComponent<Button>().onClick.AddListener(() => SpawnRoom(room)); //spawn a room upon clicking the button
+            roomButton.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.name; //Set G's title to the room's name
+            roomButton.transform.GetChild(3).gameObject.GetComponent<Image>().sprite = room.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+            roomButton.GetComponentInChildren<ShopTooltipUI>().SetRoomInfo(room.GetComponent<RoomStats>());
         }
     }
 

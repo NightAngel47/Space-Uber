@@ -10,17 +10,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using NaughtyAttributes;
 
 public class Job : MonoBehaviour
 {
-    [Tooltip("How many events will happen in this journey")]
-    public int maxEvents = 3;
+    [Tooltip("Determines when in the campaign sequence should this job be available to the player. " +
+             "For example: if set to 0 then it will appear as part of the list of available first jobs in this campaign."), 
+     HideIf("isSideJob")]
+    public int campaignIndexAvailable = 0;
+    
+    [Tooltip("How many random events will happen in this journey")]
+    public int maxRandomEvents = 3;
 
-    [Tooltip("Narrative-focused events that will play in this specific order")]
+    [Tooltip("The story events included in this job"),HideIf("isSideJob"), ReorderableList]
     public List<GameObject> storyEvents;
 
-    [Tooltip("Miscellaneous events that occur in a random order")]
+    [Tooltip("The random events that will be included in this job")]
     public List<GameObject> randomEvents;
+
 
     public string jobName;
     public string description;

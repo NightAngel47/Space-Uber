@@ -111,6 +111,7 @@ public class Astroid : MonoBehaviour
 	{
         flashingIndicator = true;
         miniGameManager.damageText.SetActive(true);
+        AudioManager.instance.PlaySFX("Hull Damage");
         for (int i = 0; i <= 5; i++)
 		{
             yield return new WaitForSeconds(0.08f);

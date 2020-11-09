@@ -54,6 +54,12 @@ public class JobListUI : MonoBehaviour
         }
     }
 
+    public void UpdateSideJobCount(int x)
+    {
+        sideJobCountText.text = x + " out of 3 side jobs selected";
+        print(sideJobCountText.text);
+    }
+
     /// <summary>
     /// Updates the UI with the details of the selected job.
     /// </summary>
@@ -69,8 +75,8 @@ public class JobListUI : MonoBehaviour
         {
             jobUI.ClearSelectedBackground();
         }
-        
-        continueButton.gameObject.SetActive(true);
+
+        continueButton.interactable = true;
     }
 
     /// <summary>
@@ -82,6 +88,6 @@ public class JobListUI : MonoBehaviour
         selectedJobDescText.text = "";
         selectedJobPayText.text = "";
         
-        continueButton.gameObject.SetActive(false);
+        continueButton.interactable = false;
     }
 }

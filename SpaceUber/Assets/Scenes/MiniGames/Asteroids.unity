@@ -3181,7 +3181,7 @@ PrefabInstance:
     - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}
@@ -3206,6 +3206,31 @@ PrefabInstance:
     - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 653824624}
+    - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ClickPlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2228287772260378586, guid: ac8be24e767cf794eb851308f2ba4fe2,
@@ -3299,6 +3324,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontStyle
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583342504700849187, guid: ac8be24e767cf794eb851308f2ba4fe2,
+        type: 3}
+      propertyPath: Clicks.Array.data[0]
+      value: Deny 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583342504700849187, guid: ac8be24e767cf794eb851308f2ba4fe2,
+        type: 3}
+      propertyPath: Clicks.Array.data[1]
+      value: Deny 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583342504700849187, guid: ac8be24e767cf794eb851308f2ba4fe2,
+        type: 3}
+      propertyPath: Clicks.Array.data[2]
+      value: Deny 3
       objectReference: {fileID: 0}
     - target: {fileID: 5278739254912761861, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}
@@ -3418,6 +3458,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 653824622}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &653824624 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3583342504700849187, guid: ac8be24e767cf794eb851308f2ba4fe2,
+    type: 3}
+  m_PrefabInstance: {fileID: 653824622}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 093fe5c779844da489ca1f98d9bcb5a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &658388469
 GameObject:
   m_ObjectHideFlags: 0
@@ -3524,6 +3576,12 @@ MonoBehaviour:
   miniGameSceneName: 3
   statModification: 1
   gameWinScreen: {fileID: 738084695}
+  Successes:
+  - Arp 1
+  - Arp 2
+  - Arp 3
+  - Arp 4
+  - Arp 5
   damageText: {fileID: 32254234}
   requiredAstroids: 10
   scoreText: {fileID: 390383840}
@@ -6047,6 +6105,10 @@ MonoBehaviour:
   - {fileID: 0}
   projectileParent: {fileID: 798573569}
   coolDownBarIndicator: {fileID: 883389310}
+  fireCannon:
+  - Fire 1
+  - Fire 2
+  - Fire 3
 --- !u!1 &1187130483
 GameObject:
   m_ObjectHideFlags: 0
@@ -8302,6 +8364,10 @@ MonoBehaviour:
   - {fileID: 0}
   projectileParent: {fileID: 798573569}
   coolDownBarIndicator: {fileID: 132471439}
+  fireCannon:
+  - Fire 1
+  - Fire 2
+  - Fire 3
 --- !u!1 &1647792732
 GameObject:
   m_ObjectHideFlags: 0

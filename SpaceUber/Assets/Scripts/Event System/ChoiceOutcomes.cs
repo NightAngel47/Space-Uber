@@ -11,120 +11,106 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct ChoiceOutcomes
+public class ChoiceOutcomes
 {
-    
+    public string outcomeName;
+    public bool isNarrativeOutcome;
 
-    public bool isRandomOutcome;
+    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] private ResourceType resource;
+    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] private int amount;
 
-    [SerializeField, HideIf("isRandomOutcome")] private List<ResourceType> resourcesChanged;
-    [SerializeField, HideIf("isRandomOutcome")] private List<int> amountChanged;
+    [Dropdown("cateringToRichBools"), SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting]
+    private string ctrBoolOutcomes;
 
-    [SerializeField, ShowIf("isRandomOutcome")] private List<float> probabilities;
-    [SerializeField, ShowIf("isRandomOutcome")] private MultipleRandom[] multipleRandomOutcomes;
+    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting]
+    private int cloneTrustChange;
 
-    private float outcomeChance;
-    private float choiceThreshold ;
+    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting]
+    private int VIPTrustChange;
 
-    [System.Serializable]
-    public class MultipleRandom
-    {
-        public List<ResourceType> resourcesChanged;
-        public List<int> amountChanged;
-    }
-    
 
-    void Start()
-    {
-        //shipStats = FindObjectOfType<ShipStats>();
-    }
-
-    public void StatChange(ShipStats ship)
+    public void StatChange(ShipStats ship, CampaignManager campMan)
     {
         if (ship != null)
         {
-            if (isRandomOutcome)
+            
+           if (!isNarrativeOutcome)
             {
-                outcomeChance = Random.Range(0f, 100f);
-                for (int i = 0; i < probabilities.Count; i++)
+                switch (resource)
                 {
-                    choiceThreshold += probabilities[i];
-                    if (outcomeChance <= choiceThreshold)
-                    {
-                        for(int j = 0; j < multipleRandomOutcomes[i].resourcesChanged.Count; j++)
-                        {
-                            switch (multipleRandomOutcomes[i].resourcesChanged[j])
-                            {
-                                case ResourceType.Credits:
-                                    ship.UpdateCreditsAmount(multipleRandomOutcomes[i].amountChanged[j]);
-                                    break;
-                                case ResourceType.Energy:
-                                    ship.UpdateEnergyAmount(multipleRandomOutcomes[i].amountChanged[j]);
-                                    break;
-                                case ResourceType.Security:
-                                    ship.UpdateSecurityAmount(multipleRandomOutcomes[i].amountChanged[j]);
-                                    break;
-                                case ResourceType.ShipWeapons:
-                                    ship.UpdateShipWeaponsAmount(multipleRandomOutcomes[i].amountChanged[j]);
-                                    break;
-                                case ResourceType.Crew:
-                                    ship.UpdateCrewAmount(multipleRandomOutcomes[i].amountChanged[j]);
-                                    break;
-                                case ResourceType.Food:
-                                    ship.UpdateFoodAmount(multipleRandomOutcomes[i].amountChanged[j]);
-                                    break;
-                                case ResourceType.FoodPerTick:
-                                    ship.UpdateFoodPerTickAmount(multipleRandomOutcomes[i].amountChanged[j]);
-                                    break;
-                                case ResourceType.HullDurability:
-                                    ship.UpdateHullDurabilityAmount(multipleRandomOutcomes[i].amountChanged[j]);
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                        return;
-                    }
+                    case ResourceType.Credits:
+                        ship.UpdateCreditsAmount(amount);
+                        break;
+                    case ResourceType.Energy:
+                        ship.UpdateEnergyAmount(amount);
+                        break;
+                    case ResourceType.Security:
+                        ship.UpdateSecurityAmount(amount);
+                        break;
+                    case ResourceType.ShipWeapons:
+                        ship.UpdateShipWeaponsAmount(amount);
+                        break;
+                    case ResourceType.Crew:
+                        ship.UpdateCrewAmount(amount);
+                        break;
+                    case ResourceType.Food:
+                        ship.UpdateFoodAmount(amount);
+                        break;
+                    case ResourceType.FoodPerTick:
+                        ship.UpdateFoodPerTickAmount(amount);
+                        break;
+                    case ResourceType.HullDurability:
+                        ship.UpdateHullDurabilityAmount(amount);
+                        break;
+                    default:
+                        break;
                 }
             }
-            else if (!isRandomOutcome)
+            else
             {
-                for (int i = 0; i < resourcesChanged.Count; i++)
+                switch (campMan.currentCamp)
                 {
-                    switch (resourcesChanged[i])
-                    {
-                        case ResourceType.Credits:
-                            ship.UpdateCreditsAmount(amountChanged[i]);
-                            break;
-                        case ResourceType.Energy:
-                            ship.UpdateEnergyAmount(amountChanged[i]);
-                            break;
-                        case ResourceType.Security:
-                            ship.UpdateSecurityAmount(amountChanged[i]);
-                            break;
-                        case ResourceType.ShipWeapons:
-                            ship.UpdateShipWeaponsAmount(amountChanged[i]);
-                            break;
-                        case ResourceType.Crew:
-                            ship.UpdateCrewAmount(amountChanged[i]);
-                            break;
-                        case ResourceType.Food:
-                            ship.UpdateFoodAmount(amountChanged[i]);
-                            break;
-                        case ResourceType.FoodPerTick:
-                            ship.UpdateFoodPerTickAmount(amountChanged[i]);
-                            break;
-                        case ResourceType.HullDurability:
-                            ship.UpdateHullDurabilityAmount(amountChanged[i]);
-                            break;
-                        default:
-                            break;
-                    }
+                    //for catering to the rich campaign
+                    case Campaigns.CateringToTheRich:
+                        CampaignManager.CateringToTheRich campaign = (CampaignManager.CateringToTheRich) campMan.campaigns[(int)Campaigns.CateringToTheRich];
 
+                        //alter the trust variables
+                        campaign.ctr_cloneTrust += cloneTrustChange;
+                        campaign.ctr_VIPTrust += VIPTrustChange;
+
+                        //the selected bool will become true
+                        switch (ctrBoolOutcomes)
+                        {
+                            case "Side With Scientist":
+                                campaign.ctr_sideWithScientist = true;
+                                break;
+                            case "Kill Beckett":
+                                campaign.ctr_killBeckett = true;
+                                break;
+                            case "Let Bale Pilot":
+                                campaign.ctr_letBalePilot = true;
+                                break;
+                            case "Killed At Safari":
+                                campaign.ctr_killedAtSafari = true;
+                                break;
+                            case "Tell VIPs About Clones":
+                                campaign.ctr_tellVIPsAboutClones = true;
+                                break;
+                        }
+                        break;
+                        
                 }
             }
         }
 
+    }
+
+    private List<string> cateringToRichBools
+    {
+        get
+        {
+            return new List<string>() { "N_A", "Side With Scientist", "Kill Beckett", "Let Bale Pilot", "Killed At Safari", "Tell VIPs About Clones" };
+        }
     }
 }
 
