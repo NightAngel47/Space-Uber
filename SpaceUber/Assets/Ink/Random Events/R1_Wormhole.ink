@@ -28,13 +28,13 @@ As you approach the umbral blot, the alarms start blaring and the gravitational 
 ===function RandomizeEnding(rng)===
 { 
     - rng == 0: 
-        ~randomEnd = MinorDamage
+        ~randomEnd = -> MinorDamage
     - rng == 1:
-        ~randomEnd = Pranked
+        ~randomEnd = -> Pranked
     - rng == 2:
-        ~randomEnd = Money
+        ~randomEnd = -> Money
     - rng == 3:
-        ~randomEnd = Shuffle
+        ~randomEnd = -> Shuffle
     - else:
-        ~randomEnd = Shuffle
+        ~randomEnd = -> Shuffle
 }
