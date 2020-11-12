@@ -272,6 +272,11 @@ public class ShipStats : MonoBehaviour
         get { return shipHealthCurrent; }
         set { shipHealthCurrent = value; }
     }
+    public int Payout
+    {
+        get { return payout; }
+        set { payout = value; }
+    }
 
     //public void UpdateCrewMorale(int crewMoraleAmount)
     //{
@@ -293,6 +298,7 @@ public class ShipStats : MonoBehaviour
         Debug.Log("CrewRemaining " + CrewRemaining);
         Debug.Log("Food " + Food); 
         Debug.Log("ShipHealthCurrent " + ShipHealthCurrent);
+        Debug.Log("Payout " + Payout);
     }
     public void PayCrew(int ammount)
     {

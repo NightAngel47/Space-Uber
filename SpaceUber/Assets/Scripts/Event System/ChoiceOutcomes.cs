@@ -62,6 +62,9 @@ public class ChoiceOutcomes
                     case ResourceType.HullDurability:
                         ship.UpdateHullDurabilityAmount(amount);
                         break;
+                    case ResourceType.Payout:
+                        ship.AddPayout(amount);
+                        break;
                     default:
                         break;
                 }
@@ -124,5 +127,6 @@ public enum ResourceType
     Food,
     FoodPerTick,
     HullDurability,
-    Stock
+    Stock,
+    Payout
 }
