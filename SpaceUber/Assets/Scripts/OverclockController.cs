@@ -7,8 +7,9 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public enum MiniGameType { None, CropHarvest, Security, Asteroids, StabilizeEnergyLevels}
+public enum MiniGameType { None, CropHarvest, Security, Asteroids, StabilizeEnergyLevels, SlotMachine }
 
 public class OverclockController : MonoBehaviour
 {
@@ -40,6 +41,8 @@ public class OverclockController : MonoBehaviour
         winSound = false;
     }
 
+    public ShipStats ShipStats() { return shipStats; }
+
     public void StartMiniGame(MiniGameType miniGame, OverclockRoom room)
     {
         if (miniGame == MiniGameType.None) return; // check for implemented mini-game
@@ -51,15 +54,14 @@ public class OverclockController : MonoBehaviour
 
     public void EndMiniGame(MiniGameType miniGame, bool succsess, float statModification = 0)
 	{
-        overclocking = false;
         if(succsess)
 		{
             if (miniGame == MiniGameType.Security) { shipStats.UpdateSecurityAmount( Mathf.RoundToInt(securityBaseAdjustment * statModification)); }
             if (miniGame == MiniGameType.Asteroids) { shipStats.UpdateShipWeaponsAmount(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification)); }
             if (miniGame == MiniGameType.CropHarvest) { shipStats.UpdateFoodAmount(Mathf.RoundToInt(foodBaseAdjustment * statModification)); }
             if (miniGame == MiniGameType.StabilizeEnergyLevels) { shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullDurabilityBaseAdjustment * statModification)); }
+            if (miniGame == MiniGameType.SlotMachine) { shipStats.UpdateCreditsAmount(Mathf.RoundToInt(statModification)); }
         }
-        additiveSceneManager.UnloadScene(miniGame.ToString());
         if (succsess && activeRoom)
         {
            activeRoom.StartCoolDown();
@@ -72,4 +74,10 @@ public class OverclockController : MonoBehaviour
         activeRoom = null;
         FindObjectOfType<CrewManagement>().crewManagementText.SetActive(true);
 	}
+
+    public void UnloadScene(MiniGameType miniGame) 
+    {
+        overclocking = false;
+        additiveSceneManager.UnloadScene(miniGame.ToString()); 
+    }
 }

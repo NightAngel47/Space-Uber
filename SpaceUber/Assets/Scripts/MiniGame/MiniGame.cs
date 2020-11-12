@@ -6,12 +6,15 @@
  */
 
 using UnityEngine;
+using TMPro;
 
 public class MiniGame : MonoBehaviour
 {
 	[SerializeField] MiniGameType miniGameSceneName;
 	[SerializeField] protected float statModification = 1;
 	[SerializeField] GameObject gameWinScreen;
+	[SerializeField] TMP_Text winText;
+	[SerializeField] protected string winMessage;
     public string[] Successes;
     bool winSound = false;
 
@@ -29,9 +32,12 @@ public class MiniGame : MonoBehaviour
 
     public void EndMiniGameSuccess()
 	{
+		winText.text = winMessage;
 		gameWinScreen.SetActive(true);
 
-        if (winSound == false)
+		OverclockController.instance.EndMiniGame(miniGameSceneName, true, statModification);
+
+		if (winSound == false)
         {
             AudioManager.instance.PlaySFX(Successes[Random.Range(0, Successes.Length - 1)]);
             winSound = true;
@@ -41,6 +47,6 @@ public class MiniGame : MonoBehaviour
 	public void ConfirmMiniGameSuccess()
 	{
 		gameWinScreen.SetActive(false);
-		OverclockController.instance.EndMiniGame(miniGameSceneName, true, statModification);
+		OverclockController.instance.UnloadScene(miniGameSceneName);
 	}
 }
