@@ -51,9 +51,7 @@ public class ObjectMover : MonoBehaviour
     {
         if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
         {
-            //Movement();
             RotateObject();
-            //Placement();
 
             if (isBeingDragged == true)
             {

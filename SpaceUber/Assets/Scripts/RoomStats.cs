@@ -227,7 +227,7 @@ public class RoomStats : MonoBehaviour
     public void AddRoomStats()
     {
         shipStats.UpdateCreditsAmount(-price);
-        shipStats.UpdateCreditsAmount(credits);
+        shipStats.UpdatePayoutAmount(credits);
         shipStats.UpdateEnergyAmount(energy, energy);
         shipStats.UpdateSecurityAmount(security);
         shipStats.UpdateShipWeaponsAmount(shipWeapons);
@@ -251,7 +251,7 @@ public class RoomStats : MonoBehaviour
             shipStats.UpdateCreditsAmount(price);
         }
         
-        shipStats.UpdateCreditsAmount(-credits);
+        shipStats.UpdatePayoutAmount(-credits);
         shipStats.UpdateEnergyAmount(-energy, -energy);
         shipStats.UpdateSecurityAmount(-security);
         shipStats.UpdateShipWeaponsAmount(-shipWeapons);

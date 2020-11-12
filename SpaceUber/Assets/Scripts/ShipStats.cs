@@ -156,7 +156,7 @@ public class ShipStats : MonoBehaviour
     {
         credits += creditAmount;
 
-        shipStatsUI.UpdateCreditsUI(credits);
+        shipStatsUI.UpdateCreditsUI(credits, payout);
     }
 
     public void UpdateEnergyAmount(int energyRemainingAmount, int energyMaxAmount = 0)
@@ -221,7 +221,7 @@ public class ShipStats : MonoBehaviour
     //    return crewRemaining;
     //}
 
-    public void AddPayout(int ammount)
+    public void UpdatePayoutAmount(int ammount)
     {
         payout += ammount;
     }
@@ -241,6 +241,11 @@ public class ShipStats : MonoBehaviour
     {
         get { return credits; }
         set { credits = value; }
+    }
+    public int Payout
+    {
+        get { return payout; }
+        set { payout = value; }
     }
     public int EnergyRemaining
     {
