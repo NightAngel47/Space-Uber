@@ -232,9 +232,9 @@ public class ShipStats : MonoBehaviour
         payout = 0;
     }
 
-    public bool HasEnoughPower()
+    public bool HasEnoughPower(int power)
     {
-        return EnergyRemaining >= 0;
+        return EnergyRemaining >= power;
     }
 
     public int Credits

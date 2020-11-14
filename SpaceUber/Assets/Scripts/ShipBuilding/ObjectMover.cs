@@ -177,7 +177,7 @@ public class ObjectMover : MonoBehaviour
     public void Placement()
     {
         if (GameManager.instance.currentGameState != InGameStates.ShipBuilding) return;
-        if (FindObjectOfType<ShipStats>().Credits >= gameObject.GetComponent<RoomStats>().price)
+        if (FindObjectOfType<ShipStats>().Credits >= gameObject.GetComponent<RoomStats>().price && FindObjectOfType<ShipStats>().EnergyRemaining >= gameObject.GetComponent<RoomStats>().minPower)
         {
             if (os.needsSpecificLocation == false)
             {
@@ -211,6 +211,7 @@ public class ObjectMover : MonoBehaviour
         else
         {
             Debug.Log("Cannot Afford");
+            TurnOnBeingDragged();
         }
     }
 

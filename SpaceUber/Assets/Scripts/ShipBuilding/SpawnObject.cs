@@ -18,6 +18,7 @@ public class SpawnObject : MonoBehaviour
     [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private GameObject buttonPanel;
     [SerializeField] private Vector2 spawnLoc;
+    public GameObject powercore;
 
     private GameObject lastSpawned;
 
@@ -42,7 +43,25 @@ public class SpawnObject : MonoBehaviour
     {
         RectTransform rt = buttonPanel.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(rt.sizeDelta.x, 280 * availableRooms.Count);
-        CreateRoomSpawnButtons();
+
+        //hard coded preplaced rooms to be updated lated
+        ObjectMover.hasPlaced = false;
+        lastSpawned = Instantiate(powercore, new Vector3(4, 2, 0), Quaternion.identity);
+        lastSpawned.GetComponent<ObjectMover>().TurnOffBeingDragged();
+        lastSpawned.GetComponent<ObjectScript>().preplacedRoom = true;
+
+        StartCoroutine(PreplacedRoom());
+
+        CreateRoomSpawnButtons(); 
+    }
+
+    IEnumerator PreplacedRoom()
+    {
+        yield return new WaitForSeconds(.25f);
+        //hard coded preplaced rooms to be updated lated
+        FindObjectOfType<SpotChecker>().FillPreplacedSpots(lastSpawned);
+        lastSpawned.GetComponent<RoomStats>().AddRoomStats();
+        lastSpawned.GetComponent<ObjectMover>().enabled = false;
     }
 
     public void SetAvailableRoomList(List<GameObject> l)
@@ -66,9 +85,9 @@ public class SpawnObject : MonoBehaviour
 
     public void SpawnRoom(GameObject ga)
     {
-        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price)
+        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price) //checks to see if the player has enough credits for the room
         {
-            if (lastSpawned == null || lastSpawned.GetComponent<ObjectMover>().enabled == false)
+            if (lastSpawned == null || lastSpawned.GetComponent<ObjectMover>().enabled == false) //makes sure that the prior room is placed before the next room can be added
             {
                 ObjectMover.hasPlaced = false;
                 lastSpawned = Instantiate(ga, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0), Quaternion.identity);
@@ -81,7 +100,7 @@ public class SpawnObject : MonoBehaviour
                     r.TurnOffClickAgain();
                 }
 
-                switch (ga.name)
+                switch (ga.name) //plays sfx for each room
                 {
                     case "Power Core":
                         AudioManager.instance.PlaySFX(purchasePowerCore[Random.Range(0, purchasePowerCore.Length - 1)]);

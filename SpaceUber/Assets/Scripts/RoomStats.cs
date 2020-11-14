@@ -48,6 +48,7 @@ public class RoomStats : MonoBehaviour
     public bool flatOutput;
 
     public bool usedRoom = false;
+    [SerializeField] private bool isPowered = false;
 
     [SerializeField] private RoomTooltipUI roomTooltipUI;
     
@@ -175,6 +176,16 @@ public class RoomStats : MonoBehaviour
         }
     }
 
+    public void SetIsPowered()
+    {
+        isPowered = !isPowered;
+    }
+
+    public bool GetIsPowered()
+    {
+        return isPowered;
+    }
+
     public void UpdateRoomStats()
     {
         SubtractRoomStats();
@@ -229,6 +240,7 @@ public class RoomStats : MonoBehaviour
         shipStats.UpdateCreditsAmount(-price);
         shipStats.UpdatePayoutAmount(credits);
         shipStats.UpdateEnergyAmount(energy, energy);
+        shipStats.UpdateEnergyAmount(-minPower);
         shipStats.UpdateSecurityAmount(security);
         shipStats.UpdateShipWeaponsAmount(shipWeapons);
         shipStats.UpdateCrewAmount(crew, crew);
@@ -253,6 +265,7 @@ public class RoomStats : MonoBehaviour
         
         shipStats.UpdatePayoutAmount(-credits);
         shipStats.UpdateEnergyAmount(-energy, -energy);
+        shipStats.UpdateEnergyAmount(minPower);
         shipStats.UpdateSecurityAmount(-security);
         shipStats.UpdateShipWeaponsAmount(-shipWeapons);
         shipStats.UpdateCrewAmount(-crew, -crew);
