@@ -19,6 +19,7 @@ public class SpawnObject : MonoBehaviour
     [SerializeField] private GameObject buttonPanel;
     [SerializeField] private Vector2 spawnLoc;
     public GameObject powercore;
+    public static bool donePreplacedRoom = false;
 
     private GameObject lastSpawned;
 
@@ -45,12 +46,16 @@ public class SpawnObject : MonoBehaviour
         rt.sizeDelta = new Vector2(rt.sizeDelta.x, 280 * availableRooms.Count);
 
         //hard coded preplaced rooms to be updated lated
-        ObjectMover.hasPlaced = false;
-        lastSpawned = Instantiate(powercore, new Vector3(4, 2, 0), Quaternion.identity);
-        lastSpawned.GetComponent<ObjectMover>().TurnOffBeingDragged();
-        lastSpawned.GetComponent<ObjectScript>().preplacedRoom = true;
-
-        StartCoroutine(PreplacedRoom());
+        if (donePreplacedRoom == false)
+        {
+            donePreplacedRoom = true;
+            ObjectMover.hasPlaced = false;
+            lastSpawned = Instantiate(powercore, new Vector3(4, 2, 0), Quaternion.identity);
+            lastSpawned.GetComponent<ObjectMover>().TurnOffBeingDragged();
+            lastSpawned.GetComponent<ObjectScript>().preplacedRoom = true;
+            
+            StartCoroutine(PreplacedRoom());
+        }
 
         CreateRoomSpawnButtons(); 
     }
