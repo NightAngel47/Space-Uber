@@ -224,6 +224,8 @@ public class ShipStats : MonoBehaviour
     public void UpdatePayoutAmount(int ammount)
     {
         payout += ammount;
+        
+        shipStatsUI.UpdateCreditsUI(credits, payout);
     }
 
     public void CashPayout()
