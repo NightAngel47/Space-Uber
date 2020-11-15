@@ -151,6 +151,19 @@ public class ShipStats : MonoBehaviour
             StartCoroutine(TickUpdate());
         }
     }
+    
+    private IEnumerator<YieldInstruction> CheckDeathOnUnpause()
+    {
+            while(ticksPaused || tickStop)
+            {
+                yield return new WaitForFixedUpdate();
+            }
+
+            if(shipHealthCurrent <= 0)
+            {
+                GameManager.instance.ChangeInGameState(InGameStates.Death);
+            }
+    }
 
     public void UpdateCreditsAmount(int creditAmount)
     {
@@ -203,12 +216,24 @@ public class ShipStats : MonoBehaviour
         shipStatsUI.UpdateFoodUI(food, foodPerTick);
     }
 
-    public void UpdateHullDurabilityAmount(int hullDurabilityRemainingAmount, int hullDurabilityMax = 0)
+    public void UpdateHullDurabilityAmount(int hullDurabilityRemainingAmount, int hullDurabilityMax = 0, bool checkImmediately = true)
     {
         shipHealthMax += hullDurabilityMax;
         shipHealthCurrent += hullDurabilityRemainingAmount;
 
         shipStatsUI.UpdateHullUI(shipHealthCurrent, shipHealthMax);
+        
+        if(checkImmediately)
+        {
+            if(shipHealthCurrent <= 0)
+            {
+                GameManager.instance.ChangeInGameState(InGameStates.Death);
+            }
+        }
+        else
+        {
+            CheckDeathOnUnpause();
+        }
     }
 
     //public int GetCredits()

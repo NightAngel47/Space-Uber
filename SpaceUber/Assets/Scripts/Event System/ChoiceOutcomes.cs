@@ -29,7 +29,7 @@ public class ChoiceOutcomes
     private int VIPTrustChange;
 
 
-    public void StatChange(ShipStats ship, CampaignManager campMan)
+    public void StatChange(ShipStats ship, CampaignManager campMan, bool hasSubsequentChoices)
     {
         if (ship != null)
         {
@@ -60,7 +60,7 @@ public class ChoiceOutcomes
                         ship.UpdateFoodPerTickAmount(amount);
                         break;
                     case ResourceType.HullDurability:
-                        ship.UpdateHullDurabilityAmount(amount);
+                        ship.UpdateHullDurabilityAmount(amount, 0, hasSubsequentChoices);
                         break;
                     case ResourceType.Payout:
                         ship.AddPayout(amount);

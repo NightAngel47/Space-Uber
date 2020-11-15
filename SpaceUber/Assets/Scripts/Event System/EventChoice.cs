@@ -95,7 +95,7 @@ public class EventChoice : MonoBehaviour
                 MultipleRandom thisSet = randomEndingOutcomes[randomizedResult];
                 foreach(ChoiceOutcomes choiceOutcome in thisSet.outcomes)
                 {
-                    choiceOutcome.StatChange(ship, driver.campMan);
+                    choiceOutcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
                 }
 
             }
@@ -104,7 +104,7 @@ public class EventChoice : MonoBehaviour
         {
             foreach (ChoiceOutcomes outcome in outcomes)
             {
-                outcome.StatChange(ship, driver.campMan);
+                outcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
             }
         }
         
