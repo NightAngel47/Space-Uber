@@ -37,8 +37,7 @@ public class InkDriverBase : MonoBehaviour
     private float textPrintSpeed = 0.1f;
 
     [SerializeField, Tooltip("The first set of choices that a player will reach.")]
-    private List<EventChoice> firstChoices = new List<EventChoice>();
-    private List<EventChoice> availableChoices = new List<EventChoice>();
+    private List<EventChoice> nextChoices;
 
     /// <summary>
     /// The story itself being read
@@ -74,12 +73,11 @@ public class InkDriverBase : MonoBehaviour
         backgroundUI.sprite = backgroundImage;
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
 
-        if(firstChoices.Count == 0)
+        if(nextChoices.Count == 0)
         {
             EventChoice[] theseChoices = GetComponents<EventChoice>();
-            firstChoices = new List<EventChoice>(theseChoices);
+            nextChoices = new List<EventChoice>(theseChoices);
         }
-        availableChoices = firstChoices;
     }
 
     public void AssignStatusFromEventSystem(TMP_Text title, TMP_Text text, Image background, Transform buttonSpace,
@@ -160,13 +158,13 @@ public class InkDriverBase : MonoBehaviour
                     OnClickChoiceButton(choice);
                 });
 
-                if (choice.index < availableChoices.Count)
+                if (choice.index < nextChoices.Count)
                 {
-                    availableChoices[choice.index].CreateChoice(thisShip,choiceButton, story,this);
+                    nextChoices[choice.index].CreateChoice(thisShip,choiceButton, story,this);
 
                     // Have on click also call the outcome choice to update the ship stats
                     choiceButton.onClick.AddListener(delegate {
-                        availableChoices[choice.index].SelectChoice(thisShip);
+                        nextChoices[choice.index].SelectChoice(thisShip);
                     });
                 }
                 else
@@ -206,9 +204,9 @@ public class InkDriverBase : MonoBehaviour
     /// Takes any subsequent choices from the EventChoice selected and applies them to the file
     /// </summary>
     /// <param name="nextChoices"></param>
-    public void TakeSubsequentChoices(List<EventChoice> nextChoices)
+    public void TakeSubsequentChoices(List<EventChoice> subsequent)
     {
-        availableChoices = nextChoices;
+        nextChoices = subsequent;
     }
 
     /// <summary>

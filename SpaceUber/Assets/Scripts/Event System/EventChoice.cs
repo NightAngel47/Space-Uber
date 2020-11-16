@@ -12,18 +12,19 @@ using UnityEngine.UI;
 using Ink.Runtime;
 using NaughtyAttributes;
 
-public class EventChoice : MonoBehaviour
+[System.Serializable]
+public struct EventChoice
 {
     private InkDriverBase driver;
     [SerializeField] public string choiceName;
     [SerializeField] private bool hasRequirements;
 
-    [SerializeField, ShowIf("hasRequirements")] private List<Requirements> choiceRequirements;
+    [SerializeField, ShowIf("hasRequirements"), AllowNesting] private List<Requirements> choiceRequirements;
 
     [SerializeField] public bool hasRandomEnding;
-    [SerializeField, HideIf("hasRandomEnding")] private List<ChoiceOutcomes> outcomes;
-    [SerializeField, ShowIf("hasRandomEnding")] private List<MultipleRandom> randomEndingOutcomes;
-    protected Story story;
+    [SerializeField, HideIf("hasRandomEnding"), AllowNesting] private List<ChoiceOutcomes> outcomes;
+    [SerializeField, ShowIf("hasRandomEnding"), AllowNesting] private List<MultipleRandom> randomEndingOutcomes;
+    private Story story;
     private int randomizedResult;
 
     [SerializeField] bool hasSubsequentChoices;
@@ -85,11 +86,11 @@ public class EventChoice : MonoBehaviour
     /// <param name="ship"></param>
     public void SelectChoice(ShipStats ship)
     {
+
         driver.TakeSubsequentChoices(subsequentChoices);
 
         if (hasRandomEnding)
         {
-            print("We have decided on outcome #" + randomizedResult);
             foreach(MultipleRandom multRando in randomEndingOutcomes)
             {
                 MultipleRandom thisSet = randomEndingOutcomes[randomizedResult];
@@ -136,26 +137,7 @@ public class EventChoice : MonoBehaviour
 
         }
 
-
-        print("Random result was: " + result);
-
         story.EvaluateFunction("RandomizeEnding", result);
-
-        //switch (result)
-        //{
-        //    case 0:
-        //        story.variablesState["randomEnd"] = story.variablesState["endingOne"];
-        //        break;
-        //    case 1:
-        //        story.variablesState["randomEnd"] = story.variablesState["endingTwo"];
-        //        break;
-        //    case 2:
-        //        story.variablesState["randomEnd"] = story.variablesState["endingThree"];
-        //        break;
-        //    case 3:
-        //        story.variablesState["randomEnd"] = story.variablesState["endingFour"];
-        //        break;
-        //}
 
         randomizedResult = result;
     }
