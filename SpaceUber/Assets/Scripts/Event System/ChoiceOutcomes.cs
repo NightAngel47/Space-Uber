@@ -13,22 +13,16 @@ using UnityEngine;
 [System.Serializable]
 public class ChoiceOutcomes
 {
-    public string outcomeName;
-    public bool isNarrativeOutcome;
-
+    [SerializeField] private string outcomeName;
+    
+    [SerializeField] private bool isNarrativeOutcome;
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] private ResourceType resource;
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] private int amount;
-
-    [Dropdown("cateringToRichBools"), SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting]
-    private string ctrBoolOutcomes;
-
-    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting]
-    private int cloneTrustChange;
-
-    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting]
-    private int VIPTrustChange;
-
-
+    [Dropdown("cateringToRichBools"), 
+     SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private string ctrBoolOutcomes;
+    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int cloneTrustChange;
+    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int VIPTrustChange;
+    
     public void StatChange(ShipStats ship, CampaignManager campMan, bool hasSubsequentChoices)
     {
         if (ship != null)
