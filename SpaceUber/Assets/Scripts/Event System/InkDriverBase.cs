@@ -73,10 +73,10 @@ public class InkDriverBase : MonoBehaviour
         backgroundUI.sprite = backgroundImage;
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
 
+        //avoid an error if the next choices are not implemented
         if(nextChoices.Count == 0)
         {
-            EventChoice[] theseChoices = GetComponents<EventChoice>();
-            nextChoices = new List<EventChoice>(theseChoices);
+            nextChoices = new List<EventChoice>();
         }
     }
 

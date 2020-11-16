@@ -36,7 +36,6 @@ public struct EventChoice
         public List<ChoiceOutcomes> outcomes;
         public float probability;
     }
-    // Start is called before the first frame update
 
     /// <summary>
     /// Extra code to determine if a choice is actually available
