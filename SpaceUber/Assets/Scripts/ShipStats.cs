@@ -63,6 +63,21 @@ public class ShipStats : MonoBehaviour
     //mutiny calculations
     private int maxMutinyMorale = 60;
     private float zeroMoraleMutinyChance = 0.75f;
+    
+    //stats at the start of the job
+    private int startCredits;
+    private int startPayout;
+    private int startEnergyMax;
+    private int startEnergyRemaining;
+    private int startSecurity;
+    private int startShipWeapons;
+    private int startCrewMax;
+    private int startCrewRemaining;
+    private int startFood;
+    private int startFoodPerTick;
+    private int startShipHealthMax;
+    private int startShipHealthCurrent;
+    //private int startCrewMorale;
 
     private void Awake()
     {
@@ -325,10 +340,42 @@ public class ShipStats : MonoBehaviour
         Debug.Log("ShipHealthCurrent " + ShipHealthCurrent);
         Debug.Log("Payout " + Payout);
     }
+    
     public void PayCrew(int ammount)
     {
         UpdateCreditsAmount(-ammount * crewRemaining);
         //int BadMoraleMultiplier = (maxMutinyMorale - crewMorale) * crewPaymentMoraleMultiplier / maxMutinyMorale;
         //UpdateCrewMorale(BadMoraleMultiplier * (ammount - crewPaymentDefault));
+    }
+    
+    public void SaveStats()
+    {
+        startCredits = credits;
+        startPayout = payout;
+        startEnergyMax = energyMax;
+        startEnergyRemaining = energyRemaining;
+        startSecurity = security;
+        startShipWeapons = shipWeapons;
+        startCrewMax = crewMax;
+        startCrewRemaining = crewRemaining;
+        startFood = food;
+        startFoodPerTick = foodPerTick;
+        startShipHealthMax = shipHealthMax;
+        startShipHealthCurrent = shipHealthCurrent;
+        //startCrewMorale = crewMorale;
+    }
+    
+    public void ResetStats()
+    {
+        UpdateCreditsAmount(startCredits);
+        payout = startPayout;
+        UpdateEnergyAmount(startEnergyRemaining, startEnergyMax);
+        UpdateSecurityAmount(startSecurity);
+        UpdateShipWeaponsAmount(startShipWeapons);
+        UpdateCrewAmount(startCrewRemaining, startCrewMax);
+        UpdateFoodAmount(startFood);
+        UpdateFoodPerTickAmount(startFoodPerTick);
+        UpdateHullDurabilityAmount(startShipHealthCurrent, startShipHealthMax);
+        //UpdateCrewMorale(startMorale);
     }
 }

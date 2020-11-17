@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
     /// Reference to the JobManager used to refresh the job list in job select state
     /// </summary>
     private JobManager jobManager;
+    
+    private ShipStats ship;
 
     /// <summary>
     /// Sets the instance of the GameManager using the Singleton pattern.
@@ -60,6 +62,8 @@ public class GameManager : MonoBehaviour
 
         // Sets the reference to the JobManager in the active scene
         jobManager = FindObjectOfType<JobManager>();
+        
+        ship = FindObjectOfType<ShipStats>();
     }
 
     private void Start()
@@ -124,7 +128,17 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.LoadSceneSeperate("CrewManagement");
                 break;
             case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
+                additiveSceneManager.UnloadScene("PromptScreen_End");
+                additiveSceneManager.UnloadScene("PromptScreen_Death");
+                additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
+                additiveSceneManager.UnloadScene("CrewPayment");
+                
+                additiveSceneManager.UnloadScene("CrewManagement");
+                additiveSceneManager.LoadSceneSeperate("CrewManagement");
+                
                 additiveSceneManager.UnloadScene("Starport BG");
+                
+                ship.SaveStats();
 
                 // Remove unplaced rooms from the ShipBuilding state
                 if (!ObjectMover.hasPlaced)
