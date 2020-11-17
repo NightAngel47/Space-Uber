@@ -50,7 +50,6 @@ public class MiniGameCrop : MonoBehaviour
 
     float growth = 0;
     bool isGrowing = false;
-    bool hasBeenPlanted = false;
     bool isHarvestable = false;
 
     public string[] trimCropSFX;
@@ -95,7 +94,7 @@ public class MiniGameCrop : MonoBehaviour
         if(stage == CropStage.Harvestable && !cropNeeds.Contains(readyToHarvest) && harvestableCropPrefab) { cropNeeds.Add(readyToHarvest); }
         else if (cropNeeds.Contains(readyToHarvest)) { cropNeeds.Remove(readyToHarvest); }
 
-        if (stage == CropStage.Seedling && !isGrowing) { StartCoroutine(Grow()); }
+        if (stage == CropStage.Seedling && !isGrowing && isFertilized) { StartCoroutine(Grow()); }
 
         //Midlings do not need to be trimmed
         if(stage != CropStage.Midling) { isTrimmed = true; pruneLevel = maxPruneLevel; }
@@ -125,11 +124,12 @@ public class MiniGameCrop : MonoBehaviour
                 Vector3 deadLeafPosition = transform.position;
                 deadLeafPosition.y -= 1.5f;
                 Instantiate(deadLeavesPrefab, deadLeafPosition, new Quaternion(), transform.parent);
-                AudioManager.instance.PlaySFX(trimCropSFX[Random.Range(0, trimCropSFX.Length - 1)]);
 
                 //Let mini game manager know that dead leaves are required to be thrown away in order to win.
                 miniGameManager.IncrementRequiredScore();
                 pruneLevel = maxPruneLevel;
+
+                AudioManager.instance.PlaySFX(trimCropSFX[Random.Range(0, trimCropSFX.Length - 1)]);
             }
             if (CropHarvestMiniGame.selectedTool.toolType == MiniGameToolType.WateringCan && !isWatered) 
             { 
@@ -137,13 +137,12 @@ public class MiniGameCrop : MonoBehaviour
                 waterLevel = maxWaterLevel;
                 AudioManager.instance.PlaySFX(waterCropSFX[Random.Range(0, waterCropSFX.Length - 1)]);
             }
-            if (CropHarvestMiniGame.selectedTool.toolType == MiniGameToolType.Fertilizer && !isFertilized && !hasBeenPlanted) 
+            if (CropHarvestMiniGame.selectedTool.toolType == MiniGameToolType.Fertilizer && !isFertilized) 
             {
-                hasBeenPlanted = true;
                 isFertilized = true;
                 AudioManager.instance.PlaySFX(fertilizeCropSFX[Random.Range(0, fertilizeCropSFX.Length - 1)]);
             }
-             if (CropHarvestMiniGame.selectedTool.toolType == MiniGameToolType.Seed && isFertilized && stage == CropStage.Unplanted)
+             if (CropHarvestMiniGame.selectedTool.toolType == MiniGameToolType.Seed  && stage == CropStage.Unplanted)
             { 
                 stage = CropStage.Seedling;
                 AudioManager.instance.PlaySFX(plantCropSFX[Random.Range(0, plantCropSFX.Length - 1)]);
@@ -156,11 +155,7 @@ public class MiniGameCrop : MonoBehaviour
     /// </summary>
     void ShowHidePlantImage()
 	{ 
-        if (stage != CropStage.Unplanted && stage != CropStage.Harvestable)
-        {
-            isFertilized = true;
-            plantImage.color = originalColor;
-        }
+        if (stage != CropStage.Unplanted && stage != CropStage.Harvestable) { plantImage.color = originalColor; }
         else { plantImage.color = Color.clear; }
     }
 
@@ -221,7 +216,7 @@ public class MiniGameCrop : MonoBehaviour
 		{
             yield return new WaitForSeconds(growthTicTime);
 
-            waterLevel -= waterDecayPerTic; 
+            if (isTrimmed) { waterLevel -= waterDecayPerTic; }
             if( waterLevel < 0) { waterLevel = 0; }
 
             //Prevents situations where the water and prune level drain back to back making it so the plant doesn't grow

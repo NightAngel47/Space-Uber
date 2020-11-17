@@ -21,6 +21,7 @@ public class EnergyLevelStabalizeMiniGame : MiniGame
 	public List<float> valueLevels = new List<float>();
 	float[] sliderTargets = null;
 	int[] buttonSwitchTargets = null;
+	bool gameOver = false;
 
 
 	private void Start()
@@ -36,17 +37,19 @@ public class EnergyLevelStabalizeMiniGame : MiniGame
 	
 	private void Update()
 	{
-		int total = CalculatePowerLevel();
+		if (!gameOver)
+		{
+			int total = CalculatePowerLevel();
 
-		//Make indicator number the percent of indicators active based on total
-		int indicatorNumber = (total / (100 / powerBarIndicators.Length));
+			//Make indicator number the percent of indicators active based on total
+			int indicatorNumber = (total / (100 / powerBarIndicators.Length));
 
-		for (int i = 0; i < powerBarIndicators.Length; i++) { powerBarIndicators[i].SetActive(i < indicatorNumber); }
+			for (int i = 0; i < powerBarIndicators.Length; i++) { powerBarIndicators[i].SetActive(i < indicatorNumber); }
 
-		total += 50;
-		optimizationText.text = (total + "%");
-		if (total == 100) { EndMiniGameSuccess(); }
-		
+			total += 50;
+			optimizationText.text = (total + "%");
+			if (total == 100) { gameOver = true;  EndMiniGameSuccess(); }
+		}
 	}
 
 	void InitializeGame()
