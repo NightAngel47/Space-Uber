@@ -18,6 +18,7 @@ public class MiniGame : MonoBehaviour
 	[SerializeField] protected string failMessage = "You lose";
     public string[] Successes;
     bool winSound = false;
+	protected bool gameOver = false;
 
     private void Start()
 	{
@@ -28,12 +29,16 @@ public class MiniGame : MonoBehaviour
 	public void EndMiniGameEarly()
 	{
         OverclockController.instance.EndMiniGame(miniGameSceneName, false);
-        AudioManager.instance.PlaySFX("De-Overclock");
-    }
+		AudioManager.instance.PlaySFX("De-Overclock");
+		OverclockController.instance.UnloadScene(miniGameSceneName);
+	}
 
     public void EndMiniGameSuccess()
 	{
+		gameOver = true;
 		winText.text = winMessage;
+
+		gameWinScreen.SetActive(true);
 
 		OverclockController.instance.EndMiniGame(miniGameSceneName, true, statModification);
 
@@ -44,11 +49,13 @@ public class MiniGame : MonoBehaviour
         }
     }
 
-	public void EndMiniGameFail()
+	public void EndMiniGameFail(bool modifyStat = false)
 	{
+		gameOver = true;
 		winText.text = failMessage;
 		gameWinScreen.SetActive(true);
-		OverclockController.instance.EndMiniGame(miniGameSceneName, false);
+		if (!modifyStat) { OverclockController.instance.EndMiniGame(miniGameSceneName, false); }
+		else { OverclockController.instance.EndMiniGame(miniGameSceneName, false, statModification); }
 	}
 
 	public void ConfirmMiniGameSuccess()

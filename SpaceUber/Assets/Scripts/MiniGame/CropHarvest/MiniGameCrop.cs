@@ -83,16 +83,7 @@ public class MiniGameCrop : MonoBehaviour
 
 	void Update()
     {
-        if(!isFertilized && !cropNeeds.Contains(needsFertilizer)) { cropNeeds.Add(needsFertilizer); }
-        else if(isFertilized && cropNeeds.Contains(needsFertilizer)) { cropNeeds.Remove(needsFertilizer); }
-        if (!isWatered && !cropNeeds.Contains(needsWater) && stage != CropStage.Unplanted) { cropNeeds.Add(needsWater); }
-        else if (isWatered && cropNeeds.Contains(needsWater)) { cropNeeds.Remove(needsWater); }
-        if (!isTrimmed && !cropNeeds.Contains(needsPruned)) { cropNeeds.Add(needsPruned); }
-        else if (isTrimmed && cropNeeds.Contains(needsPruned)) { cropNeeds.Remove(needsPruned); }
-        if (!cropNeeds.Contains(needsPlanted) && stage == CropStage.Unplanted) { cropNeeds.Add(needsPlanted); }
-        else if((stage != CropStage.Unplanted) && cropNeeds.Contains(needsPlanted)) { cropNeeds.Remove(needsPlanted); }
-        if(stage == CropStage.Harvestable && !cropNeeds.Contains(readyToHarvest) && harvestableCropPrefab) { cropNeeds.Add(readyToHarvest); }
-        else if (cropNeeds.Contains(readyToHarvest)) { cropNeeds.Remove(readyToHarvest); }
+        UpdateNeedsText();
 
         if (stage == CropStage.Seedling && !isGrowing && isFertilized) { StartCoroutine(Grow()); }
 
@@ -107,10 +98,6 @@ public class MiniGameCrop : MonoBehaviour
         }
 
         ShowHidePlantImage();
-
-		if (isFertilized) { GetComponent<Image>().sprite = fertilizedSoil; }
-        else { GetComponent<Image>().sprite = unfertilizedSoil; }
-
         ChoosePlantImage();
     }
 
@@ -150,6 +137,20 @@ public class MiniGameCrop : MonoBehaviour
         }
     }
 
+    void UpdateNeedsText()
+	{
+        if (!isFertilized && !cropNeeds.Contains(needsFertilizer)) { cropNeeds.Add(needsFertilizer); }
+        else if (isFertilized && cropNeeds.Contains(needsFertilizer)) { cropNeeds.Remove(needsFertilizer); }
+        if (!isWatered && !cropNeeds.Contains(needsWater) && stage != CropStage.Unplanted) { cropNeeds.Add(needsWater); }
+        else if (isWatered && cropNeeds.Contains(needsWater)) { cropNeeds.Remove(needsWater); }
+        if (!isTrimmed && !cropNeeds.Contains(needsPruned)) { cropNeeds.Add(needsPruned); }
+        else if (isTrimmed && cropNeeds.Contains(needsPruned)) { cropNeeds.Remove(needsPruned); }
+        if (!cropNeeds.Contains(needsPlanted) && stage == CropStage.Unplanted) { cropNeeds.Add(needsPlanted); }
+        else if ((stage != CropStage.Unplanted) && cropNeeds.Contains(needsPlanted)) { cropNeeds.Remove(needsPlanted); }
+        if (stage == CropStage.Harvestable && !cropNeeds.Contains(readyToHarvest) && harvestableCropPrefab) { cropNeeds.Add(readyToHarvest); }
+        else if (cropNeeds.Contains(readyToHarvest) && !harvestableCropPrefab) { cropNeeds.Remove(readyToHarvest); }
+    }
+
     /// <summary>
     /// Plant image is show or hidden based off of crop stage
     /// </summary>
@@ -164,6 +165,8 @@ public class MiniGameCrop : MonoBehaviour
     /// </summary>
     void ChoosePlantImage()
 	{
+        if (isFertilized) { GetComponent<Image>().sprite = fertilizedSoil; }
+        else { GetComponent<Image>().sprite = unfertilizedSoil; }
         switch (stage)
         {
             case CropStage.Seedling:

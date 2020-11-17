@@ -58,6 +58,7 @@ public class SlotMachine : MiniGame
     [SerializeField] int largeBet = 10;
     [SerializeField] Payouts payouts;
     [SerializeField] PayoutMultipliers payoutMultipliers;
+    [SerializeField] float winDelay = 1;
     ShipStats shipStats;
     int payout = 0;
     BetAmount betAmount = BetAmount.Free;
@@ -95,7 +96,7 @@ public class SlotMachine : MiniGame
             PayUp();
             statModification = payout;
             winMessage = "You win " + payout + " credits!";
-            EndMiniGameSuccess();
+            StartCoroutine(EndGame());
         }
     }
 
@@ -204,4 +205,10 @@ public class SlotMachine : MiniGame
         yield return new WaitForSeconds(3);
         errorText.text = "";
 	}
+
+    IEnumerator EndGame()
+	{
+        yield return new WaitForSeconds(winDelay);
+        EndMiniGameSuccess();
+    }
 }

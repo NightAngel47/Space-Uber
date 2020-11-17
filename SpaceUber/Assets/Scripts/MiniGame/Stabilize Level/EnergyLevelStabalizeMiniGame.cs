@@ -21,7 +21,6 @@ public class EnergyLevelStabalizeMiniGame : MiniGame
 	public List<float> valueLevels = new List<float>();
 	float[] sliderTargets = null;
 	int[] buttonSwitchTargets = null;
-	bool gameOver = false;
 
 
 	private void Start()
@@ -48,7 +47,7 @@ public class EnergyLevelStabalizeMiniGame : MiniGame
 
 			total += 50;
 			optimizationText.text = (total + "%");
-			if (total == 100) { gameOver = true;  EndMiniGameSuccess(); }
+			if (total == 100) { EndMiniGameSuccess(); }
 		}
 	}
 
