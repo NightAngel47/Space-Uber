@@ -15,6 +15,7 @@ public class MiniGame : MonoBehaviour
 	[SerializeField] GameObject gameWinScreen;
 	[SerializeField] TMP_Text winText;
 	[SerializeField] protected string winMessage;
+	[SerializeField] protected string failMessage = "You lose";
     public string[] Successes;
     bool winSound = false;
 
@@ -33,7 +34,6 @@ public class MiniGame : MonoBehaviour
     public void EndMiniGameSuccess()
 	{
 		winText.text = winMessage;
-		gameWinScreen.SetActive(true);
 
 		OverclockController.instance.EndMiniGame(miniGameSceneName, true, statModification);
 
@@ -43,6 +43,13 @@ public class MiniGame : MonoBehaviour
             winSound = true;
         }
     }
+
+	public void EndMiniGameFail()
+	{
+		winText.text = failMessage;
+		gameWinScreen.SetActive(true);
+		OverclockController.instance.EndMiniGame(miniGameSceneName, false);
+	}
 
 	public void ConfirmMiniGameSuccess()
 	{
