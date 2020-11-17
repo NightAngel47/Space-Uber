@@ -145,6 +145,13 @@ public class CrewManagement : MonoBehaviour
                 overtimeStats.Add(resourceGO);
                 overclockButton.gameObject.SetActive(true);
                 break;
+            case MiniGameType.HullRepair:
+                //Hull Durability
+                resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
+                resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Hull Durability";
+                overtimeStats.Add(resourceGO);
+                overclockButton.gameObject.SetActive(true);
+                break;
             default:
                 overclockButton.gameObject.SetActive(false);
                 break;

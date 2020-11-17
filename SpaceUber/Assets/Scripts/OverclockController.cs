@@ -9,7 +9,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum MiniGameType { None, CropHarvest, Security, Asteroids, StabilizeEnergyLevels, SlotMachine }
+public enum MiniGameType { None, CropHarvest, Security, Asteroids, StabilizeEnergyLevels, SlotMachine, HullRepair }
 
 public class OverclockController : MonoBehaviour
 {
@@ -21,6 +21,7 @@ public class OverclockController : MonoBehaviour
     [SerializeField] float securityBaseAdjustment = 1;
     [SerializeField] float shipWeaponsBaseAdjustment = 1;
     [SerializeField] float hullDurabilityBaseAdjustment = 1;
+    [SerializeField] float hullRepairBaseAdjustment = 5;
     [SerializeField] float failHullDurabilityBaseAdjustment = -5;
     public float cooldownTime = 5;
 
@@ -62,6 +63,7 @@ public class OverclockController : MonoBehaviour
             if (miniGame == MiniGameType.CropHarvest) { shipStats.UpdateFoodAmount(Mathf.RoundToInt(foodBaseAdjustment * statModification)); }
             if (miniGame == MiniGameType.StabilizeEnergyLevels) { shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullDurabilityBaseAdjustment * statModification)); }
             if (miniGame == MiniGameType.SlotMachine) { shipStats.UpdateCreditsAmount(Mathf.RoundToInt(statModification)); }
+            if (miniGame == MiniGameType.HullRepair) { shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullRepairBaseAdjustment* statModification)); }
         }
         else { if (miniGame == MiniGameType.Asteroids) { shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(failHullDurabilityBaseAdjustment * statModification)); } }
         if (succsess && activeRoom)
