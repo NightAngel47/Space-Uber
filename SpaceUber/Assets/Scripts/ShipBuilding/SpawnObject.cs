@@ -105,6 +105,11 @@ public class SpawnObject : MonoBehaviour
                     r.TurnOffClickAgain();
                 }
 
+                if(lastSpawned.GetComponent<ObjectScript>().needsSpecificLocation == true)
+                {
+                    lastSpawned.GetComponent<ObjectScript>().HighlightSpotsOn();
+                }
+
                 switch (ga.name) //plays sfx for each room
                 {
                     case "Power Core":

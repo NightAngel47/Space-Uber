@@ -167,6 +167,8 @@ public class ObjectScript : MonoBehaviour
         gameObject.GetComponent<ObjectMover>().TurnOnBeingDragged();
         ObjectMover.hasPlaced = false;
 
+        HighlightSpotsOn();
+
         ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
         foreach (ObjectScript r in otherRooms)
         {
@@ -189,6 +191,37 @@ public class ObjectScript : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    public void HighlightSpotsOn()
+    {
+        for (int i = 0; i < gameObject.GetComponent<SpecificLocationData>().specficLocations.rows.Length - 1; i++)
+        {
+            for (int j = 0; j < gameObject.GetComponent<SpecificLocationData>().specficLocations.rows[i].row.Length - 1; j++)
+            {
+                if (gameObject.GetComponent<SpecificLocationData>().specficLocations.rows[i].row[j] == true)
+                {
+                    FindObjectOfType<HighlightSpots>().highlights.rows[i].row[j].gameObject.SetActive(true);
+                }
+            }
+        }
+    }
+
+    public void HighlightSpotsOff()
+    {
+        if (needsSpecificLocation == true)
+        {
+            for (int i = 0; i < gameObject.GetComponent<SpecificLocationData>().specficLocations.rows.Length - 1; i++)
+            {
+                for (int j = 0; j < gameObject.GetComponent<SpecificLocationData>().specficLocations.rows[i].row.Length - 1; j++)
+                {
+                    if (gameObject.GetComponent<SpecificLocationData>().specficLocations.rows[i].row[j] == true)
+                    {
+                        FindObjectOfType<HighlightSpots>().highlights.rows[i].row[j].gameObject.SetActive(false);
+                    }
+                }
+            }
+        }
     }
 
     private void ResetData()

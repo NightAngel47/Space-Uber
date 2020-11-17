@@ -196,7 +196,11 @@ public class ObjectMover : MonoBehaviour
 
                 hasPlaced = true;
 
-                
+                if (os.needsSpecificLocation == true)
+                {
+                    os.HighlightSpotsOff();
+                }
+
                 StartCoroutine(ClickWait());
 
                 gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = ObjectScript.c;
