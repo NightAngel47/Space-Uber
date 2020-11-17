@@ -94,6 +94,7 @@ public class Astroid : MonoBehaviour
             }
             if (!fromRocket)
             {
+                miniGameManager.TakeDamage();
                 StartCoroutine(FlashDamageIndicator());
 				while (flashingIndicator) { yield return null; }
             }
