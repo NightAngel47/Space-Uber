@@ -83,11 +83,7 @@ public class EventSystem : MonoBehaviour
         {
 			yield return null;
         }
-
-		print("Found current job: " + currentJob.jobName);
 		GameObject intro = currentJob.introEvent;
-		print("Found intro: " + currentJob.introEvent.name);
-
 
 		if (intro != null)
         {
