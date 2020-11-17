@@ -65,10 +65,8 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomDescription
-      value: 'A basic storage container meant for delivery. Increases payout at the
-        end of the job.
-
-'
+      value: A basic storage container meant for delivery. Gives Credits at the end
+        of the job.
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -78,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: maxCrew
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -115,7 +113,7 @@ PrefabInstance:
         type: 3}
       propertyPath: hoverUiPanel
       value: 
-      objectReference: {fileID: 5476421208748148385}
+      objectReference: {fileID: 0}
     - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: mouseOverAudio.Array.data[0]
@@ -166,7 +164,7 @@ PrefabInstance:
         type: 3}
       propertyPath: hoverUiPanel
       value: 
-      objectReference: {fileID: 5476421208748148385}
+      objectReference: {fileID: 0}
     - target: {fileID: 6635282969121139961, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -545,9 +543,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d75062b47e0b75b4384d6d8e19141c62, type: 3}
---- !u!1 &5476421208748148385 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2423329832281689292, guid: d75062b47e0b75b4384d6d8e19141c62,
-    type: 3}
-  m_PrefabInstance: {fileID: 7899680666824510061}
-  m_PrefabAsset: {fileID: 0}

@@ -15,10 +15,10 @@ MonoBehaviour:
   specficLocations:
     rows:
     - row: 01010101010101010101
-    - row: 01000000000000000001
-    - row: 01000000000000000001
-    - row: 01000000000000000001
-    - row: 01000000000000000001
+    - row: 01000000000000000101
+    - row: 01000000000000000101
+    - row: 01000000000000000101
+    - row: 01000000000000000101
     - row: 01010101010101010101
     - row: 00000000000000000000
     - row: 00000000000000000000
@@ -39,6 +39,8 @@ MonoBehaviour:
   resourceType: Hull Durability
   resourceIcon: {fileID: 21300000, guid: 0debb1fcbafb17643af5888234dd7323, type: 3}
   amount: 5
+  activeAmount: 0
+  minAmount: 0
 --- !u!1001 &227740541109652289
 PrefabInstance:
   m_ObjectHideFlags: 0
