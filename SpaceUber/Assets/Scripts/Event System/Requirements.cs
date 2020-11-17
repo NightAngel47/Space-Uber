@@ -226,7 +226,7 @@ public class Requirements
                     lookingFor = 5;
                     break;
                 case RoomType.Pantry:
-                    lookingFor = 16;
+                    lookingFor = 12;
                     break;
                 case RoomType.PhotonTorpedoes:
                     lookingFor = 11;
@@ -244,10 +244,10 @@ public class Requirements
                     lookingFor = 15;
                     break;
                 case RoomType.VIPLounge:
-                    lookingFor = 16;
+                    lookingFor = 13;
                     break;
                 case RoomType.WarpDrive:
-                    lookingFor = 17;
+                    lookingFor = 16;
                     break;
             }
 
