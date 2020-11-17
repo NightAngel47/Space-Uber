@@ -31,6 +31,9 @@ public class ShipStats : MonoBehaviour
     [SerializeField, Tooltip("Starting amount of crewMorale"), Foldout("Starting Ship Stats")]
     private int startingMorale;
 
+    public GameObject cantPlaceText;
+    public Sprite[] statIcons;
+
     private List<RoomStats> rooms;
 
     private int credits;
