@@ -90,7 +90,7 @@ public class SpawnObject : MonoBehaviour
 
     public void SpawnRoom(GameObject ga)
     {
-        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price) //checks to see if the player has enough credits for the room
+        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price && FindObjectOfType<ShipStats>().EnergyRemaining >= ga.GetComponent<RoomStats>().minPower) //checks to see if the player has enough credits for the room
         {
             if (lastSpawned == null || lastSpawned.GetComponent<ObjectMover>().enabled == false) //makes sure that the prior room is placed before the next room can be added
             {
@@ -162,7 +162,27 @@ public class SpawnObject : MonoBehaviour
         }
         else
         {
-            Debug.Log("Cannot Afford");
+            if (FindObjectOfType<ShipStats>().Credits < ga.GetComponent<RoomStats>().price)
+            {
+                Debug.Log("Cannot Afford");
+                FindObjectOfType<ShipStats>().cantPlaceText.gameObject.SetActive(true);
+                FindObjectOfType<ShipStats>().cantPlaceText.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Image>().sprite = FindObjectOfType<ShipStats>().statIcons[0];
+                StartCoroutine(WaitForText());
+            }
+
+            if (FindObjectOfType<ShipStats>().EnergyRemaining < ga.GetComponent<RoomStats>().minPower)
+            {
+                Debug.Log("No Energy");
+                FindObjectOfType<ShipStats>().cantPlaceText.gameObject.SetActive(true);
+                FindObjectOfType<ShipStats>().cantPlaceText.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Image>().sprite = FindObjectOfType<ShipStats>().statIcons[5];
+                StartCoroutine(WaitForText());
+            }
         }
+    }
+
+    public IEnumerator WaitForText()
+    {
+        yield return new WaitForSeconds(3);
+        FindObjectOfType<ShipStats>().cantPlaceText.SetActive(false);
     }
 }
