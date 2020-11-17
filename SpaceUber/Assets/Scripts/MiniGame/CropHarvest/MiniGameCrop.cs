@@ -89,8 +89,8 @@ public class MiniGameCrop : MonoBehaviour
         else if (isWatered && cropNeeds.Contains(needsWater)) { cropNeeds.Remove(needsWater); }
         if (!isTrimmed && !cropNeeds.Contains(needsPruned)) { cropNeeds.Add(needsPruned); }
         else if (isTrimmed && cropNeeds.Contains(needsPruned)) { cropNeeds.Remove(needsPruned); }
-        if (isFertilized && !cropNeeds.Contains(needsPlanted) && stage == CropStage.Unplanted) { cropNeeds.Add(needsPlanted); }
-        else if((!isFertilized || stage != CropStage.Unplanted) && cropNeeds.Contains(needsWater)) { cropNeeds.Remove(needsPlanted); }
+        if (!cropNeeds.Contains(needsPlanted) && stage == CropStage.Unplanted) { cropNeeds.Add(needsPlanted); }
+        else if((stage != CropStage.Unplanted) && cropNeeds.Contains(needsPlanted)) { cropNeeds.Remove(needsPlanted); }
         if(stage == CropStage.Harvestable && !cropNeeds.Contains(readyToHarvest) && harvestableCropPrefab) { cropNeeds.Add(readyToHarvest); }
         else if (cropNeeds.Contains(readyToHarvest)) { cropNeeds.Remove(readyToHarvest); }
 
@@ -197,14 +197,14 @@ public class MiniGameCrop : MonoBehaviour
 	{
         while(true)
 		{
+            cropText.text = "";
             int i = 0;
             while(i < cropNeeds.Count)
 			{
-                cropText.text = cropNeeds[i];
+                cropText.text += cropNeeds[i] + "\n";
                 i++;
-                yield return new WaitForSeconds(1);
             }
-            if (cropNeeds.Count == 0) { cropText.text = ""; }
+            //if (cropNeeds.Count == 0) { cropText.text = ""; }
             yield return new WaitForEndOfFrame();
 		}
 	}
