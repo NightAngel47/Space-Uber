@@ -133,9 +133,6 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
                 additiveSceneManager.UnloadScene("CrewPayment");
                 
-                additiveSceneManager.UnloadScene("CrewManagement");
-                additiveSceneManager.LoadSceneSeperate("CrewManagement");
-                
                 additiveSceneManager.UnloadScene("Starport BG");
                 
                 ship.SaveStats();
@@ -153,6 +150,7 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(EventSystem.instance.Travel());
                 break;
             case InGameStates.CrewPayment:
+                additiveSceneManager.UnloadScene("CrewManagement");
                 additiveSceneManager.LoadSceneSeperate("CrewPayment");
                 break;
             case InGameStates.Ending: // Loads the PromptScreen_End when the player reaches a narrative ending.
