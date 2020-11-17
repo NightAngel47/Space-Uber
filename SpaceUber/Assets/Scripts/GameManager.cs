@@ -147,8 +147,10 @@ public class GameManager : MonoBehaviour
                 {
                   room.UpdateUsedRoom();
                 }
-                StartCoroutine(EventSystem.instance.Travel());
+                //StartCoroutine(EventSystem.instance.Travel());
+                StartCoroutine(EventSystem.instance.PlayIntro());
                 break;
+
             case InGameStates.CrewPayment:
                 additiveSceneManager.UnloadScene("CrewManagement");
                 additiveSceneManager.LoadSceneSeperate("CrewPayment");

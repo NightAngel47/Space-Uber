@@ -139,7 +139,6 @@ public class InkDriverBase : MonoBehaviour
     {
         if(story.currentChoices.Count > 0)
         {
-            print("About to show " + story.currentChoices.Count + " choices");
             showingChoices = true;
             foreach (Choice choice in story.currentChoices)
             {
