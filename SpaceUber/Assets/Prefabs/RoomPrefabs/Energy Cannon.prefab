@@ -106,13 +106,22 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomDescription
-      value: Fires a laser beam at unwanted guests. Strengthens Weapons based on
+      value: 'Fires a laser beam at unwanted guests. Strengthens Weapons based on
         crew assigned. Must be placed on the side of the ship.
+
+
+        The shape
+        of the room is 2x1.'
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomName
       value: Energy Cannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: flatOutput
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
