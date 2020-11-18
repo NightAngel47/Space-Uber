@@ -24,6 +24,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
+      propertyPath: nextChoices.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[0].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[2].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[3].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
       propertyPath: inkJSONAsset
       value: 
       objectReference: {fileID: 4900000, guid: 267e32aed10005146b37d7943b7ea5b5, type: 3}
@@ -72,6 +102,91 @@ PrefabInstance:
         type: 3}
       propertyPath: firstChoices.Array.data[1]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].choiceName
+      value: Nothing
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].choiceName
+      value: Go in the Wormhole
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[0].probability
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].probability
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[2].probability
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[3].probability
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[0].outcomes.Array.data[0].outcomeName
+      value: Go in the Wormhole
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[0].outcomes.Array.data[0].resource
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[0].outcomes.Array.data[0].amount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].outcomes.Array.data[0].outcomeName
+      value: Go in the Wormhole
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[2].outcomes.Array.data[0].outcomeName
+      value: Go in the Wormhole
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[3].outcomes.Array.data[0].outcomeName
+      value: Go in the Wormhole
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].outcomes.Array.data[0].resource
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].outcomes.Array.data[0].amount
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[2].outcomes.Array.data[0].resource
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[2].outcomes.Array.data[0].amount
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[3].outcomes.Array.data[0].amount
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
