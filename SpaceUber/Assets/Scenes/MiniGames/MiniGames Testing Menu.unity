@@ -823,7 +823,12 @@ PrefabInstance:
     - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}
       propertyPath: m_Interactable
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: HullRepair
       objectReference: {fileID: 0}
     - target: {fileID: 2228287772260378586, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}
@@ -2086,6 +2091,8 @@ MonoBehaviour:
   securityBaseAdjustment: 1
   shipWeaponsBaseAdjustment: 1
   hullDurabilityBaseAdjustment: 1
+  hullRepairBaseAdjustment: 5
+  failHullDurabilityBaseAdjustment: -5
   cooldownTime: 5
   overclocking: 0
 --- !u!4 &2125258799

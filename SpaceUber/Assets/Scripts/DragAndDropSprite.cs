@@ -31,6 +31,7 @@ public class DragAndDropSprite : MonoBehaviour
             transform.position = mousePosition;
         }
     }
+
 	private void OnMouseDown() 
     { 
         isBeingDraged = !isBeingDraged;

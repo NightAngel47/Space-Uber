@@ -31,11 +31,20 @@ public class HullPiece : MonoBehaviour
         }
 		else { collider.isTrigger = false; }
     }
-    private void OnMouseDown()
+
+	private void OnMouseDown()
     {
-        Debug.Log("Click");
         Collider2D[] colliders = new Collider2D[1];
         if (this != HullRepairMiniGame.selectedHullPiece) { HullRepairMiniGame.selectedHullPiece = this; }
-		else if(collider.OverlapCollider(new ContactFilter2D(), colliders ) == 0){ HullRepairMiniGame.selectedHullPiece = null; }
+        else
+        {
+            collider.OverlapCollider(new ContactFilter2D(), colliders);
+            bool collidedWithHullPiece = false;
+            foreach(Collider2D collider in colliders)
+            {
+				if (collider) { if (collider.CompareTag("Hull Piece")) { collidedWithHullPiece = true; } }
+            }
+			if (!collidedWithHullPiece) { HullRepairMiniGame.selectedHullPiece = null; }
+        }
     }
 }
