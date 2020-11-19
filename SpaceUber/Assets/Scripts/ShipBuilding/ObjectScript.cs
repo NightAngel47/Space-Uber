@@ -26,6 +26,7 @@ public class ObjectScript : MonoBehaviour
     public bool canRotate;  //true can rotate | false cannot rotate
     public bool nextToRoom; //true required next to x room | false no condition 
     public int nextToRoomNum;
+    public string nextToRoomName;
     public bool needsSpecificLocation;
     public bool preplacedRoom;
     public static bool CalledFromSpawn = false;
@@ -167,7 +168,10 @@ public class ObjectScript : MonoBehaviour
         gameObject.GetComponent<ObjectMover>().TurnOnBeingDragged();
         ObjectMover.hasPlaced = false;
 
-        HighlightSpotsOn();
+        if (needsSpecificLocation == true)
+        {
+            HighlightSpotsOn();
+        }
 
         ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
         foreach (ObjectScript r in otherRooms)

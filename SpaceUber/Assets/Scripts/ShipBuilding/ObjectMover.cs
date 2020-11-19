@@ -200,6 +200,16 @@ public class ObjectMover : MonoBehaviour
                 {
                     os.HighlightSpotsOff();
                 }
+                if (os.nextToRoom == true)
+                {
+                    if (GameObject.Find(os.nextToRoomName + "(Clone)") != null)
+                    {
+                        GameObject r = GameObject.Find(os.nextToRoomName + "(Clone)");
+
+                        r.transform.GetChild(2).gameObject.SetActive(false);
+                    }
+                }
+
 
                 StartCoroutine(ClickWait());
 

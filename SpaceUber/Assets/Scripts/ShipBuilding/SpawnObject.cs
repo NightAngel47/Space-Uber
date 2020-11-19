@@ -67,6 +67,7 @@ public class SpawnObject : MonoBehaviour
         FindObjectOfType<SpotChecker>().FillPreplacedSpots(lastSpawned);
         lastSpawned.GetComponent<RoomStats>().AddRoomStats();
         lastSpawned.GetComponent<ObjectMover>().enabled = false;
+        lastSpawned.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
     }
 
     public void SetAvailableRoomList(List<GameObject> l)
@@ -108,6 +109,16 @@ public class SpawnObject : MonoBehaviour
                 if(lastSpawned.GetComponent<ObjectScript>().needsSpecificLocation == true)
                 {
                     lastSpawned.GetComponent<ObjectScript>().HighlightSpotsOn();
+                }
+
+                if(lastSpawned.GetComponent<ObjectScript>().nextToRoom == true)
+                {
+                    if(GameObject.Find(lastSpawned.GetComponent<ObjectScript>().nextToRoomName + "(Clone)") != null)
+                    {
+                        GameObject r = GameObject.Find(lastSpawned.GetComponent<ObjectScript>().nextToRoomName + "(Clone)");
+
+                        r.transform.GetChild(2).gameObject.SetActive(true);
+                    }
                 }
 
                 switch (ga.name) //plays sfx for each room
