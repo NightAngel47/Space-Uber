@@ -21,9 +21,11 @@ public class EventChoice
     [SerializeField] private string choiceName;
 
     [SerializeField] private bool changeMusic;
+    [SerializeField] private bool playSFX;
     [SerializeField, ShowIf("changeMusic"), AllowNesting] private bool withoutTransition;
     [Dropdown("eventMusicTracks"), SerializeField, ShowIf("changeMusic"), AllowNesting]
     public string eventBGM;
+    public string eventSFX;
     private List<string> eventMusicTracks
     {
         get
@@ -130,6 +132,11 @@ public class EventChoice
             {
                 AudioManager.instance.PlayMusicWithTransition(eventBGM);
             }
+        }
+
+        if (playSFX)
+        {
+            AudioManager.instance.PlaySFX(eventSFX);
         }
 
         if (hasRandomEnding)
