@@ -1911,6 +1911,8 @@ MonoBehaviour:
   miniGameSceneName: 2
   statModification: 1
   gameWinScreen: {fileID: 2009436431}
+  winText: {fileID: 1199302306}
+  winMessage: Good Job!
   Successes:
   - Arp 1
   - Arp 2
@@ -2609,7 +2611,6 @@ GameObject:
   - component: {fileID: 1138934905}
   - component: {fileID: 1138934904}
   - component: {fileID: 1138934903}
-  - component: {fileID: 1138934907}
   m_Layer: 0
   m_Name: CodeBlock (7)
   m_TagString: Untagged
@@ -2720,7 +2721,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1138934907}
+      - m_Target: {fileID: 0}
         m_MethodName: ClickPlay
         m_Mode: 1
         m_Arguments:

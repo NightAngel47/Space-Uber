@@ -59,7 +59,6 @@ public class Cannon : MonoBehaviour
 		{
 			int indicatorNumber = Mathf.RoundToInt(timeElapsed / coolDown * coolDownIndicators.Length)+1;
 			coolDownBarIndicator.rectTransform.sizeDelta = new Vector2(coolDownBarWidth * (timeElapsed / coolDown), height);
-			Debug.Log(coolDownBarIndicator.rectTransform.rect.width);
 			yield return new WaitForSeconds(0.01f);
 			timeElapsed += 0.01f;
 		}

@@ -3576,6 +3576,9 @@ MonoBehaviour:
   miniGameSceneName: 3
   statModification: 1
   gameWinScreen: {fileID: 738084695}
+  winText: {fileID: 1837640233}
+  winMessage: Good Job!
+  failMessage: You lose
   Successes:
   - Arp 1
   - Arp 2
@@ -3585,6 +3588,7 @@ MonoBehaviour:
   damageText: {fileID: 32254234}
   requiredAstroids: 10
   scoreText: {fileID: 390383840}
+  damageTillFailure: 3
 --- !u!4 &660907015
 Transform:
   m_ObjectHideFlags: 0
@@ -6091,7 +6095,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2828524699034471178, guid: 123b415d0b70f7c4faeb09a8cbcb53ec,
     type: 3}
   barrel: {fileID: 1925763291}
-  coolDown: 1
+  coolDown: 0.9
   coolDownIndicators:
   - {fileID: 0}
   - {fileID: 0}
@@ -6432,8 +6436,8 @@ MonoBehaviour:
   - {fileID: 1718181451}
   astroidPrefab: {fileID: 8610011415739937060, guid: 87c89be77d0353446a22a5cfbd003e22,
     type: 3}
-  minimumSpawnDelay: 1
-  maximumSpawnDelay: 3
+  minimumSpawnDelay: 0.5
+  maximumSpawnDelay: 2
   stop: 0
 --- !u!1 &1232572491
 GameObject:
@@ -8350,7 +8354,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2828524699034471178, guid: 123b415d0b70f7c4faeb09a8cbcb53ec,
     type: 3}
   barrel: {fileID: 213667874}
-  coolDown: 1
+  coolDown: 0.9
   coolDownIndicators:
   - {fileID: 0}
   - {fileID: 0}

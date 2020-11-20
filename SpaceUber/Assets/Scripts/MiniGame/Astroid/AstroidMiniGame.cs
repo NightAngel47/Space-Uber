@@ -13,10 +13,17 @@ public class AstroidMiniGame : MiniGame
     public GameObject damageText;
     public int requiredAstroids = 10;
     [SerializeField]TMP_Text scoreText = null;
+	public int damageTillFailure = 3;
 
 	private void Update()
 	{
-		scoreText.text = "Astroids Remaining: " + requiredAstroids;
-		if(requiredAstroids == 0) { EndMiniGameSuccess(); }
+		if (!gameOver)
+		{
+			scoreText.text = "Astroids Remaining: " + requiredAstroids;
+			if (requiredAstroids == 0) { EndMiniGameSuccess(); }
+			if (damageTillFailure == 0) { EndMiniGameFail(true); }
+		}
 	}
+
+	public void TakeDamage() { damageTillFailure--; }
 }
