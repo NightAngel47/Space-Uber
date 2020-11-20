@@ -52,13 +52,13 @@ You arrive at the abandoned docking bay, without any of the targets the clones a
 
 == Fight ==
 You have several approaches as the gun charges, send your security team to swiftly and effeciently disable it, destroy it with the sheer force of your weaponry, blast out of the atmosphere and escape, or ram your ship into the plasma battery likely to debilitating effect of both of you.
-*[Send Security (Security%)] #50/50 SECURITY SUCCESS/FAILURE
+*[Send Security] #50/50 SECURITY SUCCESS/FAILURE
     ->securityEnd
-*[Fire Upon Gun(Weapons%)] #50/50 BLAST SUCCESS/FAILURE
+*[Fire Upon Gun] #50/50 BLAST SUCCESS/FAILURE
     ->blastEnd
-*[Ram the Gun(Hull%)] #35/65 SECURITY SUCCESS/FAILURE
+*[Ram the Gun] #35/65 SECURITY SUCCESS/FAILURE
     ->ramGunEnd
-*[Flee(End Campaign)]
+*[Flee]
     ->fleeEnd
 
 ===SecuritySuccess===
@@ -123,10 +123,10 @@ Beckett Two starts, "You left some of our originals with small weapons on them. 
 *[Accept Pay]
     ->AcceptPay
 
-*[Haggle (Trust%)] #HAGGLE CHANCE. 65/35 SUCCESS/FAILURE
+*[Haggle] #HAGGLE CHANCE. 65/35 SUCCESS/FAILURE
     ->haggleEnd
 
-*[Threaten (Weapons%)] #THREATEN CHANCE. 65/35 SUCCESS/FAILURE
+*[Threaten] #THREATEN CHANCE. 65/35 SUCCESS/FAILURE
     ->threatenEnd
 
 ===AcceptPay==

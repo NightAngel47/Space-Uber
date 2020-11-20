@@ -45,13 +45,13 @@ Despite your client's deaths and the heavy toll this trip has had on your ship a
 
 == Fight ==
 You have several approaches as the gun charges, send your security team to swiftly and effeciently disable it, destroy it with the sheer force of your weaponry, blast out of the atmosphere and escape, or ram your ship into the plasma battery likely to debilitating effect of both of you.
-*[Send Security (Security%)] #50/50 SECURITY SUCCESS/FAILURE
+*[Send Security] #50/50 SECURITY SUCCESS/FAILURE
     ->securityEnd
-*[Fire Upon Gun(Weapons%)] #50/50 BLAST SUCCESS/FAILURE
+*[Fire Upon Gun] #50/50 BLAST SUCCESS/FAILURE
     ->blastEnd
-*[Ram the Gun(Hull%)] #35/65 SECURITY SUCCESS/FAILURE
+*[Ram the Gun] #35/65 SECURITY SUCCESS/FAILURE
     ->ramGunEnd
-*[Flee(End Campaign)]
+*[Flee]
     ->fleeEnd
 
 ===SecuritySuccess===
@@ -121,10 +121,10 @@ You tell them you’re not leaving without your money, but you don’t want any 
 It is set on the ground and kicked, sending it sliding towards your ship. You dispatch your crew to retrieve it. While the mercenaries and clones watch the ship you tally your money. They're only giving you three fourths of what was promised, but it’s better than a hail of bullets. "All deals are final." Olivia Two says, "It was a pleasure. I hope we can all forget this ever happened."
 -> Paid_By_Clones
 
-*[Haggle (Trust%)] #HAGGLE CHANCE. 65/35 SUCCESS/FAILURE
+*[Haggle ] #HAGGLE CHANCE. 65/35 SUCCESS/FAILURE
     ->haggleEnd
     
-*[Threaten (Weapons%)] #THREATEN CHANCE. 65/35 SUCCESS/FAILURE
+*[Threaten ] #THREATEN CHANCE. 65/35 SUCCESS/FAILURE
     -> threatenEnd
 
 ===HaggleSuccess===
@@ -143,7 +143,7 @@ He pulls out a small radio and says, "Give them a warning shot." Olivia whirls a
 The charging plasma reaches deafening volumes before the sound vaporizes itself,  a laser igniting over your ship, bringing the outer layer of the hull to a boil. Your entire crew is standing very still. Beckett Two smirks, "Local authorities probably heard that one. I don't think we have time to haggle anymore, wouldn't you agree?"
 -> Paid_By_Clones
 
-*[Threaten (Weapons%)] #THREATEN CHANCE. 65/35 SUCCESS/FAILURE
+*[Threaten] #THREATEN CHANCE. 65/35 SUCCESS/FAILURE
     -> threatenEnd
     
 ===ThreatenSuccess===
