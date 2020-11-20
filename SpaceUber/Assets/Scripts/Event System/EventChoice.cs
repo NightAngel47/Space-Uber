@@ -87,8 +87,10 @@ public class EventChoice
     /// <param name="ship"></param>
     public void SelectChoice(ShipStats ship)
     {
-
-        driver.TakeSubsequentChoices(driver.subsequentChoices[subsequentChoiceIndex].eventChoices);
+        if (hasSubsequentChoices)
+        {
+            driver.TakeSubsequentChoices(driver.subsequentChoices[subsequentChoiceIndex].eventChoices);
+        }
 
         if (hasRandomEnding)
         {
