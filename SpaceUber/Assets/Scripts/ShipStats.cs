@@ -297,13 +297,25 @@ public class ShipStats : MonoBehaviour
     //{
     //    return crewRemaining;
     //}
-
     public void AddPayout(int ammount)
     {
         payout += ammount;
+        if (payout <= 0)
+        {
+            payout = 0;
+        }
     }
 
-    public void CashPayout()
+    public void MultiplyPayout(int multiplier)
+    {
+        payout *= multiplier;
+        if (payout <= 0)
+        {
+            payout = 0;
+        }
+    }
+
+        public void CashPayout()
     {
         UpdateCreditsAmount(payout);
         payout = 0;
