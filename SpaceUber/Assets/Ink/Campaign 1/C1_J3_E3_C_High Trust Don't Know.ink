@@ -62,7 +62,7 @@ You swivel your ship guns against the attackers and try to buy your team the tim
 ===SecurityFailure===
 #SECURITY FAILURE. Placeholder: 50%. Security% chance Success.
 Your cargo hold doors blast open as your security team rushes out, firing upon the mercenaries as they move. With every enemy down though, it seems like two more take their place. The security team can’t move forward without taking bullets from all sides. The gun is nearly charged, the sound rattling your ship. Your team shouts to you that they can’t make it in time, that you need to take evasive action, but it’s too late. 
-The deep humming of the gun suddenly hollows out into silence as a green beam punctures your ship, dissolving a jagged hole through the center, the surrounding rooms detonating from the heat. Your security force rushes to get back to the smoking ship, several of them shot in the back by the approaching mercenaries. You need to find another way.
+The deep humming of the gun suddenly hollows out into silence as a green beam punctures your ship, dissolving a jagged hole through the center, the surrounding rooms detonating from the heat. As your ship rocks back you hear the gunfire has stopped. The security team managed to reach the gun, and the mercs operating it are dead, they're mangled and so is the ship, but its down.
 #[Medium Hull Reduction, Large Security Reduction]
 ->Fight
 
@@ -76,8 +76,8 @@ You order your crew to focus on that weak point, and they pour gunfire against t
 
 ===BlastGunFailure===
 #BLAST FAILURE. Placeholder: 50%. Weapons% chance Success.
-You turn all your guns onto the plasma battery. It’s a simple numbers game. If you can do enough damage for it to shut down before it fires, you win. You order several successive volleys, as every weapon attached to the ship smokes and spins. The plating across the gun is thick, slugs bouncing off of it as it charges. 
-And you start to realize it isn’t going to be enough. Your ship rattles against the violence of its attack and the deep reverberations of the gun about to fire. You route energy to shields as fast as you can. The deep humming of the gun suddenly gives way into silence as a green light lances through the front of you ship, dissolving entire rooms, others detonating from the heat. Your weapons are practically out of ammo. You need to find another way.
+You turn all your guns onto the plasma battery. It’s a simple numbers game. If you can do enough damage for it to shut down before it fires, you win. You order several successive volleys, as every weapon attached to the ship smokes and spins. The plating across the gun is thick, slugs bouncing off of it as it charges. With every shot that bounces off of it, however, the plating becomes misshapen, warped, until the shots have made a small hole in the right side of the gun. 
+You order your crew to focus on that weak point, the pour gunfire against the thing. You realize it isn’t going to be enough. Your ship rattles against the violence of its attack and the deep reverberations of the gun about to fire. You route energy to shields as fast as you can. The deep humming of the gun suddenly gives way into silence as a green light lances through the front of you ship, dissolving entire rooms, others detonating from the heat. The gun's barrel is splayed apart, parts of it vaporized. It's down but you're worse for wear.
 #[Medium Hull Reduction, Large Weapons Reduction]
 -> Fight
 
@@ -112,94 +112,51 @@ The hull of the ship nearly liquifies as a plasma lance strikes the edge of your
 
 
 == Negotiation ==
-{HaggleCount == 0 && HaggleLocked == false:
 Your new clients  however, do not approach your ship. Instead the metal-clad mercenaries slowly turn their attention to you, kneeling in a defensive perimeter. The clones again call you. In the video feed, Olivia and Beckett Two, along with a few others dopples, are standing on a catwalk, you presume nearby. 
 Beckett Two starts, "You left some of our originals with small weapons on them. Guns. Knives. Such a simple mistake could have been costly, and that will be reflected in your pay." he gestures off screen and you see the mercenaries take aim at your ship, "Are you going to be a good machine and take the money or are we going to have some issues?" Olivia Two stares past the camera, "We do appreciate your help." she says without much emotion.
-}
-{HaggleLocked == false:
 You can accept their offer, but persuasion or threats could increase your payout. If they try anything you can always get off planet. Your entire crew on standby, ready to blast out of the atmosphere or activate the ships’ weapons in seconds.
-}
-{HaggleLocked == true:
-You've gotten all the money you can from the clones. You should accept the offer before they change their minds.
-}
+
 *[Accept Pay]
-{HaggleCount == 0:
 You tell them you’re not leaving without your money, but you don’t want any trouble. "Good boy," Beckett Two laughs, "Even easier than I thought." Olivia Two doesn't seem to respond to Beckett's taunt, but gestures off-screen. Less than a minute later an armored man, chain-cuffed to a briefcase, approaches your ship. 
 It is set on the ground and kicked, sending it sliding towards your ship. You dispatch your crew to retrieve it. While the mercenaries and clones watch the ship you tally your money. They're only giving you three fourths of what was promised, but it’s better than a hail of bullets. "All deals are final." Olivia Two says, "It was a pleasure. I hope we can all forget this ever happened."
 -> Paid_By_Clones
-}
-{HaggleCount > 0:
-You tell them it’s enough. Beckett Two squints and glances around, as if looking for a divine sign to tell him to stop gambling. Olivia Two takes the opportunity to gesture off-screen, signalling the agreed upon amount. Less than a minute later an armored man chain-cuffed to a briefcase approaches your ship. 
-It is set on the ground and kicked, sending it sliding towards your ship. You dispatch your crew to retrieve it. While the mercenaries and clones watch the ship you tally your money. They're giving you what was promised, and you aren't pushing any harder. "All deals are final." Olivia Two says, "It was a pleasure. I hope we can all forget this ever happened."
--> Paid_By_Clones
-}
 
-+[Haggle (Trust%)] #HAGGLE CHANCE. 65/35 SUCCESS/FAILURE
+*[Haggle (Trust%)] #HAGGLE CHANCE. 65/35 SUCCESS/FAILURE
     ->haggleEnd
-+[Threaten (Weapons%)] #THREATEN CHANCE. 65/35 SUCCESS/FAILURE
+    
+*[Threaten (Weapons%)] #THREATEN CHANCE. 65/35 SUCCESS/FAILURE
     -> threatenEnd
 
 ===HaggleSuccess===
-    {HaggleLocked == true:
-    Beckett has cut you off. You cannot keep haggling.
-    -> Negotiation
-    }
-    {HaggleCount == 0:
-    You tell them that confiscating weapons was never part of your job, and that you aren't accepting a lower payment because of it. Beckett Two scoffs, "Oh! So you're saying you knew you were taking these people to get shot up, but you didn't think them having weapons would be an issue? Take some damn initiative and maybe you’d get somewhere in life." 
-    Olivia Two ignores him and leans forward, "The agreed upon payment? That shouldn't be an issue." Beckett Two turns to her and says, "You know this is coming out of your pocket." Olivia Two shrugs, "We promised the AI this money, Beckett, and without them you'd still be a slave." Beckett snarls and throws a hand up, "Fine. Fine. Pay the machine."
+    You tell them that confiscating weapons was never part of your job, and neither were the suspicions levied against you. Beckett Two scoffs, "Oh! So you're saying you knew you were taking these people to get shot up, but you didn't think them having weapons would be an issue? Take some damn initiative and maybe you’d get somewhere in life." 
+    Olivia Two ignores him and leans forward, "Most would have cracked under the kind of pressure, getting a bit more than the agreed upon payment shouldn't be an issue." Beckett Two turns to her and says, "You know this is coming out of your pocket." Olivia Two shrugs, "We promised the AI this money, Beckett, and without them you'd still be a slave." Beckett snarls and throws a hand up, "Fine. Fine. Pay the machine."
+    Olivia Two gestures off-screen, signalling the agreed upon amount. Less than a minute later an armored man chain-cuffed to a briefcase approaches your ship. 
+It is set on the ground and kicked, sending it sliding towards your ship. You dispatch your crew to retrieve it. While the mercenaries and clones watch the ship you tally your money. They're giving you what was promised, and you aren't pushing any harder. "All deals are final." Olivia Two says, "It was a pleasure. I hope we can all forget this ever happened."
     ~HaggleCount++
-    -> Negotiation
-    }
-    {HaggleCount == 1:
-    You press for more money. The mission was highly dangerous, and you had to cover for the clones. You argue that the suspicions levied against you were never in the plan. Beckett Two rolls his eyes, "Oh yeah? Well they wouldn't be after you if you had done  a better job covering your tracks." 
-    Olivia Two thinks to herself, "That being said, you are right  that most employees would crack under that kind of pressure. You are something else." she turns to Beckett, "We have all the money in the world now, Beckett, so what's a few more credits?" Beckett has fallen more into a state of annoyance than rage, he waves his hand as if signalling for an execution. "Fine! Now that that's settled, anything else?"
-    ~HaggleCount++
-    -> Negotiation
-    }
-    {HaggleCount == 2:
-    "Oh you're really pressing your luck now, buddy." Beckett snaps  "You're literally standing in an ambush site. Do you know the kind of holes we could put in your ship?" Olivia starts to explain your pay raise, but falters. The price is getting higher than anyone expected. "How about we leave it there." she says, hoping that will sate Beckett. His eyes look dead from the exchange, "It ends here." he parrots back.
-    ~HaggleCount++
-    ~HaggleLocked = true
-    -> Negotiation
-    } 
+    -> Paid_By_Clones
 
 ===HaggleFailure===
 #HAGGLE FAILURE. Placeholder: 35%. Trust% chance of success. 
-"No. No, you are not getting another damn cent from me." Beckett says, "You work under us understand? You don't set the terms, got it?" He pulls out a small radio and says, "Give them a warning shot." Olivia whirls around lunges forward to grab the radio, "What are you doing?!" You all hear the deep warbling sound of a machine charging. You start to see a glowing, sickly green light in the shadows of the docking bay. A mobile artillery platform illuminates itself, its barrel pointed a few feet above your ship. 
+    You tell them that confiscating weapons was never part of your job, and that you aren't accepting a lower payment because of it. Beckett Two scoffs, "Oh! So you're saying you knew you were taking these people to get shot up, but you didn't think them having weapons would be an issue? Take some damn initiative and maybe you’d get somewhere in life." 
+    Olivia Two ignores him and leans forward, "The agreed upon payment? That shouldn't be an issue." Beckett Two fumes, "No. No, you are not getting another damn cent from me." he says, "You work under us understand? You don't set the terms, got it?" 
+He pulls out a small radio and says, "Give them a warning shot." Olivia whirls around lunges forward to grab the radio, "What are you doing?!" You all hear the deep warbling sound of a machine charging. You start to see a glowing, sickly green light in the shadows of the docking bay. A mobile artillery platform illuminates itself, its barrel pointed a few feet above your ship. 
 The charging plasma reaches deafening volumes before the sound vaporizes itself,  a laser igniting over your ship, bringing the outer layer of the hull to a boil. Your entire crew is standing very still. Beckett Two smirks, "Local authorities probably heard that one. I don't think we have time to haggle anymore, wouldn't you agree?"
-~HaggleLocked = true
--> Negotiation
+-> Paid_By_Clones
 
-+[Threaten (Weapons%)] #THREATEN CHANCE. 65/35 SUCCESS/FAILURE
+*[Threaten (Weapons%)] #THREATEN CHANCE. 65/35 SUCCESS/FAILURE
     -> threatenEnd
     
 ===ThreatenSuccess===
-    {HaggleLocked == true:
-    Beckett has cut you off. You cannot threaten them further.
-    -> Negotiation
-    }
-    {HaggleCount == 0:
-    You order your crew to swivel your gun turrets, make a small show. You tell the clones that confiscating weapons was never part of your job, and that you aren't accepting a lower payment because of it. Failure to meet your standards will be met with extreme force. Beckett Two scoffs, "Oh! You want to see guns? I could buy an entire planet full of guns now, you Kellis pet." 
-    Olivia Two leans forward, "Then it shouldn't be an issue to cough up the agreed upon payment." Beckett Two whirls to her and she shrugs in response, "We promised the AI this money, Beckett, and I don't think you want to die right when your life is getting started." Beckett snarls and throws a hand up, "Fine. Fine. Pay the damn machine."
+    You order your crew to fire a warning shot. A blue beam of light dances between the standing mercenaries before slicing over their heads. The men are shaken, a few falling back. You tell the clones that confiscating weapons was never part of your job, and even your base payment isn't nearly enough. Failure to meet your standards will be met with extreme force. 
+    Olivia glances behind herself, as if looking for an exit. She starts slowly, "Maybe we should just give them what they want." Beckett snarls, "Oh, and let them walk all over us? We’re finally in control! And we came prepared for this Olivia!" She shoots back, "and I don't think you want to die right when your life is getting started." 
+    Beckett snarls and throws a hand up, "Fine. Fine. Pay the damn machine." Olivia Two gestures off-screen, signalling your pay. Less than a minute later an armored man chain-cuffed to a briefcase approaches your ship. 
+It is set on the ground and kicked, sending it sliding towards your ship. You dispatch your crew to retrieve it. While the mercenaries and clones watch the ship you tally your money. They're giving you what was promised, and you aren't pushing any harder. "All deals are final." Olivia Two says, "I hope we can all forget this ever happened."
     ~HaggleCount++
-    -> Negotiation
-    }
-    {HaggleCount == 1:
-    You order your crew to start the boot-up sequences for your weaponry‒make it seem like you're ready to strike. The mercenaries start to look between themselves. You tell the clones that the payment isn't nearly enough. Olivia glances behind herself, as if looking for an exit. She starts slowly, "Maybe we should just give them what they want." 
-    Beckett snarls, "Oh, and let them walk all over us? We’re finally in control! And we came prepared for this Olivia!" she sighs, "I know, I know, but the fallout would be too much trouble. We already took more losses than expected‒let's just dip into our coffers and end the death here." After a moment Beckett agrees. Your threat worked.
-    ~HaggleCount++
-    -> Negotiation
-    }
-    {HaggleCount == 2:
-    You order your crew to fire a warning shot. A blue beam of light dances between the standing mercenaries before slicing over their heads. The men are shaken, a few falling back. Whoever was manning the gun needs a raise. You press the clones again, not even justifying a pay increase but flatly threatening their lives.You tell them to send all the money they brought, pointing your guns towards the distant catwalks. 
-    Beckett begins to twitch and fume, as if perfecting his enraged response. Olivia actually looks angry, and gestures offscreen. "Just give them it all!" Beckett starts to scream as the call cuts off. Less than a minute later an armored man chain-cuffed to a briefcase approaches your ship. It is set on the ground and kicked, sending it  sliding  towards your ship. You dispatch your crew to receive it. They're giving you it all. 
-    ~HaggleCount++
-    ~HaggleLocked = true
     -> Paid_By_Clones
-    }
 
 ===ThreatenFailure===
 #THREATEN FAILURE. Placeholder: 35%. Trust% chance of success. 
+You order your crew to fire a warning shot. A blue beam of light dances between the standing mercenaries before slicing over their heads. The men are shaken, a few falling back. You tell the clones that confiscating weapons was never part of your job, and even your base payment isn't nearly enough. Failure to meet your standards will be met with extreme force.
 "I've had it with this thing mouthing its metal trap acting like it will win this fight." Beckett yells as he pulls out a radio, "Destroy them. Now." Olivia whirls around lunges forward to grab the radio, "What are you doing?!" You all hear the deep warbling sound of a machine charging. You start to see a glowing, sickly green light in the shadows of the docking bay. A mobile artillery platform illuminates itself, its barrel pointed directly at your ship. The charging plasma reaches deafening volumes.
 You immediately go into evasive maneuvers. Your ship lurches forward in the cramped docking bay as the plasma cannon fires, just barely glancing off your armor, the outer plating left white hot. Before it charges up again you need to act. 
 ->Fight
