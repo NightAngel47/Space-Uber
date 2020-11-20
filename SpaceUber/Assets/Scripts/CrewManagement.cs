@@ -21,9 +21,8 @@ public class CrewManagement : MonoBehaviour
     public GameObject roomText;
     public GameObject costsText;
     public GameObject crewAmount;
+    public GameObject powerAmount;
     public GameObject overclockOutput;
-    public GameObject addButton;
-    public GameObject subtractButton;
     private GameObject statPanel;
 
     private GameObject room;
@@ -81,9 +80,6 @@ public class CrewManagement : MonoBehaviour
         room = g;
         rs = room.GetComponent<RoomStats>();
 
-        addButton.GetComponent<Button>().interactable = true;
-        subtractButton.GetComponent<Button>().interactable = true;
-
         statPanel.SetActive(true);
 
         roomText.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().roomName;
@@ -135,6 +131,20 @@ public class CrewManagement : MonoBehaviour
                 //Hull Durability
                 resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
                 resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Energy";
+                overtimeStats.Add(resourceGO);
+                overclockButton.gameObject.SetActive(true);
+                break;
+            case MiniGameType.SlotMachine:
+                //Credits
+                resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
+                resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Credits";
+                overtimeStats.Add(resourceGO);
+                overclockButton.gameObject.SetActive(true);
+                break;
+            case MiniGameType.HullRepair:
+                //Hull Durability
+                resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
+                resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Hull Durability";
                 overtimeStats.Add(resourceGO);
                 overclockButton.gameObject.SetActive(true);
                 break;
@@ -235,6 +245,28 @@ public class CrewManagement : MonoBehaviour
             }
         }
     }
+
+    //public void AddPower()
+    //{
+    //    if(ss.HasEnoughPower(rs.minPower) && rs.GetIsPowered() == false)
+    //    {
+    //        ss.UpdateEnergyAmount(-rs.minPower);
+    //        rs.SetIsPowered();
+    //        powerAmount.GetComponent<TextMeshProUGUI>().text = rs.minPower.ToString();
+    //        UpdateOutput();
+    //    }
+    //}
+
+    //public void SubtractPower()
+    //{
+    //    if (rs.GetIsPowered() == true)
+    //    {
+    //        ss.UpdateEnergyAmount(rs.minPower);
+    //        rs.SetIsPowered();
+    //        powerAmount.GetComponent<TextMeshProUGUI>().text = rs.minPower.ToString();
+    //        UpdateOutput();
+    //    }
+    //}
 
     public void LoseCrew(int crewLost)
     {

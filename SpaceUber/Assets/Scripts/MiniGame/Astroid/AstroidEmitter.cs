@@ -28,7 +28,7 @@ public class AstroidEmitter : MonoBehaviour
 	IEnumerator SpawnAstroids()
 	{
 		int index;
-		while (miniGameManager.requiredAstroids > 0)
+		while (miniGameManager.requiredAstroids > 0 && miniGameManager.damageTillFailure > 0)
 		{
 			yield return new WaitForSeconds(Random.Range(minimumSpawnDelay, maximumSpawnDelay));
 			index = Random.Range(0, spawnPoints.Length);

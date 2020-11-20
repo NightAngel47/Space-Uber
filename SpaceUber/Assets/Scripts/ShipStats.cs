@@ -31,6 +31,9 @@ public class ShipStats : MonoBehaviour
     [SerializeField, Tooltip("Starting amount of crewMorale"), Foldout("Starting Ship Stats")]
     private int startingMorale;
 
+    public GameObject cantPlaceText;
+    public Sprite[] statIcons;
+
     private List<RoomStats> rooms;
 
     private int credits;
@@ -63,7 +66,7 @@ public class ShipStats : MonoBehaviour
     //mutiny calculations
     private int maxMutinyMorale = 60;
     private float zeroMoraleMutinyChance = 0.75f;
-    
+
     //stats at the start of the job
     private int startCredits;
     private int startPayout;
@@ -166,7 +169,7 @@ public class ShipStats : MonoBehaviour
             StartCoroutine(TickUpdate());
         }
     }
-    
+
     private IEnumerator<YieldInstruction> CheckDeathOnUnpause()
     {
             while(ticksPaused || tickStop)
@@ -188,7 +191,7 @@ public class ShipStats : MonoBehaviour
             credits = 0;
         }
 
-        shipStatsUI.UpdateCreditsUI(credits);
+        shipStatsUI.UpdateCreditsUI(credits, payout);
         shipStatsUI.ShowCreditsUIChange(creditAddition);
     }
 
@@ -282,7 +285,7 @@ public class ShipStats : MonoBehaviour
 
         shipStatsUI.UpdateHullUI(shipHealthCurrent, shipHealthMax);
         shipStatsUI.ShowHullUIChange(hullDurabilityRemainingAmount, hullDurabilityMax);
-        
+
         if(checkImmediately)
         {
             if(shipHealthCurrent <= 0)
@@ -305,39 +308,59 @@ public class ShipStats : MonoBehaviour
     //{
     //    return crewRemaining;
     //}
+    public void UpdatePayoutAmount(int ammount)
+    {
+        payout += ammount;
+
+        shipStatsUI.UpdateCreditsUI(credits, payout);
+    }
+
     public void AddPayout(int ammount)
     {
+        int initialPayout = payout;
         payout += ammount;
         if (payout <= 0)
         {
             payout = 0;
         }
+        
+        shipStatsUI.UpdateCreditsUI(credits, payout);
+        shipStatsUI.ShowCreditsUIChange(0, payout - initialPayout);
     }
 
     public void MultiplyPayout(int multiplier)
     {
+        int initialPayout = payout;
         payout *= multiplier;
         if (payout <= 0)
         {
             payout = 0;
         }
+        
+        shipStatsUI.UpdateCreditsUI(credits, payout);
+        shipStatsUI.ShowCreditsUIChange(0, payout - initialPayout);
     }
 
-        public void CashPayout()
+    public void CashPayout()
     {
         UpdateCreditsAmount(payout);
         payout = 0;
     }
 
-    public bool HasEnoughPower()
+    public bool HasEnoughPower(int power)
     {
-        return EnergyRemaining >= 0;
+        return EnergyRemaining >= power;
     }
 
     public int Credits
     {
         get { return credits; }
         set { credits = value; }
+    }
+    public int Payout
+    {
+        get { return payout; }
+        set { payout = value; }
     }
     public int EnergyRemaining
     {
@@ -369,11 +392,6 @@ public class ShipStats : MonoBehaviour
         get { return shipHealthCurrent; }
         set { shipHealthCurrent = value; }
     }
-    public int Payout
-    {
-        get { return payout; }
-        set { payout = value; }
-    }
 
     //public void UpdateCrewMorale(int crewMoraleAmount)
     //{
@@ -393,18 +411,18 @@ public class ShipStats : MonoBehaviour
         Debug.Log("Security " + Security);
         Debug.Log("ShipWeapons " + ShipWeapons);
         Debug.Log("CrewRemaining " + CrewRemaining);
-        Debug.Log("Food " + Food); 
+        Debug.Log("Food " + Food);
         Debug.Log("ShipHealthCurrent " + ShipHealthCurrent);
         Debug.Log("Payout " + Payout);
     }
-    
+
     public void PayCrew(int ammount)
     {
         UpdateCreditsAmount(-ammount * crewRemaining);
         //int BadMoraleMultiplier = (maxMutinyMorale - crewMorale) * crewPaymentMoraleMultiplier / maxMutinyMorale;
         //UpdateCrewMorale(BadMoraleMultiplier * (ammount - crewPaymentDefault));
     }
-    
+
     public void SaveStats()
     {
         startCredits = credits;
@@ -421,7 +439,7 @@ public class ShipStats : MonoBehaviour
         startShipHealthCurrent = shipHealthCurrent;
         //startCrewMorale = crewMorale;
     }
-    
+
     public void ResetStats()
     {
         UpdateCreditsAmount(startCredits);
