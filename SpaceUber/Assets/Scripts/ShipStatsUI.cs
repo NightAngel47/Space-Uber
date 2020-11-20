@@ -6,6 +6,8 @@
  */
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
@@ -31,6 +33,8 @@ public class ShipStatsUI : MonoBehaviour
     [SerializeField, Foldout("Ship Hull UI")] private TMP_Text hullMaxText;
     
     public GameObject statChangeText;
+    public float jiggleAmount;
+    public float jiggleTime;
 
     public void UpdateCreditsUI(int current, int tick = 0)
     {
@@ -42,6 +46,16 @@ public class ShipStatsUI : MonoBehaviour
     {
         SpawnStatChangeText(creditsCurrentText, currentChange);
         SpawnStatChangeText(creditsTickText, tickChange);
+        
+        if(currentChange != 0)
+        {
+            StartCoroutine(JiggleText(creditsCurrentText));
+        }
+        
+        if(tickChange != 0)
+        {
+            StartCoroutine(JiggleText(creditsTickText));
+        }
     }
     
     public void UpdateEnergyUI(int current, int max)
@@ -54,6 +68,16 @@ public class ShipStatsUI : MonoBehaviour
     {
         SpawnStatChangeText(energyCurrentText, currentChange);
         SpawnStatChangeText(energyMaxText, maxChange);
+        
+        if(currentChange != 0)
+        {
+            StartCoroutine(JiggleText(energyCurrentText));
+        }
+        
+        if(maxChange != 0)
+        {
+            StartCoroutine(JiggleText(energyMaxText));
+        }
     }
     
     public void UpdateSecurityUI(int current)
@@ -64,6 +88,11 @@ public class ShipStatsUI : MonoBehaviour
     public void ShowSecurityUIChange(int currentChange)
     {
         SpawnStatChangeText(securityCurrentText, currentChange);
+        
+        if(currentChange != 0)
+        {
+            StartCoroutine(JiggleText(securityCurrentText));
+        }
     }
     
     public void UpdateShipWeaponsUI(int current)
@@ -74,6 +103,11 @@ public class ShipStatsUI : MonoBehaviour
     public void ShowShipWeaponsUIChange(int currentChange)
     {
         SpawnStatChangeText(shipWeaponsCurrentText, currentChange);
+        
+        if(currentChange != 0)
+        {
+            StartCoroutine(JiggleText(shipWeaponsCurrentText));
+        }
     }
     
     public void UpdateCrewUI(int current, int max)
@@ -86,6 +120,16 @@ public class ShipStatsUI : MonoBehaviour
     {
         SpawnStatChangeText(crewCurrentText, currentChange);
         SpawnStatChangeText(crewMaxText, maxChange);
+        
+        if(currentChange != 0)
+        {
+            StartCoroutine(JiggleText(crewCurrentText));
+        }
+        
+        if(maxChange != 0)
+        {
+            StartCoroutine(JiggleText(crewMaxText));
+        }
     }
     
     public void UpdateFoodUI(int current, int tick)
@@ -98,6 +142,16 @@ public class ShipStatsUI : MonoBehaviour
     {
         SpawnStatChangeText(foodCurrentText, currentChange);
         SpawnStatChangeText(foodTickText, tickChange);
+        
+        if(currentChange != 0)
+        {
+            StartCoroutine(JiggleText(foodCurrentText));
+        }
+        
+        if(tickChange != 0)
+        {
+            StartCoroutine(JiggleText(foodTickText));
+        }
     }
     
     public void UpdateHullUI(int current, int max)
@@ -110,6 +164,16 @@ public class ShipStatsUI : MonoBehaviour
     {
         SpawnStatChangeText(hullCurrentText, currentChange);
         SpawnStatChangeText(hullMaxText, maxChange);
+        
+        if(currentChange != 0)
+        {
+            StartCoroutine(JiggleText(hullCurrentText));
+        }
+        
+        if(maxChange != 0)
+        {
+            StartCoroutine(JiggleText(hullMaxText));
+        }
     }
     
     private void SpawnStatChangeText(TMP_Text statText, int value)
@@ -137,6 +201,26 @@ public class ShipStatsUI : MonoBehaviour
             MoveAndFadeBehaviour moveAndFadeBehaviour = instance.GetComponent<MoveAndFadeBehaviour>();
             moveAndFadeBehaviour.offset = new Vector2(0, -75);
             moveAndFadeBehaviour.SetValue(value);
+        }
+    }
+    
+    private IEnumerator JiggleText(TMP_Text text)
+    {
+        Vector2 startingPos = text.GetComponent<RectTransform>().anchoredPosition;
+        IEnumerator coroutine = TextJiggling(text);
+        StartCoroutine(coroutine);
+        yield return new WaitForSeconds(jiggleTime);
+        StopCoroutine(coroutine);
+        text.GetComponent<RectTransform>().anchoredPosition = startingPos;
+    }
+    
+    private IEnumerator TextJiggling(TMP_Text text)
+    {
+        while(true)
+        {
+            Vector2 pos = text.GetComponent<RectTransform>().anchoredPosition;
+            text.GetComponent<RectTransform>().anchoredPosition = pos + UnityEngine.Random.insideUnitCircle * jiggleAmount;
+            yield return new WaitForFixedUpdate();
         }
     }
 }
