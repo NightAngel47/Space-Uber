@@ -398,11 +398,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1704234535}
     m_Modifications:
-    - target: {fileID: 7110753070658254416, guid: 2881fb45785837144aa48e81ba17090b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -352
-      objectReference: {fileID: 0}
     - target: {fileID: 1017365634499762597, guid: b8bb6e5b0215d5643b2d5291c7d93805,
         type: 3}
       propertyPath: m_Name
@@ -467,6 +462,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7110753070658254416, guid: 2881fb45785837144aa48e81ba17090b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -352
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8bb6e5b0215d5643b2d5291c7d93805, type: 3}
@@ -3377,7 +3377,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: 1d3e7d67d73b1db0d5a0731300000000
+  m_ApplyToSortingLayers: 796fd276dfafae5309abf95200000000
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -6650,6 +6650,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4311328764446625287, guid: 17581060db283ed4a8d97970348901ea,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1403957215
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311328764446625287, guid: 17581060db283ed4a8d97970348901ea,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 6273300031087700530, guid: 17581060db283ed4a8d97970348901ea,
         type: 3}
       propertyPath: creditsCurrentText
