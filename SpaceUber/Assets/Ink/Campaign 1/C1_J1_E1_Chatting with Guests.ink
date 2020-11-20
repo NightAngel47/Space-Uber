@@ -18,7 +18,7 @@ As a few key players begin to make speeches about how grand of an adventure they
 -> END
 
 ==No_Taunt==
-    You tell him that you are not a lapdog, nor a chauffeur. The man laughs heartily, but quiets down when the orating VIP gives him a glare. He snickers more quietly against the wall, before repeating, "No? <i>No?</i> Man, that’s rich. You’re the one built to follow orders here, what else are you going to <i>do?!</i> Drop us off? This is your <i>job, keep me entertained.</i> I expect you to stay in your place.” As if to illustrate his point, the man looks over his wine glass and then empties it onto the console. The console is waterproof, of course, but it will need to be cleaned. 
+    You tell him that you are not a lapdog, nor a chauffeur. The man laughs heartily, but quiets down when the orating VIP gives him a glare. He snickers more quietly against the wall, before repeating, "No? <i>No?</i> Man, that's rich. You're the one built to follow orders here, what else are you going to <i>do?!</i> Drop us off? This is your <i>job, keep me entertained.</i> I expect you to stay in your place." As if to illustrate his point, the man looks over his wine glass and then empties it onto the console. The console is waterproof, of course, but it will need to be cleaned. 
     
     He laughs and walks off. A cursory search shows that this man is Miniver Beckett, heir to the tech company, Starglare, and you will be spending the next month with him. 
     
