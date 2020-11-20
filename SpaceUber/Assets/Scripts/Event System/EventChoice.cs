@@ -20,8 +20,25 @@ public class EventChoice
     private Story story;
     [SerializeField] private string choiceName;
 
+    [SerializeField] private bool changeMusic;
+    [SerializeField, ShowIf("changeMusic"), AllowNesting] private bool withoutTransition;
+    [Dropdown("eventMusicTracks"), SerializeField, ShowIf("changeMusic"), AllowNesting]
+    public string eventBGM;
+    private List<string> eventMusicTracks
+    {
+        get
+        {
+            return new List<string>() { "", "General Theme", "Wormhole", "Engine Malfunction", "Engine Delivery", "Black Market", "Clone Ambush Intro", "Safari Tampering", "Clone Ambush Negotiation", "Clone Ambush Fight", "Ejection" };
+        }
+    }
+
     [SerializeField] private bool hasRequirements;
     [SerializeField, ShowIf("hasRequirements")] private List<Requirements> choiceRequirements = new List<Requirements>();
+    
+    [SerializeField] private bool hasPercentChange;
+    [SerializeField, ShowIf("hasPercentChange")] private List<IncreasedSuccess> percentIncrease = new List<IncreasedSuccess>();
+    private float percantageIncreased;
+    private bool increasedPercent = false;
 
     [SerializeField] private bool hasRandomEnding;    
     [SerializeField, ShowIf("hasRandomEnding")] private List<MultipleRandom> randomEndingOutcomes = new List<MultipleRandom>();
@@ -61,9 +78,20 @@ public class EventChoice
 
             }
         }
-        
 
-        if(requirementMatch)
+        if (hasPercentChange)
+        {
+            for (int i = 0; i < percentIncrease.Count; i++)
+            {
+                if (percentIncrease[i].MatchesSuccessChance(ship))
+                {
+                    percantageIncreased = percentIncrease[i].GetTotalPercentIncrease();
+                    increasedPercent = true;
+                }
+            }
+        }
+
+        if (requirementMatch)
         {
             myButton.interactable = true;
             story = thisStory;
@@ -90,6 +118,18 @@ public class EventChoice
         if (hasSubsequentChoices)
         {
             driver.TakeSubsequentChoices(driver.subsequentChoices[subsequentChoiceIndex].eventChoices);
+        }
+
+        if (changeMusic)
+        {
+            if(withoutTransition)
+            {
+                AudioManager.instance.PlayMusicWithoutTransition(eventBGM);
+            }
+            else
+            {
+                AudioManager.instance.PlayMusicWithTransition(eventBGM);
+            }
         }
 
         if (hasRandomEnding)
@@ -129,6 +169,11 @@ public class EventChoice
         for (int i = 0; i < randomEndingOutcomes.Count; i++)
         {
             choiceThreshold += randomEndingOutcomes[i].probability; //adds the probability of the next element to choice threshold
+            
+            if(increasedPercent)
+            {
+                choiceThreshold += percantageIncreased;
+            }
 
             //if the outcome chance is lower than the threshold, we pick this event
             if (outcomeChance <= choiceThreshold || (i == randomEndingOutcomes.Count)) 
