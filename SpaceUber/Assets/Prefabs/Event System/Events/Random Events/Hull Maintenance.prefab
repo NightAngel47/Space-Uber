@@ -1,59 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &320114956022967462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6683104274163393890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  choiceName: Hull Maintenance
-  hasRequirements: 0
-  choiceRequirements: []
-  hasRandomEnding: 0
-  outcomes:
-  - outcomeName: Hull Maintenance
-    isNarrativeOutcome: 0
-    resource: 4
-    amount: -1
-    ctrBoolOutcomes: 
-    cloneTrustChange: 0
-    VIPTrustChange: 0
-  randomEndingOutcomes: []
-  hasSubsequentChoices: 0
-  subsequentChoices: []
---- !u!114 &7181144942750401107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6683104274163393890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  choiceName: Leave Plating Be
-  hasRequirements: 0
-  choiceRequirements: []
-  hasRandomEnding: 0
-  outcomes:
-  - outcomeName: Hull Maintenance
-    isNarrativeOutcome: 0
-    resource: 7
-    amount: -10
-    ctrBoolOutcomes: 
-    cloneTrustChange: 0
-    VIPTrustChange: 0
-  randomEndingOutcomes: []
-  hasSubsequentChoices: 0
-  subsequentChoices: []
 --- !u!1001 &2026965822321323162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80,12 +26,12 @@ PrefabInstance:
         type: 3}
       propertyPath: firstChoices.Array.data[0]
       value: 
-      objectReference: {fileID: 320114956022967462}
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: firstChoices.Array.data[1]
       value: 
-      objectReference: {fileID: 7181144942750401107}
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: eventBGM
@@ -209,9 +155,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 492e23da0c4f0a84188d48989e322a6d, type: 3}
---- !u!1 &6683104274163393890 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
-    type: 3}
-  m_PrefabInstance: {fileID: 2026965822321323162}
-  m_PrefabAsset: {fileID: 0}

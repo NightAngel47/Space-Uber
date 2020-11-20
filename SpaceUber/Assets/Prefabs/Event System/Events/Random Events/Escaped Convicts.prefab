@@ -1,59 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5004747824266422818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7281746092743587932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  choiceName: Report Convicts to Authorities
-  hasRequirements: 0
-  choiceRequirements: []
-  hasRandomEnding: 0
-  outcomes:
-  - outcomeName: Report Convicts to Authorities
-    isNarrativeOutcome: 0
-    resource: 0
-    amount: 100
-    ctrBoolOutcomes: 
-    cloneTrustChange: 0
-    VIPTrustChange: 0
-  randomEndingOutcomes: []
-  hasSubsequentChoices: 0
-  subsequentChoices: []
---- !u!114 &1558781045663292811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7281746092743587932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  choiceName: Integrate Convicts into Crew
-  hasRequirements: 0
-  choiceRequirements: []
-  hasRandomEnding: 0
-  outcomes:
-  - outcomeName: Integrate Convicts into Crew
-    isNarrativeOutcome: 0
-    resource: 4
-    amount: 3
-    ctrBoolOutcomes: 
-    cloneTrustChange: 0
-    VIPTrustChange: 0
-  randomEndingOutcomes: []
-  hasSubsequentChoices: 0
-  subsequentChoices: []
 --- !u!1001 &2707763151342367140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65,6 +11,21 @@ PrefabInstance:
         type: 3}
       propertyPath: firstChoices.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].outcomes.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -85,18 +46,53 @@ PrefabInstance:
         type: 3}
       propertyPath: firstChoices.Array.data[0]
       value: 
-      objectReference: {fileID: -5004747824266422818}
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: firstChoices.Array.data[1]
       value: 
-      objectReference: {fileID: 1558781045663292811}
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: backgroundImage
       value: 
       objectReference: {fileID: 21300000, guid: 997bb9b91348ade4cac4a3c28d9c260c,
         type: 3}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].choiceName
+      value: Report Convicts to Authorities
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].outcomeName
+      value: Report Convicts to Authorities
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].amount
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].choiceName
+      value: Integrate Convicts into Crew
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[0].outcomeName
+      value: Integrate Convicts into Crew
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[0].resource
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[0].amount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name
@@ -209,9 +205,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 492e23da0c4f0a84188d48989e322a6d, type: 3}
---- !u!1 &7281746092743587932 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
-    type: 3}
-  m_PrefabInstance: {fileID: 2707763151342367140}
-  m_PrefabAsset: {fileID: 0}
