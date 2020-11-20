@@ -50,7 +50,7 @@ public class MoveAndFadeBehaviour : MonoBehaviour
             
             if(alpha <= 0)
             {
-                Destroy(this);
+                Destroy(this.gameObject);
             }
             
             text.color = new Color(text.color.r, text.color.g, text.color.b, alpha);
@@ -60,6 +60,13 @@ public class MoveAndFadeBehaviour : MonoBehaviour
     
     public void SetValue(int value)
     {
+        StartCoroutine(SetValueWhenReady(value));
+    }
+    
+    private IEnumerator SetValueWhenReady(int value)
+    {
+        yield return new WaitUntil(() => text != null);
+        
         string sign;
         if(value >= 0)
         {
@@ -68,10 +75,10 @@ public class MoveAndFadeBehaviour : MonoBehaviour
         }
         else
         {
-            sign = "-";
+            sign = "";
             text.color = red;
         }
         
-        text.text = sign + " " + value;
+        text.text = sign + value;
     }
 }

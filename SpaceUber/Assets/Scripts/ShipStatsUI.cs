@@ -29,11 +29,19 @@ public class ShipStatsUI : MonoBehaviour
     
     [SerializeField, Foldout("Ship Hull UI")] private TMP_Text hullCurrentText;
     [SerializeField, Foldout("Ship Hull UI")] private TMP_Text hullMaxText;
+    
+    public GameObject statChangeText;
 
     public void UpdateCreditsUI(int current, int tick = 0)
     {
         creditsCurrentText.text = current.ToString();
         creditsTickText.text = tick.ToString();
+    }
+    
+    public void ShowCreditsUIChange(int currentChange, int tickChange = 0)
+    {
+        SpawnStatChangeText(creditsCurrentText, currentChange);
+        SpawnStatChangeText(creditsTickText, tickChange);
     }
     
     public void UpdateEnergyUI(int current, int max)
@@ -42,14 +50,30 @@ public class ShipStatsUI : MonoBehaviour
         energyMaxText.text = max.ToString();
     }
     
+    public void ShowEnergyUIChange(int currentChange, int maxChange)
+    {
+        SpawnStatChangeText(energyCurrentText, currentChange);
+        SpawnStatChangeText(energyMaxText, maxChange);
+    }
+    
     public void UpdateSecurityUI(int current)
     {
         securityCurrentText.text = current.ToString();
     }
     
+    public void ShowSecurityUIChange(int currentChange)
+    {
+        SpawnStatChangeText(securityCurrentText, currentChange);
+    }
+    
     public void UpdateShipWeaponsUI(int current)
     {
         shipWeaponsCurrentText.text = current.ToString();
+    }
+    
+    public void ShowShipWeaponsUIChange(int currentChange)
+    {
+        SpawnStatChangeText(shipWeaponsCurrentText, currentChange);
     }
     
     public void UpdateCrewUI(int current, int max)
@@ -58,15 +82,61 @@ public class ShipStatsUI : MonoBehaviour
         crewMaxText.text = max.ToString();
     }
     
+    public void ShowCrewUIChange(int currentChange, int maxChange)
+    {
+        SpawnStatChangeText(crewCurrentText, currentChange);
+        SpawnStatChangeText(crewMaxText, maxChange);
+    }
+    
     public void UpdateFoodUI(int current, int tick)
     {
         foodCurrentText.text = current.ToString();
         foodTickText.text = tick.ToString();
     }
     
+    public void ShowFoodUIChange(int currentChange, int tickChange)
+    {
+        SpawnStatChangeText(foodCurrentText, currentChange);
+        SpawnStatChangeText(foodTickText, tickChange);
+    }
+    
     public void UpdateHullUI(int current, int max)
     {
         hullCurrentText.text = current.ToString();
         hullMaxText.text = max.ToString();
+    }
+    
+    public void ShowHullUIChange(int currentChange, int maxChange)
+    {
+        SpawnStatChangeText(hullCurrentText, currentChange);
+        SpawnStatChangeText(hullMaxText, maxChange);
+    }
+    
+    private void SpawnStatChangeText(TMP_Text statText, int value)
+    {
+        if(value != 0)
+        {
+            GameObject instance = Instantiate(statChangeText, statText.gameObject.transform.parent);
+            
+            RectTransform rect = instance.GetComponent<RectTransform>();
+            RectTransform statRect = statText.gameObject.GetComponent<RectTransform>();
+            
+            rect.anchorMax = statRect.anchorMax;
+            rect.anchorMin = statRect.anchorMin;
+            rect.offsetMax = statRect.offsetMax;
+            rect.offsetMin = statRect.offsetMin;
+            rect.pivot = statRect.pivot;
+            rect.sizeDelta = statRect.sizeDelta;
+            rect.anchoredPosition = statRect.anchoredPosition;
+            
+            TMP_Text text = instance.GetComponent<TMP_Text>();
+            
+            text.fontSize = statText.fontSize;
+            text.alignment = statText.alignment;
+            
+            MoveAndFadeBehaviour moveAndFadeBehaviour = instance.GetComponent<MoveAndFadeBehaviour>();
+            moveAndFadeBehaviour.offset = new Vector2(0, -75);
+            moveAndFadeBehaviour.SetValue(value);
+        }
     }
 }

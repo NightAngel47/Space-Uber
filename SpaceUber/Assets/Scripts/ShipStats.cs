@@ -189,6 +189,7 @@ public class ShipStats : MonoBehaviour
         }
 
         shipStatsUI.UpdateCreditsUI(credits);
+        shipStatsUI.ShowCreditsUIChange(creditAddition);
     }
 
     public void UpdateEnergyAmount(int energyRemainingAddition, int energyMaxAddition = 0)
@@ -206,6 +207,7 @@ public class ShipStats : MonoBehaviour
         }
 
         shipStatsUI.UpdateEnergyUI(energyRemaining, energyMax);
+        shipStatsUI.ShowEnergyUIChange(energyRemainingAddition, energyMaxAddition);
     }
 
     public void UpdateSecurityAmount(int securityAmount)
@@ -218,6 +220,7 @@ public class ShipStats : MonoBehaviour
         }
 
         shipStatsUI.UpdateSecurityUI(security);
+        shipStatsUI.ShowSecurityUIChange(securityAmount);
     }
 
     public void UpdateShipWeaponsAmount(int shipWeaponsAmount)
@@ -230,6 +233,7 @@ public class ShipStats : MonoBehaviour
         }
 
         shipStatsUI.UpdateShipWeaponsUI(shipWeapons);
+        shipStatsUI.ShowShipWeaponsUIChange(shipWeaponsAmount);
     }
 
     public void UpdateCrewAmount(int crewRemainingAmount, int crewMaxAmount = 0)
@@ -247,6 +251,7 @@ public class ShipStats : MonoBehaviour
         }
 
         shipStatsUI.UpdateCrewUI(crewRemaining, crewMax);
+        shipStatsUI.ShowCrewUIChange(crewRemainingAmount, crewMaxAmount);
     }
 
     public void UpdateFoodAmount(int foodAmount)
@@ -259,6 +264,7 @@ public class ShipStats : MonoBehaviour
         }
 
         shipStatsUI.UpdateFoodUI(food, foodPerTick);
+        shipStatsUI.ShowFoodUIChange(foodAmount, 0);
     }
 
     public void UpdateFoodPerTickAmount(int foodPerTickAmount)
@@ -266,6 +272,7 @@ public class ShipStats : MonoBehaviour
         foodPerTick += foodPerTickAmount;
 
         shipStatsUI.UpdateFoodUI(food, foodPerTick);
+        shipStatsUI.ShowFoodUIChange(0, foodPerTickAmount);
     }
 
     public void UpdateHullDurabilityAmount(int hullDurabilityRemainingAmount, int hullDurabilityMax = 0, bool checkImmediately = true)
@@ -274,6 +281,7 @@ public class ShipStats : MonoBehaviour
         shipHealthCurrent += hullDurabilityRemainingAmount;
 
         shipStatsUI.UpdateHullUI(shipHealthCurrent, shipHealthMax);
+        shipStatsUI.ShowHullUIChange(hullDurabilityRemainingAmount, hullDurabilityMax);
         
         if(checkImmediately)
         {
