@@ -317,20 +317,28 @@ public class ShipStats : MonoBehaviour
 
     public void AddPayout(int ammount)
     {
+        int initialPayout = payout;
         payout += ammount;
         if (payout <= 0)
         {
             payout = 0;
         }
+        
+        shipStatsUI.UpdateCreditsUI(credits, payout);
+        shipStatsUI.ShowCreditsUIChange(0, payout - initialPayout);
     }
 
     public void MultiplyPayout(int multiplier)
     {
+        int initialPayout = payout;
         payout *= multiplier;
         if (payout <= 0)
         {
             payout = 0;
         }
+        
+        shipStatsUI.UpdateCreditsUI(credits, payout);
+        shipStatsUI.ShowCreditsUIChange(0, payout - initialPayout);
     }
 
     public void CashPayout()
@@ -383,11 +391,6 @@ public class ShipStats : MonoBehaviour
     {
         get { return shipHealthCurrent; }
         set { shipHealthCurrent = value; }
-    }
-    public int Payout
-    {
-        get { return payout; }
-        set { payout = value; }
     }
 
     //public void UpdateCrewMorale(int crewMoraleAmount)
