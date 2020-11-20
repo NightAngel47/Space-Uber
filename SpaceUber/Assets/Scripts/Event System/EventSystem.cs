@@ -74,41 +74,8 @@ public class EventSystem : MonoBehaviour
 		sonar.HideSonar();
 	}
 
-	/// <summary>
-	/// Plays job intro
-	/// </summary>
-	public IEnumerator PlayIntro()
-    {
-		while(currentJob == null)
-        {
-			yield return null;
-        }
-		GameObject intro = currentJob.introEvent;
-
-		if (intro != null)
-        {
-			// Load Event_General Scene for upcoming event
-			asm.LoadSceneMerged("Event_General");
-			yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_General").isLoaded);
-
-			eventCanvas = FindObjectOfType<EventCanvas>();
-
-			CreateEvent(intro);
-        }
-		else
-        {
-			print("Found nothing in currentJob");
-        }
-
-        //Go to the travel coroutine
-        StartCoroutine(EventSystem.instance.Travel());
-    }
-
 	public IEnumerator Travel()
 	{
-		//For the intro event
-		yield return new WaitWhile((() => eventActive));
-
 		//set up the sonar
 		sonar.ShowSonar();
 		sonar.ResetSonar();
@@ -119,14 +86,12 @@ public class EventSystem : MonoBehaviour
             ship.StartTickEvents();
             
 			yield return new WaitForSeconds(timeBeforeEventRoll); //start with one big chunk of time
-
-			//A check to be sure that the current game state really is the event scenes?
             if(GameManager.instance.currentGameState != InGameStates.Events)
             {
                 break;
             }
             
-			//run random chances for event to take place in a loop
+			//run random chances for event to take place
 			while (!WillRunEvent(chanceOfEvent))
 			{				
 				isTraveling = true;
@@ -138,7 +103,7 @@ public class EventSystem : MonoBehaviour
                 break;
             }
 
-			//Activate the warning for the next event now that one has been picked
+			//Activate the warning for the next event now
 			if (eventWarning != null)
 			{
 				eventWarning.SetActive(true);
@@ -155,6 +120,8 @@ public class EventSystem : MonoBehaviour
 			}
 			sonar.HideSonar();
 
+			
+
 			//Time to decide on an event
 			//story events happen every other time 
 			if (overallEventIndex % 2 == 1 && overallEventIndex != 0) //if it's an even-numbered event, do a story 
@@ -168,7 +135,6 @@ public class EventSystem : MonoBehaviour
 				GameObject newEvent = FindNextStoryEvent();
 				CreateEvent(newEvent);
 				storyEventIndex++;
-				overallEventIndex++;
 
 				yield return new WaitWhile((() => eventActive));
 			}
@@ -186,8 +152,7 @@ public class EventSystem : MonoBehaviour
 
 					CreateEvent(newEvent);
 					randomEventIndex++;
-					overallEventIndex++;
-
+                    
 					yield return new WaitWhile((() => eventActive));
 				}
 				else
@@ -223,7 +188,7 @@ public class EventSystem : MonoBehaviour
 		}
 
 		eventActive = true;
-		//Does not increment overall event index because intro event does not increment it
+		overallEventIndex++;
 	}
 
 	/// <summary>

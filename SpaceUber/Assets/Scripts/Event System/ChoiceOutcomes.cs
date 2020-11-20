@@ -13,17 +13,23 @@ using UnityEngine;
 [System.Serializable]
 public class ChoiceOutcomes
 {
-    [SerializeField] private string outcomeName;
-    
-    [SerializeField] private bool isNarrativeOutcome;
+    public string outcomeName;
+    public bool isNarrativeOutcome;
+
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] private ResourceType resource;
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] private int amount;
-    [Dropdown("cateringToRichBools"), 
-     SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private string ctrBoolOutcomes;
-    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int cloneTrustChange;
-    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int VIPTrustChange;
-    
-    public void StatChange(ShipStats ship, CampaignManager campMan, bool hasSubsequentChoices)
+
+    [Dropdown("cateringToRichBools"), SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting]
+    private string ctrBoolOutcomes;
+
+    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting]
+    private int cloneTrustChange;
+
+    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting]
+    private int VIPTrustChange;
+
+
+    public void StatChange(ShipStats ship, CampaignManager campMan)
     {
         if (ship != null)
         {
@@ -54,10 +60,7 @@ public class ChoiceOutcomes
                         ship.UpdateFoodPerTickAmount(amount);
                         break;
                     case ResourceType.HullDurability:
-                        ship.UpdateHullDurabilityAmount(amount, 0, hasSubsequentChoices);
-                        break;
-                    case ResourceType.Payout:
-                        ship.AddPayout(amount);
+                        ship.UpdateHullDurabilityAmount(amount);
                         break;
                     default:
                         break;
@@ -121,6 +124,5 @@ public enum ResourceType
     Food,
     FoodPerTick,
     HullDurability,
-    Stock,
-    Payout
+    Stock
 }

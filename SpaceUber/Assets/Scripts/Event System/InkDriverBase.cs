@@ -26,7 +26,7 @@ public class InkDriverBase : MonoBehaviour
     [SerializeField, Tooltip("Attach the prefab of a choice button to this")]
     private Button buttonPrefab;
 
-    [HideInInspector] public CampaignManager campMan;
+    [HideInInspector]public CampaignManager campMan;
     private Transform buttonGroup;
     private TMP_Text titleBox;
     private TMP_Text textBox;
@@ -36,24 +36,9 @@ public class InkDriverBase : MonoBehaviour
     [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
     private float textPrintSpeed = 0.1f;
 
-    [Dropdown("eventMusicTracks")]
-    public string eventBGM;
-    private List<string> eventMusicTracks
-    {
-        get
-        {
-            return new List<string>() { "", "General Theme", "Wormhole", "Engine Malfunction", "Engine Delivery", "Black Market", "Clone Ambush Intro", "Safari Tampering", "Clone Ambush Negotiation", "Clone Ambush Fight", "Ejection" };
-        }
-    }
-    
-    [SerializeField] public List<Requirements> requiredStats = new List<Requirements>();
-
     [SerializeField, Tooltip("The first set of choices that a player will reach.")]
-    private List<EventChoice> nextChoices = new List<EventChoice>();
-    
-    [SerializeField] bool hasSubsequentChoices;
-    [ShowIf("hasSubsequentChoices"), Tooltip("Sets of subsequent choices that can be accessed by index by an event choice.")]
-    public List<SubsequentChoices> subsequentChoices = new List<SubsequentChoices>();
+    private List<EventChoice> firstChoices = new List<EventChoice>();
+    private List<EventChoice> availableChoices = new List<EventChoice>();
 
     /// <summary>
     /// The story itself being read
@@ -66,6 +51,19 @@ public class InkDriverBase : MonoBehaviour
     private bool donePrinting = true;
     private bool showingChoices = false;
 
+    [SerializeField] public List<Requirements> requiredStats;
+
+    [Dropdown("eventMusicTracks")]
+    public string eventBGM;
+
+    private List<string> eventMusicTracks
+    {
+        get
+        {
+            return new List<string>() { "", "General Theme", "Wormhole", "Engine Malfunction", "Engine Delivery", "Black Market", "Clone Ambush Intro", "Safari Tampering", "Clone Ambush Negotiation", "Clone Ambush Fight", "Ejection" };
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,6 +73,13 @@ public class InkDriverBase : MonoBehaviour
         titleBox.text = eventName;
         backgroundUI.sprite = backgroundImage;
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
+
+        if(firstChoices.Count == 0)
+        {
+            EventChoice[] theseChoices = GetComponents<EventChoice>();
+            firstChoices = new List<EventChoice>(theseChoices);
+        }
+        availableChoices = firstChoices;
     }
 
     public void AssignStatusFromEventSystem(TMP_Text title, TMP_Text text, Image background, Transform buttonSpace,
@@ -139,6 +144,7 @@ public class InkDriverBase : MonoBehaviour
     {
         if(story.currentChoices.Count > 0)
         {
+            print("About to show " + story.currentChoices.Count + " choices");
             showingChoices = true;
             foreach (Choice choice in story.currentChoices)
             {
@@ -154,13 +160,13 @@ public class InkDriverBase : MonoBehaviour
                     OnClickChoiceButton(choice);
                 });
 
-                if (choice.index < nextChoices.Count)
+                if (choice.index < availableChoices.Count)
                 {
-                    nextChoices[choice.index].CreateChoice(thisShip,choiceButton, story,this);
+                    availableChoices[choice.index].CreateChoice(thisShip,choiceButton, story,this);
 
                     // Have on click also call the outcome choice to update the ship stats
                     choiceButton.onClick.AddListener(delegate {
-                        nextChoices[choice.index].SelectChoice(thisShip);
+                        availableChoices[choice.index].SelectChoice(thisShip);
                     });
                 }
                 else
@@ -199,10 +205,10 @@ public class InkDriverBase : MonoBehaviour
     /// <summary>
     /// Takes any subsequent choices from the EventChoice selected and applies them to the file
     /// </summary>
-    /// <param name="subsequent"></param>
-    public void TakeSubsequentChoices(List<EventChoice> subsequent)
+    /// <param name="nextChoices"></param>
+    public void TakeSubsequentChoices(List<EventChoice> nextChoices)
     {
-        nextChoices = subsequent;
+        availableChoices = nextChoices;
     }
 
     /// <summary>

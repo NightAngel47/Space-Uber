@@ -15,7 +15,7 @@ public class Resource : MonoBehaviour
     public string resourceType;
 
     private List<string> resourceTypes { get { return new List<string>() { "", "Credits", "Energy", "Security",
-        "Ship Weapons", "Crew", "Food", "Food Per Tick", "Hull Durability", "Stock", "Payout" }; } }
+        "Ship Weapons", "Crew", "Food", "Food Per Tick", "Hull Durability", "Stock" }; } }
 
     public Sprite resourceIcon;
     

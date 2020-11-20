@@ -22,13 +22,10 @@ public class Job : MonoBehaviour
     [Tooltip("How many random events will happen in this journey")]
     public int maxRandomEvents = 3;
 
-    [Tooltip("The introduction to the job. Will be played immediately when reaching the travel scene"), HideIf("isSideJob")]
-    public GameObject introEvent;
-
     [Tooltip("The story events included in this job"),HideIf("isSideJob"), ReorderableList]
     public List<GameObject> storyEvents;
 
-    [Tooltip("The random events that will be included in this job"), ReorderableList]
+    [Tooltip("The random events that will be included in this job")]
     public List<GameObject> randomEvents;
 
 

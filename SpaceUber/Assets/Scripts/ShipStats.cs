@@ -63,21 +63,6 @@ public class ShipStats : MonoBehaviour
     //mutiny calculations
     private int maxMutinyMorale = 60;
     private float zeroMoraleMutinyChance = 0.75f;
-    
-    //stats at the start of the job
-    private int startCredits;
-    private int startPayout;
-    private int startEnergyMax;
-    private int startEnergyRemaining;
-    private int startSecurity;
-    private int startShipWeapons;
-    private int startCrewMax;
-    private int startCrewRemaining;
-    private int startFood;
-    private int startFoodPerTick;
-    private int startShipHealthMax;
-    private int startShipHealthCurrent;
-    //private int startCrewMorale;
 
     private void Awake()
     {
@@ -166,44 +151,18 @@ public class ShipStats : MonoBehaviour
             StartCoroutine(TickUpdate());
         }
     }
-    
-    private IEnumerator<YieldInstruction> CheckDeathOnUnpause()
-    {
-            while(ticksPaused || tickStop)
-            {
-                yield return new WaitForFixedUpdate();
-            }
 
-            if(shipHealthCurrent <= 0)
-            {
-                GameManager.instance.ChangeInGameState(InGameStates.Death);
-            }
-    }
-
-    public void UpdateCreditsAmount(int creditAddition)
+    public void UpdateCreditsAmount(int creditAmount)
     {
-        credits += creditAddition;
-        if(credits <= 0)
-        {
-            credits = 0;
-        }
+        credits += creditAmount;
 
         shipStatsUI.UpdateCreditsUI(credits);
     }
 
-    public void UpdateEnergyAmount(int energyRemainingAddition, int energyMaxAddition = 0)
+    public void UpdateEnergyAmount(int energyRemainingAmount, int energyMaxAmount = 0)
     {
-        energyMax += energyMaxAddition;
-        energyRemaining += energyRemainingAddition;
-
-        if (energyRemaining <= 0)
-        {
-            energyRemaining = 0;
-        }
-        if (energyRemaining >= energyMax)
-        {
-            energyRemaining = energyMax;
-        }
+        energyMax += energyMaxAmount;
+        energyRemaining += energyRemainingAmount;
 
         shipStatsUI.UpdateEnergyUI(energyRemaining, energyMax);
     }
@@ -212,22 +171,12 @@ public class ShipStats : MonoBehaviour
     {
         security += securityAmount;
 
-        if (security <= 0)
-        {
-            security = 0;
-        }
-
         shipStatsUI.UpdateSecurityUI(security);
     }
 
     public void UpdateShipWeaponsAmount(int shipWeaponsAmount)
     {
         shipWeapons += shipWeaponsAmount;
-
-        if (shipWeapons <= 0)
-        {
-            shipWeapons = 0;
-        }
 
         shipStatsUI.UpdateShipWeaponsUI(shipWeapons);
     }
@@ -237,26 +186,12 @@ public class ShipStats : MonoBehaviour
         crewMax += crewMaxAmount;
         crewRemaining += crewRemainingAmount;
 
-        if (crewRemaining <= 0)
-        {
-            crewRemaining = 0;
-        }
-        if (crewRemaining >= crewMax)
-        {
-            crewRemaining = crewMax;
-        }
-
         shipStatsUI.UpdateCrewUI(crewRemaining, crewMax);
     }
 
     public void UpdateFoodAmount(int foodAmount)
     {
         food += foodAmount;
-
-        if (food <= 0)
-        {
-            food = 0;
-        }
 
         shipStatsUI.UpdateFoodUI(food, foodPerTick);
     }
@@ -268,24 +203,12 @@ public class ShipStats : MonoBehaviour
         shipStatsUI.UpdateFoodUI(food, foodPerTick);
     }
 
-    public void UpdateHullDurabilityAmount(int hullDurabilityRemainingAmount, int hullDurabilityMax = 0, bool checkImmediately = true)
+    public void UpdateHullDurabilityAmount(int hullDurabilityRemainingAmount, int hullDurabilityMax = 0)
     {
         shipHealthMax += hullDurabilityMax;
         shipHealthCurrent += hullDurabilityRemainingAmount;
 
         shipStatsUI.UpdateHullUI(shipHealthCurrent, shipHealthMax);
-        
-        if(checkImmediately)
-        {
-            if(shipHealthCurrent <= 0)
-            {
-                GameManager.instance.ChangeInGameState(InGameStates.Death);
-            }
-        }
-        else
-        {
-            CheckDeathOnUnpause();
-        }
     }
 
     //public int GetCredits()
@@ -349,11 +272,6 @@ public class ShipStats : MonoBehaviour
         get { return shipHealthCurrent; }
         set { shipHealthCurrent = value; }
     }
-    public int Payout
-    {
-        get { return payout; }
-        set { payout = value; }
-    }
 
     //public void UpdateCrewMorale(int crewMoraleAmount)
     //{
@@ -375,44 +293,11 @@ public class ShipStats : MonoBehaviour
         Debug.Log("CrewRemaining " + CrewRemaining);
         Debug.Log("Food " + Food); 
         Debug.Log("ShipHealthCurrent " + ShipHealthCurrent);
-        Debug.Log("Payout " + Payout);
     }
-    
     public void PayCrew(int ammount)
     {
         UpdateCreditsAmount(-ammount * crewRemaining);
         //int BadMoraleMultiplier = (maxMutinyMorale - crewMorale) * crewPaymentMoraleMultiplier / maxMutinyMorale;
         //UpdateCrewMorale(BadMoraleMultiplier * (ammount - crewPaymentDefault));
-    }
-    
-    public void SaveStats()
-    {
-        startCredits = credits;
-        startPayout = payout;
-        startEnergyMax = energyMax;
-        startEnergyRemaining = energyRemaining;
-        startSecurity = security;
-        startShipWeapons = shipWeapons;
-        startCrewMax = crewMax;
-        startCrewRemaining = crewRemaining;
-        startFood = food;
-        startFoodPerTick = foodPerTick;
-        startShipHealthMax = shipHealthMax;
-        startShipHealthCurrent = shipHealthCurrent;
-        //startCrewMorale = crewMorale;
-    }
-    
-    public void ResetStats()
-    {
-        UpdateCreditsAmount(startCredits);
-        payout = startPayout;
-        UpdateEnergyAmount(startEnergyRemaining, startEnergyMax);
-        UpdateSecurityAmount(startSecurity);
-        UpdateShipWeaponsAmount(startShipWeapons);
-        UpdateCrewAmount(startCrewRemaining, startCrewMax);
-        UpdateFoodAmount(startFood);
-        UpdateFoodPerTickAmount(startFoodPerTick);
-        UpdateHullDurabilityAmount(startShipHealthCurrent, startShipHealthMax);
-        //UpdateCrewMorale(startMorale);
     }
 }
