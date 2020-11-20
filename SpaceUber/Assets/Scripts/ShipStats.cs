@@ -180,17 +180,30 @@ public class ShipStats : MonoBehaviour
             }
     }
 
-    public void UpdateCreditsAmount(int creditAmount)
+    public void UpdateCreditsAmount(int creditAddition)
     {
-        credits += creditAmount;
+        credits += creditAddition;
+        if(credits <= 0)
+        {
+            credits = 0;
+        }
 
         shipStatsUI.UpdateCreditsUI(credits);
     }
 
-    public void UpdateEnergyAmount(int energyRemainingAmount, int energyMaxAmount = 0)
+    public void UpdateEnergyAmount(int energyRemainingAddition, int energyMaxAddition = 0)
     {
-        energyMax += energyMaxAmount;
-        energyRemaining += energyRemainingAmount;
+        energyMax += energyMaxAddition;
+        energyRemaining += energyRemainingAddition;
+
+        if (energyRemaining <= 0)
+        {
+            energyRemaining = 0;
+        }
+        if (energyRemaining >= energyMax)
+        {
+            energyRemaining = energyMax;
+        }
 
         shipStatsUI.UpdateEnergyUI(energyRemaining, energyMax);
     }
@@ -199,12 +212,22 @@ public class ShipStats : MonoBehaviour
     {
         security += securityAmount;
 
+        if (security <= 0)
+        {
+            security = 0;
+        }
+
         shipStatsUI.UpdateSecurityUI(security);
     }
 
     public void UpdateShipWeaponsAmount(int shipWeaponsAmount)
     {
         shipWeapons += shipWeaponsAmount;
+
+        if (shipWeapons <= 0)
+        {
+            shipWeapons = 0;
+        }
 
         shipStatsUI.UpdateShipWeaponsUI(shipWeapons);
     }
@@ -214,12 +237,26 @@ public class ShipStats : MonoBehaviour
         crewMax += crewMaxAmount;
         crewRemaining += crewRemainingAmount;
 
+        if (crewRemaining <= 0)
+        {
+            crewRemaining = 0;
+        }
+        if (crewRemaining >= crewMax)
+        {
+            crewRemaining = crewMax;
+        }
+
         shipStatsUI.UpdateCrewUI(crewRemaining, crewMax);
     }
 
     public void UpdateFoodAmount(int foodAmount)
     {
         food += foodAmount;
+
+        if (food <= 0)
+        {
+            food = 0;
+        }
 
         shipStatsUI.UpdateFoodUI(food, foodPerTick);
     }

@@ -34,6 +34,7 @@ public class EventChoice
     [Serializable]
     public class MultipleRandom
     {
+        public string randomChanceName;
         public List<ChoiceOutcomes> outcomes = new List<ChoiceOutcomes>();
         public float probability;
     }
