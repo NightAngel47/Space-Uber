@@ -5,37 +5,39 @@
  * Description: Stores all data required for an event choice, such as the requirements
  */
 
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Ink.Runtime;
 using NaughtyAttributes;
+using Random = UnityEngine.Random;
 
-public class EventChoice : MonoBehaviour
+[Serializable]
+public class EventChoice
 {
-    private InkDriverBase driver;
-    [SerializeField] public string choiceName;
+    private InkDriverBase driver;    
+    private Story story;
+    [SerializeField] private string choiceName;
+
     [SerializeField] private bool hasRequirements;
+    [SerializeField, ShowIf("hasRequirements")] private List<Requirements> choiceRequirements = new List<Requirements>();
 
-    [SerializeField, ShowIf("hasRequirements")] private List<Requirements> choiceRequirements;
-
-    [SerializeField] public bool hasRandomEnding;
-    [SerializeField, HideIf("hasRandomEnding")] private List<ChoiceOutcomes> outcomes;
-    [SerializeField, ShowIf("hasRandomEnding")] private List<MultipleRandom> randomEndingOutcomes;
-    protected Story story;
+    [SerializeField] private bool hasRandomEnding;    
+    [SerializeField, ShowIf("hasRandomEnding")] private List<MultipleRandom> randomEndingOutcomes = new List<MultipleRandom>();
+    [SerializeField, HideIf("hasRandomEnding")] private List<ChoiceOutcomes> outcomes = new List<ChoiceOutcomes>();
     private int randomizedResult;
+    
+    [SerializeField] private bool hasSubsequentChoices;
+    [SerializeField, ShowIf("hasSubsequentChoices"), AllowNesting] private int subsequentChoiceIndex;
 
-    [SerializeField] bool hasSubsequentChoices;
-    [SerializeField, ShowIf("hasSubsequentChoices")] private List<EventChoice> subsequentChoices;
-
-    [System.Serializable]
+    [Serializable]
     public class MultipleRandom
     {
-        public List<ChoiceOutcomes> outcomes;
+        public string randomChanceName;
+        public List<ChoiceOutcomes> outcomes = new List<ChoiceOutcomes>();
         public float probability;
     }
-    // Start is called before the first frame update
 
     /// <summary>
     /// Extra code to determine if a choice is actually available
@@ -85,26 +87,25 @@ public class EventChoice : MonoBehaviour
     /// <param name="ship"></param>
     public void SelectChoice(ShipStats ship)
     {
-        driver.TakeSubsequentChoices(subsequentChoices);
+
+        driver.TakeSubsequentChoices(driver.subsequentChoices[subsequentChoiceIndex].eventChoices);
 
         if (hasRandomEnding)
         {
-            print("We have decided on outcome #" + randomizedResult);
             foreach(MultipleRandom multRando in randomEndingOutcomes)
             {
                 MultipleRandom thisSet = randomEndingOutcomes[randomizedResult];
                 foreach(ChoiceOutcomes choiceOutcome in thisSet.outcomes)
                 {
-                    choiceOutcome.StatChange(ship, driver.campMan);
+                    choiceOutcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
                 }
-
             }
         }
         else
         {
             foreach (ChoiceOutcomes outcome in outcomes)
             {
-                outcome.StatChange(ship, driver.campMan);
+                outcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
             }
         }
         
@@ -136,26 +137,7 @@ public class EventChoice : MonoBehaviour
 
         }
 
-
-        print("Random result was: " + result);
-
         story.EvaluateFunction("RandomizeEnding", result);
-
-        //switch (result)
-        //{
-        //    case 0:
-        //        story.variablesState["randomEnd"] = story.variablesState["endingOne"];
-        //        break;
-        //    case 1:
-        //        story.variablesState["randomEnd"] = story.variablesState["endingTwo"];
-        //        break;
-        //    case 2:
-        //        story.variablesState["randomEnd"] = story.variablesState["endingThree"];
-        //        break;
-        //    case 3:
-        //        story.variablesState["randomEnd"] = story.variablesState["endingFour"];
-        //        break;
-        //}
 
         randomizedResult = result;
     }
