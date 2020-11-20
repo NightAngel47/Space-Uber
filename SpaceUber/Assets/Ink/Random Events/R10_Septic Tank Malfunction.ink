@@ -2,11 +2,9 @@ VAR randomEnd = -> Fix1
 VAR randomEnd2 = -> Fix2
 
 
-The chief engineer, Ratchet, contacts you, "Wee have a little bit of a problem. You see, the waste disposal systems aren't working correctly. The tanks aren't emptying properly, and they're filling up quick. If we don't fix it and soon, all that stuff may damage the ship. We could have some crew members fix it, but it may not be the safest option, y'know. You could also fix it remotely, but that may allow some pressure to build up, and we don't want that." #randomEnd
+The chief engineer, Ratchet, contacts you, "Wee have a little bit of a problem. You see, the waste disposal systems aren't working correctly. The tanks aren't emptying properly, and they're filling up quick. If we don't fix it and soon, all that stuff may damage the ship. We could have some crew members fix it, but it may not be the safest option, y'know. You could also fix it remotely, but that may allow some pressure to build up, and we don't want that." 
 * [Fix with Crew ] #50% Chance - 1 Crew
     ->randomEnd
-
-
 * [Fix Remotely ] #(50% Chance - Hull Integrity)
     ->randomEnd2
 

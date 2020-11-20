@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4311328764446625287}
   - component: {fileID: 6273300032395514629}
   - component: {fileID: 6273300031087700530}
+  - component: {fileID: 6273300031087700531}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6273300032395514628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.26, y: -0.22, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -69,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1725670363
-  m_SortingLayer: -1
+  m_SortingLayerID: -1340261417
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 42bc6ce0a401b6e4ab29a78777154bd2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -95,13 +96,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34392dd657a58b644a069c7ba801d184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingCredits: 500
+  startingCredits: 700
   startingEnergy: 0
   startingSecurity: 0
   startingShipWeapons: 0
-  startingCrew: 0
+  startingCrew: 5
   startingFood: 0
   startingShipHealth: 100
+  startingMorale: 100
+  cantPlaceText: {fileID: 0}
+  statIcons:
+  - {fileID: 21300000, guid: 2bbae6bacf5f9da4697f3b6af192e12a, type: 3}
+  - {fileID: 21300000, guid: 302a744cd487b454f929803a063a0e46, type: 3}
+  - {fileID: 21300000, guid: 4285b6f4aa4fdd64c9d571a6e596b4cd, type: 3}
+  - {fileID: 21300000, guid: 19fdf56f9832ad64bb59df8a09898f9e, type: 3}
+  - {fileID: 21300000, guid: eb3218bd599b7834da6e92588a3f5200, type: 3}
+  - {fileID: 21300000, guid: 0d68944ad67f4054e9a9bbeaf51611ae, type: 3}
+  - {fileID: 21300000, guid: 0debb1fcbafb17643af5888234dd7323, type: 3}
 --- !u!114 &6273300031087700530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,3 +137,131 @@ MonoBehaviour:
   foodTickText: {fileID: 0}
   hullCurrentText: {fileID: 0}
   hullMaxText: {fileID: 0}
+  statChangeText: {fileID: 6562358761702154872, guid: d79e5343c58215647b7544fa825da881,
+    type: 3}
+  jiggleAmount: 2
+  jiggleTime: 0.1
+--- !u!114 &6273300031087700531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6273300032395514628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb5d574465f7fe41ae5ed7316106aa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlights:
+    rows:
+    - row:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+    - row:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+    - row:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+    - row:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+    - row:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+    - row:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+    - row:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+    - row:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+    - row:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+    - row:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}

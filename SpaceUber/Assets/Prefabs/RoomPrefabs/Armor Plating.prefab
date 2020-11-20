@@ -15,10 +15,10 @@ MonoBehaviour:
   specficLocations:
     rows:
     - row: 01010101010101010101
-    - row: 01000000000000000001
-    - row: 01000000000000000001
-    - row: 01000000000000000001
-    - row: 01000000000000000001
+    - row: 01000000000000000101
+    - row: 01000000000000000101
+    - row: 01000000000000000101
+    - row: 01000000000000000101
     - row: 01010101010101010101
     - row: 00000000000000000000
     - row: 00000000000000000000
@@ -39,6 +39,8 @@ MonoBehaviour:
   resourceType: Hull Durability
   resourceIcon: {fileID: 21300000, guid: 0debb1fcbafb17643af5888234dd7323, type: 3}
   amount: 5
+  activeAmount: 0
+  minAmount: 0
 --- !u!1001 &227740541109652289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69,8 +71,12 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomDescription
-      value: Extra plating to make the ship more durable. +5 hull durability. Must
-        be placed on the side of the ship.
+      value: 'Extra plating to make the ship more durable. Increases Hull Durability.
+        Must be placed on the side of the ship.
+
+
+        The shape of this room
+        is 1x1.'
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -81,6 +87,11 @@ PrefabInstance:
         type: 3}
       propertyPath: priceReducationPercent
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: flatOutput
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}

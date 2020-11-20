@@ -5,37 +5,58 @@
  * Description: Stores all data required for an event choice, such as the requirements
  */
 
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Ink.Runtime;
 using NaughtyAttributes;
+using Random = UnityEngine.Random;
 
-public class EventChoice : MonoBehaviour
+[Serializable]
+public class EventChoice
 {
-    private InkDriverBase driver;
-    [SerializeField] public string choiceName;
+    private InkDriverBase driver;    
+    private Story story;
+    [SerializeField] private string choiceName;
+
+    [SerializeField] private bool changeMusic;
+    [SerializeField] private bool playSFX;
+    [SerializeField, ShowIf("changeMusic"), AllowNesting] private bool withoutTransition;
+    [Dropdown("eventMusicTracks"), SerializeField, ShowIf("changeMusic"), AllowNesting]
+    public string eventBGM;
+    public string eventSFX;
+    private List<string> eventMusicTracks
+    {
+        get
+        {
+            return new List<string>() { "", "General Theme", "Wormhole", "Engine Malfunction", "Engine Delivery", "Black Market", "Clone Ambush Intro", "Safari Tampering", "Clone Ambush Negotiation", "Clone Ambush Fight", "Ejection" };
+        }
+    }
+
     [SerializeField] private bool hasRequirements;
+    [SerializeField, ShowIf("hasRequirements")] private List<Requirements> choiceRequirements = new List<Requirements>();
+    
+    [SerializeField] private bool hasPercentChange;
+    [SerializeField, ShowIf("hasPercentChange")] private List<IncreasedSuccess> percentIncrease = new List<IncreasedSuccess>();
+    private float percantageIncreased;
+    private bool increasedPercent = false;
 
-    [SerializeField, ShowIf("hasRequirements")] private List<Requirements> choiceRequirements;
-
-    [SerializeField] public bool hasRandomEnding;
-    [SerializeField, HideIf("hasRandomEnding")] private List<ChoiceOutcomes> outcomes;
-    [SerializeField, ShowIf("hasRandomEnding")] private List<MultipleRandom> randomEndingOutcomes;
-    protected Story story;
+    [SerializeField] private bool hasRandomEnding;    
+    [SerializeField, ShowIf("hasRandomEnding")] private List<MultipleRandom> randomEndingOutcomes = new List<MultipleRandom>();
+    [SerializeField, HideIf("hasRandomEnding")] private List<ChoiceOutcomes> outcomes = new List<ChoiceOutcomes>();
     private int randomizedResult;
+    
+    [SerializeField] private bool hasSubsequentChoices;
+    [SerializeField, ShowIf("hasSubsequentChoices"), AllowNesting] private int subsequentChoiceIndex;
 
-    [SerializeField] bool hasSubsequentChoices;
-    [SerializeField, ShowIf("hasSubsequentChoices")] private List<EventChoice> subsequentChoices;
-
-    [System.Serializable]
+    [Serializable]
     public class MultipleRandom
     {
-        public List<ChoiceOutcomes> outcomes;
+        public string randomChanceName;
+        public List<ChoiceOutcomes> outcomes = new List<ChoiceOutcomes>();
         public float probability;
     }
-    // Start is called before the first frame update
 
     /// <summary>
     /// Extra code to determine if a choice is actually available
@@ -59,9 +80,20 @@ public class EventChoice : MonoBehaviour
 
             }
         }
-        
 
-        if(requirementMatch)
+        if (hasPercentChange)
+        {
+            for (int i = 0; i < percentIncrease.Count; i++)
+            {
+                if (percentIncrease[i].MatchesSuccessChance(ship))
+                {
+                    percantageIncreased = percentIncrease[i].GetTotalPercentIncrease();
+                    increasedPercent = true;
+                }
+            }
+        }
+
+        if (requirementMatch)
         {
             myButton.interactable = true;
             story = thisStory;
@@ -85,26 +117,44 @@ public class EventChoice : MonoBehaviour
     /// <param name="ship"></param>
     public void SelectChoice(ShipStats ship)
     {
-        driver.TakeSubsequentChoices(subsequentChoices);
+        if (hasSubsequentChoices)
+        {
+            driver.TakeSubsequentChoices(driver.subsequentChoices[subsequentChoiceIndex].eventChoices);
+        }
+
+        if (changeMusic)
+        {
+            if(withoutTransition)
+            {
+                AudioManager.instance.PlayMusicWithoutTransition(eventBGM);
+            }
+            else
+            {
+                AudioManager.instance.PlayMusicWithTransition(eventBGM);
+            }
+        }
+
+        if (playSFX)
+        {
+            AudioManager.instance.PlaySFX(eventSFX);
+        }
 
         if (hasRandomEnding)
         {
-            print("We have decided on outcome #" + randomizedResult);
             foreach(MultipleRandom multRando in randomEndingOutcomes)
             {
                 MultipleRandom thisSet = randomEndingOutcomes[randomizedResult];
                 foreach(ChoiceOutcomes choiceOutcome in thisSet.outcomes)
                 {
-                    choiceOutcome.StatChange(ship, driver.campMan);
+                    choiceOutcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
                 }
-
             }
         }
         else
         {
             foreach (ChoiceOutcomes outcome in outcomes)
             {
-                outcome.StatChange(ship, driver.campMan);
+                outcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
             }
         }
         
@@ -126,6 +176,11 @@ public class EventChoice : MonoBehaviour
         for (int i = 0; i < randomEndingOutcomes.Count; i++)
         {
             choiceThreshold += randomEndingOutcomes[i].probability; //adds the probability of the next element to choice threshold
+            
+            if(increasedPercent)
+            {
+                choiceThreshold += percantageIncreased;
+            }
 
             //if the outcome chance is lower than the threshold, we pick this event
             if (outcomeChance <= choiceThreshold || (i == randomEndingOutcomes.Count)) 
@@ -136,26 +191,7 @@ public class EventChoice : MonoBehaviour
 
         }
 
-
-        print("Random result was: " + result);
-
         story.EvaluateFunction("RandomizeEnding", result);
-
-        //switch (result)
-        //{
-        //    case 0:
-        //        story.variablesState["randomEnd"] = story.variablesState["endingOne"];
-        //        break;
-        //    case 1:
-        //        story.variablesState["randomEnd"] = story.variablesState["endingTwo"];
-        //        break;
-        //    case 2:
-        //        story.variablesState["randomEnd"] = story.variablesState["endingThree"];
-        //        break;
-        //    case 3:
-        //        story.variablesState["randomEnd"] = story.variablesState["endingFour"];
-        //        break;
-        //}
 
         randomizedResult = result;
     }
