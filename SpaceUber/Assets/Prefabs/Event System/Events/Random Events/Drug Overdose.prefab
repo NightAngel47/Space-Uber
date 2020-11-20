@@ -1,95 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8037941212276310781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 667944929246083556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  choiceName: Don't Use Medicine
-  hasRequirements: 0
-  choiceRequirements: []
-  hasRandomEnding: 1
-  outcomes:
-  - outcomeName: Don't Use Medicine
-    isNarrativeOutcome: 0
-    resource: 4
-    amount: 0
-    ctrBoolOutcomes: 
-    cloneTrustChange: 0
-    VIPTrustChange: 0
-  - outcomeName: Don't Use Medicine
-    isNarrativeOutcome: 0
-    resource: 0
-    amount: 0
-    ctrBoolOutcomes: 
-    cloneTrustChange: 0
-    VIPTrustChange: 0
-  randomEndingOutcomes:
-  - outcomes:
-    - outcomeName: Don't Use Medicine
-      isNarrativeOutcome: 0
-      resource: 4
-      amount: -1
-      ctrBoolOutcomes: 
-      cloneTrustChange: 0
-      VIPTrustChange: 0
-    probability: 70
-  - outcomes:
-    - outcomeName: Crew
-      isNarrativeOutcome: 0
-      resource: 4
-      amount: 0
-      ctrBoolOutcomes: 
-      cloneTrustChange: 0
-      VIPTrustChange: 0
-    probability: 30
-  hasSubsequentChoices: 0
-  subsequentChoices: []
---- !u!114 &-1688692384883355183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 667944929246083556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  choiceName: Use Medicine
-  hasRequirements: 0
-  choiceRequirements: []
-  hasRandomEnding: 1
-  outcomes: []
-  randomEndingOutcomes:
-  - outcomes:
-    - outcomeName: 'Use Medicine '
-      isNarrativeOutcome: 0
-      resource: 4
-      amount: 0
-      ctrBoolOutcomes: 
-      cloneTrustChange: 0
-      VIPTrustChange: 0
-    probability: 80
-  - outcomes:
-    - outcomeName: Use Medicine
-      isNarrativeOutcome: 0
-      resource: 4
-      amount: -1
-      ctrBoolOutcomes: 
-      cloneTrustChange: 0
-      VIPTrustChange: 0
-    probability: 20
-  hasSubsequentChoices: 0
-  subsequentChoices: []
 --- !u!1001 &5321875006073532444
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104,18 +14,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
+      propertyPath: nextChoices.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].randomEndingOutcomes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].randomEndingOutcomes.Array.data[0].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].randomEndingOutcomes.Array.data[1].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[0].outcomes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].outcomes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
       propertyPath: firstChoices.Array.data[0]
       value: 
-      objectReference: {fileID: -8037941212276310781}
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: firstChoices.Array.data[1]
       value: 
-      objectReference: {fileID: -1688692384883355183}
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: eventBGM
-      value: Clone Ambush Intro
+      value: Drug Overdose
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -133,6 +78,116 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 06d21e773fff8874d87a91c713d66f27,
         type: 3}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].choiceName
+      value: Don't Use Medicine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].choiceName
+      value: Use Medicine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].randomEndingOutcomes.Array.data[0].probability
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].randomEndingOutcomes.Array.data[1].probability
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].randomEndingOutcomes.Array.data[0].outcomes.Array.data[0].outcomeName
+      value: Don't Use Medicine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].randomEndingOutcomes.Array.data[1].outcomes.Array.data[0].outcomeName
+      value: Don't Use Medicine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].randomEndingOutcomes.Array.data[0].outcomes.Array.data[0].resource
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].randomEndingOutcomes.Array.data[0].outcomes.Array.data[0].amount
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].randomEndingOutcomes.Array.data[1].outcomes.Array.data[0].resource
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[0].probability
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].probability
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[0].outcomes.Array.data[0].resource
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[0].outcomes.Array.data[0].outcomeName
+      value: Use Medicine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].outcomes.Array.data[0].outcomeName
+      value: Use Medicine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].outcomes.Array.data[0].resource
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].outcomes.Array.data[0].amount
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[0].outcomes.Array.data[1].outcomeName
+      value: Use Medicine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[0].outcomes.Array.data[1].resource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[0].outcomes.Array.data[1].amount
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].outcomes.Array.data[1].outcomeName
+      value: Use Medicine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].outcomes.Array.data[1].resource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].outcomes.Array.data[1].amount
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name
@@ -245,9 +300,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 492e23da0c4f0a84188d48989e322a6d, type: 3}
---- !u!1 &667944929246083556 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
-    type: 3}
-  m_PrefabInstance: {fileID: 5321875006073532444}
-  m_PrefabAsset: {fileID: 0}

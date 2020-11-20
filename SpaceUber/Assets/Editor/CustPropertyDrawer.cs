@@ -11,6 +11,7 @@ using System.Collections;
 
 [CustomPropertyDrawer(typeof(ArrayLayout))]
 [CustomPropertyDrawer(typeof(ArrayLayoutBool))]
+[CustomPropertyDrawer(typeof(ArrayLayoutGameobject))]
 public class CustPropertyDrawer : PropertyDrawer
 {
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)

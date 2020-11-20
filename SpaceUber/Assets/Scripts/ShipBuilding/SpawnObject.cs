@@ -18,6 +18,8 @@ public class SpawnObject : MonoBehaviour
     [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private GameObject buttonPanel;
     [SerializeField] private Vector2 spawnLoc;
+    public GameObject powercore;
+    public static bool donePreplacedRoom = false;
 
     private GameObject lastSpawned;
 
@@ -42,7 +44,30 @@ public class SpawnObject : MonoBehaviour
     {
         RectTransform rt = buttonPanel.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(rt.sizeDelta.x, 280 * availableRooms.Count);
-        CreateRoomSpawnButtons();
+
+        //hard coded preplaced rooms to be updated lated
+        if (donePreplacedRoom == false)
+        {
+            donePreplacedRoom = true;
+            ObjectMover.hasPlaced = false;
+            lastSpawned = Instantiate(powercore, new Vector3(4, 2, 0), Quaternion.identity);
+            lastSpawned.GetComponent<ObjectMover>().TurnOffBeingDragged();
+            lastSpawned.GetComponent<ObjectScript>().preplacedRoom = true;
+            
+            StartCoroutine(PreplacedRoom());
+        }
+
+        CreateRoomSpawnButtons(); 
+    }
+
+    IEnumerator PreplacedRoom()
+    {
+        yield return new WaitForSeconds(.25f);
+        //hard coded preplaced rooms to be updated lated
+        FindObjectOfType<SpotChecker>().FillPreplacedSpots(lastSpawned);
+        lastSpawned.GetComponent<RoomStats>().AddRoomStats();
+        lastSpawned.GetComponent<ObjectMover>().enabled = false;
+        lastSpawned.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
     }
 
     public void SetAvailableRoomList(List<GameObject> l)
@@ -66,9 +91,9 @@ public class SpawnObject : MonoBehaviour
 
     public void SpawnRoom(GameObject ga)
     {
-        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price)
+        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price && FindObjectOfType<ShipStats>().EnergyRemaining >= ga.GetComponent<RoomStats>().minPower) //checks to see if the player has enough credits for the room
         {
-            if (lastSpawned == null || lastSpawned.GetComponent<ObjectMover>().enabled == false)
+            if (lastSpawned == null || lastSpawned.GetComponent<ObjectMover>().enabled == false) //makes sure that the prior room is placed before the next room can be added
             {
                 ObjectMover.hasPlaced = false;
                 lastSpawned = Instantiate(ga, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0), Quaternion.identity);
@@ -81,7 +106,22 @@ public class SpawnObject : MonoBehaviour
                     r.TurnOffClickAgain();
                 }
 
-                switch (ga.name)
+                if(lastSpawned.GetComponent<ObjectScript>().needsSpecificLocation == true)
+                {
+                    lastSpawned.GetComponent<ObjectScript>().HighlightSpotsOn();
+                }
+
+                if(lastSpawned.GetComponent<ObjectScript>().nextToRoom == true)
+                {
+                    if(GameObject.Find(lastSpawned.GetComponent<ObjectScript>().nextToRoomName + "(Clone)") != null)
+                    {
+                        GameObject r = GameObject.Find(lastSpawned.GetComponent<ObjectScript>().nextToRoomName + "(Clone)");
+
+                        r.transform.GetChild(2).gameObject.SetActive(true);
+                    }
+                }
+
+                switch (ga.name) //plays sfx for each room
                 {
                     case "Power Core":
                         AudioManager.instance.PlaySFX(purchasePowerCore[Random.Range(0, purchasePowerCore.Length - 1)]);
@@ -138,7 +178,27 @@ public class SpawnObject : MonoBehaviour
         }
         else
         {
-            Debug.Log("Cannot Afford");
+            if (FindObjectOfType<ShipStats>().Credits < ga.GetComponent<RoomStats>().price)
+            {
+                Debug.Log("Cannot Afford");
+                FindObjectOfType<ShipStats>().cantPlaceText.gameObject.SetActive(true);
+                FindObjectOfType<ShipStats>().cantPlaceText.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Image>().sprite = FindObjectOfType<ShipStats>().statIcons[0];
+                StartCoroutine(WaitForText());
+            }
+
+            if (FindObjectOfType<ShipStats>().EnergyRemaining < ga.GetComponent<RoomStats>().minPower)
+            {
+                Debug.Log("No Energy");
+                FindObjectOfType<ShipStats>().cantPlaceText.gameObject.SetActive(true);
+                FindObjectOfType<ShipStats>().cantPlaceText.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Image>().sprite = FindObjectOfType<ShipStats>().statIcons[5];
+                StartCoroutine(WaitForText());
+            }
         }
+    }
+
+    public IEnumerator WaitForText()
+    {
+        yield return new WaitForSeconds(3);
+        FindObjectOfType<ShipStats>().cantPlaceText.SetActive(false);
     }
 }

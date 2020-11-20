@@ -57,7 +57,7 @@ public class Astroid : MonoBehaviour
         rotation.z += (rotationSpeed * rotationDirection * Time.deltaTime);
         transform.eulerAngles = rotation;
 
-        if(miniGameManager.requiredAstroids == 0 && !exploded) { StartCoroutine(Explode(true)); }
+        if((miniGameManager.requiredAstroids == 0 || miniGameManager.damageTillFailure == 0) && !exploded) { StartCoroutine(Explode(true)); }
     }
 
     IEnumerator IncreaseScale()
@@ -94,6 +94,7 @@ public class Astroid : MonoBehaviour
             }
             if (!fromRocket)
             {
+                miniGameManager.TakeDamage();
                 StartCoroutine(FlashDamageIndicator());
 				while (flashingIndicator) { yield return null; }
             }

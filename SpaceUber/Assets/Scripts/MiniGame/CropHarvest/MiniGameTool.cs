@@ -35,8 +35,9 @@ public class MiniGameTool : MonoBehaviour
             Vector3 mousePosition;
             mousePosition = Input.mousePosition;
             mousePosition = cam.ScreenToWorldPoint(mousePosition);
-            mousePosition.z = 0.0f;
+            mousePosition.z = 0;
             transform.position = mousePosition;
+            transform.SetSiblingIndex(transform.parent.childCount -1);
         }
 		else
 		{
@@ -49,11 +50,11 @@ public class MiniGameTool : MonoBehaviour
         {
             isBeingDraged = false;
             transform.position = originalPosition;
+            gameObject.layer = originalLayer;
         }
         if (Input.GetMouseButtonDown(1))
         {
             CropHarvestMiniGame.selectedTool = null;
-            gameObject.layer = originalLayer;
         }
     }
 

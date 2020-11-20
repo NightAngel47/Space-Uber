@@ -1,99 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7966374683063775656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476389754963624365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  choiceName: Bribe
-  hasRequirements: 1
-  choiceRequirements:
-  - isNarrativeRequirement: 0
-    selectedResource: 6
-    requiredAmount: -100
-    lessThan: 0
-    ctrBoolRequirements: 
-    ctrTrustRequirements: 0
-    cloneTrustRequirement: 0
-    VIPTrustRequirement: 0
-  hasRandomEnding: 0
-  outcomes:
-  - outcomeName: Bribe
-    isNarrativeOutcome: 0
-    resource: 0
-    amount: -100
-    ctrBoolOutcomes: 
-    cloneTrustChange: 0
-    VIPTrustChange: 0
-  randomEndingOutcomes: []
-  hasSubsequentChoices: 0
-  subsequentChoices: []
---- !u!114 &-1499478831703738296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476389754963624365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deedde32404c110419c7ee3133161e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  choiceName: Fight the Blockade
-  hasRequirements: 0
-  choiceRequirements: []
-  hasRandomEnding: 1
-  outcomes:
-  - outcomeName: Fight the Blockade
-    isNarrativeOutcome: 0
-    resource: 0
-    amount: 0
-    ctrBoolOutcomes: 
-    cloneTrustChange: 0
-    VIPTrustChange: 0
-  - outcomeName: Fight the Blockade
-    isNarrativeOutcome: 0
-    resource: 0
-    amount: 0
-    ctrBoolOutcomes: 
-    cloneTrustChange: 0
-    VIPTrustChange: 0
-  randomEndingOutcomes:
-  - outcomes:
-    - outcomeName: Fight the Blockade
-      isNarrativeOutcome: 0
-      resource: 0
-      amount: 100
-      ctrBoolOutcomes: 
-      cloneTrustChange: 0
-      VIPTrustChange: 0
-    probability: 50
-  - outcomes:
-    - outcomeName: Fight the Blockade
-      isNarrativeOutcome: 0
-      resource: 7
-      amount: -25
-      ctrBoolOutcomes: 
-      cloneTrustChange: 0
-      VIPTrustChange: 0
-    - outcomeName: Fight the Blockade
-      isNarrativeOutcome: 0
-      resource: 3
-      amount: -10
-      ctrBoolOutcomes: 
-      cloneTrustChange: 0
-      VIPTrustChange: 0
-    probability: 50
-  hasSubsequentChoices: 0
-  subsequentChoices: []
 --- !u!1001 &6116783194421626965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104,6 +10,41 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: firstChoices.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: requiredStats.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].choiceRequirements.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[0].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].outcomes.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
@@ -120,16 +61,16 @@ PrefabInstance:
         type: 3}
       propertyPath: firstChoices.Array.data[0]
       value: 
-      objectReference: {fileID: -7966374683063775656}
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: firstChoices.Array.data[1]
       value: 
-      objectReference: {fileID: -1499478831703738296}
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: eventBGM
-      value: Black Market
+      value: Blockade
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -137,6 +78,106 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 997bb9b91348ade4cac4a3c28d9c260c,
         type: 3}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].choiceName
+      value: Bribe
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].choiceName
+      value: Fight the Blockade
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].amount
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: requiredStats.Array.data[0].isStatRequirement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: requiredStats.Array.data[0].selectedResource
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: requiredStats.Array.data[0].requiredAmount
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].hasRequirements
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].choiceRequirements.Array.data[0].isStatRequirement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].choiceRequirements.Array.data[0].selectedResource
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].choiceRequirements.Array.data[0].requiredAmount
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[0].outcomes.Array.data[0].outcomeName
+      value: Fight the Blockade
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[0].outcomes.Array.data[0].amount
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[0].probability
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].probability
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].outcomes.Array.data[0].outcomeName
+      value: Fight the Blockade
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].outcomes.Array.data[1].outcomeName
+      value: Fight the Blockade
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].outcomes.Array.data[0].resource
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].outcomes.Array.data[1].resource
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].outcomes.Array.data[0].amount
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].randomEndingOutcomes.Array.data[1].outcomes.Array.data[1].amount
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name
@@ -249,9 +290,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 492e23da0c4f0a84188d48989e322a6d, type: 3}
---- !u!1 &1476389754963624365 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
-    type: 3}
-  m_PrefabInstance: {fileID: 6116783194421626965}
-  m_PrefabAsset: {fileID: 0}

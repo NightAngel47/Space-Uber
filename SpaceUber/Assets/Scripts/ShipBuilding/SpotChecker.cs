@@ -219,6 +219,20 @@ public class SpotChecker : MonoBehaviour
             }
         }
     }
+
+    public void FillPreplacedSpots(GameObject cube)
+    {
+        int shapeType = cube.GetComponent<ObjectScript>().shapeType;
+        int objectNum = cube.GetComponent<ObjectScript>().objectNum;
+        GameObject gridPosBase = cube.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+        List<Vector2> gridSpots = new List<Vector2>(cube.GetComponent<ObjectScript>().shapeData.gridSpaces);
+
+        for (int i = 0; i < gridSpots.Count; i++)
+        {
+            spots.rows[(int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].y)]
+                        .row[(int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].x)] = objectNum;
+        }
+    }
     
     public void RemoveSpots(GameObject cube, int rotate) //when the object is edited and moved, erase prev spot
     {

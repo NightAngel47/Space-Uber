@@ -16,6 +16,6 @@ You choose not to respond. Beckett is already acting belligerent, and getting se
 -> END
 
 === Beckett ===
-You tell Lanri that Beckett is a client, and we have to respect him. You ask her to make him up something else is met with her storming off in a huff. Luckily, siding with Beckett seems to appease him. Stumbling back to his seat, he spends the rest of the dinner chatting with the other elites. The next morning you receive a message from him, thanking you for putting that "peasant in her place." You notice that several credits have been added to your account.
+You tell Lanri that Beckett is a client, and we have to respect him. Your request for a new meal is met with her storming off in a huff. Luckily, siding with Beckett seems to appease him. Stumbling back to his seat, he spends the rest of the dinner chatting with the other elites. The next morning you receive a message from him, thanking you for putting that "peasant in her place." You notice that several credits have been added to your account.
 Unfortunately, when it comes time for Lanri to oversee the food preparation, she refuses, saying she doesn't want to be "poison" anyone. Hopefully she will get over the fact that you chose Beckett over helping her, but in the meantime production of food will be slowed without her oversight.
 -> END

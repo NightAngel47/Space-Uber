@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5743,6 +5743,8 @@ MonoBehaviour:
   miniGameSceneName: 4
   statModification: 1
   gameWinScreen: {fileID: 73281703}
+  winText: {fileID: 415418329}
+  winMessage: Good Job!
   Successes:
   - Arp 1
   - Arp 2
