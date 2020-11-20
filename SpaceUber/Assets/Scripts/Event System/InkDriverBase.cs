@@ -38,19 +38,20 @@ public class InkDriverBase : MonoBehaviour
 
     [Dropdown("eventMusicTracks")]
     public string eventBGM;
+
     private List<string> eventMusicTracks
     {
         get
         {
-            return new List<string>() { "", "General Theme", "Wormhole", "Engine Malfunction", "Engine Delivery", "Black Market", "Clone Ambush Intro", "Safari Tampering", "Clone Ambush Negotiation", "Clone Ambush Fight", "Ejection" };
+            return new List<string>() { "", "General Theme", "Wormhole", "Engine Malfunction", "Engine Delivery", "Black Market", "Clone Ambush Intro", "Safari Tampering", "Clone Ambush Negotiation", "Clone Ambush Fight", "Ejection", "Asteroid Mining", "Blockade", "Crop Blight", "Door Malfunction", "Drug Overdose", "Escaped Convicts", "Septic Malfunction", "Soothing Light", "Spatial Aurora", "Food Poisoning", "Hostage Situation", "Hull Maintenance" };
         }
     }
-    
+
     [SerializeField] public List<Requirements> requiredStats = new List<Requirements>();
 
     [SerializeField, Tooltip("The first set of choices that a player will reach.")]
     private List<EventChoice> nextChoices = new List<EventChoice>();
-    
+
     [SerializeField] bool hasSubsequentChoices;
     [ShowIf("hasSubsequentChoices"), Tooltip("Sets of subsequent choices that can be accessed by index by an event choice.")]
     public List<SubsequentChoices> subsequentChoices = new List<SubsequentChoices>();
