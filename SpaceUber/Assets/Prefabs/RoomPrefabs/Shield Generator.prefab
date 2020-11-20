@@ -127,7 +127,11 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomDescription
-      value: Generates shields to prevent damage. +10 Hull Durability.
+      value: 'Generates shields to prevent damage. Increases Hull Durability based
+        on crew assigned.
+
+
+        The shape of this room is a 2x2 L-shape.'
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -143,7 +147,7 @@ PrefabInstance:
         type: 3}
       propertyPath: shapeDataTemplate
       value: 
-      objectReference: {fileID: 11400000, guid: 3bbc1218ec681524da75e852e1a67ca4,
+      objectReference: {fileID: 11400000, guid: 38dfe5b11db31384580ccfda430ab887,
         type: 2}
     - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}

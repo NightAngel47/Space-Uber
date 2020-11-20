@@ -21,9 +21,8 @@ public class CrewManagement : MonoBehaviour
     public GameObject roomText;
     public GameObject costsText;
     public GameObject crewAmount;
+    public GameObject powerAmount;
     public GameObject overclockOutput;
-    public GameObject addButton;
-    public GameObject subtractButton;
     private GameObject statPanel;
 
     private GameObject room;
@@ -80,9 +79,6 @@ public class CrewManagement : MonoBehaviour
         
         room = g;
         rs = room.GetComponent<RoomStats>();
-
-        addButton.GetComponent<Button>().interactable = true;
-        subtractButton.GetComponent<Button>().interactable = true;
 
         statPanel.SetActive(true);
 
@@ -249,6 +245,28 @@ public class CrewManagement : MonoBehaviour
             }
         }
     }
+
+    //public void AddPower()
+    //{
+    //    if(ss.HasEnoughPower(rs.minPower) && rs.GetIsPowered() == false)
+    //    {
+    //        ss.UpdateEnergyAmount(-rs.minPower);
+    //        rs.SetIsPowered();
+    //        powerAmount.GetComponent<TextMeshProUGUI>().text = rs.minPower.ToString();
+    //        UpdateOutput();
+    //    }
+    //}
+
+    //public void SubtractPower()
+    //{
+    //    if (rs.GetIsPowered() == true)
+    //    {
+    //        ss.UpdateEnergyAmount(rs.minPower);
+    //        rs.SetIsPowered();
+    //        powerAmount.GetComponent<TextMeshProUGUI>().text = rs.minPower.ToString();
+    //        UpdateOutput();
+    //    }
+    //}
 
     public void LoseCrew(int crewLost)
     {
