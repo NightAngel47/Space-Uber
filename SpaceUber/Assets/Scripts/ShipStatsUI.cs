@@ -33,6 +33,7 @@ public class ShipStatsUI : MonoBehaviour
     [SerializeField, Foldout("Ship Hull UI")] private TMP_Text hullMaxText;
     
     public GameObject statChangeText;
+    public Transform canvas;
     public float jiggleAmount;
     public float jiggleTime;
 
