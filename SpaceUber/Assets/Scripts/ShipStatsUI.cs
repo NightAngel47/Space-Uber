@@ -32,10 +32,22 @@ public class ShipStatsUI : MonoBehaviour
     [SerializeField, Foldout("Ship Hull UI")] private TMP_Text hullCurrentText;
     [SerializeField, Foldout("Ship Hull UI")] private TMP_Text hullMaxText;
     
+    //stat change text variables
     public GameObject statChangeText;
     public Transform canvas;
+    
+    //text jiggle variables
     public float jiggleAmount;
     public float jiggleTime;
+    
+    //low hull durability feedback variables
+    public float blinkTime;
+    public float blinkTransitionTime;
+    public float beepTime;
+    public Color hullTextDefault;
+    public Color hullTextRed;
+    
+    private bool hullWarningActive = false;
 
     public void UpdateCreditsUI(int current, int tick = 0)
     {
@@ -159,6 +171,18 @@ public class ShipStatsUI : MonoBehaviour
     {
         hullCurrentText.text = current.ToString();
         hullMaxText.text = max.ToString();
+        
+        if(current <= 25 && hullWarningActive == false)
+        {
+            hullWarningActive = true;
+            StartCoroutine(BlinkLoop());
+            StartCoroutine(BeepLoop());
+        }
+        
+        if(current > 25 && hullWarningActive == true)
+        {
+            hullWarningActive = false;
+        }
     }
     
     public void ShowHullUIChange(int currentChange, int maxChange)
@@ -222,6 +246,59 @@ public class ShipStatsUI : MonoBehaviour
             Vector2 pos = text.GetComponent<RectTransform>().anchoredPosition;
             text.GetComponent<RectTransform>().anchoredPosition = pos + UnityEngine.Random.insideUnitCircle * jiggleAmount;
             yield return new WaitForFixedUpdate();
+        }
+    }
+    
+    private IEnumerator BlinkLoop()
+    {
+        // if you just want to play a beep sound when the flashing first triggers, you can play it here
+        
+        while(hullWarningActive)
+        {
+            StartCoroutine(BlinkTransition(true));
+            yield return new WaitForSeconds(blinkTime);
+            StartCoroutine(BlinkTransition(false));
+            yield return new WaitForSeconds(blinkTime);
+        }
+    }
+    
+    private IEnumerator BlinkTransition(bool toRed)
+    {
+        float timer = 0;
+        Color current;
+        while(timer < blinkTransitionTime)
+        {
+            if(toRed)
+            {
+                current = Color.Lerp(hullTextDefault, hullTextRed, timer / blinkTransitionTime);
+            }
+            else
+            {
+                current = Color.Lerp(hullTextRed, hullTextDefault, timer / blinkTransitionTime);
+            }
+            
+            hullCurrentText.color = current;
+            
+            yield return new WaitForFixedUpdate();
+            timer += Time.deltaTime;
+        }
+        
+        if(toRed)
+        {
+            hullCurrentText.color = hullTextRed;
+        }
+        else
+        {
+            hullCurrentText.color = hullTextDefault;
+        }
+    }
+    
+    private IEnumerator BeepLoop()
+    {
+        while(hullWarningActive)
+        {
+            //if you want to play a contiuous beeping sound while the player is at low heath, play the sound here
+            yield return new WaitForSeconds(beepTime);
         }
     }
 }
