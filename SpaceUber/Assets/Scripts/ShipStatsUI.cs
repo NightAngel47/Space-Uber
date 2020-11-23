@@ -33,19 +33,20 @@ public class ShipStatsUI : MonoBehaviour
     [SerializeField, Foldout("Ship Hull UI")] private TMP_Text hullMaxText;
     
     //stat change text variables
-    public GameObject statChangeText;
-    public Transform canvas;
+    [Foldout("Stat Change UI")] public GameObject statChangeText;
+    [Foldout("Stat Change UI")] public Transform canvas;
     
     //text jiggle variables
-    public float jiggleAmount;
-    public float jiggleTime;
+    [SerializeField, Foldout("Stat Change UI")] private float jiggleAmount;
+    [SerializeField, Foldout("Stat Change UI")] private float jiggleTime;
     
     //low hull durability feedback variables
-    public float blinkTime;
-    public float blinkTransitionTime;
-    public float beepTime;
-    public Color hullTextDefault;
-    public Color hullTextRed;
+    [SerializeField, Foldout("Ship Hull UI")] private float blinkTime;
+    [SerializeField, Foldout("Ship Hull UI")] private float blinkTransitionTime;
+    [SerializeField, Foldout("Ship Hull UI")] private float beepTime;
+    [SerializeField, Foldout("Ship Hull UI")] private Color hullTextDefault;
+    [SerializeField, Foldout("Ship Hull UI")] private Color hullTextRed;
+    [SerializeField, Foldout("Ship Hull UI")] private int hullWarningAmount = 25;
     
     private bool hullWarningActive = false;
 
@@ -172,14 +173,14 @@ public class ShipStatsUI : MonoBehaviour
         hullCurrentText.text = current.ToString();
         hullMaxText.text = max.ToString();
         
-        if(current <= 25 && hullWarningActive == false)
+        if(current <= hullWarningAmount && hullWarningActive == false)
         {
             hullWarningActive = true;
             StartCoroutine(BlinkLoop());
             StartCoroutine(BeepLoop());
         }
         
-        if(current > 25 && hullWarningActive == true)
+        if(current > hullWarningAmount && hullWarningActive == true)
         {
             hullWarningActive = false;
         }
