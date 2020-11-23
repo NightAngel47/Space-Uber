@@ -213,17 +213,105 @@ public class ObjectScript : MonoBehaviour
 
     public void HighlightSpotsOff()
     {
-        if (needsSpecificLocation == true)
+        for (int i = 0; i < gameObject.GetComponent<SpecificLocationData>().specficLocations.rows.Length - 1; i++)
         {
-            for (int i = 0; i < gameObject.GetComponent<SpecificLocationData>().specficLocations.rows.Length - 1; i++)
+            for (int j = 0; j < gameObject.GetComponent<SpecificLocationData>().specficLocations.rows[i].row.Length - 1; j++)
             {
-                for (int j = 0; j < gameObject.GetComponent<SpecificLocationData>().specficLocations.rows[i].row.Length - 1; j++)
+                if (gameObject.GetComponent<SpecificLocationData>().specficLocations.rows[i].row[j] == true)
                 {
-                    if (gameObject.GetComponent<SpecificLocationData>().specficLocations.rows[i].row[j] == true)
-                    {
-                        FindObjectOfType<HighlightSpots>().highlights.rows[i].row[j].gameObject.SetActive(false);
-                    }
+                    FindObjectOfType<HighlightSpots>().highlights.rows[i].row[j].gameObject.SetActive(false);
                 }
+            }
+        }
+    }
+
+    public void RoomHighlightSpotsOff()
+    {
+        GameObject cube = GameObject.Find(nextToRoomName + "(Clone)");
+        int shapeType = cube.GetComponent<ObjectScript>().shapeType;
+        GameObject gridPosBase = cube.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+        List<Vector2> gridSpots = new List<Vector2>(cube.GetComponent<ObjectScript>().shapeData.gridSpaces);
+        ArrayLayoutGameobject spots = FindObjectOfType<HighlightSpots>().highlights;
+
+        int x = 0;
+        int y = 0;
+
+        for (int i = 0; i < gridSpots.Count; i++)
+        {
+            if (shapeType == 2) //these objects only have two different rotations
+            {
+                if (cube.GetComponent<ObjectScript>().rotAdjust == 1 || cube.GetComponent<ObjectScript>().rotAdjust == 3)
+                {
+                    y = (int)Math.Round(cube.transform.position.y + gridSpots[i].y);
+                    x = (int)Math.Round(cube.transform.position.x + gridSpots[i].x);
+                }
+
+                if (cube.GetComponent<ObjectScript>().rotAdjust == 2 || cube.GetComponent<ObjectScript>().rotAdjust == 4)
+                {
+                    y = ((int)Math.Round(cube.transform.position.y + gridSpots[i].x));
+                    x = (int)Math.Round(cube.transform.position.x + gridSpots[i].y);
+                }
+            }
+
+            if (cube.GetComponent<ObjectScript>().rotAdjust == 1)
+            {
+                y = ((int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].y));
+                x = (int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].x);
+            }
+
+            if (cube.GetComponent<ObjectScript>().rotAdjust == 2)
+            {
+                y = ((int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].x - 1));
+                x = (int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].y);
+            }
+
+            if (cube.GetComponent<ObjectScript>().rotAdjust == 3)
+            {
+                y = ((int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].y - 1));
+                x = (int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].x - 1);
+            }
+
+            if (cube.GetComponent<ObjectScript>().rotAdjust == 4)
+            {
+                y = ((int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].x));
+                x = (int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].y - 1);
+            }
+
+
+            if (y < 5) //# needs to change to dynamically update with different ship sizes
+            {
+                spots.rows[y + 1].row[x].gameObject.SetActive(false);
+            }
+            else if(y < 5)
+            {
+                spots.rows[y + 1].row[x].gameObject.SetActive(false);
+            }
+
+            if (y > 0)
+            {
+                spots.rows[y - 1].row[x].gameObject.SetActive(false);
+            }
+            else if(y > 0)
+            {
+                spots.rows[y - 1].row[x].gameObject.SetActive(false);
+            }
+
+            if (x < 8) //# needs to change to dynamically update with different ship sizes
+            {
+                spots.rows[y].row[x + 1].gameObject.SetActive(false);
+            }
+            else if(x < 8)
+            {
+                spots.rows[y].row[x + 1].gameObject.SetActive(false);
+            }
+
+            if (x > 0)
+            {
+                spots.rows[y].row[x - 1].gameObject.SetActive(false);
+            }
+            else if(x > 0)
+            {
+                spots.rows[y].row[x - 1].gameObject.SetActive(false);
             }
         }
     }
