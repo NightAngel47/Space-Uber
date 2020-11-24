@@ -40,6 +40,8 @@ public class SpawnObject : MonoBehaviour
     public string[] purchaseShieldGenerator;
     public string[] purchaseTeleporter;
     public string[] purchaseWarpDrive;
+    public string[] cannotPlaceCredits;
+    public string[] cannotPlaceEnergy;
 
     public void Start()
     {
@@ -183,6 +185,7 @@ public class SpawnObject : MonoBehaviour
         {
             if (FindObjectOfType<ShipStats>().Credits < ga.GetComponent<RoomStats>().price)
             {
+                AudioManager.instance.PlaySFX(cannotPlaceCredits[UnityEngine.Random.Range(0, cannotPlaceCredits.Length)]);
                 Debug.Log("Cannot Afford");
                 FindObjectOfType<ShipStats>().cantPlaceText.gameObject.SetActive(true);
                 FindObjectOfType<ShipStats>().cantPlaceText.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Image>().sprite = FindObjectOfType<ShipStats>().statIcons[0];
@@ -191,6 +194,7 @@ public class SpawnObject : MonoBehaviour
 
             if (FindObjectOfType<ShipStats>().EnergyRemaining < ga.GetComponent<RoomStats>().minPower)
             {
+                AudioManager.instance.PlaySFX(cannotPlaceEnergy[UnityEngine.Random.Range(0, cannotPlaceEnergy.Length)]);
                 Debug.Log("No Energy");
                 FindObjectOfType<ShipStats>().cantPlaceText.gameObject.SetActive(true);
                 FindObjectOfType<ShipStats>().cantPlaceText.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Image>().sprite = FindObjectOfType<ShipStats>().statIcons[5];

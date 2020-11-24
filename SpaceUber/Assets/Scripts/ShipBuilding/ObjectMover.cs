@@ -188,10 +188,10 @@ public class ObjectMover : MonoBehaviour
             {
                 SpotChecker.instance.SpecificSpotCheck(gameObject, os.rotAdjust);
             }
-            AudioManager.instance.PlaySFX(Placements[Random.Range(0, Placements.Length)]);
 
             if (SpotChecker.cannotPlace == false)
             {
+                AudioManager.instance.PlaySFX(Placements[Random.Range(0, Placements.Length)]);
                 gameObject.GetComponent<RoomStats>().AddRoomStats();
 
                 hasPlaced = true;

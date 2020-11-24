@@ -144,6 +144,7 @@ public class ObjectScript : MonoBehaviour
                 if (Input.GetMouseButton(0))
                 {
                     FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
+                    AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
                 }
             }
         }
