@@ -252,9 +252,9 @@ public class ShipStatsUI : MonoBehaviour
     
     private IEnumerator BlinkLoop()
     {
-        // if you just want to play a beep sound when the flashing first triggers, you can play it here
-        
-        while(hullWarningActive)
+        AudioManager.instance.PlaySFX("Low Health");// if you just want to play a beep sound when the flashing first triggers, you can play it here
+
+        while (hullWarningActive)
         {
             StartCoroutine(BlinkTransition(true));
             yield return new WaitForSeconds(blinkTime);
