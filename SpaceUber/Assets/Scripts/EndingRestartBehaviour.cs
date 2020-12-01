@@ -20,6 +20,7 @@ public class EndingRestartBehaviour : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene("ShipBase");
+        AudioManager.instance.PlayMusicWithTransition("General Theme");
     }
     
     public void ResetStats()
