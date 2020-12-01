@@ -36,6 +36,8 @@ public class ShipStats : MonoBehaviour
 
     private List<RoomStats> rooms;
 
+    public GameObject roomBeingPlaced;
+
     private int credits;
     private int payout;
     private int crewPaymentDefault = 5;
@@ -185,8 +187,14 @@ public class ShipStats : MonoBehaviour
             }
     }
 
+    public void SetObjectBeingPlaced()
+    {
+        shipStatsUI.roomBeingPlaced = roomBeingPlaced;
+    }
+
     public void UpdateCreditsAmount(int creditAddition)
     {
+        SetObjectBeingPlaced();
         credits += creditAddition;
 
         if (creditAddition >= 0)

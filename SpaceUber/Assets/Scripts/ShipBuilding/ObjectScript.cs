@@ -193,6 +193,11 @@ public class ObjectScript : MonoBehaviour
         foreach (ObjectScript r in otherRooms)
         {
             r.TurnOnClickAgain();
+
+            if(r.nextToRoom == true && CalledFromSpawn == false)
+            {
+                Destroy(r.gameObject);
+            }
         }
 
         Destroy(gameObject);

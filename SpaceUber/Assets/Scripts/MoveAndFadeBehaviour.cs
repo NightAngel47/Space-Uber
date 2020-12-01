@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class MoveAndFadeBehaviour : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class MoveAndFadeBehaviour : MonoBehaviour
     private RectTransform rect;
     private TMP_Text text;
     private float timeSinceFadeStart;
+
+    public List<Sprite> icons = new List<Sprite>();
     
     void Start()
     {
@@ -58,15 +61,15 @@ public class MoveAndFadeBehaviour : MonoBehaviour
         }
     }
     
-    public void SetValue(int value)
+    public void SetValue(int value, int icon)
     {
-        StartCoroutine(SetValueWhenReady(value));
+        StartCoroutine(SetValueWhenReady(value, icon));
     }
     
-    private IEnumerator SetValueWhenReady(int value)
+    private IEnumerator SetValueWhenReady(int value, int icon)
     {
-        yield return new WaitUntil(() => text != null);
-        
+        yield return new WaitForSeconds(.01f);
+
         string sign;
         if(value >= 0)
         {
@@ -78,7 +81,20 @@ public class MoveAndFadeBehaviour : MonoBehaviour
             sign = "";
             text.color = red;
         }
-        
+
+        if (gameObject.name == "Stat Change Text Room(Clone)" )
+        {
+            gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            if (icon == -1)
+            {
+                gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            }
+            else
+            {
+                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = icons[icon];
+            }
+        }
+
         text.text = sign + value;
     }
 }
