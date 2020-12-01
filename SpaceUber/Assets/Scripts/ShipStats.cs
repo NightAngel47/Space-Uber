@@ -144,6 +144,7 @@ public class ShipStats : MonoBehaviour
             {
                 GameManager.instance.ChangeInGameState(InGameStates.Death);
                 AudioManager.instance.PlaySFX("Hull Death");
+                AudioManager.instance.PlayMusicWithTransition("Death Theme");
             }
         }
     }
@@ -196,7 +197,7 @@ public class ShipStats : MonoBehaviour
     {
         SetObjectBeingPlaced();
         credits += creditAddition;
-
+        /*
         if (creditAddition >= 0)
         {
             AudioManager.instance.PlaySFX("Gain Credits");
@@ -205,7 +206,7 @@ public class ShipStats : MonoBehaviour
         {
             AudioManager.instance.PlaySFX("Lose Credits");
         }
-
+        */
         if(credits <= 0)
         {
             credits = 0;
@@ -219,7 +220,7 @@ public class ShipStats : MonoBehaviour
     {
         energyMax += energyMaxAddition;
         energyRemaining += energyRemainingAddition;
-
+        /*
         if (energyRemainingAddition >= 0)
         {
             AudioManager.instance.PlaySFX("Gain Energy");
@@ -228,7 +229,7 @@ public class ShipStats : MonoBehaviour
         {
             AudioManager.instance.PlaySFX("Lose Energy");
         }
-
+        */
             if (energyRemaining <= 0)
         {
             energyRemaining = 0;
@@ -245,7 +246,7 @@ public class ShipStats : MonoBehaviour
     public void UpdateSecurityAmount(int securityAmount)
     {
         security += securityAmount;
-
+        /*
         if (securityAmount >= 0)
         {
             AudioManager.instance.PlaySFX("Gain Security");
@@ -254,7 +255,7 @@ public class ShipStats : MonoBehaviour
         {
             AudioManager.instance.PlaySFX("Lose Security");
         }
-
+        */
         if (security <= 0)
         {
             security = 0;
@@ -267,7 +268,7 @@ public class ShipStats : MonoBehaviour
     public void UpdateShipWeaponsAmount(int shipWeaponsAmount)
     {
         shipWeapons += shipWeaponsAmount;
-
+        /*
         if (shipWeaponsAmount >= 0)
         {
             AudioManager.instance.PlaySFX("Gain Weapons");
@@ -276,7 +277,7 @@ public class ShipStats : MonoBehaviour
         {
             AudioManager.instance.PlaySFX("Lose Weapons");
         }
-
+        */
         if (shipWeapons <= 0)
         {
             shipWeapons = 0;
@@ -290,7 +291,7 @@ public class ShipStats : MonoBehaviour
     {
         crewMax += crewMaxAmount;
         crewRemaining += crewRemainingAmount;
-
+        /*
         if (crewRemainingAmount >= 0)
         {
             AudioManager.instance.PlaySFX("Gain Crew");
@@ -299,7 +300,7 @@ public class ShipStats : MonoBehaviour
         {
             AudioManager.instance.PlaySFX("Lose Crew");
         }
-
+        */
         if (crewRemaining <= 0)
         {
             crewRemaining = 0;
@@ -316,7 +317,7 @@ public class ShipStats : MonoBehaviour
     public void UpdateFoodAmount(int foodAmount)
     {
         food += foodAmount;
-
+        /*
         if (foodAmount >= 0)
         {
             AudioManager.instance.PlaySFX("Gain Food");
@@ -325,7 +326,7 @@ public class ShipStats : MonoBehaviour
         {
             AudioManager.instance.PlaySFX("Lose Food");
         }
-
+        */
         if (food <= 0)
         {
             food = 0;
@@ -347,7 +348,7 @@ public class ShipStats : MonoBehaviour
     {
         shipHealthMax += hullDurabilityMax;
         shipHealthCurrent += hullDurabilityRemainingAmount;
-
+        /*
         if (hullDurabilityRemainingAmount >= 0)
         {
             AudioManager.instance.PlaySFX("Gain Hull");
@@ -356,7 +357,7 @@ public class ShipStats : MonoBehaviour
         {
             AudioManager.instance.PlaySFX("Lose Hull");
         }
-
+        */
         shipStatsUI.UpdateHullUI(shipHealthCurrent, shipHealthMax);
         shipStatsUI.ShowHullUIChange(hullDurabilityRemainingAmount, hullDurabilityMax);
 

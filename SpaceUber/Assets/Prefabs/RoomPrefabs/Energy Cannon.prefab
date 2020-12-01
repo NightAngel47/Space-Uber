@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceType: Ship Weapons
   resourceIcon: {fileID: 21300000, guid: 4285b6f4aa4fdd64c9d571a6e596b4cd, type: 3}
-  amount: 5
+  amount: 25
   activeAmount: 0
   minAmount: 0
 --- !u!114 &8914881331037085880
@@ -81,7 +81,7 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: maxCrew
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -101,17 +101,14 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: price
-      value: 90
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomDescription
-      value: 'Fires a laser beam at unwanted guests. Strengthens Weapons based on
-        crew assigned. Must be placed on the side of the ship.
-
-
-        The shape
-        of the room is 2x1.'
+      value: Fires a laser beam at unwanted guests. Strengthens Weapons based on
+        crew assigned. Must be placed on the side of the ship. The shape of the room
+        is 2x1.
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
