@@ -142,6 +142,7 @@ public class ShipStats : MonoBehaviour
             {
                 GameManager.instance.ChangeInGameState(InGameStates.Death);
                 AudioManager.instance.PlaySFX("Hull Death");
+                AudioManager.instance.PlayMusicWithTransition("Death Theme");
             }
         }
     }

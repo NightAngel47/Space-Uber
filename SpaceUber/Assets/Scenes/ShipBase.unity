@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3108,7 +3108,7 @@ PrefabInstance:
     - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
         type: 3}
       propertyPath: musicTracks.Array.size
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
         type: 3}
@@ -3299,6 +3299,27 @@ PrefabInstance:
       propertyPath: musicTracks.Array.data[18].volume
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[19].name
+      value: Death Theme
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[19].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6e18d0ab31ee4bc4b9999a908169a3bd, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[19].volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[19].mixer
+      value: 
+      objectReference: {fileID: -1070410809799078073, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfd00d5985b7e774da68f5c929635ee4, type: 3}
 --- !u!1 &1184268875
