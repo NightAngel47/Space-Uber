@@ -158,7 +158,7 @@ public class Requirements
             {
                 //for catering to the rich campaign
                 case Campaigns.CateringToTheRich:
-                    CampaignManager.CateringToTheRich campaign = (CampaignManager.CateringToTheRich) campMan.campaigns[(int)Campaigns.CateringToTheRich];
+                    CampaignManager.CateringToTheRich campaign = CampaignManager.Campaign.ToCateringToTheRich(campMan.campaigns[(int)Campaigns.CateringToTheRich]);
                     
                     //check if the selected bool is true or not
                     switch(ctrBoolRequirements)
