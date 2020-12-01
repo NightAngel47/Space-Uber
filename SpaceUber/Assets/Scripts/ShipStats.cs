@@ -283,6 +283,11 @@ public class ShipStats : MonoBehaviour
         shipHealthMax += hullDurabilityMax;
         shipHealthCurrent += hullDurabilityRemainingAmount;
 
+        if (shipHealthCurrent >= shipHealthMax)
+        {
+            shipHealthCurrent = shipHealthMax;
+        }
+
         shipStatsUI.UpdateHullUI(shipHealthCurrent, shipHealthMax);
         shipStatsUI.ShowHullUIChange(hullDurabilityRemainingAmount, hullDurabilityMax);
 
