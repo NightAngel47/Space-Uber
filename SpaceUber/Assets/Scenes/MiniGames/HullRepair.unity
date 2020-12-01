@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2057,7 +2057,6 @@ GameObject:
   - component: {fileID: 333892246}
   - component: {fileID: 333892250}
   - component: {fileID: 333892248}
-  - component: {fileID: 333892249}
   m_Layer: 5
   m_Name: Upper Right Triangle
   m_TagString: Hull Piece
@@ -2135,27 +2134,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IncrementSFX: []
---- !u!50 &333892249
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 333892244}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!60 &333892250
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3337,7 +3315,6 @@ GameObject:
   - component: {fileID: 539835326}
   - component: {fileID: 539835329}
   - component: {fileID: 539835325}
-  - component: {fileID: 539835328}
   m_Layer: 5
   m_Name: Bottom Left Triangle
   m_TagString: Hull Piece
@@ -3415,27 +3392,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539835323}
   m_CullTransparentMesh: 0
---- !u!50 &539835328
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 539835323}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!60 &539835329
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4959,7 +4915,6 @@ GameObject:
   - component: {fileID: 791253614}
   - component: {fileID: 791253618}
   - component: {fileID: 791253616}
-  - component: {fileID: 791253617}
   m_Layer: 5
   m_Name: Upper Left Triangle
   m_TagString: Hull Piece
@@ -5037,27 +4992,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IncrementSFX: []
---- !u!50 &791253617
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 791253612}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!60 &791253618
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -6112,7 +6046,6 @@ GameObject:
   - component: {fileID: 998482819}
   - component: {fileID: 998482823}
   - component: {fileID: 998482821}
-  - component: {fileID: 998482822}
   m_Layer: 5
   m_Name: Bottom Par.
   m_TagString: Hull Piece
@@ -6190,27 +6123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IncrementSFX: []
---- !u!50 &998482822
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 998482817}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!60 &998482823
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -7142,7 +7054,6 @@ GameObject:
   - component: {fileID: 1074969946}
   - component: {fileID: 1074969950}
   - component: {fileID: 1074969948}
-  - component: {fileID: 1074969949}
   m_Layer: 5
   m_Name: Right Trap.
   m_TagString: Hull Piece
@@ -7220,27 +7131,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IncrementSFX: []
---- !u!50 &1074969949
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1074969944}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!60 &1074969950
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -10048,7 +9938,6 @@ GameObject:
   - component: {fileID: 1570946500}
   - component: {fileID: 1570946504}
   - component: {fileID: 1570946502}
-  - component: {fileID: 1570946503}
   m_Layer: 5
   m_Name: Upper Left Middle Triangle
   m_TagString: Hull Piece
@@ -10126,27 +10015,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IncrementSFX: []
---- !u!50 &1570946503
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1570946498}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!60 &1570946504
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -10831,7 +10699,6 @@ GameObject:
   - component: {fileID: 1681593079}
   - component: {fileID: 1681593083}
   - component: {fileID: 1681593081}
-  - component: {fileID: 1681593082}
   m_Layer: 5
   m_Name: Middle Triangle
   m_TagString: Hull Piece
@@ -10909,27 +10776,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IncrementSFX: []
---- !u!50 &1681593082
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1681593077}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!60 &1681593083
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -11883,7 +11729,6 @@ GameObject:
   - component: {fileID: 1842675938}
   - component: {fileID: 1842675942}
   - component: {fileID: 1842675940}
-  - component: {fileID: 1842675941}
   m_Layer: 5
   m_Name: Upper Square
   m_TagString: Hull Piece
@@ -11961,27 +11806,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IncrementSFX: []
---- !u!50 &1842675941
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1842675936}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &1842675942
 BoxCollider2D:
   m_ObjectHideFlags: 0
