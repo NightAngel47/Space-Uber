@@ -12,6 +12,7 @@ public class HullGridSquare : MonoBehaviour
 {
     Collider2D collider;
     Image image;
+    bool isCovered = false;
 
 	private void Start()
 	{
@@ -27,8 +28,9 @@ public class HullGridSquare : MonoBehaviour
         {
             if (collider) { if (collider.CompareTag("Hull Piece")) { collidedWithHullPiece = true; } }
         }
-        if (collidedWithHullPiece) { image.color = Color.green; }
-        else { image.color = Color.red; }
-        
+        if (collidedWithHullPiece) { image.color = Color.green; isCovered = true; }
+        else { image.color = Color.red; isCovered = false; }
     }
+
+    public bool IsCovered() { return isCovered; }
 }

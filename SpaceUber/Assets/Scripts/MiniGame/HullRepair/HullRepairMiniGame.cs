@@ -10,30 +10,12 @@ using UnityEngine;
 public class HullRepairMiniGame : MiniGame
 {
 	public static HullPiece selectedHullPiece;
-	[SerializeField] HullPiece[] hullPieces;
-	Collider2D collider;
-	[SerializeField] int overLapCount = 0;
-
-	private void Start()
-	{
-		collider = GetComponent<Collider2D>();
-	}
+	[SerializeField] HullGridSquare[] gridSquares;
 
 	private void Update()
 	{
-		Collider2D[] collider2Ds = new Collider2D[hullPieces.Length + 1];
-		if (!gameOver)
-		{
-			collider.OverlapCollider(new ContactFilter2D(), collider2Ds);
-			foreach (Collider2D hullPiece in collider2Ds)
-			{
-				if (hullPiece)
-				{
-					if (hullPiece.GetComponent<HullPiece>() != null) { overLapCount++; }
-				}
-				if ((overLapCount) == hullPieces.Length) { EndMiniGameSuccess(); }
-			}
-			overLapCount = 0;
-		}
+		int gridCoveredCount = 0;
+		foreach(HullGridSquare gridSquare in gridSquares) { if (gridSquare.IsCovered()){ gridCoveredCount++; }}
+		if (!gameOver) { if (gridCoveredCount == gridSquares.Length ) { EndMiniGameSuccess(); } }
 	}
 }
