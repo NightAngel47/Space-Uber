@@ -52,6 +52,9 @@ public class SlotMachine : MiniGame
     [SerializeField] GameObject bettingPanel;
     [SerializeField] TMP_Text errorText;
     [SerializeField] Slider crank;
+    [SerializeField] Button smallBetButton;
+    [SerializeField] Button mediumBetButton;
+    [SerializeField] Button largeBetButton;
     [SerializeField] float crankReturnSpeed = 1;
     [SerializeField] int smallBet = 1;
     [SerializeField] int mediumBet = 5;
@@ -74,29 +77,60 @@ public class SlotMachine : MiniGame
 
     void Update()
     {
-        if (UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject != crank.gameObject || !Input.GetKey(KeyCode.Mouse0) )
+        DetectCrank();
+        AdjustReelSpeed();
+        DetectEndOfGame();
+        EnableDisableButtons();
+    }
+
+    void EnableDisableButtons()
+	{
+        smallBetButton.enabled = (shipStats.Credits >= smallBet);
+        mediumBetButton.enabled = (shipStats.Credits >= mediumBet);
+        largeBetButton.enabled = (shipStats.Credits >= largeBet);
+    }
+
+    void DetectCrank()
+	{
+        if (UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject != crank.gameObject || !Input.GetKey(KeyCode.Mouse0))
         {
-            crank.value += crankReturnSpeed * Time.deltaTime; 
+            crank.value += crankReturnSpeed * Time.deltaTime;
         }
-        if (crank.value == 0) { Spin(); }
-
-        spinning = false;
-        int spinningCount = 0;
-        foreach(SlotReel reel in reels) { if (reel.Spinning()) { spinning = true; spinningCount++; }  }
-        if(spinningCount < reels.Length)
-		{
-            if(spinningCount == 2)foreach (SlotReel reel in reels) { if (reel.Spinning()) { reel.SetSpeed(reelSpeed * firstStopSpeedMultiplier);  } }
-            if (spinningCount == 1) foreach (SlotReel reel in reels) { if (reel.Spinning()) { reel.SetSpeed(reelSpeed * secondStopSpeedMultiplier); } }
+        if (crank.value == 0 && !gameStarted) 
+        {
+            gameStarted = true;
+            switch(betAmount)
+			{
+                case BetAmount.Small: shipStats.UpdateCreditsAmount(-smallBet);  break;
+                case BetAmount.Medium: shipStats.UpdateCreditsAmount(-mediumBet);  break;
+                case BetAmount.Large: shipStats.UpdateCreditsAmount(-largeBet);  break;
+			}
+            StartCoroutine(Spin()); 
         }
+    }
 
-        if(!spinning && gameStarted && !gameFinished)
-		{
+    void DetectEndOfGame()
+	{
+        if (!spinning && gameStarted && !gameFinished)
+        {
             gameFinished = true;
-            foreach(SlotReel reel in reels) { slotValues.Add(reel.GetSlot().GetValue()); }
+            foreach (SlotReel reel in reels) { slotValues.Add(reel.GetSlot().GetValue()); }
             PayUp();
             statModification = payout;
             winMessage = "You win " + payout + " credits!";
             StartCoroutine(EndGame());
+        }
+    }
+
+    void AdjustReelSpeed()
+	{
+        spinning = false;
+        int spinningCount = 0;
+        foreach (SlotReel reel in reels) { if (reel.Spinning()) { spinning = true; spinningCount++; } }
+        if (spinningCount < reels.Length)
+        {
+            if (spinningCount == 2) foreach (SlotReel reel in reels) { if (reel.Spinning()) { reel.SetSpeed(reelSpeed * firstStopSpeedMultiplier); } }
+            if (spinningCount == 1) foreach (SlotReel reel in reels) { if (reel.Spinning()) { reel.SetSpeed(reelSpeed * secondStopSpeedMultiplier); } }
         }
     }
 
@@ -162,40 +196,28 @@ public class SlotMachine : MiniGame
 
     public void Option2()
     {
-        if(shipStats.Credits < smallBet) { StartCoroutine(PromptError("Not enough credits!")); }
-        {
-            shipStats.UpdateCreditsAmount(-smallBet);
-            bettingPanel.SetActive(false);
-            betAmount = BetAmount.Small;
-        }
+        bettingPanel.SetActive(false);
+        betAmount = BetAmount.Small;
     }
 
     public void Option3()
     {
-        if (shipStats.Credits < mediumBet) { StartCoroutine(PromptError("Not enough credits!")); }
-        {
-            shipStats.UpdateCreditsAmount(-mediumBet);
-            bettingPanel.SetActive(false);
-            betAmount = BetAmount.Medium;
-        }
+        bettingPanel.SetActive(false);
+        betAmount = BetAmount.Medium;
     }
 
     public void Option4()
     {
-        if (shipStats.Credits < largeBet) { StartCoroutine(PromptError("Not enough credits!")); }
-        {
-            shipStats.UpdateCreditsAmount(-largeBet);
-            bettingPanel.SetActive(false);
-            betAmount = BetAmount.Large;
-        }
+        bettingPanel.SetActive(false);
+        betAmount = BetAmount.Large;
     }
 
-    public void Spin()
+    IEnumerator Spin()
 	{
-        if (!gameStarted)
+        foreach (SlotReel reel in reels) 
         {
-            gameStarted = true;
-            foreach (SlotReel reel in reels) { reel.StartSpining(); }
+            reel.StartSpining();
+            yield return new WaitForSeconds(0.3f);
         }
 	}
 

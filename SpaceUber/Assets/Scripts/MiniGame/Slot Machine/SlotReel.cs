@@ -72,7 +72,11 @@ public class SlotReel : MonoBehaviour
         }
     }
 
-    public void StartSpining() { spin = true; gameStarted = true; }
+    public void StartSpining() 
+    { 
+        spin = true; 
+        gameStarted = true;
+    }
 
     public void StopSpinning()
 	{
