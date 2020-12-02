@@ -96,7 +96,7 @@ public class ShipStats : MonoBehaviour
         UpdateEnergyAmount(startingEnergy, startingEnergy);
         UpdateSecurityAmount(startingSecurity);
         UpdateShipWeaponsAmount(startingShipWeapons);
-        UpdateCrewAmount(startingCrew, startingCrew);
+        UpdateCrewAmount(startingCrew, startingCrew, startingCrew);
         UpdateFoodAmount(startingFood);
         UpdateHullDurabilityAmount(startingShipHealth, startingShipHealth);
         //UpdateCrewMorale(startingMorale);

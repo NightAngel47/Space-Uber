@@ -51,7 +51,7 @@ public class ChoiceOutcomes
                         SpawnStatChangeText(ship, amount);
                         break;
                     case ResourceType.Crew:
-                        ship.UpdateCrewAmount(amount);
+                        ship.UpdateCrewAmount(amount, amount);
                         SpawnStatChangeText(ship, amount);
                         break;
                     case ResourceType.Food:

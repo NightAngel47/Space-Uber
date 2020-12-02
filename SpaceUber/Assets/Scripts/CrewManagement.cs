@@ -213,7 +213,7 @@ public class CrewManagement : MonoBehaviour
         if (ss.CrewUnassigned > 0 && rs.currentCrew < room.GetComponent<RoomStats>().maxCrew)
         {
             rs.UpdateCurrentCrew(1);
-            ss.UpdateCrewAmount(-1, 0);
+            ss.UpdateCrewAmount(-1);
             minAssignableCrew--;
             crewUnassignedText.text = "Crew Remaining: " + ss.CrewUnassigned;
             crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
@@ -232,7 +232,7 @@ public class CrewManagement : MonoBehaviour
         if (rs.currentCrew > 0)
         {
             rs.UpdateCurrentCrew(-1);
-            ss.UpdateCrewAmount(1, 0);
+            ss.UpdateCrewAmount(1);
             minAssignableCrew++;
             crewUnassignedText.text = "Crew Remaining: " + ss.CrewUnassigned;
             crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();

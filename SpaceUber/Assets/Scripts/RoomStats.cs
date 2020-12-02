@@ -243,7 +243,7 @@ public class RoomStats : MonoBehaviour
         shipStats.UpdateEnergyAmount(-minPower);
         shipStats.UpdateSecurityAmount(security);
         shipStats.UpdateShipWeaponsAmount(shipWeapons);
-        shipStats.UpdateCrewAmount(crew, crew);
+        shipStats.UpdateCrewAmount(crew, crew, crew);
         shipStats.UpdateFoodAmount(food);
         shipStats.UpdateFoodPerTickAmount(foodPerTick);
         shipStats.UpdateHullDurabilityAmount(shipHealth, shipHealth);
@@ -268,7 +268,7 @@ public class RoomStats : MonoBehaviour
         shipStats.UpdateEnergyAmount(minPower);
         shipStats.UpdateSecurityAmount(-security);
         shipStats.UpdateShipWeaponsAmount(-shipWeapons);
-        shipStats.UpdateCrewAmount(-crew, -crew);
+        shipStats.UpdateCrewAmount(-crew, -crew, -crew);
         shipStats.UpdateFoodAmount(-food);
         shipStats.UpdateFoodPerTickAmount(-foodPerTick);
         shipStats.UpdateHullDurabilityAmount(-shipHealth, shipHealth);
