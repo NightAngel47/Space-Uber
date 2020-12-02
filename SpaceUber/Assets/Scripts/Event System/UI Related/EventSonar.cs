@@ -13,6 +13,9 @@ using UnityEngine.UI;
 
 public class EventSonar : MonoBehaviour
 {
+    /// <summary>
+    /// The bar will complete a rotation at however many seconds you set here
+    /// </summary>
     public float spinRate = 5f;
 
     public List<GameObject> dots;
