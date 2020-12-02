@@ -265,8 +265,8 @@ public class ShipStats : MonoBehaviour
             crewUnassigned = crewCurrent;
         }
 
-        shipStatsUI.UpdateCrewUI(crewUnassigned, crewCurrent);
-        shipStatsUI.ShowCrewUIChange(crewUnassignedAmount, crewCurrentAmount);
+        shipStatsUI.UpdateCrewUI(crewUnassigned, crewCurrent, crewCapacity);
+        shipStatsUI.ShowCrewUIChange(crewUnassignedAmount, crewCurrentAmount, crewCapacityAmount);
     }
 
     public void UpdateFoodAmount(int foodAmount)

@@ -124,23 +124,23 @@ public class ShipStatsUI : MonoBehaviour
         }
     }
     
-    public void UpdateCrewUI(int current, int max)
+    public void UpdateCrewUI(int unassigned, int current, int max)
     {
-        crewCurrentText.text = current.ToString();
-        crewMaxText.text = max.ToString();
+        crewCurrentText.text = unassigned.ToString();
+        crewMaxText.text = current.ToString();
     }
     
-    public void ShowCrewUIChange(int currentChange, int maxChange)
+    public void ShowCrewUIChange(int unassignedChange, int currentChange, int maxChange)
     {
-        SpawnStatChangeText(crewCurrentText, currentChange);
-        SpawnStatChangeText(crewMaxText, maxChange);
+        SpawnStatChangeText(crewCurrentText, unassignedChange);
+        SpawnStatChangeText(crewMaxText, currentChange);
         
-        if(currentChange != 0)
+        if(unassignedChange != 0)
         {
             StartCoroutine(JiggleText(crewCurrentText));
         }
         
-        if(maxChange != 0)
+        if(currentChange != 0)
         {
             StartCoroutine(JiggleText(crewMaxText));
         }
