@@ -232,12 +232,11 @@ public class ShipStatsUI : MonoBehaviour
     
     private IEnumerator JiggleText(TMP_Text text)
     {
-        Vector2 startingPos = text.GetComponent<RectTransform>().anchoredPosition;
         IEnumerator coroutine = TextJiggling(text);
         StartCoroutine(coroutine);
         yield return new WaitForSeconds(jiggleTime);
         StopCoroutine(coroutine);
-        text.GetComponent<RectTransform>().anchoredPosition = startingPos;
+        text.GetComponent<RectTransform>().anchoredPosition = text.GetComponent<StartPositionTracker>().GetPos();
     }
     
     private IEnumerator TextJiggling(TMP_Text text)
