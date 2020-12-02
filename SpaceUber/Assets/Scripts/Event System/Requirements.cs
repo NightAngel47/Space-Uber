@@ -124,7 +124,7 @@ public class Requirements
                     shipStat = thisShip.EnergyRemaining;
                     break;
                 case ResourceType.CREW:
-                    shipStat = thisShip.CrewRemaining;
+                    shipStat = thisShip.CrewCurrent;
                     break;
                 case ResourceType.FOOD:
                     shipStat = thisShip.Food;
