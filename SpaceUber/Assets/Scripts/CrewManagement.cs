@@ -41,7 +41,7 @@ public class CrewManagement : MonoBehaviour
     public void Start()
     {
         ss = FindObjectOfType<ShipStats>();
-        crewUnassignedText.text = "Crew Remaining: " + ss.CrewUnassigned;
+        crewUnassignedText.text = "Unassigned Crew: " + ss.CrewUnassigned;
 
         statPanel = gameObject.transform.GetChild(0).gameObject;
         TurnOffPanel();
@@ -215,7 +215,7 @@ public class CrewManagement : MonoBehaviour
             rs.UpdateCurrentCrew(1);
             ss.UpdateCrewAmount(-1);
             minAssignableCrew--;
-            crewUnassignedText.text = "Crew Remaining: " + ss.CrewUnassigned;
+            crewUnassignedText.text = "Unassigned Crew: " + ss.CrewUnassigned;
             crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats();
@@ -234,7 +234,7 @@ public class CrewManagement : MonoBehaviour
             rs.UpdateCurrentCrew(-1);
             ss.UpdateCrewAmount(1);
             minAssignableCrew++;
-            crewUnassignedText.text = "Crew Remaining: " + ss.CrewUnassigned;
+            crewUnassignedText.text = "Unassigned Crew: " + ss.CrewUnassigned;
             crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats();
@@ -297,7 +297,7 @@ public class CrewManagement : MonoBehaviour
     public void StartOverclockGame()
     {
         TurnOffPanel();
-        crewManagementText.SetActive(false);
+        //crewManagementText.SetActive(false);
         room.GetComponent<OverclockRoom>().PlayMiniGame();
     }
 
