@@ -566,13 +566,14 @@ public class ShipStats : MonoBehaviour
             int crewChecked = 0;
             while(crewChecked <= selection)
             {
-                if(rooms[index].currentCrew + crewChecked > selection)
+                crewChecked += rooms[index].currentCrew;
+                
+                if(crewChecked > selection)
                 {
                     rooms[index].UpdateCurrentCrew(-1);
                     crewAssigned -= 1;
                 }
-
-                crewChecked += rooms[index].currentCrew;
+                
                 index += 1;
             }
         }

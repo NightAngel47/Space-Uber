@@ -51,21 +51,29 @@ public class ChoiceOutcomes
                         SpawnStatChangeText(ship, amount, 2);
                         break;
                     case ResourceType.Crew:
-                        int amountFromAssigned;
-                        int amountFromUnassigned;
-                        if(ship.CrewCurrent - ship.CrewUnassigned >= amount)
+                        if(amount < 0)
                         {
-                            amountFromAssigned = amount;
-                            amountFromUnassigned = 0;
+                            int amountFromAssigned;
+                            int amountFromUnassigned;
+                            if(ship.CrewCurrent - ship.CrewUnassigned >= -amount)
+                            {
+                                amountFromAssigned = -amount;
+                                amountFromUnassigned = 0;
+                            }
+                            else
+                            {
+                                amountFromAssigned = ship.CrewCurrent - ship.CrewUnassigned;
+                                amountFromUnassigned = -amount - amountFromAssigned;
+                            }
+                            ship.RemoveRandomCrew(amountFromAssigned);
+                            ship.UpdateCrewAmount(-amountFromUnassigned, amount);
+                            SpawnStatChangeText(ship, amount);
                         }
                         else
                         {
-                            amountFromAssigned = ship.CrewCurrent - ship.CrewUnassigned;
-                            amountFromUnassigned = amount - amountFromAssigned;
+                            ship.UpdateCrewAmount(amount, amount);
+                            SpawnStatChangeText(ship, amount);
                         }
-                        ship.RemoveRandomCrew(amountFromAssigned);
-                        ship.UpdateCrewAmount(amountFromUnassigned, amount);
-                        SpawnStatChangeText(ship, amount, 4);
                         break;
                     case ResourceType.Food:
                         ship.UpdateFoodAmount(amount);
