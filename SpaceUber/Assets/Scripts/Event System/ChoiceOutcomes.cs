@@ -101,7 +101,7 @@ public class ChoiceOutcomes
                 {
                     //for catering to the rich campaign
                     case Campaigns.CateringToTheRich:
-                        CampaignManager.CateringToTheRich campaign = (CampaignManager.CateringToTheRich) campMan.campaigns[(int)Campaigns.CateringToTheRich];
+                        CampaignManager.CateringToTheRich campaign = CampaignManager.Campaign.ToCateringToTheRich(campMan.campaigns[(int)Campaigns.CateringToTheRich]);
 
                         //alter the trust variables
                         campaign.ctr_cloneTrust += cloneTrustChange;
