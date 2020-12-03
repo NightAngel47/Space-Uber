@@ -128,4 +128,5 @@ public class SlotReel : MonoBehaviour
             yield return new WaitForEndOfFrame();
 		}
 	}
+
 }
