@@ -29,8 +29,9 @@ public class OverclockController : MonoBehaviour
     public bool overclocking = false;
     OverclockRoom activeRoom;
     bool winSound = false;
+    private Camera cam;
 
-	private void Awake()
+    private void Awake()
 	{
 		if (!instance) { instance = this; }
         else { Destroy(gameObject); }
@@ -38,6 +39,7 @@ public class OverclockController : MonoBehaviour
 
     void Start()
     {
+        cam = Camera.main;
         shipStats = FindObjectOfType<ShipStats>();
         additiveSceneManager = FindObjectOfType<AdditiveSceneManager>();
         winSound = false;
@@ -112,17 +114,15 @@ public class OverclockController : MonoBehaviour
     
     private void SpawnStatChangeText(int value, int icon = -1)
     {
-        GameObject statChangeText = shipStats.GetComponent<ShipStatsUI>().statChangeText;
-        GameObject instance = GameObject.Instantiate(statChangeText);
+        ShipStatsUI shipStatsUI = shipStats.GetComponent<ShipStatsUI>();
+        GameObject statChangeUI = Instantiate(shipStatsUI.statChangeText, shipStatsUI.canvas, true);
         
-        RectTransform rect = instance.GetComponent<RectTransform>();
+        RectTransform rect = statChangeUI.GetComponent<RectTransform>();
         
-        Vector3 spawnPos = Camera.main.WorldToScreenPoint(activeRoom.transform.GetChild(0).position);
+        Vector3 spawnPos = cam.WorldToScreenPoint(activeRoom.transform.GetChild(0).position);
         rect.anchoredPosition = new Vector2(spawnPos.x, spawnPos.y);
-        
-        instance.transform.parent = shipStats.GetComponent<ShipStatsUI>().canvas;
-        
-        MoveAndFadeBehaviour moveAndFadeBehaviour = instance.GetComponent<MoveAndFadeBehaviour>();
+
+        MoveAndFadeBehaviour moveAndFadeBehaviour = statChangeUI.GetComponent<MoveAndFadeBehaviour>();
         moveAndFadeBehaviour.offset = new Vector2(0, 25 + activeRoom.transform.GetChild(0).localPosition.y * 100);
         moveAndFadeBehaviour.SetValue(value, icon);
     }
