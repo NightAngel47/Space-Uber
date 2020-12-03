@@ -53,8 +53,6 @@ public class EventSystem : MonoBehaviour
 	public bool eventActive { get; private set; } = false;
 
 	[SerializeField] private GameObject sonarObjects;
-	[SerializeField] private TMP_Text daysSinceDisplay;
-	private int daysSince = 0;
 	[SerializeField] private EventWarning eventWarning;
 	[SerializeField] private EventSonar sonar;
 	private Job currentJob;
@@ -113,9 +111,8 @@ public class EventSystem : MonoBehaviour
 
 	public IEnumerator Travel()
 	{
-		daysSince = 0;
-		daysSinceDisplay.text = daysSince.ToString();
-		
+		ship.ResetDaysSince();
+
 		//For the intro event
 		yield return new WaitWhile((() => eventActive));
 
@@ -129,10 +126,6 @@ public class EventSystem : MonoBehaviour
             ship.StartTickEvents();
             
 			yield return new WaitForSeconds(timeBeforeEventRoll); //start with one big chunk of time
-			
-			//increment days
-			daysSince++;
-			daysSinceDisplay.text = daysSince.ToString();
 
 			//A check to be sure that the current game state really is the event scenes
 			if (GameManager.instance.currentGameState != InGameStates.Events)
@@ -146,8 +139,6 @@ public class EventSystem : MonoBehaviour
 				isTraveling = true;
 				chanceOfEvent+= chanceIncreasePerFreq;
 				yield return new WaitForSeconds(eventChanceFreq);
-				daysSince++;
-				daysSinceDisplay.text = daysSince.ToString();
 			}
             if(GameManager.instance.currentGameState != InGameStates.Events)
             {
@@ -248,8 +239,7 @@ public class EventSystem : MonoBehaviour
 	/// </summary>
 	public void ConcludeEvent()
 	{
-		daysSince = 0;
-		daysSinceDisplay.text = daysSince.ToString();
+		ship.ResetDaysSince();
 		eventInstance.GetComponent<InkDriverBase>().ClearUI();
 
 		//in case a random event isn't chosen
@@ -273,7 +263,7 @@ public class EventSystem : MonoBehaviour
 
 		eventActive = false;
 	}
-	
+
 	private void ClearEventSystem()
 	{
 		storyEvents.Clear();
