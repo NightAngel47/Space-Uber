@@ -188,10 +188,10 @@ public class ObjectMover : MonoBehaviour
             {
                 SpotChecker.instance.SpecificSpotCheck(gameObject, os.rotAdjust);
             }
-            AudioManager.instance.PlaySFX(Placements[Random.Range(0, Placements.Length)]);
 
             if (SpotChecker.cannotPlace == false)
             {
+                AudioManager.instance.PlaySFX(Placements[Random.Range(0, Placements.Length)]);
                 gameObject.GetComponent<RoomStats>().AddRoomStats();
 
                 hasPlaced = true;
@@ -202,12 +202,13 @@ public class ObjectMover : MonoBehaviour
                 }
                 if (os.nextToRoom == true)
                 {
-                    if (GameObject.Find(os.nextToRoomName + "(Clone)") != null)
-                    {
-                        GameObject r = GameObject.Find(os.nextToRoomName + "(Clone)");
+                    os.RoomHighlightSpotsOff();
+                    //if (GameObject.Find(os.nextToRoomName + "(Clone)") != null)
+                    //{
+                    //    GameObject r = GameObject.Find(os.nextToRoomName + "(Clone)");
 
-                        r.transform.GetChild(2).gameObject.SetActive(false);
-                    }
+                    //    r.transform.GetChild(2).gameObject.SetActive(false);
+                    //}
                 }
 
 

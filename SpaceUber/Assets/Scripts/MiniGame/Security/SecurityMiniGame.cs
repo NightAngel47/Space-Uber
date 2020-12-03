@@ -116,10 +116,10 @@ public class SecurityMiniGame : MiniGame
         yield return new WaitForSeconds(1);
         foreach(char codeSegment in requiredCode)
 		{
+            AudioManager.instance.PlaySFX(DisplaySound[Random.Range(0, DisplaySound.Length - 1)]);
             codePreview.text = codeSegment.ToString();
             yield return new WaitForSeconds(displayTime);
             codePreview.text = "";
-            AudioManager.instance.PlaySFX(DisplaySound[Random.Range(0, DisplaySound.Length - 1)]);
         }
 
         inputCode = "";

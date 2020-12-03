@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceType: Security
   resourceIcon: {fileID: 21300000, guid: 302a744cd487b454f929803a063a0e46, type: 3}
-  amount: 5
+  amount: 10
   activeAmount: 0
   minAmount: 0
 --- !u!1001 &7568809509892926143
@@ -84,7 +84,6 @@ PrefabInstance:
       propertyPath: roomDescription
       value: 'The central hub of ship security. Increases Security based on crew
         assigned.
-
 
         The shape of this room is 2x1.'
       objectReference: {fileID: 0}

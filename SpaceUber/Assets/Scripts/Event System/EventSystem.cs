@@ -13,6 +13,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using Ink.Parsed;
+using TMPro;
 
 public class EventSystem : MonoBehaviour
 {
@@ -51,7 +52,8 @@ public class EventSystem : MonoBehaviour
 	private bool isTraveling = false;
 	public bool eventActive { get; private set; } = false;
 
-	[SerializeField] private GameObject eventWarning;
+	[SerializeField] private GameObject sonarObjects;
+	[SerializeField] private EventWarning eventWarning;
 	[SerializeField] private EventSonar sonar;
 	private Job currentJob;
 
@@ -69,9 +71,12 @@ public class EventSystem : MonoBehaviour
 		
 		if(eventWarning != null)
 		{
-			eventWarning.SetActive(false);
+			eventWarning.DeactivateWarning();
 		}
-		sonar.HideSonar();
+
+		//set sonar stuff
+		sonar.SetSpinRate( eventChanceFreq );
+		sonarObjects.SetActive(false);
 	}
 
 	/// <summary>
@@ -106,11 +111,13 @@ public class EventSystem : MonoBehaviour
 
 	public IEnumerator Travel()
 	{
+		ship.ResetDaysSince();
+
 		//For the intro event
 		yield return new WaitWhile((() => eventActive));
 
 		//set up the sonar
-		sonar.ShowSonar();
+		sonarObjects.SetActive(true);
 		sonar.ResetSonar();
 
 		float chanceOfEvent = startingEventChance;
@@ -120,8 +127,8 @@ public class EventSystem : MonoBehaviour
             
 			yield return new WaitForSeconds(timeBeforeEventRoll); //start with one big chunk of time
 
-			//A check to be sure that the current game state really is the event scenes?
-            if(GameManager.instance.currentGameState != InGameStates.Events)
+			//A check to be sure that the current game state really is the event scenes
+			if (GameManager.instance.currentGameState != InGameStates.Events)
             {
                 break;
             }
@@ -141,7 +148,7 @@ public class EventSystem : MonoBehaviour
 			//Activate the warning for the next event now that one has been picked
 			if (eventWarning != null)
 			{
-				eventWarning.SetActive(true);
+				eventWarning.ActivateWarning();
 			}
 			ship.PauseTickEvents();
 
@@ -151,9 +158,9 @@ public class EventSystem : MonoBehaviour
 			//turn off the event warning because an event is about to begin
 			if (eventWarning != null)
 			{
-				eventWarning.SetActive(false);
+				eventWarning.DeactivateWarning();
 			}
-			sonar.HideSonar();
+			sonarObjects.SetActive(false);
 
 			//Time to decide on an event
 			//story events happen every other time 
@@ -195,14 +202,14 @@ public class EventSystem : MonoBehaviour
 					ConcludeEvent();
 				}
 			}
-            
+
 			//set up the sonar for the next event
-			sonar.ShowSonar();
+			sonarObjects.SetActive(true);
 			sonar.ResetSonar();
             ship.UnpauseTickEvents();
 		}
 		isTraveling = false;
-		sonar.HideSonar();
+		sonarObjects.SetActive(false);
         ship.StopTickEvents();
 	}
 
@@ -232,6 +239,7 @@ public class EventSystem : MonoBehaviour
 	/// </summary>
 	public void ConcludeEvent()
 	{
+		ship.ResetDaysSince();
 		eventInstance.GetComponent<InkDriverBase>().ClearUI();
 
 		//in case a random event isn't chosen
@@ -255,7 +263,7 @@ public class EventSystem : MonoBehaviour
 
 		eventActive = false;
 	}
-	
+
 	private void ClearEventSystem()
 	{
 		storyEvents.Clear();
