@@ -115,10 +115,17 @@ public class SlotReel : MonoBehaviour
         while(!inPosition)
 		{
             distance = Vector3.Distance(transform.position, selectedSlot.position);
-            if (distance < 0.5f) { inPosition = true; }
-            if(selectedSlot.position.y > transform.position.y) { Spin(0.5f); }
-            else { Spin( 0.5f, - 1); }
-            yield return new WaitForSeconds(0.01f);
+            if (distance < 0.75f)
+            {
+                inPosition = true;
+                transform.position = selectedSlot.position;
+            }
+            else
+            {
+                if (selectedSlot.position.y > transform.position.y) { Spin(0.4f); }
+                else { Spin(0.4f, -1); }
+            }
+            yield return new WaitForEndOfFrame();
 		}
 	}
 }
