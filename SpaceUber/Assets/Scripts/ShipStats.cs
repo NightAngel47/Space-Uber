@@ -47,8 +47,9 @@ public class ShipStats : MonoBehaviour
     private int energyRemaining;
     private int security;
     private int shipWeapons;
-    private int crewMax;
-    private int crewRemaining;
+    private int crewCapacity;
+    private int crewCurrent;
+    private int crewUnassigned;
     private int food;
     private int foodPerTick;
     private int foodMoraleDamageMultiplier = 2;
@@ -65,10 +66,10 @@ public class ShipStats : MonoBehaviour
     private int secondsPerTick = 5;
     private bool ticksPaused;
     private bool tickStop = true;
-    
+
     public int daysSince;
     [SerializeField] private TMP_Text daysSinceDisplay;
-    
+
     //mutiny calculations
     private int maxMutinyMorale = 60;
     private float zeroMoraleMutinyChance = 0.75f;
@@ -80,8 +81,9 @@ public class ShipStats : MonoBehaviour
     private int startEnergyRemaining;
     private int startSecurity;
     private int startShipWeapons;
-    private int startCrewMax;
-    private int startCrewRemaining;
+    private int startCrewCapacity;
+    private int startCrewCurrent;
+    private int startCrewUnassigned;
     private int startFood;
     private int startFoodPerTick;
     private int startShipHealthMax;
@@ -100,7 +102,7 @@ public class ShipStats : MonoBehaviour
         UpdateEnergyAmount(startingEnergy, startingEnergy);
         UpdateSecurityAmount(startingSecurity);
         UpdateShipWeaponsAmount(startingShipWeapons);
-        UpdateCrewAmount(startingCrew, startingCrew);
+        UpdateCrewAmount(startingCrew, startingCrew, startingCrew);
         UpdateFoodAmount(startingFood);
         UpdateHullDurabilityAmount(startingShipHealth, startingShipHealth);
         //UpdateCrewMorale(startingMorale);
@@ -123,7 +125,7 @@ public class ShipStats : MonoBehaviour
             }
             //yield return new WaitWhile(() => ticksPaused);
 
-            food += foodPerTick - crewRemaining;
+            food += foodPerTick - crewCurrent;
             if(food < 0)
             {
                 //crewMorale += (food * foodMoraleDamageMultiplier);
@@ -301,10 +303,12 @@ public class ShipStats : MonoBehaviour
         shipStatsUI.ShowShipWeaponsUIChange(shipWeaponsAmount);
     }
 
-    public void UpdateCrewAmount(int crewRemainingAmount, int crewMaxAmount = 0)
+    public void UpdateCrewAmount(int crewUnassignedAmount, int crewCurrentAmount = 0, int crewCapacityAmount = 0)
     {
-        crewMax += crewMaxAmount;
-        crewRemaining += crewRemainingAmount;
+        crewCapacity += crewCapacityAmount;
+        crewCurrent += crewCurrentAmount;
+        crewUnassigned += crewUnassignedAmount;
+
         /*
         if (crewRemainingAmount >= 0)
         {
@@ -315,17 +319,27 @@ public class ShipStats : MonoBehaviour
             AudioManager.instance.PlaySFX("Lose Crew");
         }
         */
-        if (crewRemaining <= 0)
+
+        if (crewCurrent <= 0)
         {
-            crewRemaining = 0;
+            crewCurrent = 0;
         }
-        if (crewRemaining >= crewMax)
+        if (crewCurrent >= crewCapacity)
         {
-            crewRemaining = crewMax;
+            crewCurrent = crewCapacity;
         }
 
-        shipStatsUI.UpdateCrewUI(crewRemaining, crewMax);
-        shipStatsUI.ShowCrewUIChange(crewRemainingAmount, crewMaxAmount);
+        if (crewUnassigned <= 0)
+        {
+            crewUnassigned = 0;
+        }
+        if (crewUnassigned >= crewCurrent)
+        {
+            crewUnassigned = crewCurrent;
+        }
+
+        shipStatsUI.UpdateCrewUI(crewUnassigned, crewCurrent, crewCapacity);
+        shipStatsUI.ShowCrewUIChange(crewUnassignedAmount, crewCurrentAmount, crewCapacityAmount);
     }
 
     public void UpdateFoodAmount(int foodAmount)
@@ -362,6 +376,12 @@ public class ShipStats : MonoBehaviour
     {
         shipHealthMax += hullDurabilityMax;
         shipHealthCurrent += hullDurabilityRemainingAmount;
+
+        if (shipHealthCurrent >= shipHealthMax)
+        {
+            shipHealthCurrent = shipHealthMax;
+        }
+
         /*
         if (hullDurabilityRemainingAmount >= 0)
         {
@@ -372,6 +392,7 @@ public class ShipStats : MonoBehaviour
             AudioManager.instance.PlaySFX("Lose Hull");
         }
         */
+
         shipStatsUI.UpdateHullUI(shipHealthCurrent, shipHealthMax);
         shipStatsUI.ShowHullUIChange(hullDurabilityRemainingAmount, hullDurabilityMax);
 
@@ -412,7 +433,7 @@ public class ShipStats : MonoBehaviour
         {
             payout = 0;
         }
-        
+
         shipStatsUI.UpdateCreditsUI(credits, payout);
         shipStatsUI.ShowCreditsUIChange(0, payout - initialPayout);
     }
@@ -425,7 +446,7 @@ public class ShipStats : MonoBehaviour
         {
             payout = 0;
         }
-        
+
         shipStatsUI.UpdateCreditsUI(credits, payout);
         shipStatsUI.ShowCreditsUIChange(0, payout - initialPayout);
     }
@@ -466,10 +487,15 @@ public class ShipStats : MonoBehaviour
         get { return shipWeapons; }
         set { shipWeapons = value; }
     }
-    public int CrewRemaining
+    public int CrewUnassigned
     {
-        get { return crewRemaining; }
-        set { crewRemaining = value; }
+        get { return crewUnassigned; }
+        set { crewUnassigned = value; }
+    }
+    public int CrewCurrent
+    {
+        get { return crewCurrent; }
+        set { crewCurrent = value; }
     }
     public int Food
     {
@@ -509,17 +535,47 @@ public class ShipStats : MonoBehaviour
         Debug.Log("Energy " + EnergyRemaining);
         Debug.Log("Security " + Security);
         Debug.Log("ShipWeapons " + ShipWeapons);
-        Debug.Log("CrewRemaining " + CrewRemaining);
+        Debug.Log("CrewUnassigned " + CrewUnassigned);
+        Debug.Log("CrewCurrent " + CrewCurrent);
         Debug.Log("Food " + Food);
         Debug.Log("ShipHealthCurrent " + ShipHealthCurrent);
         Debug.Log("Payout " + Payout);
     }
 
-    public void PayCrew(int ammount)
+    public void PayCrew(int amount)
     {
-        UpdateCreditsAmount(-ammount * crewRemaining);
+        UpdateCreditsAmount(-amount * crewCurrent);
         //int BadMoraleMultiplier = (maxMutinyMorale - crewMorale) * crewPaymentMoraleMultiplier / maxMutinyMorale;
         //UpdateCrewMorale(BadMoraleMultiplier * (ammount - crewPaymentDefault));
+    }
+
+    public void RemoveRandomCrew(int amount)
+    {
+        RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+        int crewAssigned = crewCurrent - crewUnassigned;
+
+        for(int i = 0; i < amount; i++)
+        {
+            int selection = Mathf.FloorToInt(UnityEngine.Random.value * crewAssigned);
+            if(selection == crewAssigned) // because Unity's Random.value includes 1, we have to do this
+            {
+                selection -= 1;
+            }
+
+            int index = 0;
+            int crewChecked = 0;
+            while(crewChecked <= selection)
+            {
+                if(rooms[index].currentCrew + crewChecked > selection)
+                {
+                    rooms[index].UpdateCurrentCrew(-1);
+                    crewAssigned -= 1;
+                }
+
+                crewChecked += rooms[index].currentCrew;
+                index += 1;
+            }
+        }
     }
 
     public void SaveStats()
@@ -530,8 +586,9 @@ public class ShipStats : MonoBehaviour
         startEnergyRemaining = energyRemaining;
         startSecurity = security;
         startShipWeapons = shipWeapons;
-        startCrewMax = crewMax;
-        startCrewRemaining = crewRemaining;
+        startCrewCapacity = crewCapacity;
+        startCrewCurrent = crewCurrent;
+        startCrewUnassigned = crewUnassigned;
         startFood = food;
         startFoodPerTick = foodPerTick;
         startShipHealthMax = shipHealthMax;
@@ -546,7 +603,7 @@ public class ShipStats : MonoBehaviour
         UpdateEnergyAmount(startEnergyRemaining, startEnergyMax);
         UpdateSecurityAmount(startSecurity);
         UpdateShipWeaponsAmount(startShipWeapons);
-        UpdateCrewAmount(startCrewRemaining, startCrewMax);
+        UpdateCrewAmount(startCrewUnassigned, startCrewCurrent, startCrewCapacity);
         UpdateFoodAmount(startFood);
         UpdateFoodPerTickAmount(startFoodPerTick);
         UpdateHullDurabilityAmount(startShipHealthCurrent, startShipHealthMax);
