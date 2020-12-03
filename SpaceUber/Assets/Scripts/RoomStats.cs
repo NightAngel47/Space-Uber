@@ -52,7 +52,7 @@ public class RoomStats : MonoBehaviour
 
     [SerializeField] private RoomTooltipUI roomTooltipUI;
 
-    public Transform statCanvas;
+    public Transform[] statCanvas;
     
     void Start()
     {
