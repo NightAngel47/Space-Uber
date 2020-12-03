@@ -66,8 +66,6 @@ public class SecurityMiniGame : MiniGame
         }
     }
 
-    public Color GetHighlightColor() { return highlightColor; }
-
     void ScrambleCodeBlocks()
     {
         for (int i = 0; i < codeSegments.Length - 1; i++)
@@ -118,10 +116,10 @@ public class SecurityMiniGame : MiniGame
         yield return new WaitForSeconds(1);
         foreach(char codeSegment in requiredCode)
 		{
+            AudioManager.instance.PlaySFX(DisplaySound[Random.Range(0, DisplaySound.Length - 1)]);
             codePreview.text = codeSegment.ToString();
             yield return new WaitForSeconds(displayTime);
             codePreview.text = "";
-            AudioManager.instance.PlaySFX(DisplaySound[Random.Range(0, DisplaySound.Length - 1)]);
         }
 
         inputCode = "";
@@ -130,7 +128,7 @@ public class SecurityMiniGame : MiniGame
             foreach (CodeBlock block in codeSegments) 
             { 
                 block.gameObject.SetActive(true);
-                block.GetComponent<Image>().color = originalButtonColor;
+                block.RestetInput();
             } 
         }
     }

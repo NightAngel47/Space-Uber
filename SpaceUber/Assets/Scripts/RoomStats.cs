@@ -51,6 +51,8 @@ public class RoomStats : MonoBehaviour
     [SerializeField] private bool isPowered = false;
 
     [SerializeField] private RoomTooltipUI roomTooltipUI;
+
+    public Transform statCanvas;
     
     void Start()
     {
@@ -237,16 +239,17 @@ public class RoomStats : MonoBehaviour
     /// </summary>
     public void AddRoomStats()
     {
+        shipStats.roomBeingPlaced = gameObject;
         shipStats.UpdateCreditsAmount(-price);
         shipStats.UpdatePayoutAmount(credits);
         shipStats.UpdateEnergyAmount(energy, energy);
         shipStats.UpdateEnergyAmount(-minPower);
         shipStats.UpdateSecurityAmount(security);
         shipStats.UpdateShipWeaponsAmount(shipWeapons);
-        shipStats.UpdateCrewAmount(crew, crew);
+        shipStats.UpdateCrewAmount(crew, crew, crew);
         shipStats.UpdateFoodAmount(food);
         shipStats.UpdateFoodPerTickAmount(foodPerTick);
-        shipStats.UpdateHullDurabilityAmount(shipHealth, shipHealth);
+        shipStats.UpdateHullDurabilityAmount(shipHealth, shipHealth); 
     }
 
     /// <summary>
@@ -268,7 +271,7 @@ public class RoomStats : MonoBehaviour
         shipStats.UpdateEnergyAmount(minPower);
         shipStats.UpdateSecurityAmount(-security);
         shipStats.UpdateShipWeaponsAmount(-shipWeapons);
-        shipStats.UpdateCrewAmount(-crew, -crew);
+        shipStats.UpdateCrewAmount(-crew, -crew, -crew);
         shipStats.UpdateFoodAmount(-food);
         shipStats.UpdateFoodPerTickAmount(-foodPerTick);
         shipStats.UpdateHullDurabilityAmount(-shipHealth, shipHealth);

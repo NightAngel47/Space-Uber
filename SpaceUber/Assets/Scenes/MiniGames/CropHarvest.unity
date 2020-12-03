@@ -197,25 +197,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cropText: {fileID: 1410823775}
-  unfertilizedSoil: {fileID: 7223251799278012158, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  unfertilizedSoil: {fileID: -1060868168878788092, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
-  fertilizedSoil: {fileID: -5323379147761251417, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  fertilizedSoil: {fileID: -509250924091270851, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
-  unwateredSeed: {fileID: 547639170991173132, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  unwateredSeed: {fileID: 7289469459557865381, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   wateredSeed: {fileID: 2839770625265591479, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
-  unwateredSprout: {fileID: 8544887547276016033, guid: 2e8d92a88230feb4694253b2786398a7,
+  unwateredSprout: {fileID: 6907158518254830687, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
-  watererSprout: {fileID: -8788243674362555083, guid: 2e8d92a88230feb4694253b2786398a7,
+  watererSprout: {fileID: 5214907992195865982, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   unwateredUntrimmedMiddling: {fileID: -1802375507474033870, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
-  unwateredTrimmedMiddling: {fileID: 7612505772460058095, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  unwateredTrimmedMiddling: {fileID: -3161994892777737172, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   wateredUntrimmedMiddling: {fileID: -2076504230131596341, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
-  wateredTrimmedMiddling: {fileID: 8280733062899848297, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  wateredTrimmedMiddling: {fileID: 7920686773834796452, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   harvestableCropPrefab: {fileID: 8432066967592243377, guid: 7335a69d37c25a748862c017b76629af,
     type: 3}
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7223251799278012158, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  m_Sprite: {fileID: -1060868168878788092, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -475,7 +475,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.03, y: 0}
+  m_AnchoredPosition: {x: -0.03, y: 0.9200007}
   m_SizeDelta: {x: 3.8179665, y: 3.6904488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &109214723
@@ -549,7 +549,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.04, y: 3.28}
+  m_AnchoredPosition: {x: -6.71, y: 3.28}
   m_SizeDelta: {x: 1.7352681, y: 0.47481298}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &368269221
@@ -683,7 +683,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.03, y: 0}
+  m_AnchoredPosition: {x: -0.03, y: 0.9200007}
   m_SizeDelta: {x: 3.8179665, y: 3.6904488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &427783746
@@ -753,7 +753,7 @@ RectTransform:
   m_GameObject: {fileID: 433350677}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45215333, y: 0.4181064, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1839647468}
   m_RootOrder: 3
@@ -795,7 +795,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4571037977770608328, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  m_Sprite: {fileID: -7963257677406392625, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -937,25 +937,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cropText: {fileID: 943394252}
-  unfertilizedSoil: {fileID: 7223251799278012158, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  unfertilizedSoil: {fileID: -1060868168878788092, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
-  fertilizedSoil: {fileID: -5323379147761251417, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  fertilizedSoil: {fileID: -509250924091270851, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
-  unwateredSeed: {fileID: 547639170991173132, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  unwateredSeed: {fileID: 7289469459557865381, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   wateredSeed: {fileID: 2839770625265591479, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
-  unwateredSprout: {fileID: 8544887547276016033, guid: 2e8d92a88230feb4694253b2786398a7,
+  unwateredSprout: {fileID: 6907158518254830687, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
-  watererSprout: {fileID: -8788243674362555083, guid: 2e8d92a88230feb4694253b2786398a7,
+  watererSprout: {fileID: 5214907992195865982, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   unwateredUntrimmedMiddling: {fileID: -1802375507474033870, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
-  unwateredTrimmedMiddling: {fileID: 7612505772460058095, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  unwateredTrimmedMiddling: {fileID: -3161994892777737172, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   wateredUntrimmedMiddling: {fileID: -2076504230131596341, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
-  wateredTrimmedMiddling: {fileID: 8280733062899848297, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  wateredTrimmedMiddling: {fileID: 7920686773834796452, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   harvestableCropPrefab: {fileID: 8432066967592243377, guid: 7335a69d37c25a748862c017b76629af,
     type: 3}
@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7223251799278012158, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  m_Sprite: {fileID: -1060868168878788092, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -1120,7 +1120,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5765713525808067303, guid: e652e532debc03846980a19668ea5393,
+  m_Sprite: {fileID: 8142671007655549624, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -1271,15 +1271,15 @@ RectTransform:
   m_GameObject: {fileID: 803502313}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.27}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.83, z: 1}
   m_Children: []
   m_Father: {fileID: 1001686353}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -7.291, y: -2.634}
-  m_SizeDelta: {x: -13.505379, y: -4.403196}
+  m_AnchoredPosition: {x: -7.14, y: -2.6095}
+  m_SizeDelta: {x: -13.988512, y: -5.2189646}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &803502315
 MonoBehaviour:
@@ -1300,7 +1300,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 38a029e9547a35945b2c27591f01b4a8, type: 3}
+  m_Sprite: {fileID: -1638611519960306203, guid: 21d3f166bbb26d54898c916d4e1359bc,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1323,7 +1324,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.3040722, y: -0.033692956}
+  m_Offset: {x: 0.021338463, y: 0.0036548376}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1334,7 +1335,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6567477, y: 1.1122272}
+  m_Size: {x: 4.4149942, y: 3.2036984}
   m_EdgeRadius: 0
 --- !u!50 &803502317
 Rigidbody2D:
@@ -1566,7 +1567,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 423900d55c4a12e4dbae9790ea1e3794, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f218c825843f8ae44b20cf8fe6e646f8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1752,7 +1753,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.99, y: 0.46}
+  m_AnchoredPosition: {x: -1.26, y: 1.57}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!199 &1134212442
@@ -6507,7 +6508,7 @@ RectTransform:
   m_GameObject: {fileID: 1143599213}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45215333, y: 0.4181064, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1839647468}
   m_RootOrder: 0
@@ -6549,7 +6550,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5942909504972396532, guid: e652e532debc03846980a19668ea5393,
+  m_Sprite: {fileID: -5623727935260832505, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -6691,25 +6692,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cropText: {fileID: 1334341143}
-  unfertilizedSoil: {fileID: 7223251799278012158, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  unfertilizedSoil: {fileID: -1060868168878788092, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
-  fertilizedSoil: {fileID: -5323379147761251417, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  fertilizedSoil: {fileID: -509250924091270851, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
-  unwateredSeed: {fileID: 547639170991173132, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  unwateredSeed: {fileID: 7289469459557865381, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   wateredSeed: {fileID: 2839770625265591479, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
-  unwateredSprout: {fileID: 8544887547276016033, guid: 2e8d92a88230feb4694253b2786398a7,
+  unwateredSprout: {fileID: 6907158518254830687, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
-  watererSprout: {fileID: -8788243674362555083, guid: 2e8d92a88230feb4694253b2786398a7,
+  watererSprout: {fileID: 5214907992195865982, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   unwateredUntrimmedMiddling: {fileID: -1802375507474033870, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
-  unwateredTrimmedMiddling: {fileID: 7612505772460058095, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  unwateredTrimmedMiddling: {fileID: -3161994892777737172, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   wateredUntrimmedMiddling: {fileID: -2076504230131596341, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
-  wateredTrimmedMiddling: {fileID: 8280733062899848297, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  wateredTrimmedMiddling: {fileID: 7920686773834796452, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   harvestableCropPrefab: {fileID: 8432066967592243377, guid: 7335a69d37c25a748862c017b76629af,
     type: 3}
@@ -6756,7 +6757,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7223251799278012158, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  m_Sprite: {fileID: -1060868168878788092, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -6835,7 +6836,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.03, y: 0}
+  m_AnchoredPosition: {x: -0.03, y: 0.9200007}
   m_SizeDelta: {x: 3.8179665, y: 3.6904488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1166045170
@@ -7395,25 +7396,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cropText: {fileID: 96243093}
-  unfertilizedSoil: {fileID: 7223251799278012158, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  unfertilizedSoil: {fileID: -1060868168878788092, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
-  fertilizedSoil: {fileID: -5323379147761251417, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  fertilizedSoil: {fileID: -509250924091270851, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
-  unwateredSeed: {fileID: 547639170991173132, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  unwateredSeed: {fileID: 7289469459557865381, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   wateredSeed: {fileID: 2839770625265591479, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
-  unwateredSprout: {fileID: 8544887547276016033, guid: 2e8d92a88230feb4694253b2786398a7,
+  unwateredSprout: {fileID: 6907158518254830687, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
-  watererSprout: {fileID: -8788243674362555083, guid: 2e8d92a88230feb4694253b2786398a7,
+  watererSprout: {fileID: 5214907992195865982, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   unwateredUntrimmedMiddling: {fileID: -1802375507474033870, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
-  unwateredTrimmedMiddling: {fileID: 7612505772460058095, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  unwateredTrimmedMiddling: {fileID: -3161994892777737172, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   wateredUntrimmedMiddling: {fileID: -2076504230131596341, guid: 9c3f05afeb7fdcf45a49448daa49141f,
     type: 3}
-  wateredTrimmedMiddling: {fileID: 8280733062899848297, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  wateredTrimmedMiddling: {fileID: 7920686773834796452, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   harvestableCropPrefab: {fileID: 8432066967592243377, guid: 7335a69d37c25a748862c017b76629af,
     type: 3}
@@ -7460,7 +7461,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7223251799278012158, guid: 9c3f05afeb7fdcf45a49448daa49141f,
+  m_Sprite: {fileID: -1060868168878788092, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -7673,7 +7674,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.03, y: 0}
+  m_AnchoredPosition: {x: -0.03, y: 0.92}
   m_SizeDelta: {x: 3.8179665, y: 3.6904488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1515721170
@@ -8023,7 +8024,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4067303838340532515, guid: e652e532debc03846980a19668ea5393,
+  m_Sprite: {fileID: 4724941904395270567, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -8124,7 +8125,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.151, y: 1.87}
+  m_AnchoredPosition: {x: -7.07, y: 1.87}
   m_SizeDelta: {x: -17.071783, y: -6.0385885}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1612854042
@@ -8146,7 +8147,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7042669037464630732, guid: e652e532debc03846980a19668ea5393,
+  m_Sprite: {fileID: 2188916287309911780, guid: 21d3f166bbb26d54898c916d4e1359bc,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -8355,7 +8356,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.9912, y: 0.246}
+  m_AnchoredPosition: {x: -7.04, y: 0.246}
   m_SizeDelta: {x: 1.6376619, y: 0.90039825}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1723679619
@@ -8412,7 +8413,7 @@ MonoBehaviour:
   m_fontSizeMin: 0
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -8972,7 +8973,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.46, y: -0.97}
+  m_AnchoredPosition: {x: -7.19, y: -0.97}
   m_SizeDelta: {x: 2.2040534, y: 0.47597957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2071135666
@@ -9029,7 +9030,7 @@ MonoBehaviour:
   m_fontSizeMin: 0
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
