@@ -33,6 +33,7 @@ public class JobListUI : MonoBehaviour
 
     private void Start()
     {
+        SpawnObject.donePreplacedRoom = false;
         ClearSelectedJobDetails();
     }
 
