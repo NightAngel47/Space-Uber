@@ -44,8 +44,11 @@ public class MiniGame : MonoBehaviour
 
 		if (winSound == false)
         {
-            AudioManager.instance.PlaySFX(Successes[Random.Range(0, Successes.Length - 1)]);
-            winSound = true;
+			if(Successes.Length > 0)
+            {
+				AudioManager.instance.PlaySFX(Successes[Random.Range(0, Successes.Length - 1)]);
+				winSound = true;
+			}
         }
     }
 
