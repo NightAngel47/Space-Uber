@@ -62,6 +62,7 @@ public class SlotMachine : MiniGame
     [SerializeField] Payouts payouts;
     [SerializeField] PayoutMultipliers payoutMultipliers;
     [SerializeField] float winDelay = 1;
+    [SerializeField] Button[] buttons;
     ShipStats shipStats;
     int payout = 0;
     BetAmount betAmount = BetAmount.Free;
@@ -98,6 +99,7 @@ public class SlotMachine : MiniGame
         }
         if (crank.value == 0 && !gameStarted) 
         {
+            foreach(Button button in buttons) { button.interactable = true; }
             gameStarted = true;
             switch(betAmount)
 			{

@@ -13,15 +13,20 @@ public class CodeBlock : MonoBehaviour
 {
 	public TMP_Text codeText;
 	SecurityMiniGame miniGameManager;
+	[SerializeField] Sprite unselectedSprite;
+	[SerializeField] Sprite selectedSprite;
 
 	private void Start()
 	{
 		miniGameManager = FindObjectOfType<SecurityMiniGame>();
+		GetComponent<Image>().sprite = unselectedSprite;
 	}
+
+	public void RestetInput() { GetComponent<Image>().sprite = unselectedSprite; }
 
 	public void InputCode()
 	{
 		miniGameManager.InputCode(codeText.text);
-		GetComponent<Image>().color = miniGameManager.GetHighlightColor();
+		GetComponent<Image>().sprite = selectedSprite;
 	}
 }

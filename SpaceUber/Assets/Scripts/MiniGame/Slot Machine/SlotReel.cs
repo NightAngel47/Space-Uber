@@ -58,16 +58,16 @@ public class SlotReel : MonoBehaviour
 
     void AdjustPosition()
 	{
-        if(upperHalfReel.anchoredPosition.y < -160)
+        if(upperHalfReel.anchoredPosition.y < -300)
 		{
             float y = upperHalfReel.anchoredPosition.y;
             y += lowerHalfReel.rect.height * 2;
             upperHalfReel.anchoredPosition = new Vector2(x, y);
 		}
-        if (lowerHalfReel.anchoredPosition.y < -160)
+        if (lowerHalfReel.anchoredPosition.y < -300)
         {
             float y = lowerHalfReel.anchoredPosition.y;
-            y += upperHalfReel.rect.height * 2;
+            y += (upperHalfReel.rect.height * 2);
             lowerHalfReel.anchoredPosition = new Vector2(x, y);
         }
     }
