@@ -8951,6 +8951,47 @@ PrefabInstance:
       propertyPath: m_Name
       value: Audio Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.size
+      value: 237
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[236].name
+      value: Low Health
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[236].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0ac5d1dcbfc082c4fafe0792243eb7b8, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[236].mixer
+      value: 
+      objectReference: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[236].volume
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[236].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[236].volumeVarience
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[236].pitchVarience
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfd00d5985b7e774da68f5c929635ee4, type: 3}
 --- !u!1001 &1886676204
@@ -9908,10 +9949,9 @@ PrefabInstance:
       objectReference: {fileID: 1002784689}
     - target: {fileID: 6273300031087700530, guid: 17581060db283ed4a8d97970348901ea,
         type: 3}
-      propertyPath: statChangeTextRoom
+      propertyPath: canvas
       value: 
-      objectReference: {fileID: 4251841664551629733, guid: 2e1ecebb32c11984db0d6a1ebc26b2ad,
-        type: 3}
+      objectReference: {fileID: 1002784702}
     - target: {fileID: 6273300031087700531, guid: 17581060db283ed4a8d97970348901ea,
         type: 3}
       propertyPath: highlights.rows.Array.data[0].row.Array.data[0]
@@ -10422,6 +10462,12 @@ PrefabInstance:
       propertyPath: cantPlaceText
       value: 
       objectReference: {fileID: 513478297}
+    - target: {fileID: 6273300032395514629, guid: 17581060db283ed4a8d97970348901ea,
+        type: 3}
+      propertyPath: statChangeText
+      value: 
+      objectReference: {fileID: 6562358761702154872, guid: d79e5343c58215647b7544fa825da881,
+        type: 3}
     - target: {fileID: 6273300032395514629, guid: 17581060db283ed4a8d97970348901ea,
         type: 3}
       propertyPath: daysSinceDisplay

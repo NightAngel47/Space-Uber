@@ -6,8 +6,10 @@
  * Effects are written in the inspector
  */
 
-using NaughtyAttributes;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 [System.Serializable]
@@ -34,30 +36,52 @@ public class ChoiceOutcomes
                 {
                     case ResourceType.Credits:
                         ship.UpdateCreditsAmount(amount);
+                        SpawnStatChangeText(ship, amount, 0);
                         break;
                     case ResourceType.Energy:
                         ship.UpdateEnergyAmount(amount);
+                        SpawnStatChangeText(ship, amount, 5);
                         break;
                     case ResourceType.Security:
                         ship.UpdateSecurityAmount(amount);
+                        SpawnStatChangeText(ship, amount, 1);
                         break;
                     case ResourceType.ShipWeapons:
                         ship.UpdateShipWeaponsAmount(amount);
+                        SpawnStatChangeText(ship, amount, 2);
                         break;
                     case ResourceType.Crew:
-                        ship.UpdateCrewAmount(amount);
+                        int amountFromAssigned;
+                        int amountFromUnassigned;
+                        if(ship.CrewCurrent - ship.CrewUnassigned >= amount)
+                        {
+                            amountFromAssigned = amount;
+                            amountFromUnassigned = 0;
+                        }
+                        else
+                        {
+                            amountFromAssigned = ship.CrewCurrent - ship.CrewUnassigned;
+                            amountFromUnassigned = amount - amountFromAssigned;
+                        }
+                        ship.RemoveRandomCrew(amountFromAssigned);
+                        ship.UpdateCrewAmount(amountFromUnassigned, amount);
+                        SpawnStatChangeText(ship, amount, 4);
                         break;
                     case ResourceType.Food:
                         ship.UpdateFoodAmount(amount);
+                        SpawnStatChangeText(ship, amount, 3);
                         break;
                     case ResourceType.FoodPerTick:
                         ship.UpdateFoodPerTickAmount(amount);
+                        SpawnStatChangeText(ship, amount, 3);
                         break;
                     case ResourceType.HullDurability:
                         ship.UpdateHullDurabilityAmount(amount, 0, hasSubsequentChoices);
+                        SpawnStatChangeText(ship, amount, 6);
                         break;
                     case ResourceType.Payout:
                         ship.AddPayout(amount);
+                        SpawnStatChangeText(ship, amount, 0);
                         break;
                     default:
                         break;
@@ -108,6 +132,21 @@ public class ChoiceOutcomes
         {
             return new List<string>() { "N_A", "Side With Scientist", "Kill Beckett", "Let Bale Pilot", "Killed At Safari", "Tell VIPs About Clones" };
         }
+    }
+    
+    private void SpawnStatChangeText(ShipStats ship, int value, int icon = -1)
+    {
+        GameObject statChangeText = ship.GetComponent<ShipStatsUI>().statChangeText;
+        GameObject instance = GameObject.Instantiate(statChangeText);
+        
+        RectTransform rect = instance.GetComponent<RectTransform>();
+        rect.anchoredPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        
+        instance.transform.parent = ship.GetComponent<ShipStatsUI>().canvas;
+        
+        MoveAndFadeBehaviour moveAndFadeBehaviour = instance.GetComponent<MoveAndFadeBehaviour>();
+        moveAndFadeBehaviour.offset = new Vector2(0, +75);
+        moveAndFadeBehaviour.SetValue(value, icon);
     }
 }
 

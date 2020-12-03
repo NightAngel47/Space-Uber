@@ -6,7 +6,6 @@
  */
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,6 +26,11 @@ public class CampaignManager : MonoBehaviour
     {
         [HideInInspector] public int currentCampaignJobIndex = 0;
         public List<Job> campaignJobs = new List<Job>();
+
+        public static CateringToTheRich ToCateringToTheRich(Campaign campaign)
+        {
+            return new CateringToTheRich();
+        }
     }
     
     public class CateringToTheRich : Campaign
