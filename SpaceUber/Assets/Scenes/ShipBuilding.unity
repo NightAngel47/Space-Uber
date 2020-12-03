@@ -680,6 +680,10 @@ MonoBehaviour:
     - row: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
     - row: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
     - row: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  cannotPlacePosition:
+  - Not Enough Space 1
+  - Not Enough Space 2
+  - Not Enough Space 3
 --- !u!4 &810855496
 Transform:
   m_ObjectHideFlags: 0
@@ -1750,6 +1754,14 @@ MonoBehaviour:
   - Purchase Warp 3
   - Purchase Warp 4
   - Purchase Warp 5
+  cannotPlaceCredits:
+  - Not Enough Credits 1
+  - Not Enough Credits 2
+  - Not Enough Credits 3
+  cannotPlaceEnergy:
+  - Not Enough Energy 1
+  - Not Enough Energy 2
+  - Not Enough Energy 3
 --- !u!4 &1719975905
 Transform:
   m_ObjectHideFlags: 0

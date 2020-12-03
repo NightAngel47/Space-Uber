@@ -306,28 +306,31 @@ public class AudioManager : MonoBehaviour
         //Sanitize Input
         fadeTime = Mathf.Abs(fadeTime);
         //Skip routine if fadeTime is 0
-        if (fadeTime > 0)
+        if (!isMuted) //Jake's attempted solution at getting rid of the "music un-mutes on fade" bug
         {
-            int fadeInOrOut;
-            float fadeStart;
-            float startVolume = sound.volume;
-
-            //Adjust values to fade in or fade out
-            if (fadeIn) { fadeInOrOut = -1; sound.SetVolume(0.1f); fadeStart = 0; }
-            else { fadeStart = 1; fadeInOrOut = 1; }
-
-            float timeElapsed = 0;
-
-            while (timeElapsed < fadeTime)
+            if (fadeTime > 0)
             {
-                //Set volume to the percentage of time that has elapsed over fade time
-                sound.SetVolume((startVolume *  (fadeStart - (fadeInOrOut * timeElapsed / fadeTime)))*masterVolume);
-                timeElapsed += Time.deltaTime;
-                yield return null;
+                int fadeInOrOut;
+                float fadeStart;
+                float startVolume = sound.volume;
+
+                //Adjust values to fade in or fade out
+                if (fadeIn) { fadeInOrOut = -1; sound.SetVolume(0.1f); fadeStart = 0; }
+                else { fadeStart = 1; fadeInOrOut = 1; }
+
+                float timeElapsed = 0;
+
+                while (timeElapsed < fadeTime)
+                {
+                    //Set volume to the percentage of time that has elapsed over fade time
+                    sound.SetVolume((startVolume * (fadeStart - (fadeInOrOut * timeElapsed / fadeTime))) * masterVolume);
+                    timeElapsed += Time.deltaTime;
+                    yield return null;
+                }
+                //Stop sound and reset volume to original amount
+                if (!fadeIn) sound.Stop();
+                sound.volume = startVolume;
             }
-            //Stop sound and reset volume to original amount
-            if (!fadeIn) sound.Stop();
-            sound.volume = startVolume;
         }
     }
 
