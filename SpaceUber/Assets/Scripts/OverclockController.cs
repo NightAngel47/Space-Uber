@@ -61,32 +61,32 @@ public class OverclockController : MonoBehaviour
             if(miniGame == MiniGameType.Security)
             {
                 shipStats.UpdateSecurityAmount(Mathf.RoundToInt(securityBaseAdjustment * statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(securityBaseAdjustment * statModification));
+                SpawnStatChangeText(Mathf.RoundToInt(securityBaseAdjustment * statModification), 1);
             }
             if(miniGame == MiniGameType.Asteroids)
             {
                 shipStats.UpdateShipWeaponsAmount(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification));
+                SpawnStatChangeText(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification), 2);
             }
             if(miniGame == MiniGameType.CropHarvest)
             {
                 shipStats.UpdateFoodAmount(Mathf.RoundToInt(foodBaseAdjustment * statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(foodBaseAdjustment * statModification));
+                SpawnStatChangeText(Mathf.RoundToInt(foodBaseAdjustment * statModification), 3);
             }
             if(miniGame == MiniGameType.StabilizeEnergyLevels)
             {
                 shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullDurabilityBaseAdjustment * statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(hullDurabilityBaseAdjustment * statModification));
+                SpawnStatChangeText(Mathf.RoundToInt(hullDurabilityBaseAdjustment * statModification), 6);
             }
             if(miniGame == MiniGameType.SlotMachine)
             {
                 shipStats.UpdateCreditsAmount(Mathf.RoundToInt(statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(statModification));
+                SpawnStatChangeText(Mathf.RoundToInt(statModification), 0);
             }
             if(miniGame == MiniGameType.HullRepair)
             {
                 shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification));
+                SpawnStatChangeText(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification), 6);
             }
         }
         else
@@ -110,7 +110,7 @@ public class OverclockController : MonoBehaviour
         FindObjectOfType<CrewManagement>().crewManagementText.SetActive(true);
 	}
     
-    private void SpawnStatChangeText(int value)
+    private void SpawnStatChangeText(int value, int icon = -1)
     {
         GameObject statChangeText = shipStats.GetComponent<ShipStatsUI>().statChangeText;
         GameObject instance = GameObject.Instantiate(statChangeText);
@@ -124,7 +124,7 @@ public class OverclockController : MonoBehaviour
         
         MoveAndFadeBehaviour moveAndFadeBehaviour = instance.GetComponent<MoveAndFadeBehaviour>();
         moveAndFadeBehaviour.offset = new Vector2(0, 25 + activeRoom.transform.GetChild(0).localPosition.y * 100);
-        moveAndFadeBehaviour.SetValue(value);
+        moveAndFadeBehaviour.SetValue(value, icon);
     }
 
     public void UnloadScene(MiniGameType miniGame) 

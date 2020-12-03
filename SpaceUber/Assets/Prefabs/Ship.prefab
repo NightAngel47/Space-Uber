@@ -113,6 +113,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: eb3218bd599b7834da6e92588a3f5200, type: 3}
   - {fileID: 21300000, guid: 0d68944ad67f4054e9a9bbeaf51611ae, type: 3}
   - {fileID: 21300000, guid: 0debb1fcbafb17643af5888234dd7323, type: 3}
+  roomBeingPlaced: {fileID: 0}
+  daysSince: 0
+  daysSinceDisplay: {fileID: 0}
 --- !u!114 &6273300031087700530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +142,10 @@ MonoBehaviour:
   hullMaxText: {fileID: 0}
   statChangeText: {fileID: 6562358761702154872, guid: d79e5343c58215647b7544fa825da881,
     type: 3}
+  statChangeTextRoom: {fileID: 4251841664551629733, guid: 2e1ecebb32c11984db0d6a1ebc26b2ad,
+    type: 3}
   canvas: {fileID: 0}
+  roomBeingPlaced: {fileID: 0}
   jiggleAmount: 2
   jiggleTime: 0.1
   blinkTime: 0.3

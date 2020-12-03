@@ -36,19 +36,19 @@ public class ChoiceOutcomes
                 {
                     case ResourceType.Credits:
                         ship.UpdateCreditsAmount(amount);
-                        SpawnStatChangeText(ship, amount);
+                        SpawnStatChangeText(ship, amount, 0);
                         break;
                     case ResourceType.Energy:
                         ship.UpdateEnergyAmount(amount);
-                        SpawnStatChangeText(ship, amount);
+                        SpawnStatChangeText(ship, amount, 5);
                         break;
                     case ResourceType.Security:
                         ship.UpdateSecurityAmount(amount);
-                        SpawnStatChangeText(ship, amount);
+                        SpawnStatChangeText(ship, amount, 1);
                         break;
                     case ResourceType.ShipWeapons:
                         ship.UpdateShipWeaponsAmount(amount);
-                        SpawnStatChangeText(ship, amount);
+                        SpawnStatChangeText(ship, amount, 2);
                         break;
                     case ResourceType.Crew:
                         int amountFromAssigned;
@@ -65,23 +65,23 @@ public class ChoiceOutcomes
                         }
                         ship.RemoveRandomCrew(amountFromAssigned);
                         ship.UpdateCrewAmount(amountFromUnassigned, amount);
-                        SpawnStatChangeText(ship, amount);
+                        SpawnStatChangeText(ship, amount, 4);
                         break;
                     case ResourceType.Food:
                         ship.UpdateFoodAmount(amount);
-                        SpawnStatChangeText(ship, amount);
+                        SpawnStatChangeText(ship, amount, 3);
                         break;
                     case ResourceType.FoodPerTick:
                         ship.UpdateFoodPerTickAmount(amount);
-                        SpawnStatChangeText(ship, amount);
+                        SpawnStatChangeText(ship, amount, 3);
                         break;
                     case ResourceType.HullDurability:
                         ship.UpdateHullDurabilityAmount(amount, 0, hasSubsequentChoices);
-                        SpawnStatChangeText(ship, amount);
+                        SpawnStatChangeText(ship, amount, 6);
                         break;
                     case ResourceType.Payout:
                         ship.AddPayout(amount);
-                        SpawnStatChangeText(ship, amount);
+                        SpawnStatChangeText(ship, amount, 0);
                         break;
                     default:
                         break;
@@ -134,7 +134,7 @@ public class ChoiceOutcomes
         }
     }
     
-    private void SpawnStatChangeText(ShipStats ship, int value)
+    private void SpawnStatChangeText(ShipStats ship, int value, int icon = -1)
     {
         GameObject statChangeText = ship.GetComponent<ShipStatsUI>().statChangeText;
         GameObject instance = GameObject.Instantiate(statChangeText);
@@ -146,7 +146,7 @@ public class ChoiceOutcomes
         
         MoveAndFadeBehaviour moveAndFadeBehaviour = instance.GetComponent<MoveAndFadeBehaviour>();
         moveAndFadeBehaviour.offset = new Vector2(0, +75);
-        moveAndFadeBehaviour.SetValue(value);
+        moveAndFadeBehaviour.SetValue(value, icon);
     }
 }
 
