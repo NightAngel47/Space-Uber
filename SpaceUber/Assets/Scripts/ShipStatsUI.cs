@@ -52,6 +52,10 @@ public class ShipStatsUI : MonoBehaviour
 
     private bool hullWarningActive = false;
 
+    public void ShowNarrativeOutcome(string outcome)
+    {
+
+    }
     public void UpdateCreditsUI(int current, int tick = 0)
     {
         creditsCurrentText.text = current.ToString();
@@ -204,10 +208,17 @@ public class ShipStatsUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Spawns a pop-up of a number below the stat bar and where the object was clicked. Shows exactly how much a stat changes
+    /// </summary>
+    /// <param name="statText"> The text that it spawns the next text under</param>
+    /// <param name="value"> How much the stat was changed</param>
+    /// <param name="icon">The icon it should use when spawning</param>
     private void SpawnStatChangeText(TMP_Text statText, int value, int icon)
     {
         if(value != 0)
         {
+            //ERROR: something gets destroyed that it is trying to access
             GameObject instance = Instantiate(statChangeText, statText.gameObject.transform.parent);
 
             RectTransform rect = instance.GetComponent<RectTransform>();
