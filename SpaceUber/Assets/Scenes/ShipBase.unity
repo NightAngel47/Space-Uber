@@ -770,7 +770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   warningText: {fileID: 945488013}
-  warningBackground: {fileID: 764051192}
+  warningBackground: {fileID: 506636303}
 --- !u!1001 &282328342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6642,7 +6642,7 @@ PrefabInstance:
         type: 3}
       propertyPath: eventWarning
       value: 
-      objectReference: {fileID: 257513220}
+      objectReference: {fileID: 257513222}
     - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
         type: 3}
       propertyPath: sonar
@@ -6653,6 +6653,26 @@ PrefabInstance:
       propertyPath: daysSinceDisplay
       value: 
       objectReference: {fileID: 919623707}
+    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
+        type: 3}
+      propertyPath: timeBeforeEventRoll
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
+        type: 3}
+      propertyPath: eventChanceFreq
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
+        type: 3}
+      propertyPath: chanceIncreasePerFreq
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
+        type: 3}
+      propertyPath: sonarObjects
+      value: 
+      objectReference: {fileID: 393224194}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe5d639606919114a9b48eb746a06bc6, type: 3}
 --- !u!114 &1350692055 stripped

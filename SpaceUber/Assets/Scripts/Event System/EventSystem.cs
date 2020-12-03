@@ -52,6 +52,7 @@ public class EventSystem : MonoBehaviour
 	private bool isTraveling = false;
 	public bool eventActive { get; private set; } = false;
 
+	[SerializeField] private GameObject sonarObjects;
 	[SerializeField] private TMP_Text daysSinceDisplay;
 	private int daysSince = 0;
 	[SerializeField] private EventWarning eventWarning;
@@ -76,8 +77,8 @@ public class EventSystem : MonoBehaviour
 		}
 
 		//set sonar stuff
-		sonar.spinRate = eventChanceFreq;
-		sonar.HideSonar();
+		sonar.SetSpinRate( eventChanceFreq );
+		sonarObjects.SetActive(false);
 	}
 
 	/// <summary>
@@ -119,7 +120,7 @@ public class EventSystem : MonoBehaviour
 		yield return new WaitWhile((() => eventActive));
 
 		//set up the sonar
-		sonar.ShowSonar();
+		sonarObjects.SetActive(true);
 		sonar.ResetSonar();
 
 		float chanceOfEvent = startingEventChance;
@@ -168,7 +169,7 @@ public class EventSystem : MonoBehaviour
 			{
 				eventWarning.DeactivateWarning();
 			}
-			sonar.HideSonar();
+			sonarObjects.SetActive(false);
 
 			//Time to decide on an event
 			//story events happen every other time 
@@ -210,14 +211,14 @@ public class EventSystem : MonoBehaviour
 					ConcludeEvent();
 				}
 			}
-            
+
 			//set up the sonar for the next event
-			sonar.ShowSonar();
+			sonarObjects.SetActive(true);
 			sonar.ResetSonar();
             ship.UnpauseTickEvents();
 		}
 		isTraveling = false;
-		sonar.HideSonar();
+		sonarObjects.SetActive(false);
         ship.StopTickEvents();
 	}
 
