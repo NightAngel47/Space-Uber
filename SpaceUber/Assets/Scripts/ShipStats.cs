@@ -9,6 +9,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using TMPro;
 
 public class ShipStats : MonoBehaviour
 {
@@ -64,7 +65,10 @@ public class ShipStats : MonoBehaviour
     private int secondsPerTick = 5;
     private bool ticksPaused;
     private bool tickStop = true;
-
+    
+    public int daysSince;
+    [SerializeField] private TMP_Text daysSinceDisplay;
+    
     //mutiny calculations
     private int maxMutinyMorale = 60;
     private float zeroMoraleMutinyChance = 0.75f;
@@ -125,13 +129,17 @@ public class ShipStats : MonoBehaviour
                 //crewMorale += (food * foodMoraleDamageMultiplier);
                 food = 0;
             }
+            shipStatsUI.UpdateFoodUI(food, foodPerTick);
+
+            // increment days since events
+            daysSince++;
+            daysSinceDisplay.text = daysSince.ToString();
 
             //if(crewMorale < 0)
             //{
             //    crewMorale = 0;
             //}
 
-            shipStatsUI.UpdateFoodUI(food, foodPerTick);
             //UpdateMoraleShipStatsUI();
 
             //float mutinyChance = (maxMutinyMorale - crewMorale) * zeroMoraleMutinyChance / maxMutinyMorale;
@@ -172,6 +180,12 @@ public class ShipStats : MonoBehaviour
             ticksPaused = false;
             StartCoroutine(TickUpdate());
         }
+    }
+
+    public void ResetDaysSince()
+    {
+        daysSince = 0;
+        daysSinceDisplay.text = daysSince.ToString();
     }
 
     private IEnumerator<YieldInstruction> CheckDeathOnUnpause()
