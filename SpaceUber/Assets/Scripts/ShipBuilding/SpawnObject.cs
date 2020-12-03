@@ -56,7 +56,8 @@ public class SpawnObject : MonoBehaviour
             lastSpawned = Instantiate(powercore, new Vector3(4, 2, 0), Quaternion.identity);
             lastSpawned.GetComponent<ObjectMover>().TurnOffBeingDragged();
             lastSpawned.GetComponent<ObjectScript>().preplacedRoom = true;
-            
+            ObjectMover.hasPlaced = true;
+
             StartCoroutine(PreplacedRoom());
         }
 

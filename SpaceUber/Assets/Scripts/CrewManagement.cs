@@ -59,6 +59,8 @@ public class CrewManagement : MonoBehaviour
         {
             nextButton.interactable = false;
         }
+
+        room = FindObjectOfType<ObjectScript>().gameObject;
     }
     
     private void Update()
@@ -308,7 +310,7 @@ public class CrewManagement : MonoBehaviour
             overclockButton.gameObject.SetActive(true);
         }
 
-        for(int i = 0; i < sceneButtons.Length; i++)
+        for (int i = 0; i < sceneButtons.Length; i++)
         {
             sceneButtons[i].SetActive(false);
         }
