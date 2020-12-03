@@ -48,7 +48,7 @@ public class SpawnObject : MonoBehaviour
         RectTransform rt = buttonPanel.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(rt.sizeDelta.x, 280 * availableRooms.Count);
 
-        //hard coded preplaced rooms to be updated lated
+        //hard coded preplaced rooms to be updated later
         if (donePreplacedRoom == false)
         {
             donePreplacedRoom = true;
@@ -206,7 +206,7 @@ public class SpawnObject : MonoBehaviour
 
     public IEnumerator WaitForText()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         FindObjectOfType<ShipStats>().cantPlaceText.SetActive(false);
     }
 

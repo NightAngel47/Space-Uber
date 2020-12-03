@@ -200,6 +200,11 @@ public class ObjectScript : MonoBehaviour
             }
         }
 
+        if(nextToRoom == true)
+        {
+            RoomHighlightSpotsOff();
+        }
+
         Destroy(gameObject);
     }
 
