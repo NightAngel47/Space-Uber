@@ -82,17 +82,13 @@ public class MoveAndFadeBehaviour : MonoBehaviour
             text.color = red;
         }
 
-        if (gameObject.name == "Stat Change Text Room(Clone)" )
+        if (icon == -1)
         {
-            gameObject.transform.GetChild(0).gameObject.SetActive(true);
-            if (icon == -1)
-            {
-                gameObject.transform.GetChild(0).gameObject.SetActive(false);
-            }
-            else
-            {
-                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = icons[icon];
-            }
+            gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = icons[icon];
         }
 
         text.text = sign + value;
