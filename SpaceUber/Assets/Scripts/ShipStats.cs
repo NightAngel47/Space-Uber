@@ -9,6 +9,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using TMPro;
 
 public class ShipStats : MonoBehaviour
 {
@@ -35,6 +36,8 @@ public class ShipStats : MonoBehaviour
     public Sprite[] statIcons;
 
     private List<RoomStats> rooms;
+
+    public GameObject roomBeingPlaced;
 
     private int credits;
     private int payout;
@@ -63,6 +66,9 @@ public class ShipStats : MonoBehaviour
     private int secondsPerTick = 5;
     private bool ticksPaused;
     private bool tickStop = true;
+
+    public int daysSince;
+    [SerializeField] private TMP_Text daysSinceDisplay;
 
     //mutiny calculations
     private int maxMutinyMorale = 60;
@@ -125,13 +131,17 @@ public class ShipStats : MonoBehaviour
                 //crewMorale += (food * foodMoraleDamageMultiplier);
                 food = 0;
             }
+            shipStatsUI.UpdateFoodUI(food, foodPerTick);
+
+            // increment days since events
+            daysSince++;
+            daysSinceDisplay.text = daysSince.ToString();
 
             //if(crewMorale < 0)
             //{
             //    crewMorale = 0;
             //}
 
-            shipStatsUI.UpdateFoodUI(food, foodPerTick);
             //UpdateMoraleShipStatsUI();
 
             //float mutinyChance = (maxMutinyMorale - crewMorale) * zeroMoraleMutinyChance / maxMutinyMorale;
@@ -143,6 +153,8 @@ public class ShipStats : MonoBehaviour
             if(shipHealthCurrent <= 0)
             {
                 GameManager.instance.ChangeInGameState(InGameStates.Death);
+                AudioManager.instance.PlaySFX("Hull Death");
+                AudioManager.instance.PlayMusicWithTransition("Death Theme");
             }
         }
     }
@@ -172,6 +184,12 @@ public class ShipStats : MonoBehaviour
         }
     }
 
+    public void ResetDaysSince()
+    {
+        daysSince = 0;
+        daysSinceDisplay.text = daysSince.ToString();
+    }
+
     private IEnumerator<YieldInstruction> CheckDeathOnUnpause()
     {
             while(ticksPaused || tickStop)
@@ -182,12 +200,29 @@ public class ShipStats : MonoBehaviour
             if(shipHealthCurrent <= 0)
             {
                 GameManager.instance.ChangeInGameState(InGameStates.Death);
+
             }
+    }
+
+    public void SetObjectBeingPlaced()
+    {
+        shipStatsUI.roomBeingPlaced = roomBeingPlaced;
     }
 
     public void UpdateCreditsAmount(int creditAddition)
     {
+        SetObjectBeingPlaced();
         credits += creditAddition;
+        /*
+        if (creditAddition >= 0)
+        {
+            AudioManager.instance.PlaySFX("Gain Credits");
+        }
+        else
+        {
+            AudioManager.instance.PlaySFX("Lose Credits");
+        }
+        */
         if(credits <= 0)
         {
             credits = 0;
@@ -201,8 +236,17 @@ public class ShipStats : MonoBehaviour
     {
         energyMax += energyMaxAddition;
         energyRemaining += energyRemainingAddition;
-
-        if (energyRemaining <= 0)
+        /*
+        if (energyRemainingAddition >= 0)
+        {
+            AudioManager.instance.PlaySFX("Gain Energy");
+        }
+        else
+        {
+            AudioManager.instance.PlaySFX("Lose Energy");
+        }
+        */
+            if (energyRemaining <= 0)
         {
             energyRemaining = 0;
         }
@@ -218,7 +262,16 @@ public class ShipStats : MonoBehaviour
     public void UpdateSecurityAmount(int securityAmount)
     {
         security += securityAmount;
-
+        /*
+        if (securityAmount >= 0)
+        {
+            AudioManager.instance.PlaySFX("Gain Security");
+        }
+        else
+        {
+            AudioManager.instance.PlaySFX("Lose Security");
+        }
+        */
         if (security <= 0)
         {
             security = 0;
@@ -231,7 +284,16 @@ public class ShipStats : MonoBehaviour
     public void UpdateShipWeaponsAmount(int shipWeaponsAmount)
     {
         shipWeapons += shipWeaponsAmount;
-
+        /*
+        if (shipWeaponsAmount >= 0)
+        {
+            AudioManager.instance.PlaySFX("Gain Weapons");
+        }
+        else
+        {
+            AudioManager.instance.PlaySFX("Lose Weapons");
+        }
+        */
         if (shipWeapons <= 0)
         {
             shipWeapons = 0;
@@ -247,6 +309,17 @@ public class ShipStats : MonoBehaviour
         crewCurrent += crewCurrentAmount;
         crewUnassigned += crewUnassignedAmount;
 
+        /*
+        if (crewRemainingAmount >= 0)
+        {
+            AudioManager.instance.PlaySFX("Gain Crew");
+        }
+        else
+        {
+            AudioManager.instance.PlaySFX("Lose Crew");
+        }
+        */
+
         if (crewCurrent <= 0)
         {
             crewCurrent = 0;
@@ -255,7 +328,7 @@ public class ShipStats : MonoBehaviour
         {
             crewCurrent = crewCapacity;
         }
-        
+
         if (crewUnassigned <= 0)
         {
             crewUnassigned = 0;
@@ -272,7 +345,16 @@ public class ShipStats : MonoBehaviour
     public void UpdateFoodAmount(int foodAmount)
     {
         food += foodAmount;
-
+        /*
+        if (foodAmount >= 0)
+        {
+            AudioManager.instance.PlaySFX("Gain Food");
+        }
+        else
+        {
+            AudioManager.instance.PlaySFX("Lose Food");
+        }
+        */
         if (food <= 0)
         {
             food = 0;
@@ -299,6 +381,17 @@ public class ShipStats : MonoBehaviour
         {
             shipHealthCurrent = shipHealthMax;
         }
+
+        /*
+        if (hullDurabilityRemainingAmount >= 0)
+        {
+            AudioManager.instance.PlaySFX("Gain Hull");
+        }
+        else
+        {
+            AudioManager.instance.PlaySFX("Lose Hull");
+        }
+        */
 
         shipStatsUI.UpdateHullUI(shipHealthCurrent, shipHealthMax);
         shipStatsUI.ShowHullUIChange(hullDurabilityRemainingAmount, hullDurabilityMax);
@@ -340,7 +433,7 @@ public class ShipStats : MonoBehaviour
         {
             payout = 0;
         }
-        
+
         shipStatsUI.UpdateCreditsUI(credits, payout);
         shipStatsUI.ShowCreditsUIChange(0, payout - initialPayout);
     }
@@ -353,7 +446,7 @@ public class ShipStats : MonoBehaviour
         {
             payout = 0;
         }
-        
+
         shipStatsUI.UpdateCreditsUI(credits, payout);
         shipStatsUI.ShowCreditsUIChange(0, payout - initialPayout);
     }
@@ -418,6 +511,16 @@ public class ShipStats : MonoBehaviour
     //public void UpdateCrewMorale(int crewMoraleAmount)
     //{
     //    crewMorale += crewMoraleAmount;
+    //
+    //    if (crewMoraleAmount >= 0)
+    //    {
+    //       AudioManager.instance.PlaySFX("Gain Morale");
+    //    }
+    //    else
+    //    {
+    //         AudioManager.instance.PlaySFX("Lose Morale");
+    //    }
+    //
     //    if(crewMorale < 0)
     //    {
     //        crewMorale = 0;
@@ -445,12 +548,12 @@ public class ShipStats : MonoBehaviour
         //int BadMoraleMultiplier = (maxMutinyMorale - crewMorale) * crewPaymentMoraleMultiplier / maxMutinyMorale;
         //UpdateCrewMorale(BadMoraleMultiplier * (ammount - crewPaymentDefault));
     }
-    
+
     public void RemoveRandomCrew(int amount)
     {
         RoomStats[] rooms = FindObjectsOfType<RoomStats>();
         int crewAssigned = crewCurrent - crewUnassigned;
-        
+
         for(int i = 0; i < amount; i++)
         {
             int selection = Mathf.FloorToInt(UnityEngine.Random.value * crewAssigned);
@@ -458,7 +561,7 @@ public class ShipStats : MonoBehaviour
             {
                 selection -= 1;
             }
-            
+
             int index = 0;
             int crewChecked = 0;
             while(crewChecked <= selection)
@@ -468,7 +571,7 @@ public class ShipStats : MonoBehaviour
                     rooms[index].UpdateCurrentCrew(-1);
                     crewAssigned -= 1;
                 }
-                
+
                 crewChecked += rooms[index].currentCrew;
                 index += 1;
             }
