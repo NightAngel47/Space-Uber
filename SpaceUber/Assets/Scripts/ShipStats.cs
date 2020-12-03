@@ -599,6 +599,20 @@ public class ShipStats : MonoBehaviour
 
     public void ResetStats()
     {
+        credits = 0;
+        energyRemaining = 0;
+        energyMax = 0;
+        security = 0;
+        shipWeapons = 0;
+        crewUnassigned = 0;
+        crewCurrent = 0;
+        crewCapacity = 0;
+        food = 0;
+        foodPerTick = 0;
+        shipHealthCurrent = 0;
+        shipHealthMax = 0;
+        //crewMorale = 0;
+        
         UpdateCreditsAmount(startCredits);
         payout = startPayout;
         UpdateEnergyAmount(startEnergyRemaining, startEnergyMax);
