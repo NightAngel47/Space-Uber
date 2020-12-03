@@ -439,11 +439,40 @@ public class ShipStats : MonoBehaviour
         Debug.Log("Payout " + Payout);
     }
 
-    public void PayCrew(int ammount)
+    public void PayCrew(int amount)
     {
-        UpdateCreditsAmount(-ammount * crewCurrent);
+        UpdateCreditsAmount(-amount * crewCurrent);
         //int BadMoraleMultiplier = (maxMutinyMorale - crewMorale) * crewPaymentMoraleMultiplier / maxMutinyMorale;
         //UpdateCrewMorale(BadMoraleMultiplier * (ammount - crewPaymentDefault));
+    }
+    
+    public void RemoveRandomCrew(int amount)
+    {
+        RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+        int crewAssigned = crewCurrent - crewUnassigned;
+        
+        for(int i = 0; i < amount; i++)
+        {
+            int selection = Mathf.FloorToInt(UnityEngine.Random.value * crewAssigned);
+            if(selection == crewAssigned) // because Unity's Random.value includes 1, we have to do this
+            {
+                selection -= 1;
+            }
+            
+            int index = 0;
+            int crewChecked = 0;
+            while(crewChecked <= selection)
+            {
+                if(rooms[index].currentCrew + crewChecked > selection)
+                {
+                    rooms[index].UpdateCurrentCrew(-1);
+                    crewAssigned -= 1;
+                }
+                
+                crewChecked += rooms[index].currentCrew;
+                index += 1;
+            }
+        }
     }
 
     public void SaveStats()

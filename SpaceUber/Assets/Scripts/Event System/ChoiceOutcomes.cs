@@ -51,7 +51,20 @@ public class ChoiceOutcomes
                         SpawnStatChangeText(ship, amount);
                         break;
                     case ResourceType.Crew:
-                        ship.UpdateCrewAmount(amount, amount);
+                        int amountFromAssigned;
+                        int amountFromUnassigned;
+                        if(ship.CrewCurrent - ship.CrewUnassigned >= amount)
+                        {
+                            amountFromAssigned = amount;
+                            amountFromUnassigned = 0;
+                        }
+                        else
+                        {
+                            amountFromAssigned = ship.CrewCurrent - ship.CrewUnassigned;
+                            amountFromUnassigned = amount - amountFromAssigned;
+                        }
+                        ship.RemoveRandomCrew(amountFromAssigned);
+                        ship.UpdateCrewAmount(amountFromUnassigned, amount);
                         SpawnStatChangeText(ship, amount);
                         break;
                     case ResourceType.Food:
