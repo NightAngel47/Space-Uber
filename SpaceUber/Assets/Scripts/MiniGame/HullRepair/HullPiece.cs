@@ -26,7 +26,7 @@ public class HullPiece : MonoBehaviour
             Vector3 mousePosition;
             mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            mousePosition.z = 0.0f;
+            mousePosition.z = -0.1f;
             transform.position = mousePosition;
         }
 		else { collider.isTrigger = false; }
