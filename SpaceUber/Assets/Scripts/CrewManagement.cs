@@ -15,7 +15,7 @@ public class CrewManagement : MonoBehaviour
     private int crewAddAmount = 1;
     private ShipStats ss;
     private RoomStats rs;
-    public TMP_Text crewRemainingText;
+    public TMP_Text crewUnassignedText;
     public GameObject crewManagementText;
     public Button nextButton;
     public GameObject roomText;
@@ -41,7 +41,7 @@ public class CrewManagement : MonoBehaviour
     public void Start()
     {
         ss = FindObjectOfType<ShipStats>();
-        crewRemainingText.text = "Crew Remaining: " + ss.CrewRemaining;
+        crewUnassignedText.text = "Crew Remaining: " + ss.CrewUnassigned;
 
         statPanel = gameObject.transform.GetChild(0).gameObject;
         TurnOffPanel();
@@ -210,12 +210,12 @@ public class CrewManagement : MonoBehaviour
 
     public void AddCrew()
     {
-        if (ss.CrewRemaining > 0 && rs.currentCrew < room.GetComponent<RoomStats>().maxCrew)
+        if (ss.CrewUnassigned > 0 && rs.currentCrew < room.GetComponent<RoomStats>().maxCrew)
         {
             rs.UpdateCurrentCrew(1);
-            ss.UpdateCrewAmount(-1, 0);
+            ss.UpdateCrewAmount(-1);
             minAssignableCrew--;
-            crewRemainingText.text = "Crew Remaining: " + ss.CrewRemaining;
+            crewUnassignedText.text = "Crew Remaining: " + ss.CrewUnassigned;
             crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats();
@@ -232,9 +232,9 @@ public class CrewManagement : MonoBehaviour
         if (rs.currentCrew > 0)
         {
             rs.UpdateCurrentCrew(-1);
-            ss.UpdateCrewAmount(1, 0);
+            ss.UpdateCrewAmount(1);
             minAssignableCrew++;
-            crewRemainingText.text = "Crew Remaining: " + ss.CrewRemaining;
+            crewUnassignedText.text = "Crew Remaining: " + ss.CrewUnassigned;
             crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats();

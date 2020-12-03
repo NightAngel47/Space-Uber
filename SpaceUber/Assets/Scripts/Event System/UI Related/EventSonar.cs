@@ -13,7 +13,10 @@ using UnityEngine.UI;
 
 public class EventSonar : MonoBehaviour
 {
-    public float spinRate = 5f;
+    /// <summary>
+    /// The bar will complete a rotation at however many seconds you set here
+    /// </summary>
+    private float spinRate = 5f;
 
     public List<GameObject> dots;
     [HideInInspector] public int dotsShown = 0;
@@ -23,17 +26,21 @@ public class EventSonar : MonoBehaviour
 
     private void Start()
     {
-        bar.transform.localPosition = Vector3.zero;
+        bar.transform.localPosition = anchor.localPosition;
         HideAllDots();
     }
 
+    
     private void FixedUpdate()
-    {
-
+    { 
         //bar.transform.RotateAround(anchor.localPosition, Vector3.back, Time.deltaTime * spinRate);
         bar.transform.Rotate(Vector3.back * Time.deltaTime * (360/spinRate));
     }
 
+    public void SetSpinRate(float newRate)
+    {
+        spinRate = newRate;
+    }
     /// <summary>
     /// Resets sonar to default state
     /// </summary>

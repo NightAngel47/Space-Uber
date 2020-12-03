@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfec50bf890af17479ff38a5eee6322e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceType: Credits
+  resourceType: Security
   resourceIcon: {fileID: 21300000, guid: 2bbae6bacf5f9da4697f3b6af192e12a, type: 3}
-  amount: 200
+  amount: 250
   activeAmount: 0
   minAmount: 0
 --- !u!95 &3123871171515743376
@@ -131,7 +131,7 @@ PrefabInstance:
     - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: miniGame
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -144,13 +144,12 @@ PrefabInstance:
       value: 'A place to hold any evildoers on your ship. Gives Credits at the end
         of the job.
 
-
         The shape of this room is 3x3.'
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: price
-      value: 125
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
