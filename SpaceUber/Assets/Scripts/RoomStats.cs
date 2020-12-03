@@ -274,7 +274,7 @@ public class RoomStats : MonoBehaviour
         shipStats.UpdateCrewAmount(-crew, -crew, -crew);
         shipStats.UpdateFoodAmount(-food);
         shipStats.UpdateFoodPerTickAmount(-foodPerTick);
-        shipStats.UpdateHullDurabilityAmount(-shipHealth, shipHealth);
+        shipStats.UpdateHullDurabilityAmount(-shipHealth, -shipHealth);
     }
 
     private void OnDestroy()
