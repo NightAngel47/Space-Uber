@@ -11,12 +11,15 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using TMPro;
 
 [System.Serializable]
 public class ChoiceOutcomes
 {
     [SerializeField] private string outcomeName;
-    
+
+    [HideInInspector] public GameObject narrativeResultsBox;
+
     [SerializeField] private bool isNarrativeOutcome;
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] private ResourceType resource;
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] private int amount;
@@ -89,8 +92,10 @@ public class ChoiceOutcomes
             }
             else
             {
+                string resultText = "";
                 switch (campMan.currentCamp)
                 {
+                    
                     //for catering to the rich campaign
                     case Campaigns.CateringToTheRich:
                         CampaignManager.CateringToTheRich campaign = (CampaignManager.CateringToTheRich) campMan.campaigns[(int)Campaigns.CateringToTheRich];
@@ -104,23 +109,51 @@ public class ChoiceOutcomes
                         {
                             case "Side With Scientist":
                                 campaign.ctr_sideWithScientist = true;
+                                resultText = "You sided with the scientist";
                                 break;
                             case "Kill Beckett":
                                 campaign.ctr_killBeckett = true;
+                                resultText = "You killed Beckett";
                                 break;
                             case "Let Bale Pilot":
                                 campaign.ctr_letBalePilot = true;
+                                resultText = "You let Bale pilot";
                                 break;
                             case "Killed At Safari":
                                 campaign.ctr_killedAtSafari = true;
+                                resultText = "You killed at the safari";
                                 break;
                             case "Tell VIPs About Clones":
                                 campaign.ctr_tellVIPsAboutClones = true;
+                                resultText = "You told the VIPs about the clones";
                                 break;
                         }
                         break;
                         
                 }
+                //TODO: Make resultText show up on the textbox somehow
+                narrativeResultsBox.gameObject.SetActive(true);
+                
+                if(cloneTrustChange < 0)
+                {
+                    resultText += "\n The clones have " + cloneTrustChange + "% less trust in you";
+                }
+                else if(cloneTrustChange > 0)
+                {
+                    resultText += "\n The clones have " + cloneTrustChange + "% more trust in you";
+                }
+
+                if (VIPTrustChange < 0)
+                {
+                    resultText += "\n The VIPs have " + VIPTrustChange + "% less trust in you";
+                }
+                else if (VIPTrustChange > 0)
+                {
+                    resultText += "\n The VIPs have " + VIPTrustChange + "% more trust in you";
+                }
+
+                Debug.Log(resultText);
+                narrativeResultsBox.GetComponent<TMP_Text>().text = resultText;
             }
         }
 

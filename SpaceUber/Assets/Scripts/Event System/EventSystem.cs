@@ -116,37 +116,38 @@ public class EventSystem : MonoBehaviour
 		//For the intro event
 		yield return new WaitWhile((() => eventActive));
 
-		//set up the sonar
-		sonarObjects.SetActive(true);
-		sonar.ResetSonar();
-
 		float chanceOfEvent = startingEventChance;
 		while (GameManager.instance.currentGameState == InGameStates.Events)
 		{
             ship.StartTickEvents();
-            
+			sonarObjects.SetActive(true);
+			sonar.ResetSonar();
+
 			yield return new WaitForSeconds(timeBeforeEventRoll); //start with one big chunk of time
 
-			//A check to be sure that the current game state really is the event scenes
+			//A check to be sure that the current game state is not the event scenes
 			if (GameManager.instance.currentGameState != InGameStates.Events)
             {
                 break;
             }
-            
-			//run random chances for event to take place in a loop
-			while (!WillRunEvent(chanceOfEvent))
+
+            #region Start sonar/event chance loop
+            //run random chances for event to take place in a loop
+            while (!WillRunEvent(chanceOfEvent))
 			{				
 				isTraveling = true;
 				chanceOfEvent+= chanceIncreasePerFreq;
 				yield return new WaitForSeconds(eventChanceFreq);
 			}
+			//Once again make sure that this is not an event scene
             if(GameManager.instance.currentGameState != InGameStates.Events)
             {
                 break;
             }
+            #endregion
 
-			//Activate the warning for the next event now that one has been picked
-			if (eventWarning != null)
+            //Activate the warning for the next event now that one has been picked
+            if (eventWarning != null)
 			{
 				eventWarning.ActivateWarning();
 			}
@@ -155,16 +156,12 @@ public class EventSystem : MonoBehaviour
 			//wait until there is no longer an overclock microgame happening
 			yield return new WaitUntil(() => !OverclockController.instance.overclocking);
 			
-			//turn off the event warning because an event is about to begin
-			if (eventWarning != null)
-			{
-				eventWarning.DeactivateWarning();
-			}
+			//get rid of and reset sonar objects
+			eventWarning.DeactivateWarning();
 			sonarObjects.SetActive(false);
-
-			//Time to decide on an event
-			//story events happen every other time 
-			if (overallEventIndex % 2 == 1 && overallEventIndex != 0) //if it's an even-numbered event, do a story 
+            
+			#region Spawn an event
+            if (overallEventIndex % 2 == 1 && overallEventIndex != 0) //if it's an even-numbered event, do a story 
 			{
 				// Load Event_General Scene for upcoming event
 				asm.LoadSceneMerged("Event_General");
@@ -202,11 +199,12 @@ public class EventSystem : MonoBehaviour
 					ConcludeEvent();
 				}
 			}
+			#endregion
 
 			//set up the sonar for the next event
 			sonarObjects.SetActive(true);
 			sonar.ResetSonar();
-            ship.UnpauseTickEvents();
+			ship.UnpauseTickEvents();
 		}
 		isTraveling = false;
 		sonarObjects.SetActive(false);
@@ -224,7 +222,7 @@ public class EventSystem : MonoBehaviour
 
 		if (eventInstance.TryGetComponent(out InkDriverBase inkDriver))
 		{
-			inkDriver.AssignStatusFromEventSystem(eventCanvas.titleBox, eventCanvas.textBox,
+			inkDriver.AssignStatusFromEventSystem(eventCanvas.titleBox, eventCanvas.textBox,eventCanvas.choiceResultsBox,
 				eventCanvas.backgroundImage, eventCanvas.buttonGroup, ship, campMan);
 			
 		}
