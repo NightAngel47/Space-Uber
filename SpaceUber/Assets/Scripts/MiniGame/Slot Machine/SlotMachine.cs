@@ -75,11 +75,7 @@ public class SlotMachine : MiniGame
 
     void Start() 
     {
-<<<<<<< Updated upstream
         sound = false;
-        errorText.text = "";
-=======
->>>>>>> Stashed changes
         shipStats = OverclockController.instance.ShipStats();
         foreach (SlotReel reel in reels) { reel.SetSpeed(reelSpeed); }
         foreach (SlotReel reel in reels) { reel.SetSpinAfterStopTime(spinAfterStopTime); }

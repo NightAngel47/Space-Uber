@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -994,6 +994,8 @@ MonoBehaviour:
   smallBetAmount: 1
   mediumBetAmount: 5
   largeBetAmount: 10
+  adjustPositionThreshold: -300
+  snapDistanceThreshold: 0.75
 --- !u!1 &100205704
 GameObject:
   m_ObjectHideFlags: 0
@@ -2312,6 +2314,8 @@ MonoBehaviour:
   smallBetAmount: 1
   mediumBetAmount: 5
   largeBetAmount: 10
+  adjustPositionThreshold: -300
+  snapDistanceThreshold: 0.75
 --- !u!114 &253908605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2606,6 +2610,8 @@ MonoBehaviour:
   smallBetAmount: 1
   mediumBetAmount: 5
   largeBetAmount: 10
+  adjustPositionThreshold: -300
+  snapDistanceThreshold: 0.75
 --- !u!1 &265115745
 GameObject:
   m_ObjectHideFlags: 0
@@ -6106,7 +6112,6 @@ MonoBehaviour:
   firstStopSpeedMultiplier: 1.1
   secondStopSpeedMultiplier: 1.2
   bettingPanel: {fileID: 380129770}
-  errorText: {fileID: 742074591}
   crank: {fileID: 149218397}
   smallBetButton: {fileID: 25075573}
   mediumBetButton: {fileID: 311832278}

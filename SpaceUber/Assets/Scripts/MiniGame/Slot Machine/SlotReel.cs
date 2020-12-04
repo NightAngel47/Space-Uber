@@ -69,13 +69,13 @@ public class SlotReel : MonoBehaviour
 
     void AdjustPosition()
 	{
-        if(upperHalfReel.anchoredPosition.y < -adjustPositionThreshold)
+        if(upperHalfReel.anchoredPosition.y < adjustPositionThreshold)
 		{
             float y = upperHalfReel.anchoredPosition.y;
             y += lowerHalfReel.rect.height * 2;
             upperHalfReel.anchoredPosition = new Vector2(x, y);
 		}
-        if (lowerHalfReel.anchoredPosition.y < -adjustPositionThreshold)
+        if (lowerHalfReel.anchoredPosition.y < adjustPositionThreshold)
         {
             float y = lowerHalfReel.anchoredPosition.y;
             y += (upperHalfReel.rect.height * 2);
