@@ -9,7 +9,9 @@ using UnityEngine;
 
 public class HullPiece : MonoBehaviour
 {
-    public string[] IncrementSFX;
+    public string[] PickupSFX;
+    public string[] PutdownSFX;
+
     Collider2D collider;
 
     void Start()
@@ -35,16 +37,16 @@ public class HullPiece : MonoBehaviour
 	private void OnMouseDown()
     {
         Collider2D[] colliders = new Collider2D[1];
-        if (this != HullRepairMiniGame.selectedHullPiece) { HullRepairMiniGame.selectedHullPiece = this; }
+        if (this != HullRepairMiniGame.selectedHullPiece) { HullRepairMiniGame.selectedHullPiece = this; AudioManager.instance.PlaySFX(PickupSFX[Random.Range(0, PickupSFX.Length)]);}
         else
         {
             collider.OverlapCollider(new ContactFilter2D(), colliders);
             bool collidedWithHullPiece = false;
             foreach(Collider2D collider in colliders)
             {
-				if (collider) { if (collider.CompareTag("Hull Piece")) { collidedWithHullPiece = true; } }
+				if (collider) { if (collider.CompareTag("Hull Piece")) { collidedWithHullPiece = true; AudioManager.instance.PlaySFX("Not Enough Space"); } }
             }
-			if (!collidedWithHullPiece) { HullRepairMiniGame.selectedHullPiece = null; }
+			if (!collidedWithHullPiece) { HullRepairMiniGame.selectedHullPiece = null; AudioManager.instance.PlaySFX(PutdownSFX[Random.Range(0, PutdownSFX.Length)]); }
         }
     }
 }
