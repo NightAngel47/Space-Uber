@@ -2,7 +2,7 @@
  * MiniGameButton.cs
  * Author(s): #Greg Brandt#
  * Created on: 10/6/2020 (en-US)
- * Description: 
+ * Description: Custom button script. Works like a toggle and uses sprite swap.
  */
 
 using UnityEngine;

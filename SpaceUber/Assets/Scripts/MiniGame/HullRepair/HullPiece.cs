@@ -2,7 +2,7 @@
  * HullPiece.cs
  * Author(s): #Greg Brandt#
  * Created on: 11/17/2020 (en-US)
- * Description: 
+ * Description: Implements hull piece for hull repair mini game
  */
 
 using UnityEngine;

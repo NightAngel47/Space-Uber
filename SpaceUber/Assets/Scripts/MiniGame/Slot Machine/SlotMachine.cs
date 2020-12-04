@@ -2,7 +2,7 @@
  * SlotMachine.cs
  * Author(s): #Greg Brandt#
  * Created on: 11/12/2020 (en-US)
- * Description: 
+ * Description: Manages slot machine mini game
  */
 
 using System.Collections;
@@ -11,6 +11,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Structs used to create collapsable inspector sections
 [System.Serializable]
 public struct Payouts
 {
@@ -28,6 +29,7 @@ public struct Payouts
     public int basePayout66;
 }
 
+//Structs used to create collapsable inspector sections
 [System.Serializable]
 public struct PayoutMultipliers
 {
@@ -41,16 +43,14 @@ public enum BetAmount { Free, Small, Medium, Large}
 
 public class SlotMachine : MiniGame
 {
-    bool spinning = false;
-    bool gameStarted = false;
-    bool gameFinished = false;
     [SerializeField] SlotReel[] reels;
     [SerializeField] float spinAfterStopTime = 1;
     [SerializeField] float reelSpeed = 1000;
+    [Tooltip("Multiplies the original speed of the remaining two reels after the first one is stopped.")]
     [SerializeField] float firstStopSpeedMultiplier = 1.5f;
+    [Tooltip("Multiplies the original speed of the last reel after the first two are stopped.")]
     [SerializeField] float secondStopSpeedMultiplier = 2f;
     [SerializeField] GameObject bettingPanel;
-    [SerializeField] TMP_Text errorText;
     [SerializeField] Slider crank;
     [SerializeField] Button smallBetButton;
     [SerializeField] Button mediumBetButton;
@@ -63,6 +63,10 @@ public class SlotMachine : MiniGame
     [SerializeField] PayoutMultipliers payoutMultipliers;
     [SerializeField] float winDelay = 1;
     [SerializeField] Button[] buttons;
+
+    bool spinning = false;
+    bool gameStarted = false;
+    bool gameFinished = false;
     ShipStats shipStats;
     int payout = 0;
     BetAmount betAmount = BetAmount.Free;
@@ -71,8 +75,11 @@ public class SlotMachine : MiniGame
 
     void Start() 
     {
+<<<<<<< Updated upstream
         sound = false;
         errorText.text = "";
+=======
+>>>>>>> Stashed changes
         shipStats = OverclockController.instance.ShipStats();
         foreach (SlotReel reel in reels) { reel.SetSpeed(reelSpeed); }
         foreach (SlotReel reel in reels) { reel.SetSpinAfterStopTime(spinAfterStopTime); }
@@ -230,13 +237,6 @@ public class SlotMachine : MiniGame
             reel.StartSpining();
             yield return new WaitForSeconds(0.3f);
         }
-	}
-
-    IEnumerator PromptError(string error)
-	{
-        errorText.text = error;
-        yield return new WaitForSeconds(3);
-        errorText.text = "";
 	}
 
     IEnumerator EndGame()

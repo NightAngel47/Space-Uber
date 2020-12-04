@@ -2,7 +2,7 @@
  * CodeBlock.cs
  * Author(s): #Greg Brandt#
  * Created on: 10/22/2020 (en-US)
- * Description: 
+ * Description: Used to display and input random code characters for security mini game
  */
 
 using TMPro;
