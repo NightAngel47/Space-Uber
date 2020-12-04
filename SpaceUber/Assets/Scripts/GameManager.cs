@@ -140,8 +140,8 @@ public class GameManager : MonoBehaviour
                 // Remove unplaced rooms from the ShipBuilding state
                 if (!ObjectMover.hasPlaced)
                 {
-                  ObjectMover.hasPlaced = true;
-                  Destroy(FindObjectOfType<ObjectMover>().gameObject);
+                    ObjectMover.hasPlaced = true;
+                    Destroy(FindObjectOfType<ObjectMover>().gameObject);
                 }
                 foreach(RoomStats room in FindObjectsOfType<RoomStats>())
                 {
