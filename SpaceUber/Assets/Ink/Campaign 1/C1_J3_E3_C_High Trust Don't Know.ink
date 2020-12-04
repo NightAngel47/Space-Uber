@@ -9,8 +9,8 @@ VAR HaggleCount = 0
 VAR HaggleLocked = false
 
 As you approach the resort planet, the VIPs carouse and debate in their lounge. A few suggest that they should only stick around the resort a couple days, one man citing a small drop to company profits in his absence. The room boos and shouts them down, set on spending a couple weeks in their hedonism. 
-Instead it’s suggested that a game could be made of the dropping profits, the clones who underperform could be sent for and turned into punching bags, many of the VIPs joke that they’ve always wanted to punch each other out.
-You receive an alert that you are in close range of the planet. Your clients still don’t know who their enemy is, but they trust you. Bringing them to the party could lead to their survival or a massacre, while taking them to the ambush would catch them completely off-guard. It’s really a question of who you think will win out.
+Instead it’s suggested that a game could be made of the dropping profits. The clones who underperform could be sent for and turned into punching bags, many of the VIPs joking that they’ve always wanted to rough up their business competitors.
+You receive an alert that you are closing in on the planet. Your clients still don’t know who their enemy is, but they trust you. Bringing them to the party could lead to their survival or a massacre, while taking them to the ambush would catch them completely off-guard. It’s really a question of who you think will win out, and how much they'll pay you if they survive.
 
 *[Bring VIPs to Ambush]
 -> Negotiation
@@ -20,8 +20,8 @@ You receive an alert that you are in close range of the planet. Your clients sti
 
 
 == Resort_Attack ==
-You decide to take the elites to the party. Although at first hesitant to disembark, a few of your clients recognize the location from their previous visits. Encouraged, the VIPs get off your ship quickly, albeit with an air of caution. As they are stepping off you pick up a few snippets of conversation. A few are chatting about your payment, with their opinions differing somewhat. "No way in hell am I paying," is the position of one disgruntled exec, while another states "Well, they did deliver us to our destination."
-From the conversations, it is clear that you will receive some of your payment, although the amount of credits may be somewhat paltry compared to what was promised. That being said, the clones are still on the planet, and may still try to take control. To make sure everything turns out right, you decide to stay near the planet and monitor the situation.
+You decide to take the elites to the party. The VIPs stream out of the ship, recognizing the destination. As they are stepping off you pick up a few snippets of conversation. They seem to be rather impressed with the service, "When do you think Kellis will make more of these things?" one says, throwing a thumb back towards your ship. "I could certainly get away with a lot more without a living captain." another comments.
+From the conversations, it seems like you'll get everything you were promised. That being said, the clones are still on the planet, and may still try to take control. To make sure everything turns out right, you decide to stay near the planet and monitor the situation.
 A few days later, your sensors pick up what appears to be an attack on the resort. The resort's defenses are causing interference with your monitoring equipment, but it is still apparent that this is the work of the clones, as you pick up images of the elite's doppelgangers dressed in combat armor. The resort has various defenses and security personnel, so the clones will likely fail in their attempt. That being said, you could take advantage of the situation.
 *[Stay Out of It]
 You decide that getting involved is a bad idea. The resort's security forces are likely to assume you are trying to help the clones and may turn their weapons on you.  Over the next few days, you get reports that a terrorist group had been decimated after an attempted attack. It seems likely that the clones had failed in their goal, and so you await your payment, as paltry as it might be.
@@ -44,7 +44,7 @@ Despite your client's deaths and the heavy toll this trip has had on your ship a
 
 
 == Fight ==
-You have several approaches as the gun charges, send your security team to swiftly and effeciently disable it, destroy it with the sheer force of your weaponry, blast out of the atmosphere and escape, or ram your ship into the plasma battery likely to debilitating effect of both of you.
+You have several approaches as the gun charges, send your security team to effeciently disable it, destroy it with the sheer force of your weaponry, blast out of the atmosphere and escape, or ram your ship into the plasma battery, likely to debilitating effect of both of you.
 *[Send Security] #50/50 SECURITY SUCCESS/FAILURE
     ->securityEnd
 *[Fire Upon Gun] #50/50 BLAST SUCCESS/FAILURE
@@ -55,8 +55,8 @@ You have several approaches as the gun charges, send your security team to swift
     ->fleeEnd
 
 ===SecuritySuccess===
-Your cargo hold doors blast open as your security team rushes out, firing upon the mercenaries as they move. Within seconds they’ve cut a path to the plasma battery. Small arms fire ripples across the surface of the gun as your team tries to take out its operators. The gun is nearly charged, the sound rattling your ship. More mercenaries start to close in on the exposed position of your security team.
-You swivel your ship guns against the attackers and try to buy your team the time to shut down the weapon. The gunshots are practically silent against the violent noise of the plasma battery. Until suddenly it goes silent, the sickly green fading. 
+Your cargo hold doors blast open as your security team rushes out, firing upon the mercenaries as they move. Within seconds they’ve cut a path to the plasma battery. Small arms fire ripples across the surface of the gun as your team tries to take out its operators. The gun is nearly charged, the sound rattling your ship. More mercenaries are closing in on the exposed position of your security team.
+You swivel your ship guns against the attackers and try to buy your team the time to shut down the weapon. The gunshots are practically silent against the violent noise of the plasma battery. Until suddenly it goes silent, the sickly green fading. With your supporting fire, your team has taken the gun.
 ->Fight_Success
 
 ===SecurityFailure===
@@ -70,21 +70,21 @@ The deep humming of the gun suddenly hollows out into silence as a green beam pu
 
 ===BlastGunSuccess===
 #BLAST SUCCESS. Placeholder: 50%. Weapons% chance Success.
-You turn all your guns onto the plasma battery. It’s a simple numbers game. If you can do enough damage for it to shut down before it fires, you win. You order several successive volleys, as every weapon attached to the ship smokes and spins. The plating across the gun is thick, slugs bouncing off of it as it charges. With every shot that bounces off of it, however, the plating becomes misshapen, warped, until the shots have made a small hole in the right side of the gun. 
-You order your crew to focus on that weak point, and they pour gunfire against the thing. Your ship rattles against the violence of its attack and the deep reverberations of the gun about to fire. There is suddenly a loud wrenching noise as something breaks and that sound dissolves into a massive green sphere of energy where the plasma battery used to be. As fast as it appeared, the blast vaporized itself into a perfectly spherical hole in the docking bay.
+You turn all your guns onto the plasma battery. It’s a simple numbers game. If you can do enough damage to force a shutdown of the firing sequence, you win. You order several successive volleys, as every weapon attached to the ship smokes and spins. The plating across the gun is thick, slugs bouncing off of it as it charges. With every shot that bounces off of it, however, the plating becomes misshapen, warped, until the shots have made a small hole in the right side of the gun. 
+You order your crew to focus on that weak point, and they pour gunfire against the thing. Your ship rattles against the violence of its turrets and the deep reverberations of the gun about to fire. There is suddenly a loud wrenching noise as something breaks. That defeaning sound dissolves into a massive green sphere of energy where the plasma battery used to be. As fast as it appeared, the blast vaporized itself into a perfectly circular hole in the docking bay.
 ->Fight_Success
 
 ===BlastGunFailure===
 #BLAST FAILURE. Placeholder: 50%. Weapons% chance Success.
-You turn all your guns onto the plasma battery. It’s a simple numbers game. If you can do enough damage for it to shut down before it fires, you win. You order several successive volleys, as every weapon attached to the ship smokes and spins. The plating across the gun is thick, slugs bouncing off of it as it charges. With every shot that bounces off of it, however, the plating becomes misshapen, warped, until the shots have made a small hole in the right side of the gun. 
-You order your crew to focus on that weak point, the pour gunfire against the thing. You realize it isn’t going to be enough. Your ship rattles against the violence of its attack and the deep reverberations of the gun about to fire. You route energy to shields as fast as you can. The deep humming of the gun suddenly gives way into silence as a green light lances through the front of you ship, dissolving entire rooms, others detonating from the heat. The gun's barrel is splayed apart, parts of it vaporized. It's down but you're worse for wear.
+You turn all your guns onto the plasma battery. It’s a simple numbers game. If you can do enough damage to force a shutdown of the firing sequence, you win. You order several successive volleys, as every weapon attached to the ship smokes and spins. The plating across the gun is thick, slugs bouncing off of it as it charges. With every shot that bounces off of it, however, the plating becomes misshapen, warped, until the shots have made a small hole in the right side of the gun. 
+You order your crew to focus on that weak point, the pour gunfire against the thing. You realize it isn’t going to be enough. Your ship rattles against the violence of its turrets and the deep reverberations of the gun about to fire. You route energy to shields as fast as you can. The deep humming of the gun suddenly gives way into silence as a green light lances through the front of your ship, dissolving entire rooms, others detonating from the heat. The gun's barrel is splayed apart, parts of it vaporized. It's down but you're barely standing.
 #[Medium Hull Reduction, Large Weapons Reduction]
--> Fight
+-> Fight_Success
 
 ===RamGunSuccess==
 #RAM SUCCESS. Placeholder: 35%. Hull% chance Success.
 The ship blasts off the ground and hovers momentarily as you line up the shot. You’ll need to route power to engines and then shields the moment before you hit. You instruct your entire crew to brace for impact. The engines flare and you close the gap to the gun in less than a second. Your engines cut as the watery blue of your shields suddenly wrap around your ship. From your external cameras you suddenly see the inside of the plasma gun, before you even feel the impact. 
-The sound of rending metal cuts out as the entire apparatus your ship has cleaved into flashes green and explodes. Your ship glances off the sphere of light before the blast vaporizes itself into a perfectly spherical hole in the docking bay. 
+The sound of rending metal cuts out as the entire apparatus you cleaved into flashes green and explodes. Your ship glances off the sphere of light before the blast vaporizes itself into a perfectly spherical hole in the docking bay. 
 Your ship floats in the hole, the entire hull glowing white from the heat. A few of your crew were knocked unconscious during the series of shocks that threw them about the cabin in the last three seconds, but those left standing are manning their battle stations best they can. 
 #[Medium Hull Reduction]
 ->Fight_Success
@@ -92,21 +92,21 @@ Your ship floats in the hole, the entire hull glowing white from the heat. A few
 ===RamGunFailure===
 #RAM FAILURE. Placeholder: 65%. Hull% chance Failure. (success at a cost)
 The ship blasts off the ground and hovers momentarily as you line up the shot. You’ll need to route power to engines and then shields the moment before you hit. You instruct your entire crew to brace for impact. The engines flare and you close the gap to the gun in less than a second. Your engines cut as the watery blue of your shields suddenly wrap around your ship. From your external cameras you suddenly see the inside of the plasma gun, before you even feel the impact. 
-The sound of rending metal cuts out as the entire apparatus your ship has cleaved into flashes green and explodes. Under the weight of the entire gun detonating your shields give for a split second, but it’s enough time. The entire lower third of your ship is dissolved by the energy before the blast vaporizes itself into a perfectly spherical hole in the docking bay. 
+The sound of rending metal cuts out as the entire apparatus you cleaved into flashes green and explodes. Under the weight of the entire gun detonating your shields give for a split second, but it's an important second. The entire lower third of your ship is dissolved by the energy before the blast vaporizes itself into a perfectly circular hole in the docking bay. 
 Your ship barely manages to land, the remaining hull glowing white from the heat. Most of your crew were knocked unconscious or killed during the series of shocks that threw them about the cabin in the last three seconds, but those left standing are manning their battle stations best they can. 
 #[Extreme Hull Reduction]
 ->Fight_Success
 
 ===FleeSafely===
 #DODGE HIT. 50% chance of occuring, No Hull Damage
-You decide there isn't any use dying here. You order your crew to take off. The engines flare, the landing gear struggles to keep up. A shockwave rattles the ship as you break the sound barrier, the ship is twisting from the violence of the takeoff. You hear the warbling of the gun suddenly go silent as all your external cameras fill with green light. 
-Part of your ship is missing, one of the engines blows out. You route all power to the remaining engines. The ship careens upwards, the missing chunk throwing off any liftoff calculations you have. All you can do is go straight up and figure it out in orbit. Several more blasts pierce the sky, but you manage to reach orbit without taking another hit. Considering the damage that thing punched in your ship, you’re glad to have left when you did. 
+You decide there isn't any use dying here. You order your crew to take off. The engines flare, the landing gear struggles to keep up. A shockwave rattles the ship as you break the sound barrier, the ship twisting from the violence of the takeoff. You hear the warbling of the gun suddenly go silent as all your external cameras fill with green light. 
+The outer layer of the ship liquifies as a plasma lance strikes the edge of your shield, the deflection sending you careening away from the blast. There's no permannt damage but you're off course, rocketing up and hoping for the best. Several more blasts pierce the sky, but you manage to reach orbit without taking a proper hit. Considering the damage that thing could punch through your ship, you're glad to have left when you did.
 ->Flee
 
 ===FleeBadly===
 #GET HIT. 50% chance of occuring, Medium Hull Damage
-You decide there isn't any use dying here.  [If VIPs are alive “The VIPs scramble onto your ship and”] You order your crew to take off. The engines flare, the landing gear struggles to keep up. A shockwave rattles the ship as you break the sound barrier, the ship is twisting from the violence of the takeoff. You hear the warbling of the gun suddenly go silent as all your external cameras fill with green light. 
-The hull of the ship nearly liquifies as a plasma lance strikes the edge of your shield, the deflection sending you careening away from the blast. All you can do is go straight up. Several more blasts pierce the sky, but you manage to reach orbit without taking a proper hit. Considering the damage that thing could punch through your ship, you're glad to have left when you did.
+You decide there isn't any use dying here.  [If VIPs are alive “The VIPs scramble onto your ship and”] You order your crew to take off. The engines flare, the landing gear struggles to keep up. A shockwave rattles the ship as you break the sound barrier, the ship twisting from the violence of the takeoff. You hear the warbling of the gun suddenly go silent as all your external cameras fill with green light. 
+Part of your ship is missing, one of the engines blows out. You route all power to the remaining engines. The ship careens upwards, the missing chunk throwing off any liftoff calculations you have. All you can do is go straight up and figure it out in orbit. Several more blasts pierce the sky, but you manage to reach orbit without taking another hit. Considering the damage that thing punched in your ship, you’re glad to have left when you did. 
 -> Flee
 
 
