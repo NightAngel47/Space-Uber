@@ -2,7 +2,7 @@
  * HullGridSquare.cs
  * Author(s): #Greg Brandt#
  * Created on: 12/1/2020 (en-US)
- * Description: 
+ * Description: Used to to indicate whether a hull piece is overlaping
  */
 
 using UnityEngine;

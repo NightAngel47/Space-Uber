@@ -2,7 +2,7 @@
  * SlotReel.cs
  * Author(s): #Greg Brandt#
  * Created on: 11/12/2020 (en-US)
- * Description: 
+ * Description: "Rotates" reels and adjusts them to snap to a position when stopped
  */
 
 using NaughtyAttributes;
@@ -15,10 +15,15 @@ public class SlotReel : MonoBehaviour
 {
     [SerializeField] RectTransform upperHalfReel;
     [SerializeField] RectTransform lowerHalfReel;
+    [Tooltip("Transforms who's position is used to snap a reel to a value when stopped")]
     [SerializeField] Transform[] slots;
     [SerializeField] int smallBetAmount = 1;
     [SerializeField] int mediumBetAmount = 5;
     [SerializeField] int largeBetAmount = 10;
+    [Tooltip("Y value for lower half reel to move to be top half reel.")]
+    [SerializeField] float adjustPositionThreshold = -300;
+    [Tooltip("Distance slot must be from focus before snaping in place.")]
+    [SerializeField] float snapDistanceThreshold = 0.75f;
     Transform selectedSlot;
     Slot slot;
     float reelSpeed;
@@ -43,6 +48,12 @@ public class SlotReel : MonoBehaviour
     public void SetSpeed(float speed) { reelSpeed = speed; }
     public void SetSpinAfterStopTime(float time) { spinAfterStopTime = time; }
 
+    /// <summary>
+    /// "Rotates" reels
+    /// <para>direction: 1 to "Rotate" down. -1 to "Rotate" up</para>
+    /// </summary>
+    /// <param name="speedAdjustment"></param>
+    /// <param name="direction"></param>
     void Spin(float speedAdjustment = 1, int direction = 1 )
 	{
         if(direction > 1) { direction = 1; }
@@ -58,13 +69,13 @@ public class SlotReel : MonoBehaviour
 
     void AdjustPosition()
 	{
-        if(upperHalfReel.anchoredPosition.y < -300)
+        if(upperHalfReel.anchoredPosition.y < adjustPositionThreshold)
 		{
             float y = upperHalfReel.anchoredPosition.y;
             y += lowerHalfReel.rect.height * 2;
             upperHalfReel.anchoredPosition = new Vector2(x, y);
 		}
-        if (lowerHalfReel.anchoredPosition.y < -300)
+        if (lowerHalfReel.anchoredPosition.y < adjustPositionThreshold)
         {
             float y = lowerHalfReel.anchoredPosition.y;
             y += (upperHalfReel.rect.height * 2);
@@ -115,10 +126,19 @@ public class SlotReel : MonoBehaviour
         while(!inPosition)
 		{
             distance = Vector3.Distance(transform.position, selectedSlot.position);
-            if (distance < 0.5f) { inPosition = true; }
-            if(selectedSlot.position.y > transform.position.y) { Spin(0.5f); }
-            else { Spin( 0.5f, - 1); }
-            yield return new WaitForSeconds(0.01f);
+            if (distance < snapDistanceThreshold)
+            {
+                inPosition = true;
+                transform.position = selectedSlot.position;
+            }
+            else
+            {
+                //Adjust reel up or down at a slower speed to get closer to snap point
+                if (selectedSlot.position.y > transform.position.y) { Spin(0.4f); }
+                else { Spin(0.4f, -1); }
+            }
+            yield return new WaitForEndOfFrame();
 		}
 	}
+
 }
