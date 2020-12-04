@@ -2,7 +2,7 @@
  * Slot.cs
  * Author(s): #Greg Brandt#
  * Created on: 11/12/2020 (en-US)
- * Description: 
+ * Description: Holds value for slot used in slot machine mini game.
  */
 
 using UnityEngine;
