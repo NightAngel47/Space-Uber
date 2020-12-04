@@ -197,10 +197,6 @@ public class EventSystem : MonoBehaviour
 
 					yield return new WaitWhile((() => eventActive));
 				}
-				else
-				{
-					ConcludeEvent();
-				}
 			}
 
 			//set up the sonar for the next event
