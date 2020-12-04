@@ -2,7 +2,7 @@
  * MiniGameCrop.cs
  * Author(s): #Greg Brandt#
  * Created on: 10/15/2020 (en-US)
- * Description: 
+ * Description: Manages the state of a crop
  */
 
 using System.Collections.Generic;
@@ -13,10 +13,8 @@ using TMPro;
 
 public class MiniGameCrop : MonoBehaviour
 {
-    bool isWatered = false;
-    bool isTrimmed = false;
-    bool isFertilized = false;
     CropStage stage = CropStage.Unplanted;
+    [Tooltip("Text that indicates the current needs of the crop.")]
     [SerializeField] TMP_Text cropText;
     [SerializeField] Sprite unfertilizedSoil = null;
     [SerializeField] Sprite fertilizedSoil = null;
@@ -45,12 +43,16 @@ public class MiniGameCrop : MonoBehaviour
     [SerializeField] float pruneDecayerTic = 1;
     [Tooltip("Amount of prune level before crop needs to be pruned again")]
     [SerializeField] float maxPruneLevel = 1;
+
     float waterLevel = 1;
     float pruneLevel = 1;
 
     float growth = 0;
     bool isGrowing = false;
     bool isHarvestable = false;
+    bool isWatered = false;
+    bool isTrimmed = false;
+    bool isFertilized = false;
 
     public string[] trimCropSFX;
     public string[] waterCropSFX;
@@ -76,6 +78,7 @@ public class MiniGameCrop : MonoBehaviour
         position.z -= 0.1f;
         harvestableCropPrefab = Instantiate(harvestableCropPrefab, position, new Quaternion(), transform.parent);
         harvestableCropPrefab.SetActive(false);
+
         //Let minGameManager know how many crops are needed to beat the mini game
         miniGameManager.IncrementRequiredScore();
         StartCoroutine(DisplayNeeds());
@@ -207,7 +210,6 @@ public class MiniGameCrop : MonoBehaviour
                 cropText.text += cropNeeds[i] + "\n";
                 i++;
             }
-            //if (cropNeeds.Count == 0) { cropText.text = ""; }
             yield return new WaitForEndOfFrame();
 		}
 	}

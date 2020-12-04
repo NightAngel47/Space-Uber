@@ -2,7 +2,7 @@
  * MiniGameTool.cs
  * Author(s): #Greg Brandt#
  * Created on: 10/15/2020 (en-US)
- * Description: 
+ * Description: Makes tool follow cursor when clicked and changes the states of crops
  */
 
 using UnityEngine;
@@ -27,6 +27,7 @@ public class MiniGameTool : MonoBehaviour
     {
         if (isBeingDraged)
         {
+            //Play water particle effect if watering can
             if(toolType == MiniGameToolType.WateringCan) 
             {
 				if (!GetComponentInChildren<ParticleSystem>().isPlaying) { GetComponentInChildren<ParticleSystem>().Play(); }
@@ -41,17 +42,20 @@ public class MiniGameTool : MonoBehaviour
         }
 		else
 		{
+            //Stop playing water particle effect if watering can
             if (toolType == MiniGameToolType.WateringCan)
             {
                 if (GetComponentInChildren<ParticleSystem>().isPlaying) { GetComponentInChildren<ParticleSystem>().Stop(); }
             }
         }
+        //If tool was dropped, stop following cursor.
         if(CropHarvestMiniGame.selectedTool != this) 
         {
             isBeingDraged = false;
             transform.position = originalPosition;
             gameObject.layer = originalLayer;
         }
+        //Drop tool
         if (Input.GetMouseButtonDown(1))
         {
             CropHarvestMiniGame.selectedTool = null;
@@ -60,8 +64,10 @@ public class MiniGameTool : MonoBehaviour
 
     private void OnMouseDown() 
     {
+        //pick up tool
             isBeingDraged = true;
             CropHarvestMiniGame.selectedTool = this;
+            //change layer to avoid interacting with background
             gameObject.layer = 2;
     }
 }

@@ -2,7 +2,7 @@
  * SecurityMiniGame.cs
  * Author(s): #Greg Brandt#
  * Created on: 10/21/2020 (en-US)
- * Description: 
+ * Description: Manages Security mini game
  */
 
 using UnityEngine;
@@ -12,25 +12,26 @@ using UnityEngine.UI;
 
 public class SecurityMiniGame : MiniGame
 {
+    [Tooltip("Uninteractable toggles used to show the player how many successes they need/have.")]
     [SerializeField] Toggle[] successTrackers;
     [SerializeField] CodeBlock[] codeSegments;
+    [Tooltip("Text that displays the required code characters.")]
     [SerializeField] TMP_Text codePreview;
+    [Tooltip("How long each code character can be seen.")]
     [SerializeField] float displayTime = 1;
     [SerializeField] GameObject tryAgainText;
-    [SerializeField] int minCodeLength = 3;
-    [SerializeField] int maxCodeLength = 5;
+    [SerializeField] int startCodeLength = 3;
     public int successes = 0;
     string validChars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
     string requiredCode = "";
     string availableCode = "";
     string inputCode = "";
-    [SerializeField] int startCodeLength = 3;
-    [SerializeField] bool hideInput = true;
-    [SerializeField] Color highlightColor;
-    [SerializeField] Color originalButtonColor;
 
+    [Tooltip("SFX names")]
     public string[] Correct;
+    [Tooltip("SFX names")]
     public string[] Incorrect;
+    [Tooltip("SFX names")]
     public string[] DisplaySound;
 
     void Start() 
@@ -111,7 +112,6 @@ public class SecurityMiniGame : MiniGame
 
     IEnumerator DisplayCode()
 	{
-        if (hideInput) { foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(false); } }
         codePreview.text = "";
         yield return new WaitForSeconds(1);
         foreach(char codeSegment in requiredCode)
@@ -123,13 +123,5 @@ public class SecurityMiniGame : MiniGame
         }
 
         inputCode = "";
-        if (hideInput)
-        { 
-            foreach (CodeBlock block in codeSegments) 
-            { 
-                block.gameObject.SetActive(true);
-                block.RestetInput();
-            } 
-        }
     }
 }

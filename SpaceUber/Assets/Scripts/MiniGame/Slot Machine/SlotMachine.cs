@@ -2,7 +2,7 @@
  * SlotMachine.cs
  * Author(s): #Greg Brandt#
  * Created on: 11/12/2020 (en-US)
- * Description: 
+ * Description: Manages slot machine mini game
  */
 
 using System.Collections;
@@ -11,6 +11,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Structs used to create collapsable inspector sections
 [System.Serializable]
 public struct Payouts
 {
@@ -28,6 +29,7 @@ public struct Payouts
     public int basePayout66;
 }
 
+//Structs used to create collapsable inspector sections
 [System.Serializable]
 public struct PayoutMultipliers
 {
@@ -41,16 +43,14 @@ public enum BetAmount { Free, Small, Medium, Large}
 
 public class SlotMachine : MiniGame
 {
-    bool spinning = false;
-    bool gameStarted = false;
-    bool gameFinished = false;
     [SerializeField] SlotReel[] reels;
     [SerializeField] float spinAfterStopTime = 1;
     [SerializeField] float reelSpeed = 1000;
+    [Tooltip("Multiplies the original speed of the remaining two reels after the first one is stopped.")]
     [SerializeField] float firstStopSpeedMultiplier = 1.5f;
+    [Tooltip("Multiplies the original speed of the last reel after the first two are stopped.")]
     [SerializeField] float secondStopSpeedMultiplier = 2f;
     [SerializeField] GameObject bettingPanel;
-    [SerializeField] TMP_Text errorText;
     [SerializeField] Slider crank;
     [SerializeField] Button smallBetButton;
     [SerializeField] Button mediumBetButton;
@@ -63,14 +63,19 @@ public class SlotMachine : MiniGame
     [SerializeField] PayoutMultipliers payoutMultipliers;
     [SerializeField] float winDelay = 1;
     [SerializeField] Button[] buttons;
+
+    bool spinning = false;
+    bool gameStarted = false;
+    bool gameFinished = false;
     ShipStats shipStats;
     int payout = 0;
     BetAmount betAmount = BetAmount.Free;
     List<int> slotValues = new List<int>();
+    bool sound = false;
 
     void Start() 
     {
-        errorText.text = "";
+        sound = false;
         shipStats = OverclockController.instance.ShipStats();
         foreach (SlotReel reel in reels) { reel.SetSpeed(reelSpeed); }
         foreach (SlotReel reel in reels) { reel.SetSpinAfterStopTime(spinAfterStopTime); }
@@ -95,11 +100,14 @@ public class SlotMachine : MiniGame
 	{
         if (UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject != crank.gameObject || !Input.GetKey(KeyCode.Mouse0))
         {
+            AudioManager.instance.PlaySFX("Grab Crank");
             crank.value += crankReturnSpeed * Time.deltaTime;
         }
         if (crank.value == 0 && !gameStarted) 
         {
-            foreach(Button button in buttons) { button.interactable = true; }
+            AudioManager.instance.PlaySFX("Pull Crank");
+            StartCoroutine(SpinSound());
+            foreach (Button button in buttons) { button.interactable = true; }
             gameStarted = true;
             switch(betAmount)
 			{
@@ -181,37 +189,41 @@ public class SlotMachine : MiniGame
     
     int GetBasePayout(ref int oneCount, ref int twoCount, ref int threeCount, ref int fourCount, ref int fiveCount, ref int sixCount)
 	{
-        if (oneCount > 1) { if (oneCount > 2) { return payouts.basePayout111; } else { return payouts.basePayout11; } }
-        if (twoCount > 1) { if (twoCount > 2) { return payouts.basePayout222; } else { return payouts.basePayout22; } }
-        if (threeCount > 1) { if (threeCount > 2) { return payouts.basePayout333; } else { return payouts.basePayout33; } }
-        if (fourCount > 1) { if (fourCount > 2) { return payouts.basePayout444; } else { return payouts.basePayout22; } }
-        if (fiveCount > 1) { if (fiveCount > 2) { return payouts.basePayout555; } else { return payouts.basePayout55; } }
-        if (sixCount > 1) { if (sixCount > 2) { return payouts.basePayout666; } else { return payouts.basePayout66; } }
-        return 0;
+        if (oneCount > 1) { if (oneCount > 2) { AudioManager.instance.PlaySFX("Pay111"); return payouts.basePayout111; } else { AudioManager.instance.PlaySFX("Pay11"); return payouts.basePayout11; } }
+        if (twoCount > 1) { if (twoCount > 2) { AudioManager.instance.PlaySFX("Pay222"); return payouts.basePayout222; } else { AudioManager.instance.PlaySFX("Pay22"); return payouts.basePayout22; } }
+        if (threeCount > 1) { if (threeCount > 2) { AudioManager.instance.PlaySFX("Pay333"); return payouts.basePayout333; } else { AudioManager.instance.PlaySFX("Pay33"); return payouts.basePayout33; } }
+        if (fourCount > 1) { if (fourCount > 2) { AudioManager.instance.PlaySFX("Pay444"); return payouts.basePayout444; } else { AudioManager.instance.PlaySFX("Pay44"); return payouts.basePayout22; } }
+        if (fiveCount > 1) { if (fiveCount > 2) { AudioManager.instance.PlaySFX("Pay555"); return payouts.basePayout555; } else { AudioManager.instance.PlaySFX("Pay55"); return payouts.basePayout55; } }
+        if (sixCount > 1) { if (sixCount > 2) { AudioManager.instance.PlaySFX("Pay666"); return payouts.basePayout666; } else { AudioManager.instance.PlaySFX("Pay66"); return payouts.basePayout66; } }
+        AudioManager.instance.PlaySFX("Pay0"); return 0;
 	}
 
     public void Option1()
     {
         bettingPanel.SetActive(false);
         betAmount = BetAmount.Free;
+        AudioManager.instance.PlaySFX("Free Bet");
     }
 
     public void Option2()
     {
         bettingPanel.SetActive(false);
         betAmount = BetAmount.Small;
+        AudioManager.instance.PlaySFX("Small Bet");
     }
 
     public void Option3()
     {
         bettingPanel.SetActive(false);
         betAmount = BetAmount.Medium;
+        AudioManager.instance.PlaySFX("Medium Bet");
     }
 
     public void Option4()
     {
         bettingPanel.SetActive(false);
         betAmount = BetAmount.Large;
+        AudioManager.instance.PlaySFX("Large Bet");
     }
 
     IEnumerator Spin()
@@ -223,16 +235,20 @@ public class SlotMachine : MiniGame
         }
 	}
 
-    IEnumerator PromptError(string error)
-	{
-        errorText.text = error;
-        yield return new WaitForSeconds(3);
-        errorText.text = "";
-	}
-
     IEnumerator EndGame()
 	{
+        sound = true;
         yield return new WaitForSeconds(winDelay);
         EndMiniGameSuccess();
+    }
+
+    IEnumerator SpinSound()
+    {
+        if (sound == false)
+        {
+            AudioManager.instance.PlaySFX("Slot Reel");
+            yield return new WaitForSeconds(0.499f);
+            StartCoroutine(SpinSound());
+        }
     }
 }
