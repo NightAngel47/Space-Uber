@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceType: Food Per Tick
   resourceIcon: {fileID: 21300000, guid: 19fdf56f9832ad64bb59df8a09898f9e, type: 3}
-  amount: 3
+  amount: 6
   activeAmount: 0
   minAmount: 0
 --- !u!1 &7287033629412176449
@@ -322,6 +322,16 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.newSize.y
       value: 2.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1410969508493415506, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1454869677546294712, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: miniGame
@@ -470,6 +480,11 @@ PrefabInstance:
         type: 3}
       propertyPath: mouseOverAudio.Array.data[15]
       value: Leaves 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766507605158571097, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5881200089251463111, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -1067,6 +1082,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8858348380208273083, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d75062b47e0b75b4384d6d8e19141c62, type: 3}
