@@ -21,6 +21,9 @@ public class Job : MonoBehaviour
     
     [Tooltip("How many random events will happen in this journey")]
     public int maxRandomEvents = 3;
+    
+    [Tooltip("How many story events will happen in this journey")]
+    public int maxStoryEvents = 3;
 
     [Tooltip("The introduction to the job. Will be played immediately when reaching the travel scene"), HideIf("isSideJob")]
     public GameObject introEvent;

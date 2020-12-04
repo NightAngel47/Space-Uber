@@ -63,41 +63,41 @@ You have several approaches as the gun charges, send your security team to swift
 
 ===SecuritySuccess===
 Your cargo hold doors blast open as your security team rushes out, firing upon the mercenaries as they move. Within seconds they’ve cut a path to the plasma battery. Small arms fire ripples across the surface of the gun as your team tries to take out its operators. The gun is nearly charged, the sound rattling your ship. More mercenaries start to close in on the exposed position of your security team.
-You swivel your ship guns against the attackers and try to buy your team the time to shut down the weapon. The gunshots are practically silent against the violent noise of the plasma battery. Until suddenly it goes silent, the sickly green fading. 
+You swivel your ship guns against the attackers and try to buy your team the time to shut down the weapon. The gunshots are practically silent against the violent noise of the plasma battery. Until suddenly it goes silent, the sickly green fading.  With your supporting fire, your team has taken the gun.
     ->Fight_Success
 
 ===SecurityFailure===
 Your cargo hold doors blast open as your security team rushes out, firing upon the mercenaries as they move. With every enemy down though, it seems like two more take their place. The security team can’t move forward without taking bullets from all sides. The gun is nearly charged, the sound rattling your ship. Your team shouts to you that they can’t make it in time, that you need to take evasive action, but it’s too late. 
 The deep humming of the gun suddenly hollows out into silence as a green beam punctures your ship, dissolving a jagged hole through the center, the surrounding rooms detonating from the heat. As your ship rocks back you hear the gunfire has stopped. The security team managed to reach the gun, and the mercs operating it are dead, they're mangled and so is the ship, but its down.
 #[Medium Hull Reduction, Large Security Reduction]
-    ->Fight
-
-===BlastGunSuccess==
-    #BLAST SUCCESS. Placeholder: 50%. Weapons% chance Success.
-    You turn all your guns onto the plasma battery. It’s a simple numbers game. If you can do enough damage for it to shut down before it fires, you win. You order several successive volleys, as every weapon attached to the ship smokes and spins. The plating across the gun is thick, slugs bouncing off of it as it charges. With every shot that bounces off of it, however, the plating becomes misshapen, warped, until the shots have made a small hole in the right side of the gun. 
-    You order your crew to focus on that weak point, and they pour gunfire against the thing. Your ship rattles against the violence of its attack and the deep reverberations of the gun about to fire. There is suddenly a loud wrenching noise as something breaks and that sound dissolves into a massive green sphere of energy where the plasma battery used to be. As fast as it appeared, the blast vaporized itself into a perfectly spherical hole in the docking bay.
     ->Fight_Success
-    
+
+===BlastGunSuccess===
+#BLAST SUCCESS. Placeholder: 50%. Weapons% chance Success.
+You turn all your guns onto the plasma battery. It’s a simple numbers game. If you can do enough damage to force a shutdown of the firing sequence, you win. You order several successive volleys, as every weapon attached to the ship smokes and spins. The plating across the gun is thick, slugs bouncing off of it as it charges. With every shot that bounces off of it, however, the plating becomes misshapen, warped, until the shots have made a small hole in the right side of the gun. 
+You order your crew to focus on that weak point, and they pour gunfire against the thing. Your ship rattles against the violence of its turrets and the deep reverberations of the gun about to fire. There is suddenly a loud wrenching noise as something breaks. That defeaning sound dissolves into a massive green sphere of energy where the plasma battery used to be. As fast as it appeared, the blast vaporized itself into a perfectly circular hole in the docking bay.
+->Fight_Success
+
 ===BlastGunFailure===
 #BLAST FAILURE. Placeholder: 50%. Weapons% chance Success.
-You turn all your guns onto the plasma battery. It’s a simple numbers game. If you can do enough damage for it to shut down before it fires, you win. You order several successive volleys, as every weapon attached to the ship smokes and spins. The plating across the gun is thick, slugs bouncing off of it as it charges. With every shot that bounces off of it, however, the plating becomes misshapen, warped, until the shots have made a small hole in the right side of the gun. 
-You order your crew to focus on that weak point, the pour gunfire against the thing. You realize it isn’t going to be enough. Your ship rattles against the violence of its attack and the deep reverberations of the gun about to fire. You route energy to shields as fast as you can. The deep humming of the gun suddenly gives way into silence as a green light lances through the front of you ship, dissolving entire rooms, others detonating from the heat. The gun's barrel is splayed apart, parts of it vaporized. It's down but you're worse for wear.
+You turn all your guns onto the plasma battery. It’s a simple numbers game. If you can do enough damage to force a shutdown of the firing sequence, you win. You order several successive volleys, as every weapon attached to the ship smokes and spins. The plating across the gun is thick, slugs bouncing off of it as it charges. With every shot that bounces off of it, however, the plating becomes misshapen, warped, until the shots have made a small hole in the right side of the gun. 
+You order your crew to focus on that weak point, the pour gunfire against the thing. You realize it isn’t going to be enough. Your ship rattles against the violence of its turrets and the deep reverberations of the gun about to fire. You route energy to shields as fast as you can. The deep humming of the gun suddenly gives way into silence as a green light lances through the front of your ship, dissolving entire rooms, others detonating from the heat. The gun's barrel is splayed apart, parts of it vaporized. It's down but you're barely standing.
 #[Medium Hull Reduction, Large Weapons Reduction]
--> Fight
+-> Fight_Success
 
 
-===RamGunSuccess===
+===RamGunSuccess==
 #RAM SUCCESS. Placeholder: 35%. Hull% chance Success.
 The ship blasts off the ground and hovers momentarily as you line up the shot. You’ll need to route power to engines and then shields the moment before you hit. You instruct your entire crew to brace for impact. The engines flare and you close the gap to the gun in less than a second. Your engines cut as the watery blue of your shields suddenly wrap around your ship. From your external cameras you suddenly see the inside of the plasma gun, before you even feel the impact. 
-The sound of rending metal cuts out as the entire apparatus your ship has cleaved into flashes green and explodes. Your ship glances off the sphere of light before the blast vaporizes itself into a perfectly spherical hole in the docking bay. 
+The sound of rending metal cuts out as the entire apparatus you cleaved into flashes green and explodes. Your ship glances off the sphere of light before the blast vaporizes itself into a perfectly spherical hole in the docking bay. 
 Your ship floats in the hole, the entire hull glowing white from the heat. A few of your crew were knocked unconscious during the series of shocks that threw them about the cabin in the last three seconds, but those left standing are manning their battle stations best they can. 
 #[Medium Hull Reduction]
 ->Fight_Success
 
-===RamGunFailure=== 
+===RamGunFailure===
 #RAM FAILURE. Placeholder: 65%. Hull% chance Failure. (success at a cost)
 The ship blasts off the ground and hovers momentarily as you line up the shot. You’ll need to route power to engines and then shields the moment before you hit. You instruct your entire crew to brace for impact. The engines flare and you close the gap to the gun in less than a second. Your engines cut as the watery blue of your shields suddenly wrap around your ship. From your external cameras you suddenly see the inside of the plasma gun, before you even feel the impact. 
-The sound of rending metal cuts out as the entire apparatus your ship has cleaved into flashes green and explodes. Under the weight of the entire gun detonating your shields give for a split second, but it’s enough time. The entire lower third of your ship is dissolved by the energy before the blast vaporizes itself into a perfectly spherical hole in the docking bay. 
+The sound of rending metal cuts out as the entire apparatus you cleaved into flashes green and explodes. Under the weight of the entire gun detonating your shields give for a split second, but it's an important second. The entire lower third of your ship is dissolved by the energy before the blast vaporizes itself into a perfectly circular hole in the docking bay. 
 Your ship barely manages to land, the remaining hull glowing white from the heat. Most of your crew were knocked unconscious or killed during the series of shocks that threw them about the cabin in the last three seconds, but those left standing are manning their battle stations best they can. 
 #[Extreme Hull Reduction]
 ->Fight_Success
