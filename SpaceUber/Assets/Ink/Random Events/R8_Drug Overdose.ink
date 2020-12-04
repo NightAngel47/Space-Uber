@@ -10,7 +10,7 @@ VAR randomEnd2 = -> Survive2
     ->randomEnd2
 
 === Survive1 ===
-You tell her to hold off on using the medicine, as it would be a waste to use it if he is likely to die anyway. Luckily, he manages to survive the night anyway. Kelly says that he will be able to get back to work in a day or two.
+You tell her to hold off on using the medicine, as it would be a waste to use it if he is likely to die anyway. Luckily, he manages to survive the night. Kelly says that he will be able to get back to work in a day or two.
 -> END
 
 === Dies1 ===

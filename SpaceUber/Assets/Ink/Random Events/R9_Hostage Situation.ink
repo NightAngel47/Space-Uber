@@ -1,7 +1,7 @@
 VAR randomEnd = -> Kill1
 
 The head of security, Kuon, contacts you,  "It seems we have a situation. A crew member has taken another hostage. She is demanding fifty credits and some food. She says she has a 'buddy' that will pass by our ship and pick her up, at which point she will let the hostage go." 
-Gritting his teeth, he continues, "While you could comply with these outrageous demands, I recommend you simply let us take care of the situation."
+Gritting his teeth, he continues, "While you could comply with these outrageous demands, I recommend you allow my team to take care of the situation."
 + [Comply] #(-50 Credits, -2 Food, -1 Crew)
 -> Comply
 * [Take Her Out] #(50% Chance - 1 Crew, 50 Chance -2 Crew)
@@ -16,7 +16,7 @@ You order your security crew to take her out. They manage to take her down with 
 -> END
 
 === Kill2 ===
-You order your security crew to take her out. While they manage to take her down with swift and precise shots from their weapons, she was executed her hostage in the split second before her own demise. While you store the body of the hostage in the medbay's morgue, you have the murderer's corpse thrown out the airlock.
+You order your security crew to take her out. While they manage to take her down with swift and precise shots from their weapons, she executes her hostage in the split second before her own demise. While you store the body of the hostage in the medbay's morgue, you have the murderer's corpse thrown out the airlock.
 -> END
 
 ===function RandomizeEnding(rng)===
