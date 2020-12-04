@@ -11,6 +11,7 @@
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.SceneManagement;
 using Ink.Parsed;
 using TMPro;
@@ -174,7 +175,6 @@ public class EventSystem : MonoBehaviour
 
 				GameObject newEvent = FindNextStoryEvent();
 				CreateEvent(newEvent);
-				storyEventIndex++;
 				overallEventIndex++;
 
 				yield return new WaitWhile((() => eventActive));
@@ -218,7 +218,7 @@ public class EventSystem : MonoBehaviour
 	/// Assigns the proper canvas to the created InkDriverBase script
 	/// </summary>
 	/// <param name="newEvent"></param>
-	public void CreateEvent(GameObject newEvent)
+	private void CreateEvent(GameObject newEvent)
 	{
 		eventInstance = Instantiate(newEvent, eventCanvas.canvas.transform);
 
@@ -287,14 +287,7 @@ public class EventSystem : MonoBehaviour
 		sonar.ShowNextDot();
 		float rng = Random.Range(0, 101);
 
-		if (rng <= chances)
-		{
-			return true; 
-		}
-		else
-		{ return false; }
-
-
+		return rng <= chances;
 	}
 
 	/// <summary>
@@ -303,37 +296,18 @@ public class EventSystem : MonoBehaviour
 	/// <returns></returns>
 	private GameObject FindNextStoryEvent()
     {
-		GameObject result = storyEvents[storyEventIndex];
-		bool found = false;
-		
 		// search for the next event with the correct variation
-		for (int i = storyEventIndex; i < storyEvents.Count; i++)
+		foreach (var storyEvent 
+			in from storyEvent in storyEvents 
+			let story = storyEvent.GetComponent<InkDriverBase>() let requirements = story.requiredStats 
+			where story.storyIndex == storyEventIndex && HasRequiredStats(requirements) select storyEvent)
 		{
-			if(!found)
-			{
-				GameObject thisEvent = storyEvents[i];
-				List<Requirements> requirements = thisEvent.GetComponent<InkDriverBase>().requiredStats;
-
-				//grabs first eight letters of ink file name to check the naming code
-				string thisEventTitle = thisEvent.GetComponent<InkDriverBase>().inkJSONAsset.name.Substring(0, 8); 
-
-				if (lastEventTitle != thisEventTitle) //if this is not a variation of the same event as the last one, check requirements
-				{
-					if (HasRequiredStats(requirements))
-					{
-						result = thisEvent;
-						found = true;
-					}
-				}
-				else //if it's the same event as the last one we played, just keep going.
-				{
-					++storyEventIndex;
-				}
-			}
+			++storyEventIndex;
+			return storyEvent;
 		}
 
-		lastEventTitle = result.GetComponent<InkDriverBase>().inkJSONAsset.name.Substring(0, 8);
-		return result;
+		Debug.LogWarning("Couldn't find next story event");
+		return null;
     }
 
 	/// <summary>
@@ -416,7 +390,7 @@ public class EventSystem : MonoBehaviour
 		storyEvents.AddRange(newJob.storyEvents);
 		randomEvents.AddRange(newJob.randomEvents);
 		currentJob = newJob;
-		maxEvents += newJob.storyEvents.Count;
+		maxEvents += newJob.maxStoryEvents;
 		maxEvents += newJob.maxRandomEvents;
 	}
 

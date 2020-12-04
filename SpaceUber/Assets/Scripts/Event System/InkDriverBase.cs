@@ -20,6 +20,8 @@ public class InkDriverBase : MonoBehaviour
     public TextAsset inkJSONAsset;
 
     [SerializeField] private string eventName;
+    public bool isStoryEvent;
+    [ShowIf("isStoryEvent")] public int storyIndex;
     [SerializeField] private Sprite backgroundImage;
 
     //A prefab of the button we will generate every time a choice is needed

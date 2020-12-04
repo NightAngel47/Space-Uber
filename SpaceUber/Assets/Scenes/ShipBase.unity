@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6635,7 +6635,7 @@ PrefabInstance:
     - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
         type: 3}
       propertyPath: timeBeforeEventRoll
-      value: 40
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
         type: 3}
@@ -6652,6 +6652,11 @@ PrefabInstance:
       propertyPath: sonarObjects
       value: 
       objectReference: {fileID: 393224194}
+    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
+        type: 3}
+      propertyPath: startingEventChance
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe5d639606919114a9b48eb746a06bc6, type: 3}
 --- !u!114 &1350692055 stripped
