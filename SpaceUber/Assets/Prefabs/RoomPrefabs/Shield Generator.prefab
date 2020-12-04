@@ -42,17 +42,17 @@ PrefabInstance:
     - target: {fileID: 24717508544903462, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
-      value: 0.44
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 24717508544903462, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
-      value: 0.58
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 24717508544903462, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
-      value: 0.44
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 24717508544903462, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -77,7 +77,7 @@ PrefabInstance:
     - target: {fileID: 24717508544903462, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].y
-      value: 0.58
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 24717508544903462, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -183,6 +183,16 @@ PrefabInstance:
       propertyPath: mouseOverAudio.Array.data[4]
       value: Generate 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6635282969121139961, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635282969121139961, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7439701754912858065, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -257,7 +267,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4a6eeaebf8855844eaef47f5e5e75f7b,
+      objectReference: {fileID: 21300000, guid: fddbf22f7feaae2428504bc2ed41f051,
         type: 3}
     - target: {fileID: 8354016038451866568, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}

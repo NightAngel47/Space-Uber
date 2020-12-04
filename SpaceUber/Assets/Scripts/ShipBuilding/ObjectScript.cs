@@ -200,6 +200,16 @@ public class ObjectScript : MonoBehaviour
             }
         }
 
+        if(nextToRoom == true)
+        {
+            RoomHighlightSpotsOff();
+        }
+
+        if(needsSpecificLocation == true)
+        {
+            HighlightSpotsOff();
+        }
+
         Destroy(gameObject);
     }
 

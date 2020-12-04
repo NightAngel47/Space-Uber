@@ -30,6 +30,7 @@ public class TransitionGameStates : MonoBehaviour
 
     public void ChangeToCrewManagement()
     {
+        FindObjectOfType<ShipStats>().cantPlaceText.SetActive(false);
         GameManager.instance.ChangeInGameState(InGameStates.CrewManagement);
     }
     
