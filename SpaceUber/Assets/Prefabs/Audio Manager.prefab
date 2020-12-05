@@ -2006,11 +2006,39 @@ MonoBehaviour:
     volumeVarience: 0.05
     pitchVarience: 0.05
   - name: Escort Out
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: e35ba08f743467a439a42ca79d12187c, type: 3}
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
     volume: 0.65
     pitch: 1
     volumeVarience: 0.15
+    pitchVarience: 0.1
+  - name: Airlock
+    clip: {fileID: 8300000, guid: 2a9294c726f7f7246b7b787cb7a3fa86, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.6
+    pitch: 1
+    volumeVarience: 0.15
+    pitchVarience: 0.1
+  - name: Auction
+    clip: {fileID: 8300000, guid: 25152461874573941814b1a860162bf9, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.8
+    pitch: 1
+    volumeVarience: 0.2
+    pitchVarience: 0.2
+  - name: Auction (NB)
+    clip: {fileID: 8300000, guid: d5015a56208207648ba3cdb939c63217, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.8
+    pitch: 1
+    volumeVarience: 0.2
+    pitchVarience: 0.2
+  - name: Bad Safari
+    clip: {fileID: 8300000, guid: 894f04b282b5d6f4aa96323c0a833874, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.6
+    pitch: 1
+    volumeVarience: 0.05
     pitchVarience: 0.1
   ambientTracks:
   - name: Warbling White Noise
