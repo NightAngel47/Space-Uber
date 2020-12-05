@@ -1,8 +1,8 @@
 VAR randomEnd = -> Survive
 
 
-The mechanic, Mateo, contacts you, "There seems to be a problem with the engine. It's starting to overheat, and if something isn't done soon, it might cause some damage to the hull. A few parts are malfunctioning, and they need to be fixed.
-"We could have some crew members suit up and do the work, but I don't trust the protection suits the company issued us. We could make it safer if we use parts from around the ship, but they would have to be replaced."
+The ship mechanic, Mateo, contacts you, "There seems to be a problem with the engine. It's starting to overheat, and if something isn't done soon, it might cause some damage to the hull. A few parts are malfunctioning, and they need to be fixed."
+"We could have some crew members suit up and do the work, but I don't trust the protection suits the company issued us. We could make it safer if we use parts from around the ship, but replacing those would be costly."
 * [Risk Crew Members]  #(50% chance to lose some crew)
     ->randomEnd
 + [Salvage Parts] -> Repair #(-100 Credits)
