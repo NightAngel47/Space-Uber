@@ -11,6 +11,7 @@ public class HullPiece : MonoBehaviour
 {
     public string[] PickupSFX;
     public string[] PutdownSFX;
+    public string[] BumpSFX;
 
     Collider2D collider;
 
@@ -44,7 +45,7 @@ public class HullPiece : MonoBehaviour
             bool collidedWithHullPiece = false;
             foreach(Collider2D collider in colliders)
             {
-				if (collider) { if (collider.CompareTag("Hull Piece")) { collidedWithHullPiece = true; AudioManager.instance.PlaySFX("Not Enough Space"); } }
+				if (collider) { if (collider.CompareTag("Hull Piece")) { collidedWithHullPiece = true; AudioManager.instance.PlaySFX(BumpSFX[Random.Range(0, BumpSFX.Length)]); } }
             }
 			if (!collidedWithHullPiece) { HullRepairMiniGame.selectedHullPiece = null; AudioManager.instance.PlaySFX(PutdownSFX[Random.Range(0, PutdownSFX.Length)]); }
         }
