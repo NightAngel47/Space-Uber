@@ -17,7 +17,6 @@ public class CrewManagement : MonoBehaviour
     private RoomStats rs;
     public TMP_Text crewUnassignedText;
     public GameObject crewManagementText;
-    public Button nextButton;
     public GameObject roomText;
     public GameObject costsText;
     public GameObject crewAmount;
@@ -33,7 +32,7 @@ public class CrewManagement : MonoBehaviour
     public Button overclockButton;
     public GameObject statAndNumPrefab;
     public GameObject outputObject;
-    public GameObject[] sceneButtons;
+    public GameObject[] sceneButtons; //contains finish ship and back to shipbuilding buttons
 
     private List<GameObject> overtimeStats = new List<GameObject>();
     private List<GameObject> outputStats = new List<GameObject>();
@@ -45,21 +44,22 @@ public class CrewManagement : MonoBehaviour
 
         statPanel = gameObject.transform.GetChild(0).gameObject;
         TurnOffPanel();
-
-        currentRoomList = FindObjectsOfType<RoomStats>();
         
         overclockButton.gameObject.SetActive(false);
 
-        foreach(RoomStats r in currentRoomList)
+        currentRoomList = FindObjectsOfType<RoomStats>();
+
+        foreach (RoomStats r in currentRoomList)
         {
             minAssignableCrew += r.minCrew;
+            minAssignableCrew -= r.currentCrew;
         }
         
         if (minAssignableCrew > 0)
         {
-            nextButton.interactable = false;
+            sceneButtons[0].GetComponent<Button>().interactable = false;
         }
-
+        Debug.Log(minAssignableCrew);
         room = FindObjectOfType<ObjectScript>().gameObject;
     }
     
@@ -224,7 +224,7 @@ public class CrewManagement : MonoBehaviour
 
             if (minAssignableCrew <= 0)
             {
-                nextButton.interactable = true;
+                sceneButtons[0].GetComponent<Button>().interactable = true;
             }
         }
     }
@@ -243,7 +243,7 @@ public class CrewManagement : MonoBehaviour
 
             if (minAssignableCrew > 0)
             {
-                nextButton.interactable = false;
+                sceneButtons[0].GetComponent<Button>().interactable = false;
             }
         }
     }
