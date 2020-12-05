@@ -117,13 +117,12 @@ public class SpawnObject : MonoBehaviour
 
                 if(lastSpawned.GetComponent<ObjectScript>().nextToRoom == true)
                 {
-                    if(GameObject.Find(lastSpawned.GetComponent<ObjectScript>().nextToRoomName + "(Clone)") != null)
+                    foreach (ObjectScript r in otherRooms)
                     {
-                        GameObject r = GameObject.Find(lastSpawned.GetComponent<ObjectScript>().nextToRoomName + "(Clone)");
-
-                        //r.transform.GetChild(2).gameObject.SetActive(true);
-
-                        NextToRoomHighlight(r);
+                        if(lastSpawned.GetComponent<ObjectScript>().nextToRoomNum == r.objectNum)
+                        {
+                            NextToRoomHighlight(r.gameObject);
+                        }
                     }
                 }
 
