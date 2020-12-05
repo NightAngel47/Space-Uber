@@ -201,9 +201,10 @@ public class ObjectScript : MonoBehaviour
 
             if(r.nextToRoom == true && CalledFromSpawn == false)
             {
-                bool check = SpotChecker.instance.NextToRoomCall(gameObject, rotAdjust);
+                bool check = SpotChecker.instance.NextToRoomCall(r.gameObject, r.rotAdjust);
                 if (check == false)
                 {
+                    SpotChecker.instance.RemoveSpots(r.gameObject, r.rotAdjust);
                     Destroy(r.gameObject);
                 }
             }
