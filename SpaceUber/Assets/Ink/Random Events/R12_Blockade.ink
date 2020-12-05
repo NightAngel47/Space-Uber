@@ -1,6 +1,6 @@
 VAR randomEnd = ->FightWin
 
-The hinges of the door to your office crack in many different places as Lexa throws it open to enter the room. “Game time baby” she roars over and over with unwavering intensity. “There’s a blockade beginning to surround the ship. They won’t let us pass unless we bribe them. You could do that. Or, you let me have em. Which one?”
+The hinges of the door to your office crack in many different places as Lexa throws it open to enter the room. "Game time baby" she roars over and over with unwavering intensity. "There’s a blockade beginning to surround the ship. They won't let us pass unless we bribe them. You could do that. Or, you let me have em. Which one?"
 
 + [Bribe (-100 Credits)]
 -> Bribe
@@ -9,7 +9,7 @@ The hinges of the door to your office crack in many different places as Lexa thr
 
 
 ==Bribe==
-You decide the trouble of fighting an entire blockade at once isn’t worth it. You give them their credits, pass through the blockade, and continue on your job.
+You decide the trouble of fighting an entire blockade at once isn't worth it. You give them their credits, pass through the blockade, and continue on your job.
 -> END
 
 ==FightWin==
