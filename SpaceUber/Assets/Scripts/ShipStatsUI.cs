@@ -157,7 +157,7 @@ public class ShipStatsUI : MonoBehaviour
     public void ShowFoodUIChange(int currentChange, int tickChange)
     {
         SpawnStatChangeText(foodCurrentText, currentChange, 3, 2);
-        SpawnStatChangeText(foodTickText, tickChange, 3, 3);
+        SpawnStatChangeText(foodTickText, tickChange, 3, 2);
 
         if(currentChange != 0)
         {

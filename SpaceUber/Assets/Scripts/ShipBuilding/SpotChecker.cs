@@ -22,7 +22,9 @@ public class SpotChecker : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (!instance) { instance = this; }
+        else { Destroy(gameObject); return; }
+        DontDestroyOnLoad(this);
     }
 
     //how to change the individual thing
