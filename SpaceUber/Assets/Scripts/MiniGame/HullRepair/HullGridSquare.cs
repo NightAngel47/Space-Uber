@@ -26,7 +26,7 @@ public class HullGridSquare : MonoBehaviour
         bool collidedWithHullPiece = false;
         foreach (Collider2D collider in colliders)
         {
-            if (collider) { if (collider.CompareTag("Hull Piece")) { collidedWithHullPiece = true; } }
+            if (collider) { if (collider.CompareTag("Hull Piece")) { collidedWithHullPiece = true;} }
         }
         if (collidedWithHullPiece) { image.color = Color.green; isCovered = true; }
         else { image.color = Color.red; isCovered = false; }

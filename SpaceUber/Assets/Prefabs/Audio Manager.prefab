@@ -1903,6 +1903,14 @@ MonoBehaviour:
   - name: Pull Crank
     clip: {fileID: 8300000, guid: 33cf77d3a5cb7d94f9a101a70d052cfc, type: 3}
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0.05
+    pitchVarience: 0.35
+  - name: Pull Crank
+    clip: {fileID: 8300000, guid: 33cf77d3a5cb7d94f9a101a70d052cfc, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
     volume: 0.75
     pitch: 1
     volumeVarience: 0.005
@@ -2005,6 +2013,13 @@ MonoBehaviour:
     pitch: 1
     volumeVarience: 0.05
     pitchVarience: 0.05
+  - name: Fixed
+    clip: {fileID: 8300000, guid: db88950eade903c4cbf7b605df937e9e, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.75
+    pitch: 1
+    volumeVarience: 0.15
+    pitchVarience: 0.15
   - name: Escort Out
     clip: {fileID: 8300000, guid: e35ba08f743467a439a42ca79d12187c, type: 3}
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}

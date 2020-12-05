@@ -119,23 +119,23 @@ public class MiniGameCrop : MonoBehaviour
                 miniGameManager.IncrementRequiredScore();
                 pruneLevel = maxPruneLevel;
 
-                AudioManager.instance.PlaySFX(trimCropSFX[Random.Range(0, trimCropSFX.Length - 1)]);
+                AudioManager.instance.PlaySFX(trimCropSFX[Random.Range(0, trimCropSFX.Length)]);
             }
             if (CropHarvestMiniGame.selectedTool.toolType == MiniGameToolType.WateringCan && !isWatered) 
             { 
                 isWatered = true;
                 waterLevel = maxWaterLevel;
-                AudioManager.instance.PlaySFX(waterCropSFX[Random.Range(0, waterCropSFX.Length - 1)]);
+                AudioManager.instance.PlaySFX(waterCropSFX[Random.Range(0, waterCropSFX.Length)]);
             }
             if (CropHarvestMiniGame.selectedTool.toolType == MiniGameToolType.Fertilizer && !isFertilized) 
             {
                 isFertilized = true;
-                AudioManager.instance.PlaySFX(fertilizeCropSFX[Random.Range(0, fertilizeCropSFX.Length - 1)]);
+                AudioManager.instance.PlaySFX(fertilizeCropSFX[Random.Range(0, fertilizeCropSFX.Length)]);
             }
              if (CropHarvestMiniGame.selectedTool.toolType == MiniGameToolType.Seed  && stage == CropStage.Unplanted)
             { 
                 stage = CropStage.Seedling;
-                AudioManager.instance.PlaySFX(plantCropSFX[Random.Range(0, plantCropSFX.Length - 1)]);
+                AudioManager.instance.PlaySFX(plantCropSFX[Random.Range(0, plantCropSFX.Length)]);
             }
         }
     }
