@@ -309,6 +309,14 @@ public class ShipStats : MonoBehaviour
         crewCurrent += crewCurrentAmount;
         crewUnassigned += crewUnassignedAmount;
 
+        if (crewCurrentAmount < 0)
+        {
+            if(crewUnassigned < 0)
+            {
+                RemoveRandomCrew(Mathf.Abs(crewUnassigned));
+            }  
+        }
+
         /*
         if (crewRemainingAmount >= 0)
         {
