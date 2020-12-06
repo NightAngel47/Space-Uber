@@ -59,7 +59,14 @@ public class OutcomeTooltipUI : MonoBehaviour
 
     public void SetOutcomeData(string description, List<EventChoice.MultipleRandom> randomOutcomes, bool isSecret)
     {
-        outcomeDescUI.text = description;
+        if(description == "")
+        {
+            outcomeDescUI.gameObject.SetActive(false);
+        }
+        else
+        {
+            outcomeDescUI.text = description;
+        }
 
         if (isSecret)
         {

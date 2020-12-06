@@ -101,11 +101,11 @@ public class EventChoice
             story = thisStory;
             if(hasRandomEnding)
             {
-                tooltip.SetOutcomeData(description, randomEndingOutcomes);
+                tooltip.SetOutcomeData(description, randomEndingOutcomes, hasSecretOutcomes);
             }
             else
             {
-                tooltip.SetOutcomeData(description, outcomes);
+                tooltip.SetOutcomeData(description, outcomes, hasSecretOutcomes);
             }
         }
         else
