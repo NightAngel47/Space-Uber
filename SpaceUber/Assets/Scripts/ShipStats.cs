@@ -560,6 +560,7 @@ public class ShipStats : MonoBehaviour
     public void RemoveRandomCrew(int amount)
     {
         RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+        int[] crewLost = new int[rooms.Length];
         int crewAssigned = crewCurrent - crewUnassigned;
 
         for(int i = 0; i < amount; i++)
@@ -579,10 +580,19 @@ public class ShipStats : MonoBehaviour
                 if(crewChecked > selection)
                 {
                     rooms[index].UpdateCurrentCrew(-1);
+                    crewLost[index] += 1;
                     crewAssigned -= 1;
                 }
                 
                 index += 1;
+            }
+        }
+        
+        for(int i = 0; i < crewLost.Length; i++)
+        {
+            if(crewLost[i] != 0)
+            {
+                rooms[i].SpawnStatChangeText(crewLost[i], 4);
             }
         }
     }
