@@ -59,7 +59,7 @@ public class CrewManagement : MonoBehaviour
         {
             sceneButtons[0].GetComponent<Button>().interactable = false;
         }
-        Debug.Log(minAssignableCrew);
+
         room = FindObjectOfType<ObjectScript>().gameObject;
     }
     
