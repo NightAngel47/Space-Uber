@@ -11,25 +11,27 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using TMPro;
 
 [System.Serializable]
 public class ChoiceOutcomes
 {
     [SerializeField] private string outcomeName;
-    
-    [SerializeField] private bool isNarrativeOutcome;
-    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] private ResourceType resource;
-    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] private int amount;
-    [Dropdown("cateringToRichBools"), 
+
+    [HideInInspector] public GameObject narrativeResultsBox;
+
+    [SerializeField] public bool isNarrativeOutcome;
+    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public ResourceType resource;
+    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public int amount;
+    [Dropdown("cateringToRichBools"),
      SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private string ctrBoolOutcomes;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int cloneTrustChange;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int VIPTrustChange;
-    
+
     public void StatChange(ShipStats ship, CampaignManager campMan, bool hasSubsequentChoices)
     {
         if (ship != null)
         {
-            
            if (!isNarrativeOutcome)
             {
                 switch (resource)
@@ -97,8 +99,10 @@ public class ChoiceOutcomes
             }
             else
             {
+                string resultText = "";
                 switch (campMan.currentCamp)
                 {
+
                     //for catering to the rich campaign
                     case Campaigns.CateringToTheRich:
                         CampaignManager.CateringToTheRich campaign = CampaignManager.Campaign.ToCateringToTheRich(campMan.campaigns[(int)Campaigns.CateringToTheRich]);
@@ -112,23 +116,51 @@ public class ChoiceOutcomes
                         {
                             case "Side With Scientist":
                                 campaign.ctr_sideWithScientist = true;
+                                resultText = "You sided with the scientist";
                                 break;
                             case "Kill Beckett":
                                 campaign.ctr_killBeckett = true;
+                                resultText = "You killed Beckett";
                                 break;
                             case "Let Bale Pilot":
                                 campaign.ctr_letBalePilot = true;
+                                resultText = "You let Bale pilot";
                                 break;
                             case "Killed At Safari":
                                 campaign.ctr_killedAtSafari = true;
+                                resultText = "You killed at the safari";
                                 break;
                             case "Tell VIPs About Clones":
                                 campaign.ctr_tellVIPsAboutClones = true;
+                                resultText = "You told the VIPs about the clones";
                                 break;
                         }
                         break;
-                        
+
                 }
+                //TODO: Make resultText show up on the textbox somehow
+                narrativeResultsBox.gameObject.SetActive(true);
+
+                if(cloneTrustChange < 0)
+                {
+                    resultText += "\n The clones have " + cloneTrustChange + "% less trust in you";
+                }
+                else if(cloneTrustChange > 0)
+                {
+                    resultText += "\n The clones have " + cloneTrustChange + "% more trust in you";
+                }
+
+                if (VIPTrustChange < 0)
+                {
+                    resultText += "\n The VIPs have " + VIPTrustChange + "% less trust in you";
+                }
+                else if (VIPTrustChange > 0)
+                {
+                    resultText += "\n The VIPs have " + VIPTrustChange + "% more trust in you";
+                }
+
+                Debug.Log(resultText);
+                narrativeResultsBox.GetComponent<TMP_Text>().text = resultText;
             }
         }
 
@@ -141,17 +173,17 @@ public class ChoiceOutcomes
             return new List<string>() { "N_A", "Side With Scientist", "Kill Beckett", "Let Bale Pilot", "Killed At Safari", "Tell VIPs About Clones" };
         }
     }
-    
+
     private void SpawnStatChangeText(ShipStats ship, int value, int icon = -1)
     {
         GameObject statChangeText = ship.GetComponent<ShipStatsUI>().statChangeText;
         GameObject instance = GameObject.Instantiate(statChangeText);
-        
+
         RectTransform rect = instance.GetComponent<RectTransform>();
         rect.anchoredPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        
+
         instance.transform.parent = ship.GetComponent<ShipStatsUI>().canvas;
-        
+
         MoveAndFadeBehaviour moveAndFadeBehaviour = instance.GetComponent<MoveAndFadeBehaviour>();
         moveAndFadeBehaviour.offset = new Vector2(0, +75);
         moveAndFadeBehaviour.SetValue(value, icon);

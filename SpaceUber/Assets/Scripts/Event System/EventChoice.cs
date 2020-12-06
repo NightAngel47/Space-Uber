@@ -19,6 +19,7 @@ public class EventChoice
     private InkDriverBase driver;    
     private Story story;
     [SerializeField] private string choiceName;
+    [SerializeField] public string description;
 
     [SerializeField] private bool changeMusic;
     [SerializeField] private bool playSFX;
@@ -42,6 +43,7 @@ public class EventChoice
     private float percantageIncreased;
     private bool increasedPercent = false;
 
+    public bool hasSecretOutcomes;
     [SerializeField] private bool hasRandomEnding;    
     [SerializeField, ShowIf("hasRandomEnding")] private List<MultipleRandom> randomEndingOutcomes = new List<MultipleRandom>();
     [SerializeField, HideIf("hasRandomEnding")] private List<ChoiceOutcomes> outcomes = new List<ChoiceOutcomes>();
@@ -63,7 +65,7 @@ public class EventChoice
     /// </summary>
     /// <param name="ship"></param>
     /// <param name="myButton"></param>
-    public void CreateChoice(ShipStats ship, Button myButton, Story thisStory, InkDriverBase thisDriver)
+    public void CreateChoice(ShipStats ship, Button myButton, Story thisStory, InkDriverBase thisDriver, OutcomeTooltipUI tooltip)
     {
         bool requirementMatch = true;
         driver = thisDriver;
@@ -97,6 +99,14 @@ public class EventChoice
         {
             myButton.interactable = true;
             story = thisStory;
+            if(hasRandomEnding)
+            {
+                tooltip.SetOutcomeData(description, randomEndingOutcomes, hasSecretOutcomes);
+            }
+            else
+            {
+                tooltip.SetOutcomeData(description, outcomes, hasSecretOutcomes);
+            }
         }
         else
         {
@@ -154,6 +164,7 @@ public class EventChoice
         {
             foreach (ChoiceOutcomes outcome in outcomes)
             {
+                outcome.narrativeResultsBox = driver.resultsBox;
                 outcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
             }
         }
