@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2872,6 +2872,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -993.85
       objectReference: {fileID: 0}
+    - target: {fileID: 2694391759890407626, guid: 2881fb45785837144aa48e81ba17090b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2694391760355496411, guid: 2881fb45785837144aa48e81ba17090b,
         type: 3}
       propertyPath: m_Name
@@ -3001,6 +3006,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -648
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921723036722024211, guid: 2881fb45785837144aa48e81ba17090b,
+        type: 3}
+      propertyPath: m_text
+      value: 'The amount of food to keep the crew fed. '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2881fb45785837144aa48e81ba17090b, type: 3}
