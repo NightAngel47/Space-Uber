@@ -159,7 +159,7 @@ public class InkDriverBase : MonoBehaviour
 
                 if (choice.index < nextChoices.Count)
                 {
-                    nextChoices[choice.index].CreateChoice(thisShip,choiceButton, story,this);
+                    nextChoices[choice.index].CreateChoice(thisShip,choiceButton, story,this, choiceButton.transform.GetChild(1).GetComponent<OutcomeTooltipUI>());
 
                     // Have on click also call the outcome choice to update the ship stats
                     choiceButton.onClick.AddListener(delegate {
