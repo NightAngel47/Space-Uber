@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2872,6 +2872,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -993.85
       objectReference: {fileID: 0}
+    - target: {fileID: 2694391759890407626, guid: 2881fb45785837144aa48e81ba17090b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2694391760355496411, guid: 2881fb45785837144aa48e81ba17090b,
         type: 3}
       propertyPath: m_Name
@@ -3001,6 +3006,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -648
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921723036722024211, guid: 2881fb45785837144aa48e81ba17090b,
+        type: 3}
+      propertyPath: m_text
+      value: 'The amount of food to keep the crew fed. '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2881fb45785837144aa48e81ba17090b, type: 3}
@@ -3705,44 +3715,73 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
         type: 3}
-      propertyPath: sfxTracks.Array.size
-      value: 264
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: sfxTracks.Array.data[263].name
-      value: Mulch
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: sfxTracks.Array.data[263].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: c697f8172ddb6f641a8ced98c6c56f28, type: 3}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: sfxTracks.Array.data[263].mixer
-      value: 
-      objectReference: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f,
-        type: 2}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: sfxTracks.Array.data[263].volume
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: sfxTracks.Array.data[263].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: sfxTracks.Array.data[263].volumeVarience
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: sfxTracks.Array.data[263].pitchVarience
+      propertyPath: sfxTracks.Array.data[174].volumeVarience
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[175].volumeVarience
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[194].volumeVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[195].volumeVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[196].volumeVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[197].volumeVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[198].volumeVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[199].volumeVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[196].volume
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[195].volume
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[194].volume
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[32].volumeVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[33].volumeVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[34].volumeVarience
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfd00d5985b7e774da68f5c929635ee4, type: 3}

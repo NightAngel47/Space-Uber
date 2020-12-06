@@ -218,28 +218,28 @@ MonoBehaviour:
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
     volume: 0.25
     pitch: 1
-    volumeVarience: 0.25
+    volumeVarience: 0.05
     pitchVarience: 0.5
   - name: Alien Noise 4
     clip: {fileID: 8300000, guid: da3f1b96a15cce841a9a49f6ef658b92, type: 3}
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
     volume: 0.25
     pitch: 1
-    volumeVarience: 0.25
+    volumeVarience: 0.05
     pitchVarience: 0.5
   - name: Alien Noise 5
     clip: {fileID: 8300000, guid: f6366834368c1d94685e366019b4f488, type: 3}
     mixer: {fileID: 0}
     volume: 0.25
     pitch: 1
-    volumeVarience: 0.25
+    volumeVarience: 0.05
     pitchVarience: 0.5
   - name: Alien Noise 6
     clip: {fileID: 8300000, guid: 6ec84206a5bdd2244b8c74e2b19bf300, type: 3}
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
-    volume: 0.25
+    volume: 0.2
     pitch: 1
-    volumeVarience: 0.25
+    volumeVarience: 0.05
     pitchVarience: 0.5
   - name: Alien Noise 7
     clip: {fileID: 8300000, guid: 7a2549c74a32e1f4cb7e780a8168868e, type: 3}
@@ -1903,7 +1903,6 @@ MonoBehaviour:
   - name: Pull Crank
     clip: {fileID: 8300000, guid: 33cf77d3a5cb7d94f9a101a70d052cfc, type: 3}
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
-    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
     volume: 0.85
     pitch: 1
     volumeVarience: 0.05
@@ -2041,20 +2040,188 @@ MonoBehaviour:
     pitch: 1
     volumeVarience: 0.2
     pitchVarience: 0.2
-  - name: Auction (NB)
-    clip: {fileID: 8300000, guid: d5015a56208207648ba3cdb939c63217, type: 3}
+  - name: Mulch
+    clip: {fileID: 8300000, guid: c697f8172ddb6f641a8ced98c6c56f28, type: 3}
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
     volume: 0.8
     pitch: 1
-    volumeVarience: 0.2
-    pitchVarience: 0.2
+    volumeVarience: 0.1
+    pitchVarience: 0.15
   - name: Bad Safari
     clip: {fileID: 8300000, guid: 894f04b282b5d6f4aa96323c0a833874, type: 3}
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
-    volume: 0.6
+    volume: 0.8
+    pitch: 1
+    volumeVarience: 0.1
+    pitchVarience: 0.15
+  - name: Not Enough Credits 1
+    clip: {fileID: 8300000, guid: 0d1edd662d6837747b386abd256101e9, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.8
+    pitch: 1
+    volumeVarience: 0.1
+    pitchVarience: 0.15
+  - name: Not Enough Credits 2
+    clip: {fileID: 8300000, guid: a5aad567bd3465d4d82d9e3d8755b009, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.8
+    pitch: 1
+    volumeVarience: 0.1
+    pitchVarience: 0.15
+  - name: Not Enough Credits 3
+    clip: {fileID: 8300000, guid: a5aad567bd3465d4d82d9e3d8755b009, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.8
+    pitch: 1
+    volumeVarience: 0.1
+    pitchVarience: 0.15
+  - name: Not Enough Energy 1
+    clip: {fileID: 8300000, guid: cf7e87a649df41d478f62b7a0d6769e8, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.8
+    pitch: 1
+    volumeVarience: 0.1
+    pitchVarience: 0.15
+  - name: Not Enough Energy 2
+    clip: {fileID: 8300000, guid: b2b4f62789dc962419c342e388a65e93, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.8
+    pitch: 1
+    volumeVarience: 0.1
+    pitchVarience: 0.15
+  - name: Not Enough Energy 3
+    clip: {fileID: 8300000, guid: b80f9ea9c52d76043bf1f4e858794721, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.8
+    pitch: 1
+    volumeVarience: 0.1
+    pitchVarience: 0.15
+  - name: Not Enough Space 1
+    clip: {fileID: 8300000, guid: 76cc1127f01fd7543821fb86140ce41b, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.8
+    pitch: 1
+    volumeVarience: 0.1
+    pitchVarience: 0.15
+  - name: Not Enough Space 2
+    clip: {fileID: 8300000, guid: 5b50fa1eeb8b8cf409e611e5362582c3, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.8
+    pitch: 1
+    volumeVarience: 0.1
+    pitchVarience: 0.15
+  - name: Not Enough Space 3
+    clip: {fileID: 8300000, guid: c4f40e9a780383748bcecf812130163f, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.8
+    pitch: 1
+    volumeVarience: 0.1
+    pitchVarience: 0.15
+  - name: Gain Credits
+    clip: {fileID: 8300000, guid: fd03ac14c8b01f144b74b541701d01f3, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.5
     pitch: 1
     volumeVarience: 0.05
-    pitchVarience: 0.1
+    pitchVarience: 0.25
+  - name: Gain Crew
+    clip: {fileID: 8300000, guid: 52ed2e6bbe1f034478c0f4d48ee3f1de, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.5
+    pitch: 1
+    volumeVarience: 0.05
+    pitchVarience: 0.25
+  - name: Gain Energy
+    clip: {fileID: 8300000, guid: 87150ec3297a3024f921e6fab1da60ad, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.5
+    pitch: 1
+    volumeVarience: 0.05
+    pitchVarience: 0.25
+  - name: Gain Food
+    clip: {fileID: 8300000, guid: 2c1d8c5bb39370a4baf104c471d6263d, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.5
+    pitch: 1
+    volumeVarience: 0.05
+    pitchVarience: 0.25
+  - name: Gain Hull
+    clip: {fileID: 8300000, guid: 379c1fdef606e5c4d83ea6c6c925d3f3, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.5
+    pitch: 1
+    volumeVarience: 0.05
+    pitchVarience: 0.25
+  - name: Gain Morale
+    clip: {fileID: 8300000, guid: 95b4797713d498046af33eba78216ab6, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.5
+    pitch: 1
+    volumeVarience: 0.05
+    pitchVarience: 0.25
+  - name: Gain Weapons
+    clip: {fileID: 8300000, guid: 3aa23578e8fd4ab4382a1856f2eff147, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.5
+    pitch: 1
+    volumeVarience: 0.05
+    pitchVarience: 0.25
+  - name: Lose Credits
+    clip: {fileID: 8300000, guid: c5c7b6e8f32888e41b63e37f6f7406af, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.5
+    pitch: 1
+    volumeVarience: 0.05
+    pitchVarience: 0.25
+  - name: Lose Crew
+    clip: {fileID: 8300000, guid: 7c940082061a6c546a4f15005fb7d5c2, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.5
+    pitch: 1
+    volumeVarience: 0.05
+    pitchVarience: 0.25
+  - name: Lose Energy
+    clip: {fileID: 8300000, guid: b26f322d978e8b441a08413ef5b10e23, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.5
+    pitch: 1
+    volumeVarience: 0.05
+    pitchVarience: 0.25
+  - name: Lose Food
+    clip: {fileID: 8300000, guid: 649dcdf5bbac1824ba27b974c394ad97, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.5
+    pitch: 1
+    volumeVarience: 0.05
+    pitchVarience: 0.25
+  - name: Lose Hull
+    clip: {fileID: 8300000, guid: 14e636c81b0aa064c95b71e1a04508e1, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.5
+    pitch: 1
+    volumeVarience: 0.05
+    pitchVarience: 0.25
+  - name: Lose Morale
+    clip: {fileID: 8300000, guid: 0324870f76d469e49ba62549d96ff6fd, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.5
+    pitch: 1
+    volumeVarience: 0.05
+    pitchVarience: 0.25
+  - name: Lose Security
+    clip: {fileID: 8300000, guid: 8979e2522707fab428d31f7a96ab4995, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.5
+    pitch: 1
+    volumeVarience: 0.05
+    pitchVarience: 0.25
+  - name: Lose Weapons
+    clip: {fileID: 8300000, guid: 765db36a21b275040a045311352d24fc, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.5
+    pitch: 1
+    volumeVarience: 0.05
+    pitchVarience: 0.25
   ambientTracks:
   - name: Warbling White Noise
     clip: {fileID: 8300000, guid: 6d140a3d68eb54947857dc1f58801017, type: 3}
