@@ -36,7 +36,7 @@ public class OutcomeTooltipUI : MonoBehaviour
             GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
             outcomeTextGO.GetComponent<TMP_Text>().text = defaultOutcomeText;
         }
-        else
+        else if (outcomes.Count > 0)
         {
             foreach (var outcome in outcomes)
             {
@@ -54,6 +54,11 @@ public class OutcomeTooltipUI : MonoBehaviour
                     resourceGO.transform.GetChild(3).gameObject.SetActive(false); // outcome probability
                 }
             }
+        }
+        else
+        {
+            GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
+            outcomeTextGO.GetComponent<TMP_Text>().text = defaultOutcomeText;
         }
     }
 
@@ -73,7 +78,7 @@ public class OutcomeTooltipUI : MonoBehaviour
             GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
             outcomeTextGO.GetComponent<TMP_Text>().text = defaultOutcomeText;
         }
-        else
+        else if (randomOutcomes.Count > 0)
         {
             foreach (var randomOutcome in randomOutcomes)
             {
@@ -90,10 +95,10 @@ public class OutcomeTooltipUI : MonoBehaviour
                         resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GetResourceIcon(randomOutcome.outcomes[i].resource); // resource icon
                         resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = randomOutcome.outcomes[i].resource.ToString(); // resource name
                         resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = randomOutcome.outcomes[i].amount.ToString(); // resource amount
-                        resourceGO.transform.GetChild(3).gameObject.SetActive(false); // outcome probability
+                        
                         if (i == 0)
                         {
-                            resourceGO.transform.GetChild(3).GetComponent<TMP_Text>().text = randomOutcome.probability.ToString() + "%"; // outcome probability
+                            resourceGO.transform.GetChild(3).GetComponent<TMP_Text>().text = randomOutcome.probability + "%"; // outcome probability
                         }
                         else
                         {
@@ -102,6 +107,11 @@ public class OutcomeTooltipUI : MonoBehaviour
                     }
                 }
             }
+        }
+        else
+        {
+            GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
+            outcomeTextGO.GetComponent<TMP_Text>().text = defaultOutcomeText;
         }
     }
 
