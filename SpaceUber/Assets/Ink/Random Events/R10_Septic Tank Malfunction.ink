@@ -2,7 +2,7 @@ VAR randomEnd = -> Fix1
 VAR randomEnd2 = -> Fix2
 
 
-The mechanic, Mateo, contacts you, "We have a little bit of a problem. You see, the waste disposal systems aren't working correctly. The tanks aren't emptying properly, and they're filling up too quick. If we don't fix it and soon, all that stuff may damage the ship.
+The mechanic, Mateo, contacts you, "Now I swear this may sound like the start of one of my jokes, but the waste disposal systems aren't working correctly. The tanks aren't emptying properly, and they're filling up too quick. If we don't fix it and soon, all that... stuff may damage the ship.
 "We could have some crew members fix it, but that may not be safe or pleasant for them, y'know. You could also fix it remotely, but that may allow some pressure to build up, and we don't want that." 
 * [Fix with Crew ] #50% Chance - 1 Crew
     ->randomEnd
@@ -22,7 +22,7 @@ You decide to fix the problem remotely. Using various on-board systems, you mana
 -> END
 
 === Damage ===
-You decide to fix the problem remotely. Using various on-board systems, you manage to repair the disposal systems. Unfortunately, due to the slow speed of this method, the pressure build-up caused some damage to the ship's hull.
+You decide to fix the problem remotely. Using various on-board systems, you manage to repair the disposal systems. Unfortunately, due to the slow speed of this method, the pressure build-up have caused the tanks to put some strain on the hull, leaving them weakened.
 -> END
 
 ===function RandomizeEnding(rng)===
