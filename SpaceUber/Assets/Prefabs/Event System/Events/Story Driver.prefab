@@ -53,13 +53,15 @@ MonoBehaviour:
   inkJSONAsset: {fileID: 4900000, guid: 478adf17c9543ee4a893e41cbb624235, type: 3}
   eventName: Default
   backgroundImage: {fileID: 21300000, guid: 55b8a2770408a8e44a586cee5b6c4f90, type: 3}
-  buttonPrefab: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
+  buttonPrefab: {fileID: 509883202669863463, guid: d0efe66bb43b67247b612caf7107f379,
     type: 3}
   campMan: {fileID: 0}
   textPrintSpeed: 0.01
-  firstChoices: []
-  requiredStats: []
   eventBGM: 
+  requiredStats: []
+  nextChoices: []
+  hasSubsequentChoices: 0
+  subsequentChoices: []
 --- !u!222 &1311208582452319091
 CanvasRenderer:
   m_ObjectHideFlags: 0
