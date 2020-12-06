@@ -80,7 +80,7 @@ public class SecurityMiniGame : MiniGame
 
     void GenerateCode()
     {
-        foreach(CodeBlock block in codeSegments) { block.gameObject.SetActive(true); }
+        foreach(CodeBlock block in codeSegments) { block.RestetInput(); }
         ScrambleCodeBlocks();
         requiredCode = "";
         availableCode = "";
