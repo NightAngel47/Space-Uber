@@ -103,6 +103,15 @@ public class CrewManagement : MonoBehaviour
         {
             overclockButton.interactable = true;
         }
+        
+        if (GameManager.instance.currentGameState != InGameStates.Events)
+        {
+            overclockButton.gameObject.SetActive(false);
+        }
+        else if(GameManager.instance.currentGameState == InGameStates.Events)
+        {
+            overclockButton.gameObject.SetActive(true);
+        }
 
         GameObject resourceGO;
         switch (room.GetComponent<OverclockRoom>().GetMiniGame())
