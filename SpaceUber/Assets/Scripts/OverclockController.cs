@@ -109,7 +109,7 @@ public class OverclockController : MonoBehaviour
             }
         }
         activeRoom = null;
-        FindObjectOfType<CrewManagement>().crewManagementText.SetActive(true);
+        //FindObjectOfType<CrewManagement>().crewManagementText.SetActive(true);
 	}
     
     private void SpawnStatChangeText(int value, int icon = -1)
