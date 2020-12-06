@@ -48,7 +48,7 @@ public class SpawnObject : MonoBehaviour
         RectTransform rt = buttonPanel.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(rt.sizeDelta.x, 280 * availableRooms.Count);
 
-        //hard coded preplaced rooms to be updated lated
+        //hard coded preplaced rooms to be updated later
         if (donePreplacedRoom == false)
         {
             donePreplacedRoom = true;
@@ -56,7 +56,8 @@ public class SpawnObject : MonoBehaviour
             lastSpawned = Instantiate(powercore, new Vector3(4, 2, 0), Quaternion.identity);
             lastSpawned.GetComponent<ObjectMover>().TurnOffBeingDragged();
             lastSpawned.GetComponent<ObjectScript>().preplacedRoom = true;
-            
+            ObjectMover.hasPlaced = true;
+
             StartCoroutine(PreplacedRoom());
         }
 
@@ -116,13 +117,12 @@ public class SpawnObject : MonoBehaviour
 
                 if(lastSpawned.GetComponent<ObjectScript>().nextToRoom == true)
                 {
-                    if(GameObject.Find(lastSpawned.GetComponent<ObjectScript>().nextToRoomName + "(Clone)") != null)
+                    foreach (ObjectScript r in otherRooms)
                     {
-                        GameObject r = GameObject.Find(lastSpawned.GetComponent<ObjectScript>().nextToRoomName + "(Clone)");
-
-                        //r.transform.GetChild(2).gameObject.SetActive(true);
-
-                        NextToRoomHighlight(r);
+                        if(lastSpawned.GetComponent<ObjectScript>().nextToRoomNum == r.objectNum)
+                        {
+                            NextToRoomHighlight(r.gameObject);
+                        }
                     }
                 }
 
@@ -205,7 +205,7 @@ public class SpawnObject : MonoBehaviour
 
     public IEnumerator WaitForText()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         FindObjectOfType<ShipStats>().cantPlaceText.SetActive(false);
     }
 

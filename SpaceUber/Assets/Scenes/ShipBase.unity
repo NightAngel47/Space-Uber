@@ -3705,219 +3705,45 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
         type: 3}
-      propertyPath: musicTracks.Array.size
-      value: 20
+      propertyPath: sfxTracks.Array.size
+      value: 264
       objectReference: {fileID: 0}
     - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
         type: 3}
-      propertyPath: musicTracks.Array.data[10].name
-      value: Asteroid Mining
+      propertyPath: sfxTracks.Array.data[263].name
+      value: Mulch
       objectReference: {fileID: 0}
     - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
         type: 3}
-      propertyPath: musicTracks.Array.data[10].clip
+      propertyPath: sfxTracks.Array.data[263].clip
       value: 
-      objectReference: {fileID: 8300000, guid: e04e9c9615e8a5242b7f70ccbffacef8, type: 3}
+      objectReference: {fileID: 8300000, guid: c697f8172ddb6f641a8ced98c6c56f28, type: 3}
     - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
         type: 3}
-      propertyPath: musicTracks.Array.data[10].mixer
+      propertyPath: sfxTracks.Array.data[263].mixer
       value: 
-      objectReference: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f,
+      objectReference: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f,
         type: 2}
     - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
         type: 3}
-      propertyPath: musicTracks.Array.data[10].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[11].name
-      value: Blockade
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[11].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 991bb1aa88af7164b87821522a33193b, type: 3}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[11].mixer
-      value: 
-      objectReference: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f,
-        type: 2}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[11].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[12].name
-      value: Crop Blight
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[12].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 1a7049fc8385f0b479a226c93639170f, type: 3}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[12].mixer
-      value: 
-      objectReference: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f,
-        type: 2}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[12].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[13].name
-      value: Door Malfunction
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[13].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 2d08db77deb3c694681cc858d748b63c, type: 3}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[13].mixer
-      value: 
-      objectReference: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f,
-        type: 2}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[13].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[14].name
-      value: Drug Overdose
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[14].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: b4c6755e6380bca46a79551ebb07fbad, type: 3}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[14].mixer
-      value: 
-      objectReference: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f,
-        type: 2}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[14].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[15].name
-      value: Escaped Convicts
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[15].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: a21c8ca1c1024b84584ac6c36c3ca34e, type: 3}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[15].mixer
-      value: 
-      objectReference: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f,
-        type: 2}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[15].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[16].name
-      value: Septic Malfunction
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[16].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8d3405b450e2b4b498dd2b585da9d493, type: 3}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[16].mixer
-      value: 
-      objectReference: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f,
-        type: 2}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[16].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[17].name
-      value: Soothing Light
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[17].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8d434ba9f2b5149439218dea1c821fd7, type: 3}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[17].mixer
-      value: 
-      objectReference: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f,
-        type: 2}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[17].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[18].name
-      value: Spatial Aurora
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[18].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 59a24e42b62fe524b9176c830d4c4ac7, type: 3}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[18].mixer
-      value: 
-      objectReference: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f,
-        type: 2}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[18].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[19].name
-      value: Death Theme
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[19].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 6e18d0ab31ee4bc4b9999a908169a3bd, type: 3}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: musicTracks.Array.data[19].volume
+      propertyPath: sfxTracks.Array.data[263].volume
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
         type: 3}
-      propertyPath: musicTracks.Array.data[19].mixer
-      value: 
-      objectReference: {fileID: -1070410809799078073, guid: 4baaccc3fdc14004284321e2c802e30f,
-        type: 2}
+      propertyPath: sfxTracks.Array.data[263].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[263].volumeVarience
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[263].pitchVarience
+      value: 0.15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfd00d5985b7e774da68f5c929635ee4, type: 3}
 --- !u!1 &1184268875
@@ -4916,21 +4742,6 @@ PrefabInstance:
       propertyPath: daysSinceDisplay
       value: 
       objectReference: {fileID: 919623707}
-    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
-        type: 3}
-      propertyPath: timeBeforeEventRoll
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
-        type: 3}
-      propertyPath: eventChanceFreq
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
-        type: 3}
-      propertyPath: chanceIncreasePerFreq
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
         type: 3}
       propertyPath: sonarObjects
@@ -6931,47 +6742,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Audio Manager
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: sfxTracks.Array.size
-      value: 237
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: sfxTracks.Array.data[236].name
-      value: Low Health
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: sfxTracks.Array.data[236].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 0ac5d1dcbfc082c4fafe0792243eb7b8, type: 3}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: sfxTracks.Array.data[236].mixer
-      value: 
-      objectReference: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f,
-        type: 2}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: sfxTracks.Array.data[236].volume
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: sfxTracks.Array.data[236].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: sfxTracks.Array.data[236].volumeVarience
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: sfxTracks.Array.data[236].pitchVarience
-      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfd00d5985b7e774da68f5c929635ee4, type: 3}

@@ -52,10 +52,13 @@ public class RoomStats : MonoBehaviour
 
     [SerializeField] private RoomTooltipUI roomTooltipUI;
 
-    public Transform statCanvas;
+    public Transform[] statCanvas;
+    
+    private Camera cam;
     
     void Start()
     {
+        cam = Camera.main;
         shipStats = FindObjectOfType<ShipStats>();
         StartCoroutine(LateStart(0.1f));
     }
@@ -274,7 +277,24 @@ public class RoomStats : MonoBehaviour
         shipStats.UpdateCrewAmount(-crew, -crew, -crew);
         shipStats.UpdateFoodAmount(-food);
         shipStats.UpdateFoodPerTickAmount(-foodPerTick);
-        shipStats.UpdateHullDurabilityAmount(-shipHealth, shipHealth);
+        shipStats.UpdateHullDurabilityAmount(-shipHealth, -shipHealth);
+    }
+    
+    public void SpawnStatChangeText(int value, int icon = -1)
+    {
+        ShipStatsUI shipStatsUI = shipStats.GetComponent<ShipStatsUI>();
+        GameObject statChangeUI = Instantiate(shipStatsUI.statChangeText);
+        
+        RectTransform rect = statChangeUI.GetComponent<RectTransform>();
+        
+        Vector3 spawnPos = cam.WorldToScreenPoint(transform.GetChild(0).position);
+        rect.anchoredPosition = new Vector2(spawnPos.x, spawnPos.y);
+        
+        statChangeUI.transform.parent = shipStats.GetComponent<ShipStatsUI>().canvas; // you have to set the parent after you change the anchored position or the position gets messed up.  Don't set it in the instantiation.  I don't know why someone decided to change that.
+        
+        MoveAndFadeBehaviour moveAndFadeBehaviour = statChangeUI.GetComponent<MoveAndFadeBehaviour>();
+        moveAndFadeBehaviour.offset = new Vector2(0, 25 + transform.GetChild(0).localPosition.y * 100);
+        moveAndFadeBehaviour.SetValue(value, icon);
     }
 
     private void OnDestroy()

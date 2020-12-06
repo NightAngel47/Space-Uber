@@ -20,6 +20,8 @@ public class InkDriverBase : MonoBehaviour
     public TextAsset inkJSONAsset;
 
     [SerializeField] private string eventName;
+    public bool isStoryEvent;
+    [ShowIf("isStoryEvent")] public int storyIndex;
     [SerializeField] private Sprite backgroundImage;
 
     //A prefab of the button we will generate every time a choice is needed
@@ -163,7 +165,7 @@ public class InkDriverBase : MonoBehaviour
 
                 if (choice.index < nextChoices.Count)
                 {
-                    nextChoices[choice.index].CreateChoice(thisShip,choiceButton, story,this);
+                    nextChoices[choice.index].CreateChoice(thisShip,choiceButton, story,this, choiceButton.transform.GetChild(1).GetComponent<OutcomeTooltipUI>());
 
                     // Have on click also call the outcome choice to update the ship stats
                     choiceButton.onClick.AddListener(delegate {

@@ -11,9 +11,9 @@ You tell Lanri to follow the most feasible and direct method. Uproot any crops s
 -> END
 
 == Mulch ==
-You realize there’s an easy way to create a nutritious mulch in the depths of space. You tell Lanri it will be tended to, which leads to a sigh and many words of thanks. You request one of your crew in hydroponics, and use the automated arms to quickly and efficiently rip them apart. Lanri soon has her mulch. 
+You realize there’s an easy way to create a nutritious mulch between destinations. You tell Lanri it will be tended to. Between her relief and overzealous words of thanks, she doesn't ask about the solution. You request someone to handle diasgnostics in hydroponics, and use the automated arms to quickly and efficiently rip them apart. Lanri soon has her mulch. 
 -> END
 
 == Cure ==
-You tell Lanri to get working at the med-bay as soon as possible to cure this blight. She smiles, "Leave it to me!" Using your state-of-the-art facilities, and no small amount of expensive chemicals, she comes up with a hot-fix that should keep your food production right where it is.
+You tell Lanri to get working at the med-bay as soon as possible to cure the blight. She jumps up and points a finger gun towards the nearest ship camera, "Leave it to me!" Using your state-of-the-art facilities, and no small amount of expensive chemicals, she comes up with a hot-fix to prevent the blight from spreading. Employing her work and strategic culling, should keep your food production right where it is.
 -> END

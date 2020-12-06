@@ -1,9 +1,9 @@
-Head of security, Lexa, calls you, “Boss. We have a ping. Someone is sending out Universal code, less than a thousand kilometers off the flight plan. We’re seeing ‘bartering,’ ‘value,’ and ‘discretion.’" she grins, “This sounds like a fence. Given the legality of their trade, prices should be good for us. I suggest we follow up.”
+Head of security, Kuon, calls you, “Boss. We have a signal ping. Universal code transmition. Less than a thousand kilometers off the flight plan. We’re seeing ‘bartering,’ ‘value,’ and ‘discretion.’" he slows down, as if gauging your reaction, “This sounds like a fence. Given the legality of their trade, prices should be good for us. I suggest we follow up.”
 
 -> Black_Market
 
 == Black_Market ==
-Accepting her suggestion, you divert your flight plan into the shadow of a nearby gas giant. You coast into a tower-shaped space station covered in radio antennas, its hangar giving your ample space to land. A broker, wrapped in several suits, cuff-links, and masks, boards your ship. They welcome you to the black market, and offer you their wares.
+Accepting his suggestion, you divert your flight plan into the shadow of a nearby gas giant. You coast into a tower-shaped space station covered in radio antennas, finding ample room in its hangar. A broker, wrapped in several suits, cuff-links, and masks, boards your ship. They welcome you to the black market, and offer you their wares.
 * [Flashclones (-100 Credits, +5 Crew)]
 -> Flashclones
 * [Nuclear Weapons (-100 Credits, +10 Weapons)]
@@ -23,5 +23,5 @@ Banned and re-banned for combat use every decade, nuclear weapons have somehow r
 -> END
 
 == Rations ==
-Several metal shipping containers full of plastic-wrapped rations are loaded onto your ship. Each plastic bag contains one nutritious meal for one person and has "DISASTER RELIEF" emblazoned across its width. The broker assures you that these were bought from a surplus, but you know they're being fenced here for a reason.
+Several metal shipping containers full of plastic-wrapped rations are loaded onto your ship. Each plastic bag contains one nutritious meal for one person and has "DISASTER RELIEF" emblazoned across it. The broker assures you that these were bought from a surplus, but they're being fenced here for a reason.
 -> END

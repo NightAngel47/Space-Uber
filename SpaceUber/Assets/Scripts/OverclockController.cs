@@ -115,12 +115,14 @@ public class OverclockController : MonoBehaviour
     private void SpawnStatChangeText(int value, int icon = -1)
     {
         ShipStatsUI shipStatsUI = shipStats.GetComponent<ShipStatsUI>();
-        GameObject statChangeUI = Instantiate(shipStatsUI.statChangeText, shipStatsUI.canvas, true);
+        GameObject statChangeUI = Instantiate(shipStatsUI.statChangeText);
         
         RectTransform rect = statChangeUI.GetComponent<RectTransform>();
         
         Vector3 spawnPos = cam.WorldToScreenPoint(activeRoom.transform.GetChild(0).position);
         rect.anchoredPosition = new Vector2(spawnPos.x, spawnPos.y);
+        
+        statChangeUI.transform.parent = shipStats.GetComponent<ShipStatsUI>().canvas; // you have to set the parent after you change the anchored position or the position gets messed up.  Don't set it in the instantiation.  I don't know why someone decided to change that.
 
         MoveAndFadeBehaviour moveAndFadeBehaviour = statChangeUI.GetComponent<MoveAndFadeBehaviour>();
         moveAndFadeBehaviour.offset = new Vector2(0, 25 + activeRoom.transform.GetChild(0).localPosition.y * 100);

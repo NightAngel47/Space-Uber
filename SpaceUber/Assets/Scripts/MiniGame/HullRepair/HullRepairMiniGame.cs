@@ -2,7 +2,7 @@
  * HullRepairMiniGame.cs
  * Author(s): #Greg Brandt#
  * Created on: 11/17/2020 (en-US)
- * Description: 
+ * Description: Manages hull repair mini game
  */
 
 using UnityEngine;
@@ -15,7 +15,7 @@ public class HullRepairMiniGame : MiniGame
 	private void Update()
 	{
 		int gridCoveredCount = 0;
-		foreach(HullGridSquare gridSquare in gridSquares) { if (gridSquare.IsCovered()){ gridCoveredCount++; }}
-		if (!gameOver) { if (gridCoveredCount == gridSquares.Length ) { EndMiniGameSuccess(); } }
+		foreach(HullGridSquare gridSquare in gridSquares) { if (gridSquare.IsCovered()){ gridCoveredCount++; } }
+		if (!gameOver) { if (gridCoveredCount == gridSquares.Length ) { EndMiniGameSuccess(); AudioManager.instance.PlaySFX("Fixed"); } }
 	}
 }

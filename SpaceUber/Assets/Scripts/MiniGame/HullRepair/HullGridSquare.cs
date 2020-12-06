@@ -2,7 +2,7 @@
  * HullGridSquare.cs
  * Author(s): #Greg Brandt#
  * Created on: 12/1/2020 (en-US)
- * Description: 
+ * Description: Used to to indicate whether a hull piece is overlaping
  */
 
 using UnityEngine;
@@ -26,7 +26,7 @@ public class HullGridSquare : MonoBehaviour
         bool collidedWithHullPiece = false;
         foreach (Collider2D collider in colliders)
         {
-            if (collider) { if (collider.CompareTag("Hull Piece")) { collidedWithHullPiece = true; } }
+            if (collider) { if (collider.CompareTag("Hull Piece")) { collidedWithHullPiece = true;} }
         }
         if (collidedWithHullPiece) { image.color = Color.green; isCovered = true; }
         else { image.color = Color.red; isCovered = false; }

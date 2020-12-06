@@ -20,19 +20,18 @@ public class ChoiceOutcomes
 
     [HideInInspector] public GameObject narrativeResultsBox;
 
-    [SerializeField] private bool isNarrativeOutcome;
-    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] private ResourceType resource;
-    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] private int amount;
-    [Dropdown("cateringToRichBools"), 
+    [SerializeField] public bool isNarrativeOutcome;
+    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public ResourceType resource;
+    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public int amount;
+    [Dropdown("cateringToRichBools"),
      SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private string ctrBoolOutcomes;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int cloneTrustChange;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int VIPTrustChange;
-    
+
     public void StatChange(ShipStats ship, CampaignManager campMan, bool hasSubsequentChoices)
     {
         if (ship != null)
         {
-            
            if (!isNarrativeOutcome)
             {
                 switch (resource)
@@ -54,21 +53,29 @@ public class ChoiceOutcomes
                         SpawnStatChangeText(ship, amount, 2);
                         break;
                     case ResourceType.Crew:
-                        int amountFromAssigned;
-                        int amountFromUnassigned;
-                        if(ship.CrewCurrent - ship.CrewUnassigned >= amount)
+                        if(amount < 0)
                         {
-                            amountFromAssigned = amount;
-                            amountFromUnassigned = 0;
+                            int amountFromAssigned;
+                            int amountFromUnassigned;
+                            if(ship.CrewCurrent - ship.CrewUnassigned >= -amount)
+                            {
+                                amountFromAssigned = -amount;
+                                amountFromUnassigned = 0;
+                            }
+                            else
+                            {
+                                amountFromAssigned = ship.CrewCurrent - ship.CrewUnassigned;
+                                amountFromUnassigned = -amount - amountFromAssigned;
+                            }
+                            ship.RemoveRandomCrew(amountFromAssigned);
+                            ship.UpdateCrewAmount(-amountFromUnassigned, amount);
+                            SpawnStatChangeText(ship, amount);
                         }
                         else
                         {
-                            amountFromAssigned = ship.CrewCurrent - ship.CrewUnassigned;
-                            amountFromUnassigned = amount - amountFromAssigned;
+                            ship.UpdateCrewAmount(amount, amount);
+                            SpawnStatChangeText(ship, amount);
                         }
-                        ship.RemoveRandomCrew(amountFromAssigned);
-                        ship.UpdateCrewAmount(amountFromUnassigned, amount);
-                        SpawnStatChangeText(ship, amount, 4);
                         break;
                     case ResourceType.Food:
                         ship.UpdateFoodAmount(amount);
@@ -95,10 +102,10 @@ public class ChoiceOutcomes
                 string resultText = "";
                 switch (campMan.currentCamp)
                 {
-                    
+
                     //for catering to the rich campaign
                     case Campaigns.CateringToTheRich:
-                        CampaignManager.CateringToTheRich campaign = (CampaignManager.CateringToTheRich) campMan.campaigns[(int)Campaigns.CateringToTheRich];
+                        CampaignManager.CateringToTheRich campaign = CampaignManager.Campaign.ToCateringToTheRich(campMan.campaigns[(int)Campaigns.CateringToTheRich]);
 
                         //alter the trust variables
                         campaign.ctr_cloneTrust += cloneTrustChange;
@@ -129,11 +136,11 @@ public class ChoiceOutcomes
                                 break;
                         }
                         break;
-                        
+
                 }
                 //TODO: Make resultText show up on the textbox somehow
                 narrativeResultsBox.gameObject.SetActive(true);
-                
+
                 if(cloneTrustChange < 0)
                 {
                     resultText += "\n The clones have " + cloneTrustChange + "% less trust in you";
@@ -166,17 +173,17 @@ public class ChoiceOutcomes
             return new List<string>() { "N_A", "Side With Scientist", "Kill Beckett", "Let Bale Pilot", "Killed At Safari", "Tell VIPs About Clones" };
         }
     }
-    
+
     private void SpawnStatChangeText(ShipStats ship, int value, int icon = -1)
     {
         GameObject statChangeText = ship.GetComponent<ShipStatsUI>().statChangeText;
         GameObject instance = GameObject.Instantiate(statChangeText);
-        
+
         RectTransform rect = instance.GetComponent<RectTransform>();
         rect.anchoredPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        
+
         instance.transform.parent = ship.GetComponent<ShipStatsUI>().canvas;
-        
+
         MoveAndFadeBehaviour moveAndFadeBehaviour = instance.GetComponent<MoveAndFadeBehaviour>();
         moveAndFadeBehaviour.offset = new Vector2(0, +75);
         moveAndFadeBehaviour.SetValue(value, icon);

@@ -552,6 +552,7 @@ public class ShipStats : MonoBehaviour
     public void RemoveRandomCrew(int amount)
     {
         RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+        int[] crewLost = new int[rooms.Length];
         int crewAssigned = crewCurrent - crewUnassigned;
 
         for(int i = 0; i < amount; i++)
@@ -566,14 +567,24 @@ public class ShipStats : MonoBehaviour
             int crewChecked = 0;
             while(crewChecked <= selection)
             {
-                if(rooms[index].currentCrew + crewChecked > selection)
+                crewChecked += rooms[index].currentCrew;
+                
+                if(crewChecked > selection)
                 {
                     rooms[index].UpdateCurrentCrew(-1);
+                    crewLost[index] += 1;
                     crewAssigned -= 1;
                 }
-
-                crewChecked += rooms[index].currentCrew;
+                
                 index += 1;
+            }
+        }
+        
+        for(int i = 0; i < crewLost.Length; i++)
+        {
+            if(crewLost[i] != 0)
+            {
+                rooms[i].SpawnStatChangeText(crewLost[i], 4);
             }
         }
     }
@@ -598,6 +609,20 @@ public class ShipStats : MonoBehaviour
 
     public void ResetStats()
     {
+        credits = 0;
+        energyRemaining = 0;
+        energyMax = 0;
+        security = 0;
+        shipWeapons = 0;
+        crewUnassigned = 0;
+        crewCurrent = 0;
+        crewCapacity = 0;
+        food = 0;
+        foodPerTick = 0;
+        shipHealthCurrent = 0;
+        shipHealthMax = 0;
+        //crewMorale = 0;
+        
         UpdateCreditsAmount(startCredits);
         payout = startPayout;
         UpdateEnergyAmount(startEnergyRemaining, startEnergyMax);
