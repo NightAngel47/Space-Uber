@@ -164,6 +164,7 @@ public class EventChoice
         {
             foreach (ChoiceOutcomes outcome in outcomes)
             {
+                outcome.narrativeResultsBox = driver.resultsBox;
                 outcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
             }
         }

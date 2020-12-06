@@ -32,6 +32,7 @@ public class InkDriverBase : MonoBehaviour
     private Transform buttonGroup;
     private TMP_Text titleBox;
     private TMP_Text textBox;
+    [HideInInspector] public GameObject resultsBox;
     private Image backgroundUI;
     private ShipStats thisShip;
 
@@ -74,21 +75,26 @@ public class InkDriverBase : MonoBehaviour
     {
         story = new Story(inkJSONAsset.text); //this draws text out of the JSON file
 
+
+
         Refresh(); //starts the dialogue
         titleBox.text = eventName;
         backgroundUI.sprite = backgroundImage;
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
     }
 
-    public void AssignStatusFromEventSystem(TMP_Text title, TMP_Text text, Image background, Transform buttonSpace,
+    public void AssignStatusFromEventSystem(TMP_Text title, TMP_Text text, GameObject results, Image background, Transform buttonSpace,
         ShipStats ship, CampaignManager campaignManager)
     {
         titleBox = title;
         textBox = text;
+        resultsBox = results;
         backgroundUI = background;
         buttonGroup = buttonSpace;
         thisShip = ship;
         campMan = campaignManager;
+
+        resultsBox.SetActive(false);
     }
 
     private void Update()
