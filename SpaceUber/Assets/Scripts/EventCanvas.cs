@@ -14,6 +14,7 @@ public class EventCanvas : MonoBehaviour
     public GameObject canvas;
     public TMP_Text titleBox;
     public TMP_Text textBox;
+    public GameObject choiceResultsBox;
     public Image backgroundImage;
     public Transform buttonGroup;
 }
