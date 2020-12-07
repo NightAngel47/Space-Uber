@@ -19,6 +19,9 @@ public class ChoiceOutcomes
     [SerializeField] private string outcomeName;
 
     [HideInInspector] public GameObject narrativeResultsBox;
+    string resultText = "";
+
+    [HideInInspector] public bool hasSubsequentChoices;
 
     [SerializeField] public bool isNarrativeOutcome;
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public ResourceType resource;
@@ -32,25 +35,63 @@ public class ChoiceOutcomes
     {
         if (ship != null)
         {
-           if (!isNarrativeOutcome)
+            if (!isNarrativeOutcome)
             {
                 switch (resource)
                 {
                     case ResourceType.Credits:
                         ship.UpdateCreditsAmount(amount);
                         SpawnStatChangeText(ship, amount, 0);
+
+                        if(amount < 0)
+                        {
+                            resultText += "\nYou lost " + Math.Abs(amount) + " credits";
+                        }
+                        else
+                        {
+                            resultText += "\nYou gained " + Math.Abs(amount) + " credits";
+                        }
+
                         break;
                     case ResourceType.Energy:
                         ship.UpdateEnergyAmount(amount);
                         SpawnStatChangeText(ship, amount, 5);
+
+                        if (amount < 0)
+                        {
+                            resultText += "\nYou lost " + Math.Abs(amount) + " energy";
+                        }
+                        else
+                        {
+                            resultText += "\nYou gained " + Math.Abs(amount) + " energy";
+                        }
                         break;
                     case ResourceType.Security:
                         ship.UpdateSecurityAmount(amount);
                         SpawnStatChangeText(ship, amount, 1);
+
+                        if (amount < 0)
+                        {
+                            resultText += "\nYou lost " + Math.Abs(amount) + " security";
+                        }
+                        else
+                        {
+                            resultText += "\nYou gained " + Math.Abs(amount) + " security";
+                        }
+
                         break;
                     case ResourceType.ShipWeapons:
                         ship.UpdateShipWeaponsAmount(amount);
                         SpawnStatChangeText(ship, amount, 2);
+
+                        if (amount < 0)
+                        {
+                            resultText += "\nYou lost " + Math.Abs(amount) + " weapons";
+                        }
+                        else
+                        {
+                            resultText += "\nYou gained " + Math.Abs(amount) + " weapons";
+                        }
                         break;
                     case ResourceType.Crew:
                         if(amount < 0)
@@ -70,28 +111,64 @@ public class ChoiceOutcomes
                             ship.RemoveRandomCrew(amountFromAssigned);
                             ship.UpdateCrewAmount(-amountFromUnassigned, amount);
                             SpawnStatChangeText(ship, amount);
+                            resultText += "\nYou lost " + Math.Abs(amount) + " crew";
                         }
                         else
                         {
                             ship.UpdateCrewAmount(amount, amount);
                             SpawnStatChangeText(ship, amount);
+                            resultText += "\nYou gained " + Math.Abs(amount) + " crew";
                         }
                         break;
                     case ResourceType.Food:
                         ship.UpdateFoodAmount(amount);
                         SpawnStatChangeText(ship, amount, 3);
+                        if (amount < 0)
+                        {
+                            resultText += "\nYou lost " + Math.Abs(amount) + " food";
+                        }
+                        else
+                        {
+                            resultText += "\nYou gained " + Math.Abs(amount) + " food";
+                        }
                         break;
                     case ResourceType.FoodPerTick:
                         ship.UpdateFoodPerTickAmount(amount);
                         SpawnStatChangeText(ship, amount, 3);
+
+                        if (amount < 0)
+                        {
+                            resultText += "\nFood Per Tick decreased by " + Math.Abs(amount);
+                        }
+                        else
+                        {
+                            resultText += "\nFood Per Tick increased by " + Math.Abs(amount);
+                        }
                         break;
                     case ResourceType.HullDurability:
                         ship.UpdateHullDurabilityAmount(amount, 0, hasSubsequentChoices);
                         SpawnStatChangeText(ship, amount, 6);
+
+                        if (amount < 0)
+                        {
+                            resultText += "\nYou lost " + Math.Abs(amount) + " hull durability";
+                        }
+                        else
+                        {
+                            resultText += "\nYou gained " + Math.Abs(amount) + " hull durability";
+                        }
                         break;
                     case ResourceType.Payout:
                         ship.AddPayout(amount);
                         SpawnStatChangeText(ship, amount, 0);
+                        if (amount < 0)
+                        {
+                            resultText += "\nYour payout decreased by " + Math.Abs(amount);
+                        }
+                        else
+                        {
+                            resultText += "\nYour payout increased by " + Math.Abs(amount);
+                        }
                         break;
                     default:
                         break;
@@ -99,7 +176,7 @@ public class ChoiceOutcomes
             }
             else
             {
-                string resultText = "";
+                
                 switch (campMan.currentCamp)
                 {
 
@@ -116,23 +193,23 @@ public class ChoiceOutcomes
                         {
                             case "Side With Scientist":
                                 campaign.ctr_sideWithScientist = true;
-                                resultText = "You sided with the scientist";
+                                resultText += "\nYou sided with the scientist";
                                 break;
                             case "Kill Beckett":
                                 campaign.ctr_killBeckett = true;
-                                resultText = "You killed Beckett";
+                                resultText += "\nYou killed Beckett";
                                 break;
                             case "Let Bale Pilot":
                                 campaign.ctr_letBalePilot = true;
-                                resultText = "You let Bale pilot";
+                                resultText += "\nYou let Bale pilot";
                                 break;
                             case "Killed At Safari":
                                 campaign.ctr_killedAtSafari = true;
-                                resultText = "You killed at the safari";
+                                resultText += "\nYou killed at the safari";
                                 break;
                             case "Tell VIPs About Clones":
                                 campaign.ctr_tellVIPsAboutClones = true;
-                                resultText = "You told the VIPs about the clones";
+                                resultText += "\nYou told the VIPs about the clones";
                                 break;
                         }
                         break;
@@ -158,10 +235,15 @@ public class ChoiceOutcomes
                 {
                     resultText += "\n The VIPs have " + VIPTrustChange + "% more trust in you";
                 }
-
-                Debug.Log(resultText);
-                narrativeResultsBox.transform.GetChild(0).GetComponent<TMP_Text>().text = resultText;
+                
             }
+            if(!hasSubsequentChoices)
+            {
+                narrativeResultsBox.SetActive(true);
+            }
+            
+            //Debug.Log("Adding: " + resultText);
+            narrativeResultsBox.transform.GetChild(0).GetComponent<TMP_Text>().text += resultText;
         }
 
     }

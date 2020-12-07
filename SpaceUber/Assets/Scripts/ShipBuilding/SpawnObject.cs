@@ -129,52 +129,52 @@ public class SpawnObject : MonoBehaviour
                 switch (ga.name) //plays sfx for each room
                 {
                     case "Power Core":
-                        AudioManager.instance.PlaySFX(purchasePowerCore[UnityEngine.Random.Range(0, purchasePowerCore.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchasePowerCore[UnityEngine.Random.Range(0, purchasePowerCore.Length)]);
                         break;
                     case "Hydroponics":
-                        AudioManager.instance.PlaySFX(purchaseHydroponics[UnityEngine.Random.Range(0, purchaseHydroponics.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseHydroponics[UnityEngine.Random.Range(0, purchaseHydroponics.Length)]);
                         break;
                     case "Brig":
-                        AudioManager.instance.PlaySFX(purchaseBrig[UnityEngine.Random.Range(0, purchaseBrig.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseBrig[UnityEngine.Random.Range(0, purchaseBrig.Length)]);
                         break;
                     case "Storage":
-                        AudioManager.instance.PlaySFX(purchaseStorage[UnityEngine.Random.Range(0, purchaseStorage.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseStorage[UnityEngine.Random.Range(0, purchaseStorage.Length)]);
                         break;
                     case "Bunks":
-                        AudioManager.instance.PlaySFX(purchaseBunks[UnityEngine.Random.Range(0, purchaseBunks.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseBunks[UnityEngine.Random.Range(0, purchaseBunks.Length)]);
                         break;
                     case "Medbay":
-                        AudioManager.instance.PlaySFX(purchaseMedbay[UnityEngine.Random.Range(0, purchaseMedbay.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseMedbay[UnityEngine.Random.Range(0, purchaseMedbay.Length)]);
                         break;
                     case "VIP Lounge":
-                        AudioManager.instance.PlaySFX(purchaseVIP[UnityEngine.Random.Range(0, purchaseVIP.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseVIP[UnityEngine.Random.Range(0, purchaseVIP.Length)]);
                         break;
                     case "Armor Plating":
-                        AudioManager.instance.PlaySFX(purchaseArmor[UnityEngine.Random.Range(0, purchaseArmor.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseArmor[UnityEngine.Random.Range(0, purchaseArmor.Length)]);
                         break;
                     case "Armory":
-                        AudioManager.instance.PlaySFX(purchaseGuns[UnityEngine.Random.Range(0, purchaseGuns.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseGuns[UnityEngine.Random.Range(0, purchaseGuns.Length)]);
                         break;
-                    case "Core Changing Terminal":
-                        AudioManager.instance.PlaySFX(purchaseCoreTerminal[UnityEngine.Random.Range(0, purchaseCoreTerminal.Length - 1)]);
+                    case "Core Charging Terminal":
+                        AudioManager.instance.PlaySFX(purchaseCoreTerminal[UnityEngine.Random.Range(0, purchaseCoreTerminal.Length)]);
                         break;
                     case "Energy Cannon":
-                        AudioManager.instance.PlaySFX(purchaseEnergyCannon[UnityEngine.Random.Range(0, purchaseEnergyCannon.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseEnergyCannon[UnityEngine.Random.Range(0, purchaseEnergyCannon.Length)]);
                         break;
                     case "Photon Torpedoes":
-                        AudioManager.instance.PlaySFX(purchasePhotonTorpedoes[UnityEngine.Random.Range(0, purchasePhotonTorpedoes.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchasePhotonTorpedoes[UnityEngine.Random.Range(0, purchasePhotonTorpedoes.Length)]);
                         break;
                     case "Pantry":
-                        AudioManager.instance.PlaySFX(purchasePantry[UnityEngine.Random.Range(0, purchasePantry.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchasePantry[UnityEngine.Random.Range(0, purchasePantry.Length)]);
                         break;
                     case "Shield Generator":
-                        AudioManager.instance.PlaySFX(purchaseShieldGenerator[UnityEngine.Random.Range(0, purchaseShieldGenerator.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseShieldGenerator[UnityEngine.Random.Range(0, purchaseShieldGenerator.Length)]);
                         break;
                     case "Teleportation Station":
-                        AudioManager.instance.PlaySFX(purchaseTeleporter[UnityEngine.Random.Range(0, purchaseTeleporter.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseTeleporter[UnityEngine.Random.Range(0, purchaseTeleporter.Length)]);
                         break;
                     case "Warp Drive":
-                        AudioManager.instance.PlaySFX(purchaseWarpDrive[UnityEngine.Random.Range(0, purchaseWarpDrive.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseWarpDrive[UnityEngine.Random.Range(0, purchaseWarpDrive.Length)]);
                         break;
                     default:
                         break;
