@@ -215,6 +215,7 @@ public class InkDriverBase : MonoBehaviour
         story.ChooseChoiceIndex(choice.index);
         Refresh();
         showingChoices = false;
+        FindObjectOfType<PageController>().UpdateNextPageText();
     }
 
     /// <summary>
@@ -232,16 +233,10 @@ public class InkDriverBase : MonoBehaviour
     string GetNextStoryBlock()
     {
         string text = ""; //error check
-
-        if (story.canContinue) //ALWAYS do this check before using story.Continue() to avoid errors
+        
+        while (story.canContinue)
         {
-            text = story.Continue();  //reads text until there is another choice
-            //text == "\n" || text == "\r" || text == "\t") && 
-            while (story.canContinue)
-            {
-                text += story.Continue();
-            }
-
+            text += story.Continue() + "\n";
         }
 
         return text;

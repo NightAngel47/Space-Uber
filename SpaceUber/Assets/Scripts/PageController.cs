@@ -10,12 +10,18 @@ using TMPro;
 
 public class PageController : MonoBehaviour
 {
-    public TMP_Text eventText;
-    public GameObject backButton;
+    [SerializeField] private TMP_Text eventText;
+    [SerializeField] private GameObject backButton;
+    [SerializeField] private GameObject nextButton;
+    [SerializeField] private string defaultNextMsg;
+    [SerializeField] private string continueNextMsg;
+    private bool madeChoice;
+    private TMP_Text nextButtonText;
 
     private void Start()
     {
-        backButton.SetActive(false);
+        nextButtonText = nextButton.GetComponentInChildren<TMP_Text>();
+        ResetPages();
     }
 
     public void NextPage()
@@ -36,6 +42,11 @@ public class PageController : MonoBehaviour
                 inkDriver.ConcludeEvent();
             }
         }
+
+        if (madeChoice && eventText.pageToDisplay == eventText.textInfo.pageCount)
+        {
+            nextButtonText.text = continueNextMsg;
+        }
     }
 
     public void PreviousPage()
@@ -43,6 +54,7 @@ public class PageController : MonoBehaviour
         if(eventText.pageToDisplay > 1)
         {
             eventText.pageToDisplay -= 1;
+            nextButtonText.text = defaultNextMsg;
             if(eventText.pageToDisplay == 1)
             {
                 backButton.SetActive(false);
@@ -58,5 +70,15 @@ public class PageController : MonoBehaviour
     {
         eventText.pageToDisplay = 1;
         backButton.SetActive(false);
+        nextButtonText.text = defaultNextMsg;
+    }
+
+    public void UpdateNextPageText()
+    {
+        madeChoice = true;
+        if (madeChoice && eventText.pageToDisplay == eventText.textInfo.pageCount)
+        {
+            nextButtonText.text = continueNextMsg;
+        }
     }
 }
