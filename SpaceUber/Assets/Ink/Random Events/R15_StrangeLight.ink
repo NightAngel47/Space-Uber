@@ -1,8 +1,8 @@
 Lanri rushes into your office. She plants her feet to stop quickly before realizing her momentum and throws her arms out to balance herself, narrowly avoiding a faceplant. "There's a strange light up ahead. She says, "It seems impossible, even I can’t tell where it's coming from. We'll reach it in approximately 24 minutes 39 seconds. It appears to be harmless. I believe that angling the ship to shine the light on the crops or the solar panels will help us greatly. Which would you like to do?"
 
-+ [Shine the light on the crops (++Food)]
+* [Shine light onto crops]
 -> ShineTheLightOnTheCrops
-+ [Shine the light on the solar panels (++Power)]
+* [Shine light onto solar panels]
 -> SolarPanels
 
 ==ShineTheLightOnTheCrops==

@@ -2,9 +2,9 @@ VAR randomEnd = -> ForceTheDoorOpen
 
 The metal door to your office flies open and slams the wall with such force the whole ship could hear it echo. Lexa barges in. "We have a situation. One of the doors in the Power Core malfunctioned and can't be opened. Four crewmates are trapped and losing oxygen inside. Let me blast that fucker open, we need them alive for the mission. You could let the engineers fix it, but it may be too late for those crewmates by the time they get it open."
 
-+ [Force the door open (-100 Credits)]
++ [Force the door open]
 -> ForceTheDoorOpen
-+ [Wait for engineers (???)] 
++ [Wait for engineers] 
     ->randomEnd
 
 ==ForceTheDoorOpen==
