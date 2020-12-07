@@ -99,20 +99,20 @@ public class EventChoice
         {
             myButton.interactable = true;
             story = thisStory;
-            if(hasRandomEnding)
-            {
-                tooltip.SetOutcomeData(description, randomEndingOutcomes, hasSecretOutcomes);
-            }
-            else
-            {
-                tooltip.SetOutcomeData(description, outcomes, hasSecretOutcomes);
-            }
         }
         else
         {
             myButton.interactable = false;
         }
-
+        // Tooltip stuff
+        if (hasRandomEnding)
+        {
+            tooltip.SetOutcomeData(description, randomEndingOutcomes, hasSecretOutcomes);
+        }
+        else
+        {
+            tooltip.SetOutcomeData(description, outcomes, hasSecretOutcomes);
+        }
         //randomize which ending we'll have from the start
         if (hasRandomEnding)
         {

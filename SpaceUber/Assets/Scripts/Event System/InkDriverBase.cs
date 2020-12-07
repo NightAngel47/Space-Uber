@@ -97,12 +97,23 @@ public class InkDriverBase : MonoBehaviour
         resultsBox.SetActive(false);
     }
 
-    private void Update()
+    //private void Update()
+    //{ //(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+    //    if (!showingChoices && donePrinting)
+    //    {
+    //        //Refresh();
+    //        if(!story.canContinue && story.currentChoices.Count == 0)
+    //        {
+    //            EventSystem.instance.ConcludeEvent();
+    //        }
+    //    }
+    //}/
+
+    public void ConcludeEvent()
     {
-        if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && !showingChoices && donePrinting)
+        if (!showingChoices && donePrinting && textBox.pageToDisplay == textBox.textInfo.pageCount)
         {
-            Refresh();
-            if(!story.canContinue && story.currentChoices.Count == 0)
+            if (!story.canContinue && story.currentChoices.Count == 0)
             {
                 EventSystem.instance.ConcludeEvent();
             }
@@ -138,15 +149,14 @@ public class InkDriverBase : MonoBehaviour
         }
 
         donePrinting = true;
-        ShowChoices();
     }
 
     /// <summary>
     /// Instantiates each choice as a button and tells the game which one has been chosen when clicked
     /// </summary>
-    void ShowChoices()
+    public bool ShowChoices()
     {
-        if(story.currentChoices.Count > 0)
+        if(!showingChoices && donePrinting && story.currentChoices.Count > 0)
         {
             showingChoices = true;
             foreach (Choice choice in story.currentChoices)
@@ -177,7 +187,9 @@ public class InkDriverBase : MonoBehaviour
                     Debug.LogWarning($"There was not EventChoice available for choice index: {choice.index}");
                 }
             }
+            return true;
         }
+        return false;
     }
 
     /// <summary>
@@ -224,9 +236,10 @@ public class InkDriverBase : MonoBehaviour
         if (story.canContinue) //ALWAYS do this check before using story.Continue() to avoid errors
         {
             text = story.Continue();  //reads text until there is another choice
-            while((text == "\n" || text == "\r" || text == "\t") && story.canContinue)
+            //text == "\n" || text == "\r" || text == "\t") && 
+            while (story.canContinue)
             {
-                text = story.Continue();
+                text += story.Continue();
             }
 
         }
@@ -250,5 +263,6 @@ public class InkDriverBase : MonoBehaviour
         {
             Destroy(text.gameObject);
         }
+        FindObjectOfType<PageController>().ResetPages();
     }
 }
