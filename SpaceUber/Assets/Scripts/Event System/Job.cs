@@ -7,8 +7,6 @@
  */
 
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using System.Collections.Generic;
 using NaughtyAttributes;
 
@@ -26,7 +24,7 @@ public class Job : MonoBehaviour
     public int maxStoryEvents = 3;
 
     [Tooltip("The introduction to the job. Will be played immediately when reaching the travel scene"), HideIf("isSideJob")]
-    public GameObject introEvent;
+    public List<GameObject> introEvents = new List<GameObject>();
 
     [Tooltip("The story events included in this job"),HideIf("isSideJob"), ReorderableList]
     public List<GameObject> storyEvents;
