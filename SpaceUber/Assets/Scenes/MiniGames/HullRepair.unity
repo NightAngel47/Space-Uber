@@ -27747,6 +27747,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 968937453976011875, guid: bce831506ab628045b4742b4a9b78b86,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 814340106}
+    - target: {fileID: 968937453976011875, guid: bce831506ab628045b4742b4a9b78b86,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ConfirmMiniGameSuccess
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bce831506ab628045b4742b4a9b78b86, type: 3}
 --- !u!224 &1149109700 stripped
