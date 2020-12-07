@@ -2,8 +2,8 @@ VAR randomEnd = -> MinorDamage
 
 
 Something catches your attention in the void between the stars. A distortion in space where light is warped, bent, and trapped in the cosmic maw of a wormhole. As you draw closer a nearby star is ripped from its position in the void and stretched into stellar spaghetti as it crosses the event horizon. A quick number crunch reveals that there is only a small chance that the same would happen to your ship should you venture closer. 
-+ [Approach Wormhole] ->randomEnd 
-+ [Leave it be] -> Leave
+* [Approach Wormhole] ->randomEnd 
+* [Leave it be] -> Leave
 
 === Leave ===
 While it is tantalizing to see just what lies beyond the wormhole, risking your cargo and crew over a passing curio wouldn't be the best course of action. Besides, with how big the galaxy is chances are this won't be the last wormhole you’ll run into. You press on.
