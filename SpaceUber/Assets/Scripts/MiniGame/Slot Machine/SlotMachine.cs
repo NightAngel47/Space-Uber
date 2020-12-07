@@ -102,7 +102,7 @@ public class SlotMachine : MiniGame
 
     void Update()
     {
-        DetectCrank();
+        if (!bettingPanel.activeInHierarchy) { DetectCrank(); }
         AdjustReelSpeed();
         DetectEndOfGame();
         EnableDisableButtons();
