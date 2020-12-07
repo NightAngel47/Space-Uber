@@ -24,6 +24,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
+      propertyPath: introEvents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
+        type: 3}
       propertyPath: storyEvents.Array.data[0]
       value: 
       objectReference: {fileID: 510808929663194835, guid: 5dc14bfd98c40dc47b87a5c1044aa70e,
@@ -176,6 +181,18 @@ PrefabInstance:
       propertyPath: maxStoryEvents
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
+        type: 3}
+      propertyPath: introEvents.Array.data[0]
+      value: 
+      objectReference: {fileID: 4541382160788372375, guid: 9e162aedb425fd44982f95f7fea72d77,
+        type: 3}
+    - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
+        type: 3}
+      propertyPath: introEvents.Array.data[1]
+      value: 
+      objectReference: {fileID: 4857175304292204760, guid: 23785e077a30a3747bf8fae92fdd4731,
+        type: 3}
     - target: {fileID: 6620000524830208261, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
       propertyPath: m_LocalPosition.x
