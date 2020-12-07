@@ -117,7 +117,6 @@ public class GameManager : MonoBehaviour
                 jobManager.RefreshJobList();
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
-                additiveSceneManager.UnloadScene("Interface_JobList");
                 additiveSceneManager.UnloadScene("CrewManagement");
 
                 additiveSceneManager.LoadSceneSeperate("ShipBuilding");

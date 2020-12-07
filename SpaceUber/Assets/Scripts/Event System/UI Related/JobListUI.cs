@@ -15,21 +15,27 @@ using TMPro;
 public class JobListUI : MonoBehaviour
 {
     public Button continueButton;
-    
+    [SerializeField] private GameObject jobListBackground;
+    [SerializeField] private string defaultName;
+    [SerializeField] private string defaultDesc;
+    [SerializeField] private string defaultPay;
+
     [Header("Primary Job UI")]
     [SerializeField] private GameObject primaryJob;
     [SerializeField] private Transform primaryJobUIPos;
     [SerializeField] private TMP_Text selectedJobNameText;
     [SerializeField] private TMP_Text selectedJobDescText;
     [SerializeField] private TMP_Text selectedJobPayText;
+    [SerializeField] private Animator primaryJobCanvasAnimator;
     private List<JobUI> availablePrimaryJobUIs = new List<JobUI>();
 
-    [Header("Side Job UI")]
-    [SerializeField] private GameObject sideJob;
-    [SerializeField] private Transform sideJobUIPos;
-    [SerializeField] private TMP_Text sideJobCountText; // TODO Not fully hooked up as side jobs are not in
+    //[Header("Side Job UI")]
+    //[SerializeField] private GameObject sideJob;
+    //[SerializeField] private Transform sideJobUIPos;
+    //[SerializeField] private TMP_Text sideJobCountText; // TODO Not fully hooked up as side jobs are not in
 
     private JobUI selectedPrimaryJobUI;
+    private static readonly int Transition = Animator.StringToHash("Transition");
 
     private void Start()
     {
@@ -45,8 +51,16 @@ public class JobListUI : MonoBehaviour
     /// <param name="job">Job to display</param>
     public void ShowAvailableJob(Job job)
     {
-        JobUI newJobUI = job.isSideJob ? Instantiate(sideJob, sideJobUIPos).GetComponent<JobUI>() : 
-                                        Instantiate(primaryJob, primaryJobUIPos).GetComponent<JobUI>();
+        JobUI newJobUI;
+        //if (job.isSideJob)
+        //{
+        //    //newJobUI = Instantiate(sideJob, sideJobUIPos).GetComponent<JobUI>();
+        //}
+        //else
+        //{
+        //    //newJobUI = Instantiate(primaryJob, primaryJobUIPos).GetComponent<JobUI>();
+        //}
+        newJobUI = Instantiate(primaryJob, primaryJobUIPos).GetComponent<JobUI>();
         newJobUI.SetJobInfo(job);
 
         if (!job.isSideJob)
@@ -57,8 +71,7 @@ public class JobListUI : MonoBehaviour
 
     public void UpdateSideJobCount(int x)
     {
-        sideJobCountText.text = x + " out of 3 side jobs selected";
-        print(sideJobCountText.text);
+        //sideJobCountText.text = x + " out of 3 side jobs selected";
     }
 
     /// <summary>
@@ -74,10 +87,10 @@ public class JobListUI : MonoBehaviour
         // clears background selection for previously selected primary jobs. (only works if primary jobs are unique)
         foreach (var jobUI in availablePrimaryJobUIs.Where(jobUI => jobUI.availableJob != selectedJob))
         {
-            jobUI.ClearSelectedBackground();
+            jobUI.JobNotSelected();
         }
 
-        continueButton.interactable = true;
+        continueButton.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -85,10 +98,22 @@ public class JobListUI : MonoBehaviour
     /// </summary>
     public void ClearSelectedJobDetails()
     {
-        selectedJobNameText.text = "";
-        selectedJobDescText.text = "";
-        selectedJobPayText.text = "";
+        selectedJobNameText.text = defaultName;
+        selectedJobDescText.text = defaultDesc;
+        selectedJobPayText.text = defaultPay;
         
-        continueButton.interactable = false;
+        continueButton.gameObject.SetActive(false);
+    }
+
+    public void ExitTransition()
+    {
+        primaryJobCanvasAnimator.SetBool(Transition, true);
+        jobListBackground.SetActive(false);
+        Invoke(nameof(UnloadJobList), 1);
+    }
+
+    private void UnloadJobList()
+    {
+        FindObjectOfType<AdditiveSceneManager>().UnloadScene("Interface_JobList");
     }
 }
