@@ -112,8 +112,8 @@ public class GameManager : MonoBehaviour
 
                 additiveSceneManager.UnloadScene("CrewPayment");
 
-                additiveSceneManager.LoadSceneSeperate("Starport BG");
                 additiveSceneManager.LoadSceneSeperate("Interface_JobList");
+                additiveSceneManager.LoadSceneSeperate("Starport BG");
                 jobManager.RefreshJobList();
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
