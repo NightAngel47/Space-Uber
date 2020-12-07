@@ -44,6 +44,7 @@ public class SecurityMiniGame : MiniGame
     {
 		if (inputCode.Length == requiredCode.Length && inputCode.Length > 0) 
         {
+            foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(false); }
             if (inputCode == requiredCode)
             {
                 inputCode = "";
