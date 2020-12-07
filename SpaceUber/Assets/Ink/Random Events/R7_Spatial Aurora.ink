@@ -4,7 +4,7 @@ VAR randomEnd = -> Ravenous
     
 * [Blind Pilots]
 -> Blinded
-* [Expose Crew to Aurora (???)]
+* [Expose Crew to Aurora]
 -> randomEnd
 
 == Blinded ==
