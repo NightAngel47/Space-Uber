@@ -81,6 +81,7 @@ public class CrewManagement : MonoBehaviour
         
         room = g;
         rs = room.GetComponent<RoomStats>();
+        ss.roomBeingPlaced = room;
 
         statPanel.SetActive(true);
 

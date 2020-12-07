@@ -305,6 +305,11 @@ public class ShipStats : MonoBehaviour
 
     public void UpdateCrewAmount(int crewUnassignedAmount, int crewCurrentAmount = 0, int crewCapacityAmount = 0)
     {
+        if(GameManager.instance.currentGameState == InGameStates.CrewManagement)
+        {
+            SetObjectBeingPlaced();
+        }
+
         crewCapacity += crewCapacityAmount;
         crewCurrent += crewCurrentAmount;
         crewUnassigned += crewUnassignedAmount;

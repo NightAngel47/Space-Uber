@@ -86,17 +86,22 @@ public class ShipStatsUI : MonoBehaviour
 
     public void ShowCreditsUIChange(int currentChange, int tickChange = 0)
     {
-        SpawnStatChangeText(creditsCurrentText, currentChange, 0, 0);
-        SpawnStatChangeText(creditsTickText, tickChange, 0, 1);
-
-        if(currentChange != 0)
+        if ((GameManager.instance.currentGameState == InGameStates.ShipBuilding) || (GameManager.instance.currentGameState == InGameStates.CrewManagement && (currentChange > 0 || tickChange > 0)))
         {
-            StartCoroutine(JiggleText(creditsCurrentText));
-        }
+            
+            SpawnStatChangeText(creditsCurrentText, currentChange, 0, 0);
 
-        if(tickChange != 0)
-        {
-            StartCoroutine(JiggleText(creditsTickText));
+            SpawnStatChangeText(creditsTickText, tickChange, 0, 1);
+
+            if (currentChange != 0)
+            {
+                StartCoroutine(JiggleText(creditsCurrentText));
+            }
+
+            if (tickChange != 0)
+            {
+                StartCoroutine(JiggleText(creditsTickText));
+            }
         }
     }
 
@@ -110,17 +115,20 @@ public class ShipStatsUI : MonoBehaviour
 
     public void ShowEnergyUIChange(int currentChange, int maxChange)
     {
-        SpawnStatChangeText(energyCurrentText, currentChange, 5, 1);
-        SpawnStatChangeText(energyMaxText, maxChange, 5, 2);
-
-        if(currentChange != 0)
+        if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
         {
-            StartCoroutine(JiggleText(energyCurrentText));
-        }
+            SpawnStatChangeText(energyCurrentText, currentChange, 5, 1);
+            SpawnStatChangeText(energyMaxText, maxChange, 5, 2);
 
-        if(maxChange != 0)
-        {
-            StartCoroutine(JiggleText(energyMaxText));
+            if (currentChange != 0)
+            {
+                StartCoroutine(JiggleText(energyCurrentText));
+            }
+
+            if (maxChange != 0)
+            {
+                StartCoroutine(JiggleText(energyMaxText));
+            }
         }
     }
 
@@ -132,11 +140,14 @@ public class ShipStatsUI : MonoBehaviour
 
     public void ShowSecurityUIChange(int currentChange)
     {
-        SpawnStatChangeText(securityCurrentText, currentChange, 1, 2);
-
-        if(currentChange != 0)
+        if ((GameManager.instance.currentGameState == InGameStates.ShipBuilding) || (GameManager.instance.currentGameState == InGameStates.CrewManagement && currentChange > 0 ))
         {
-            StartCoroutine(JiggleText(securityCurrentText));
+            SpawnStatChangeText(securityCurrentText, currentChange, 1, 2);
+
+            if (currentChange != 0)
+            {
+                StartCoroutine(JiggleText(securityCurrentText));
+            }
         }
     }
 
@@ -148,11 +159,14 @@ public class ShipStatsUI : MonoBehaviour
 
     public void ShowShipWeaponsUIChange(int currentChange)
     {
-        SpawnStatChangeText(shipWeaponsCurrentText, currentChange, 2, 2);
-
-        if(currentChange != 0)
+        if ((GameManager.instance.currentGameState == InGameStates.ShipBuilding) || (GameManager.instance.currentGameState == InGameStates.CrewManagement && currentChange > 0))
         {
-            StartCoroutine(JiggleText(shipWeaponsCurrentText));
+            SpawnStatChangeText(shipWeaponsCurrentText, currentChange, 2, 2);
+
+            if (currentChange != 0)
+            {
+                StartCoroutine(JiggleText(shipWeaponsCurrentText));
+            }
         }
     }
 
@@ -167,8 +181,17 @@ public class ShipStatsUI : MonoBehaviour
 
     public void ShowCrewUIChange(int unassignedChange, int currentChange, int maxChange)
     {
-        SpawnStatChangeText(crewCurrentText, unassignedChange, 4, 2);
-        SpawnStatChangeText(crewMaxText, currentChange, 4, 3);
+        if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
+        {
+            SpawnStatChangeText(crewCurrentText, unassignedChange, 4, 2);
+            SpawnStatChangeText(crewMaxText, currentChange, 4, 3);
+        }
+        else
+        {
+            unassignedChange = -unassignedChange;
+            SpawnStatChangeText(crewCurrentText, unassignedChange, 4, 1);
+            SpawnStatChangeText(crewMaxText, currentChange, 4, 2);
+        }
 
         if(unassignedChange != 0)
         {
@@ -192,37 +215,43 @@ public class ShipStatsUI : MonoBehaviour
 
     public void ShowFoodUIChange(int currentChange, int tickChange)
     {
-        SpawnStatChangeText(foodCurrentText, currentChange, 3, 2);
-        SpawnStatChangeText(foodTickText, tickChange, 3, 2);
-
-        if(currentChange != 0)
+        if ((GameManager.instance.currentGameState == InGameStates.ShipBuilding) || (GameManager.instance.currentGameState == InGameStates.CrewManagement && (currentChange > 0 || tickChange > 0)))
         {
-            StartCoroutine(JiggleText(foodCurrentText));
-        }
+            SpawnStatChangeText(foodCurrentText, currentChange, 3, 2);
+            SpawnStatChangeText(foodTickText, tickChange, 3, 2);
 
-        if(tickChange != 0)
-        {
-            StartCoroutine(JiggleText(foodTickText));
+            if (currentChange != 0)
+            {
+                StartCoroutine(JiggleText(foodCurrentText));
+            }
+
+            if (tickChange != 0)
+            {
+                StartCoroutine(JiggleText(foodTickText));
+            }
         }
     }
 
     public void UpdateHullUI(int current, int max)
     {
-        hullCurrentText.text = current.ToString();
-        hullMaxText.text = max.ToString();
-        hullCurrentTooltipText.text = current.ToString();
-        hullMaxTooltipText.text = max.ToString();
-
-        if(current <= hullWarningAmount && hullWarningActive == false)
+        if ((GameManager.instance.currentGameState == InGameStates.ShipBuilding) || (GameManager.instance.currentGameState == InGameStates.CrewManagement && (current> 0 || max > 0)))
         {
-            hullWarningActive = true;
-            StartCoroutine(BlinkLoop());
-            StartCoroutine(BeepLoop());
-        }
+            hullCurrentText.text = current.ToString();
+            hullMaxText.text = max.ToString();
+            hullCurrentTooltipText.text = current.ToString();
+            hullMaxTooltipText.text = max.ToString();
 
-        if(current > hullWarningAmount && hullWarningActive == true)
-        {
-            hullWarningActive = false;
+            if (current <= hullWarningAmount && hullWarningActive == false)
+            {
+                hullWarningActive = true;
+                StartCoroutine(BlinkLoop());
+                StartCoroutine(BeepLoop());
+            }
+
+            if (current > hullWarningAmount && hullWarningActive == true)
+            {
+                hullWarningActive = false;
+            }
         }
     }
 
