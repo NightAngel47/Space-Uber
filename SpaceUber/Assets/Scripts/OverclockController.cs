@@ -20,7 +20,7 @@ public class OverclockController : MonoBehaviour
     [SerializeField] float foodBaseAdjustment = 1;
     [SerializeField] float securityBaseAdjustment = 1;
     [SerializeField] float shipWeaponsBaseAdjustment = 1;
-    [SerializeField] float hullDurabilityBaseAdjustment = 1;
+    [SerializeField] float energyBaseAdjustment = 1;
     [SerializeField] float hullRepairBaseAdjustment = 5;
     [SerializeField] float failHullDurabilityBaseAdjustment = -5;
     public float cooldownTime = 5;
@@ -77,8 +77,8 @@ public class OverclockController : MonoBehaviour
             }
             if(miniGame == MiniGameType.StabilizeEnergyLevels)
             {
-                shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullDurabilityBaseAdjustment * statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(hullDurabilityBaseAdjustment * statModification), 6);
+                shipStats.UpdateEnergyAmount(Mathf.RoundToInt(energyBaseAdjustment * statModification));
+                SpawnStatChangeText(Mathf.RoundToInt(energyBaseAdjustment * statModification), 6);
             }
             if(miniGame == MiniGameType.SlotMachine)
             {
