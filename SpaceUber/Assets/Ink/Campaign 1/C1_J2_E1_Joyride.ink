@@ -1,4 +1,4 @@
-Two of the elites enter the control room in the middle of a conversation: "‒absurd, Mister Tyler, there is no way they will let you do that" The speaker is an older mustachioed man, Sir Gavin Yorkshire. He speaks with a posh British accent and carries himself gracefully. 
+Two of the elites enter the control room in the middle of a conversation: "-absurd, Mister Tyler, there is no way they will let you do that" The speaker is an older mustachioed man, Sir Gavin Yorkshire. He speaks with a posh British accent and carries himself gracefully. 
 "They will let me do it, or they will regret it," the second elite responds. He is Tyler Bale, a sharply dressed younger man with slicked back hair. Bale calls out to you, straight to the point, "I want to pilot the ship for a bit."
 Yorkshire interjects, "Just because you took a lesson or two piloting a Sky Sailer does not make you qualified to steer a corporate transport ship."
 Annoyed, Bale bites back, "I have always wanted to be a pilot! Father is the one that insisted I take over his company." 
@@ -8,6 +8,8 @@ That being said, your job is to keep him happy, and even if you do give him cont
 
 + [Let Bale Pilot] -> Ride
 + [Refuse] -> NoRide
+
+
 
 === Ride ===
 You decide to let him pilot the ship for a while. Smugly delighted, he speaks, "I see you have recognized that I am a man of talent."

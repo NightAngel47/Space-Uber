@@ -1,8 +1,9 @@
-    Captain Lexa appears on your monitor. "Boss," she says, avoiding calling you 'captain', "we're seeing an escape pod off our flight plan. Looks like two people are alive inside. Could bring them onboard. Their gratitude will earn us a few weeks of their labor, keep things running around here." she pauses, "Issue is, the pod is from a prison ship, and I doubt they’re guards." 
+    Captain Lexa appears on your monitor. "Boss," she says, avoiding calling you 'captain', "we're seeing an escape pod off our flight plan. Looks like two people are alive inside. Could bring them onboard. 
+    "Their gratitude will earn us a few weeks of their labor, keep things running around here." She pauses. "Issue is, the pod is from a prison ship, and I doubt they're guards." 
     
-* [Report Convicts to Authorities(+Credits)]
+* [Report Convicts to Authorities]
 -> Report
-* [ Integrate Convicts into Crew(+Crew)]
+* [ Integrate Convicts into Crew]
 -> Hire
 
 == Report ==

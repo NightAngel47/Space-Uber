@@ -12,6 +12,8 @@ When the clones get in contact with you again, you will report to them that the 
 -> END
 
 === Life ===
-You decide not to start killing anyone. Despite Beckett's bad attitude, a client is a client, and anything "unfortunate" happening to him has the possibility of reflecting badly on you as well as the company.
-While the additional financial compensation would be nice, it's better not to take any chances. When the clones contact you again, you will let them know that you didn't take them up on their offer.
+You decide not to start killing anyone. 
+Despite Beckett's bad attitude, a client is a client, and anything "unfortunate" happening to him has the possibility of reflecting badly on you as well as the company.
+While the additional financial compensation would be nice, it's better not to take any chances. 
+When the clones contact you again, you will let them know that you didn't take them up on their offer.
 -> END
