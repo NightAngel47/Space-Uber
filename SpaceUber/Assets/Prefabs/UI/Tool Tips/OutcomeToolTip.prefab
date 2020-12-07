@@ -103,6 +103,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 6666447446745391263}
   - {fileID: 171820565272563249}
   m_Father: {fileID: 8132561067410974476}
   m_RootOrder: 0
@@ -529,11 +530,11 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 580.11, y: 252.56}
-  m_SizeDelta: {x: 8.231767, y: 5.19823}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 5, y: 0}
+  m_SizeDelta: {x: 5, y: 5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!223 &4937401091367285012
 Canvas:
   m_ObjectHideFlags: 0
@@ -611,7 +612,7 @@ MonoBehaviour:
     type: 3}
   outcomeText: {fileID: 5113669319198208107, guid: 878378b7d9ed71a4091371738072de47,
     type: 3}
-  defaultOutcomeText: The long term effects of this outcome are unknown.
+  defaultOutcomeText: The effects of this outcome are unknown.
   outcomeList: {fileID: 171820565272563249}
   icons:
   - {fileID: 21300000, guid: 2bbae6bacf5f9da4697f3b6af192e12a, type: 3}
@@ -1321,15 +1322,14 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 6666447446745391263}
+  m_Children: []
   m_Father: {fileID: 2458536912977700119}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.02835989, y: -0.565}
-  m_SizeDelta: {x: -0.8339958, y: 3.7710347}
+  m_AnchoredPosition: {x: 0, y: -1.2}
+  m_SizeDelta: {x: -0.70000005, y: 2.975}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &3653274595464671972
 MonoBehaviour:
@@ -1349,11 +1349,11 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: 0
+  m_Spacing: 0.125
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
+  m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
 --- !u!1 &5935749871524211138
@@ -2034,13 +2034,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 171820565272563249}
+  m_Father: {fileID: 2458536912977700119}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -0.5}
+  m_SizeDelta: {x: 0, y: 0.5}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &8610122174490461904
 CanvasRenderer:
@@ -2069,8 +2069,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This a description of the outcome. This is where you would give a very
-    brief summary of what the outcome does.
+  m_text: 'This a description of the outcome. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 814f343da59605545b19571b87874865, type: 2}
   m_sharedMaterial: {fileID: -6362999969210495281, guid: 814f343da59605545b19571b87874865,
@@ -2110,7 +2109,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -45
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -2134,7 +2133,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0.020244863, y: 0, z: 0.011802319, w: -0.015044518}
+  m_margin: {x: 0.35, y: 0, z: 0.35, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
