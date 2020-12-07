@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 5740368950282066039}
   - component: {fileID: 2641448655269380362}
   m_Layer: 0
-  m_Name: RoomPrefabBase
+  m_Name: _RoomPrefabBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -948,6 +948,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 9018588744865411860, guid: ba3df1af6a7a95d4b9b5691ad38f4bbe, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ba3df1af6a7a95d4b9b5691ad38f4bbe, type: 3}
+--- !u!1 &3286901568247703781 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7495498588994081768, guid: ba3df1af6a7a95d4b9b5691ad38f4bbe,
+    type: 3}
+  m_PrefabInstance: {fileID: 5014819548222405389}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2405372060552023348 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7276038993804883513, guid: ba3df1af6a7a95d4b9b5691ad38f4bbe,
@@ -963,12 +969,6 @@ MonoBehaviour:
 --- !u!224 &3902402536555532295 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8336208683231013642, guid: ba3df1af6a7a95d4b9b5691ad38f4bbe,
-    type: 3}
-  m_PrefabInstance: {fileID: 5014819548222405389}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3286901568247703781 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7495498588994081768, guid: ba3df1af6a7a95d4b9b5691ad38f4bbe,
     type: 3}
   m_PrefabInstance: {fileID: 5014819548222405389}
   m_PrefabAsset: {fileID: 0}
