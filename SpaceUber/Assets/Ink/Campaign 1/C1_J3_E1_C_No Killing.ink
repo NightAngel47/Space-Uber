@@ -1,5 +1,5 @@
-Again a transmission reaches you. The clones of your passengers sit in a meeting room, clouds and skyscrapers behind them. 
-Their body language is more tense, frantic. A clone of Miniver Beckett drinks and paces in the background. The clone of Olivia Whitwer, CEO of Marigold Inc., leans forward and says, "My colleagues and I are a bit... concerned. Concerned about you progress towards the job." 
+Again a transmission reaches you. The clones of your passengers sit in a meeting room, clouds and skyscrapers behind them. Their body language is more tense, frantic. 
+A clone of Miniver Beckett drinks and paces in the background. The clone of Olivia Whitwer, CEO of Marigold Inc., leans forward and says, "My colleagues and I are a bit... concerned. Concerned about you progress towards the job." 
 Beckett Two hurls his glass of wine out of frame and you hear a distant crash. He begins shouting, "I am <i>not</i> going back! They're not going to put me back in that damn box!" 
 Olivia Two glances at him before regarding you. "Down to brass tacks. Do you have any intention of helping us?" she says, her voice rigid.
 *["Yes"]
