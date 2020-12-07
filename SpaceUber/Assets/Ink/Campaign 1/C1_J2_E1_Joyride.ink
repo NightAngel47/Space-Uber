@@ -6,8 +6,9 @@ Turning away from the older gentleman, the young man speaks to you again: "Well,
 Letting someone who lacks years of training and experience steer is a bad idea, especially with Bale's overconfidence added to the mix. Not to mention this area of space is known to have rogue asteroids scattered throughout.
 That being said, your job is to keep him happy, and even if you do give him control, you could hopefully take it back fast enough to avoid any impending collisions.
 
-+ [Let Bale Pilot] -> Ride
 + [Refuse] -> NoRide
++ [Let Bale Pilot] -> Ride
+
 
 === Ride ===
 You decide to let him pilot the ship for a while. Smugly delighted, he speaks, "I see you have recognized that I am a man of talent."
