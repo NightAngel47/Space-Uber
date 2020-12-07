@@ -18203,6 +18203,8 @@ MonoBehaviour:
   - {fileID: 1296595468}
   - {fileID: 1518035416}
   - {fileID: 1284110399}
+  coveredColor: {r: 0, g: 1, b: 0.033422947, a: 1}
+  uncoveredColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &817120833
 GameObject:
   m_ObjectHideFlags: 0
@@ -23748,7 +23750,7 @@ RectTransform:
   - {fileID: 814340104}
   - {fileID: 1149109700}
   m_Father: {fileID: 1573538645}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -27678,7 +27680,7 @@ PrefabInstance:
     - target: {fileID: 968937453965829465, guid: bce831506ab628045b4742b4a9b78b86,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 968937453965829465, guid: bce831506ab628045b4742b4a9b78b86,
         type: 3}
@@ -37846,8 +37848,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 435634619}
-  - {fileID: 1149152198}
   - {fileID: 1001686353}
+  - {fileID: 1149152198}
   m_Father: {fileID: 1338579866}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

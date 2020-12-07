@@ -13,11 +13,13 @@ public class HullGridSquare : MonoBehaviour
     Collider2D collider;
     Image image;
     bool isCovered = false;
+    HullRepairMiniGame miniGameManager;
 
 	private void Start()
 	{
         collider = GetComponent<Collider2D>();
         image = GetComponent<Image>();
+        miniGameManager = FindObjectOfType<HullRepairMiniGame>();
 	}
 	private void Update()
 	{
@@ -28,8 +30,8 @@ public class HullGridSquare : MonoBehaviour
         {
             if (collider) { if (collider.CompareTag("Hull Piece")) { collidedWithHullPiece = true;} }
         }
-        if (collidedWithHullPiece) { image.color = Color.green; isCovered = true; }
-        else { image.color = Color.red; isCovered = false; }
+        if (collidedWithHullPiece) { image.color = miniGameManager.CoveredColor(); isCovered = true; }
+        else { image.color = miniGameManager.UncoveredColor(); isCovered = false; }
     }
 
     public bool IsCovered() { return isCovered; }
