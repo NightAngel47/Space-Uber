@@ -1,6 +1,9 @@
 VAR randomEnd = -> Ravenous
     
-    Your head of R&D, Lanri, calls you. She appears on the monitor, seemingly very excited, "Sir‒! Ma'am‒ ...Boss. There’s a strange anomaly, impossible lights, no discernable source, encoded data within the color variations, the <i>works.</i> Our flight plan is putting us right through it, so I was hoping I could study the crew afterwards, you know, see what happens?" Protocol insists that exposing your crew to an unidentified aurora is a terrible idea, though the alternative is have the crew fly blind, which could easily lead to collisions.
+    Your head of R&D, Lanri, calls you. She appears on the monitor, seemingly very excited, 
+    "Sir‒! Ma'am‒ ...Boss. There’s a strange anomaly, impossible lights, no discernable source, encoded data within the color variations, the <i>works.</i> 
+    Our flight plan is putting us right through it, so I was hoping I could study the crew afterwards, you know, see what happens?" 
+    Protocol insists that exposing your crew to an unidentified aurora is a terrible idea, though the alternative is have the crew fly blind, which could easily lead to collisions.
     
 * [Blind Pilots]
 -> Blinded
@@ -8,12 +11,17 @@ VAR randomEnd = -> Ravenous
 -> randomEnd
 
 == Blinded ==
-You quickly turn down Lanri's offer to "just see what happens" and shutter all viewports across the ship, including the cockpit. Despite no blips on the radar and other external sensors, the ship impacts something. Within a few seconds the ship scrapes off of another large object. You reduce your speed and continue, until you leave the range of the aurora. Opening the viewports, you see that there were no asteroids in your flight plan, no objects at all. And yet something hit you. 
+You quickly turn down Lanri's offer to "just see what happens" and shutter all viewports across the ship, including the cockpit. Despite no blips on the radar and other external sensors, the ship impacts something. Within a few seconds the ship scrapes off of another large object. 
+
+
+
+You reduce your speed and continue, until you leave the range of the aurora. Opening the viewports, you see that there were no asteroids in your flight plan, no objects at all. And yet something hit you. 
 
 -> END
 
 == Ravenous ==
-You accept Lanri's scientific advice to "just see what happens" and fly through the aurora normally. Your sensors pixelate, as many of your crew stand and begin to run towards food storage. They begin to rip open packets of rations, wrest food from another's hands, and scarf down what they can. By the time you clear the aurora, everyone is back to normal and your food stores have been heavily depleted. Lanri doesn't recall what happened and insists you fly through again. You politely decline.
+You accept Lanri's scientific advice to "just see what happens" and fly through the aurora normally. Your sensors pixelate, as many of your crew stand and begin to run towards food storage. They begin to rip open packets of rations, wrest food from another's hands, and scarf down what they can. 
+By the time you clear the aurora, everyone is back to normal and your food stores have been heavily depleted. Lanri doesn't recall what happened and insists you fly through again. You politely decline.
 
 -> END
 

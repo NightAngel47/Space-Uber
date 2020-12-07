@@ -1,5 +1,4 @@
 VAR randomEnd = -> ForceTheDoorOpen
-
 Kuon slams the wall with such force the whole ship could hear it echo. "I know you could hear that, AI. We have a situation. One of the doors in the Power Core has malfunctioned and can’t be opened. Four crewmates are trapped and losing oxygen inside. Let me blast that fucker open, we need those crewmates for this mission. You could let the engineers fix it, but it may be too late for those crewmates by the time they get it open."
 
 + [Force the door open]

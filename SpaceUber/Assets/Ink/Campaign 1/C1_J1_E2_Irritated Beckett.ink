@@ -16,11 +16,13 @@ He goes on to tell you through an obscenity-ridden rant that the only thing he'l
 -> END
 
 === Neutral ===
-You choose not to respond. Beckett is already acting belligerent, and getting security involved is unlikely to help. Your silence, even when asked to intervene, leaves the crew squarely in his crossfire, as Beckett continues to spew out verbal abuse and threats for the rest of the night.
+You choose not to respond. Beckett is already acting belligerent, and getting security involved is unlikely to help. 
+Your silence, even when asked to intervene, leaves the crew squarely in his crossfire, as Beckett continues to spew out verbal abuse and threats for the rest of the night.
 -> END
 
 === Beckett ===
 You tell her that Beckett is a client, and that clients are to be respected. Your request for him to be given a new meal is met with Lanri storming off in a huff. 
-Luckily, siding with Beckett seems to appease him. Smug, he stumbles back to his seat and spends the rest of the dinner bantering with the other elites. The next morning he messages you, thanking you for putting that "peasant in her place." In addition, several credits have been added to your account.
+Luckily, siding with Beckett seems to appease him. Smug, he stumbles back to his seat and spends the rest of the dinner bantering with the other elites. 
+The next morning he messages you, thanking you for putting that "peasant in her place." In addition, several credits have been added to your account.
 Unfortunately, when it comes time for Lanri start her shift for the day, she refuses, telling she doesn't want to spread "poison." Hopefully she'll forget the side you took. However, in the meantime, production of food will be slowed without her oversight.
 -> END

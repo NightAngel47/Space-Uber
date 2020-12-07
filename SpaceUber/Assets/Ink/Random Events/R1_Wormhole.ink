@@ -1,7 +1,8 @@
 VAR randomEnd = -> MinorDamage
 
 
-Something catches your attention in the void between the stars. A distortion in space where light is warped, bent, and trapped in the cosmic maw of a wormhole. As you draw closer a nearby star is ripped from its position in the void and stretched into stellar spaghetti as it crosses the event horizon. A quick number crunch reveals that there is only a small chance that the same would happen to your ship should you venture closer. 
+Something catches your attention in the void between the stars. A distortion in space where light is warped, bent, and trapped in the cosmic maw of a wormhole. 
+As you draw closer a nearby star is ripped from its position in the void and stretched into stellar spaghetti as it crosses the event horizon. A quick number crunch reveals that there is only a small chance that the same would happen to your ship should you venture closer. 
 + [Leave it be] -> Leave
 + [Approach Wormhole] ->randomEnd 
 

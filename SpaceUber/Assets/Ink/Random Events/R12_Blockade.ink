@@ -1,5 +1,4 @@
 VAR randomEnd = ->FightWin
-
 Kuon reaches you on an emergency signal, "Game time," he says, "There’s a military blockade ahead. Three ships. Galactic government. Say they're keeping everyone off this route in case of 'spies' or 'pirates.' I'm sure the former captain would try to smooth this over with coin, but their weapons look outdated." Kuon gives you a devious smirk. "Let me handle this."
 
 * [Bribe]
