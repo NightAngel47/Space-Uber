@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 4.4, y: 0.5}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &809575775669730131
 CanvasRenderer:
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The long term outcomes of this event are unknown.
+  m_text: The effects of this outcome are unknown.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 814f343da59605545b19571b87874865, type: 2}
   m_sharedMaterial: {fileID: -6362999969210495281, guid: 814f343da59605545b19571b87874865,
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -45
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
