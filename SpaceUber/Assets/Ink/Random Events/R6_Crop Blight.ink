@@ -1,9 +1,9 @@
     Your head scientist, Lanri, contacts you. "Hi, hey, small issue, small issue. Looks like the chlorosis and degradation I saw yesterday has gotten worse. Something is killing the plants and‒" she gasps for emphasis, "I don't know what!" We're either going to need to kill all affected buds, manufacture a fungicide, or‒what? Apply a highly nutritious mulch?" She paces in circles.
-* [Cull Crops(--Food)]
+* [Cull Crops]
 -> Cull
-* [Mulch Crew(-Crew)]
+* [Mulch Crew]
 -> Mulch
-* [Synthesize Cure(-Credits, Requires Med-bay)]
+* [Synthesize Cure]
 -> Cure
 
 == Cull ==

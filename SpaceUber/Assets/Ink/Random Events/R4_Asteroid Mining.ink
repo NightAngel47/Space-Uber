@@ -1,10 +1,10 @@
     Captain Lexa calls you, gives a salute out of habit, and says, "The team is picking up local radio chatter. Some asteroid miners are having issues drilling with outdated equipment. We could lend them out firepower to punch through the bedrock. Or…" she shrugs, "Could capitalize on the situation to pick up some new recruits. People are always looking for a chance to jump ship, as it were. Otherwise, could be a good chance to dock, get some repairs done."
     
-* [Help Blast Apart Asteroid (-Weapons +Credits)]
+* [Help Blast Apart Asteroid]
 -> Blast
-* [Hire Miners (-Credits +Crew)]
+* [Hire Miners]
 -> Hire
-* [Repair Ship (+Hull)]
+* [Repair Ship]
 -> Repair
 
 == Blast ==
@@ -16,5 +16,5 @@ You radio the miners and offer the employees jobs on an interstellar courier shi
 -> END 
 
 == Repair ==
-You radio the miners and ask if you could dock momentarily, get done the sort of repairs impossible at light speed. They accept and graciously offer access to scrap they’ve pulled from the belt. In the few hours you have, your engineering team grafts the scrap onto your hull without affecting aerodynamics too harshly. 
+You radio the miners and ask if you could dock momentarily, get done the sort of repairs impossible at light speed. They accept and graciously offer access to scrap they've pulled from the belt. In the few hours you have, your engineering team grafts the scrap onto your hull without affecting aerodynamics too harshly. 
 -> END

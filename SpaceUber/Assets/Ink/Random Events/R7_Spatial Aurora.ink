@@ -2,7 +2,7 @@ VAR randomEnd = -> Ravenous
     
     Your head of R&D, Lanri, calls you. She appears on the monitor, seemingly very excited, "Sir‒! Ma'am‒ ...Boss. There’s a strange anomaly, impossible lights, no discernable source, encoded data within the color variations, the <i>works.</i> Our flight plan is putting us right through it, so I was hoping I could study the crew afterwards, you know, see what happens?" Protocol insists that exposing your crew to an unidentified aurora is a terrible idea, though the alternative is have the crew fly blind, which could easily lead to collisions.
     
-* [Blind Pilots (-Hull)]
+* [Blind Pilots]
 -> Blinded
 * [Expose Crew to Aurora (???)]
 -> randomEnd

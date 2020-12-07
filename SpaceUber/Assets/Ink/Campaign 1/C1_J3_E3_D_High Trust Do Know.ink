@@ -25,13 +25,14 @@ Your passengers are well aware of the conspiracy against them, most of them prod
 You know that whatever lurks here won’t be enough for the VIPs to handle on their own. Regardless, they step out of the cargo hold, brandishing their weapons. Gunshots ring out as metal-clad mercenaries lurch out of the shadows. The two sides exchange shots, bullets ricocheting off your ship and the VIPs fire arcing red beams from their sidearms. 
 The clones are the more prepared faction of the two, but involving yourself in the fray could tip the scales to the elites’ advantage. The extra factor of your weapons and your security team can destabilize this entire fight. The question is who can you trust to pay you when the smoke clears.
 
-*[Side with the Clones (Kill the VIPs)]
+*[Side with Clones (Kill VIPs)]
 The corporate elites hold their own just long enough for you to make a difference, and you decide that that difference will be a knife in their backs. You turn your guns onto your former passengers and blast them apart. The mercenaries nod in your direction and pick through the bodies, checking and silencing survivors.
 ~VIPsDead = true
 -> Negotiation
 
-*[Side with the VIPs (Fight the clones)]
-You order your crew to target the mercenaries, suddenly blue lights swing across the docking bay, cutting the metal-clad men in half before they can comprehend the betrayal. You distantly hear your elite passengers cheering until it is drowned out by the sound of a deep warbling sound of a machine charging. You start to see a sickly green light in the shadows of the docking bay, a mobile artillery platform. The VIPs dive for cover as the charging plasma reaches deafening volumes, you need to act.
+*[Side with VIPs (Fight clones)]
+You order your crew to target the mercenaries, suddenly blue lights swing across the docking bay, cutting the metal-clad men in half before they can comprehend the betrayal. You distantly hear your elite passengers cheering until it is drowned out by the sound of a deep warbling sound of a machine charging. 
+You start to see a sickly green light in the shadows of the docking bay, a mobile artillery platform. The VIPs dive for cover as the charging plasma reaches deafening volumes, you need to act.
 -> Fight
 
 
