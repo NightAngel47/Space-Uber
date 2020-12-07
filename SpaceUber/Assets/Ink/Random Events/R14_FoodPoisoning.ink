@@ -1,8 +1,8 @@
 Consistent shrieks from the Medbay fill you automated ears as Kelly calmly makes her way into your office. "It appears that a sizable portion of our food supply is causing food poisoning in the crewmates." Tone unchanged, Kelly continues, "You could have the food removed from the ship. Or, you could ignore this and continue to allow some of the crew to be poisoned. Some will likely die. Please let me know of your decision."
 
-+ [Remove the food (--food)]
++ [Remove the food]
 -> RemoveTheFood
-+ [Continue to eat the food (-2 crew)]
++ [Continue to eat the food]
 -> ContinueToEatTheFood
 
 ==RemoveTheFood==
