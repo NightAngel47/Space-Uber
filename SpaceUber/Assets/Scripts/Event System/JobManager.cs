@@ -37,17 +37,19 @@ public class JobManager : MonoBehaviour
         yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_JobList").isLoaded);
         jobListUI = FindObjectOfType<JobListUI>();
 
-        foreach (Job job in campaignManager.campaigns[(int)campaignManager.currentCamp].campaignJobs)
+        for (var i = 0; i < campaignManager.campaigns[(int) campaignManager.currentCamp].campaignJobs.Count; i++)
         {
+            Job job = campaignManager.campaigns[(int) campaignManager.currentCamp].campaignJobs[i];
             // Show available job currently handles both primary and side jobs,
             // might need to change when side jobs are added
-            if (job.campaignIndexAvailable == campaignManager.campaigns[(int) campaignManager.currentCamp].currentCampaignJobIndex ||
+            if (job.campaignIndexAvailable ==
+                campaignManager.campaigns[(int) campaignManager.currentCamp].currentCampaignJobIndex ||
                 job.isSideJob)
             {
-                jobListUI.ShowAvailableJob(job);
+                jobListUI.ShowAvailableJob(job, i);
             }
         }
-        
+
         jobListUI.continueButton.onClick.AddListener(FinalizeJobSelection);
     }
 

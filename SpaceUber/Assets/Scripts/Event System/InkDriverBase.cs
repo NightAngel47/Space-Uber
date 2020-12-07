@@ -83,6 +83,16 @@ public class InkDriverBase : MonoBehaviour
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
     }
 
+    /// <summary>
+    /// Assigns necessary UI elements
+    /// </summary>
+    /// <param name="title"></param>
+    /// <param name="text"></param>
+    /// <param name="results"></param>
+    /// <param name="background"></param>
+    /// <param name="buttonSpace"></param>
+    /// <param name="ship"></param>
+    /// <param name="campaignManager"></param>
     public void AssignStatusFromEventSystem(TMP_Text title, TMP_Text text, GameObject results, Image background, Transform buttonSpace,
         ShipStats ship, CampaignManager campaignManager)
     {
@@ -94,6 +104,7 @@ public class InkDriverBase : MonoBehaviour
         thisShip = ship;
         campMan = campaignManager;
 
+        resultsBox.transform.GetChild(0).GetComponent<TMP_Text>().text = "";
         resultsBox.SetActive(false);
     }
 
