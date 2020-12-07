@@ -215,6 +215,7 @@ public class InkDriverBase : MonoBehaviour
         story.ChooseChoiceIndex(choice.index);
         Refresh();
         showingChoices = false;
+        FindObjectOfType<PageController>().UpdateNextPageText();
     }
 
     /// <summary>
