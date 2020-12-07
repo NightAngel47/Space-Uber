@@ -112,6 +112,7 @@ public class SecurityMiniGame : MiniGame
 
     IEnumerator DisplayCode()
 	{
+        foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(false); }
         codePreview.text = "";
         yield return new WaitForSeconds(1);
         foreach(char codeSegment in requiredCode)
@@ -121,7 +122,7 @@ public class SecurityMiniGame : MiniGame
             yield return new WaitForSeconds(displayTime);
             codePreview.text = "";
         }
-
+        foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(true); }
         inputCode = "";
     }
 }
