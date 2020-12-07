@@ -193,6 +193,7 @@ public class RoomStats : MonoBehaviour
 
     public void UpdateRoomStats()
     {
+        shipStats.roomBeingPlaced = gameObject;
         SubtractRoomStats();
         foreach (Resource resource in resources)
         {
