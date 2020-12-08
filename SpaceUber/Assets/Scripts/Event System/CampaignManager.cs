@@ -54,7 +54,7 @@ public class CampaignManager : MonoBehaviour
             saved_ctr_cloneTrust = ctr_cloneTrust;
         }
         
-        public void ResetEventChoices()
+        public void ResetEventChoicesToJobStart()
         {
             ctr_sideWithScientist = saved_ctr_sideWithScientist;
             ctr_killBeckett = saved_ctr_killBeckett;
@@ -65,7 +65,5 @@ public class CampaignManager : MonoBehaviour
             ctr_VIPTrust = saved_ctr_VIPTrust;
             ctr_cloneTrust = saved_ctr_cloneTrust;
         }
-        
     }
-
 }

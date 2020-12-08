@@ -123,6 +123,7 @@ public class EventSystem : MonoBehaviour
 	public IEnumerator Travel()
 	{
 		ship.ResetDaysSince();
+		campMan.cateringToTheRich.SaveEventChoices();
 
 		//For the intro event
 		yield return new WaitWhile((() => eventActive));
@@ -274,6 +275,15 @@ public class EventSystem : MonoBehaviour
 		randomEvents.Clear();
 		currentJob = null;
 		maxEvents = 0;
+		overallEventIndex = 0;
+		storyEventIndex = 0;
+		randomEventIndex = 0;
+		eventInstance = null;
+		lastEventTitle = "";
+	}
+
+	public void ResetJob()
+	{
 		overallEventIndex = 0;
 		storyEventIndex = 0;
 		randomEventIndex = 0;

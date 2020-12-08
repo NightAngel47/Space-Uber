@@ -616,6 +616,7 @@ public class ShipStats : MonoBehaviour
     public void ResetStats()
     {
         credits = 0;
+        payout = 0;
         energyRemaining = 0;
         energyMax = 0;
         security = 0;
