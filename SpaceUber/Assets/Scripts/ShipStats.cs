@@ -98,7 +98,7 @@ public class ShipStats : MonoBehaviour
     private void Start()
     {
         UpdateCreditsAmount(startingCredits);
-        payout = 0;
+        UpdatePayoutAmount(0);
         UpdateEnergyAmount(startingEnergy, startingEnergy);
         UpdateSecurityAmount(startingSecurity);
         UpdateShipWeaponsAmount(startingShipWeapons);
@@ -433,13 +433,6 @@ public class ShipStats : MonoBehaviour
     //}
     public void UpdatePayoutAmount(int ammount)
     {
-        payout += ammount;
-
-        shipStatsUI.UpdateCreditsUI(credits, payout);
-    }
-
-    public void AddPayout(int ammount)
-    {
         int initialPayout = payout;
         payout += ammount;
         if (payout <= 0)
@@ -623,6 +616,7 @@ public class ShipStats : MonoBehaviour
     public void ResetStats()
     {
         credits = 0;
+        payout = 0;
         energyRemaining = 0;
         energyMax = 0;
         security = 0;
@@ -637,7 +631,7 @@ public class ShipStats : MonoBehaviour
         //crewMorale = 0;
         
         UpdateCreditsAmount(startCredits);
-        payout = startPayout;
+        UpdatePayoutAmount(startPayout);
         UpdateEnergyAmount(startEnergyRemaining, startEnergyMax);
         UpdateSecurityAmount(startSecurity);
         UpdateShipWeaponsAmount(startShipWeapons);
