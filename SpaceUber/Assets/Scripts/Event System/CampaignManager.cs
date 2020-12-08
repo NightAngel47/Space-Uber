@@ -19,15 +19,15 @@ public class CampaignManager : MonoBehaviour
         [HideInInspector] public int currentCampaignJobIndex = 0;
         public List<Job> campaignJobs = new List<Job>();
         
-        public enum NarrativeOutcomes { NA, SideWithScientist, KillBeckett, LetBalePilot, KilledAtSafari, KilledOnce, TellVIPsAboutClones}
+        public enum NarrativeOutcomes { NA, SideWithScientist, KillBeckett, LetBalePilot, KilledAtSafari, KilledOnce, TellVIPsAboutClones, VIPTrust, CloneTrust}
         
         public bool ctr_sideWithScientist;
         public bool ctr_killBeckett;
         public bool ctr_letBalePilot;
         public bool ctr_killedAtSafari;
         public bool ctr_tellVIPsAboutClones;
-
         public bool ctr_killedOnce;
+        
         public int ctr_VIPTrust = 50;
         public int ctr_cloneTrust = 50;
     }

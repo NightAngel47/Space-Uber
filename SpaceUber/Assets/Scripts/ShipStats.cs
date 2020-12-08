@@ -98,7 +98,7 @@ public class ShipStats : MonoBehaviour
     private void Start()
     {
         UpdateCreditsAmount(startingCredits);
-        payout = 0;
+        UpdatePayoutAmount(0);
         UpdateEnergyAmount(startingEnergy, startingEnergy);
         UpdateSecurityAmount(startingSecurity);
         UpdateShipWeaponsAmount(startingShipWeapons);
@@ -432,13 +432,6 @@ public class ShipStats : MonoBehaviour
     //    return crewRemaining;
     //}
     public void UpdatePayoutAmount(int ammount)
-    {
-        payout += ammount;
-
-        shipStatsUI.UpdateCreditsUI(credits, payout);
-    }
-
-    public void AddPayout(int ammount)
     {
         int initialPayout = payout;
         payout += ammount;

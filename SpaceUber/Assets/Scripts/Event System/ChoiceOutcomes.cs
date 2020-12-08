@@ -158,7 +158,7 @@ public class ChoiceOutcomes
                         }
                         break;
                     case ResourceType.Payout:
-                        ship.AddPayout(amount);
+                        ship.UpdatePayoutAmount(amount);
                         SpawnStatChangeText(ship, amount, 0);
                         if (amount < 0)
                         {

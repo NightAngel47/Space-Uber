@@ -10,15 +10,11 @@ using NaughtyAttributes;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class Requirements
 {
-    
-
-    
-
-
     #region Stat Requirement Stuff
 
     public enum ResourceType
@@ -55,9 +51,10 @@ public class Requirements
     [SerializeField, AllowNesting]
     private bool isNarrativeRequirement = false;
 
+    [FormerlySerializedAs("ctrBoolRequirements")]
     [Tooltip("Select one item from this dropdown list. The selected variable must be true for this event to run"),
-    SerializeField, ShowIf("isNarrativeRequirement"), AllowNesting]
-    private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolRequirements;
+     SerializeField, ShowIf("isNarrativeRequirement"), AllowNesting]
+    private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrNarrativeOutcomes;
 
     [Tooltip("Click this if you would like to check trust variables for Catering to the Rich")]
     [SerializeField, ShowIf("isNarrativeRequirement"), AllowNesting]
@@ -155,7 +152,7 @@ public class Requirements
         else if (isNarrativeRequirement)
         {
             //check if the selected bool is true or not
-            switch(ctrBoolRequirements)
+            switch(ctrNarrativeOutcomes)
             {
                 case CampaignManager.CateringToTheRich.NarrativeOutcomes.SideWithScientist:
                     result = campMan.cateringToTheRich.ctr_sideWithScientist;
@@ -177,9 +174,18 @@ public class Requirements
             }
             if(ctrTrustRequirements)
             {
-                bool VIPResult = campMan.cateringToTheRich.ctr_VIPTrust > VIPTrustRequirement;
-                bool cloneResult = campMan.cateringToTheRich.ctr_cloneTrust > cloneTrustRequirement;
-                result = VIPResult && cloneResult;
+
+                switch (ctrNarrativeOutcomes)
+                {
+                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.VIPTrust:
+                        result = campMan.cateringToTheRich.ctr_VIPTrust >= VIPTrustRequirement;
+                        break;
+                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.CloneTrust:
+                        result = campMan.cateringToTheRich.ctr_cloneTrust >= cloneTrustRequirement;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         else if (isRoomRequirement)
