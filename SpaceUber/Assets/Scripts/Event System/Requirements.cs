@@ -10,15 +10,11 @@ using NaughtyAttributes;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class Requirements
 {
-    
-
-    
-
-
     #region Stat Requirement Stuff
 
     public enum ResourceType
@@ -55,9 +51,10 @@ public class Requirements
     [SerializeField, AllowNesting]
     private bool isNarrativeRequirement = false;
 
-    [Tooltip("Select one item from this dropdown list. The selected variable must be true for this event to run")]
-    [Dropdown("cateringToRichBools"), SerializeField, ShowIf("isNarrativeRequirement"), AllowNesting]
-    private string ctrBoolRequirements;
+    [FormerlySerializedAs("ctrBoolRequirements")]
+    [Tooltip("Select one item from this dropdown list. The selected variable must be true for this event to run"),
+     SerializeField, ShowIf("isNarrativeRequirement"), AllowNesting]
+    private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrNarrativeOutcomes;
 
     [Tooltip("Click this if you would like to check trust variables for Catering to the Rich")]
     [SerializeField, ShowIf("isNarrativeRequirement"), AllowNesting]
@@ -154,37 +151,41 @@ public class Requirements
         }
         else if (isNarrativeRequirement)
         {
-            switch(campMan.currentCamp)
+            //check if the selected bool is true or not
+            switch(ctrNarrativeOutcomes)
             {
-                //for catering to the rich campaign
-                case Campaigns.CateringToTheRich:
-                    CampaignManager.CateringToTheRich campaign = CampaignManager.Campaign.ToCateringToTheRich(campMan.campaigns[(int)Campaigns.CateringToTheRich]);
-                    
-                    //check if the selected bool is true or not
-                    switch(ctrBoolRequirements)
-                    {
-                        case "Side With Scientist":
-                            result = campaign.ctr_sideWithScientist;
-                            break;
-                        case "Kill Beckett":
-                            result = campaign.ctr_killBeckett;
-                            break;
-                        case "Killed At Safari":
-                            result = campaign.ctr_killedAtSafari;
-                            break;
-                        case "Tell VIPs About Clones":
-                            result = campaign.ctr_tellVIPsAboutClones;
-                            break;
-                        case "N_A":
-                            break;
-                    }
-                    if(ctrTrustRequirements)
-                    {
-                        bool VIPResult = campaign.ctr_VIPTrust > VIPTrustRequirement;
-                        bool cloneResult = campaign.ctr_cloneTrust > cloneTrustRequirement;
-                        result = VIPResult && cloneResult;
-                    }
+                case CampaignManager.CateringToTheRich.NarrativeOutcomes.SideWithScientist:
+                    result = campMan.cateringToTheRich.ctr_sideWithScientist;
                     break;
+                case CampaignManager.CateringToTheRich.NarrativeOutcomes.KillBeckett:
+                    result = campMan.cateringToTheRich.ctr_killBeckett;
+                    break;
+                case CampaignManager.CateringToTheRich.NarrativeOutcomes.LetBalePilot:
+                    result = campMan.cateringToTheRich.ctr_letBalePilot;
+                    break;
+                case CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledAtSafari:
+                    result = campMan.cateringToTheRich.ctr_killedAtSafari;
+                    break;
+                case CampaignManager.CateringToTheRich.NarrativeOutcomes.TellVIPsAboutClones:
+                    result = campMan.cateringToTheRich.ctr_tellVIPsAboutClones;
+                    break;
+                default:
+                    break;
+            }
+            if(ctrTrustRequirements)
+            {
+
+                switch (ctrNarrativeOutcomes)
+                {
+                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.VIPTrust:
+                        result = campMan.cateringToTheRich.ctr_VIPTrust >= VIPTrustRequirement;
+                        break;
+                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.CloneTrust:
+                        result = campMan.cateringToTheRich.ctr_cloneTrust >= cloneTrustRequirement;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         else if (isRoomRequirement)
@@ -256,13 +257,5 @@ public class Requirements
         
 
         return result;
-    }
-
-    private List<string> cateringToRichBools
-    {
-        get
-        {
-            return new List<string>() { "N_A", "Side With Scientist", "Kill Beckett", "Let Bale Pilot", "Killed At Safari", "Tell VIPs About Clones" };
-        }
     }
 }
