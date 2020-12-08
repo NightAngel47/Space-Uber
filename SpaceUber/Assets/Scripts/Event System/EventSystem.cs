@@ -89,13 +89,16 @@ public class EventSystem : MonoBehaviour
         {
 			yield return null;
         }
-		
+
 		GameObject intro = null;
-		foreach (var introEvent in from introEvent in currentJob.introEvents 
-			let requirements = introEvent.GetComponent<InkDriverBase>().requiredStats 
-			where HasRequiredStats(requirements) select introEvent)
+		foreach (var introEvent in currentJob.introEvents)
 		{
-			intro = introEvent;
+			List<Requirements> requirements = introEvent.GetComponent<InkDriverBase>().requiredStats;
+			if (HasRequiredStats(requirements))
+			{
+				intro = introEvent;
+				break;
+			}
 		}
 
 		if (intro != null)

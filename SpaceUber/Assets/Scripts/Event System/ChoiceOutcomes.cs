@@ -26,8 +26,7 @@ public class ChoiceOutcomes
     [SerializeField] public bool isNarrativeOutcome;
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public ResourceType resource;
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public int amount;
-    [Dropdown("cateringToRichBools"),
-     SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private string ctrBoolOutcomes;
+    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolOutcomes;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int cloneTrustChange;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int VIPTrustChange;
 
@@ -176,45 +175,37 @@ public class ChoiceOutcomes
             }
             else
             {
-                
-                switch (campMan.currentCamp)
+                //alter the trust variables
+                campMan.cateringToTheRich.ctr_cloneTrust += cloneTrustChange;
+                campMan.cateringToTheRich.ctr_VIPTrust += VIPTrustChange;
+
+                //the selected bool will become true
+                switch (ctrBoolOutcomes)
                 {
-
-                    //for catering to the rich campaign
-                    case Campaigns.CateringToTheRich:
-                        CampaignManager.CateringToTheRich campaign = CampaignManager.Campaign.ToCateringToTheRich(campMan.campaigns[(int)Campaigns.CateringToTheRich]);
-
-                        //alter the trust variables
-                        campaign.ctr_cloneTrust += cloneTrustChange;
-                        campaign.ctr_VIPTrust += VIPTrustChange;
-
-                        //the selected bool will become true
-                        switch (ctrBoolOutcomes)
-                        {
-                            case "Side With Scientist":
-                                campaign.ctr_sideWithScientist = true;
-                                resultText += "\nYou sided with the scientist";
-                                break;
-                            case "Kill Beckett":
-                                campaign.ctr_killBeckett = true;
-                                resultText += "\nYou killed Beckett";
-                                break;
-                            case "Let Bale Pilot":
-                                campaign.ctr_letBalePilot = true;
-                                resultText += "\nYou let Bale pilot";
-                                break;
-                            case "Killed At Safari":
-                                campaign.ctr_killedAtSafari = true;
-                                resultText += "\nYou killed at the safari";
-                                break;
-                            case "Tell VIPs About Clones":
-                                campaign.ctr_tellVIPsAboutClones = true;
-                                resultText += "\nYou told the VIPs about the clones";
-                                break;
-                        }
+                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.SideWithScientist:
+                        campMan.cateringToTheRich.ctr_sideWithScientist = true;
+                        resultText += "\nYou sided with the scientist";
                         break;
-
+                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.KillBeckett:
+                        campMan.cateringToTheRich.ctr_killBeckett = true;
+                        resultText += "\nYou killed Beckett";
+                        break;
+                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.LetBalePilot:
+                        campMan.cateringToTheRich.ctr_letBalePilot = true;
+                        resultText += "\nYou let Bale pilot";
+                        break;
+                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledAtSafari:
+                        campMan.cateringToTheRich.ctr_killedAtSafari = true;
+                        resultText += "\nYou killed at the safari";
+                        break;
+                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.TellVIPsAboutClones:
+                        campMan.cateringToTheRich.ctr_tellVIPsAboutClones = true;
+                        resultText += "\nYou told the VIPs about the clones";
+                        break;
+                    default:
+                        break;
                 }
+                
                 //TODO: Make resultText show up on the textbox somehow
                 narrativeResultsBox.gameObject.SetActive(true);
 
@@ -246,14 +237,6 @@ public class ChoiceOutcomes
             narrativeResultsBox.transform.GetChild(0).GetComponent<TMP_Text>().text += resultText;
         }
 
-    }
-
-    private List<string> cateringToRichBools
-    {
-        get
-        {
-            return new List<string>() { "N_A", "Side With Scientist", "Kill Beckett", "Let Bale Pilot", "Killed At Safari", "Tell VIPs About Clones" };
-        }
     }
 
     private void SpawnStatChangeText(ShipStats ship, int value, int icon = -1)

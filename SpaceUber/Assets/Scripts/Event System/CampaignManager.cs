@@ -9,32 +9,18 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Campaigns
-{
-    N_A = -1,
-    CateringToTheRich = 0
-}
-
 public class CampaignManager : MonoBehaviour
 {
-    public Campaigns currentCamp;
-
-    public List<Campaign> campaigns = new List<Campaign>();
+    public CateringToTheRich cateringToTheRich = new CateringToTheRich();
     
     [Serializable]
-    public class Campaign
+    public class CateringToTheRich
     {
         [HideInInspector] public int currentCampaignJobIndex = 0;
         public List<Job> campaignJobs = new List<Job>();
-
-        public static CateringToTheRich ToCateringToTheRich(Campaign campaign)
-        {
-            return new CateringToTheRich();
-        }
-    }
-    
-    public class CateringToTheRich : Campaign
-    {
+        
+        public enum NarrativeOutcomes { NA, SideWithScientist, KillBeckett, LetBalePilot, KilledAtSafari, TellVIPsAboutClones}
+        
         public bool ctr_sideWithScientist;
         public bool ctr_killBeckett;
         public bool ctr_letBalePilot;
