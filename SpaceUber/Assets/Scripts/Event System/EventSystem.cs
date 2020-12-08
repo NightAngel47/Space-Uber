@@ -89,13 +89,16 @@ public class EventSystem : MonoBehaviour
         {
 			yield return null;
         }
-		
+
 		GameObject intro = null;
-		foreach (var introEvent in from introEvent in currentJob.introEvents 
-			let requirements = introEvent.GetComponent<InkDriverBase>().requiredStats 
-			where HasRequiredStats(requirements) select introEvent)
+		foreach (var introEvent in currentJob.introEvents)
 		{
-			intro = introEvent;
+			List<Requirements> requirements = introEvent.GetComponent<InkDriverBase>().requiredStats;
+			if (HasRequiredStats(requirements))
+			{
+				intro = introEvent;
+				break;
+			}
 		}
 
 		if (intro != null)
@@ -120,6 +123,7 @@ public class EventSystem : MonoBehaviour
 	public IEnumerator Travel()
 	{
 		ship.ResetDaysSince();
+		campMan.cateringToTheRich.SaveEventChoices();
 
 		//For the intro event
 		yield return new WaitWhile((() => eventActive));
@@ -271,6 +275,15 @@ public class EventSystem : MonoBehaviour
 		randomEvents.Clear();
 		currentJob = null;
 		maxEvents = 0;
+		overallEventIndex = 0;
+		storyEventIndex = 0;
+		randomEventIndex = 0;
+		eventInstance = null;
+		lastEventTitle = "";
+	}
+
+	public void ResetJob()
+	{
 		overallEventIndex = 0;
 		storyEventIndex = 0;
 		randomEventIndex = 0;
