@@ -36,8 +36,10 @@ However, she continues, her eyes and voice filled with contempt, "I know you wer
 -> END
 
 === Trap ===
-You decide to take the elites to their final destination. As you approach the coordinates given to you by the clones, you have security round up the elites at gunpoint. Although they outnumber your security crew, they hesitate to act considering they are unarmed. They are brought to the loading bay to await touchdown. Having been grouped together by your security, you notice they are starting to whisper among themselves.
-All of a sudden, Whitwer shouts, "Now!" Chaos breaks out as the several elites pull blades and guns from their vests, rushing your security team. Weapons start going off, and several of your crew go down under the assault of the VIPs. You have to give orders quickly, before you fully lose control of the situation. You get the sense that the clones wanted to be the ones to kill their originals, but taking prisoners in a battle like this would be costly.
+You decide to take the elites to their final destination. As you approach the coordinates given to you by the clones, you have security round up the elites at gunpoint. Although they outnumber your security crew, they hesitate to act considering they are unarmed. 
+They are brought to the loading bay to await touchdown. Having been grouped together by your security, you notice they are starting to whisper among themselves.
+All of a sudden, Whitwer shouts, "Now!" Chaos breaks out as the several elites pull blades and guns from their vests, rushing your security team. Weapons start going off, and several of your crew go down under the assault of the VIPs. 
+You have to give orders quickly, before you fully lose control of the situation. You get the sense that the clones wanted to be the ones to kill their originals, but taking prisoners in a battle like this would be costly.
 
 + [Subdue Them] -> Stun
 + [Take No Prisoners] -> Kill

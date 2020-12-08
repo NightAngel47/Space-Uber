@@ -4,11 +4,11 @@ Head of security, Kuon, calls you, “Boss. We have a signal ping. Universal cod
 
 == Black_Market ==
 Accepting his suggestion, you divert your flight plan into the shadow of a nearby gas giant. You coast into a tower-shaped space station covered in radio antennas, finding ample room in its hangar. A broker, wrapped in several suits, cuff-links, and masks, boards your ship. They welcome you to the black market, and offer you their wares.
-* [Flashclones (-100 Credits, +5 Crew)]
+* [Flashclones]
 -> Flashclones
-* [Nuclear Weapons (-100 Credits, +10 Weapons)]
+* [Nuclear Weapons]
 -> Nuclear_Weapons
-* [Rations (-100 Credits, +20 Food)]
+* [Rations]
 -> Rations
 * [Leave]
 You decide that none of the black market's options are worth the money or ire from local authorities.
