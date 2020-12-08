@@ -242,7 +242,7 @@ public class ChoiceOutcomes
                 narrativeResultsBox.SetActive(true);
             }
             
-            Debug.Log("Adding: " + resultText);
+            //Debug.Log("Adding: " + resultText);
             narrativeResultsBox.transform.GetChild(0).GetComponent<TMP_Text>().text += resultText;
         }
 

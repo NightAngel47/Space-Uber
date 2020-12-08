@@ -17,25 +17,6 @@ MonoBehaviour:
   amount: 250
   activeAmount: 0
   minAmount: 0
---- !u!95 &3123871171515743376
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2707287846329467267}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7c4cd627b6c763c4bb910fca25a27bda, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &6021959994680589200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -128,6 +109,11 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1209818939397508712, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7c4cd627b6c763c4bb910fca25a27bda, type: 2}
     - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: miniGame
@@ -624,12 +610,6 @@ PrefabInstance:
 --- !u!1 &2341064656473968728 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8354016038451866568, guid: d75062b47e0b75b4384d6d8e19141c62,
-    type: 3}
-  m_PrefabInstance: {fileID: 6021959994680589200}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2707287846329467267 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8502931638391405075, guid: d75062b47e0b75b4384d6d8e19141c62,
     type: 3}
   m_PrefabInstance: {fileID: 6021959994680589200}
   m_PrefabAsset: {fileID: 0}

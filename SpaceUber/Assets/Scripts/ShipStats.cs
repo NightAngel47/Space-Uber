@@ -131,7 +131,7 @@ public class ShipStats : MonoBehaviour
                 //crewMorale += (food * foodMoraleDamageMultiplier);
                 food = 0;
             }
-            shipStatsUI.UpdateFoodUI(food, foodPerTick);
+            shipStatsUI.UpdateFoodUI(food, foodPerTick, crewCurrent);
 
             // increment days since events
             daysSince++;
@@ -305,6 +305,11 @@ public class ShipStats : MonoBehaviour
 
     public void UpdateCrewAmount(int crewUnassignedAmount, int crewCurrentAmount = 0, int crewCapacityAmount = 0)
     {
+        if(GameManager.instance.currentGameState == InGameStates.CrewManagement)
+        {
+            SetObjectBeingPlaced();
+        }
+
         crewCapacity += crewCapacityAmount;
         crewCurrent += crewCurrentAmount;
         crewUnassigned += crewUnassignedAmount;
@@ -368,7 +373,7 @@ public class ShipStats : MonoBehaviour
             food = 0;
         }
 
-        shipStatsUI.UpdateFoodUI(food, foodPerTick);
+        shipStatsUI.UpdateFoodUI(food, foodPerTick, crewCurrent);
         shipStatsUI.ShowFoodUIChange(foodAmount, 0);
     }
 
@@ -376,7 +381,7 @@ public class ShipStats : MonoBehaviour
     {
         foodPerTick += foodPerTickAmount;
 
-        shipStatsUI.UpdateFoodUI(food, foodPerTick);
+        shipStatsUI.UpdateFoodUI(food, foodPerTick, crewCurrent);
         shipStatsUI.ShowFoodUIChange(0, foodPerTickAmount);
     }
 

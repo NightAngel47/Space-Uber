@@ -1,10 +1,9 @@
 VAR randomEnd = -> Kill1
-
-The head of security, Kuon, contacts you,  "It seems we have a situation. A crew member has taken another hostage. She is demanding fifty credits and some food. She says she has an associate that will pass by our ship and pick her up, at which point she will let the hostage go." 
-Gritting his teeth, he continues, "While you could comply with these outrageous demands, I recommend you allow my team to take care of the situation. We are in position to act as soon as you give word."
-+ [Comply] #(-50 Credits, -2 Food, -1 Crew)
+The security chief, Kuon, contacts you:  "We have a situation. A crew member has taken another hostage. She is demanding fifty credits and some food. She says she has an associate that will pass by our ship and pick her up, at which point she will let the hostage go." 
+Gritting his teeth, he continues, "While you could comply with these outrageous demands, my team can take care of the situation. We are in position to act as soon as you give word."
++ [Comply] 
 -> Comply
-* [Take Her Out] #(50% Chance - 1 Crew, 50 Chance -2 Crew)
+* [Take Her Out]
     ->randomEnd
 
 === Comply ===

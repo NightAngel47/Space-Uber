@@ -9,6 +9,8 @@ As you receive an alert that you are closing in on the planet, you consider your
 You decide to take the elites to the party. Although at first hesitant to disembark, a few of your clients recognize the location from their previous visits. Encouraged, the VIPs get off your ship quickly, albeit with an air of caution.
 As they are stepping off you pick up a few snippets of conversation. A few are chatting about your payment, with their opinions differing somewhat. "No way in hell am I paying," is the position of one disgruntled exec, while another states "Well, they did deliver us to our destination."
 From the conversations, it is clear that you will receive some of your payment, although the amount of credits may be somewhat paltry compared to what was promised.
+
+
 That being said, the clones are still on the planet, and may still try to take control. To make sure everything turns out right, you decide to stay near the planet and monitor the situation.
 A few hours later, your sensors pick up what appears to be an attack on the resort. The resort's defenses are causing interference with your monitoring equipment, but it is still apparent that this is the work of the clones, as you pick up images of the elite's doppelgangers dressed in combat armor.
 The resort has various defenses and security personnel, so the clones will likely fail in their attempt. That being said, you could take advantage of the situation.
