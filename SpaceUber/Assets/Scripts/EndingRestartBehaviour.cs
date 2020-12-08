@@ -11,10 +11,12 @@ using UnityEngine.SceneManagement;
 public class EndingRestartBehaviour : MonoBehaviour
 {
     private ShipStats ship;
-    
+    private CampaignManager campaignManager;
+
     private void Start()
     {
         ship = FindObjectOfType<ShipStats>();
+        campaignManager = FindObjectOfType<CampaignManager>();
     }
     
     public void RestartGame()
@@ -23,8 +25,10 @@ public class EndingRestartBehaviour : MonoBehaviour
         AudioManager.instance.PlayMusicWithTransition("General Theme");
     }
     
-    public void ResetStats()
+    public void ResetJob()
     {
         ship.ResetStats();
+        campaignManager.cateringToTheRich.ResetEventChoicesToJobStart();
+        EventSystem.instance.ResetJob();
     }
 }
