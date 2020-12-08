@@ -188,6 +188,8 @@ public class ChoiceOutcomes
                         break;
                     case CampaignManager.CateringToTheRich.NarrativeOutcomes.KillBeckett:
                         campMan.cateringToTheRich.ctr_killBeckett = true;
+                        campMan.cateringToTheRich.ctr_killedOnce = true;
+
                         resultText += "\nYou killed Beckett";
                         break;
                     case CampaignManager.CateringToTheRich.NarrativeOutcomes.LetBalePilot:
@@ -196,6 +198,18 @@ public class ChoiceOutcomes
                         break;
                     case CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledAtSafari:
                         campMan.cateringToTheRich.ctr_killedAtSafari = true;
+                        
+                        if(campMan.cateringToTheRich.ctr_killedOnce == true) //killed beckett as well
+                        {
+                            campMan.cateringToTheRich.ctr_killedOnce = false;
+                        }
+                        else //no kills yet
+                        {
+                            campMan.cateringToTheRich.ctr_killedOnce = true;
+                        }
+
+                        
+
                         resultText += "\nYou killed at the safari";
                         break;
                     case CampaignManager.CateringToTheRich.NarrativeOutcomes.TellVIPsAboutClones:
