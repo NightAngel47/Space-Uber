@@ -3,10 +3,10 @@ VAR randomEnd2 = -> Survive2
 
  Doctor Lormay calls you, calm despite worried voices in the background, "It seems that one of the crew members was misusing a recreational drug. He’s here in the medbay suffering an overdose. He might not survive the night. I am asking for permission to administer some Conaxel to help stabilize him."
  Pausing, she lets out a brief sigh, "I can understand if you refuse. Our stock of Conaxel is minuscule and refilling it will cost some credits. Plus, while it would bolster his chances to survive, it wouldn't guarantee it."
-* [Don't Use Medicine] #(60% Chance - 1 Crew)
+* [Don't Use Medicine]
     ->randomEnd
 
-* [Use Medicine] #(20% Chance - 1 Crew -20 Credits)
+* [Use Medicine]
     ->randomEnd2
 
 === Survive1 ===

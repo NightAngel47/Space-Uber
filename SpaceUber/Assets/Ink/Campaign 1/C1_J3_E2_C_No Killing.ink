@@ -1,5 +1,5 @@
 There's a commotion in the VIP lounge. The corporate elites are arguing with one another over what to do with their clones. Apparently, records show that several of their copies have placed calls to your ship without the originals being alerted. Some argue that this batch has gotten too comfortable with borrowed power, others speculate that the clones are plotting something vile. 
-A sharply dressed woman, Olivia Whitwer, marches over to the console with the others in tow. "I know you're listening." She says, "Care to comment on these calls?"
+A sharply dressed woman, Olivia Whitwer, marches over to the console with the others in tow. "I know you're listening," she says, "Care to comment on these calls?"
 
 * [Cover for the clones (Lie)]
 -> Cover

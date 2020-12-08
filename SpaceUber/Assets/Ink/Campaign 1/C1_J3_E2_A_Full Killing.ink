@@ -1,6 +1,6 @@
 There's a commotion in the VIP lounge. The corporate elites you haven't killed have locked the doors and are arguing over the string of accidents. Talk is circulating about how clone replacements are soon going to outnumber them in the corporate sphere. They're certain that someone is after them. 
 
-Their primary suspect seems to be the Kellis Corporation, since they put on the retreat without coming themselves. To them, your ship is a deathtrap. They're right of course, but wrong about you being told by Kellis to do it. A sharply dressed woman, Olivia Whitwer, marches over to your console with the others in tow. "I know you are listening." She says, "Care to comment on our safety?"
+Their primary suspect seems to be the Kellis Corporation, since they put on the retreat without coming themselves. To them, your ship is a deathtrap. They're right of course, but wrong about you being told by Kellis to do it. A sharply dressed woman, Olivia Whitwer, marches over to your console with the others in tow. "I know you are listening," she says, "Care to comment on our safety?"
 *["I am investigating these deaths." (Lie)]
 -> Cover_Lie
 * ["Your clones are trying to kill you."]
@@ -31,5 +31,6 @@ Olivia's eyes widen, realizing the obvious truth, "Oh fuck." she breathes out. S
 -> END
 
 == Reveal_Intent ==
-"They... they what?" Olivia whispers, before taking a step back. She whirls around, checking the room for cameras, remote guns. "We need to get off this ship." her voice is hoarse. Olivia rushes to the door along with several other elites, all of them angry and terrified, you seal the door several seconds before they reach it. The rest stand in the lounge watching Olivia's group, confused and docile. You're almost at your destination, you'll just need to keep them contained a bit longer and then it will be over.
+"They... they what?" Olivia whispers, before taking a step back. She whirls around, checking the room for cameras, remote guns. "We need to get off this ship." her voice is hoarse. 
+Olivia rushes to the door along with several other elites, all of them angry and terrified, you seal the door several seconds before they reach it. The rest stand in the lounge watching Olivia's group, confused and docile. You're almost at your destination, you'll just need to keep them contained a bit longer and then it will be over.
 -> END

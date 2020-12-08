@@ -44,6 +44,7 @@ public class SecurityMiniGame : MiniGame
     {
 		if (inputCode.Length == requiredCode.Length && inputCode.Length > 0) 
         {
+            foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(false); }
             if (inputCode == requiredCode)
             {
                 inputCode = "";
@@ -80,7 +81,7 @@ public class SecurityMiniGame : MiniGame
 
     void GenerateCode()
     {
-        foreach(CodeBlock block in codeSegments) { block.gameObject.SetActive(true); }
+        foreach(CodeBlock block in codeSegments) { block.RestetInput(); }
         ScrambleCodeBlocks();
         requiredCode = "";
         availableCode = "";
@@ -112,6 +113,7 @@ public class SecurityMiniGame : MiniGame
 
     IEnumerator DisplayCode()
 	{
+        foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(false); }
         codePreview.text = "";
         yield return new WaitForSeconds(1);
         foreach(char codeSegment in requiredCode)
@@ -121,7 +123,7 @@ public class SecurityMiniGame : MiniGame
             yield return new WaitForSeconds(displayTime);
             codePreview.text = "";
         }
-
+        foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(true); }
         inputCode = "";
     }
 }
