@@ -630,7 +630,7 @@ public class ShipStats : MonoBehaviour
         //crewMorale = 0;
         
         UpdateCreditsAmount(startCredits);
-        payout = startPayout;
+        UpdatePayoutAmount(startPayout);
         UpdateEnergyAmount(startEnergyRemaining, startEnergyMax);
         UpdateSecurityAmount(startSecurity);
         UpdateShipWeaponsAmount(startShipWeapons);

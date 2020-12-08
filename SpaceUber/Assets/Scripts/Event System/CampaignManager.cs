@@ -30,6 +30,42 @@ public class CampaignManager : MonoBehaviour
         
         public int ctr_VIPTrust = 50;
         public int ctr_cloneTrust = 50;
+        
+        // temp saving for resesting
+        private bool saved_ctr_sideWithScientist;
+        private bool saved_ctr_killBeckett;
+        private bool saved_ctr_letBalePilot;
+        private bool saved_ctr_killedAtSafari;
+        private bool saved_ctr_tellVIPsAboutClones;
+        private bool saved_ctr_killedOnce;
+        
+        private int saved_ctr_VIPTrust = 50;
+        private int saved_ctr_cloneTrust = 50;
+
+        public void SaveEventChoices()
+        {
+            saved_ctr_sideWithScientist = ctr_sideWithScientist;
+            saved_ctr_killBeckett = ctr_killBeckett;
+            saved_ctr_letBalePilot = ctr_letBalePilot;
+            saved_ctr_killedAtSafari = ctr_killedAtSafari;
+            saved_ctr_tellVIPsAboutClones = ctr_tellVIPsAboutClones;
+            saved_ctr_killedOnce = ctr_killedOnce;
+            saved_ctr_VIPTrust = ctr_VIPTrust;
+            saved_ctr_cloneTrust = ctr_cloneTrust;
+        }
+        
+        public void ResetEventChoices()
+        {
+            ctr_sideWithScientist = saved_ctr_sideWithScientist;
+            ctr_killBeckett = saved_ctr_killBeckett;
+            ctr_letBalePilot = saved_ctr_letBalePilot;
+            ctr_killedAtSafari = saved_ctr_killedAtSafari;
+            ctr_tellVIPsAboutClones = saved_ctr_tellVIPsAboutClones;
+            ctr_killedOnce = saved_ctr_killedOnce;
+            ctr_VIPTrust = saved_ctr_VIPTrust;
+            ctr_cloneTrust = saved_ctr_cloneTrust;
+        }
+        
     }
 
 }

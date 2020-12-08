@@ -113,8 +113,8 @@ public class EventChoice
         {
             tooltip.SetOutcomeData(description, outcomes, hasSecretOutcomes);
         }
-        //randomize which ending we'll have from the start
-        if (hasRandomEnding)
+        //randomize which ending we'll have from the start, needs to have story that matched requirements.
+        if (story != null && hasRandomEnding)
         {
             RandomizeEnding(story);
         }
