@@ -19,6 +19,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
+      propertyPath: introEvents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
+        type: 3}
       propertyPath: campaignIndexAvailable
       value: 2
       objectReference: {fileID: 0}
@@ -145,25 +150,25 @@ PrefabInstance:
         type: 3}
       propertyPath: storyEvents.Array.data[6]
       value: 
-      objectReference: {fileID: 9154367374488137856, guid: 97cb211120e097d4989bcbdb6cce3931,
+      objectReference: {fileID: 4004061776178579219, guid: 40277288a9b1a6148b3f9f86269c3854,
         type: 3}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
       propertyPath: storyEvents.Array.data[7]
       value: 
-      objectReference: {fileID: 4022429226379085317, guid: 4bf0a227d78c4a040a69d8574aafa6c9,
+      objectReference: {fileID: 7553597475702528648, guid: 2cae2c7d2e5f015449e436f242f3f99b,
         type: 3}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
       propertyPath: storyEvents.Array.data[8]
       value: 
-      objectReference: {fileID: 7553597475702528648, guid: 2cae2c7d2e5f015449e436f242f3f99b,
+      objectReference: {fileID: 4022429226379085317, guid: 4bf0a227d78c4a040a69d8574aafa6c9,
         type: 3}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
       propertyPath: storyEvents.Array.data[9]
       value: 
-      objectReference: {fileID: 4004061776178579219, guid: 40277288a9b1a6148b3f9f86269c3854,
+      objectReference: {fileID: 9154367374488137856, guid: 97cb211120e097d4989bcbdb6cce3931,
         type: 3}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
@@ -178,6 +183,29 @@ PrefabInstance:
         resort. Given that the retreat is drawing to an end, you can expect a large
         payout of tips and bonuses, and a move from the clones.
       objectReference: {fileID: 0}
+    - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
+        type: 3}
+      propertyPath: maxStoryEvents
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
+        type: 3}
+      propertyPath: introEvents.Array.data[0]
+      value: 
+      objectReference: {fileID: 9087624988230430398, guid: 18777c34e282e5940ae63bb46b78593b,
+        type: 3}
+    - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
+        type: 3}
+      propertyPath: jobListImage
+      value: 
+      objectReference: {fileID: -9017948257188640829, guid: 0bb9e2c2ad583aa4b9f8268163655c8f,
+        type: 3}
+    - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
+        type: 3}
+      propertyPath: introEvents.Array.data[1]
+      value: 
+      objectReference: {fileID: 4871791892353085644, guid: 5f7a248b70a12de46a3a8c3067e59316,
+        type: 3}
     - target: {fileID: 6620000524830208261, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
       propertyPath: m_LocalPosition.x

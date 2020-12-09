@@ -2,7 +2,7 @@
  * Astroid.cs
  * Author(s): #Greg Brandt#
  * Created on: 10/20/2020 (en-US)
- * Description: 
+ * Description: Rotates, scales up and moves asteroid slightly down
  */
 
 using System.Collections;
@@ -13,15 +13,23 @@ using UnityEngine.UI;
 
 public class Astroid : MonoBehaviour
 {
+    [Tooltip("Speed asteroid moves to the bottom of the screen.")]
     [SerializeField] float downwardSpeed;
+    [Tooltip("Rotation speed of asteroid. Use negative number to reverse rotation")]
     [SerializeField] float rotationSpeed;
+    [Tooltip("Speed that asteroid will grow after being spawned.")]
     [SerializeField] float scaleSpeed;
-    [SerializeField] float scaleExponent = 2;
+    [Tooltip("Scale size that when reached, asteroid will cause damage and explode.")]
     [SerializeField] float scaleLimit;
+    [Tooltip("Force applied to meteorites on explosion.")]
     [SerializeField] float meteoriteForce = 10;
+    [Tooltip("Sprites for asteroids to be chosen at random.")]
     [SerializeField] Sprite[] sprites;
+    [Tooltip("Objects that are instantiated on explosion.")]
     [SerializeField] GameObject[] meteoritePrefabs;
+    [Tooltip("Object spawned on explosion.")]
     [SerializeField] GameObject explosion;
+
     List<GameObject> meteorites = new List<GameObject>();
     Image damageIndicator;
     Color originalColor;
@@ -57,13 +65,12 @@ public class Astroid : MonoBehaviour
         rotation.z += (rotationSpeed * rotationDirection * Time.deltaTime);
         transform.eulerAngles = rotation;
 
-        if(miniGameManager.requiredAstroids == 0 && !exploded) { StartCoroutine(Explode(true)); }
+        if((miniGameManager.requiredAstroids == 0 || miniGameManager.damageTillFailure == 0) && !exploded) { StartCoroutine(Explode(true)); }
     }
 
     IEnumerator IncreaseScale()
 	{
         float originalScaleSpeed = scaleSpeed;
-        float originalDownwardSpeed = downwardSpeed;
         while(transform.localScale.x < scaleLimit && !exploded)
 		{
             yield return new WaitForSeconds(0.5f);
@@ -74,6 +81,11 @@ public class Astroid : MonoBehaviour
 
     public void StartExploding() { StartCoroutine(Explode(true)); }
 
+    /// <summary>
+    /// Mark true if colision with rocket caused the explosion. Damage will be caused if marked false.
+    /// </summary>
+    /// <param name="fromRocket"></param>
+    /// <returns></returns>
     public IEnumerator Explode(bool fromRocket)
 	{
         if (!exploded)
@@ -86,6 +98,8 @@ public class Astroid : MonoBehaviour
             for (int i = 0; i <= meteoriteNumber; i++)
             {
                 GameObject meteorite = Instantiate(meteoritePrefabs[i], transform.position, new Quaternion(), transform.parent);
+                
+                //add metorites to list to keep track of to destroy later
                 meteorites.Add(meteorite);
                 float x = Random.Range(-1f, 1f);
                 float y = Random.Range(-1f, 1f);
@@ -94,6 +108,7 @@ public class Astroid : MonoBehaviour
             }
             if (!fromRocket)
             {
+                miniGameManager.TakeDamage();
                 StartCoroutine(FlashDamageIndicator());
 				while (flashingIndicator) { yield return null; }
             }

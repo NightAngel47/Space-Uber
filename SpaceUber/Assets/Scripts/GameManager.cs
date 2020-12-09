@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
     /// Reference to the JobManager used to refresh the job list in job select state
     /// </summary>
     private JobManager jobManager;
+    
+    private ShipStats ship;
 
     /// <summary>
     /// Sets the instance of the GameManager using the Singleton pattern.
@@ -60,6 +62,8 @@ public class GameManager : MonoBehaviour
 
         // Sets the reference to the JobManager in the active scene
         jobManager = FindObjectOfType<JobManager>();
+        
+        ship = FindObjectOfType<ShipStats>();
     }
 
     private void Start()
@@ -108,12 +112,11 @@ public class GameManager : MonoBehaviour
 
                 additiveSceneManager.UnloadScene("CrewPayment");
 
-                additiveSceneManager.LoadSceneSeperate("Starport BG");
                 additiveSceneManager.LoadSceneSeperate("Interface_JobList");
+                additiveSceneManager.LoadSceneSeperate("Starport BG");
                 jobManager.RefreshJobList();
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
-                additiveSceneManager.UnloadScene("Interface_JobList");
                 additiveSceneManager.UnloadScene("CrewManagement");
 
                 additiveSceneManager.LoadSceneSeperate("ShipBuilding");
@@ -124,21 +127,31 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.LoadSceneSeperate("CrewManagement");
                 break;
             case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
+                additiveSceneManager.UnloadScene("PromptScreen_End");
+                additiveSceneManager.UnloadScene("PromptScreen_Death");
+                additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
+                additiveSceneManager.UnloadScene("CrewPayment");
+                
                 additiveSceneManager.UnloadScene("Starport BG");
+                
+                ship.SaveStats();
 
                 // Remove unplaced rooms from the ShipBuilding state
                 if (!ObjectMover.hasPlaced)
                 {
-                  ObjectMover.hasPlaced = true;
-                  Destroy(FindObjectOfType<ObjectMover>().gameObject);
+                    ObjectMover.hasPlaced = true;
+                    Destroy(FindObjectOfType<ObjectMover>().gameObject);
                 }
                 foreach(RoomStats room in FindObjectsOfType<RoomStats>())
                 {
                   room.UpdateUsedRoom();
                 }
-                StartCoroutine(EventSystem.instance.Travel());
+                //StartCoroutine(EventSystem.instance.Travel());
+                StartCoroutine(EventSystem.instance.PlayIntro());
                 break;
+
             case InGameStates.CrewPayment:
+                additiveSceneManager.UnloadScene("CrewManagement");
                 additiveSceneManager.LoadSceneSeperate("CrewPayment");
                 break;
             case InGameStates.Ending: // Loads the PromptScreen_End when the player reaches a narrative ending.

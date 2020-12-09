@@ -18,10 +18,14 @@ public class SpotChecker : MonoBehaviour
     public static bool cannotPlace = false; //bool for when the spot is filled
     private bool isNextToRoom = true;
     public static SpotChecker instance;
+    public string[] cannotPlacePosition;
 
     private void Awake()
     {
         instance = this;
+        //if (!instance) { instance = this; }
+        //else { Destroy(gameObject); return; }
+        //DontDestroyOnLoad(this);
     }
 
     //how to change the individual thing
@@ -55,6 +59,7 @@ public class SpotChecker : MonoBehaviour
                         .row[(int)Math.Round(cube.transform.position.x + gridSpots[i].x)] != 0 || (int)Math.Round(cube.transform.position.y + gridSpots[i].y) >= 6
                         || (int)Math.Round(cube.transform.position.x + gridSpots[i].x) >= 9)
                     {
+                        AudioManager.instance.PlaySFX(cannotPlacePosition[UnityEngine.Random.Range(0, cannotPlacePosition.Length)]);
                         cannotPlace = true; //lets user keep moving object
                         Debug.Log("Cannot place here");
                         ObjectMover.hasPlaced = true;
@@ -74,6 +79,7 @@ public class SpotChecker : MonoBehaviour
                         .row[(int)Math.Round(cube.transform.position.x + gridSpots[i].y)] != 0 || (int)Math.Round(cube.transform.position.y + gridSpots[i].x) >= 6
                         || (int)Math.Round(cube.transform.position.x + gridSpots[i].y) >= 9)
                     {
+                        AudioManager.instance.PlaySFX(cannotPlacePosition[UnityEngine.Random.Range(0, cannotPlacePosition.Length)]);
                         cannotPlace = true; //lets user keep moving object
                         Debug.Log("Cannot place here");
                         ObjectMover.hasPlaced = true;
@@ -94,6 +100,7 @@ public class SpotChecker : MonoBehaviour
                     .row[(int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].x)] != 0 || (int)Math.Round(cube.transform.position.y + gridSpots[i].y) >= 6
                     || (int)Math.Round(cube.transform.position.x + gridSpots[i].x) >= 9)
                     {
+                    AudioManager.instance.PlaySFX(cannotPlacePosition[UnityEngine.Random.Range(0, cannotPlacePosition.Length)]);
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
                     ObjectMover.hasPlaced = true;
@@ -113,6 +120,7 @@ public class SpotChecker : MonoBehaviour
                     .row[(int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].y)] != 0 || (int)Math.Round(cube.transform.position.y - gridSpots[i].x) >= 6
                         || (int)Math.Round(cube.transform.position.x + gridSpots[i].y) >= 9) 
                 {
+                    AudioManager.instance.PlaySFX(cannotPlacePosition[UnityEngine.Random.Range(0, cannotPlacePosition.Length)]);
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
                     ObjectMover.hasPlaced = true;
@@ -132,6 +140,7 @@ public class SpotChecker : MonoBehaviour
                     .row[(int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].x - 1)] != 0 || (int)Math.Round(cube.transform.position.y - gridSpots[i].y) >= 6
                         || (int)Math.Round(cube.transform.position.x - gridSpots[i].x) >= 9)
                 {
+                    AudioManager.instance.PlaySFX(cannotPlacePosition[UnityEngine.Random.Range(0, cannotPlacePosition.Length)]);
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
                     ObjectMover.hasPlaced = true;
@@ -151,6 +160,7 @@ public class SpotChecker : MonoBehaviour
                         .row[(int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].y - 1)] != 0 || (int)Math.Round(cube.transform.position.y + gridSpots[i].x) >= 6
                         || (int)Math.Round(cube.transform.position.x - gridSpots[i].y) >= 9)
                 {
+                    AudioManager.instance.PlaySFX(cannotPlacePosition[UnityEngine.Random.Range(0, cannotPlacePosition.Length)]);
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");
                     ObjectMover.hasPlaced = true;
@@ -167,6 +177,7 @@ public class SpotChecker : MonoBehaviour
 
         if(isNextToRoom == false)
         {
+            AudioManager.instance.PlaySFX(cannotPlacePosition[UnityEngine.Random.Range(0, cannotPlacePosition.Length)]);
             cannotPlace = true;
             Debug.Log("Cannot place here");
             return;
@@ -217,6 +228,20 @@ public class SpotChecker : MonoBehaviour
                         .row[(int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].y - 1)] = objectNum;
                 }
             }
+        }
+    }
+
+    public void FillPreplacedSpots(GameObject cube)
+    {
+        int shapeType = cube.GetComponent<ObjectScript>().shapeType;
+        int objectNum = cube.GetComponent<ObjectScript>().objectNum;
+        GameObject gridPosBase = cube.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+        List<Vector2> gridSpots = new List<Vector2>(cube.GetComponent<ObjectScript>().shapeData.gridSpaces);
+
+        for (int i = 0; i < gridSpots.Count; i++)
+        {
+            spots.rows[(int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].y)]
+                        .row[(int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].x)] = objectNum;
         }
     }
     
@@ -272,6 +297,7 @@ public class SpotChecker : MonoBehaviour
                         cube.GetComponent<SpecificLocationData>().specficLocations.rows[(int)Math.Round(cube.transform.position.y + gridSpots[i].y)]
                         .row[(int)Math.Round(cube.transform.position.x + gridSpots[i].x)] == false)
                     {
+                        AudioManager.instance.PlaySFX(cannotPlacePosition[UnityEngine.Random.Range(0, cannotPlacePosition.Length)]);
                         cannotPlace = true; //lets user keep moving object
                         Debug.Log("Not Required Location");
                         ObjectMover.hasPlaced = true;
@@ -286,6 +312,7 @@ public class SpotChecker : MonoBehaviour
                         cube.GetComponent<SpecificLocationData>().specficLocations.rows[(int)Math.Round(cube.transform.position.y + gridSpots[i].x)]
                         .row[(int)Math.Round(cube.transform.position.x + gridSpots[i].y)] == false)
                     {
+                        AudioManager.instance.PlaySFX(cannotPlacePosition[UnityEngine.Random.Range(0, cannotPlacePosition.Length)]);
                         cannotPlace = true; //lets user keep moving object
                         Debug.Log("Not Required Location");
                         ObjectMover.hasPlaced = true;
@@ -301,6 +328,7 @@ public class SpotChecker : MonoBehaviour
                     cube.GetComponent<SpecificLocationData>().specficLocations.rows[(int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].y)]
                     .row[(int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].x)] == false)
                 {
+                    AudioManager.instance.PlaySFX(cannotPlacePosition[UnityEngine.Random.Range(0, cannotPlacePosition.Length)]);
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Not Required Location");
                     ObjectMover.hasPlaced = true;
@@ -315,6 +343,7 @@ public class SpotChecker : MonoBehaviour
                     cube.GetComponent<SpecificLocationData>().specficLocations.rows[(int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].x - 1)]
                     .row[(int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].y)] == false)
                 {
+                    AudioManager.instance.PlaySFX(cannotPlacePosition[UnityEngine.Random.Range(0, cannotPlacePosition.Length)]);
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Not Required Location");
                     ObjectMover.hasPlaced = true;
@@ -330,6 +359,7 @@ public class SpotChecker : MonoBehaviour
                     cube.GetComponent<SpecificLocationData>().specficLocations.rows[(int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].y - 1)]
                     .row[(int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].x - 1)] == false)
                 {
+                    AudioManager.instance.PlaySFX(cannotPlacePosition[UnityEngine.Random.Range(0, cannotPlacePosition.Length)]);
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Not Required Location");
                     ObjectMover.hasPlaced = true;
@@ -344,6 +374,7 @@ public class SpotChecker : MonoBehaviour
                         cube.GetComponent<SpecificLocationData>().specficLocations.rows[(int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].x)]
                         .row[(int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].y - 1)] == false)
                 {
+                    AudioManager.instance.PlaySFX(cannotPlacePosition[UnityEngine.Random.Range(0, cannotPlacePosition.Length)]);
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Not Required Location");
                     ObjectMover.hasPlaced = true;

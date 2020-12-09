@@ -48,11 +48,17 @@ public class RoomStats : MonoBehaviour
     public bool flatOutput;
 
     public bool usedRoom = false;
+    [SerializeField] private bool isPowered = false;
 
     [SerializeField] private RoomTooltipUI roomTooltipUI;
+
+    public Transform[] statCanvas;
+    
+    private Camera cam;
     
     void Start()
     {
+        cam = Camera.main;
         shipStats = FindObjectOfType<ShipStats>();
         StartCoroutine(LateStart(0.1f));
     }
@@ -175,8 +181,19 @@ public class RoomStats : MonoBehaviour
         }
     }
 
+    public void SetIsPowered()
+    {
+        isPowered = !isPowered;
+    }
+
+    public bool GetIsPowered()
+    {
+        return isPowered;
+    }
+
     public void UpdateRoomStats()
     {
+        shipStats.roomBeingPlaced = gameObject;
         SubtractRoomStats();
         foreach (Resource resource in resources)
         {
@@ -226,15 +243,17 @@ public class RoomStats : MonoBehaviour
     /// </summary>
     public void AddRoomStats()
     {
+        shipStats.roomBeingPlaced = gameObject;
         shipStats.UpdateCreditsAmount(-price);
-        shipStats.UpdateCreditsAmount(credits);
+        shipStats.UpdatePayoutAmount(credits);
         shipStats.UpdateEnergyAmount(energy, energy);
+        shipStats.UpdateEnergyAmount(-minPower);
         shipStats.UpdateSecurityAmount(security);
         shipStats.UpdateShipWeaponsAmount(shipWeapons);
-        shipStats.UpdateCrewAmount(crew, crew);
+        shipStats.UpdateCrewAmount(crew, crew, crew);
         shipStats.UpdateFoodAmount(food);
         shipStats.UpdateFoodPerTickAmount(foodPerTick);
-        shipStats.UpdateHullDurabilityAmount(shipHealth, shipHealth);
+        shipStats.UpdateHullDurabilityAmount(shipHealth, shipHealth); 
     }
 
     /// <summary>
@@ -251,14 +270,32 @@ public class RoomStats : MonoBehaviour
             shipStats.UpdateCreditsAmount(price);
         }
         
-        shipStats.UpdateCreditsAmount(-credits);
+        shipStats.UpdatePayoutAmount(-credits);
         shipStats.UpdateEnergyAmount(-energy, -energy);
+        shipStats.UpdateEnergyAmount(minPower);
         shipStats.UpdateSecurityAmount(-security);
         shipStats.UpdateShipWeaponsAmount(-shipWeapons);
-        shipStats.UpdateCrewAmount(-crew, -crew);
+        shipStats.UpdateCrewAmount(-crew, -crew, -crew);
         shipStats.UpdateFoodAmount(-food);
         shipStats.UpdateFoodPerTickAmount(-foodPerTick);
-        shipStats.UpdateHullDurabilityAmount(-shipHealth, shipHealth);
+        shipStats.UpdateHullDurabilityAmount(-shipHealth, -shipHealth);
+    }
+    
+    public void SpawnStatChangeText(int value, int icon = -1)
+    {
+        ShipStatsUI shipStatsUI = shipStats.GetComponent<ShipStatsUI>();
+        GameObject statChangeUI = Instantiate(shipStatsUI.statChangeText);
+        
+        RectTransform rect = statChangeUI.GetComponent<RectTransform>();
+        
+        Vector3 spawnPos = cam.WorldToScreenPoint(transform.GetChild(0).position);
+        rect.anchoredPosition = new Vector2(spawnPos.x, spawnPos.y);
+        
+        statChangeUI.transform.parent = shipStats.GetComponent<ShipStatsUI>().canvas; // you have to set the parent after you change the anchored position or the position gets messed up.  Don't set it in the instantiation.  I don't know why someone decided to change that.
+        
+        MoveAndFadeBehaviour moveAndFadeBehaviour = statChangeUI.GetComponent<MoveAndFadeBehaviour>();
+        moveAndFadeBehaviour.offset = new Vector2(0, 25 + transform.GetChild(0).localPosition.y * 100);
+        moveAndFadeBehaviour.SetValue(value, icon);
     }
 
     private void OnDestroy()

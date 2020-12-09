@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceType: Ship Weapons
   resourceIcon: {fileID: 21300000, guid: 4285b6f4aa4fdd64c9d571a6e596b4cd, type: 3}
-  amount: 5
+  amount: 25
+  activeAmount: 0
+  minAmount: 0
 --- !u!114 &8914881331037085880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29,12 +31,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   specficLocations:
     rows:
-    - row: 01010101010101010101
-    - row: 01010101010101010101
-    - row: 01010000000000000101
-    - row: 01010000000000000101
-    - row: 01010101010101010101
-    - row: 01010101010101010101
+    - row: 01010101010101010100
+    - row: 01010101010101010100
+    - row: 01010000000000010100
+    - row: 01010000000000010100
+    - row: 01010101010101010100
+    - row: 01010101010101010100
     - row: 00000000000000000000
     - row: 00000000000000000000
     - row: 00000000000000000000
@@ -79,7 +81,7 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: maxCrew
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -99,18 +101,44 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: price
-      value: 90
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomDescription
-      value: Fires a laser beam at unwanted guests. +5 Weapons. Must be placed on
-        the side of the ship.
+      value: Fires a laser beam at unwanted guests. Strengthens Weapons based on
+        crew assigned. Must be placed on the side of the ship. The shape of the room
+        is 2x1.
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomName
       value: Energy Cannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: flatOutput
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4570362770752095651, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4570362770752095651, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4570362770752095651, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4570362770752095651, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -152,6 +180,11 @@ PrefabInstance:
         type: 3}
       propertyPath: mouseOverAudio.Array.data[3]
       value: Charge 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: needsSpecificLocation
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6635282969121139961, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}

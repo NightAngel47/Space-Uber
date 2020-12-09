@@ -15,15 +15,13 @@ public class CrewManagement : MonoBehaviour
     private int crewAddAmount = 1;
     private ShipStats ss;
     private RoomStats rs;
-    public TMP_Text crewRemainingText;
+    public TMP_Text crewUnassignedText;
     public GameObject crewManagementText;
-    public Button nextButton;
     public GameObject roomText;
     public GameObject costsText;
     public GameObject crewAmount;
+    public GameObject powerAmount;
     public GameObject overclockOutput;
-    public GameObject addButton;
-    public GameObject subtractButton;
     private GameObject statPanel;
 
     private GameObject room;
@@ -34,7 +32,7 @@ public class CrewManagement : MonoBehaviour
     public Button overclockButton;
     public GameObject statAndNumPrefab;
     public GameObject outputObject;
-    public GameObject[] sceneButtons;
+    public GameObject[] sceneButtons; //contains finish ship and back to shipbuilding buttons
 
     private List<GameObject> overtimeStats = new List<GameObject>();
     private List<GameObject> outputStats = new List<GameObject>();
@@ -42,24 +40,27 @@ public class CrewManagement : MonoBehaviour
     public void Start()
     {
         ss = FindObjectOfType<ShipStats>();
-        crewRemainingText.text = "Crew Remaining: " + ss.CrewRemaining;
+        crewUnassignedText.text = "Unassigned Crew: " + ss.CrewUnassigned;
 
         statPanel = gameObject.transform.GetChild(0).gameObject;
         TurnOffPanel();
-
-        currentRoomList = FindObjectsOfType<RoomStats>();
         
         overclockButton.gameObject.SetActive(false);
 
-        foreach(RoomStats r in currentRoomList)
+        currentRoomList = FindObjectsOfType<RoomStats>();
+
+        foreach (RoomStats r in currentRoomList)
         {
             minAssignableCrew += r.minCrew;
+            minAssignableCrew -= r.currentCrew;
         }
         
         if (minAssignableCrew > 0)
         {
-            nextButton.interactable = false;
+            sceneButtons[0].GetComponent<Button>().interactable = false;
         }
+
+        room = FindObjectOfType<ObjectScript>().gameObject;
     }
     
     private void Update()
@@ -80,9 +81,7 @@ public class CrewManagement : MonoBehaviour
         
         room = g;
         rs = room.GetComponent<RoomStats>();
-
-        addButton.GetComponent<Button>().interactable = true;
-        subtractButton.GetComponent<Button>().interactable = true;
+        ss.roomBeingPlaced = room;
 
         statPanel.SetActive(true);
 
@@ -91,9 +90,32 @@ public class CrewManagement : MonoBehaviour
         costsText.transform.GetChild(2).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().minPower.ToString()
             + " - " + room.GetComponent<RoomStats>().maxPower.ToString();
         roomText.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().roomDescription;
+        powerAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().minPower.ToString();
         crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
         costsText.transform.GetChild(3).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().minCrew.ToString()
             + " - " + room.GetComponent<RoomStats>().maxCrew.ToString();
+        
+        if(true || room.GetComponent<RoomStats>().maxPower == 0) // right now power management doesn't function so the buttons are just always disabled
+        {
+            powerAmount.transform.parent.GetChild(0).gameObject.SetActive(false);
+            powerAmount.transform.parent.GetChild(2).gameObject.SetActive(false);
+        }
+        else
+        {
+            powerAmount.transform.parent.GetChild(0).gameObject.SetActive(true);
+            powerAmount.transform.parent.GetChild(2).gameObject.SetActive(true);
+        }
+        
+        if(room.GetComponent<RoomStats>().maxCrew == 0)
+        {
+            crewAmount.transform.parent.GetChild(0).gameObject.SetActive(false);
+            crewAmount.transform.parent.GetChild(2).gameObject.SetActive(false);
+        }
+        else
+        {
+            crewAmount.transform.parent.GetChild(0).gameObject.SetActive(true);
+            crewAmount.transform.parent.GetChild(2).gameObject.SetActive(true);
+        }
 
         UpdateOutput();
 
@@ -112,35 +134,65 @@ public class CrewManagement : MonoBehaviour
             case MiniGameType.Security:
                 //security
                 resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
-                //resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = ; // resource icon
+                resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = ss.statIcons[1]; // resource icon
                 resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Security"; // resource name
+                resourceGO.transform.GetChild(2).gameObject.SetActive(false); // resource amount, which for some minigames can be variable so for now I'm just not showing it
                 overtimeStats.Add(resourceGO);
                 overclockButton.gameObject.SetActive(true);
                 break;
             case MiniGameType.Asteroids:
                 //shipweapons
                 resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
+                resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = ss.statIcons[2]; // resource icon
                 resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Ship Weapons";
+                resourceGO.transform.GetChild(2).gameObject.SetActive(false); // resource amount, which for some minigames can be variable so for now I'm just not showing it
                 overtimeStats.Add(resourceGO);
                 overclockButton.gameObject.SetActive(true);
                 break;
             case MiniGameType.CropHarvest:
                 //food amount
                 resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
+                resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = ss.statIcons[3]; // resource icon
                 resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Food Amount";
+                resourceGO.transform.GetChild(2).gameObject.SetActive(false); // resource amount, which for some minigames can be variable so for now I'm just not showing it
                 overtimeStats.Add(resourceGO);
                 overclockButton.gameObject.SetActive(true);
                 break;
             case MiniGameType.StabilizeEnergyLevels:
+                //Energy
+                resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
+                resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = ss.statIcons[5]; // resource icon
+                resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Energy";
+                resourceGO.transform.GetChild(2).gameObject.SetActive(false); // resource amount, which for some minigames can be variable so for now I'm just not showing it
+                overtimeStats.Add(resourceGO);
+                overclockButton.gameObject.SetActive(true);
+                break;
+            case MiniGameType.SlotMachine:
+                //Credits
+                resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
+                resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = ss.statIcons[0]; // resource icon
+                resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Credits";
+                resourceGO.transform.GetChild(2).gameObject.SetActive(false); // resource amount, which for some minigames can be variable so for now I'm just not showing it
+                overtimeStats.Add(resourceGO);
+                overclockButton.gameObject.SetActive(true);
+                break;
+            case MiniGameType.HullRepair:
                 //Hull Durability
                 resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
-                resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Energy";
+                resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = ss.statIcons[6]; // resource icon
+                resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Hull Durability";
+                resourceGO.transform.GetChild(2).gameObject.SetActive(false); // resource amount, which for some minigames can be variable so for now I'm just not showing it
                 overtimeStats.Add(resourceGO);
                 overclockButton.gameObject.SetActive(true);
                 break;
             default:
                 overclockButton.gameObject.SetActive(false);
                 break;
+        }
+        
+        if (GameManager.instance.currentGameState != InGameStates.Events)
+        {
+            overclockButton.gameObject.SetActive(false);
         }
     }
 
@@ -200,19 +252,19 @@ public class CrewManagement : MonoBehaviour
 
     public void AddCrew()
     {
-        if (ss.CrewRemaining > 0 && rs.currentCrew < room.GetComponent<RoomStats>().maxCrew)
+        if (ss.CrewUnassigned > 0 && rs.currentCrew < room.GetComponent<RoomStats>().maxCrew)
         {
             rs.UpdateCurrentCrew(1);
-            ss.UpdateCrewAmount(-1, 0);
+            ss.UpdateCrewAmount(-1);
             minAssignableCrew--;
-            crewRemainingText.text = "Crew Remaining: " + ss.CrewRemaining;
+            crewUnassignedText.text = "Unassigned Crew: " + ss.CrewUnassigned;
             crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats();
 
             if (minAssignableCrew <= 0)
             {
-                nextButton.interactable = true;
+                sceneButtons[0].GetComponent<Button>().interactable = true;
             }
         }
     }
@@ -222,19 +274,41 @@ public class CrewManagement : MonoBehaviour
         if (rs.currentCrew > 0)
         {
             rs.UpdateCurrentCrew(-1);
-            ss.UpdateCrewAmount(1, 0);
+            ss.UpdateCrewAmount(1);
             minAssignableCrew++;
-            crewRemainingText.text = "Crew Remaining: " + ss.CrewRemaining;
+            crewUnassignedText.text = "Unassigned Crew: " + ss.CrewUnassigned;
             crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats();
 
             if (minAssignableCrew > 0)
             {
-                nextButton.interactable = false;
+                sceneButtons[0].GetComponent<Button>().interactable = false;
             }
         }
     }
+
+    //public void AddPower()
+    //{
+    //    if(ss.HasEnoughPower(rs.minPower) && rs.GetIsPowered() == false)
+    //    {
+    //        ss.UpdateEnergyAmount(-rs.minPower);
+    //        rs.SetIsPowered();
+    //        powerAmount.GetComponent<TextMeshProUGUI>().text = rs.minPower.ToString();
+    //        UpdateOutput();
+    //    }
+    //}
+
+    //public void SubtractPower()
+    //{
+    //    if (rs.GetIsPowered() == true)
+    //    {
+    //        ss.UpdateEnergyAmount(rs.minPower);
+    //        rs.SetIsPowered();
+    //        powerAmount.GetComponent<TextMeshProUGUI>().text = rs.minPower.ToString();
+    //        UpdateOutput();
+    //    }
+    //}
 
     public void LoseCrew(int crewLost)
     {
@@ -265,7 +339,7 @@ public class CrewManagement : MonoBehaviour
     public void StartOverclockGame()
     {
         TurnOffPanel();
-        crewManagementText.SetActive(false);
+        //crewManagementText.SetActive(false);
         room.GetComponent<OverclockRoom>().PlayMiniGame();
     }
 
@@ -276,9 +350,14 @@ public class CrewManagement : MonoBehaviour
             overclockButton.gameObject.SetActive(true);
         }
 
-        for(int i = 0; i < sceneButtons.Length; i++)
+        for (int i = 0; i < sceneButtons.Length; i++)
         {
             sceneButtons[i].SetActive(false);
+        }
+        
+        if(!overclockButton.interactable)
+        {
+            overclockButton.interactable = true;
         }
     }
 }

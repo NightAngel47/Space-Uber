@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class SpawnObject : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class SpawnObject : MonoBehaviour
     [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private GameObject buttonPanel;
     [SerializeField] private Vector2 spawnLoc;
+    public GameObject powercore;
+    public static bool donePreplacedRoom = false;
 
     private GameObject lastSpawned;
 
@@ -37,12 +40,38 @@ public class SpawnObject : MonoBehaviour
     public string[] purchaseShieldGenerator;
     public string[] purchaseTeleporter;
     public string[] purchaseWarpDrive;
+    public string[] cannotPlaceCredits;
+    public string[] cannotPlaceEnergy;
 
     public void Start()
     {
         RectTransform rt = buttonPanel.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(rt.sizeDelta.x, 280 * availableRooms.Count);
-        CreateRoomSpawnButtons();
+
+        //hard coded preplaced rooms to be updated later
+        if (donePreplacedRoom == false)
+        {
+            donePreplacedRoom = true;
+            ObjectMover.hasPlaced = false;
+            lastSpawned = Instantiate(powercore, new Vector3(4, 2, 0), Quaternion.identity);
+            lastSpawned.GetComponent<ObjectMover>().TurnOffBeingDragged();
+            lastSpawned.GetComponent<ObjectScript>().preplacedRoom = true;
+            ObjectMover.hasPlaced = true;
+
+            StartCoroutine(PreplacedRoom());
+        }
+
+        CreateRoomSpawnButtons(); 
+    }
+
+    IEnumerator PreplacedRoom()
+    {
+        yield return new WaitForSeconds(.25f);
+        //hard coded preplaced rooms to be updated lated
+        FindObjectOfType<SpotChecker>().FillPreplacedSpots(lastSpawned);
+        lastSpawned.GetComponent<RoomStats>().AddRoomStats();
+        lastSpawned.GetComponent<ObjectMover>().enabled = false;
+        lastSpawned.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
     }
 
     public void SetAvailableRoomList(List<GameObject> l)
@@ -66,9 +95,9 @@ public class SpawnObject : MonoBehaviour
 
     public void SpawnRoom(GameObject ga)
     {
-        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price)
+        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price && FindObjectOfType<ShipStats>().EnergyRemaining >= ga.GetComponent<RoomStats>().minPower) //checks to see if the player has enough credits for the room
         {
-            if (lastSpawned == null || lastSpawned.GetComponent<ObjectMover>().enabled == false)
+            if (lastSpawned == null || lastSpawned.GetComponent<ObjectMover>().enabled == false) //makes sure that the prior room is placed before the next room can be added
             {
                 ObjectMover.hasPlaced = false;
                 lastSpawned = Instantiate(ga, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0), Quaternion.identity);
@@ -81,55 +110,71 @@ public class SpawnObject : MonoBehaviour
                     r.TurnOffClickAgain();
                 }
 
-                switch (ga.name)
+                if(lastSpawned.GetComponent<ObjectScript>().needsSpecificLocation == true)
+                {
+                    lastSpawned.GetComponent<ObjectScript>().HighlightSpotsOn();
+                }
+
+                if(lastSpawned.GetComponent<ObjectScript>().nextToRoom == true)
+                {
+                    foreach (ObjectScript r in otherRooms)
+                    {
+                        if(lastSpawned.GetComponent<ObjectScript>().nextToRoomNum == r.objectNum)
+                        {
+                            NextToRoomHighlight(r.gameObject);
+                        }
+                    }
+                }
+
+                switch (ga.name) //plays sfx for each room
                 {
                     case "Power Core":
-                        AudioManager.instance.PlaySFX(purchasePowerCore[Random.Range(0, purchasePowerCore.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchasePowerCore[UnityEngine.Random.Range(0, purchasePowerCore.Length)]);
                         break;
                     case "Hydroponics":
-                        AudioManager.instance.PlaySFX(purchaseHydroponics[Random.Range(0, purchaseHydroponics.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseHydroponics[UnityEngine.Random.Range(0, purchaseHydroponics.Length)]);
                         break;
                     case "Brig":
-                        AudioManager.instance.PlaySFX(purchaseBrig[Random.Range(0, purchaseBrig.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseBrig[UnityEngine.Random.Range(0, purchaseBrig.Length)]);
                         break;
                     case "Storage":
-                        AudioManager.instance.PlaySFX(purchaseStorage[Random.Range(0, purchaseStorage.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseStorage[UnityEngine.Random.Range(0, purchaseStorage.Length)]);
                         break;
                     case "Bunks":
-                        AudioManager.instance.PlaySFX(purchaseBunks[Random.Range(0, purchaseBunks.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseBunks[UnityEngine.Random.Range(0, purchaseBunks.Length)]);
                         break;
                     case "Medbay":
-                        AudioManager.instance.PlaySFX(purchaseMedbay[Random.Range(0, purchaseMedbay.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseMedbay[UnityEngine.Random.Range(0, purchaseMedbay.Length)]);
                         break;
                     case "VIP Lounge":
-                        AudioManager.instance.PlaySFX(purchaseVIP[Random.Range(0, purchaseVIP.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseVIP[UnityEngine.Random.Range(0, purchaseVIP.Length)]);
                         break;
                     case "Armor Plating":
-                        AudioManager.instance.PlaySFX(purchaseArmor[Random.Range(0, purchaseArmor.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseArmor[UnityEngine.Random.Range(0, purchaseArmor.Length)]);
                         break;
                     case "Armory":
-                        AudioManager.instance.PlaySFX(purchaseGuns[Random.Range(0, purchaseGuns.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseGuns[UnityEngine.Random.Range(0, purchaseGuns.Length)]);
                         break;
-                    case "Core Changing Terminal":
-                        AudioManager.instance.PlaySFX(purchaseCoreTerminal[Random.Range(0, purchaseCoreTerminal.Length - 1)]);
+                    case "Core Charging Terminal":
+                        AudioManager.instance.PlaySFX(purchaseCoreTerminal[UnityEngine.Random.Range(0, purchaseCoreTerminal.Length)]);
                         break;
                     case "Energy Cannon":
-                        AudioManager.instance.PlaySFX(purchaseEnergyCannon[Random.Range(0, purchaseEnergyCannon.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseEnergyCannon[UnityEngine.Random.Range(0, purchaseEnergyCannon.Length)]);
                         break;
                     case "Photon Torpedoes":
-                        AudioManager.instance.PlaySFX(purchasePhotonTorpedoes[Random.Range(0, purchasePhotonTorpedoes.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchasePhotonTorpedoes[UnityEngine.Random.Range(0, purchasePhotonTorpedoes.Length)]);
                         break;
                     case "Pantry":
-                        AudioManager.instance.PlaySFX(purchasePantry[Random.Range(0, purchasePantry.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchasePantry[UnityEngine.Random.Range(0, purchasePantry.Length)]);
                         break;
                     case "Shield Generator":
-                        AudioManager.instance.PlaySFX(purchaseShieldGenerator[Random.Range(0, purchaseShieldGenerator.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseShieldGenerator[UnityEngine.Random.Range(0, purchaseShieldGenerator.Length)]);
                         break;
                     case "Teleportation Station":
-                        AudioManager.instance.PlaySFX(purchaseTeleporter[Random.Range(0, purchaseTeleporter.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseTeleporter[UnityEngine.Random.Range(0, purchaseTeleporter.Length)]);
                         break;
                     case "Warp Drive":
-                        AudioManager.instance.PlaySFX(purchaseWarpDrive[Random.Range(0, purchaseWarpDrive.Length - 1)]);
+                        AudioManager.instance.PlaySFX(purchaseWarpDrive[UnityEngine.Random.Range(0, purchaseWarpDrive.Length)]);
                         break;
                     default:
                         break;
@@ -138,7 +183,119 @@ public class SpawnObject : MonoBehaviour
         }
         else
         {
-            Debug.Log("Cannot Afford");
+            if (FindObjectOfType<ShipStats>().Credits < ga.GetComponent<RoomStats>().price)
+            {
+                AudioManager.instance.PlaySFX(cannotPlaceCredits[UnityEngine.Random.Range(0, cannotPlaceCredits.Length)]);
+                Debug.Log("Cannot Afford");
+                FindObjectOfType<ShipStats>().cantPlaceText.gameObject.SetActive(true);
+                FindObjectOfType<ShipStats>().cantPlaceText.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Image>().sprite = FindObjectOfType<ShipStats>().statIcons[0];
+                StartCoroutine(WaitForText());
+            }
+
+            if (FindObjectOfType<ShipStats>().EnergyRemaining < ga.GetComponent<RoomStats>().minPower)
+            {
+                AudioManager.instance.PlaySFX(cannotPlaceEnergy[UnityEngine.Random.Range(0, cannotPlaceEnergy.Length)]);
+                Debug.Log("No Energy");
+                FindObjectOfType<ShipStats>().cantPlaceText.gameObject.SetActive(true);
+                FindObjectOfType<ShipStats>().cantPlaceText.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Image>().sprite = FindObjectOfType<ShipStats>().statIcons[5];
+                StartCoroutine(WaitForText());
+            }
+        }
+    }
+
+    public IEnumerator WaitForText()
+    {
+        yield return new WaitForSeconds(2);
+        FindObjectOfType<ShipStats>().cantPlaceText.SetActive(false);
+    }
+
+    public void NextToRoomHighlight(GameObject cube)
+    {
+        int shapeType = cube.GetComponent<ObjectScript>().shapeType;
+        GameObject gridPosBase = cube.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+        List<Vector2> gridSpots = new List<Vector2>(cube.GetComponent<ObjectScript>().shapeData.gridSpaces);
+        ArrayLayoutGameobject spots = FindObjectOfType<HighlightSpots>().highlights;
+
+        int x = 0;
+        int y = 0;
+
+        for (int i = 0; i < gridSpots.Count; i++)
+        {
+            if (shapeType == 2) //these objects only have two different rotations
+            {
+                if (cube.GetComponent<ObjectScript>().rotAdjust == 1 || cube.GetComponent<ObjectScript>().rotAdjust == 3)
+                {
+                    y = (int)Math.Round(cube.transform.position.y + gridSpots[i].y);
+                    x = (int)Math.Round(cube.transform.position.x + gridSpots[i].x);
+                }
+
+                if (cube.GetComponent<ObjectScript>().rotAdjust == 2 || cube.GetComponent<ObjectScript>().rotAdjust == 4)
+                {
+                    y = ((int)Math.Round(cube.transform.position.y + gridSpots[i].x));
+                    x = (int)Math.Round(cube.transform.position.x + gridSpots[i].y);
+                }
+            }
+
+            if (cube.GetComponent<ObjectScript>().rotAdjust == 1)
+            {
+                y = ((int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].y));
+                x = (int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].x);
+            }
+
+            if (cube.GetComponent<ObjectScript>().rotAdjust == 2)
+            {
+                y = ((int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].x - 1));
+                x = (int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].y);
+            }
+
+            if (cube.GetComponent<ObjectScript>().rotAdjust == 3)
+            {
+                y = ((int)Math.Round(gridPosBase.transform.position.y - gridSpots[i].y - 1));
+                x = (int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].x - 1);
+            }
+
+            if (cube.GetComponent<ObjectScript>().rotAdjust == 4)
+            {
+                y = ((int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].x));
+                x = (int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].y - 1);
+            }
+
+        
+            if (y < 5) //# needs to change to dynamically update with different ship sizes
+            {
+                spots.rows[y + 1].row[x].gameObject.SetActive(true);
+            }
+            else if(y < 5)
+            {
+                spots.rows[y + 1].row[x].gameObject.SetActive(false);
+            }
+
+            if (y > 0)
+            {
+                spots.rows[y - 1].row[x].gameObject.SetActive(true);
+            }
+            else if(y > 0)
+            {
+                spots.rows[y - 1].row[x].gameObject.SetActive(false);
+            }
+
+            if (x < 8) //# needs to change to dynamically update with different ship sizes
+            {
+                spots.rows[y].row[x + 1].gameObject.SetActive(true);
+            }
+            else if(x < 8)
+            {
+                spots.rows[y].row[x + 1].gameObject.SetActive(false);
+            }
+
+            if (x > 0)
+            {
+                spots.rows[y].row[x - 1].gameObject.SetActive(true);
+            }
+            else if(x > 0)
+            {
+                spots.rows[y].row[x - 1].gameObject.SetActive(false);
+            }
         }
     }
 }

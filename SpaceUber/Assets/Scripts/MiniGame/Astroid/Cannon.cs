@@ -2,7 +2,7 @@
  * Cannon.cs
  * Author(s): #Greg Brandt#
  * Created on: 10/20/2020 (en-US)
- * Description: 
+ * Description: Point astroid mini game cannons at mouse position and fire with left and right click
  */
 
 using System.Collections;
@@ -11,17 +11,24 @@ using UnityEngine.UI;
 
 public class Cannon : MonoBehaviour
 {
+	[Tooltip("Indicate whether this cannon is on the left.")]
 	[SerializeField] bool left = false;
+	[Tooltip("Object that is instatiated when cannon is fired.")]
 	[SerializeField] GameObject projectilePrefab = null;
+	[Tooltip("Transform who's position is used as the point at which projectile is instantiated.")]
 	[SerializeField] Transform barrel;
+	[Tooltip("Time at which cannon cannot fire after firing.")]
 	[SerializeField] float coolDown;
-	[SerializeField] GameObject[] coolDownIndicators;
+	[Tooltip("Object with 2D mask used to mask projectiles that go out of bounds.")]
 	[SerializeField] GameObject projectileParent;
+	[Tooltip("The image that of the bar that shrinks to indicate the cool down status.")]
 	[SerializeField] Image coolDownBarIndicator;
 	float coolDownBarWidth;
 	bool canFire = true;
 	Camera cam;
+	[Tooltip("SFK for firing projectiles.")]
     public string[] fireCannon;
+
     private void Start()
 	{
 		coolDownBarWidth = coolDownBarIndicator.rectTransform.rect.width;
@@ -52,14 +59,12 @@ public class Cannon : MonoBehaviour
 	{
 		float timeElapsed = 0;
 		canFire = false;
-		float x = coolDownBarIndicator.rectTransform.rect.x;
-		float y = coolDownBarIndicator.rectTransform.rect.y;
 		float height = coolDownBarIndicator.rectTransform.rect.height;
+
+		//adjust width of cool down bar to indicate cool down status
 		while (timeElapsed < coolDown)
 		{
-			int indicatorNumber = Mathf.RoundToInt(timeElapsed / coolDown * coolDownIndicators.Length)+1;
 			coolDownBarIndicator.rectTransform.sizeDelta = new Vector2(coolDownBarWidth * (timeElapsed / coolDown), height);
-			Debug.Log(coolDownBarIndicator.rectTransform.rect.width);
 			yield return new WaitForSeconds(0.01f);
 			timeElapsed += 0.01f;
 		}

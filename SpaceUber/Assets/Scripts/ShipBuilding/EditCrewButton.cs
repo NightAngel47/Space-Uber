@@ -6,6 +6,7 @@
  */
 
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,15 +17,18 @@ public class EditCrewButton : MonoBehaviour
     private void Awake()
     {
         editCrewButton = GetComponent<Button>();
+        editCrewButton.interactable = false;
     }
 
     private void Start()
     {
-        CheckForRooms();
+        StartCoroutine(CheckForRooms());
     }
 
-    public void CheckForRooms()
+    public IEnumerator CheckForRooms()
     {
+        yield return new WaitForSeconds(.25f);
+
         if (FindObjectsOfType<RoomStats>().Length > 0)
         {
             editCrewButton.interactable = true;

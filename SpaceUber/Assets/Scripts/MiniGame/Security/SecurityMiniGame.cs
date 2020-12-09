@@ -2,7 +2,7 @@
  * SecurityMiniGame.cs
  * Author(s): #Greg Brandt#
  * Created on: 10/21/2020 (en-US)
- * Description: 
+ * Description: Manages Security mini game
  */
 
 using UnityEngine;
@@ -12,25 +12,26 @@ using UnityEngine.UI;
 
 public class SecurityMiniGame : MiniGame
 {
+    [Tooltip("Uninteractable toggles used to show the player how many successes they need/have.")]
     [SerializeField] Toggle[] successTrackers;
     [SerializeField] CodeBlock[] codeSegments;
+    [Tooltip("Text that displays the required code characters.")]
     [SerializeField] TMP_Text codePreview;
+    [Tooltip("How long each code character can be seen.")]
     [SerializeField] float displayTime = 1;
     [SerializeField] GameObject tryAgainText;
-    [SerializeField] int minCodeLength = 3;
-    [SerializeField] int maxCodeLength = 5;
+    [SerializeField] int startCodeLength = 3;
     public int successes = 0;
     string validChars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
     string requiredCode = "";
     string availableCode = "";
     string inputCode = "";
-    [SerializeField] int startCodeLength = 3;
-    [SerializeField] bool hideInput = true;
-    [SerializeField] Color highlightColor;
-    [SerializeField] Color originalButtonColor;
 
+    [Tooltip("SFX names")]
     public string[] Correct;
+    [Tooltip("SFX names")]
     public string[] Incorrect;
+    [Tooltip("SFX names")]
     public string[] DisplaySound;
 
     void Start() 
@@ -43,6 +44,7 @@ public class SecurityMiniGame : MiniGame
     {
 		if (inputCode.Length == requiredCode.Length && inputCode.Length > 0) 
         {
+            foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(false); }
             if (inputCode == requiredCode)
             {
                 inputCode = "";
@@ -66,8 +68,6 @@ public class SecurityMiniGame : MiniGame
         }
     }
 
-    public Color GetHighlightColor() { return highlightColor; }
-
     void ScrambleCodeBlocks()
     {
         for (int i = 0; i < codeSegments.Length - 1; i++)
@@ -81,7 +81,7 @@ public class SecurityMiniGame : MiniGame
 
     void GenerateCode()
     {
-        foreach(CodeBlock block in codeSegments) { block.gameObject.SetActive(true); }
+        foreach(CodeBlock block in codeSegments) { block.RestetInput(); }
         ScrambleCodeBlocks();
         requiredCode = "";
         availableCode = "";
@@ -113,25 +113,17 @@ public class SecurityMiniGame : MiniGame
 
     IEnumerator DisplayCode()
 	{
-        if (hideInput) { foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(false); } }
+        foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(false); }
         codePreview.text = "";
         yield return new WaitForSeconds(1);
         foreach(char codeSegment in requiredCode)
 		{
+            AudioManager.instance.PlaySFX(DisplaySound[Random.Range(0, DisplaySound.Length - 1)]);
             codePreview.text = codeSegment.ToString();
             yield return new WaitForSeconds(displayTime);
             codePreview.text = "";
-            AudioManager.instance.PlaySFX(DisplaySound[Random.Range(0, DisplaySound.Length - 1)]);
         }
-
+        foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(true); }
         inputCode = "";
-        if (hideInput)
-        { 
-            foreach (CodeBlock block in codeSegments) 
-            { 
-                block.gameObject.SetActive(true);
-                block.GetComponent<Image>().color = originalButtonColor;
-            } 
-        }
     }
 }

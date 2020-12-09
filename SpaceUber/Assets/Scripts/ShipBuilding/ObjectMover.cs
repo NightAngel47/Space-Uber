@@ -8,6 +8,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectMover : MonoBehaviour
 {
@@ -51,9 +52,7 @@ public class ObjectMover : MonoBehaviour
     {
         if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
         {
-            //Movement();
             RotateObject();
-            //Placement();
 
             if (isBeingDragged == true)
             {
@@ -179,7 +178,7 @@ public class ObjectMover : MonoBehaviour
     public void Placement()
     {
         if (GameManager.instance.currentGameState != InGameStates.ShipBuilding) return;
-        if (FindObjectOfType<ShipStats>().Credits >= gameObject.GetComponent<RoomStats>().price)
+        if (FindObjectOfType<ShipStats>().Credits >= gameObject.GetComponent<RoomStats>().price && FindObjectOfType<ShipStats>().EnergyRemaining >= gameObject.GetComponent<RoomStats>().minPower)
         {
             if (os.needsSpecificLocation == false)
             {
@@ -189,15 +188,25 @@ public class ObjectMover : MonoBehaviour
             {
                 SpotChecker.instance.SpecificSpotCheck(gameObject, os.rotAdjust);
             }
-            AudioManager.instance.PlaySFX(Placements[Random.Range(0, Placements.Length)]);
 
             if (SpotChecker.cannotPlace == false)
             {
+                AudioManager.instance.PlaySFX(Placements[Random.Range(0, Placements.Length)]);
                 gameObject.GetComponent<RoomStats>().AddRoomStats();
 
                 hasPlaced = true;
 
-                
+                if (os.needsSpecificLocation == true)
+                {
+                    os.HighlightSpotsOff();
+                }
+
+                if (os.nextToRoom == true)
+                {
+                    os.RoomHighlightSpotsOff();
+                }
+
+
                 StartCoroutine(ClickWait());
 
                 gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = ObjectScript.c;
@@ -212,7 +221,7 @@ public class ObjectMover : MonoBehaviour
 
         else
         {
-            Debug.Log("Cannot Afford");
+            TurnOnBeingDragged();
         }
     }
 
@@ -233,7 +242,11 @@ public class ObjectMover : MonoBehaviour
         canPlace = true;
     }
 
-
+    public IEnumerator WaitForText()
+    {
+        yield return new WaitForSeconds(3);
+        FindObjectOfType<ShipStats>().cantPlaceText.SetActive(false);
+    }
 
     //public void LayoutPlacement() //for spawning from layout to make sure they act as if they were placed normallys
     //{

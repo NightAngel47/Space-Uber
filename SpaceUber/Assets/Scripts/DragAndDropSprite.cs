@@ -31,6 +31,7 @@ public class DragAndDropSprite : MonoBehaviour
             transform.position = mousePosition;
         }
     }
+
 	private void OnMouseDown() 
     { 
         isBeingDraged = !isBeingDraged;
@@ -40,9 +41,10 @@ public class DragAndDropSprite : MonoBehaviour
     {
         if(collision.CompareTag(targetTag)) 
         {
-            AudioManager.instance.PlaySFX(IncrementSFX[Random.Range(0, IncrementSFX.Length - 1)]);
             Destroy(gameObject);
             miniGameManager.IncrementScore();
+
+            AudioManager.instance.PlaySFX(IncrementSFX[Random.Range(0, IncrementSFX.Length - 1)]);
         } 
     }
 }
