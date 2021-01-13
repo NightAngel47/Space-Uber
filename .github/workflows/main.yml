@@ -22,7 +22,7 @@ jobs:
           - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
           - StandaloneWindows64 # Build a Windows 64-bit standalone.
           - StandaloneLinux64 # Build a Linux 64-bit standalone.
-          - WebGL # WebGL.
+          #- WebGL # WebGL.
     steps:
       - uses: actions/checkout@v2.3.2
         with:
@@ -34,13 +34,14 @@ jobs:
           restore-keys: |
             Library-${{ matrix.projectPath }}-
             Library-
-      - uses: webbertakken/unity-builder@v1.2
+      - uses: webbertakken/unity-builder@v2.0-alpha-6
         with:
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
           buildName: A Cog in the Cosmic Machine-${{ matrix.targetPlatform }}
           versioning: None
+          customParameters: -CompressWithLz4HC
       - uses: actions/upload-artifact@v2.1.4
         with:
           name: Build
