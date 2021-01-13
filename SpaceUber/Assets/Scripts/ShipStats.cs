@@ -6,8 +6,10 @@
  */
 
 using System;
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using NaughtyAttributes;
 using TMPro;
 
@@ -108,7 +110,7 @@ public class ShipStats : MonoBehaviour
         //UpdateCrewMorale(startingMorale);
     }
 
-    private IEnumerator<YieldInstruction> TickUpdate()
+    private IEnumerator TickUpdate()
     {
         while(!tickStop)
         {
@@ -190,7 +192,7 @@ public class ShipStats : MonoBehaviour
         daysSinceDisplay.text = daysSince.ToString();
     }
 
-    private IEnumerator<YieldInstruction> CheckDeathOnUnpause()
+    private IEnumerator CheckDeathOnUnpause()
     {
             while(ticksPaused || tickStop)
             {
