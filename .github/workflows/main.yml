@@ -1,8 +1,6 @@
 name: Build
 
-on:
-  pull_request: {}
-  push: {}
+on: [push, pull_request]
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -47,9 +45,18 @@ jobs:
           name: Build
           path: build
       - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
+        if: github.ref == 'refs/heads/development'
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: ${{ matrix.targetPlatform }}
           ITCH_GAME: a-cog-in-the-cosmic-machine-dev
+          ITCH_USER: partyparrotpatrolparade
+          PACKAGE: build/${{ matrix.targetPlatform }}
+      - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
+        if: github.ref == 'refs/heads/master'
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
+          CHANNEL: ${{ matrix.targetPlatform }}
+          ITCH_GAME: a-cog-in-the-cosmic-machine
           ITCH_USER: partyparrotpatrolparade
           PACKAGE: build/${{ matrix.targetPlatform }}
