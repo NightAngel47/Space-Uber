@@ -46,3 +46,10 @@ jobs:
         with:
           name: Build
           path: build
+      - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
+          CHANNEL: ${{ matrix.targetPlatform }}
+          ITCH_GAME: a-cog-in-the-cosmic-machine-dev-build
+          ITCH_USER: nightangel47
+          PACKAGE: build/${{ matrix.targetPlatform }}
