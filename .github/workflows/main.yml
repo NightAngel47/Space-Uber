@@ -8,7 +8,7 @@ env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
-  buildandtest:
+  buildanddeploy:
     name: Build for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
     runs-on: ubuntu-latest
     strategy:
@@ -50,6 +50,6 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: ${{ matrix.targetPlatform }}
-          ITCH_GAME: a-cog-in-the-cosmic-machine-dev-build
-          ITCH_USER: nightangel47
+          ITCH_GAME: a-cog-in-the-cosmic-machine-dev
+          ITCH_USER: partyparrotpatrolparade
           PACKAGE: build/${{ matrix.targetPlatform }}
