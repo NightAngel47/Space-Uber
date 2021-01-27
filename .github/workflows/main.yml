@@ -22,10 +22,6 @@ jobs:
           - StandaloneLinux64 # Build a Linux 64-bit standalone.
           #- WebGL # WebGL.
     steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v2.3.2
         with:
           lfs: true
@@ -49,7 +45,7 @@ jobs:
           name: Build
           path: build
       - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
-        if: github.base_ref == 'refs/heads/development'
+        if: github.base_ref == 'development'
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: ${{ matrix.targetPlatform }}
@@ -57,7 +53,7 @@ jobs:
           ITCH_USER: partyparrotpatrolparade
           PACKAGE: build/${{ matrix.targetPlatform }}
       - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
-        if: github.base_ref == 'refs/heads/master'
+        if: github.base_ref == 'master'
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: ${{ matrix.targetPlatform }}
