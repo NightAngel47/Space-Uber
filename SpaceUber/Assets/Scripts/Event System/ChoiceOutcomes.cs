@@ -24,8 +24,16 @@ public class ChoiceOutcomes
     [HideInInspector] public bool hasSubsequentChoices;
 
     [SerializeField] public bool isNarrativeOutcome;
-    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public ResourceType resource;
+    [SerializeField] public bool isResourceOutcome;
+    [SerializeField] public bool isApprovalOutcome;
+
+    //Will change to "isResourceOutcome" when designers have the chance to check the box in all old events, in order to not break them
+    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public ResourceType resource; //
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public int amount;
+
+    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public ShipStats.Characters character;
+    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public int approvalChange;
+
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolOutcomes;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int cloneTrustChange;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int VIPTrustChange;
@@ -34,7 +42,7 @@ public class ChoiceOutcomes
     {
         if (ship != null)
         {
-            if (!isNarrativeOutcome)
+            if (!isNarrativeOutcome && !isApprovalOutcome) //Will change to "isResourceOutcome" when designers have the chance to check the box in all old events
             {
                 switch (resource)
                 {
@@ -173,7 +181,7 @@ public class ChoiceOutcomes
                         break;
                 }
             }
-            else
+            else if(isNarrativeOutcome)
             {
                 //alter the trust variables
                 campMan.cateringToTheRich.ctr_cloneTrust += cloneTrustChange;
@@ -242,7 +250,11 @@ public class ChoiceOutcomes
                 }
                 
             }
-            if(!hasSubsequentChoices)
+            else //approval outcomes
+            {
+                ship.UpdateCrewMemberApproval(character, approvalChange);
+            }
+            if (!hasSubsequentChoices)
             {
                 narrativeResultsBox.SetActive(true);
             }
