@@ -24,8 +24,16 @@ public class ChoiceOutcomes
     [HideInInspector] public bool hasSubsequentChoices;
 
     [SerializeField] public bool isNarrativeOutcome;
-    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public ResourceType resource;
-    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public int amount;
+    [SerializeField] public bool isResourceOutcome;
+    [SerializeField] public bool isApprovalOutcome;
+
+
+    [SerializeField, ShowIf("isResourceOutcome"), AllowNesting] public ResourceType resource;
+    [SerializeField, ShowIf("isResourceOutcome"), AllowNesting] public int resourceChange;
+
+    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public ShipStats.Characters character;
+    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public int approvalChange;
+
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolOutcomes;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int cloneTrustChange;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int VIPTrustChange;
@@ -34,146 +42,146 @@ public class ChoiceOutcomes
     {
         if (ship != null)
         {
-            if (!isNarrativeOutcome)
+            if (!isResourceOutcome)
             {
                 switch (resource)
                 {
                     case ResourceType.Credits:
-                        ship.UpdateCreditsAmount(amount);
-                        SpawnStatChangeText(ship, amount, 0);
+                        ship.UpdateCreditsAmount(resourceChange);
+                        SpawnStatChangeText(ship, resourceChange, 0);
 
-                        if(amount < 0)
+                        if(resourceChange < 0)
                         {
-                            resultText += "\nYou lost " + Math.Abs(amount) + " credits";
+                            resultText += "\nYou lost " + Math.Abs(resourceChange) + " credits";
                         }
                         else
                         {
-                            resultText += "\nYou gained " + Math.Abs(amount) + " credits";
+                            resultText += "\nYou gained " + Math.Abs(resourceChange) + " credits";
                         }
 
                         break;
                     case ResourceType.Energy:
-                        ship.UpdateEnergyAmount(amount);
-                        SpawnStatChangeText(ship, amount, 5);
+                        ship.UpdateEnergyAmount(resourceChange);
+                        SpawnStatChangeText(ship, resourceChange, 5);
 
-                        if (amount < 0)
+                        if (resourceChange < 0)
                         {
-                            resultText += "\nYou lost " + Math.Abs(amount) + " energy";
+                            resultText += "\nYou lost " + Math.Abs(resourceChange) + " energy";
                         }
                         else
                         {
-                            resultText += "\nYou gained " + Math.Abs(amount) + " energy";
+                            resultText += "\nYou gained " + Math.Abs(resourceChange) + " energy";
                         }
                         break;
                     case ResourceType.Security:
-                        ship.UpdateSecurityAmount(amount);
-                        SpawnStatChangeText(ship, amount, 1);
+                        ship.UpdateSecurityAmount(resourceChange);
+                        SpawnStatChangeText(ship, resourceChange, 1);
 
-                        if (amount < 0)
+                        if (resourceChange < 0)
                         {
-                            resultText += "\nYou lost " + Math.Abs(amount) + " security";
+                            resultText += "\nYou lost " + Math.Abs(resourceChange) + " security";
                         }
                         else
                         {
-                            resultText += "\nYou gained " + Math.Abs(amount) + " security";
+                            resultText += "\nYou gained " + Math.Abs(resourceChange) + " security";
                         }
 
                         break;
                     case ResourceType.ShipWeapons:
-                        ship.UpdateShipWeaponsAmount(amount);
-                        SpawnStatChangeText(ship, amount, 2);
+                        ship.UpdateShipWeaponsAmount(resourceChange);
+                        SpawnStatChangeText(ship, resourceChange, 2);
 
-                        if (amount < 0)
+                        if (resourceChange < 0)
                         {
-                            resultText += "\nYou lost " + Math.Abs(amount) + " weapons";
+                            resultText += "\nYou lost " + Math.Abs(resourceChange) + " weapons";
                         }
                         else
                         {
-                            resultText += "\nYou gained " + Math.Abs(amount) + " weapons";
+                            resultText += "\nYou gained " + Math.Abs(resourceChange) + " weapons";
                         }
                         break;
                     case ResourceType.Crew:
-                        if(amount < 0)
+                        if(resourceChange < 0)
                         {
                             int amountFromAssigned;
                             int amountFromUnassigned;
-                            if(ship.CrewCurrent - ship.CrewUnassigned >= -amount)
+                            if(ship.CrewCurrent - ship.CrewUnassigned >= -resourceChange)
                             {
-                                amountFromAssigned = -amount;
+                                amountFromAssigned = -resourceChange;
                                 amountFromUnassigned = 0;
                             }
                             else
                             {
                                 amountFromAssigned = ship.CrewCurrent - ship.CrewUnassigned;
-                                amountFromUnassigned = -amount - amountFromAssigned;
+                                amountFromUnassigned = -resourceChange - amountFromAssigned;
                             }
                             ship.RemoveRandomCrew(amountFromAssigned);
-                            ship.UpdateCrewAmount(-amountFromUnassigned, amount);
-                            SpawnStatChangeText(ship, amount);
-                            resultText += "\nYou lost " + Math.Abs(amount) + " crew";
+                            ship.UpdateCrewAmount(-amountFromUnassigned, resourceChange);
+                            SpawnStatChangeText(ship, resourceChange);
+                            resultText += "\nYou lost " + Math.Abs(resourceChange) + " crew";
                         }
                         else
                         {
-                            ship.UpdateCrewAmount(amount, amount);
-                            SpawnStatChangeText(ship, amount);
-                            resultText += "\nYou gained " + Math.Abs(amount) + " crew";
+                            ship.UpdateCrewAmount(resourceChange, resourceChange);
+                            SpawnStatChangeText(ship, resourceChange);
+                            resultText += "\nYou gained " + Math.Abs(resourceChange) + " crew";
                         }
                         break;
                     case ResourceType.Food:
-                        ship.UpdateFoodAmount(amount);
-                        SpawnStatChangeText(ship, amount, 3);
-                        if (amount < 0)
+                        ship.UpdateFoodAmount(resourceChange);
+                        SpawnStatChangeText(ship, resourceChange, 3);
+                        if (resourceChange < 0)
                         {
-                            resultText += "\nYou lost " + Math.Abs(amount) + " food";
+                            resultText += "\nYou lost " + Math.Abs(resourceChange) + " food";
                         }
                         else
                         {
-                            resultText += "\nYou gained " + Math.Abs(amount) + " food";
+                            resultText += "\nYou gained " + Math.Abs(resourceChange) + " food";
                         }
                         break;
                     case ResourceType.FoodPerTick:
-                        ship.UpdateFoodPerTickAmount(amount);
-                        SpawnStatChangeText(ship, amount, 3);
+                        ship.UpdateFoodPerTickAmount(resourceChange);
+                        SpawnStatChangeText(ship, resourceChange, 3);
 
-                        if (amount < 0)
+                        if (resourceChange < 0)
                         {
-                            resultText += "\nFood Per Tick decreased by " + Math.Abs(amount);
+                            resultText += "\nFood Per Tick decreased by " + Math.Abs(resourceChange);
                         }
                         else
                         {
-                            resultText += "\nFood Per Tick increased by " + Math.Abs(amount);
+                            resultText += "\nFood Per Tick increased by " + Math.Abs(resourceChange);
                         }
                         break;
                     case ResourceType.HullDurability:
-                        ship.UpdateHullDurabilityAmount(amount, 0, hasSubsequentChoices);
-                        SpawnStatChangeText(ship, amount, 6);
+                        ship.UpdateHullDurabilityAmount(resourceChange, 0, hasSubsequentChoices);
+                        SpawnStatChangeText(ship, resourceChange, 6);
 
-                        if (amount < 0)
+                        if (resourceChange < 0)
                         {
-                            resultText += "\nYou lost " + Math.Abs(amount) + " hull durability";
+                            resultText += "\nYou lost " + Math.Abs(resourceChange) + " hull durability";
                         }
                         else
                         {
-                            resultText += "\nYou gained " + Math.Abs(amount) + " hull durability";
+                            resultText += "\nYou gained " + Math.Abs(resourceChange) + " hull durability";
                         }
                         break;
                     case ResourceType.Payout:
-                        ship.UpdatePayoutAmount(amount);
-                        SpawnStatChangeText(ship, amount, 0);
-                        if (amount < 0)
+                        ship.UpdatePayoutAmount(resourceChange);
+                        SpawnStatChangeText(ship, resourceChange, 0);
+                        if (resourceChange < 0)
                         {
-                            resultText += "\nYour payout decreased by " + Math.Abs(amount);
+                            resultText += "\nYour payout decreased by " + Math.Abs(resourceChange);
                         }
                         else
                         {
-                            resultText += "\nYour payout increased by " + Math.Abs(amount);
+                            resultText += "\nYour payout increased by " + Math.Abs(resourceChange);
                         }
                         break;
                     default:
                         break;
                 }
             }
-            else
+            else if(isNarrativeOutcome)
             {
                 //alter the trust variables
                 campMan.cateringToTheRich.ctr_cloneTrust += cloneTrustChange;
@@ -241,6 +249,10 @@ public class ChoiceOutcomes
                     resultText += "\n The VIPs have " + VIPTrustChange + "% more trust in you";
                 }
                 
+            }
+            else
+            {
+                ship.UpdateCrewMemberApproval(character, approvalChange);
             }
             if(!hasSubsequentChoices)
             {

@@ -50,7 +50,7 @@ public class OutcomeTooltipUI : MonoBehaviour
                     GameObject resourceGO = Instantiate(resourceUI, outcomeList.transform);
                     resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GetResourceIcon(outcome.resource); // resource icon
                     resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = outcome.resource.ToString(); // resource name
-                    resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = outcome.amount.ToString(); // resource amount
+                    resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = outcome.resourceChange.ToString(); // resource amount
                     resourceGO.transform.GetChild(3).gameObject.SetActive(false); // outcome probability
                 }
             }
@@ -94,7 +94,7 @@ public class OutcomeTooltipUI : MonoBehaviour
                         GameObject resourceGO = Instantiate(resourceUI, outcomeList.transform);
                         resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GetResourceIcon(randomOutcome.outcomes[i].resource); // resource icon
                         resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = randomOutcome.outcomes[i].resource.ToString(); // resource name
-                        resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = randomOutcome.outcomes[i].amount.ToString(); // resource amount
+                        resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = randomOutcome.outcomes[i].resourceChange.ToString(); // resource amount
                         
                         if (i == 0)
                         {
