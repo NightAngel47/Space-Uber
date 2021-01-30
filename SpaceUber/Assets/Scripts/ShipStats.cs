@@ -13,7 +13,7 @@ using TMPro;
 
 public class ShipStats : MonoBehaviour
 {
-    public enum resources{ Credits, Energy, Security, ShipWeapons, Crew, Food, FoodPerTick, HullDurability, Stock}
+    public enum Resources{ Credits, Energy, Security, ShipWeapons, Crew, Food, FoodPerTick, HullDurability, Stock}
 
     [SerializeField ,Tooltip("Starting amount of credits"), Foldout("Starting Ship Stats")]
     private int startingCredits;
@@ -31,6 +31,26 @@ public class ShipStats : MonoBehaviour
     private int startingShipHealth;
     [SerializeField, Tooltip("Starting amount of crewMorale"), Foldout("Starting Ship Stats")]
     private int startingMorale;
+
+    #region Character Approval
+    public enum Characters
+    {
+        KUON,
+        LANRI,
+        LEXA,
+        MATEO,
+        RIPLEY
+    }
+
+    private int kuonApproval;
+    private int lanriApproval;
+    private int lexaApproval;
+    private int mateoApproval;
+    private int ripleyApproval;
+
+    private int approvalMax = 10;
+    private int approvalMin = -10;
+    #endregion
 
     public GameObject cantPlaceText;
     public Sprite[] statIcons;
@@ -107,6 +127,55 @@ public class ShipStats : MonoBehaviour
         UpdateHullDurabilityAmount(startingShipHealth, startingShipHealth);
         //UpdateCrewMorale(startingMorale);
     }
+    public void PauseTickEvents()
+    {
+        ticksPaused = true;
+    }
+
+    public void UnpauseTickEvents()
+    {
+        ticksPaused = false;
+    }
+
+    public void StopTickEvents()
+    {
+        tickStop = true;
+    }
+
+    public void StartTickEvents()
+    {
+        if (tickStop)
+        {
+            tickStop = false;
+            ticksPaused = false;
+            StartCoroutine(TickUpdate());
+        }
+    }
+
+    public void ResetDaysSince()
+    {
+        daysSince = 0;
+        daysSinceDisplay.text = daysSince.ToString();
+    }
+
+    private IEnumerator<YieldInstruction> CheckDeathOnUnpause()
+    {
+        while (ticksPaused || tickStop)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        if (shipHealthCurrent <= 0)
+        {
+            GameManager.instance.ChangeInGameState(InGameStates.Death);
+
+        }
+    }
+
+    public void SetObjectBeingPlaced()
+    {
+        shipStatsUI.roomBeingPlaced = roomBeingPlaced;
+    }
 
     private IEnumerator<YieldInstruction> TickUpdate()
     {
@@ -159,56 +228,8 @@ public class ShipStats : MonoBehaviour
         }
     }
 
-    public void PauseTickEvents()
-    {
-        ticksPaused = true;
-    }
 
-    public void UnpauseTickEvents()
-    {
-        ticksPaused = false;
-    }
-
-    public void StopTickEvents()
-    {
-        tickStop = true;
-    }
-
-    public void StartTickEvents()
-    {
-        if(tickStop)
-        {
-            tickStop = false;
-            ticksPaused = false;
-            StartCoroutine(TickUpdate());
-        }
-    }
-
-    public void ResetDaysSince()
-    {
-        daysSince = 0;
-        daysSinceDisplay.text = daysSince.ToString();
-    }
-
-    private IEnumerator<YieldInstruction> CheckDeathOnUnpause()
-    {
-            while(ticksPaused || tickStop)
-            {
-                yield return new WaitForFixedUpdate();
-            }
-
-            if(shipHealthCurrent <= 0)
-            {
-                GameManager.instance.ChangeInGameState(InGameStates.Death);
-
-            }
-    }
-
-    public void SetObjectBeingPlaced()
-    {
-        shipStatsUI.roomBeingPlaced = roomBeingPlaced;
-    }
-
+    #region Update Stat Functions
     public void UpdateCreditsAmount(int creditAddition)
     {
         SetObjectBeingPlaced();
@@ -232,10 +253,10 @@ public class ShipStats : MonoBehaviour
         shipStatsUI.ShowCreditsUIChange(creditAddition);
     }
 
-    public void UpdateEnergyAmount(int energyRemainingAddition, int energyMaxAddition = 0)
+    public void UpdateEnergyAmount(int energyRemainingChange, int energyMaxChange = 0)
     {
-        energyMax += energyMaxAddition;
-        energyRemaining += energyRemainingAddition;
+        energyMax += energyMaxChange;
+        energyRemaining += energyRemainingChange;
         /*
         if (energyRemainingAddition >= 0)
         {
@@ -246,17 +267,10 @@ public class ShipStats : MonoBehaviour
             AudioManager.instance.PlaySFX("Lose Energy");
         }
         */
-            if (energyRemaining <= 0)
-        {
-            energyRemaining = 0;
-        }
-        if (energyRemaining >= energyMax)
-        {
-            energyRemaining = energyMax;
-        }
+        Mathf.Clamp(energyRemaining, 0, energyMax);
 
         shipStatsUI.UpdateEnergyUI(energyRemaining, energyMax);
-        shipStatsUI.ShowEnergyUIChange(energyRemainingAddition, energyMaxAddition);
+        shipStatsUI.ShowEnergyUIChange(energyRemainingChange, energyMaxChange);
     }
 
     public void UpdateSecurityAmount(int securityAmount)
@@ -303,18 +317,24 @@ public class ShipStats : MonoBehaviour
         shipStatsUI.ShowShipWeaponsUIChange(shipWeaponsAmount);
     }
 
-    public void UpdateCrewAmount(int crewUnassignedAmount, int crewCurrentAmount = 0, int crewCapacityAmount = 0)
+    /// <summary>
+    /// Updates the amount of crew there are: total and unassigned.
+    /// </summary>
+    /// <param name="unassignedChange">How much the unassigned number of crew will change</param>
+    /// <param name="crewCurrentChange">How much the current number of crew will change by</param>
+    /// <param name="crewCapacityChange">How much the crew capacity will change</param>
+    public void UpdateCrewAmount(int unassignedChange, int crewCurrentChange = 0, int crewCapacityChange = 0)
     {
         if(GameManager.instance.currentGameState == InGameStates.CrewManagement)
         {
             SetObjectBeingPlaced();
         }
 
-        crewCapacity += crewCapacityAmount;
-        crewCurrent += crewCurrentAmount;
-        crewUnassigned += crewUnassignedAmount;
+        crewCapacity += crewCapacityChange;
+        crewCurrent += crewCurrentChange;
+        crewUnassigned += unassignedChange;
 
-        if (crewCurrentAmount < 0)
+        if (crewCurrentChange < 0)
         {
             if(crewUnassigned < 0)
             {
@@ -333,26 +353,11 @@ public class ShipStats : MonoBehaviour
         }
         */
 
-        if (crewCurrent <= 0)
-        {
-            crewCurrent = 0;
-        }
-        if (crewCurrent >= crewCapacity)
-        {
-            crewCurrent = crewCapacity;
-        }
-
-        if (crewUnassigned <= 0)
-        {
-            crewUnassigned = 0;
-        }
-        if (crewUnassigned >= crewCurrent)
-        {
-            crewUnassigned = crewCurrent;
-        }
+        Mathf.Clamp(crewCurrent, 0, crewCapacity);
+        Mathf.Clamp(crewUnassigned, 0, crewCurrent);
 
         shipStatsUI.UpdateCrewUI(crewUnassigned, crewCurrent, crewCapacity);
-        shipStatsUI.ShowCrewUIChange(crewUnassignedAmount, crewCurrentAmount, crewCapacityAmount);
+        shipStatsUI.ShowCrewUIChange(unassignedChange, crewCurrentChange, crewCapacityChange);
     }
 
     public void UpdateFoodAmount(int foodAmount)
@@ -385,15 +390,12 @@ public class ShipStats : MonoBehaviour
         shipStatsUI.ShowFoodUIChange(0, foodPerTickAmount);
     }
 
-    public void UpdateHullDurabilityAmount(int hullDurabilityRemainingAmount, int hullDurabilityMax = 0, bool checkImmediately = true)
+    public void UpdateHullDurabilityAmount(int hullDurabilityRemainingChange, int hullDurabilityMaxChange = 0, bool checkImmediately = true)
     {
-        shipHealthMax += hullDurabilityMax;
-        shipHealthCurrent += hullDurabilityRemainingAmount;
+        shipHealthMax += hullDurabilityMaxChange;
+        shipHealthCurrent += hullDurabilityRemainingChange;
 
-        if (shipHealthCurrent >= shipHealthMax)
-        {
-            shipHealthCurrent = shipHealthMax;
-        }
+        Mathf.Clamp(shipHealthCurrent, -1, shipHealthMax);
 
         /*
         if (hullDurabilityRemainingAmount >= 0)
@@ -407,7 +409,7 @@ public class ShipStats : MonoBehaviour
         */
 
         shipStatsUI.UpdateHullUI(shipHealthCurrent, shipHealthMax);
-        shipStatsUI.ShowHullUIChange(hullDurabilityRemainingAmount, hullDurabilityMax);
+        shipStatsUI.ShowHullUIChange(hullDurabilityRemainingChange, hullDurabilityMaxChange);
 
         if(checkImmediately)
         {
@@ -422,15 +424,38 @@ public class ShipStats : MonoBehaviour
         }
     }
 
-    //public int GetCredits()
-    //{
-    //    return credits;
-    //}
-
-    //public int GetRemainingCrew()
-    //{
-    //    return crewRemaining;
-    //}
+    /// <summary>
+    /// Adds 'approvalChange' to the approval rating of the selected character, but will never go beyond
+    /// the set minimum and maximum values
+    /// </summary>
+    /// <param name="thisCharacter">The character whose approval rating will be affected</param>
+    /// <param name="approvalChange">The amount by which approval will chance</param>
+    public void UpdateCrewMemberApproval(Characters thisCharacter, int approvalChange)
+    {
+        switch (thisCharacter)
+        {
+            case Characters.KUON:
+                kuonApproval += approvalChange;
+                Mathf.Clamp(kuonApproval, approvalMin, approvalMax);
+                break;
+            case Characters.MATEO:
+                mateoApproval += approvalChange;
+                Mathf.Clamp(mateoApproval, approvalMin, approvalMax);
+                break;
+            case Characters.LANRI:
+                lanriApproval += approvalChange;
+                Mathf.Clamp(lanriApproval, approvalMin, approvalMax);
+                break;
+            case Characters.LEXA:
+                lexaApproval += approvalChange;
+                Mathf.Clamp(lexaApproval, approvalMin, approvalMax);
+                break;
+            case Characters.RIPLEY:
+                ripleyApproval += approvalChange;
+                Mathf.Clamp(ripleyApproval, approvalMin, approvalMax);
+                break;
+        }
+    }
     public void UpdatePayoutAmount(int ammount)
     {
         int initialPayout = payout;
@@ -462,6 +487,7 @@ public class ShipStats : MonoBehaviour
         UpdateCreditsAmount(payout);
         payout = 0;
     }
+    #endregion
 
     public bool HasEnoughPower(int power)
     {
