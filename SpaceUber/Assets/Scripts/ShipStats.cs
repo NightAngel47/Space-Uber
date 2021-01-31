@@ -456,6 +456,27 @@ public class ShipStats : MonoBehaviour
                 break;
         }
     }
+
+    public int GetCrewMemberApproval(Characters thisCharacter)
+    {
+        switch (thisCharacter)
+        {
+            case Characters.KUON:
+                return kuonApproval;
+            case Characters.MATEO:
+                return mateoApproval;
+            case Characters.LANRI:
+                return lanriApproval;
+            case Characters.LEXA:
+                return lexaApproval;
+            case Characters.RIPLEY:
+                return ripleyApproval;
+            default:
+                Debug.Log("The character whose approval you wanted does not exist");
+                return 0;
+        }
+    }
+
     public void UpdatePayoutAmount(int ammount)
     {
         int initialPayout = payout;
