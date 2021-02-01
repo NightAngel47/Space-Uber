@@ -2,7 +2,7 @@
  * Frank Calabrese 
  * 2/1/21
  * Pauses game by setting timescale to 0
- * blocks user interaction by activating a canvas
+ * blocks user interaction by activating a canvas on sortorder 5000
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -12,14 +12,6 @@ public class PauseMenu : MonoBehaviour
 {
     public Canvas pauseCanvas;
 
-    //private bool isPaused = false;
-
-    void Start()
-    {
-        //pauseCanvas = gameObject.GetComponent<Canvas>();
-    }
-
-    
     void Update()
     {
         if(Input.GetKeyDown("tab"))
@@ -28,6 +20,8 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    //if the game is paused, unpause. If it's unpaused, pause.
+    //check performed by the activation of the pauseCanvas or lack thereof
     private void CheckPaused()
     {
         if (pauseCanvas.gameObject.activeSelf == true)
