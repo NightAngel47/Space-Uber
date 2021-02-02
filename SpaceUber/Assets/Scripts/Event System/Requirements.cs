@@ -54,7 +54,7 @@ public class Requirements
     
     [Tooltip("The character who's approval must be checked")]
     [SerializeField, ShowIf("isApprovalRequirement"), AllowNesting]
-    private ShipStats.Characters character;
+    private CharacterStats.Characters character;
 
     [Tooltip("The required approval rating for this event to pass")]
     [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
@@ -276,9 +276,32 @@ public class Requirements
         }
         else if(isApprovalRequirement)
         {
-            int approvalRating = thisShip.GetCrewMemberApproval(character);
+            int approvalRating = 0;
 
-            if(lessThanApproval && approvalRating < requiredApproval) //Match
+            switch (character)
+            {
+                case CharacterStats.Characters.KUON:
+                    approvalRating = thisShip.cStats.KuonApproval;
+                    break;
+                case CharacterStats.Characters.MATEO:
+                    approvalRating = thisShip.cStats.MateoApproval;
+                    break;
+                case CharacterStats.Characters.LANRI:
+                    approvalRating = thisShip.cStats.LanriApproval;
+                    break;
+                case CharacterStats.Characters.LEXA:
+                    approvalRating = thisShip.cStats.LexaApproval;
+                    break;
+                case CharacterStats.Characters.RIPLEY:
+                    approvalRating = thisShip.cStats.RipleyApproval;
+                    break;
+                default:
+                    Debug.Log("The character whose approval you wanted does not exist");
+                    approvalRating = 0;
+                    break;
+            }
+
+            if (lessThanApproval && approvalRating < requiredApproval) //Match
             {
                 result = true;
             }

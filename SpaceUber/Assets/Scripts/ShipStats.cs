@@ -32,25 +32,8 @@ public class ShipStats : MonoBehaviour
     [SerializeField, Tooltip("Starting amount of crewMorale"), Foldout("Starting Ship Stats")]
     private int startingMorale;
 
-    #region Character Approval
-    public enum Characters
-    {
-        KUON,
-        LANRI,
-        LEXA,
-        MATEO,
-        RIPLEY
-    }
-
-    private int kuonApproval;
-    private int lanriApproval;
-    private int lexaApproval;
-    private int mateoApproval;
-    private int ripleyApproval;
-
-    private int approvalMax = 10;
-    private int approvalMin = -10;
-    #endregion
+    [HideInInspector]
+    public CharacterStats cStats;
 
     public GameObject cantPlaceText;
     public Sprite[] statIcons;
@@ -421,59 +404,6 @@ public class ShipStats : MonoBehaviour
         else
         {
             CheckDeathOnUnpause();
-        }
-    }
-
-    /// <summary>
-    /// Adds 'approvalChange' to the approval rating of the selected character, but will never go beyond
-    /// the set minimum and maximum values
-    /// </summary>
-    /// <param name="thisCharacter">The character whose approval rating will be affected</param>
-    /// <param name="approvalChange">The amount by which approval will chance</param>
-    public void UpdateCrewMemberApproval(Characters thisCharacter, int approvalChange)
-    {
-        switch (thisCharacter)
-        {
-            case Characters.KUON:
-                kuonApproval += approvalChange;
-                Mathf.Clamp(kuonApproval, approvalMin, approvalMax);
-                break;
-            case Characters.MATEO:
-                mateoApproval += approvalChange;
-                Mathf.Clamp(mateoApproval, approvalMin, approvalMax);
-                break;
-            case Characters.LANRI:
-                lanriApproval += approvalChange;
-                Mathf.Clamp(lanriApproval, approvalMin, approvalMax);
-                break;
-            case Characters.LEXA:
-                lexaApproval += approvalChange;
-                Mathf.Clamp(lexaApproval, approvalMin, approvalMax);
-                break;
-            case Characters.RIPLEY:
-                ripleyApproval += approvalChange;
-                Mathf.Clamp(ripleyApproval, approvalMin, approvalMax);
-                break;
-        }
-    }
-
-    public int GetCrewMemberApproval(Characters thisCharacter)
-    {
-        switch (thisCharacter)
-        {
-            case Characters.KUON:
-                return kuonApproval;
-            case Characters.MATEO:
-                return mateoApproval;
-            case Characters.LANRI:
-                return lanriApproval;
-            case Characters.LEXA:
-                return lexaApproval;
-            case Characters.RIPLEY:
-                return ripleyApproval;
-            default:
-                Debug.Log("The character whose approval you wanted does not exist");
-                return 0;
         }
     }
 

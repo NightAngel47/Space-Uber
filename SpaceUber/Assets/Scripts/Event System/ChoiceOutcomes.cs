@@ -31,7 +31,7 @@ public class ChoiceOutcomes
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public ResourceType resource; //
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public int amount;
 
-    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public ShipStats.Characters character;
+    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character;
     [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public int approvalChange;
 
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolOutcomes;
@@ -252,7 +252,24 @@ public class ChoiceOutcomes
             }
             else //approval outcomes
             {
-                ship.UpdateCrewMemberApproval(character, approvalChange);
+                switch (character)
+                {
+                    case CharacterStats.Characters.KUON:
+                        ship.cStats.KuonApproval += approvalChange;
+                        break;
+                    case CharacterStats.Characters.MATEO:
+                        ship.cStats.MateoApproval += approvalChange;
+                        break;
+                    case CharacterStats.Characters.LANRI:
+                        ship.cStats.LanriApproval += approvalChange;
+                        break;
+                    case CharacterStats.Characters.LEXA:
+                        ship.cStats.LexaApproval += approvalChange;
+                        break;
+                    case CharacterStats.Characters.RIPLEY:
+                        ship.cStats.RipleyApproval += approvalChange;
+                        break;
+                }
             }
             if (!hasSubsequentChoices)
             {

@@ -56,9 +56,9 @@ public class OverclockController : MonoBehaviour
         additiveSceneManager.LoadSceneMerged(miniGame.ToString()); 
     }
 
-    public void EndMiniGame(MiniGameType miniGame, bool succsess, float statModification = 0)
+    public void EndMiniGame(MiniGameType miniGame, bool success, float statModification = 0)
 	{
-        if(succsess)
+        if(success)
 		{
             if(miniGame == MiniGameType.Security)
             {
@@ -99,7 +99,7 @@ public class OverclockController : MonoBehaviour
                 SpawnStatChangeText(Mathf.RoundToInt(failHullDurabilityBaseAdjustment * statModification));
             }
         }
-        if(succsess && activeRoom)
+        if(success && activeRoom)
         {
            activeRoom.StartCoolDown();
             if(winSound == false)
@@ -112,6 +112,11 @@ public class OverclockController : MonoBehaviour
         //FindObjectOfType<CrewManagement>().crewManagementText.SetActive(true);
 	}
     
+    /// <summary>
+    /// Shows the text that will appear over stats whenever the player receives an update to it
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="icon"></param>
     private void SpawnStatChangeText(int value, int icon = -1)
     {
         ShipStatsUI shipStatsUI = shipStats.GetComponent<ShipStatsUI>();
@@ -121,7 +126,7 @@ public class OverclockController : MonoBehaviour
         
         Vector3 spawnPos = cam.WorldToScreenPoint(activeRoom.transform.GetChild(0).position);
         rect.anchoredPosition = new Vector2(spawnPos.x, spawnPos.y);
-        
+
         statChangeUI.transform.parent = shipStats.GetComponent<ShipStatsUI>().canvas; // you have to set the parent after you change the anchored position or the position gets messed up.  Don't set it in the instantiation.  I don't know why someone decided to change that.
 
         MoveAndFadeBehaviour moveAndFadeBehaviour = statChangeUI.GetComponent<MoveAndFadeBehaviour>();
@@ -129,6 +134,10 @@ public class OverclockController : MonoBehaviour
         moveAndFadeBehaviour.SetValue(value, icon);
     }
 
+    /// <summary>
+    /// Unloads this current minigame scene
+    /// </summary>
+    /// <param name="miniGame"></param>
     public void UnloadScene(MiniGameType miniGame) 
     {
         overclocking = false;
