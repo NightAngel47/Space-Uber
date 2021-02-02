@@ -84,11 +84,13 @@ public class AudioManager : MonoBehaviour
     [SerializeField] Sound[] musicTracks = null;
     [SerializeField] Sound[] sfxTracks = null;
     [SerializeField] Sound[] ambientTracks = null;
+    [SerializeField] Sound[] radioTracks = null;
     [SerializeField] List<Sound> currentlyPlayingAmbience = new List<Sound>();
     [Range(0f, 1f)] public float masterVolume = 1;
     [Range(0f, 1f)] public float sfxVolume = 1;
     [Range(0f, 1f)] public float musicVolume = 1;
     [Range(0f, 1f)] public float ambienceVolume = 1;
+    [Range(0f, 1f)] public float radioVolume = 1;
     [Tooltip("Time it takes for current track to fade out")]
     [SerializeField] float fadeOutTime = 1;
     [Tooltip("Time window of overlap of current track fade out and next track fade in")]
