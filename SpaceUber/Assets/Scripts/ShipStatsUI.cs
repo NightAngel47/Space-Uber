@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShipStatsUI : MonoBehaviour
 {
@@ -31,6 +32,15 @@ public class ShipStatsUI : MonoBehaviour
 
     [SerializeField, Foldout("Ship Hull UI")] private TMP_Text hullCurrentText;
     [SerializeField, Foldout("Ship Hull UI")] private TMP_Text hullMaxText;
+    
+    [SerializeField, Foldout("Crew Morale UI")] private Image crewMoraleImage;
+    
+    //crew morale icon images
+    [SerializeField, Foldout("Crew Morale Icons")] private Sprite crewMoraleIcon1;
+    [SerializeField, Foldout("Crew Morale Icons")] private Sprite crewMoraleIcon2;
+    [SerializeField, Foldout("Crew Morale Icons")] private Sprite crewMoraleIcon3;
+    [SerializeField, Foldout("Crew Morale Icons")] private Sprite crewMoraleIcon4;
+    [SerializeField, Foldout("Crew Morale Icons")] private Sprite crewMoraleIcon5;
 
     //stat change text variables
     [Foldout("Stat Change UI")] public GameObject statChangeText;
@@ -270,6 +280,47 @@ public class ShipStatsUI : MonoBehaviour
             StartCoroutine(JiggleText(hullMaxText));
         }
     }
+    
+    public void UpdateCrewMoraleUI(int current)
+    {
+        Sprite moraleIcon = null;
+        
+        switch(current)
+        {
+            case int cur when current >= 80 && current <= 100:
+                moraleIcon = crewMoraleIcon1;
+                break;
+            case int cur when current >= 60 && current < 80:
+                moraleIcon = crewMoraleIcon2;
+                break;
+            case int cur when current >= 40 && current < 60:
+                moraleIcon = crewMoraleIcon3;
+                break;
+            case int cur when current >= 20 && current < 40:
+                moraleIcon = crewMoraleIcon4;
+                break;
+            case int cur when current >= 0 && current < 20:
+                moraleIcon = crewMoraleIcon5;
+                break;
+            default:
+                break;
+        }
+        
+        crewMoraleImage.sprite = moraleIcon;
+    }
+    
+    public void ShowCrewMoraleUIChange(int currentChange, bool hidden = false)
+    {
+        if((GameManager.instance.currentGameState == InGameStates.ShipBuilding) || (GameManager.instance.currentGameState == InGameStates.CrewManagement && currentChange > 0))
+        {
+            //Maybe Spawn Stat Change Text
+            
+            if(currentChange != 0)
+            {
+                StartCoroutine(JiggleImage(crewMoraleImage));
+            }
+        }
+    }
 
     /// <summary>
     /// Spawns a pop-up of a number below the stat bar and where the object was clicked. Shows exactly how much a stat changes
@@ -350,6 +401,25 @@ public class ShipStatsUI : MonoBehaviour
         {
             Vector2 pos = text.GetComponent<RectTransform>().anchoredPosition;
             text.GetComponent<RectTransform>().anchoredPosition = pos + UnityEngine.Random.insideUnitCircle * jiggleAmount;
+            yield return new WaitForFixedUpdate();
+        }
+    }
+    
+    private IEnumerator JiggleImage(Image image)
+    {
+        IEnumerator coroutine = ImageJiggling(image);
+        StartCoroutine(coroutine);
+        yield return new WaitForSeconds(jiggleTime);
+        StopCoroutine(coroutine);
+        image.GetComponent<RectTransform>().anchoredPosition = image.GetComponent<StartPositionTracker>().GetPos();
+    }
+    
+    private IEnumerator ImageJiggling(Image image)
+    {
+        while(true)
+        {
+            Vector2 pos = image.GetComponent<RectTransform>().anchoredPosition;
+            image.GetComponent<RectTransform>().anchoredPosition = pos + UnityEngine.Random.insideUnitCircle * jiggleAmount;
             yield return new WaitForFixedUpdate();
         }
     }

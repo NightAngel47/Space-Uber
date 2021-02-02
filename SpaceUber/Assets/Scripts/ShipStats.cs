@@ -57,7 +57,7 @@ public class ShipStats : MonoBehaviour
     private int foodMoraleDamageMultiplier = 2;
     private int shipHealthMax;
     private int shipHealthCurrent;
-    //private int crewMorale;
+    private int crewMorale;
 
     /// <summary>
     /// Reference to the ship stats UI class.
@@ -73,8 +73,9 @@ public class ShipStats : MonoBehaviour
     [SerializeField] private TMP_Text daysSinceDisplay;
 
     //mutiny calculations
-    private int maxMutinyMorale = 60;
-    private float zeroMoraleMutinyChance = 0.75f;
+    private int maxMutinyMorale = 39;
+    private float maxMutinyMoraleMutinyChance = 0.2f;
+    private float zeroMoraleMutinyChance = 1f;
 
     //stats at the start of the job
     private int startCredits;
@@ -90,7 +91,7 @@ public class ShipStats : MonoBehaviour
     private int startFoodPerTick;
     private int startShipHealthMax;
     private int startShipHealthCurrent;
-    //private int startCrewMorale;
+    private int startCrewMorale;
 
     private void Awake()
     {
@@ -107,7 +108,7 @@ public class ShipStats : MonoBehaviour
         UpdateCrewAmount(startingCrew, startingCrew, startingCrew);
         UpdateFoodAmount(startingFood);
         UpdateHullDurabilityAmount(startingShipHealth, startingShipHealth);
-        //UpdateCrewMorale(startingMorale);
+        UpdateCrewMorale(startingMorale);
     }
 
     private IEnumerator TickUpdate()
@@ -118,40 +119,41 @@ public class ShipStats : MonoBehaviour
             {
                 yield return new WaitForFixedUpdate();
             }
-
+            
             yield return new WaitForSeconds(secondsPerTick);
-
+            
             while(ticksPaused)
             {
                 yield return new WaitForFixedUpdate();
             }
             //yield return new WaitWhile(() => ticksPaused);
-
+            
             food += foodPerTick - crewCurrent;
             if(food < 0)
             {
-                //crewMorale += (food * foodMoraleDamageMultiplier);
+                crewMorale += (food * foodMoraleDamageMultiplier);
                 food = 0;
             }
             shipStatsUI.UpdateFoodUI(food, foodPerTick, crewCurrent);
-
+            
             // increment days since events
             daysSince++;
             daysSinceDisplay.text = daysSince.ToString();
-
-            //if(crewMorale < 0)
-            //{
-            //    crewMorale = 0;
-            //}
-
-            //UpdateMoraleShipStatsUI();
-
-            //float mutinyChance = (maxMutinyMorale - crewMorale) * zeroMoraleMutinyChance / maxMutinyMorale;
-            //if(mutinyChance > UnityEngine.Random.value)
-            //{
-            //    GameManager.instance.ChangeInGameState(InGameStates.Mutiny);
-            //}
-
+            
+            if(crewMorale < 0)
+            {
+                crewMorale = 0;
+            }
+            
+            shipStatsUI.UpdateCrewMoraleUI(crewMorale);
+            
+            float mutinyChance = (maxMutinyMorale - crewMorale) * zeroMoraleMutinyChance * (1 - maxMutinyMoraleMutinyChance) / maxMutinyMorale + maxMutinyMoraleMutinyChance;
+            if(mutinyChance > UnityEngine.Random.value)
+            {
+                //replace this with event that gives a choice
+                GameManager.instance.ChangeInGameState(InGameStates.Mutiny);
+            }
+            
             if(shipHealthCurrent <= 0)
             {
                 GameManager.instance.ChangeInGameState(InGameStates.Death);
@@ -423,6 +425,30 @@ public class ShipStats : MonoBehaviour
             CheckDeathOnUnpause();
         }
     }
+    
+    public void UpdateCrewMorale(int crewMoraleAmount, bool hidden = false)
+    {
+        crewMorale += crewMoraleAmount;
+        
+        /*
+        if (crewMoraleAmount >= 0)
+        {
+            AudioManager.instance.PlaySFX("Gain Morale");
+        }
+        else
+        {
+            AudioManager.instance.PlaySFX("Lose Morale");
+        }
+        */
+        
+        if(crewMorale < 0)
+        {
+            crewMorale = 0;
+        }
+        
+        shipStatsUI.UpdateCrewMoraleUI(crewMorale);
+        shipStatsUI.ShowCrewMoraleUIChange(crewMoraleAmount, hidden);
+    }
 
     //public int GetCredits()
     //{
@@ -516,26 +542,11 @@ public class ShipStats : MonoBehaviour
         set { shipHealthCurrent = value; }
     }
 
-    //public void UpdateCrewMorale(int crewMoraleAmount)
-    //{
-    //    crewMorale += crewMoraleAmount;
-    //
-    //    if (crewMoraleAmount >= 0)
-    //    {
-    //       AudioManager.instance.PlaySFX("Gain Morale");
-    //    }
-    //    else
-    //    {
-    //         AudioManager.instance.PlaySFX("Lose Morale");
-    //    }
-    //
-    //    if(crewMorale < 0)
-    //    {
-    //        crewMorale = 0;
-    //    }
-    //    // TODO update to work with changes from development
-    //    //UpdateShipStatsUI();
-    //}
+    public int Morale
+    {
+        get { return crewMorale; }
+        set { crewMorale = value; }
+    }
 
     public void PrintShipStats()
     {
@@ -548,13 +559,14 @@ public class ShipStats : MonoBehaviour
         Debug.Log("Food " + Food);
         Debug.Log("ShipHealthCurrent " + ShipHealthCurrent);
         Debug.Log("Payout " + Payout);
+        Debug.Log("Morale " + Morale);
     }
 
     public void PayCrew(int amount)
     {
         UpdateCreditsAmount(-amount * crewCurrent);
-        //int BadMoraleMultiplier = (maxMutinyMorale - crewMorale) * crewPaymentMoraleMultiplier / maxMutinyMorale;
-        //UpdateCrewMorale(BadMoraleMultiplier * (ammount - crewPaymentDefault));
+        int BadMoraleMultiplier = (maxMutinyMorale - crewMorale) * crewPaymentMoraleMultiplier / maxMutinyMorale;
+        UpdateCrewMorale(BadMoraleMultiplier * (amount - crewPaymentDefault));
     }
 
     public void RemoveRandomCrew(int amount)
@@ -612,7 +624,7 @@ public class ShipStats : MonoBehaviour
         startFoodPerTick = foodPerTick;
         startShipHealthMax = shipHealthMax;
         startShipHealthCurrent = shipHealthCurrent;
-        //startCrewMorale = crewMorale;
+        startCrewMorale = crewMorale;
     }
 
     public void ResetStats()
@@ -630,7 +642,7 @@ public class ShipStats : MonoBehaviour
         foodPerTick = 0;
         shipHealthCurrent = 0;
         shipHealthMax = 0;
-        //crewMorale = 0;
+        crewMorale = 0;
         
         UpdateCreditsAmount(startCredits);
         UpdatePayoutAmount(startPayout);
@@ -641,6 +653,6 @@ public class ShipStats : MonoBehaviour
         UpdateFoodAmount(startFood);
         UpdateFoodPerTickAmount(startFoodPerTick);
         UpdateHullDurabilityAmount(startShipHealthCurrent, startShipHealthMax);
-        //UpdateCrewMorale(startMorale);
+        UpdateCrewMorale(startCrewMorale);
     }
 }

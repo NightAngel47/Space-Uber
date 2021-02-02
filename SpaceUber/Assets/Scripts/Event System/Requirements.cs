@@ -26,7 +26,7 @@ public class Requirements
         WEAPONS,
         SECURITY,
         CREDITS,
-        //MORALE
+        MORALE
     }
 
     [Tooltip("If the requirement is stat-based")]
@@ -132,9 +132,9 @@ public class Requirements
                 case ResourceType.SECURITY:
                     shipStat = thisShip.Security;
                     break;
-                //case ResourceType.MORALE:
-                //    shipStat = thisShip.Morale;
-                //    break;
+                case ResourceType.MORALE:
+                    shipStat = thisShip.Morale;
+                    break;
                 case ResourceType.CREDITS:
                     shipStat = thisShip.Credits;
                     break;
