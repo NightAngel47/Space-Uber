@@ -109,6 +109,8 @@ public class ShipStats : MonoBehaviour
         UpdateFoodAmount(startingFood);
         UpdateHullDurabilityAmount(startingShipHealth, startingShipHealth);
         //UpdateCrewMorale(startingMorale);
+
+        cStats = gameObject.GetComponent<CharacterStats>();
     }
     public void PauseTickEvents()
     {

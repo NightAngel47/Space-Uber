@@ -245,6 +245,7 @@ public class InkDriverBase : MonoBehaviour
     {
         string text = ""; //error check
         
+        //Allows the story to add different paragraphs up until the next choice
         while (story.canContinue)
         {
             text += story.Continue() + "\n";
