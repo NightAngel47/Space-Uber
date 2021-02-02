@@ -52,6 +52,7 @@ public class ShipStats : MonoBehaviour
     private int crewCapacity;
     private int crewCurrent;
     private int crewUnassigned;
+    private int crewLossMoraleMultiplier = 10;
     private int food;
     private int foodPerTick;
     private int foodMoraleDamageMultiplier = 2;
@@ -315,15 +316,29 @@ public class ShipStats : MonoBehaviour
         }
 
         crewCapacity += crewCapacityAmount;
+        
+        if(crewUnassignedAmount > crewCapacity - crewCurrent)
+        {
+            crewUnassigned += crewCapacity - crewCurrent;
+        }
+        else
+        {
+            crewUnassigned += crewUnassignedAmount;
+        }
+        
         crewCurrent += crewCurrentAmount;
-        crewUnassigned += crewUnassignedAmount;
 
         if (crewCurrentAmount < 0)
         {
             if(crewUnassigned < 0)
             {
                 RemoveRandomCrew(Mathf.Abs(crewUnassigned));
-            }  
+            }
+            
+            if(crewCurrentAmount < crewCapacityAmount)
+            {
+                UpdateCrewMorale(crewCurrentAmount * crewLossMoraleMultiplier, true);
+            }
         }
 
         /*
@@ -446,6 +461,11 @@ public class ShipStats : MonoBehaviour
             crewMorale = 0;
         }
         
+        if(crewMorale > 100)
+        {
+            crewMorale = 100;
+        }
+        
         shipStatsUI.UpdateCrewMoraleUI(crewMorale);
         shipStatsUI.ShowCrewMoraleUIChange(crewMoraleAmount, hidden);
     }
@@ -565,8 +585,8 @@ public class ShipStats : MonoBehaviour
     public void PayCrew(int amount)
     {
         UpdateCreditsAmount(-amount * crewCurrent);
-        int BadMoraleMultiplier = (maxMutinyMorale - crewMorale) * crewPaymentMoraleMultiplier / maxMutinyMorale;
-        UpdateCrewMorale(BadMoraleMultiplier * (amount - crewPaymentDefault));
+        int BadMoraleMultiplier = (100 - crewMorale) * crewPaymentMoraleMultiplier / 100;
+        UpdateCrewMorale(BadMoraleMultiplier * (amount - crewPaymentDefault), true);
     }
 
     public void RemoveRandomCrew(int amount)
