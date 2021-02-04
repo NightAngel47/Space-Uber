@@ -55,6 +55,8 @@ public class RoomStats : MonoBehaviour
     public Transform[] statCanvas;
     
     private Camera cam;
+
+    public List<GameObject> CharacterEvents;
     
     void Start()
     {

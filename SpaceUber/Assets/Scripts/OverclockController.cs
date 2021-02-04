@@ -47,6 +47,8 @@ public class OverclockController : MonoBehaviour
 
     public ShipStats ShipStats() { return shipStats; }
 
+
+
     public void StartMiniGame(MiniGameType miniGame, OverclockRoom room)
     {
         if (miniGame == MiniGameType.None) return; // check for implemented mini-game
@@ -111,13 +113,53 @@ public class OverclockController : MonoBehaviour
         activeRoom = null;
         //FindObjectOfType<CrewManagement>().crewManagementText.SetActive(true);
 	}
+
+    /// <summary>
+    /// Applies proper boost to the required room if the player gives the correct responses in a character event
+    /// </summary>
+    public void EndCharacterEvent(CharacterStats.Characters character)
+    {
+
+        switch(character)
+        {
+            case CharacterStats.Characters.KUON: //Kuon boosts security and weapons by 10%
+                shipStats.UpdateSecurityAmount(Mathf.RoundToInt(securityBaseAdjustment * 1));
+                int newSecurityValue = shipStats.Security + Mathf.RoundToInt(shipStats.Security * .1f);
+                int newWeaponsValue = shipStats.ShipWeapons + Mathf.RoundToInt(shipStats.ShipWeapons * .1f);
+
+                shipStats.Security = newSecurityValue;
+                shipStats.ShipWeapons = newWeaponsValue;
+
+                SpawnStatChangeText(Mathf.RoundToInt(newSecurityValue), 1);
+                SpawnStatChangeText(Mathf.RoundToInt(newWeaponsValue), 2);
+                break;
+            case CharacterStats.Characters.MATEO: //Boosts energy
+                shipStats.UpdateEnergyAmount(Mathf.RoundToInt(energyBaseAdjustment ));
+                SpawnStatChangeText(Mathf.RoundToInt(energyBaseAdjustment), 6);
+                break;
+            case CharacterStats.Characters.LANRI: //boosts Food
+                shipStats.UpdateFoodAmount(Mathf.RoundToInt(foodBaseAdjustment * 1));
+                SpawnStatChangeText(Mathf.RoundToInt(foodBaseAdjustment * 1), 3);
+                break;
+            case CharacterStats.Characters.LEXA: //gives +10 to morale
+
+                break;
+            case CharacterStats.Characters.RIPLEY: //gives +10 morale
+
+                break;
+        }
+
+        
+    }
+
     
     /// <summary>
     /// Shows the text that will appear over stats whenever the player receives an update to it
+    /// Credits - Security - Weapons - Food - Crew - Power - Hull
     /// </summary>
-    /// <param name="value"></param>
-    /// <param name="icon"></param>
-    private void SpawnStatChangeText(int value, int icon = -1)
+    /// <param name="value">The actual number that shows how much the value changed</param>
+    /// <param name="iconNumber">Which icon will be used. </param>
+    private void SpawnStatChangeText(int value, int iconNumber = -1)
     {
         ShipStatsUI shipStatsUI = shipStats.GetComponent<ShipStatsUI>();
         GameObject statChangeUI = Instantiate(shipStatsUI.statChangeText);
@@ -131,7 +173,7 @@ public class OverclockController : MonoBehaviour
 
         MoveAndFadeBehaviour moveAndFadeBehaviour = statChangeUI.GetComponent<MoveAndFadeBehaviour>();
         moveAndFadeBehaviour.offset = new Vector2(0, 25 + activeRoom.transform.GetChild(0).localPosition.y * 100);
-        moveAndFadeBehaviour.SetValue(value, icon);
+        moveAndFadeBehaviour.SetValue(value, iconNumber);
     }
 
     /// <summary>

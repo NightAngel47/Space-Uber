@@ -21,6 +21,8 @@ public class InkDriverBase : MonoBehaviour
 
     [SerializeField] private string eventName;
     public bool isStoryEvent;
+    [HideInInspector] public bool isCharacterEvent;
+
     [ShowIf("isStoryEvent")] public int storyIndex;
     [SerializeField] private Sprite backgroundImage;
 
@@ -71,11 +73,9 @@ public class InkDriverBase : MonoBehaviour
     private bool showingChoices = false;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         story = new Story(inkJSONAsset.text); //this draws text out of the JSON file
-
-
 
         Refresh(); //starts the dialogue
         titleBox.text = eventName;
@@ -107,18 +107,6 @@ public class InkDriverBase : MonoBehaviour
         resultsBox.transform.GetChild(0).GetComponent<TMP_Text>().text = "";
         resultsBox.SetActive(false);
     }
-
-    //private void Update()
-    //{ //(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
-    //    if (!showingChoices && donePrinting)
-    //    {
-    //        //Refresh();
-    //        if(!story.canContinue && story.currentChoices.Count == 0)
-    //        {
-    //            EventSystem.instance.ConcludeEvent();
-    //        }
-    //    }
-    //}/
 
     public void ConcludeEvent()
     {

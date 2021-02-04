@@ -60,6 +60,11 @@ public class EventSystem : MonoBehaviour
 
 	private string lastEventTitle;
 
+	private bool chatting = false; //Whether or not the player is talking to a character
+	
+	[SerializeField, Tooltip("The maximum cooldown for a character chat in ticks.")] private int chatCooldown;
+	private int daysSinceChat;
+
 	private void Awake()
 	{
 		//Singleton pattern
@@ -85,11 +90,13 @@ public class EventSystem : MonoBehaviour
 	/// </summary>
 	public IEnumerator PlayIntro()
     {
+		chatting = false;
 		while(currentJob == null)
         {
 			yield return null;
         }
 
+		//check for an introduction "event"
 		GameObject intro = null;
 		foreach (var introEvent in currentJob.introEvents)
 		{
@@ -129,7 +136,7 @@ public class EventSystem : MonoBehaviour
 		yield return new WaitWhile((() => eventActive));
 
 		float chanceOfEvent = startingEventChance;
-		while (GameManager.instance.currentGameState == InGameStates.Events)
+		while (GameManager.instance.currentGameState == InGameStates.Events) //game state while events are possible
 		{
             ship.StartTickEvents();
 			sonarObjects.SetActive(true);
@@ -231,6 +238,11 @@ public class EventSystem : MonoBehaviour
 		{
 			inkDriver.AssignStatusFromEventSystem(eventCanvas.titleBox, eventCanvas.textBox,eventCanvas.choiceResultsBox,
 				eventCanvas.backgroundImage, eventCanvas.buttonGroup, ship, campMan);
+
+			if(inkDriver.isCharacterEvent)
+            {
+				chatting = true;
+            }
 			
 		}
 
@@ -250,6 +262,22 @@ public class EventSystem : MonoBehaviour
 		//in case a random event isn't chosen
 		if (eventInstance != null)
 		{
+			if(eventInstance.GetComponent<InkDriverBase>().isCharacterEvent)
+            {
+				chatting = false;
+				daysSinceChat = 0;
+				//TODO: Find a way to overclock the connected room
+            }
+			else
+            {
+				//Potentially end the job entirely if this is meant to be the final event
+				if (overallEventIndex >= maxEvents)
+				{
+					ClearEventSystem();
+					ship.CashPayout();
+					GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);
+				}
+			}
 			Destroy(eventInstance);
 		}
 
@@ -258,13 +286,6 @@ public class EventSystem : MonoBehaviour
 		asm.UnloadScene("Event_CharacterFocused");
 		AudioManager.instance.PlayMusicWithTransition("General Theme");
 
-		//Potentially end the job entirely
-		if (overallEventIndex >= maxEvents)
-		{
-			ClearEventSystem();
-			ship.CashPayout();
-			GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);
-		}
 
 		eventActive = false;
 	}
