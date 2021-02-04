@@ -36,7 +36,7 @@ public class Tick : MonoBehaviour
                 //crewMorale += (food * foodMoraleDamageMultiplier);
                 shipStats.Food = 0;
             }
-            shipStatsUI.UpdateFoodUI(shipStats.Food, shipStats.FoodPerTick, shipStats.CrewCurrent.x);
+            shipStatsUI.UpdateFoodUI(shipStats.Food, shipStats.FoodPerTick, (int)shipStats.CrewCurrent.x);
 
             // increment days since events
             daysSince++;
