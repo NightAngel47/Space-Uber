@@ -84,7 +84,7 @@ public class JobManager : MonoBehaviour
 
     private void FinalizeJobSelection()
     {
-        ship.UpdatePayoutAmount(selectedMainJob.payout);
+        ship.Payout += selectedMainJob.payout;
         ship.gameObject.GetComponent<ShipStatsUI>().UpdateCreditsUI(ship.Credits, ship.Payout);
         es.TakeStoryJobEvents(selectedMainJob);
         es.TakeSideJobEvents(selectedSideJobs);

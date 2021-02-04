@@ -244,16 +244,16 @@ public class RoomStats : MonoBehaviour
     public void AddRoomStats()
     {
         shipStats.roomBeingPlaced = gameObject;
-        shipStats.UpdateCreditsAmount(-price);
-        shipStats.UpdatePayoutAmount(credits);
-        shipStats.UpdateEnergyAmount(energy, energy);
-        shipStats.UpdateEnergyAmount(-minPower);
-        shipStats.UpdateSecurityAmount(security);
-        shipStats.UpdateShipWeaponsAmount(shipWeapons);
-        shipStats.UpdateCrewAmount(crew, crew, crew);
-        shipStats.UpdateFoodAmount(food);
-        shipStats.UpdateFoodPerTickAmount(foodPerTick);
-        shipStats.UpdateHullDurabilityAmount(shipHealth, shipHealth); 
+        shipStats.Credits += -price;
+        shipStats.Payout += credits;
+        shipStats.EnergyRemaining += new Vector2(energy, energy);
+        shipStats.EnergyRemaining += new Vector2(-minPower, 0);
+        shipStats.Security += security;
+        shipStats.ShipWeapons += shipWeapons;
+        shipStats.CrewCurrent += new Vector3(crew, crew, crew);
+        shipStats.Food += food;
+        shipStats.FoodPerTick += foodPerTick;
+        shipStats.ShipHealthCurrent += new Vector2(shipHealth, shipHealth);
     }
 
     /// <summary>
@@ -263,22 +263,22 @@ public class RoomStats : MonoBehaviour
     {
         if(usedRoom == true)
         {
-            shipStats.UpdateCreditsAmount((int)(price * priceReducationPercent));
+            shipStats.Credits += (int)(price * priceReducationPercent);
         }
         else
         {
-            shipStats.UpdateCreditsAmount(price);
+            shipStats.Credits += price;
         }
         
-        shipStats.UpdatePayoutAmount(-credits);
-        shipStats.UpdateEnergyAmount(-energy, -energy);
-        shipStats.UpdateEnergyAmount(minPower);
-        shipStats.UpdateSecurityAmount(-security);
-        shipStats.UpdateShipWeaponsAmount(-shipWeapons);
-        shipStats.UpdateCrewAmount(-crew, -crew, -crew);
-        shipStats.UpdateFoodAmount(-food);
-        shipStats.UpdateFoodPerTickAmount(-foodPerTick);
-        shipStats.UpdateHullDurabilityAmount(-shipHealth, -shipHealth);
+        shipStats.Payout += -credits;
+        shipStats.EnergyRemaining += new Vector2(-energy, -energy);
+        shipStats.EnergyRemaining += new Vector2(minPower, 0);
+        shipStats.Security += -security;
+        shipStats.ShipWeapons += -shipWeapons;
+        shipStats.CrewCurrent += new Vector3(-crew, -crew, -crew);
+        shipStats.Food += -food;
+        shipStats.FoodPerTick += -foodPerTick;
+        shipStats.ShipHealthCurrent += new Vector2(-shipHealth, -shipHealth);
     }
     
     public void SpawnStatChangeText(int value, int icon = -1)
@@ -300,6 +300,6 @@ public class RoomStats : MonoBehaviour
 
     private void OnDestroy()
     {
-        shipStats.UpdateCrewAmount(currentCrew);
+        shipStats.CrewCurrent += new Vector3(0, currentCrew, 0);
     }
 }
