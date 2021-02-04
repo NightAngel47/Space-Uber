@@ -100,7 +100,7 @@ public class ShipStats : MonoBehaviour
     private void Start()
     {
         Credits = startingCredits;
-        Payout += 0;
+        Payout = 0;
         EnergyRemaining = new Vector2(startingEnergy, startingEnergy);
         Security = startingSecurity;
         ShipWeapons = startingShipWeapons;
@@ -536,23 +536,10 @@ public class ShipStats : MonoBehaviour
         shipStatsUI.roomBeingPlaced = roomBeingPlaced;
     }
 
-    public void MultiplyPayout(int multiplier)
-    {
-        int initialPayout = payout;
-        payout *= multiplier;
-        if (payout <= 0)
-        {
-            payout = 0;
-        }
-
-        shipStatsUI.UpdateCreditsUI(credits, payout);
-        shipStatsUI.ShowCreditsUIChange(0, payout - initialPayout);
-    }
-
     public void CashPayout()
     {
         Credits += payout;
-        payout = 0;
+        Payout = 0;
     }
 
     public bool HasEnoughPower(int power)
@@ -642,23 +629,8 @@ public class ShipStats : MonoBehaviour
 
     public void ResetStats()
     {
-        credits = 0;
-        payout = 0;
-        energyRemaining = 0;
-        energyMax = 0;
-        security = 0;
-        shipWeapons = 0;
-        crewUnassigned = 0;
-        crewCurrent = 0;
-        crewCapacity = 0;
-        food = 0;
-        foodPerTick = 0;
-        shipHealthCurrent = 0;
-        shipHealthMax = 0;
-        //crewMorale = 0;
-        
         Credits = startCredits;
-        Payout += startPayout;
+        Payout = startPayout;
         EnergyRemaining = new Vector2(startEnergyRemaining, startEnergyMax);
         Security = startSecurity;
         ShipWeapons = startShipWeapons;
