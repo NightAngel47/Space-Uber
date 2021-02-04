@@ -1,3 +1,9 @@
+/* RadioManager.cs
+ * Frank Calabrese 
+ * 2/2/21
+ * Contains methods used by the buttons of the radio 
+ * to control volume and change stations (to be added)
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

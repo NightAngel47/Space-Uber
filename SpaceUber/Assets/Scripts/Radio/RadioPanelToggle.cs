@@ -1,3 +1,8 @@
+/* RadioManager.cs
+ * Frank Calabrese 
+ * 2/2/21
+ * contains a method to allow the player to move the radio panel in and out of view
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
