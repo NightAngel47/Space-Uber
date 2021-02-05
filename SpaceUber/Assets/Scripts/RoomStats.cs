@@ -42,6 +42,7 @@ public class RoomStats : MonoBehaviour
     private int food = 0;
     private int foodPerTick = 0;
     private int shipHealth = 0;
+    private int morale = 0;
 
     ShipStats shipStats;
 
@@ -142,6 +143,9 @@ public class RoomStats : MonoBehaviour
                     case "Hull Durability":
                         shipHealth += resource.amount;
                         break;
+                    case "Crew Morale":
+                        morale += resource.amount;
+                        break;
                     default:
                         break;
                 }
@@ -173,6 +177,9 @@ public class RoomStats : MonoBehaviour
                         break;
                     case "Hull Durability":
                         shipHealth += resource.minAmount;
+                        break;
+                    case "Crew Morale":
+                        morale += resource.minAmount;
                         break;
                     default:
                         break;
@@ -231,6 +238,10 @@ public class RoomStats : MonoBehaviour
                     //shipHealth -= resource.minAmount;
                     shipHealth = resource.activeAmount;
                     break;
+                case "Crew Morale":
+                    //shipHealth -= resource.minAmount;
+                    morale = resource.activeAmount;
+                    break;
                 default:
                     break;
             }
@@ -253,7 +264,8 @@ public class RoomStats : MonoBehaviour
         shipStats.UpdateCrewAmount(crew, crew, crew);
         shipStats.UpdateFoodAmount(food);
         shipStats.UpdateFoodPerTickAmount(foodPerTick);
-        shipStats.UpdateHullDurabilityAmount(shipHealth, shipHealth); 
+        shipStats.UpdateHullDurabilityAmount(shipHealth, shipHealth);
+        shipStats.UpdateCrewMorale(morale, true);
     }
 
     /// <summary>
@@ -279,6 +291,7 @@ public class RoomStats : MonoBehaviour
         shipStats.UpdateFoodAmount(-food);
         shipStats.UpdateFoodPerTickAmount(-foodPerTick);
         shipStats.UpdateHullDurabilityAmount(-shipHealth, -shipHealth);
+        shipStats.UpdateCrewMorale(-morale, true);
     }
     
     public void SpawnStatChangeText(int value, int icon = -1)

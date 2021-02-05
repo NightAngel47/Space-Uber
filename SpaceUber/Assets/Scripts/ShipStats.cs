@@ -44,7 +44,7 @@ public class ShipStats : MonoBehaviour
     private int credits;
     private int payout;
     private int crewPaymentDefault = 5;
-    private int crewPaymentMoraleMultiplier = 10;
+    public float crewPaymentMoraleMultiplier = 2;
     private int energyMax;
     private int energyRemaining;
     private int security;
@@ -52,10 +52,10 @@ public class ShipStats : MonoBehaviour
     private int crewCapacity;
     private int crewCurrent;
     private int crewUnassigned;
-    private int crewLossMoraleMultiplier = 10;
+    public int crewLossMoraleMultiplier = 10;
     private int food;
     private int foodPerTick;
-    private int foodMoraleDamageMultiplier = 2;
+    public int foodMoraleDamageMultiplier = 1;
     private int shipHealthMax;
     private int shipHealthCurrent;
     private int crewMorale;
@@ -585,8 +585,7 @@ public class ShipStats : MonoBehaviour
     public void PayCrew(int amount)
     {
         UpdateCreditsAmount(-amount * crewCurrent);
-        int BadMoraleMultiplier = (100 - crewMorale) * crewPaymentMoraleMultiplier / 100;
-        UpdateCrewMorale(BadMoraleMultiplier * (amount - crewPaymentDefault), true);
+        UpdateCrewMorale(Mathf.RoundToInt((amount - crewPaymentDefault) * crewPaymentMoraleMultiplier / crewPaymentDefault), true);
     }
 
     public void RemoveRandomCrew(int amount)

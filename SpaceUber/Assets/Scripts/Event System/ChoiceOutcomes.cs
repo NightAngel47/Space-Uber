@@ -160,6 +160,7 @@ public class ChoiceOutcomes
                     case ResourceType.Payout:
                         ship.UpdatePayoutAmount(amount);
                         SpawnStatChangeText(ship, amount, 0);
+                        
                         if (amount < 0)
                         {
                             resultText += "\nYour payout decreased by " + Math.Abs(amount);
@@ -167,6 +168,19 @@ public class ChoiceOutcomes
                         else
                         {
                             resultText += "\nYour payout increased by " + Math.Abs(amount);
+                        }
+                        break;
+                    case ResourceType.Morale:
+                        ship.UpdateCrewMorale(amount);
+                        SpawnStatChangeText(ship, amount, 7);
+                        
+                        if (amount < 0)
+                        {
+                            resultText += "\nYou lost " + Math.Abs(amount) + " crew morale";
+                        }
+                        else
+                        {
+                            resultText += "\nYou gained " + Math.Abs(amount) + " crew morale";
                         }
                         break;
                     default:
@@ -280,5 +294,6 @@ public enum ResourceType
     FoodPerTick,
     HullDurability,
     Stock,
-    Payout
+    Payout,
+    Morale
 }
