@@ -21,6 +21,8 @@ public class EventChoice
     [SerializeField] private string choiceName;
     [SerializeField] public string description;
 
+    public string ChoiceName => choiceName;
+
     [SerializeField] private bool changeMusic;
     [SerializeField] private bool playSFX;
     [SerializeField, ShowIf("changeMusic"), AllowNesting] private bool withoutTransition;
@@ -170,6 +172,7 @@ public class EventChoice
             }
         }
         
+        AnalyticsManager.OnEventComplete(driver, this);
     }
 
     /// <summary>

@@ -23,6 +23,7 @@ public class InkDriverBase : MonoBehaviour
     public bool isStoryEvent;
     [ShowIf("isStoryEvent")] public int storyIndex;
     [SerializeField] private Sprite backgroundImage;
+    public string EventName => eventName; 
 
     //A prefab of the button we will generate every time a choice is needed
     [SerializeField, Tooltip("Attach the prefab of a choice button to this")]
