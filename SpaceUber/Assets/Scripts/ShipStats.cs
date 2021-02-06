@@ -64,11 +64,6 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     private ShipStatsUI shipStatsUI;
 
-    //tick variables
-    private int secondsPerTick = 5;
-    private bool ticksPaused;
-    private bool tickStop = true;
-
     public int daysSince;
     [SerializeField] private TMP_Text daysSinceDisplay;
 
@@ -410,6 +405,16 @@ public class ShipStats : MonoBehaviour
         }
     }
 
+    public int DaysSince
+    {
+        get { return daysSince; }
+        set 
+        { 
+            daysSince = value;
+            daysSinceDisplay.text = daysSince.ToString();
+        }
+    }
+
     //public void UpdateCrewMorale(int crewMoraleAmount)
     //{
     //    crewMorale += crewMoraleAmount;
@@ -431,82 +436,6 @@ public class ShipStats : MonoBehaviour
     //    //UpdateShipStatsUI();
     //}
 
-    private IEnumerator TickUpdate()
-    {
-        while(!tickStop)
-        {
-            while(ticksPaused)
-            {
-                yield return new WaitForFixedUpdate();
-            }
-
-            yield return new WaitForSeconds(secondsPerTick);
-
-            while(ticksPaused)
-            {
-                yield return new WaitForFixedUpdate();
-            }
-            //yield return new WaitWhile(() => ticksPaused);
-
-            food += foodPerTick - crewCurrent;
-            if(food < 0)
-            {
-                //crewMorale += (food * foodMoraleDamageMultiplier);
-                food = 0;
-            }
-            shipStatsUI.UpdateFoodUI(food, foodPerTick, crewCurrent);
-
-            // increment days since events
-            daysSince++;
-            daysSinceDisplay.text = daysSince.ToString();
-
-            //if(crewMorale < 0)
-            //{
-            //    crewMorale = 0;
-            //}
-
-            //UpdateMoraleShipStatsUI();
-
-            //float mutinyChance = (maxMutinyMorale - crewMorale) * zeroMoraleMutinyChance / maxMutinyMorale;
-            //if(mutinyChance > UnityEngine.Random.value)
-            //{
-            //    GameManager.instance.ChangeInGameState(InGameStates.Mutiny);
-            //}
-
-            if(shipHealthCurrent <= 0)
-            {
-                GameManager.instance.ChangeInGameState(InGameStates.Death);
-                AudioManager.instance.PlaySFX("Hull Death");
-                AudioManager.instance.PlayMusicWithTransition("Death Theme");
-            }
-        }
-    }
-
-    public void PauseTickEvents()
-    {
-        ticksPaused = true;
-    }
-
-    public void UnpauseTickEvents()
-    {
-        ticksPaused = false;
-    }
-
-    public void StopTickEvents()
-    {
-        tickStop = true;
-    }
-
-    public void StartTickEvents()
-    {
-        if(tickStop)
-        {
-            tickStop = false;
-            ticksPaused = false;
-            StartCoroutine(TickUpdate());
-        }
-    }
-
     public void ResetDaysSince()
     {
         daysSince = 0;
@@ -515,7 +444,7 @@ public class ShipStats : MonoBehaviour
 
     private IEnumerator CheckDeathOnUnpause()
     {
-        while(ticksPaused || tickStop)
+        while(FindObjectOfType<Tick>().TicksPaused || FindObjectOfType<Tick>().TickStop)
         {
             yield return new WaitForFixedUpdate();
         }

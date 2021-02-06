@@ -20,6 +20,7 @@ public class EventSystem : MonoBehaviour
 {
 	public static EventSystem instance;
 	private ShipStats ship;
+	private Tick tick;
 	private AdditiveSceneManager asm;
 	private EventCanvas eventCanvas;
 	private CampaignManager campMan;
@@ -67,6 +68,7 @@ public class EventSystem : MonoBehaviour
 		else { instance = this; }
 
 		ship = FindObjectOfType<ShipStats>();
+		tick = FindObjectOfType<Tick>();
 		asm = FindObjectOfType<AdditiveSceneManager>();
 		campMan = GetComponent<CampaignManager>();
 		
@@ -131,7 +133,7 @@ public class EventSystem : MonoBehaviour
 		float chanceOfEvent = startingEventChance;
 		while (GameManager.instance.currentGameState == InGameStates.Events)
 		{
-            ship.StartTickEvents();
+			tick.CallTickUpdate();
 			sonarObjects.SetActive(true);
 			sonar.ResetSonar();
 
@@ -163,7 +165,7 @@ public class EventSystem : MonoBehaviour
 			{
 				eventWarning.ActivateWarning();
 			}
-			ship.PauseTickEvents();
+			tick.PauseTickEvents();
 
 			//wait until there is no longer an overclock microgame happening
 			yield return new WaitUntil(() => !OverclockController.instance.overclocking);
@@ -211,11 +213,11 @@ public class EventSystem : MonoBehaviour
 			//set up the sonar for the next event
 			sonarObjects.SetActive(true);
 			sonar.ResetSonar();
-			ship.UnpauseTickEvents();
+			tick.UnpauseTickEvents();
 		}
 		isTraveling = false;
 		sonarObjects.SetActive(false);
-        ship.StopTickEvents();
+		tick.StopTickEvents();
 	}
 
 	/// <summary>

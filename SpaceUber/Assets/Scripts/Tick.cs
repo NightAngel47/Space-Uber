@@ -12,6 +12,40 @@ public class Tick : MonoBehaviour
     [SerializeField] private bool ticksPaused;
     [SerializeField] private bool tickStop = true;
 
+    public void Awake()
+    {
+        shipStats = FindObjectOfType<ShipStats>();
+        shipStatsUI = FindObjectOfType<ShipStatsUI>();
+    }
+
+    public int SecondsPerTick
+    {
+        get { return secondsPerTick; }
+        set
+        {
+            secondsPerTick = value;
+        }
+    }
+
+    public bool TicksPaused
+    {
+        get { return ticksPaused; }
+        set { ticksPaused = value; }
+    }
+
+    public bool TickStop
+    {
+        get { return tickStop; }
+        set { tickStop = value; }
+    }
+
+    public void CallTickUpdate()
+    {
+        TickStop = false;
+        TicksPaused = false;
+        StartCoroutine("TickUpdate");
+    }
+
     private IEnumerator TickUpdate()
     {
         while (!tickStop)
@@ -39,8 +73,7 @@ public class Tick : MonoBehaviour
             shipStatsUI.UpdateFoodUI(shipStats.Food, shipStats.FoodPerTick, (int)shipStats.CrewCurrent.x);
 
             // increment days since events
-            daysSince++;
-            daysSinceDisplay.text = daysSince.ToString();
+            shipStats.DaysSince++;
 
             //if(crewMorale < 0)
             //{
