@@ -9,6 +9,7 @@ using UnityEngine;
 
 public class RadioPanelToggle : MonoBehaviour
 {
+
     public bool isVisible;
     private RectTransform location;
 
@@ -17,6 +18,7 @@ public class RadioPanelToggle : MonoBehaviour
         location = GetComponent<RectTransform>();
         isVisible = false;
     }
+
 
     public void TogglePanelVis()
     {
