@@ -8,9 +8,9 @@ public class Tick : MonoBehaviour
     private ShipStats shipStats;
 
     //tick variables
-    [SerializeField] private int secondsPerTick = 5;
-    [SerializeField] private bool ticksPaused;
-    [SerializeField] private bool tickStop = true;
+    private int secondsPerTick = 5;
+    private bool ticksPaused;
+    private bool tickStop = true;
 
     public void Awake()
     {
