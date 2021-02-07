@@ -97,14 +97,14 @@ public class ChoiceOutcomes
                         {
                             int amountFromAssigned;
                             int amountFromUnassigned;
-                            if(ship.CrewCurrent.x - ship.CrewUnassigned >= -amount)
+                            if(ship.CrewCurrent.x - ship.CrewCurrent.z >= -amount)
                             {
                                 amountFromAssigned = -amount;
                                 amountFromUnassigned = 0;
                             }
                             else
                             {
-                                amountFromAssigned = (int)ship.CrewCurrent.x - ship.CrewUnassigned;
+                                amountFromAssigned = (int)ship.CrewCurrent.x - (int)ship.CrewCurrent.z;
                                 amountFromUnassigned = -amount - amountFromAssigned;
                             }
                             ship.RemoveRandomCrew(amountFromAssigned);

@@ -39,7 +39,7 @@ public class ShipStats : MonoBehaviour
 
     private List<RoomStats> rooms;
 
-    public GameObject roomBeingPlaced;
+    [HideInInspector] public GameObject roomBeingPlaced;
 
     private int credits;
     private int payout;
@@ -64,7 +64,12 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     private ShipStatsUI shipStatsUI;
 
-    public int daysSince;
+    /// <summary>
+    /// Reference to tick
+    /// </summary>
+    private Tick tick;
+
+    private int daysSince;
     [SerializeField] private TMP_Text daysSinceDisplay;
 
     //mutiny calculations
@@ -90,6 +95,7 @@ public class ShipStats : MonoBehaviour
     private void Awake()
     {
         shipStatsUI = GetComponent<ShipStatsUI>();
+        tick = FindObjectOfType<Tick>();
     }
 
     private void Start()
@@ -110,7 +116,7 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     public int Credits
     {
-        get { return credits; }
+        get => credits;
         set
         {
             int prevValue = credits;
@@ -141,7 +147,7 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     public int Payout
     {
-        get { return payout; }
+        get => payout;
         set
         {
             int initialPayout = payout;
@@ -162,7 +168,7 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     public Vector2 EnergyRemaining // x = energyRemaining y = energyMax
     {
-        get { return new Vector2(energyRemaining, 0); }
+        get => new Vector2(energyRemaining, energyMax);
         set
         {
             Vector2 prevValue = new Vector2(energyRemaining, energyMax);
@@ -197,7 +203,7 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     public int Security
     {
-        get { return security; }
+        get => security;
         set
         {
             int prevValue = security;
@@ -227,7 +233,7 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     public int ShipWeapons
     {
-        get { return shipWeapons; }
+        get => shipWeapons;
         set
         {
             int prevValue = shipWeapons;
@@ -253,27 +259,13 @@ public class ShipStats : MonoBehaviour
     }
 
     /// <summary>
-    /// Property for Crew Unnassigned. Getter only, set must happen through CrewCurrent property in z value of Vector3
-    /// </summary>
-    public int CrewUnassigned
-    {
-        get { return crewUnassigned; }
-        set
-        {
-            crewUnassigned = value;
-        }
-    }
-
-    /// <summary>
     /// Property for CrewCurrent. Getter for crewCurrent and setter for crewCurrent, crewCapacity, and crewUnassigned. x = crewCurrent, y = crewCapacity, z = crewUnnassigned
     /// </summary>
     public Vector3 CrewCurrent //x = crewCurrent y = crewCapacity z = crewUnnassigned
     {
-        get { return new Vector3(crewCurrent, 0, 0); }
+        get => new Vector3(crewCurrent, crewCapacity, crewUnassigned);
         set
         {
-
-
             if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
             {
                 SetObjectBeingPlaced();
@@ -331,7 +323,7 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     public int Food
     {
-        get { return food; }
+        get => food;
         set
         {
             int prevValue = food;
@@ -361,7 +353,7 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     public int FoodPerTick
     {
-        get { return foodPerTick; }
+        get => foodPerTick;
         set
         {
             int prevValue = foodPerTick;
@@ -377,7 +369,7 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     public Vector2 ShipHealthCurrent //x = shipHealthCurrent y = shipHealthMax
     {
-        get { return new Vector2(shipHealthCurrent, 0); }
+        get => new Vector2(shipHealthCurrent, shipHealthMax);
         set
         {
             Vector2 prevValue = new Vector2(shipHealthCurrent, shipHealthMax);
@@ -402,12 +394,15 @@ public class ShipStats : MonoBehaviour
 
             shipStatsUI.UpdateHullUI(shipHealthCurrent, shipHealthMax);
             shipStatsUI.ShowHullUIChange((int)(value.x - prevValue.x), (int)(value.y - prevValue.y));
+            
+            // check for death
+            StartCoroutine(CheckDeathOnUnpause());
         }
     }
 
     public int DaysSince
     {
-        get { return daysSince; }
+        get => daysSince;
         set 
         { 
             daysSince = value;
@@ -444,10 +439,7 @@ public class ShipStats : MonoBehaviour
 
     private IEnumerator CheckDeathOnUnpause()
     {
-        while(FindObjectOfType<Tick>().TicksPaused || FindObjectOfType<Tick>().TickStop)
-        {
-            yield return new WaitForFixedUpdate();
-        }
+        yield return new WaitUntil(() => tick.TicksPaused || tick.TickStop);
 
         CheckForDeath();
     }
@@ -460,7 +452,7 @@ public class ShipStats : MonoBehaviour
         }
     }
 
-    public void SetObjectBeingPlaced()
+    private void SetObjectBeingPlaced()
     {
         shipStatsUI.roomBeingPlaced = roomBeingPlaced;
     }
@@ -475,16 +467,14 @@ public class ShipStats : MonoBehaviour
     {
         return EnergyRemaining.x >= power;
     }
-
     
-
     public void PrintShipStats()
     {
         Debug.Log("Credits " + Credits);
         Debug.Log("Energy " + EnergyRemaining);
         Debug.Log("Security " + Security);
         Debug.Log("ShipWeapons " + ShipWeapons);
-        Debug.Log("CrewUnassigned " + CrewUnassigned);
+        Debug.Log("CrewUnassigned " + CrewCurrent.z);
         Debug.Log("CrewCurrent " + CrewCurrent);
         Debug.Log("Food " + Food);
         Debug.Log("ShipHealthCurrent " + ShipHealthCurrent);

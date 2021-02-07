@@ -47,10 +47,6 @@ public class GameManager : MonoBehaviour
     
     private ShipStats ship;
 
-    private Tick tick;
-
-    [SerializeField] private int secondsPerTick = 5;
-
     /// <summary>
     /// Sets the instance of the GameManager using the Singleton pattern.
     /// Finds the AdditiveSceneManager and sets it to additiveSceneManager.
@@ -68,9 +64,6 @@ public class GameManager : MonoBehaviour
         jobManager = FindObjectOfType<JobManager>();
         
         ship = FindObjectOfType<ShipStats>();
-
-        tick = FindObjectOfType<Tick>();
-        tick.SecondsPerTick = secondsPerTick;
     }
 
     private void Start()

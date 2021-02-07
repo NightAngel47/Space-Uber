@@ -300,6 +300,7 @@ public class RoomStats : MonoBehaviour
 
     private void OnDestroy()
     {
-        shipStats.CrewCurrent += new Vector3(0, currentCrew, 0);
+        // reset the ship's crew stats back to before room was placed
+        shipStats.CrewCurrent += new Vector3(currentCrew, 0, currentCrew);
     }
 }

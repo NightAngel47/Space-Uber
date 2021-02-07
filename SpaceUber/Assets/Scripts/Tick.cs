@@ -8,9 +8,7 @@ public class Tick : MonoBehaviour
     private ShipStats shipStats;
 
     //tick variables
-    private int secondsPerTick = 5;
-    private bool ticksPaused;
-    private bool tickStop = true;
+    [SerializeField, Min(0.1f)] private float secondsPerTick = 5;
 
     public void Awake()
     {
@@ -18,46 +16,31 @@ public class Tick : MonoBehaviour
         shipStatsUI = FindObjectOfType<ShipStatsUI>();
     }
 
-    public int SecondsPerTick
-    {
-        get { return secondsPerTick; }
-        set
-        {
-            secondsPerTick = value;
-        }
-    }
+    public float SecondsPerTick { get; set; } = 5;
 
-    public bool TicksPaused
-    {
-        get { return ticksPaused; }
-        set { ticksPaused = value; }
-    }
+    public bool TicksPaused { get; set; }
 
-    public bool TickStop
-    {
-        get { return tickStop; }
-        set { tickStop = value; }
-    }
+    public bool TickStop { get; set; } = true;
 
     public void CallTickUpdate()
     {
         TickStop = false;
         TicksPaused = false;
-        StartCoroutine("TickUpdate");
+        StartCoroutine(TickUpdate());
     }
 
     private IEnumerator TickUpdate()
     {
-        while (!tickStop)
+        while (!TickStop)
         {
-            while (ticksPaused)
+            while (TicksPaused)
             {
                 yield return new WaitForFixedUpdate();
             }
 
-            yield return new WaitForSeconds(secondsPerTick);
+            yield return new WaitForSeconds(SecondsPerTick);
 
-            while (ticksPaused)
+            while (TicksPaused)
             {
                 yield return new WaitForFixedUpdate();
             }
@@ -99,25 +82,25 @@ public class Tick : MonoBehaviour
 
     public void PauseTickEvents()
     {
-        ticksPaused = true;
+        TicksPaused = true;
     }
 
     public void UnpauseTickEvents()
     {
-        ticksPaused = false;
+        TicksPaused = false;
     }
 
     public void StopTickEvents()
     {
-        tickStop = true;
+        TickStop = true;
     }
 
     public void StartTickEvents()
     {
-        if (tickStop)
+        if (TickStop)
         {
-            tickStop = false;
-            ticksPaused = false;
+            TickStop = false;
+            TicksPaused = false;
             StartCoroutine(TickUpdate());
         }
     }

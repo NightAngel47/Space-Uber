@@ -40,7 +40,7 @@ public class CrewManagement : MonoBehaviour
     public void Start()
     {
         shipStats = FindObjectOfType<ShipStats>();
-        crewUnassignedText.text = "Unassigned Crew: " + shipStats.CrewUnassigned;
+        crewUnassignedText.text = "Unassigned Crew: " + (int)shipStats.CrewCurrent.z;
 
         statPanel = gameObject.transform.GetChild(0).gameObject;
         TurnOffPanel();
@@ -252,13 +252,13 @@ public class CrewManagement : MonoBehaviour
 
     public void AddCrew()
     {
-        if (shipStats.CrewUnassigned > 0 && roomStats.currentCrew < room.GetComponent<RoomStats>().maxCrew)
+        if (shipStats.CrewCurrent.z > 0 && roomStats.currentCrew < roomStats.maxCrew)
         {
             roomStats.UpdateCurrentCrew(1);
-            shipStats.CrewCurrent += new Vector3(-1, 0, 0);
+            shipStats.CrewCurrent += new Vector3(0, 0, -1);
             
             minAssignableCrew--;
-            crewUnassignedText.text = "Unassigned Crew: " + shipStats.CrewUnassigned;
+            crewUnassignedText.text = "Unassigned Crew: " + shipStats.CrewCurrent.z;
             crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats();
@@ -275,9 +275,9 @@ public class CrewManagement : MonoBehaviour
         if (roomStats.currentCrew > 0)
         {
             roomStats.UpdateCurrentCrew(-1);
-            shipStats.CrewCurrent += new Vector3(1, 0, 0);
+            shipStats.CrewCurrent += new Vector3(0, 0, 1);
             minAssignableCrew++;
-            crewUnassignedText.text = "Unassigned Crew: " + shipStats.CrewUnassigned;
+            crewUnassignedText.text = "Unassigned Crew: " + shipStats.CrewCurrent.z;
             crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats();
