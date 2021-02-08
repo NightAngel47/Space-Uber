@@ -27,6 +27,7 @@ public class EventSystem : MonoBehaviour
 	private int maxEvents = 0;
 	private List<GameObject> storyEvents = new List<GameObject>();
 	private List<GameObject> randomEvents = new List<GameObject>();
+	private GameObject currentEvent;
 
 	//how many events (story and random) have occurred
 	private int overallEventIndex = 0;
@@ -138,6 +139,12 @@ public class EventSystem : MonoBehaviour
 		float chanceOfEvent = startingEventChance;
 		while (GameManager.instance.currentGameState == InGameStates.Events) //game state while events are possible
 		{
+			//pause this while chatting with folks
+			while(chatting)
+            {
+				yield return new WaitForSeconds(.2f);
+            }
+
             ship.StartTickEvents();
 			sonarObjects.SetActive(true);
 			sonar.ResetSonar();
@@ -225,6 +232,16 @@ public class EventSystem : MonoBehaviour
         ship.StopTickEvents();
 	}
 
+	public void StartNewCharacterEvent(List<GameObject> possibleEvents)
+    {
+		GameObject newEvent = FindNextCharacterEvent(possibleEvents);
+		if(newEvent != null)
+        {
+			chatting = true;
+			CreateEvent(newEvent);
+        }
+    }
+
 	/// <summary>
 	/// Spawns the event (Gameobject prefab) chosen in Travel().
 	/// Assigns the proper canvas to the created InkDriverBase script
@@ -266,8 +283,9 @@ public class EventSystem : MonoBehaviour
             {
 				chatting = false;
 				daysSinceChat = 0;
+				eventInstance.GetComponent<CharacterEvent>().EndCharacterEvent();
 				//TODO: Find a way to overclock the connected room
-            }
+			}
 			else
             {
 				//Potentially end the job entirely if this is meant to be the final event
@@ -344,6 +362,37 @@ public class EventSystem : MonoBehaviour
 		Debug.LogWarning("Couldn't find next story event");
 		return null;
     }
+
+	/// <summary>
+	/// Returns the next chosen event that can be played from the possible list supplied.
+	/// If null, do not allow players to go into the event screen. Instead, inform them that no new events 
+	/// are available.
+	/// </summary>
+	/// <param name="possibleEvents"></param>
+	/// <returns></returns>
+	private GameObject FindNextCharacterEvent(List<GameObject> possibleEvents)
+    {
+        //if charEvent matches requirements, pick this one and remove it from the group
+        if (possibleEvents.Count != 0)
+        {
+			foreach (var charEvent
+			in from charEvent in possibleEvents
+			   let eventDriver = charEvent.GetComponent<CharacterEvent>()
+			   let requirements = eventDriver.requiredStats
+			   where HasRequiredStats(requirements)
+			   select charEvent)
+			{
+				GameObject chosen = charEvent;
+				possibleEvents.Remove(charEvent);
+				return chosen;
+				
+			}
+			
+		}
+
+		return null;
+
+	}
 
 	/// <summary>
 	/// Picks a random event to spawn. The random numbers include the eventIndex to the count of storyEvents list

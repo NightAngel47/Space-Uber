@@ -33,6 +33,8 @@ public class ChoiceOutcomes
 
     [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character;
     [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public int approvalChange;
+    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public bool correctAnswer;
+    [HideInInspector] public CharacterEvent characterDriver;
 
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolOutcomes;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int cloneTrustChange;
@@ -252,6 +254,10 @@ public class ChoiceOutcomes
             }
             else //approval outcomes
             {
+                if(correctAnswer)
+                {
+                    characterDriver.AnswerCorrectly();
+                }
                 switch (character)
                 {
                     case CharacterStats.Characters.KUON:
@@ -281,6 +287,8 @@ public class ChoiceOutcomes
         }
 
     }
+
+
 
     private void SpawnStatChangeText(ShipStats ship, int value, int icon = -1)
     {

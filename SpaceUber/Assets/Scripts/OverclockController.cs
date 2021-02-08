@@ -114,43 +114,7 @@ public class OverclockController : MonoBehaviour
         //FindObjectOfType<CrewManagement>().crewManagementText.SetActive(true);
 	}
 
-    /// <summary>
-    /// Applies proper boost to the required room if the player gives the correct responses in a character event
-    /// </summary>
-    public void EndCharacterEvent(CharacterStats.Characters character)
-    {
-
-        switch(character)
-        {
-            case CharacterStats.Characters.KUON: //Kuon boosts security and weapons by 10%
-                shipStats.UpdateSecurityAmount(Mathf.RoundToInt(securityBaseAdjustment * 1));
-                int newSecurityValue = shipStats.Security + Mathf.RoundToInt(shipStats.Security * .1f);
-                int newWeaponsValue = shipStats.ShipWeapons + Mathf.RoundToInt(shipStats.ShipWeapons * .1f);
-
-                shipStats.Security = newSecurityValue;
-                shipStats.ShipWeapons = newWeaponsValue;
-
-                SpawnStatChangeText(Mathf.RoundToInt(newSecurityValue), 1);
-                SpawnStatChangeText(Mathf.RoundToInt(newWeaponsValue), 2);
-                break;
-            case CharacterStats.Characters.MATEO: //Boosts energy
-                shipStats.UpdateEnergyAmount(Mathf.RoundToInt(energyBaseAdjustment ));
-                SpawnStatChangeText(Mathf.RoundToInt(energyBaseAdjustment), 6);
-                break;
-            case CharacterStats.Characters.LANRI: //boosts Food
-                shipStats.UpdateFoodAmount(Mathf.RoundToInt(foodBaseAdjustment * 1));
-                SpawnStatChangeText(Mathf.RoundToInt(foodBaseAdjustment * 1), 3);
-                break;
-            case CharacterStats.Characters.LEXA: //gives +10 to morale
-
-                break;
-            case CharacterStats.Characters.RIPLEY: //gives +10 morale
-
-                break;
-        }
-
-        
-    }
+    
 
     
     /// <summary>

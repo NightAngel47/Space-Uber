@@ -36,7 +36,7 @@ public class InkDriverBase : MonoBehaviour
     private TMP_Text textBox;
     [HideInInspector] public GameObject resultsBox;
     private Image backgroundUI;
-    private ShipStats thisShip;
+    protected ShipStats thisShip;
 
     [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
     private float textPrintSpeed = 0.1f;
