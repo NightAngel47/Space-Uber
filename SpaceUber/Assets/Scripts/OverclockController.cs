@@ -62,32 +62,32 @@ public class OverclockController : MonoBehaviour
 		{
             if(miniGame == MiniGameType.Security)
             {
-                shipStats.UpdateSecurityAmount(Mathf.RoundToInt(securityBaseAdjustment * statModification));
+                shipStats.Security += Mathf.RoundToInt(securityBaseAdjustment * statModification);
                 SpawnStatChangeText(Mathf.RoundToInt(securityBaseAdjustment * statModification), 1);
             }
             if(miniGame == MiniGameType.Asteroids)
             {
-                shipStats.UpdateShipWeaponsAmount(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification));
+                shipStats.ShipWeapons += Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification);
                 SpawnStatChangeText(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification), 2);
             }
             if(miniGame == MiniGameType.CropHarvest)
             {
-                shipStats.UpdateFoodAmount(Mathf.RoundToInt(foodBaseAdjustment * statModification));
+                shipStats.Food += Mathf.RoundToInt(foodBaseAdjustment * statModification);
                 SpawnStatChangeText(Mathf.RoundToInt(foodBaseAdjustment * statModification), 3);
             }
             if(miniGame == MiniGameType.StabilizeEnergyLevels)
             {
-                shipStats.UpdateEnergyAmount(Mathf.RoundToInt(energyBaseAdjustment * statModification));
+                shipStats.EnergyRemaining += new Vector2(Mathf.RoundToInt(energyBaseAdjustment * statModification), 0);
                 SpawnStatChangeText(Mathf.RoundToInt(energyBaseAdjustment * statModification), 6);
             }
             if(miniGame == MiniGameType.SlotMachine)
             {
-                shipStats.UpdateCreditsAmount(Mathf.RoundToInt(statModification));
+                shipStats.Credits += Mathf.RoundToInt(statModification);
                 SpawnStatChangeText(Mathf.RoundToInt(statModification), 0);
             }
             if(miniGame == MiniGameType.HullRepair)
             {
-                shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification));
+                shipStats.ShipHealthCurrent += new Vector2(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification), 0);
                 SpawnStatChangeText(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification), 6);
             }
         }
@@ -95,7 +95,7 @@ public class OverclockController : MonoBehaviour
         {
             if(miniGame == MiniGameType.Asteroids)
             {
-                shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(failHullDurabilityBaseAdjustment * statModification));
+                shipStats.ShipHealthCurrent += new Vector2(Mathf.RoundToInt(failHullDurabilityBaseAdjustment * statModification), 0);
                 SpawnStatChangeText(Mathf.RoundToInt(failHullDurabilityBaseAdjustment * statModification));
             }
         }

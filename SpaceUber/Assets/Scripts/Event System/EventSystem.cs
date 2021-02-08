@@ -20,6 +20,7 @@ public class EventSystem : MonoBehaviour
 {
 	public static EventSystem instance;
 	private ShipStats ship;
+	private Tick tick;
 	private AdditiveSceneManager asm;
 	private EventCanvas eventCanvas;
     private EventPromptButton eventPromptButton;
@@ -71,6 +72,7 @@ public class EventSystem : MonoBehaviour
 		else { instance = this; }
 
 		ship = FindObjectOfType<ShipStats>();
+		tick = FindObjectOfType<Tick>();
 		asm = FindObjectOfType<AdditiveSceneManager>();
 		campMan = GetComponent<CampaignManager>();
 		
@@ -134,7 +136,7 @@ public class EventSystem : MonoBehaviour
 
 		while (GameManager.instance.currentGameState == InGameStates.Events)
 		{
-            ship.StartTickEvents();
+			tick.CallTickUpdate();
 			sonarObjects.SetActive(true);
 			sonar.ResetSonar();
 			float chanceOfEvent = startingEventChance;
@@ -174,7 +176,7 @@ public class EventSystem : MonoBehaviour
                 {
                     eventWarning.ActivateWarning();
                 }
-                ship.PauseTickEvents();
+                tick.PauseTickEvents();
                 FindObjectOfType<CrewManagement>().TurnOffPanel();
             }
 
@@ -192,14 +194,14 @@ public class EventSystem : MonoBehaviour
             yield return new WaitWhile((() => eventActive));
 		}
 		sonarObjects.SetActive(false);
-        ship.StopTickEvents();
+        tick.StopTickEvents();
 	}
 
     public void SpawnEvent()
     {
 	    skippedToEvent = true;
 	    asm.UnloadScene("Event_Prompt");
-        ship.PauseTickEvents();
+        tick.PauseTickEvents();
 
         //get rid of and reset sonar objects
         eventWarning.DeactivateWarning();
@@ -231,7 +233,7 @@ public class EventSystem : MonoBehaviour
                 // Load Event_CharacterFocused Scene for upcoming event 
                 asm.LoadSceneMerged("Event_CharacterFocused");
                 yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
-
+                
                 eventCanvas = FindObjectOfType<EventCanvas>();
 
                 CreateEvent(newEvent);
@@ -292,7 +294,7 @@ public class EventSystem : MonoBehaviour
         //set up the sonar for the next event
         sonarObjects.SetActive(true);
         sonar.ResetSonar();
-        ship.UnpauseTickEvents();
+        tick.UnpauseTickEvents();
         
         //reset for next event
         skippedToEvent = false;

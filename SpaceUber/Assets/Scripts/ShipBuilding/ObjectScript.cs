@@ -205,6 +205,7 @@ public class ObjectScript : MonoBehaviour
                 if (check == false)
                 {
                     SpotChecker.instance.RemoveSpots(r.gameObject, r.rotAdjust);
+                    r.gameObject.GetComponent<RoomStats>().SubtractRoomStats();
                     Destroy(r.gameObject);
                 }
             }
