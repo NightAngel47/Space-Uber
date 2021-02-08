@@ -50,9 +50,10 @@ public class EventSystem : MonoBehaviour
 	[Tooltip("Initial percentage chance of rolling an event")]
 	[SerializeField] private float startingEventChance = 5;
 
+	private bool skippedToEvent;
     public bool nextEventLockedIn;
+    private float eventRollCounter;
 
-	private bool isTraveling = false;
 	public bool eventActive { get; private set; } = false;
     public bool promptActive = false;
 
@@ -131,32 +132,41 @@ public class EventSystem : MonoBehaviour
 		//For the intro event
 		yield return new WaitWhile((() => eventActive));
 
-		float chanceOfEvent = startingEventChance;
 		while (GameManager.instance.currentGameState == InGameStates.Events)
 		{
             ship.StartTickEvents();
 			sonarObjects.SetActive(true);
 			sonar.ResetSonar();
+			float chanceOfEvent = startingEventChance;
 
 			yield return new WaitForSeconds(timeBeforeEventRoll); //start with one big chunk of time
 
             asm.LoadSceneMerged("Event_Prompt");
             yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
             eventPromptButton = FindObjectOfType<EventPromptButton>();
-            eventPromptButton.eventButton.onClick.AddListener(delegate { SpawnEvent(); });
+            eventPromptButton.eventButton.onClick.AddListener(SpawnEvent);
 
-            #region Start sonar/event chance loop
-            //run random chances for event to take place in a loop
-            while (!eventActive && !WillRunEvent(chanceOfEvent))
-			{				
-				isTraveling = true;
-				chanceOfEvent+= chanceIncreasePerFreq;
-				yield return new WaitForSeconds(eventChanceFreq);
-			}
-            #endregion
-
-            nextEventLockedIn = true;
-
+            // roll for next event unless skipped to it
+            while (!skippedToEvent && eventRollCounter <= eventChanceFreq)
+            {
+	            // count up for every roll
+	            eventRollCounter += Time.deltaTime;
+	            // if reached next roll
+	            if (eventRollCounter >= eventChanceFreq)
+	            {
+		            if (WillRunEvent(chanceOfEvent))
+		            {
+			            nextEventLockedIn = true;
+			            break;
+		            }
+		            
+		            chanceOfEvent += chanceIncreasePerFreq;
+		            eventRollCounter = 0; // reset roll counter
+	            }
+	            
+	            yield return new WaitForEndOfFrame();
+            }
+            
             if(nextEventLockedIn)
             {
                 //Activate the warning for the next event now that one has been picked
@@ -179,20 +189,15 @@ public class EventSystem : MonoBehaviour
             //event is spawned by button (out of loop)
 
             yield return new WaitWhile((() => eventActive));
-
-            //reset for next event
-            nextEventLockedIn = false;
-            chanceOfEvent = startingEventChance;
 		}
-		isTraveling = false;
 		sonarObjects.SetActive(false);
         ship.StopTickEvents();
 	}
 
     public void SpawnEvent()
     {
-        //eventActive = true;
-        asm.UnloadScene("Event_Prompt");
+	    skippedToEvent = true;
+	    asm.UnloadScene("Event_Prompt");
         ship.PauseTickEvents();
 
         //get rid of and reset sonar objects
@@ -204,7 +209,6 @@ public class EventSystem : MonoBehaviour
 
     private IEnumerator EventSpawner()
     {
-        #region Spawn an event
         if (overallEventIndex % 2 == 1 && overallEventIndex != 0) //if it's an even-numbered event, do a story 
         {
             // Load Event_General Scene for upcoming event
@@ -234,7 +238,6 @@ public class EventSystem : MonoBehaviour
                 overallEventIndex++;
             }
         }
-        #endregion
     }
 
     /// <summary>
@@ -289,6 +292,11 @@ public class EventSystem : MonoBehaviour
         sonarObjects.SetActive(true);
         sonar.ResetSonar();
         ship.UnpauseTickEvents();
+        
+        //reset for next event
+        skippedToEvent = false;
+        nextEventLockedIn = false;
+        eventRollCounter = 0;
 
         eventActive = false;
 	}
