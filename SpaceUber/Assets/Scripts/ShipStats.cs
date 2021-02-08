@@ -276,13 +276,14 @@ public class ShipStats : MonoBehaviour
             crewCapacity = (int)value.y;
             crewUnassigned = (int)value.z;
 
-            if ((int)value.x < 0)
-            {
+            //if ((int)value.x < 0)
+            //{
+            //    Debug.Log("here");
                 if (crewUnassigned < 0)
                 {
                     RemoveRandomCrew(Mathf.Abs(crewUnassigned));
                 }
-            }
+            //}
 
             /*
             if (crewRemainingAmount >= 0)
