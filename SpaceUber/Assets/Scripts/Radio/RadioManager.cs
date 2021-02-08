@@ -57,15 +57,6 @@ public class RadioManager : MonoBehaviour
 
     public void Mute()
     {
-        if(muted == true)
-        {
-            MasterVolSlider(1f);
-            muted = false;
-        }
-        else
-        {
-            MasterVolSlider(0f);
-            muted = true;
-        }
+        AudioManager.instance.isMuted = !AudioManager.instance.isMuted;
     }
 }
