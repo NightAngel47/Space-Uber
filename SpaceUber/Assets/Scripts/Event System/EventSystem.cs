@@ -294,7 +294,7 @@ public class EventSystem : MonoBehaviour
         //set up the sonar for the next event
         sonarObjects.SetActive(true);
         sonar.ResetSonar();
-        ship.UnpauseTickEvents();
+        tick.UnpauseTickEvents();
         
         //reset for next event
         skippedToEvent = false;
