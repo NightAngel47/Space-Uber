@@ -175,6 +175,7 @@ public class EventSystem : MonoBehaviour
                     eventWarning.ActivateWarning();
                 }
                 ship.PauseTickEvents();
+                FindObjectOfType<CrewManagement>().TurnOffPanel();
             }
 
 			//wait until there is no longer an overclock microgame happening
