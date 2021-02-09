@@ -103,7 +103,7 @@ public class OverclockController : MonoBehaviour
         }
         if(success && activeRoom)
         {
-           activeRoom.StartCoolDown();
+           activeRoom.StartMinigameCooldown();
             if(winSound == false)
             {
                 AudioManager.instance.PlaySFX("De-Overclock");

@@ -12,7 +12,7 @@ using UnityEngine;
 public class CharacterEvent : InkDriverBase
 {
     [SerializeField,Tooltip("The character that this event focuses on")] 
-    private CharacterStats.Characters thisCharacter;
+    private CharacterStats.Characters thisCharacter = CharacterStats.Characters.None;
     [Tooltip("How many correct answers have been given")]
     private int correctAnswers;
     [SerializeField, Tooltip("How many correct responses the player needs to get a boost")] 
@@ -24,6 +24,7 @@ public class CharacterEvent : InkDriverBase
     [SerializeField, Tooltip("How much food the player will gain from all correct answers")]
     private int foodBoost;
 
+    [HideInInspector] public bool playedOnce;
     
 
     public override void Start()

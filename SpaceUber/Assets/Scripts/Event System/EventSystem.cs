@@ -68,7 +68,7 @@ public class EventSystem : MonoBehaviour
 
 	private bool chatting = false; //Whether or not the player is talking to a character
 	
-	[SerializeField, Tooltip("The maximum cooldown for a character chat in ticks.")] private int chatCooldown;
+	[SerializeField, Tooltip("The maximum cooldown for a character chat in ticks.")] public int chatCooldown;
 	private int daysSinceChat;
 
 	private void Awake()
@@ -98,6 +98,23 @@ public class EventSystem : MonoBehaviour
         {
 			StartCoroutine(StartNewCharacterEvent(allCharacterEvents));
         }
+    }
+
+	public bool CanChat(List<GameObject> checkEvents)
+    {
+		//If chat has cooleddown
+		if(daysSinceChat < chatCooldown)
+        {
+			return false;
+        } 
+		
+		//if no possible events are found
+		if(FindNextCharacterEvent(checkEvents) == null)
+        {
+			return false;
+        }
+
+		return true;
     }
 
     /// <summary>
@@ -158,6 +175,7 @@ public class EventSystem : MonoBehaviour
             {
 				yield return new WaitForSeconds(.2f);
             }
+			daysSinceChat += 1;
 
             ship.StartTickEvents();
 			sonarObjects.SetActive(true);
@@ -250,6 +268,7 @@ public class EventSystem : MonoBehaviour
     {
 		chatting = true;
 		GameObject newEvent = FindNextCharacterEvent(possibleEvents);
+
 		asm.LoadSceneMerged("Event_CharacterFocused");
 		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
 
@@ -398,11 +417,11 @@ public class EventSystem : MonoBehaviour
 			in from charEvent in possibleEvents
 			   let eventDriver = charEvent.GetComponent<CharacterEvent>()
 			   let requirements = eventDriver.requiredStats
-			   where HasRequiredStats(requirements)
+			   where HasRequiredStats(requirements) && eventDriver.playedOnce == false //meets requirements and has never been played before
 			   select charEvent)
 			{
 				GameObject chosen = charEvent;
-				possibleEvents.Remove(charEvent);
+				charEvent.GetComponent<CharacterEvent>().playedOnce = true;
 				return chosen;
 				
 			}

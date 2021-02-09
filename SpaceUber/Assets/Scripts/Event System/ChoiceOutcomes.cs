@@ -30,7 +30,7 @@ public class ChoiceOutcomes
     [SerializeField, ShowIf("isResourceOutcome"), AllowNesting] public ResourceType resource; //
     [SerializeField, ShowIf("isResourceOutcome"), AllowNesting] public int amount;
 
-    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character;
+    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character = CharacterStats.Characters.None;
     [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public int approvalChange;
     [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public bool correctAnswer;
     [HideInInspector] public CharacterEvent characterDriver;

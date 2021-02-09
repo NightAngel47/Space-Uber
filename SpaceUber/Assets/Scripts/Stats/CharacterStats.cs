@@ -14,6 +14,7 @@ public class CharacterStats : MonoBehaviour
     #region Variables
     public enum Characters
     {
+        None,
         KUON,
         LANRI,
         LEXA,

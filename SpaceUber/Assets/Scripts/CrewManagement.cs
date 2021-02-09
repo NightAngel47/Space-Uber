@@ -29,6 +29,7 @@ public class CrewManagement : MonoBehaviour
     private int minAssignableCrew;
     private RoomStats[] currentRoomList;
 
+    public Button chatButton;
     public Button overclockButton;
     public GameObject statAndNumPrefab;
     public GameObject outputObject;
@@ -46,6 +47,7 @@ public class CrewManagement : MonoBehaviour
         TurnOffPanel();
         
         overclockButton.gameObject.SetActive(false);
+        chatButton.gameObject.SetActive(false);
 
         currentRoomList = FindObjectsOfType<RoomStats>();
 
@@ -334,6 +336,7 @@ public class CrewManagement : MonoBehaviour
     public void TurnOnPanel()
     {
         statPanel.SetActive(true);
+        UpdateChatAvailability();
     }
 
     public void StartOverclockGame()
@@ -359,5 +362,28 @@ public class CrewManagement : MonoBehaviour
         {
             overclockButton.interactable = true;
         }
+    }
+
+    public void UpdateChatAvailability()
+    {
+        OverclockRoom ovRoom = room.GetComponent<OverclockRoom>();
+        
+        if(!ovRoom.hasEvents)
+        {
+            chatButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            if (EventSystem.instance.CanChat(ovRoom.GetEvents()))
+            {
+                chatButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                chatButton.gameObject.SetActive(false);
+            }
+        }
+
+        
     }
 }

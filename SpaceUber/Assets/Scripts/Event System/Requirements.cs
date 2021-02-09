@@ -54,7 +54,7 @@ public class Requirements
     
     [Tooltip("The character who's approval must be checked")]
     [SerializeField, ShowIf("isApprovalRequirement"), AllowNesting]
-    private CharacterStats.Characters character;
+    private CharacterStats.Characters character = CharacterStats.Characters.None;
 
     [Tooltip("The required approval rating for this event to pass")]
     [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
