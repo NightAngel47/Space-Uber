@@ -162,6 +162,13 @@ public class ShipStats : MonoBehaviour
                 EventSystem.instance.CreateMutinyEvent(mutinyEvent);
             }
             
+            RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+            
+            foreach(RoomStats room in rooms)
+            {
+                room.KeepRoomStatsUpToDateWithMorale();
+            }
+            
             if(shipHealthCurrent <= 0)
             {
                 GameManager.instance.ChangeInGameState(InGameStates.Death);

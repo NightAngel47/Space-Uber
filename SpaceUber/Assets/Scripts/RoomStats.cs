@@ -43,10 +43,13 @@ public class RoomStats : MonoBehaviour
     private int foodPerTick = 0;
     private int shipHealth = 0;
     private int morale = 0;
+    
+    private float moraleModifier = 1.2f;
 
     ShipStats shipStats;
 
     public bool flatOutput;
+    public bool ignoreMorale;
 
     public bool usedRoom = false;
     [SerializeField] private bool isPowered = false;
@@ -59,6 +62,11 @@ public class RoomStats : MonoBehaviour
     
     void Start()
     {
+        if(ignoreMorale)
+        {
+            moraleModifier = 1;
+        }
+        
         cam = Camera.main;
         shipStats = FindObjectOfType<ShipStats>();
         StartCoroutine(LateStart(0.1f));
@@ -114,37 +122,36 @@ public class RoomStats : MonoBehaviour
         
         foreach (Resource resource in resources)
         {
-            resource.minAmount = resource.amount - (int)(resource.amount * percent);
             if (flatOutput == true)
             {
                 switch (resource.resourceType)
                 {
                     case "Credits":
-                        credits += resource.amount;
+                        credits += Mathf.RoundToInt(resource.amount * moraleModifier);
                         break;
                     case "Energy":
-                        energy += resource.amount;
+                        energy += Mathf.RoundToInt(resource.amount * moraleModifier);
                         break;
                     case "Security":
-                        security += resource.amount;
+                        security += Mathf.RoundToInt(resource.amount * moraleModifier);
                         break;
                     case "Ship Weapons":
-                        shipWeapons += resource.amount;
+                        shipWeapons += Mathf.RoundToInt(resource.amount * moraleModifier);
                         break;
                     case "Crew":
-                        crew += resource.amount;
+                        crew += Mathf.RoundToInt(resource.amount * moraleModifier);
                         break;
                     case "Food":
-                        food += resource.amount;
+                        food += Mathf.RoundToInt(resource.amount * moraleModifier);
                         break;
                     case "Food Per Tick":
-                        foodPerTick += resource.amount;
+                        foodPerTick += Mathf.RoundToInt(resource.amount * moraleModifier);
                         break;
                     case "Hull Durability":
-                        shipHealth += resource.amount;
+                        shipHealth += Mathf.RoundToInt(resource.amount * moraleModifier);
                         break;
                     case "Crew Morale":
-                        morale += resource.amount;
+                        morale += Mathf.RoundToInt(resource.amount * moraleModifier);
                         break;
                     default:
                         break;
@@ -152,39 +159,43 @@ public class RoomStats : MonoBehaviour
             }
             else
             {
+                resource.minAmount = resource.amount - (int)(resource.amount * percent);
+                
                 switch (resource.resourceType)
                 {
                     case "Credits":
-                        credits += resource.minAmount;
+                        credits += Mathf.RoundToInt(resource.minAmount * moraleModifier);
                         break;
                     case "Energy":
-                        energy += resource.minAmount;
+                        energy += Mathf.RoundToInt(resource.minAmount * moraleModifier);
                         break;
                     case "Security":
-                        security += resource.minAmount;
+                        security += Mathf.RoundToInt(resource.minAmount * moraleModifier);
                         break;
                     case "Ship Weapons":
-                        shipWeapons += resource.minAmount;
+                        shipWeapons += Mathf.RoundToInt(resource.minAmount * moraleModifier);
                         break;
                     case "Crew":
-                        crew += resource.minAmount;
+                        crew += Mathf.RoundToInt(resource.minAmount * moraleModifier);
                         break;
                     case "Food":
-                        food += resource.minAmount;
+                        food += Mathf.RoundToInt(resource.minAmount * moraleModifier);
                         break;
                     case "Food Per Tick":
-                        foodPerTick += resource.minAmount;
+                        foodPerTick += Mathf.RoundToInt(resource.minAmount * moraleModifier);
                         break;
                     case "Hull Durability":
-                        shipHealth += resource.minAmount;
+                        shipHealth += Mathf.RoundToInt(resource.minAmount * moraleModifier);
                         break;
                     case "Crew Morale":
-                        morale += resource.minAmount;
+                        morale += Mathf.RoundToInt(resource.minAmount * moraleModifier);
                         break;
                     default:
                         break;
                 }
             }
+            print(resource.minAmount);
+            print(resource.activeAmount);
         }
     }
 
@@ -197,6 +208,69 @@ public class RoomStats : MonoBehaviour
     {
         return isPowered;
     }
+    
+    public void KeepRoomStatsUpToDateWithMorale()
+    {
+        if(!ignoreMorale)
+        {
+            float previousMoraleModifier = moraleModifier;
+            int currentMorale = shipStats.Morale;
+            
+            switch(currentMorale)
+            {
+                case int cur when currentMorale >= 80 && currentMorale <= 100:
+                    moraleModifier = 1.2f;
+                    break;
+                case int cur when currentMorale >= 60 && currentMorale < 80:
+                    moraleModifier = 1.1f;
+                    break;
+                case int cur when currentMorale >= 40 && currentMorale < 60:
+                    moraleModifier = 1.0f;
+                    break;
+                case int cur when currentMorale >= 20 && currentMorale < 40:
+                    moraleModifier = 0.9f;
+                    break;
+                case int cur when currentMorale >= 0 && currentMorale < 20:
+                    moraleModifier = 0.8f;
+                    break;
+                default:
+                    break;
+            }
+        
+            if(moraleModifier != previousMoraleModifier)
+            {
+                UpdateRoomStats();
+            }
+        }
+    }
+    
+    public void SetActiveAmount(Resource resource)
+    {
+        int crewRange = maxCrew - minCrew + 1;
+        if (flatOutput == false)
+        {
+            for (int i = crewRange - 1; i >= 0; i--)
+            {
+                if (currentCrew == maxCrew)
+                {
+                    resource.activeAmount = resource.amount;
+                }
+                else if (currentCrew == 0)
+                {
+                    resource.activeAmount = resource.minAmount;
+                }
+                else if (currentCrew == maxCrew - i)
+                {
+                    float percent = (float)i / (float)crewRange;
+                    resource.activeAmount = (resource.amount - resource.minAmount) - (int)((resource.amount - resource.minAmount) * percent) + resource.minAmount;
+                }
+            }
+        }
+        else
+        {
+            resource.activeAmount = resource.amount;
+        }
+    }
 
     public void UpdateRoomStats()
     {
@@ -204,43 +278,45 @@ public class RoomStats : MonoBehaviour
         SubtractRoomStats();
         foreach (Resource resource in resources)
         {
+            SetActiveAmount(resource);
+            
             switch (resource.resourceType)
             {
                 case "Credits":
                     //credits -= resource.minAmount;
-                    credits = resource.activeAmount;
+                    credits = Mathf.RoundToInt(resource.activeAmount * moraleModifier);
                     break;
                 case "Energy":
                     //energy -= resource.minAmount;
-                    energy = resource.activeAmount;
+                    energy = Mathf.RoundToInt(resource.activeAmount * moraleModifier);
                     break;
                 case "Security":
                     //security -= resource.minAmount;
-                    security = resource.activeAmount;
+                    security = Mathf.RoundToInt(resource.activeAmount * moraleModifier);
                     break;
                 case "Ship Weapons":
                     //shipWeapons -= resource.minAmount;
-                    shipWeapons = resource.activeAmount;
+                    shipWeapons = Mathf.RoundToInt(resource.activeAmount * moraleModifier);
                     break;
                 case "Crew":
                     //crew -= resource.minAmount;
-                    crew = resource.activeAmount;
+                    crew = Mathf.RoundToInt(resource.activeAmount * moraleModifier);
                     break;
                 case "Food":
                     //food -= resource.minAmount;
-                    food = resource.activeAmount;
+                    food = Mathf.RoundToInt(resource.activeAmount * moraleModifier);
                     break;
                 case "Food Per Tick":
                     //foodPerTick -= resource.minAmount;
-                    foodPerTick = resource.activeAmount;
+                    foodPerTick = Mathf.RoundToInt(resource.activeAmount * moraleModifier);
                     break;
                 case "Hull Durability":
                     //shipHealth -= resource.minAmount;
-                    shipHealth = resource.activeAmount;
+                    shipHealth = Mathf.RoundToInt(resource.activeAmount * moraleModifier);
                     break;
                 case "Crew Morale":
                     //shipHealth -= resource.minAmount;
-                    morale = resource.activeAmount;
+                    morale = Mathf.RoundToInt(resource.activeAmount * moraleModifier);
                     break;
                 default:
                     break;
@@ -255,7 +331,16 @@ public class RoomStats : MonoBehaviour
     public void AddRoomStats()
     {
         shipStats.roomBeingPlaced = gameObject;
-        shipStats.UpdateCreditsAmount(-price);
+        
+        if(usedRoom == true)
+        {
+            shipStats.UpdateCreditsAmount((int)(-price * priceReducationPercent));
+        }
+        else
+        {
+            shipStats.UpdateCreditsAmount(-price);
+        }
+        
         shipStats.UpdatePayoutAmount(credits);
         shipStats.UpdateEnergyAmount(energy, energy);
         shipStats.UpdateEnergyAmount(-minPower);
