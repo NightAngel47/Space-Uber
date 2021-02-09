@@ -69,18 +69,18 @@ public class Tick : MonoBehaviour
             // increment days since events
             shipStats.DaysSince++;
 
-            if(shipStats.crewMorale < 0)
+            if(shipStats.Morale < 0)
             {
-                shipStats.crewMorale = 0;
+                shipStats.Morale = 0;
             }
             
-            shipStatsUI.UpdateCrewMoraleUI(shipStats.crewMorale);
+            shipStatsUI.UpdateCrewMoraleUI(shipStats.Morale);
 
-            float mutinyChance = (maxMutinyMorale - shipStats.crewMorale) * zeroMoraleMutinyChance * (1 - maxMutinyMoraleMutinyChance) / maxMutinyMorale + maxMutinyMoraleMutinyChance;
+            float mutinyChance = (maxMutinyMorale - shipStats.Morale) * zeroMoraleMutinyChance * (1 - maxMutinyMoraleMutinyChance) / maxMutinyMorale + maxMutinyMoraleMutinyChance;
             if(mutinyChance > UnityEngine.Random.value)
             {
                 mutinyCount++;
-                int mutinyCost = Mathf.RoundToInt((baseMutinyCost * ((100 - shipStats.crewMorale) / 100.0f)) * mutinyCount);
+                int mutinyCost = Mathf.RoundToInt((baseMutinyCost * ((100 - shipStats.Morale) / 100.0f)) * mutinyCount);
                 mutinyEvent.GetComponent<InkDriverBase>().nextChoices[0].choiceRequirements[0].requiredAmount = mutinyCost;
                 mutinyEvent.GetComponent<InkDriverBase>().nextChoices[0].outcomes[0].amount = -mutinyCost;
                 EventSystem.instance.CreateMutinyEvent(mutinyEvent);
