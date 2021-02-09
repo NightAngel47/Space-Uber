@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -386,6 +386,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1704234535}
     m_Modifications:
+    - target: {fileID: 7110753070658254416, guid: 2881fb45785837144aa48e81ba17090b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -352
+      objectReference: {fileID: 0}
     - target: {fileID: 1017365634499762597, guid: b8bb6e5b0215d5643b2d5291c7d93805,
         type: 3}
       propertyPath: m_Name
@@ -450,11 +455,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7110753070658254416, guid: 2881fb45785837144aa48e81ba17090b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -352
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8bb6e5b0215d5643b2d5291c7d93805, type: 3}
@@ -7458,6 +7458,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 45ba5d67accfe4ec7ae1968388903373,
         type: 3}
+    - target: {fileID: 6273300031087700530, guid: 17581060db283ed4a8d97970348901ea,
+        type: 3}
+      propertyPath: creditsPayoutText
+      value: 
+      objectReference: {fileID: 1002784699}
+    - target: {fileID: 6273300031087700530, guid: 17581060db283ed4a8d97970348901ea,
+        type: 3}
+      propertyPath: creditsPayoutTooltipText
+      value: 
+      objectReference: {fileID: 229698417}
     - target: {fileID: 6273300031087700531, guid: 17581060db283ed4a8d97970348901ea,
         type: 3}
       propertyPath: highlights.rows.Array.data[0].row.Array.data[0]

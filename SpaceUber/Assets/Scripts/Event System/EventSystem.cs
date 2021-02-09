@@ -262,6 +262,24 @@ public class EventSystem : MonoBehaviour
         eventActive = true;
         //Does not increment overall event index because intro event does not increment it
     }
+    
+    public void CreateMutinyEvent(GameObject newEvent)
+    {
+	    StartCoroutine(SetupMutinyEvent(newEvent));
+    }
+    
+    private IEnumerator SetupMutinyEvent(GameObject newEvent)
+    {
+	    tick.PauseTickEvents();
+	    eventActive = true;
+	    
+	    asm.LoadSceneMerged("Event_CharacterFocused");
+	    yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
+	    
+	    eventCanvas = FindObjectOfType<EventCanvas>();
+	    
+	    CreateEvent(newEvent);
+    }
 
     /// <summary>
     /// Ends the event that is currently running.

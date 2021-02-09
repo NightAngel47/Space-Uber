@@ -58,7 +58,7 @@ public class ShipStats : MonoBehaviour
     public int foodMoraleDamageMultiplier = 1;
     private int shipHealthMax;
     private int shipHealthCurrent;
-    private int crewMorale;
+    public int crewMorale;
 
     /// <summary>
     /// Reference to the ship stats UI class.
@@ -72,15 +72,6 @@ public class ShipStats : MonoBehaviour
 
     private int daysSince;
     [SerializeField] private TMP_Text daysSinceDisplay;
-
-    //mutiny variables
-    public int maxMutinyMorale = 39;
-    public float maxMutinyMoraleMutinyChance = 0.2f;
-    public float zeroMoraleMutinyChance = 1f;
-    public int baseMutinyCost = 100;
-    private int mutinyCount = 0;
-    public GameObject mutinyEvent;
-
 
     //stats at the start of the job
     private int startCredits;
@@ -286,7 +277,7 @@ public class ShipStats : MonoBehaviour
             {
                 if(prevValue.z < 0)
                 {
-                    RemoveRandomCrew(Mathf.Abs(prevValue.z));
+                    RemoveRandomCrew(Mathf.Abs((int)prevValue.z));
                 }
 
                 if(crewCurrent < crewCapacity)
