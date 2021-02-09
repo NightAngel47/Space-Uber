@@ -27,7 +27,9 @@ public class EventSystem : MonoBehaviour
 	private int maxEvents = 0;
 	private List<GameObject> storyEvents = new List<GameObject>();
 	private List<GameObject> randomEvents = new List<GameObject>();
-	private GameObject currentEvent;
+	
+	[SerializeField, Tooltip("All possible character events. Temporary")]
+	private List<GameObject> allCharacterEvents;
 
 	//how many events (story and random) have occurred
 	private int overallEventIndex = 0;
@@ -36,6 +38,9 @@ public class EventSystem : MonoBehaviour
 	//how many random events have passed. Tells code how many events to ignore at the start of the list
 	private int randomEventIndex = 0;
 
+	/// <summary>
+	/// The specific event being played right now
+	/// </summary>
 	GameObject eventInstance;
 
 	[Tooltip("How many seconds it will take to attempt an event roll")]
@@ -232,12 +237,17 @@ public class EventSystem : MonoBehaviour
         ship.StopTickEvents();
 	}
 
-	public void StartNewCharacterEvent(List<GameObject> possibleEvents)
+	public IEnumerator StartNewCharacterEvent(List<GameObject> possibleEvents)
     {
+		chatting = true;
 		GameObject newEvent = FindNextCharacterEvent(possibleEvents);
-		if(newEvent != null)
+		asm.LoadSceneMerged("Event_CharacterFocused");
+		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
+
+		eventCanvas = FindObjectOfType<EventCanvas>();
+		if (newEvent != null)
         {
-			chatting = true;
+			
 			CreateEvent(newEvent);
         }
     }

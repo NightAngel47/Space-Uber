@@ -18,6 +18,12 @@ public class CharacterEvent : InkDriverBase
     [SerializeField, Tooltip("How many correct responses the player needs to get a boost")] 
     private int requiredCorrectAnswers;
 
+    [SerializeField, Tooltip("How much energy the player will gain from all correct answers")]
+    private int energyBoost;
+    
+    [SerializeField, Tooltip("How much food the player will gain from all correct answers")]
+    private int foodBoost;
+
     
 
     public override void Start()
@@ -55,10 +61,12 @@ public class CharacterEvent : InkDriverBase
                 SpawnStatChangeText(newWeaponsValue, 2);
                 break;
             case CharacterStats.Characters.MATEO: //Boosts energy
-
+                thisShip.EnergyRemaining += energyBoost;
+                SpawnStatChangeText(energyBoost, 4);
                 break;
             case CharacterStats.Characters.LANRI: //boosts Food
-
+                thisShip.Food += foodBoost;
+                SpawnStatChangeText(foodBoost, 3);
                 break;
             case CharacterStats.Characters.LEXA: //gives +10 to morale
 
