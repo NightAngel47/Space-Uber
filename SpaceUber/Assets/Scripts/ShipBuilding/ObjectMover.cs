@@ -178,7 +178,7 @@ public class ObjectMover : MonoBehaviour
     public void Placement()
     {
         if (GameManager.instance.currentGameState != InGameStates.ShipBuilding) return;
-        if (FindObjectOfType<ShipStats>().Credits >= gameObject.GetComponent<RoomStats>().price && FindObjectOfType<ShipStats>().EnergyRemaining >= gameObject.GetComponent<RoomStats>().minPower)
+        if (FindObjectOfType<ShipStats>().Credits >= gameObject.GetComponent<RoomStats>().price && FindObjectOfType<ShipStats>().EnergyRemaining.x >= gameObject.GetComponent<RoomStats>().minPower)
         {
             if (os.needsSpecificLocation == false)
             {

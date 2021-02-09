@@ -6,8 +6,10 @@
  */
 
 using System;
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using NaughtyAttributes;
 using TMPro;
 
@@ -37,7 +39,7 @@ public class ShipStats : MonoBehaviour
 
     private List<RoomStats> rooms;
 
-    public GameObject roomBeingPlaced;
+    [HideInInspector] public GameObject roomBeingPlaced;
 
     private int credits;
     private int payout;
@@ -62,12 +64,12 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     private ShipStatsUI shipStatsUI;
 
-    //tick variables
-    private int secondsPerTick = 5;
-    private bool ticksPaused;
-    private bool tickStop = true;
+    /// <summary>
+    /// Reference to tick
+    /// </summary>
+    private Tick tick;
 
-    public int daysSince;
+    private int daysSince;
     [SerializeField] private TMP_Text daysSinceDisplay;
 
     //mutiny calculations
@@ -93,425 +95,320 @@ public class ShipStats : MonoBehaviour
     private void Awake()
     {
         shipStatsUI = GetComponent<ShipStatsUI>();
+        tick = FindObjectOfType<Tick>();
     }
 
     private void Start()
     {
-        UpdateCreditsAmount(startingCredits);
-        UpdatePayoutAmount(0);
-        UpdateEnergyAmount(startingEnergy, startingEnergy);
-        UpdateSecurityAmount(startingSecurity);
-        UpdateShipWeaponsAmount(startingShipWeapons);
-        UpdateCrewAmount(startingCrew, startingCrew, startingCrew);
-        UpdateFoodAmount(startingFood);
-        UpdateHullDurabilityAmount(startingShipHealth, startingShipHealth);
+        Credits = startingCredits;
+        Payout = 0;
+        EnergyRemaining = new Vector2(startingEnergy, startingEnergy);
+        Security = startingSecurity;
+        ShipWeapons = startingShipWeapons;
+        CrewCurrent = new Vector3(startingCrew, startingCrew, startingCrew);
+        Food = startingFood;
+        ShipHealthCurrent = new Vector2(startingShipHealth, startingShipHealth);
         //UpdateCrewMorale(startingMorale);
     }
 
-    private IEnumerator<YieldInstruction> TickUpdate()
-    {
-        while(!tickStop)
-        {
-            while(ticksPaused)
-            {
-                yield return new WaitForFixedUpdate();
-            }
-
-            yield return new WaitForSeconds(secondsPerTick);
-
-            while(ticksPaused)
-            {
-                yield return new WaitForFixedUpdate();
-            }
-            //yield return new WaitWhile(() => ticksPaused);
-
-            food += foodPerTick - crewCurrent;
-            if(food < 0)
-            {
-                //crewMorale += (food * foodMoraleDamageMultiplier);
-                food = 0;
-            }
-            shipStatsUI.UpdateFoodUI(food, foodPerTick, crewCurrent);
-
-            // increment days since events
-            daysSince++;
-            daysSinceDisplay.text = daysSince.ToString();
-
-            //if(crewMorale < 0)
-            //{
-            //    crewMorale = 0;
-            //}
-
-            //UpdateMoraleShipStatsUI();
-
-            //float mutinyChance = (maxMutinyMorale - crewMorale) * zeroMoraleMutinyChance / maxMutinyMorale;
-            //if(mutinyChance > UnityEngine.Random.value)
-            //{
-            //    GameManager.instance.ChangeInGameState(InGameStates.Mutiny);
-            //}
-
-            if(shipHealthCurrent <= 0)
-            {
-                GameManager.instance.ChangeInGameState(InGameStates.Death);
-                AudioManager.instance.PlaySFX("Hull Death");
-                AudioManager.instance.PlayMusicWithTransition("Death Theme");
-            }
-        }
-    }
-
-    public void PauseTickEvents()
-    {
-        ticksPaused = true;
-    }
-
-    public void UnpauseTickEvents()
-    {
-        ticksPaused = false;
-    }
-
-    public void StopTickEvents()
-    {
-        tickStop = true;
-    }
-
-    public void StartTickEvents()
-    {
-        if(tickStop)
-        {
-            tickStop = false;
-            ticksPaused = false;
-            StartCoroutine(TickUpdate());
-        }
-    }
-
-    public void ResetDaysSince()
-    {
-        daysSince = 0;
-        daysSinceDisplay.text = daysSince.ToString();
-    }
-
-    private IEnumerator<YieldInstruction> CheckDeathOnUnpause()
-    {
-            while(ticksPaused || tickStop)
-            {
-                yield return new WaitForFixedUpdate();
-            }
-
-            if(shipHealthCurrent <= 0)
-            {
-                GameManager.instance.ChangeInGameState(InGameStates.Death);
-
-            }
-    }
-
-    public void SetObjectBeingPlaced()
-    {
-        shipStatsUI.roomBeingPlaced = roomBeingPlaced;
-    }
-
-    public void UpdateCreditsAmount(int creditAddition)
-    {
-        SetObjectBeingPlaced();
-        credits += creditAddition;
-        /*
-        if (creditAddition >= 0)
-        {
-            AudioManager.instance.PlaySFX("Gain Credits");
-        }
-        else
-        {
-            AudioManager.instance.PlaySFX("Lose Credits");
-        }
-        */
-        if(credits <= 0)
-        {
-            credits = 0;
-        }
-
-        shipStatsUI.UpdateCreditsUI(credits, payout);
-        shipStatsUI.ShowCreditsUIChange(creditAddition);
-    }
-
-    public void UpdateEnergyAmount(int energyRemainingAddition, int energyMaxAddition = 0)
-    {
-        energyMax += energyMaxAddition;
-        energyRemaining += energyRemainingAddition;
-        /*
-        if (energyRemainingAddition >= 0)
-        {
-            AudioManager.instance.PlaySFX("Gain Energy");
-        }
-        else
-        {
-            AudioManager.instance.PlaySFX("Lose Energy");
-        }
-        */
-            if (energyRemaining <= 0)
-        {
-            energyRemaining = 0;
-        }
-        if (energyRemaining >= energyMax)
-        {
-            energyRemaining = energyMax;
-        }
-
-        shipStatsUI.UpdateEnergyUI(energyRemaining, energyMax);
-        shipStatsUI.ShowEnergyUIChange(energyRemainingAddition, energyMaxAddition);
-    }
-
-    public void UpdateSecurityAmount(int securityAmount)
-    {
-        security += securityAmount;
-        /*
-        if (securityAmount >= 0)
-        {
-            AudioManager.instance.PlaySFX("Gain Security");
-        }
-        else
-        {
-            AudioManager.instance.PlaySFX("Lose Security");
-        }
-        */
-        if (security <= 0)
-        {
-            security = 0;
-        }
-
-        shipStatsUI.UpdateSecurityUI(security);
-        shipStatsUI.ShowSecurityUIChange(securityAmount);
-    }
-
-    public void UpdateShipWeaponsAmount(int shipWeaponsAmount)
-    {
-        shipWeapons += shipWeaponsAmount;
-        /*
-        if (shipWeaponsAmount >= 0)
-        {
-            AudioManager.instance.PlaySFX("Gain Weapons");
-        }
-        else
-        {
-            AudioManager.instance.PlaySFX("Lose Weapons");
-        }
-        */
-        if (shipWeapons <= 0)
-        {
-            shipWeapons = 0;
-        }
-
-        shipStatsUI.UpdateShipWeaponsUI(shipWeapons);
-        shipStatsUI.ShowShipWeaponsUIChange(shipWeaponsAmount);
-    }
-
-    public void UpdateCrewAmount(int crewUnassignedAmount, int crewCurrentAmount = 0, int crewCapacityAmount = 0)
-    {
-        if(GameManager.instance.currentGameState == InGameStates.CrewManagement)
-        {
-            SetObjectBeingPlaced();
-        }
-
-        crewCapacity += crewCapacityAmount;
-        crewCurrent += crewCurrentAmount;
-        crewUnassigned += crewUnassignedAmount;
-
-        if (crewCurrentAmount < 0)
-        {
-            if(crewUnassigned < 0)
-            {
-                RemoveRandomCrew(Mathf.Abs(crewUnassigned));
-            }  
-        }
-
-        /*
-        if (crewRemainingAmount >= 0)
-        {
-            AudioManager.instance.PlaySFX("Gain Crew");
-        }
-        else
-        {
-            AudioManager.instance.PlaySFX("Lose Crew");
-        }
-        */
-
-        if (crewCurrent <= 0)
-        {
-            crewCurrent = 0;
-        }
-        if (crewCurrent >= crewCapacity)
-        {
-            crewCurrent = crewCapacity;
-        }
-
-        if (crewUnassigned <= 0)
-        {
-            crewUnassigned = 0;
-        }
-        if (crewUnassigned >= crewCurrent)
-        {
-            crewUnassigned = crewCurrent;
-        }
-
-        shipStatsUI.UpdateCrewUI(crewUnassigned, crewCurrent, crewCapacity);
-        shipStatsUI.ShowCrewUIChange(crewUnassignedAmount, crewCurrentAmount, crewCapacityAmount);
-    }
-
-    public void UpdateFoodAmount(int foodAmount)
-    {
-        food += foodAmount;
-        /*
-        if (foodAmount >= 0)
-        {
-            AudioManager.instance.PlaySFX("Gain Food");
-        }
-        else
-        {
-            AudioManager.instance.PlaySFX("Lose Food");
-        }
-        */
-        if (food <= 0)
-        {
-            food = 0;
-        }
-
-        shipStatsUI.UpdateFoodUI(food, foodPerTick, crewCurrent);
-        shipStatsUI.ShowFoodUIChange(foodAmount, 0);
-    }
-
-    public void UpdateFoodPerTickAmount(int foodPerTickAmount)
-    {
-        foodPerTick += foodPerTickAmount;
-
-        shipStatsUI.UpdateFoodUI(food, foodPerTick, crewCurrent);
-        shipStatsUI.ShowFoodUIChange(0, foodPerTickAmount);
-    }
-
-    public void UpdateHullDurabilityAmount(int hullDurabilityRemainingAmount, int hullDurabilityMax = 0, bool checkImmediately = true)
-    {
-        shipHealthMax += hullDurabilityMax;
-        shipHealthCurrent += hullDurabilityRemainingAmount;
-
-        if (shipHealthCurrent >= shipHealthMax)
-        {
-            shipHealthCurrent = shipHealthMax;
-        }
-
-        /*
-        if (hullDurabilityRemainingAmount >= 0)
-        {
-            AudioManager.instance.PlaySFX("Gain Hull");
-        }
-        else
-        {
-            AudioManager.instance.PlaySFX("Lose Hull");
-        }
-        */
-
-        shipStatsUI.UpdateHullUI(shipHealthCurrent, shipHealthMax);
-        shipStatsUI.ShowHullUIChange(hullDurabilityRemainingAmount, hullDurabilityMax);
-
-        if(checkImmediately)
-        {
-            if(shipHealthCurrent <= 0)
-            {
-                GameManager.instance.ChangeInGameState(InGameStates.Death);
-            }
-        }
-        else
-        {
-            CheckDeathOnUnpause();
-        }
-    }
-
-    //public int GetCredits()
-    //{
-    //    return credits;
-    //}
-
-    //public int GetRemainingCrew()
-    //{
-    //    return crewRemaining;
-    //}
-    public void UpdatePayoutAmount(int ammount)
-    {
-        int initialPayout = payout;
-        payout += ammount;
-        if (payout <= 0)
-        {
-            payout = 0;
-        }
-
-        shipStatsUI.UpdateCreditsUI(credits, payout);
-        shipStatsUI.ShowCreditsUIChange(0, payout - initialPayout);
-    }
-
-    public void MultiplyPayout(int multiplier)
-    {
-        int initialPayout = payout;
-        payout *= multiplier;
-        if (payout <= 0)
-        {
-            payout = 0;
-        }
-
-        shipStatsUI.UpdateCreditsUI(credits, payout);
-        shipStatsUI.ShowCreditsUIChange(0, payout - initialPayout);
-    }
-
-    public void CashPayout()
-    {
-        UpdateCreditsAmount(payout);
-        payout = 0;
-    }
-
-    public bool HasEnoughPower(int power)
-    {
-        return EnergyRemaining >= power;
-    }
-
+    /// <summary>
+    /// Property for Credits. Getter and setter
+    /// </summary>
     public int Credits
     {
-        get { return credits; }
-        set { credits = value; }
+        get => credits;
+        set
+        {
+            int prevValue = credits;
+            SetObjectBeingPlaced();
+            credits = value;
+            /*
+            if (creditAddition >= 0)
+            {
+                AudioManager.instance.PlaySFX("Gain Credits");
+            }
+            else
+            {
+                AudioManager.instance.PlaySFX("Lose Credits");
+            }
+            */
+            if (credits <= 0)
+            {
+                credits = 0;
+            }
+
+            shipStatsUI.UpdateCreditsUI(credits, payout);
+            shipStatsUI.ShowCreditsUIChange(value - prevValue);
+        }
     }
+
+    /// <summary>
+    /// Property for Payout. Getter and Setter
+    /// </summary>
     public int Payout
     {
-        get { return payout; }
-        set { payout = value; }
+        get => payout;
+        set
+        {
+            int initialPayout = payout;
+            payout = value;
+
+            if (payout <= 0)
+            {
+                payout = 0;
+            }
+
+            shipStatsUI.UpdateCreditsUI(credits, payout);
+            shipStatsUI.ShowCreditsUIChange(0, payout - initialPayout);
+        }
     }
-    public int EnergyRemaining
+
+    /// <summary>
+    /// Property for Energy. Getter and Setter. Vector2 x is energyRemaining and y is energyMax
+    /// </summary>
+    public Vector2 EnergyRemaining // x = energyRemaining y = energyMax
     {
-        get { return energyRemaining; }
-        set { energyRemaining = value; }
+        get => new Vector2(energyRemaining, energyMax);
+        set
+        {
+            Vector2 prevValue = new Vector2(energyRemaining, energyMax);
+            energyMax = (int)value.y;
+            energyRemaining = (int)value.x;
+            /*
+            if (energyRemainingAddition >= 0)
+            {
+                AudioManager.instance.PlaySFX("Gain Energy");
+            }
+            else
+            {
+                AudioManager.instance.PlaySFX("Lose Energy");
+            }
+            */
+            if (energyRemaining <= 0)
+            {
+                energyRemaining = 0;
+            }
+            if (energyRemaining >= energyMax)
+            {
+                energyRemaining = energyMax;
+            }
+
+            shipStatsUI.UpdateEnergyUI(energyRemaining, energyMax);
+            shipStatsUI.ShowEnergyUIChange((int)(value.x - prevValue.x), (int)(value.y - prevValue.y));
+        }
     }
+
+    /// <summary>
+    /// Property for Security. Getter and Setter
+    /// </summary>
     public int Security
     {
-        get { return security; }
-        set { security = value; }
+        get => security;
+        set
+        {
+            int prevValue = security;
+            security = value;
+            /*
+            if (securityAmount >= 0)
+            {
+                AudioManager.instance.PlaySFX("Gain Security");
+            }
+            else
+            {
+                AudioManager.instance.PlaySFX("Lose Security");
+            }
+            */
+            if (security <= 0)
+            {
+                security = 0;
+            }
+
+            shipStatsUI.UpdateSecurityUI(security);
+            shipStatsUI.ShowSecurityUIChange(value - prevValue);
+        }
     }
+
+    /// <summary>
+    /// Property for ShipWeapons. Getter and Setter
+    /// </summary>
     public int ShipWeapons
     {
-        get { return shipWeapons; }
-        set { shipWeapons = value; }
+        get => shipWeapons;
+        set
+        {
+            int prevValue = shipWeapons;
+            shipWeapons = value;
+            /*
+            if (shipWeaponsAmount >= 0)
+            {
+                AudioManager.instance.PlaySFX("Gain Weapons");
+            }
+            else
+            {
+                AudioManager.instance.PlaySFX("Lose Weapons");
+            }
+            */
+            if (shipWeapons <= 0)
+            {
+                shipWeapons = 0;
+            }
+
+            shipStatsUI.UpdateShipWeaponsUI(shipWeapons);
+            shipStatsUI.ShowShipWeaponsUIChange(value - prevValue);
+        }
     }
-    public int CrewUnassigned
+
+    /// <summary>
+    /// Property for CrewCurrent. Getter for crewCurrent and setter for crewCurrent, crewCapacity, and crewUnassigned. x = crewCurrent, y = crewCapacity, z = crewUnnassigned
+    /// </summary>
+    public Vector3 CrewCurrent //x = crewCurrent y = crewCapacity z = crewUnnassigned
     {
-        get { return crewUnassigned; }
-        set { crewUnassigned = value; }
+        get => new Vector3(crewCurrent, crewCapacity, crewUnassigned);
+        set
+        {
+            if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
+            {
+                SetObjectBeingPlaced();
+            }
+
+            Vector3 prevValue = new Vector3(crewCurrent, crewCapacity, crewUnassigned);
+            crewCurrent = (int)value.x;
+            crewCapacity = (int)value.y;
+            crewUnassigned = (int)value.z;
+
+            //if ((int)value.x < 0)
+            //{
+            //    Debug.Log("here");
+                if (crewUnassigned < 0)
+                {
+                    RemoveRandomCrew(Mathf.Abs(crewUnassigned));
+                }
+            //}
+
+            /*
+            if (crewRemainingAmount >= 0)
+            {
+                AudioManager.instance.PlaySFX("Gain Crew");
+            }
+            else
+            {
+                AudioManager.instance.PlaySFX("Lose Crew");
+            }
+            */
+
+            if (crewCurrent <= 0)
+            {
+                crewCurrent = 0;
+            }
+            if (crewCurrent >= crewCapacity)
+            {
+                crewCurrent = crewCapacity;
+            }
+
+            if (crewUnassigned <= 0)
+            {
+                crewUnassigned = 0;
+            }
+            if (crewUnassigned >= crewCurrent)
+            {
+                crewUnassigned = crewCurrent;
+            }
+
+            shipStatsUI.UpdateCrewUI(crewUnassigned, crewCurrent, crewCapacity);
+            shipStatsUI.ShowCrewUIChange((int)(value.z - prevValue.z), (int)(value.x - prevValue.x), (int)(value.y - prevValue.y));
+        }
     }
-    public int CrewCurrent
-    {
-        get { return crewCurrent; }
-        set { crewCurrent = value; }
-    }
+
+    /// <summary>
+    /// Property for Food. Getter and Setter
+    /// </summary>
     public int Food
     {
-        get { return food; }
-        set { food = value; }
+        get => food;
+        set
+        {
+            int prevValue = food;
+            food = value;
+            /*
+            if (foodAmount >= 0)
+            {
+                AudioManager.instance.PlaySFX("Gain Food");
+            }
+            else
+            {
+                AudioManager.instance.PlaySFX("Lose Food");
+            }
+            */
+            if (food <= 0)
+            {
+                food = 0;
+            }
+
+            shipStatsUI.UpdateFoodUI(food, foodPerTick, crewCurrent);
+            shipStatsUI.ShowFoodUIChange(value - prevValue, 0);
+        }
     }
-    public int ShipHealthCurrent
+
+    /// <summary>
+    /// Property for FoodPerTick. Getter and Setter
+    /// </summary>
+    public int FoodPerTick
     {
-        get { return shipHealthCurrent; }
-        set { shipHealthCurrent = value; }
+        get => foodPerTick;
+        set
+        {
+            int prevValue = foodPerTick;
+            foodPerTick = value;
+
+            shipStatsUI.UpdateFoodUI(food, foodPerTick, crewCurrent);
+            shipStatsUI.ShowFoodUIChange(0, value - prevValue);
+        }
+    }
+
+    /// <summary>
+    /// Property for shipHealthCurrent. Getter and Setter, sets the shipHealth max as well. x = shipHealthCurrent, y = shipHealthMax 
+    /// </summary>
+    public Vector2 ShipHealthCurrent //x = shipHealthCurrent y = shipHealthMax
+    {
+        get => new Vector2(shipHealthCurrent, shipHealthMax);
+        set
+        {
+            Vector2 prevValue = new Vector2(shipHealthCurrent, shipHealthMax);
+            shipHealthMax = (int)value.y;
+            shipHealthCurrent = (int)value.x;
+
+            if (shipHealthCurrent >= shipHealthMax)
+            {
+                shipHealthCurrent = shipHealthMax;
+            }
+
+            /*
+            if (hullDurabilityRemainingAmount >= 0)
+            {
+                AudioManager.instance.PlaySFX("Gain Hull");
+            }
+            else
+            {
+                AudioManager.instance.PlaySFX("Lose Hull");
+            }
+            */
+
+            shipStatsUI.UpdateHullUI(shipHealthCurrent, shipHealthMax);
+            shipStatsUI.ShowHullUIChange((int)(value.x - prevValue.x), (int)(value.y - prevValue.y));
+            
+            // check for death
+            StartCoroutine(CheckDeathOnUnpause());
+        }
+    }
+
+    public int DaysSince
+    {
+        get => daysSince;
+        set 
+        { 
+            daysSince = value;
+            daysSinceDisplay.text = daysSince.ToString();
+        }
     }
 
     //public void UpdateCrewMorale(int crewMoraleAmount)
@@ -535,13 +432,50 @@ public class ShipStats : MonoBehaviour
     //    //UpdateShipStatsUI();
     //}
 
+    public void ResetDaysSince()
+    {
+        daysSince = 0;
+        daysSinceDisplay.text = daysSince.ToString();
+    }
+
+    private IEnumerator CheckDeathOnUnpause()
+    {
+        yield return new WaitUntil(() => tick.TicksPaused || tick.TickStop);
+
+        CheckForDeath();
+    }
+
+    public void CheckForDeath()
+    {
+        if (shipHealthCurrent <= 0)
+        {
+            GameManager.instance.ChangeInGameState(InGameStates.Death);
+        }
+    }
+
+    private void SetObjectBeingPlaced()
+    {
+        shipStatsUI.roomBeingPlaced = roomBeingPlaced;
+    }
+
+    public void CashPayout()
+    {
+        Credits += payout;
+        Payout = 0;
+    }
+
+    public bool HasEnoughPower(int power)
+    {
+        return EnergyRemaining.x >= power;
+    }
+    
     public void PrintShipStats()
     {
         Debug.Log("Credits " + Credits);
         Debug.Log("Energy " + EnergyRemaining);
         Debug.Log("Security " + Security);
         Debug.Log("ShipWeapons " + ShipWeapons);
-        Debug.Log("CrewUnassigned " + CrewUnassigned);
+        Debug.Log("CrewUnassigned " + CrewCurrent.z);
         Debug.Log("CrewCurrent " + CrewCurrent);
         Debug.Log("Food " + Food);
         Debug.Log("ShipHealthCurrent " + ShipHealthCurrent);
@@ -550,7 +484,7 @@ public class ShipStats : MonoBehaviour
 
     public void PayCrew(int amount)
     {
-        UpdateCreditsAmount(-amount * crewCurrent);
+        Credits -= (amount * crewCurrent);
         //int BadMoraleMultiplier = (maxMutinyMorale - crewMorale) * crewPaymentMoraleMultiplier / maxMutinyMorale;
         //UpdateCrewMorale(BadMoraleMultiplier * (ammount - crewPaymentDefault));
     }
@@ -615,30 +549,15 @@ public class ShipStats : MonoBehaviour
 
     public void ResetStats()
     {
-        credits = 0;
-        payout = 0;
-        energyRemaining = 0;
-        energyMax = 0;
-        security = 0;
-        shipWeapons = 0;
-        crewUnassigned = 0;
-        crewCurrent = 0;
-        crewCapacity = 0;
-        food = 0;
-        foodPerTick = 0;
-        shipHealthCurrent = 0;
-        shipHealthMax = 0;
-        //crewMorale = 0;
-        
-        UpdateCreditsAmount(startCredits);
-        UpdatePayoutAmount(startPayout);
-        UpdateEnergyAmount(startEnergyRemaining, startEnergyMax);
-        UpdateSecurityAmount(startSecurity);
-        UpdateShipWeaponsAmount(startShipWeapons);
-        UpdateCrewAmount(startCrewUnassigned, startCrewCurrent, startCrewCapacity);
-        UpdateFoodAmount(startFood);
-        UpdateFoodPerTickAmount(startFoodPerTick);
-        UpdateHullDurabilityAmount(startShipHealthCurrent, startShipHealthMax);
+        Credits = startCredits;
+        Payout = startPayout;
+        EnergyRemaining = new Vector2(startEnergyRemaining, startEnergyMax);
+        Security = startSecurity;
+        ShipWeapons = startShipWeapons;
+        CrewCurrent = new Vector3(startCrewUnassigned, startCrewCurrent, startCrewCapacity);
+        Food = startFood;
+        FoodPerTick = startFoodPerTick;
+        ShipHealthCurrent = new Vector2(startShipHealthCurrent, startShipHealthMax);
         //UpdateCrewMorale(startMorale);
     }
 }
