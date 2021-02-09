@@ -29,6 +29,8 @@ public class ChoiceOutcomes
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolOutcomes;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int cloneTrustChange;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int VIPTrustChange;
+    [SerializeField] public bool changeGameState;
+    [SerializeField, ShowIf("changeGameState"), AllowNesting] public InGameStates state;
 
     public void StatChange(ShipStats ship, CampaignManager campMan, bool hasSubsequentChoices)
     {
@@ -256,9 +258,15 @@ public class ChoiceOutcomes
                 }
                 
             }
+            
             if(!hasSubsequentChoices)
             {
                 narrativeResultsBox.SetActive(true);
+            }
+            
+            if(changeGameState)
+            {
+                GameManager.instance.ChangeInGameState(state);
             }
             
             //Debug.Log("Adding: " + resultText);

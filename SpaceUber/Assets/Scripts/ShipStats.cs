@@ -73,10 +73,14 @@ public class ShipStats : MonoBehaviour
     public int daysSince;
     [SerializeField] private TMP_Text daysSinceDisplay;
 
-    //mutiny calculations
-    private int maxMutinyMorale = 39;
-    private float maxMutinyMoraleMutinyChance = 0.2f;
-    private float zeroMoraleMutinyChance = 1f;
+    //mutiny variables
+    public int maxMutinyMorale = 39;
+    public float maxMutinyMoraleMutinyChance = 0.2f;
+    public float zeroMoraleMutinyChance = 1f;
+    public int baseMutinyCost = 100;
+    private int mutinyCount = 0;
+    public GameObject mutinyEvent;
+    
 
     //stats at the start of the job
     private int startCredits;
@@ -151,8 +155,11 @@ public class ShipStats : MonoBehaviour
             float mutinyChance = (maxMutinyMorale - crewMorale) * zeroMoraleMutinyChance * (1 - maxMutinyMoraleMutinyChance) / maxMutinyMorale + maxMutinyMoraleMutinyChance;
             if(mutinyChance > UnityEngine.Random.value)
             {
-                //replace this with event that gives a choice
-                GameManager.instance.ChangeInGameState(InGameStates.Mutiny);
+                mutinyCount++;
+                int mutinyCost = Mathf.RoundToInt((baseMutinyCost * ((100 - crewMorale) / 100.0f)) * mutinyCount);
+                mutinyEvent.GetComponent<InkDriverBase>().nextChoices[0].choiceRequirements[0].requiredAmount = mutinyCost;
+                mutinyEvent.GetComponent<InkDriverBase>().nextChoices[0].outcomes[0].amount = -mutinyCost;
+                EventSystem.instance.CreateMutinyEvent(mutinyEvent);
             }
             
             if(shipHealthCurrent <= 0)
@@ -662,6 +669,8 @@ public class ShipStats : MonoBehaviour
         shipHealthCurrent = 0;
         shipHealthMax = 0;
         crewMorale = 0;
+        
+        mutinyCount = 0;
         
         UpdateCreditsAmount(startCredits);
         UpdatePayoutAmount(startPayout);

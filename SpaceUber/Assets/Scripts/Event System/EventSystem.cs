@@ -207,6 +207,8 @@ public class EventSystem : MonoBehaviour
 				}
 			}
 			#endregion
+            
+            yield return new WaitWhile((() => eventActive));
 
 			//set up the sonar for the next event
 			sonarObjects.SetActive(true);
@@ -223,6 +225,22 @@ public class EventSystem : MonoBehaviour
 	/// Assigns the proper canvas to the created InkDriverBase script
 	/// </summary>
 	/// <param name="newEvent"></param>
+    
+    public void CreateMutinyEvent(GameObject newEvent)
+    {
+        StartCoroutine(SetupMutinyEvent(newEvent));
+    }
+    
+    private IEnumerator SetupMutinyEvent(GameObject newEvent)
+    {
+        ship.PauseTickEvents();
+        eventActive = true;
+        asm.LoadSceneMerged("Event_CharacterFocused");
+        yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
+        eventCanvas = FindObjectOfType<EventCanvas>();
+        CreateEvent(newEvent);
+    }
+    
 	private void CreateEvent(GameObject newEvent)
 	{
 		eventInstance = Instantiate(newEvent, eventCanvas.canvas.transform);

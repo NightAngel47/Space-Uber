@@ -53,7 +53,7 @@ public class InkDriverBase : MonoBehaviour
     [SerializeField] public List<Requirements> requiredStats = new List<Requirements>();
 
     [SerializeField, Tooltip("The first set of choices that a player will reach.")]
-    private List<EventChoice> nextChoices = new List<EventChoice>();
+    public List<EventChoice> nextChoices = new List<EventChoice>();
 
     [SerializeField] bool hasSubsequentChoices;
     [ShowIf("hasSubsequentChoices"), Tooltip("Sets of subsequent choices that can be accessed by index by an event choice.")]

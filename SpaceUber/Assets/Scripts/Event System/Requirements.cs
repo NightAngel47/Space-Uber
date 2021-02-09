@@ -39,7 +39,7 @@ public class Requirements
     
     [Tooltip("How much of this resources is required for an event to run")]
     [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
-    private int requiredAmount;
+    public int requiredAmount;
 
     [Tooltip("Click this if you would like to check if the ship resource is LESS than the number supplied")]
     [SerializeField, ShowIf("isStatRequirement"),AllowNesting]
