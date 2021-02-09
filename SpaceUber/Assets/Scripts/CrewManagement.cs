@@ -71,6 +71,11 @@ public class CrewManagement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the Room Panel that shows up after building ship. This updates it so that 
+    /// all stats are correct for the room displayed and makes sure the buttons that need  
+    /// to be enabled are.
+    /// </summary>
     public void UpdateRoom(GameObject g)
     {
         for(int i = 0; i < overtimeStats.Count; i++)
@@ -196,6 +201,10 @@ public class CrewManagement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the rooms output based on the crew assigned. So if any crew assigned it gives full amount, 
+    /// and gives percentage of full amount for when amount of crew matters.
+    /// </summary>
     public void UpdateOutput()
     {
         for (int i = 0; i < outputStats.Count; i++)
@@ -220,7 +229,7 @@ public class CrewManagement : MonoBehaviour
                         resource.activeAmount = resource.amount;
                     }
 
-                    else if (room.GetComponent<RoomStats>().currentCrew == 0)
+                    else if (room.GetComponent<RoomStats>().currentCrew == 0 || room.GetComponent<RoomStats>().currentCrew < room.GetComponent<RoomStats>().minCrew)
                     {
                         resource.activeAmount = 0;
                     }
