@@ -60,35 +60,59 @@ public class OverclockController : MonoBehaviour
 	{
         if(succsess)
 		{
+            float moraleModifier = 1;
+            int currentMorale = shipStats.Morale;
+            
+            switch(currentMorale)
+            {
+                case int cur when currentMorale >= 80 && currentMorale <= 100:
+                moraleModifier = 1.2f;
+                break;
+                case int cur when currentMorale >= 60 && currentMorale < 80:
+                moraleModifier = 1.1f;
+                break;
+                case int cur when currentMorale >= 40 && currentMorale < 60:
+                moraleModifier = 1.0f;
+                break;
+                case int cur when currentMorale >= 20 && currentMorale < 40:
+                moraleModifier = 0.9f;
+                break;
+                case int cur when currentMorale >= 0 && currentMorale < 20:
+                moraleModifier = 0.8f;
+                break;
+                default:
+                break;
+            }
+            
             if(miniGame == MiniGameType.Security)
             {
-                shipStats.UpdateSecurityAmount(Mathf.RoundToInt(securityBaseAdjustment * statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(securityBaseAdjustment * statModification), 1);
+                shipStats.UpdateSecurityAmount(Mathf.RoundToInt(securityBaseAdjustment * statModification * moraleModifier));
+                SpawnStatChangeText(Mathf.RoundToInt(securityBaseAdjustment * statModification * moraleModifier), 1);
             }
             if(miniGame == MiniGameType.Asteroids)
             {
-                shipStats.UpdateShipWeaponsAmount(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification), 2);
+                shipStats.UpdateShipWeaponsAmount(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification * moraleModifier));
+                SpawnStatChangeText(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification * moraleModifier), 2);
             }
             if(miniGame == MiniGameType.CropHarvest)
             {
-                shipStats.UpdateFoodAmount(Mathf.RoundToInt(foodBaseAdjustment * statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(foodBaseAdjustment * statModification), 3);
+                shipStats.UpdateFoodAmount(Mathf.RoundToInt(foodBaseAdjustment * statModification * moraleModifier));
+                SpawnStatChangeText(Mathf.RoundToInt(foodBaseAdjustment * statModification * moraleModifier), 3);
             }
             if(miniGame == MiniGameType.StabilizeEnergyLevels)
             {
-                shipStats.UpdateEnergyAmount(Mathf.RoundToInt(energyBaseAdjustment * statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(energyBaseAdjustment * statModification), 6);
+                shipStats.UpdateEnergyAmount(Mathf.RoundToInt(energyBaseAdjustment * statModification * moraleModifier));
+                SpawnStatChangeText(Mathf.RoundToInt(energyBaseAdjustment * statModification * moraleModifier), 6);
             }
             if(miniGame == MiniGameType.SlotMachine)
             {
-                shipStats.UpdateCreditsAmount(Mathf.RoundToInt(statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(statModification), 0);
+                shipStats.UpdateCreditsAmount(Mathf.RoundToInt(statModification * moraleModifier));
+                SpawnStatChangeText(Mathf.RoundToInt(statModification * moraleModifier), 0);
             }
             if(miniGame == MiniGameType.HullRepair)
             {
-                shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification), 6);
+                shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification * moraleModifier));
+                SpawnStatChangeText(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification * moraleModifier), 6);
             }
         }
         else
