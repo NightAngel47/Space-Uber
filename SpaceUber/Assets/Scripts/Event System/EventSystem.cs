@@ -89,12 +89,21 @@ public class EventSystem : MonoBehaviour
 		//set sonar stuff
 		sonar.SetSpinRate( eventChanceFreq );
 		sonarObjects.SetActive(false);
+		chatting = false;
 	}
 
-	/// <summary>
-	/// Plays job intro
-	/// </summary>
-	public IEnumerator PlayIntro()
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F9))
+        {
+			StartCoroutine(StartNewCharacterEvent(allCharacterEvents));
+        }
+    }
+
+    /// <summary>
+    /// Plays job intro
+    /// </summary>
+    public IEnumerator PlayIntro()
     {
 		chatting = false;
 		while(currentJob == null)

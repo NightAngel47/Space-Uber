@@ -48,6 +48,8 @@ public class CharacterEvent : InkDriverBase
     /// </summary>
     public void EndCharacterEvent()
     {
+        print("Ending this character event");
+
         switch (thisCharacter)
         {
             case CharacterStats.Characters.KUON: //Kuon boosts security and weapons by 10%
@@ -63,10 +65,12 @@ public class CharacterEvent : InkDriverBase
             case CharacterStats.Characters.MATEO: //Boosts energy
                 thisShip.EnergyRemaining += energyBoost;
                 SpawnStatChangeText(energyBoost, 4);
+                print("Adding " + energyBoost + " energy");
                 break;
             case CharacterStats.Characters.LANRI: //boosts Food
                 thisShip.Food += foodBoost;
                 SpawnStatChangeText(foodBoost, 3);
+                print("Adding " + foodBoost + " food");
                 break;
             case CharacterStats.Characters.LEXA: //gives +10 to morale
 

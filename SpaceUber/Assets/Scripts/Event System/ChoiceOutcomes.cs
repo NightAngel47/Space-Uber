@@ -27,9 +27,8 @@ public class ChoiceOutcomes
     [SerializeField] public bool isResourceOutcome;
     [SerializeField] public bool isApprovalOutcome;
 
-    //Will change to "isResourceOutcome" when designers have the chance to check the box in all old events, in order to not break them
-    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public ResourceType resource; //
-    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public int amount;
+    [SerializeField, ShowIf("isResourceOutcome"), AllowNesting] public ResourceType resource; //
+    [SerializeField, ShowIf("isResourceOutcome"), AllowNesting] public int amount;
 
     [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character;
     [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public int approvalChange;
@@ -258,6 +257,7 @@ public class ChoiceOutcomes
                 {
                     characterDriver.AnswerCorrectly();
                 }
+
                 switch (character)
                 {
                     case CharacterStats.Characters.KUON:
@@ -288,7 +288,13 @@ public class ChoiceOutcomes
 
     }
 
-
+    /// <summary>
+    /// Assigns the corresponding character event driver to this choice and outcomes. Only used for character events
+    /// </summary>
+    public void AssignCharacterDriver(CharacterEvent driver)
+    {
+        characterDriver = driver;
+    }
 
     private void SpawnStatChangeText(ShipStats ship, int value, int icon = -1)
     {
