@@ -146,6 +146,9 @@ public class OutcomeTooltipUI : MonoBehaviour
             case ResourceType.Payout:
                 return icons[0];
                 break;
+            case ResourceType.Morale:
+                return icons[7];
+                break;
             default:
                 return null;
                 break;

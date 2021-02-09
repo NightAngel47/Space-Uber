@@ -146,7 +146,8 @@ public class EventSystem : MonoBehaviour
             #region Start sonar/event chance loop
             //run random chances for event to take place in a loop
             while (!WillRunEvent(chanceOfEvent))
-			{				
+			{
+                ship.UnpauseTickEvents();
 				isTraveling = true;
 				chanceOfEvent+= chanceIncreasePerFreq;
 				yield return new WaitForSeconds(eventChanceFreq);
