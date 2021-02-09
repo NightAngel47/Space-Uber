@@ -1,0 +1,2 @@
+Having left the pit stop, you are to continue couriering Kellis's prize find into their awaiting hands. You check in on Loudon to make sure he and Equinox aren't making any more trouble. He has even done his part debunking the stories he spread among the crew about the artifact. Telling the crew that his stories were simply based on hearsay, he helps to allay their fears.
+-> END
