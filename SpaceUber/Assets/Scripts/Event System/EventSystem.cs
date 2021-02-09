@@ -13,8 +13,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.SceneManagement;
-using Ink.Parsed;
-using TMPro;
 
 public class EventSystem : MonoBehaviour
 {
