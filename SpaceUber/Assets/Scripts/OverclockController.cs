@@ -2,7 +2,7 @@
  * OverclockController.cs
  * Author(s): Grant Frey
  * Created on: 9/24/2020
- * Description: 
+ * Description:
  */
 
 using System.Collections;
@@ -53,7 +53,7 @@ public class OverclockController : MonoBehaviour
         overclocking = true;
         activeRoom = room;
         AudioManager.instance.PlaySFX("Overclock");
-        additiveSceneManager.LoadSceneMerged(miniGame.ToString()); 
+        additiveSceneManager.LoadSceneMerged(miniGame.ToString());
     }
 
     public void EndMiniGame(MiniGameType miniGame, bool succsess, float statModification = 0)
@@ -62,7 +62,7 @@ public class OverclockController : MonoBehaviour
 		{
             float moraleModifier = 1;
             int currentMorale = shipStats.Morale;
-            
+
             switch(currentMorale)
             {
                 case int cur when currentMorale >= 80 && currentMorale <= 100:
@@ -83,35 +83,35 @@ public class OverclockController : MonoBehaviour
                 default:
                 break;
             }
-            
+
             if(miniGame == MiniGameType.Security)
             {
-                shipStats.UpdateSecurityAmount(Mathf.RoundToInt(securityBaseAdjustment * statModification * moraleModifier));
+                shipStats.Security += Mathf.RoundToInt(securityBaseAdjustment * statModification * moraleModifier);
                 SpawnStatChangeText(Mathf.RoundToInt(securityBaseAdjustment * statModification * moraleModifier), 1);
             }
             if(miniGame == MiniGameType.Asteroids)
             {
-                shipStats.UpdateShipWeaponsAmount(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification * moraleModifier));
+                shipStats.ShipWeapons += Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification * moraleModifier);
                 SpawnStatChangeText(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification * moraleModifier), 2);
             }
             if(miniGame == MiniGameType.CropHarvest)
             {
-                shipStats.UpdateFoodAmount(Mathf.RoundToInt(foodBaseAdjustment * statModification * moraleModifier));
+                shipStats.Food += Mathf.RoundToInt(foodBaseAdjustment * statModification * moraleModifier);
                 SpawnStatChangeText(Mathf.RoundToInt(foodBaseAdjustment * statModification * moraleModifier), 3);
             }
             if(miniGame == MiniGameType.StabilizeEnergyLevels)
             {
-                shipStats.UpdateEnergyAmount(Mathf.RoundToInt(energyBaseAdjustment * statModification * moraleModifier));
+                shipStats.EnergyRemaining += new Vector2(Mathf.RoundToInt(energyBaseAdjustment * statModification * moraleModifier), 0);
                 SpawnStatChangeText(Mathf.RoundToInt(energyBaseAdjustment * statModification * moraleModifier), 6);
             }
             if(miniGame == MiniGameType.SlotMachine)
             {
-                shipStats.UpdateCreditsAmount(Mathf.RoundToInt(statModification * moraleModifier));
+                shipStats.Credits += Mathf.RoundToInt(statModification * moraleModifier);
                 SpawnStatChangeText(Mathf.RoundToInt(statModification * moraleModifier), 0);
             }
             if(miniGame == MiniGameType.HullRepair)
             {
-                shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification * moraleModifier));
+                shipStats.ShipHealthCurrent += new Vector2(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification * moraleModifier), 0);
                 SpawnStatChangeText(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification * moraleModifier), 6);
             }
         }
@@ -119,7 +119,7 @@ public class OverclockController : MonoBehaviour
         {
             if(miniGame == MiniGameType.Asteroids)
             {
-                shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(failHullDurabilityBaseAdjustment * statModification));
+                shipStats.ShipHealthCurrent += new Vector2(Mathf.RoundToInt(failHullDurabilityBaseAdjustment * statModification), 0);
                 SpawnStatChangeText(Mathf.RoundToInt(failHullDurabilityBaseAdjustment * statModification));
             }
         }
@@ -135,17 +135,17 @@ public class OverclockController : MonoBehaviour
         activeRoom = null;
         //FindObjectOfType<CrewManagement>().crewManagementText.SetActive(true);
 	}
-    
+
     private void SpawnStatChangeText(int value, int icon = -1)
     {
         ShipStatsUI shipStatsUI = shipStats.GetComponent<ShipStatsUI>();
         GameObject statChangeUI = Instantiate(shipStatsUI.statChangeText);
-        
+
         RectTransform rect = statChangeUI.GetComponent<RectTransform>();
-        
+
         Vector3 spawnPos = cam.WorldToScreenPoint(activeRoom.transform.GetChild(0).position);
         rect.anchoredPosition = new Vector2(spawnPos.x, spawnPos.y);
-        
+
         statChangeUI.transform.parent = shipStats.GetComponent<ShipStatsUI>().canvas; // you have to set the parent after you change the anchored position or the position gets messed up.  Don't set it in the instantiation.  I don't know why someone decided to change that.
 
         MoveAndFadeBehaviour moveAndFadeBehaviour = statChangeUI.GetComponent<MoveAndFadeBehaviour>();
@@ -153,9 +153,9 @@ public class OverclockController : MonoBehaviour
         moveAndFadeBehaviour.SetValue(value, icon);
     }
 
-    public void UnloadScene(MiniGameType miniGame) 
+    public void UnloadScene(MiniGameType miniGame)
     {
         overclocking = false;
-        additiveSceneManager.UnloadScene(miniGame.ToString()); 
+        additiveSceneManager.UnloadScene(miniGame.ToString());
     }
 }

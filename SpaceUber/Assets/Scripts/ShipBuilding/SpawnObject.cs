@@ -95,7 +95,7 @@ public class SpawnObject : MonoBehaviour
 
     public void SpawnRoom(GameObject ga)
     {
-        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price && FindObjectOfType<ShipStats>().EnergyRemaining >= ga.GetComponent<RoomStats>().minPower) //checks to see if the player has enough credits for the room
+        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price && FindObjectOfType<ShipStats>().EnergyRemaining.x >= ga.GetComponent<RoomStats>().minPower) //checks to see if the player has enough credits for the room
         {
             if (lastSpawned == null || lastSpawned.GetComponent<ObjectMover>().enabled == false) //makes sure that the prior room is placed before the next room can be added
             {
@@ -192,7 +192,7 @@ public class SpawnObject : MonoBehaviour
                 StartCoroutine(WaitForText());
             }
 
-            if (FindObjectOfType<ShipStats>().EnergyRemaining < ga.GetComponent<RoomStats>().minPower)
+            if (FindObjectOfType<ShipStats>().EnergyRemaining.x < ga.GetComponent<RoomStats>().minPower)
             {
                 AudioManager.instance.PlaySFX(cannotPlaceEnergy[UnityEngine.Random.Range(0, cannotPlaceEnergy.Length)]);
                 Debug.Log("No Energy");

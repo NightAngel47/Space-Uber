@@ -41,7 +41,7 @@ public class ChoiceOutcomes
                 switch (resource)
                 {
                     case ResourceType.Credits:
-                        ship.UpdateCreditsAmount(amount);
+                        ship.Credits += amount;
                         SpawnStatChangeText(ship, amount, 0);
 
                         if(amount < 0)
@@ -55,7 +55,7 @@ public class ChoiceOutcomes
 
                         break;
                     case ResourceType.Energy:
-                        ship.UpdateEnergyAmount(amount);
+                        ship.EnergyRemaining += new Vector2(amount, 0);
                         SpawnStatChangeText(ship, amount, 5);
 
                         if (amount < 0)
@@ -68,7 +68,7 @@ public class ChoiceOutcomes
                         }
                         break;
                     case ResourceType.Security:
-                        ship.UpdateSecurityAmount(amount);
+                        ship.Security += amount;
                         SpawnStatChangeText(ship, amount, 1);
 
                         if (amount < 0)
@@ -82,7 +82,7 @@ public class ChoiceOutcomes
 
                         break;
                     case ResourceType.ShipWeapons:
-                        ship.UpdateShipWeaponsAmount(amount);
+                        ship.ShipWeapons += amount;
                         SpawnStatChangeText(ship, amount, 2);
 
                         if (amount < 0)
@@ -99,30 +99,30 @@ public class ChoiceOutcomes
                         {
                             int amountFromAssigned;
                             int amountFromUnassigned;
-                            if(ship.CrewCurrent - ship.CrewUnassigned >= -amount)
+                            if(ship.CrewCurrent.x - ship.CrewCurrent.z >= -amount)
                             {
                                 amountFromAssigned = -amount;
                                 amountFromUnassigned = 0;
                             }
                             else
                             {
-                                amountFromAssigned = ship.CrewCurrent - ship.CrewUnassigned;
+                                amountFromAssigned = (int)ship.CrewCurrent.x - (int)ship.CrewCurrent.z;
                                 amountFromUnassigned = -amount - amountFromAssigned;
                             }
                             ship.RemoveRandomCrew(amountFromAssigned);
-                            ship.UpdateCrewAmount(-amountFromUnassigned, amount);
+                            ship.CrewCurrent += new Vector3(amount, -amountFromUnassigned, 0);
                             SpawnStatChangeText(ship, amount);
                             resultText += "\nYou lost " + Math.Abs(amount) + " crew";
                         }
                         else
                         {
-                            ship.UpdateCrewAmount(amount, amount);
+                            ship.CrewCurrent += new Vector3(amount, amount, 0);
                             SpawnStatChangeText(ship, amount);
                             resultText += "\nYou gained " + Math.Abs(amount) + " crew";
                         }
                         break;
                     case ResourceType.Food:
-                        ship.UpdateFoodAmount(amount);
+                        ship.Food += amount;
                         SpawnStatChangeText(ship, amount, 3);
                         if (amount < 0)
                         {
@@ -134,7 +134,7 @@ public class ChoiceOutcomes
                         }
                         break;
                     case ResourceType.FoodPerTick:
-                        ship.UpdateFoodPerTickAmount(amount);
+                        ship.FoodPerTick += amount;
                         SpawnStatChangeText(ship, amount, 3);
 
                         if (amount < 0)
@@ -147,8 +147,12 @@ public class ChoiceOutcomes
                         }
                         break;
                     case ResourceType.HullDurability:
-                        ship.UpdateHullDurabilityAmount(amount, 0, hasSubsequentChoices);
+                        ship.ShipHealthCurrent += new Vector2(amount, 0);
                         SpawnStatChangeText(ship, amount, 6);
+                        if(hasSubsequentChoices && ship.ShipHealthCurrent.x <= 0)
+                        {
+                            ship.CheckForDeath();
+                        }
 
                         if (amount < 0)
                         {
@@ -160,7 +164,7 @@ public class ChoiceOutcomes
                         }
                         break;
                     case ResourceType.Payout:
-                        ship.UpdatePayoutAmount(amount);
+                        ship.Payout += amount;
                         SpawnStatChangeText(ship, amount, 0);
                         
                         if (amount < 0)

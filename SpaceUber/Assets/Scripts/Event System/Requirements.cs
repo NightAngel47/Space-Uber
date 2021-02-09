@@ -115,13 +115,13 @@ public class Requirements
             switch (selectedResource)
             {
                 case ResourceType.HULL:
-                    shipStat = thisShip.ShipHealthCurrent;
+                    shipStat = (int)thisShip.ShipHealthCurrent.x;
                     break;
                 case ResourceType.ENERGY:
-                    shipStat = thisShip.EnergyRemaining;
+                    shipStat = (int)thisShip.EnergyRemaining.x;
                     break;
                 case ResourceType.CREW:
-                    shipStat = thisShip.CrewCurrent;
+                    shipStat = (int)thisShip.CrewCurrent.x;
                     break;
                 case ResourceType.FOOD:
                     shipStat = thisShip.Food;

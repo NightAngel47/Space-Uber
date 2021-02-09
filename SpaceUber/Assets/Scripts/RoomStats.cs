@@ -2,7 +2,7 @@
  * RoomStats.cs
  * Author(s): Grant Frey
  * Created on: 9/16/2020 (en-US)
- * Description: 
+ * Description:
  */
 
 using System;
@@ -43,7 +43,7 @@ public class RoomStats : MonoBehaviour
     private int foodPerTick = 0;
     private int shipHealth = 0;
     private int morale = 0;
-    
+
     private float moraleModifier = 1.2f;
 
     ShipStats shipStats;
@@ -57,16 +57,16 @@ public class RoomStats : MonoBehaviour
     [SerializeField] private RoomTooltipUI roomTooltipUI;
 
     public Transform[] statCanvas;
-    
+
     private Camera cam;
-    
+
     void Start()
     {
         if(ignoreMorale)
         {
             moraleModifier = 1;
         }
-        
+
         cam = Camera.main;
         shipStats = FindObjectOfType<ShipStats>();
         StartCoroutine(LateStart(0.1f));
@@ -119,7 +119,7 @@ public class RoomStats : MonoBehaviour
     {
         int crewRange = maxCrew - minCrew + 1;
         float percent = (float)(maxCrew - 1) / (float)crewRange;
-        
+
         foreach (Resource resource in resources)
         {
             if (flatOutput == true)
@@ -160,7 +160,7 @@ public class RoomStats : MonoBehaviour
             else
             {
                 resource.minAmount = resource.amount - (int)(resource.amount * percent);
-                
+
                 switch (resource.resourceType)
                 {
                     case "Credits":
@@ -208,14 +208,14 @@ public class RoomStats : MonoBehaviour
     {
         return isPowered;
     }
-    
+
     public void KeepRoomStatsUpToDateWithMorale()
     {
         if(!ignoreMorale)
         {
             float previousMoraleModifier = moraleModifier;
             int currentMorale = shipStats.Morale;
-            
+
             switch(currentMorale)
             {
                 case int cur when currentMorale >= 80 && currentMorale <= 100:
@@ -236,14 +236,14 @@ public class RoomStats : MonoBehaviour
                 default:
                     break;
             }
-        
+
             if(moraleModifier != previousMoraleModifier)
             {
                 UpdateRoomStats();
             }
         }
     }
-    
+
     public void SetActiveAmount(Resource resource)
     {
         int crewRange = maxCrew - minCrew + 1;
@@ -279,7 +279,7 @@ public class RoomStats : MonoBehaviour
         foreach (Resource resource in resources)
         {
             SetActiveAmount(resource);
-            
+
             switch (resource.resourceType)
             {
                 case "Credits":
@@ -331,25 +331,16 @@ public class RoomStats : MonoBehaviour
     public void AddRoomStats()
     {
         shipStats.roomBeingPlaced = gameObject;
-        
-        if(usedRoom == true)
-        {
-            shipStats.UpdateCreditsAmount((int)(-price * priceReducationPercent));
-        }
-        else
-        {
-            shipStats.UpdateCreditsAmount(-price);
-        }
-        
-        shipStats.UpdatePayoutAmount(credits);
-        shipStats.UpdateEnergyAmount(energy, energy);
-        shipStats.UpdateEnergyAmount(-minPower);
-        shipStats.UpdateSecurityAmount(security);
-        shipStats.UpdateShipWeaponsAmount(shipWeapons);
-        shipStats.UpdateCrewAmount(crew, crew, crew);
-        shipStats.UpdateFoodAmount(food);
-        shipStats.UpdateFoodPerTickAmount(foodPerTick);
-        shipStats.UpdateHullDurabilityAmount(shipHealth, shipHealth);
+        shipStats.Credits += -price;
+        shipStats.Payout += credits;
+        shipStats.EnergyRemaining += new Vector2(energy, energy);
+        shipStats.EnergyRemaining += new Vector2(-minPower, 0);
+        shipStats.Security += security;
+        shipStats.ShipWeapons += shipWeapons;
+        shipStats.CrewCurrent += new Vector3(crew, crew, crew);
+        shipStats.Food += food;
+        shipStats.FoodPerTick += foodPerTick;
+        shipStats.ShipHealthCurrent += new Vector2(shipHealth, shipHealth);
         shipStats.UpdateCrewMorale(morale, true);
     }
 
@@ -360,37 +351,37 @@ public class RoomStats : MonoBehaviour
     {
         if(usedRoom == true)
         {
-            shipStats.UpdateCreditsAmount((int)(price * priceReducationPercent));
+            shipStats.Credits += (int)(price * priceReducationPercent);
         }
         else
         {
-            shipStats.UpdateCreditsAmount(price);
+            shipStats.Credits += price;
         }
-        
-        shipStats.UpdatePayoutAmount(-credits);
-        shipStats.UpdateEnergyAmount(-energy, -energy);
-        shipStats.UpdateEnergyAmount(minPower);
-        shipStats.UpdateSecurityAmount(-security);
-        shipStats.UpdateShipWeaponsAmount(-shipWeapons);
-        shipStats.UpdateCrewAmount(-crew, -crew, -crew);
-        shipStats.UpdateFoodAmount(-food);
-        shipStats.UpdateFoodPerTickAmount(-foodPerTick);
-        shipStats.UpdateHullDurabilityAmount(-shipHealth, -shipHealth);
+
+        shipStats.Payout += -credits;
+        shipStats.EnergyRemaining += new Vector2(-energy, -energy);
+        shipStats.EnergyRemaining += new Vector2(minPower, 0);
+        shipStats.Security += -security;
+        shipStats.ShipWeapons += -shipWeapons;
+        shipStats.CrewCurrent += new Vector3(-crew, -crew, -crew);
+        shipStats.Food += -food;
+        shipStats.FoodPerTick += -foodPerTick;
+        shipStats.ShipHealthCurrent += new Vector2(-shipHealth, -shipHealth);
         shipStats.UpdateCrewMorale(-morale, true);
     }
-    
+
     public void SpawnStatChangeText(int value, int icon = -1)
     {
         ShipStatsUI shipStatsUI = shipStats.GetComponent<ShipStatsUI>();
         GameObject statChangeUI = Instantiate(shipStatsUI.statChangeText);
-        
+
         RectTransform rect = statChangeUI.GetComponent<RectTransform>();
-        
+
         Vector3 spawnPos = cam.WorldToScreenPoint(transform.GetChild(0).position);
         rect.anchoredPosition = new Vector2(spawnPos.x, spawnPos.y);
-        
+
         statChangeUI.transform.parent = shipStats.GetComponent<ShipStatsUI>().canvas; // you have to set the parent after you change the anchored position or the position gets messed up.  Don't set it in the instantiation.  I don't know why someone decided to change that.
-        
+
         MoveAndFadeBehaviour moveAndFadeBehaviour = statChangeUI.GetComponent<MoveAndFadeBehaviour>();
         moveAndFadeBehaviour.offset = new Vector2(0, 25 + transform.GetChild(0).localPosition.y * 100);
         moveAndFadeBehaviour.SetValue(value, icon);
@@ -398,6 +389,7 @@ public class RoomStats : MonoBehaviour
 
     private void OnDestroy()
     {
-        shipStats.UpdateCrewAmount(currentCrew);
+        // reset the ship's crew stats back to before room was placed
+        shipStats.CrewCurrent += new Vector3(currentCrew, 0, currentCrew);
     }
 }
