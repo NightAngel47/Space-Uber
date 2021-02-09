@@ -126,7 +126,14 @@ public class InkDriverBase : MonoBehaviour
         {
             if (!story.canContinue && story.currentChoices.Count == 0)
             {
-                EventSystem.instance.ConcludeEvent();
+                if (eventName.Equals("Mutiny"))
+                {
+                    EventSystem.instance.ConcludeEvent(false);
+                }
+                else
+                {
+                    EventSystem.instance.ConcludeEvent();
+                }
             }
         }
     }

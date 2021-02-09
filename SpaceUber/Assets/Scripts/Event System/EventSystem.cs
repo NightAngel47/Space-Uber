@@ -56,7 +56,6 @@ public class EventSystem : MonoBehaviour
     private float eventRollCounter;
 
 	public bool eventActive { get; private set; } = false;
-    public bool promptActive = false;
 
 	[SerializeField] private GameObject sonarObjects;
 	[SerializeField] private EventWarning eventWarning;
@@ -151,19 +150,22 @@ public class EventSystem : MonoBehaviour
             // roll for next event unless skipped to it
             while (!skippedToEvent && eventRollCounter <= eventChanceFreq)
             {
-	            // count up for every roll
-	            eventRollCounter += Time.deltaTime;
-	            // if reached next roll
-	            if (eventRollCounter >= eventChanceFreq)
+	            if (!eventActive)
 	            {
-		            if (WillRunEvent(chanceOfEvent))
+		            // count up for every roll
+		            eventRollCounter += Time.deltaTime;
+		            // if reached next roll
+		            if (eventRollCounter >= eventChanceFreq)
 		            {
-			            nextEventLockedIn = true;
-			            break;
-		            }
+			            if (WillRunEvent(chanceOfEvent))
+			            {
+				            nextEventLockedIn = true;
+				            break;
+			            }
 
-		            chanceOfEvent += chanceIncreasePerFreq;
-		            eventRollCounter = 0; // reset roll counter
+			            chanceOfEvent += chanceIncreasePerFreq;
+			            eventRollCounter = 0; // reset roll counter
+		            }
 	            }
 
 	            yield return new WaitForEndOfFrame();
@@ -265,13 +267,20 @@ public class EventSystem : MonoBehaviour
     
     public void CreateMutinyEvent(GameObject newEvent)
     {
+	    //If event button scene is loaded, hide the canvas until mutiny event is over
+	    if (SceneManager.GetSceneByName("Event_Prompt").isLoaded)
+	    {
+		    eventPromptButton.gameObject.SetActive(false);
+	    }
+	    
 	    StartCoroutine(SetupMutinyEvent(newEvent));
     }
     
     private IEnumerator SetupMutinyEvent(GameObject newEvent)
     {
 	    tick.PauseTickEvents();
-	    eventActive = true;
+	    
+	    sonarObjects.SetActive(false);
 	    
 	    asm.LoadSceneMerged("Event_CharacterFocused");
 	    yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
@@ -285,9 +294,8 @@ public class EventSystem : MonoBehaviour
     /// Ends the event that is currently running.
     /// If the max number of events has been reached, go to the ending
     /// </summary>
-    public void ConcludeEvent()
+    public void ConcludeEvent(bool resetEventTimer = true)
 	{
-		ship.ResetDaysSince();
 		eventInstance.GetComponent<InkDriverBase>().ClearUI();
 
 		//in case a random event isn't chosen
@@ -309,17 +317,25 @@ public class EventSystem : MonoBehaviour
 			GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);
 		}
 
-        //set up the sonar for the next event
+		//reset event timer for next event 
+        if (resetEventTimer)
+        {
+	        ship.ResetDaysSince();
+	        sonar.ResetSonar();
+	        eventRollCounter = 0;
+	        skippedToEvent = false;
+	        nextEventLockedIn = false;
+        }
+        
+        // reset for next event
         sonarObjects.SetActive(true);
-        sonar.ResetSonar();
         tick.UnpauseTickEvents();
-
-        //reset for next event
-        skippedToEvent = false;
-        nextEventLockedIn = false;
-        eventRollCounter = 0;
-
         eventActive = false;
+        
+        if (SceneManager.GetSceneByName("Event_Prompt").isLoaded)
+        {
+	        eventPromptButton.gameObject.SetActive(true);
+        }
 	}
 
 	private void ClearEventSystem()

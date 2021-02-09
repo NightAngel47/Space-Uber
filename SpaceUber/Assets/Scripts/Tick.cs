@@ -55,7 +55,6 @@ public class Tick : MonoBehaviour
 
             // calculate net food produced per tick
             int netFood = shipStats.FoodPerTick - (int) shipStats.CrewCurrent.x;
-            print(netFood);
             // calculate possible missing food
             int missingFood = shipStats.Food + netFood;
             // will there be missing food, thus starving crew?
