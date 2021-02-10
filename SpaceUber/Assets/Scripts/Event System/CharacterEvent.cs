@@ -61,17 +61,17 @@ public class CharacterEvent : InkDriverBase
                 thisShip.Security = newSecurityValue;
                 thisShip.ShipWeapons = newWeaponsValue;
 
-                SpawnStatChangeText(newSecurityValue, 1);
-                SpawnStatChangeText(newWeaponsValue, 2);
+                SpawnStatChangeText(newSecurityValue, GameManager.instance.GetResourceData((int) ResourceDataTypes._Security).resourceIcon);
+                SpawnStatChangeText(newWeaponsValue, GameManager.instance.GetResourceData((int) ResourceDataTypes._ShipWeapons).resourceIcon);
                 break;
             case CharacterStats.Characters.MATEO: //Boosts energy
-                thisShip.EnergyRemaining += energyBoost;
-                SpawnStatChangeText(energyBoost, 4);
+                thisShip.EnergyRemaining += new Vector2(energyBoost, 0);
+                SpawnStatChangeText(energyBoost, GameManager.instance.GetResourceData((int) ResourceDataTypes._Energy).resourceIcon);
                 print("Adding " + energyBoost + " energy");
                 break;
             case CharacterStats.Characters.LANRI: //boosts Food
                 thisShip.Food += foodBoost;
-                SpawnStatChangeText(foodBoost, 3);
+                SpawnStatChangeText(foodBoost, GameManager.instance.GetResourceData((int) ResourceDataTypes._Food).resourceIcon);
                 print("Adding " + foodBoost + " food");
                 break;
             case CharacterStats.Characters.LEXA: //gives +10 to morale
@@ -83,22 +83,22 @@ public class CharacterEvent : InkDriverBase
         }
     }
 
-        /// <summary>
-        /// Shows the text that will appear over stats whenever the player receives an update to it
-        /// Credits - Security - Weapons - Food - Crew - Power - Hull
-        /// </summary>
-        /// <param name="value">The actual number that shows how much the value changed</param>
-        /// <param name="iconNumber">Which icon will be used. </param>
-        private void SpawnStatChangeText(int value, int icon = -1)
+    /// <summary>
+    /// Shows the text that will appear over stats whenever the player receives an update to it
+    /// Credits - Security - Weapons - Food - Crew - Power - Hull
+    /// </summary>
+    /// <param name="value">The actual number that shows how much the value changed</param>
+    /// <param name="icon">Which icon will be used. </param>
+    private void SpawnStatChangeText(int value, Sprite icon = null)
     {
         GameObject statChangeText = thisShip.GetComponent<ShipStatsUI>().statChangeText;
-        GameObject instance = GameObject.Instantiate(statChangeText);
-
+        GameObject instance = Instantiate(statChangeText);
+    
         RectTransform rect = instance.GetComponent<RectTransform>();
         rect.anchoredPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
         instance.transform.parent = thisShip.GetComponent<ShipStatsUI>().canvas;
-
+        
         MoveAndFadeBehaviour moveAndFadeBehaviour = instance.GetComponent<MoveAndFadeBehaviour>();
         moveAndFadeBehaviour.offset = new Vector2(0, +75);
         moveAndFadeBehaviour.SetValue(value, icon);

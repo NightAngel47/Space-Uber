@@ -112,55 +112,6 @@ public class ShipStats : MonoBehaviour
 
         cStats = gameObject.GetComponent<CharacterStats>();
     }
-    public void PauseTickEvents()
-    {
-        ticksPaused = true;
-    }
-
-    public void UnpauseTickEvents()
-    {
-        ticksPaused = false;
-    }
-
-    public void StopTickEvents()
-    {
-        tickStop = true;
-    }
-
-    public void StartTickEvents()
-    {
-        if (tickStop)
-        {
-            tickStop = false;
-            ticksPaused = false;
-            StartCoroutine(TickUpdate());
-        }
-    }
-
-    public void ResetDaysSince()
-    {
-        daysSince = 0;
-        daysSinceDisplay.text = daysSince.ToString();
-    }
-
-    private IEnumerator<YieldInstruction> CheckDeathOnUnpause()
-    {
-        while (ticksPaused || tickStop)
-        {
-            yield return new WaitForFixedUpdate();
-        }
-
-        if (shipHealthCurrent <= 0)
-        {
-            GameManager.instance.ChangeInGameState(InGameStates.Death);
-
-        }
-    }
-
-    public void SetObjectBeingPlaced()
-    {
-        shipStatsUI.roomBeingPlaced = roomBeingPlaced;
-    }
 
     /// <summary>
     /// Property for Credits. Getter and setter

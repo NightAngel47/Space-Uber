@@ -129,7 +129,7 @@ public class OverclockController : MonoBehaviour
 
         MoveAndFadeBehaviour moveAndFadeBehaviour = statChangeUI.GetComponent<MoveAndFadeBehaviour>();
         moveAndFadeBehaviour.offset = new Vector2(0, 25 + activeRoom.transform.GetChild(0).localPosition.y * 100);
-        moveAndFadeBehaviour.SetValue(value, iconNumber);
+        moveAndFadeBehaviour.SetValue(value, icon);
     }
 
     /// <summary>

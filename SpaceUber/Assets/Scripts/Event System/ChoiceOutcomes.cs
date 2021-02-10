@@ -315,17 +315,3 @@ public class ChoiceOutcomes
         moveAndFadeBehaviour.SetValue(value, icon);
     }
 }
-
-public enum ResourceType
-{
-    Credits,
-    Energy,
-    Security,
-    ShipWeapons,
-    Crew,
-    Food,
-    FoodPerTick,
-    HullDurability,
-    Stock,
-    Payout
-}
