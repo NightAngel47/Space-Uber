@@ -116,7 +116,7 @@ public class RoomStats : MonoBehaviour
             resource.minAmount = resource.amount - (int)(resource.amount * percent);
             if (flatOutput == true)
             {
-                switch (resource.resourceType)
+                switch (resource.resourceType.resourceName)
                 {
                     case "Credits":
                         credits += resource.amount;
@@ -148,7 +148,7 @@ public class RoomStats : MonoBehaviour
             }
             else
             {
-                switch (resource.resourceType)
+                switch (resource.resourceType.resourceName)
                 {
                     case "Credits":
                         credits += resource.minAmount;
@@ -197,7 +197,7 @@ public class RoomStats : MonoBehaviour
         SubtractRoomStats();
         foreach (Resource resource in resources)
         {
-            switch (resource.resourceType)
+            switch (resource.resourceType.resourceName)
             {
                 case "Credits":
                     //credits -= resource.minAmount;
@@ -281,7 +281,7 @@ public class RoomStats : MonoBehaviour
         shipStats.ShipHealthCurrent += new Vector2(-shipHealth, -shipHealth);
     }
     
-    public void SpawnStatChangeText(int value, int icon = -1)
+    public void SpawnStatChangeText(int value, Sprite icon = null)
     {
         ShipStatsUI shipStatsUI = shipStats.GetComponent<ShipStatsUI>();
         GameObject statChangeUI = Instantiate(shipStatsUI.statChangeText);

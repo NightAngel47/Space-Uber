@@ -24,7 +24,7 @@ public class ChoiceOutcomes
     [HideInInspector] public bool hasSubsequentChoices;
 
     [SerializeField] public bool isNarrativeOutcome;
-    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public ResourceType resource;
+    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public ResourceDataTypes resource;
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public int amount;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolOutcomes;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int cloneTrustChange;
@@ -38,9 +38,9 @@ public class ChoiceOutcomes
             {
                 switch (resource)
                 {
-                    case ResourceType.Credits:
+                    case ResourceDataTypes._Credits:
                         ship.Credits += amount;
-                        SpawnStatChangeText(ship, amount, 0);
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon);
 
                         if(amount < 0)
                         {
@@ -52,9 +52,9 @@ public class ChoiceOutcomes
                         }
 
                         break;
-                    case ResourceType.Energy:
+                    case ResourceDataTypes._Energy:
                         ship.EnergyRemaining += new Vector2(amount, 0);
-                        SpawnStatChangeText(ship, amount, 5);
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
 
                         if (amount < 0)
                         {
@@ -65,9 +65,9 @@ public class ChoiceOutcomes
                             resultText += "\nYou gained " + Math.Abs(amount) + " energy";
                         }
                         break;
-                    case ResourceType.Security:
+                    case ResourceDataTypes._Security:
                         ship.Security += amount;
-                        SpawnStatChangeText(ship, amount, 1);
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
 
                         if (amount < 0)
                         {
@@ -79,9 +79,9 @@ public class ChoiceOutcomes
                         }
 
                         break;
-                    case ResourceType.ShipWeapons:
+                    case ResourceDataTypes._ShipWeapons:
                         ship.ShipWeapons += amount;
-                        SpawnStatChangeText(ship, amount, 2);
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
 
                         if (amount < 0)
                         {
@@ -92,7 +92,7 @@ public class ChoiceOutcomes
                             resultText += "\nYou gained " + Math.Abs(amount) + " weapons";
                         }
                         break;
-                    case ResourceType.Crew:
+                    case ResourceDataTypes._Crew:
                         if(amount < 0)
                         {
                             int amountFromAssigned;
@@ -109,19 +109,19 @@ public class ChoiceOutcomes
                             }
                             ship.RemoveRandomCrew(amountFromAssigned);
                             ship.CrewCurrent += new Vector3(amount, -amountFromUnassigned, 0);
-                            SpawnStatChangeText(ship, amount);
+                            SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                             resultText += "\nYou lost " + Math.Abs(amount) + " crew";
                         }
                         else
                         {
                             ship.CrewCurrent += new Vector3(amount, amount, 0);
-                            SpawnStatChangeText(ship, amount);
+                            SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                             resultText += "\nYou gained " + Math.Abs(amount) + " crew";
                         }
                         break;
-                    case ResourceType.Food:
+                    case ResourceDataTypes._Food:
                         ship.Food += amount;
-                        SpawnStatChangeText(ship, amount, 3);
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
                         if (amount < 0)
                         {
                             resultText += "\nYou lost " + Math.Abs(amount) + " food";
@@ -131,10 +131,10 @@ public class ChoiceOutcomes
                             resultText += "\nYou gained " + Math.Abs(amount) + " food";
                         }
                         break;
-                    case ResourceType.FoodPerTick:
+                    case ResourceDataTypes._FoodPerTick:
                         ship.FoodPerTick += amount;
-                        SpawnStatChangeText(ship, amount, 3);
-
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._FoodPerTick).resourceIcon);
+                        
                         if (amount < 0)
                         {
                             resultText += "\nFood Per Tick decreased by " + Math.Abs(amount);
@@ -144,9 +144,9 @@ public class ChoiceOutcomes
                             resultText += "\nFood Per Tick increased by " + Math.Abs(amount);
                         }
                         break;
-                    case ResourceType.HullDurability:
+                    case ResourceDataTypes._HullDurability:
                         ship.ShipHealthCurrent += new Vector2(amount, 0);
-                        SpawnStatChangeText(ship, amount, 6);
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon);
                         if(hasSubsequentChoices && ship.ShipHealthCurrent.x <= 0)
                         {
                             ship.CheckForDeath();
@@ -161,9 +161,9 @@ public class ChoiceOutcomes
                             resultText += "\nYou gained " + Math.Abs(amount) + " hull durability";
                         }
                         break;
-                    case ResourceType.Payout:
+                    case ResourceDataTypes._Payout:
                         ship.Payout += amount;
-                        SpawnStatChangeText(ship, amount, 0);
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Payout).resourceIcon);
                         if (amount < 0)
                         {
                             resultText += "\nYour payout decreased by " + Math.Abs(amount);
@@ -257,7 +257,7 @@ public class ChoiceOutcomes
 
     }
 
-    private void SpawnStatChangeText(ShipStats ship, int value, int icon = -1)
+    private void SpawnStatChangeText(ShipStats ship, int value, Sprite icon)
     {
         GameObject statChangeText = ship.GetComponent<ShipStatsUI>().statChangeText;
         GameObject instance = GameObject.Instantiate(statChangeText);

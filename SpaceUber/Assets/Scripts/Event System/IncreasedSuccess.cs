@@ -13,21 +13,9 @@ using UnityEngine;
 [Serializable]
 public class IncreasedSuccess
 {
-    public enum ResourceType
-    {
-        HULL,
-        ENERGY,
-        CREW,
-        FOOD,
-        WEAPONS,
-        SECURITY,
-        CREDITS,
-        //MORALE
-    }
-
     [Tooltip("The resource you would like to be compared")]
     [SerializeField, AllowNesting]
-    private ResourceType selectedResource;
+    private ResourceDataTypes selectedResource;
 
     [Tooltip("How much of this resources is required for an increased percent change to be present")]
     [SerializeField, AllowNesting]
@@ -54,28 +42,28 @@ public class IncreasedSuccess
         int shipStat = 0;
         switch (selectedResource)
         {
-            case ResourceType.HULL:
+            case ResourceDataTypes._HullDurability:
                 shipStat = (int)thisShip.ShipHealthCurrent.x;
                 break;
-            case ResourceType.ENERGY:
+            case ResourceDataTypes._Energy:
                 shipStat = (int)thisShip.EnergyRemaining.x;
                 break;
-            case ResourceType.CREW:
+            case ResourceDataTypes._Crew:
                 shipStat = (int)thisShip.CrewCurrent.x;
                 break;
-            case ResourceType.FOOD:
+            case ResourceDataTypes._Food:
                 shipStat = thisShip.Food;
                 break;
-            case ResourceType.WEAPONS:
+            case ResourceDataTypes._ShipWeapons:
                 shipStat = thisShip.ShipWeapons;
                 break;
-            case ResourceType.SECURITY:
+            case ResourceDataTypes._Security:
                 shipStat = thisShip.Security;
                 break;
             //case ResourceType.MORALE:
             //    shipStat = thisShip.Morale;
             //    break;
-            case ResourceType.CREDITS:
+            case ResourceDataTypes._Credits:
                 shipStat = thisShip.Credits;
                 break;
         }
