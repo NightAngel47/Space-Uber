@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     
     private ShipStats ship;
 
-    public List<ResourceDataType> resourceDataRef = new List<ResourceDataType>();
+    [SerializeField] private List<ResourceDataType> resourceDataRef = new List<ResourceDataType>();
 
     /// <summary>
     /// Sets the instance of the GameManager using the Singleton pattern.
