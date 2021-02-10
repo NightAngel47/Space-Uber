@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8354258606540800585}
   - component: {fileID: 8354258606540800590}
+  - component: {fileID: 1836060890}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -2262,12 +2263,86 @@ MonoBehaviour:
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0
+  radioTracks:
+  - name: POPZ
+    tracks:
+    - name: POPZ_demo
+      clip: {fileID: 8300000, guid: 0722b3fdb3f0e3041834ad12f16b527b, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.7
+      pitch: 0
+      volumeVarience: 0
+      pitchVarience: 0
+  - name: SMTH
+    tracks:
+    - name: SMTH_demo
+      clip: {fileID: 8300000, guid: a896a2dd1badf7b4a9c9180028c02b39, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.9
+      pitch: 0
+      volumeVarience: 0
+      pitchVarience: 0
+  - name: CTRY
+    tracks: []
+  - name: ZERO
+    tracks: []
+  - name: NOIS
+    tracks: []
+  - name: LBTC
+    tracks: []
   currentlyPlayingAmbience: []
   masterVolume: 1
   sfxVolume: 1
   musicVolume: 1
   ambienceVolume: 1
+  radioVolume: 0
   fadeOutTime: 2
   trackOverlapTime: 1.25
   fadeInTime: 3.25
   isMuted: 0
+--- !u!114 &1836060890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8354258606540800588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 405d88582810803438657cb8e502659b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentStationName: {fileID: 0}
+  currentStationDesc: {fileID: 0}
+  stations:
+  - name: POPZ
+    tooltipName: Space Pop
+    tooltipDesc: A simulation of popular music in the void of space. Simplistic in
+      musical structure, full of the same chords and tropes of current pop with a
+      bend towards synthetic and chiptune sound fonts. Will incorporate music that
+      playtesters and team-members mention as liking in particular.
+  - name: SMTH
+    tooltipName: Star Jazz
+    tooltipDesc: "Smooth listening for all varieties of space-dwelling individuals.
+      Piano-focused station that relies on sound that\u2019s easy on the ears, even
+      if it\u2019s not always the simplest compositionally."
+  - name: CTRY
+    tooltipName: Void Country
+    tooltipDesc: Somehow, the tenets of twang and common compositional ideas made
+      their way out to the stars. The guitar-focused station incorporates traditional
+      and synth sounds.
+  - name: ZERO
+    tooltipName: Robot Jams
+    tooltipDesc: Rhythm-heavy music with heavier synthetic sounds and less melodic
+      theming throughout. Similar to industrial movements in rock and electronic
+      music.
+  - name: NOIS
+    tooltipName: Alien Noises
+    tooltipDesc: "Weird, often overtly complex \u201Cmusic\u201D that pushes the
+      boundaries of conventional-sounding stations."
+  - name: LBTC
+    tooltipName: Lo-Fi Beats to Transport Cargo To
+    tooltipDesc: Exactly what is sounds like. The phenomenon of Lo-Fi music focused
+      on consistent rhythms and interesting patterns never went away.

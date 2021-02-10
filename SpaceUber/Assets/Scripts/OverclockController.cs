@@ -2,7 +2,7 @@
  * OverclockController.cs
  * Author(s): Grant Frey
  * Created on: 9/24/2020
- * Description: 
+ * Description:
  */
 
 using System.Collections;
@@ -55,7 +55,7 @@ public class OverclockController : MonoBehaviour
         overclocking = true;
         activeRoom = room;
         AudioManager.instance.PlaySFX("Overclock");
-        additiveSceneManager.LoadSceneMerged(miniGame.ToString()); 
+        additiveSceneManager.LoadSceneMerged(miniGame.ToString());
     }
 
     public void EndMiniGame(MiniGameType miniGame, bool success, float statModification = 0)
@@ -64,41 +64,41 @@ public class OverclockController : MonoBehaviour
 		{
             if(miniGame == MiniGameType.Security)
             {
-                shipStats.UpdateSecurityAmount(Mathf.RoundToInt(securityBaseAdjustment * statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(securityBaseAdjustment * statModification), 1);
+                shipStats.Security += Mathf.RoundToInt(securityBaseAdjustment * statModification);
+                SpawnStatChangeText(Mathf.RoundToInt(securityBaseAdjustment * statModification), GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
             }
             if(miniGame == MiniGameType.Asteroids)
             {
-                shipStats.UpdateShipWeaponsAmount(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification), 2);
+                shipStats.ShipWeapons += Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification);
+                SpawnStatChangeText(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification), GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
             }
             if(miniGame == MiniGameType.CropHarvest)
             {
-                shipStats.UpdateFoodAmount(Mathf.RoundToInt(foodBaseAdjustment * statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(foodBaseAdjustment * statModification), 3);
+                shipStats.Food += Mathf.RoundToInt(foodBaseAdjustment * statModification);
+                SpawnStatChangeText(Mathf.RoundToInt(foodBaseAdjustment * statModification), GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
             }
             if(miniGame == MiniGameType.StabilizeEnergyLevels)
             {
-                shipStats.UpdateEnergyAmount(Mathf.RoundToInt(energyBaseAdjustment * statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(energyBaseAdjustment * statModification), 6);
+                shipStats.EnergyRemaining += new Vector2(Mathf.RoundToInt(energyBaseAdjustment * statModification), 0);
+                SpawnStatChangeText(Mathf.RoundToInt(energyBaseAdjustment * statModification), GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
             }
             if(miniGame == MiniGameType.SlotMachine)
             {
-                shipStats.UpdateCreditsAmount(Mathf.RoundToInt(statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(statModification), 0);
+                shipStats.Credits += Mathf.RoundToInt(statModification);
+                SpawnStatChangeText(Mathf.RoundToInt(statModification), GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon);
             }
             if(miniGame == MiniGameType.HullRepair)
             {
-                shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification), 6);
+                shipStats.ShipHealthCurrent += new Vector2(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification), 0);
+                SpawnStatChangeText(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification), GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon);
             }
         }
         else
         {
             if(miniGame == MiniGameType.Asteroids)
             {
-                shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(failHullDurabilityBaseAdjustment * statModification));
-                SpawnStatChangeText(Mathf.RoundToInt(failHullDurabilityBaseAdjustment * statModification));
+                shipStats.ShipHealthCurrent += new Vector2(Mathf.RoundToInt(failHullDurabilityBaseAdjustment * statModification), 0);
+                SpawnStatChangeText(Mathf.RoundToInt(failHullDurabilityBaseAdjustment * statModification), GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon);
             }
         }
         if(success && activeRoom)
@@ -114,22 +114,14 @@ public class OverclockController : MonoBehaviour
         //FindObjectOfType<CrewManagement>().crewManagementText.SetActive(true);
 	}
 
-    
 
-    
-    /// <summary>
-    /// Shows the text that will appear over stats whenever the player receives an update to it
-    /// Credits - Security - Weapons - Food - Crew - Power - Hull
-    /// </summary>
-    /// <param name="value">The actual number that shows how much the value changed</param>
-    /// <param name="iconNumber">Which icon will be used. </param>
-    private void SpawnStatChangeText(int value, int iconNumber = -1)
+    private void SpawnStatChangeText(int value, Sprite icon = null)
     {
         ShipStatsUI shipStatsUI = shipStats.GetComponent<ShipStatsUI>();
         GameObject statChangeUI = Instantiate(shipStatsUI.statChangeText);
         
         RectTransform rect = statChangeUI.GetComponent<RectTransform>();
-        
+
         Vector3 spawnPos = cam.WorldToScreenPoint(activeRoom.transform.GetChild(0).position);
         rect.anchoredPosition = new Vector2(spawnPos.x, spawnPos.y);
 
@@ -144,9 +136,9 @@ public class OverclockController : MonoBehaviour
     /// Unloads this current minigame scene
     /// </summary>
     /// <param name="miniGame"></param>
-    public void UnloadScene(MiniGameType miniGame) 
+    public void UnloadScene(MiniGameType miniGame)
     {
         overclocking = false;
-        additiveSceneManager.UnloadScene(miniGame.ToString()); 
+        additiveSceneManager.UnloadScene(miniGame.ToString());
     }
 }
