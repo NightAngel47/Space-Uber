@@ -20,6 +20,18 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Layer1Texture:
+        m_Texture: {fileID: 2800000, guid: 93e076b0dbd07164caceaf54be33b325, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Layer2Texture:
+        m_Texture: {fileID: 2800000, guid: 67b4796bcf017da4cab439c0f2ab4173, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Layer3Texture:
+        m_Texture: {fileID: 2800000, guid: da0e7ff6ca5f3e749aa2138e10182fe6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - SpriteTexture2D:
         m_Texture: {fileID: 2800000, guid: 93e076b0dbd07164caceaf54be33b325, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -29,6 +41,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Layer2ScrollSpeed: 0.25
+    - Layer3ScrollSpeed: 0.35
+    - MainScrollSpeed: 0.15
     - Normal: 1
     - ScrollActive: 1
     - ScrollSpeed: 0.1
