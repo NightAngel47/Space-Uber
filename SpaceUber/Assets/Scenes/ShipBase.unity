@@ -9293,6 +9293,11 @@ PrefabInstance:
       propertyPath: radioTracks.Array.data[1].pitch
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: radioVolume
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfd00d5985b7e774da68f5c929635ee4, type: 3}
 --- !u!1 &1836060887 stripped
@@ -9315,7 +9320,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentStationName: {fileID: 2127698678}
   currentStationDesc: {fileID: 2055300114}
-  muted: 0
+  stations:
+  - SMTH
+  - POPZ
+  - CTRY
+  - ZERO
+  - NOIS
+  - LBTC
+  stationsDescs:
+  - 'Space Pop
+
+    A simulation of popular music in the void of space.'
+  - 'Star Jazz
+
+    Smooth listening for all varieties of space-dwelling individuals.'
+  - 'Void Country
+
+    Somehow, the tenets of twang and common compositional ideas
+    made their way out to the stars.'
+  - 'Robot Jams
+
+    Rhythm-heavy music with heavier synthetic sounds and less melodic
+    theming throughout.'
+  - "Alien Noises\nWeird, often overtly complex \u201Cmusic\u201D that pushes the
+    boundaries of conventional-sounding stations."
+  - 'Lo-Fi Beats to Transport Cargo to
+
+    Exactly what is sounds like. The phenomenon
+    of Lo-Fi music focused on consistent rhythms and interesting patterns never went
+    away.'
 --- !u!1 &1844472694
 GameObject:
   m_ObjectHideFlags: 0

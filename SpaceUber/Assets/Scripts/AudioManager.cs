@@ -90,7 +90,7 @@ public class AudioManager : MonoBehaviour
     [Range(0f, 1f)] public float sfxVolume = 1;
     [Range(0f, 1f)] public float musicVolume = 1;
     [Range(0f, 1f)] public float ambienceVolume = 1;
-    [Range(0f, 1f)] public float radioVolume = 1;
+    [Range(0f, 1f)] public float radioVolume = 0;
     [Tooltip("Time it takes for current track to fade out")]
     [SerializeField] float fadeOutTime = 1;
     [Tooltip("Time window of overlap of current track fade out and next track fade in")]
@@ -152,12 +152,14 @@ public class AudioManager : MonoBehaviour
         {
             if (isMuted) 
             {
-                currentlyPlayingMusic.ScaleVolume(0); 
+                currentlyPlayingMusic.ScaleVolume(0);
+                currentlyPlayingStation.ScaleVolume(0);
                 foreach(Sound sound in currentlyPlayingAmbience) { sound.ScaleVolume(0); }
             }
             else 
             {
-                currentlyPlayingMusic.ScaleVolume(musicVolume * masterVolume); 
+                currentlyPlayingMusic.ScaleVolume(musicVolume * masterVolume);
+                currentlyPlayingStation.ScaleVolume(radioVolume * masterVolume);
                 foreach(Sound sound in currentlyPlayingAmbience) { sound.ScaleVolume(ambienceVolume * masterVolume); }
             }
         }
@@ -229,23 +231,28 @@ public class AudioManager : MonoBehaviour
         Debug.LogWarning("AudioManager: Sound not found in List: " + soundName);
     }
 
-    public void PlayRadio(string stationName)
+    public void PlayRadio(int station)
     {
-        if (currentlyPlayingStation.name == stationName) { return; }
-        //Search tracks for sound name
-        for (int i = 0; i < radioTracks.Length; i++)
+        try
         {
-            if (radioTracks[i].name == stationName)
+            if (currentlyPlayingStation != null && currentlyPlayingStation.name == radioTracks[station].name) { return; }
+            //Search tracks for sound name
+            for (int i = 0; i < radioTracks.Length; i++)
             {
-                if (currentlyPlayingStation != null) { currentlyPlayingStation.Stop(); }
-                currentlyPlayingStation = radioTracks[i];
-                radioTracks[i].ScaleVolume(musicVolume * masterVolume);
-                if (isMuted) radioTracks[i].ScaleVolume(0);
-                radioTracks[i].PlayLoop();
-                return;
+                if (radioTracks[i].name == radioTracks[station].name)
+                {
+                    if (currentlyPlayingStation != null) { currentlyPlayingStation.Stop(); }
+                    currentlyPlayingStation = radioTracks[i];
+                    radioTracks[i].ScaleVolume(radioVolume * masterVolume);
+                    if (isMuted) radioTracks[i].ScaleVolume(0);
+                    radioTracks[i].PlayLoop();
+                    return;
+                }
             }
         }
-        Debug.LogWarning("AudioManager: Station not found in List: " + stationName);
+        catch (IndexOutOfRangeException e) { Debug.LogWarning("This station does not exist yet"); }
+
+        //Debug.LogWarning("AudioManager: Station not found in List: " + station);
     }
 
     /// <summary>
