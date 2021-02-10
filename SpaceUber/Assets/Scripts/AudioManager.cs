@@ -250,7 +250,10 @@ public class AudioManager : MonoBehaviour
                 }
             }
         }
-        catch (IndexOutOfRangeException e) { Debug.LogWarning("This station does not exist yet"); }
+        catch (IndexOutOfRangeException e) {
+            Debug.LogWarning("This station does not exist yet");
+            currentlyPlayingStation.Stop();
+        }
 
         //Debug.LogWarning("AudioManager: Station not found in List: " + station);
     }
