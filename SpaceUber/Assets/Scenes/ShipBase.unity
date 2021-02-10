@@ -9229,7 +9229,17 @@ PrefabInstance:
     - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
         type: 3}
       propertyPath: radioTracks.Array.size
-      value: 2
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: radioTracks.Array.data[0].tracks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: radioTracks.Array.data[1].tracks.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
         type: 3}
@@ -9326,34 +9336,35 @@ MonoBehaviour:
   currentStationName: {fileID: 2127698678}
   currentStationDesc: {fileID: 2055300114}
   stations:
-  - SMTH
-  - POPZ
-  - CTRY
-  - ZERO
-  - NOIS
-  - LBTC
-  stationsDescs:
-  - 'Star Jazz
-
-    Smooth listening for all varieties of space-dwelling individuals.'
-  - 'Space Pop
-
-    A simulation of popular music in the void of space.'
-  - 'Void Country
-
-    Somehow, the tenets of twang and common compositional ideas
-    made their way out to the stars.'
-  - 'Robot Jams
-
-    Rhythm-heavy music with heavier synthetic sounds and less melodic
-    theming throughout.'
-  - "Alien Noises\nWeird, often overtly complex \u201Cmusic\u201D that pushes the
-    boundaries of conventional-sounding stations."
-  - 'Lo-Fi Beats to Transport Cargo to
-
-    Exactly what is sounds like. The phenomenon
-    of Lo-Fi music focused on consistent rhythms and interesting patterns never went
-    away.'
+  - name: POPZ
+    tooltipName: Space Pop
+    tooltipDesc: A simulation of popular music in the void of space. Simplistic in
+      musical structure, full of the same chords and tropes of current pop with a
+      bend towards synthetic and chiptune sound fonts. Will incorporate music that
+      playtesters and team-members mention as liking in particular.
+  - name: SMTH
+    tooltipName: Star Jazz
+    tooltipDesc: "Smooth listening for all varieties of space-dwelling individuals.
+      Piano-focused station that relies on sound that\u2019s easy on the ears, even
+      if it\u2019s not always the simplest compositionally."
+  - name: CTRY
+    tooltipName: Void Country
+    tooltipDesc: Somehow, the tenets of twang and common compositional ideas made
+      their way out to the stars. The guitar-focused station incorporates traditional
+      and synth sounds.
+  - name: ZERO
+    tooltipName: Robot Jams
+    tooltipDesc: Rhythm-heavy music with heavier synthetic sounds and less melodic
+      theming throughout. Similar to industrial movements in rock and electronic
+      music.
+  - name: NOIS
+    tooltipName: Alien Noises
+    tooltipDesc: "Weird, often overtly complex \u201Cmusic\u201D that pushes the
+      boundaries of conventional-sounding stations."
+  - name: LBTC
+    tooltipName: Lo-Fi Beats to Transport Cargo To
+    tooltipDesc: Exactly what is sounds like. The phenomenon of Lo-Fi music focused
+      on consistent rhythms and interesting patterns never went away.
 --- !u!1 &1844472694
 GameObject:
   m_ObjectHideFlags: 0
@@ -10064,12 +10075,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11
+  m_fontSize: 18
   m_fontSizeBase: 11
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 7
+  m_fontSizeMax: 18
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256

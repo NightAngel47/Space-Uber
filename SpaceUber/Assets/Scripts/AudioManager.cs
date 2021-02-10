@@ -75,7 +75,11 @@ public class Sound
     public void Stop() { source.Stop(); }
 }
 
-    
+[Serializable]
+public struct RadioStationTrackList
+{
+    public Sound[] tracks;
+}
 
 public class AudioManager : MonoBehaviour
 {
@@ -84,7 +88,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] Sound[] musicTracks = null;
     [SerializeField] Sound[] sfxTracks = null;
     [SerializeField] Sound[] ambientTracks = null;
-    [SerializeField] Sound[] radioTracks = null;
+    [SerializeField] RadioStationTrackList[] radioTracks = null;
     [SerializeField] List<Sound> currentlyPlayingAmbience = new List<Sound>();
     [Range(0f, 1f)] public float masterVolume = 1;
     [Range(0f, 1f)] public float sfxVolume = 1;
@@ -118,7 +122,10 @@ public class AudioManager : MonoBehaviour
         InitializeTracks(musicTracks);
         InitializeTracks(sfxTracks);
         InitializeTracks(ambientTracks);
-        InitializeTracks(radioTracks);
+        foreach (var station in radioTracks)
+        {
+            InitializeTracks(station.tracks);
+        }
         
         PlayMusicWithTransition("General Theme");
     }
@@ -235,17 +242,17 @@ public class AudioManager : MonoBehaviour
     {
         try
         {
-            if (currentlyPlayingStation != null && currentlyPlayingStation.name == radioTracks[station].name) { return; }
+            if (currentlyPlayingStation != null && currentlyPlayingStation.name == radioTracks[station].tracks[0].name) { return; }
             //Search tracks for sound name
             for (int i = 0; i < radioTracks.Length; i++)
             {
-                if (radioTracks[i].name == radioTracks[station].name)
+                if (radioTracks[i].tracks[0].name == radioTracks[station].tracks[0].name)
                 {
                     if (currentlyPlayingStation != null) { currentlyPlayingStation.Stop(); }
-                    currentlyPlayingStation = radioTracks[i];
-                    radioTracks[i].ScaleVolume(radioVolume * masterVolume);
-                    if (isMuted) radioTracks[i].ScaleVolume(0);
-                    radioTracks[i].PlayLoop();
+                    currentlyPlayingStation = radioTracks[i].tracks[0];
+                    radioTracks[i].tracks[0].ScaleVolume(radioVolume * masterVolume);
+                    if (isMuted) radioTracks[i].tracks[0].ScaleVolume(0);
+                    radioTracks[i].tracks[0].PlayLoop();
                     return;
                 }
             }
