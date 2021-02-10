@@ -99,6 +99,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] float fadeInTime = 1;
 
     Sound currentlyPlayingMusic = null;
+    Sound currentlyPlayingStation = null;
 
     public bool isMuted = false;
 
@@ -117,7 +118,7 @@ public class AudioManager : MonoBehaviour
         InitializeTracks(musicTracks);
         InitializeTracks(sfxTracks);
         InitializeTracks(ambientTracks);
-        //InitializeTracks(radioTracks);
+        InitializeTracks(radioTracks);
         
         PlayMusicWithTransition("General Theme");
     }
@@ -226,6 +227,25 @@ public class AudioManager : MonoBehaviour
             }
         }
         Debug.LogWarning("AudioManager: Sound not found in List: " + soundName);
+    }
+
+    public void PlayRadio(string stationName)
+    {
+        if (currentlyPlayingStation.name == stationName) { return; }
+        //Search tracks for sound name
+        for (int i = 0; i < radioTracks.Length; i++)
+        {
+            if (radioTracks[i].name == stationName)
+            {
+                if (currentlyPlayingStation != null) { currentlyPlayingStation.Stop(); }
+                currentlyPlayingStation = radioTracks[i];
+                radioTracks[i].ScaleVolume(musicVolume * masterVolume);
+                if (isMuted) radioTracks[i].ScaleVolume(0);
+                radioTracks[i].PlayLoop();
+                return;
+            }
+        }
+        Debug.LogWarning("AudioManager: Station not found in List: " + stationName);
     }
 
     /// <summary>

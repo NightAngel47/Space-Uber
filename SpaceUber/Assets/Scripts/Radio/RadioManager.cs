@@ -28,8 +28,14 @@ public class RadioManager : MonoBehaviour
 
     private void Update()
     {
+
         currentStationName.text = stations[currentStation];
         currentStationDesc.text = stationsDescs[currentStation];
+    }
+
+    public void RadioStationSlider(float station)
+    {
+        currentStation = (int)station;
     }
 
     public void MasterVolSlider(float volume)
@@ -47,12 +53,6 @@ public class RadioManager : MonoBehaviour
     public void SFXVolSlider(float volume)
     {
         AudioManager.instance.sfxVolume = volume;
-    }
-
-    public void ChangeStation()
-    {
-        if (currentStation < stations.Length - 1) currentStation++;
-        else currentStation = 0;
     }
 
     public void Mute()
