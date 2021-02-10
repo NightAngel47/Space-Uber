@@ -243,16 +243,20 @@ public class AudioManager : MonoBehaviour
         try
         {
             if (currentlyPlayingStation != null && currentlyPlayingStation.name == radioTracks[station].tracks[0].name) { return; }
-            //Search tracks for sound name
+            //Search stations to match up the name of the first track
             for (int i = 0; i < radioTracks.Length; i++)
             {
                 if (radioTracks[i].tracks[0].name == radioTracks[station].tracks[0].name)
                 {
+                    //stop current music and choose a random song from the station
                     if (currentlyPlayingStation != null) { currentlyPlayingStation.Stop(); }
-                    currentlyPlayingStation = radioTracks[i].tracks[0];
-                    radioTracks[i].tracks[0].ScaleVolume(radioVolume * masterVolume);
-                    if (isMuted) radioTracks[i].tracks[0].ScaleVolume(0);
-                    radioTracks[i].tracks[0].PlayLoop();
+                    int randomSong = Random.Range(0, radioTracks[i].tracks.Length);
+                    currentlyPlayingStation = radioTracks[i].tracks[randomSong];
+
+
+                    radioTracks[i].tracks[randomSong].ScaleVolume(radioVolume * masterVolume);
+                    if (isMuted) radioTracks[i].tracks[randomSong].ScaleVolume(0);
+                    radioTracks[i].tracks[randomSong].PlayLoop();
                     return;
                 }
             }

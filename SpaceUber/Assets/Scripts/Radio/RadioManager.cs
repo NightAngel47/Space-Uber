@@ -29,15 +29,6 @@ public class RadioManager : MonoBehaviour
 
     [SerializeField] private RadioStation[] stations = new RadioStation[6];
 
-    //[SerializeField] string[] stations = new string[] { };
-    //set in code because there's no newline in Unity inspector
-    // [SerializeField] string[] stationsDescs = new string[] {"Star Jazz\nSmooth listening for all varieties of space-dwelling individuals.",
-    //     "Space Pop\nA simulation of popular music in the void of space.",
-    //     "Void Country\nSomehow, the tenets of twang and common compositional ideas made their way out to the stars.",
-    //     "Robot Jams\nRhythm-heavy music with heavier synthetic sounds and less melodic theming throughout.",
-    //     "Alien Noises\nWeird, often overtly complex �music� that pushes the boundaries of conventional-sounding stations.",
-    // "Lo-Fi Beats to Transport Cargo to\nExactly what is sounds like. The phenomenon of Lo-Fi music focused on consistent rhythms and interesting patterns never went away."};
-
     private void Start()
     {
         AudioManager.instance.PlayRadio(currentStation);
