@@ -141,6 +141,7 @@ public class ObjectScript : MonoBehaviour
             {
                 roomTooltip.SetActive(true);
 
+                //if the object is clicked, open the room management menu
                 if (Input.GetMouseButton(0))
                 {
                     FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);

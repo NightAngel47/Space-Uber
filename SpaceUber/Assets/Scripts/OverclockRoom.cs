@@ -31,21 +31,6 @@ public class OverclockRoom : MonoBehaviour
 	    }
     }
 
-    
-    /// <summary>
-    /// Starts a new character-based chat event when a button is clicked
-    /// </summary>
-    public void StartCharacterEvent()
-    {
-        if (GameManager.instance.currentGameState == InGameStates.Events //in the scene where events can be run
-            && !EventSystem.instance.eventActive && 
-            !OverclockController.instance.overclocking && EventSystem.instance.CanChat(roomEvents))
-        { 
-            StartCoroutine(EventSystem.instance.StartNewCharacterEvent(roomEvents));
-        }
-            
-    }
-
     public void StartMinigameCooldown() { StartCoroutine(MinigameCooldown()); }
 
     private IEnumerator MinigameCooldown()

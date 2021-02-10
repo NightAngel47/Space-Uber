@@ -24,7 +24,7 @@ public class CharacterEvent : InkDriverBase
     [SerializeField, Tooltip("How much food the player will gain from all correct answers")]
     private int foodBoost;
 
-    [HideInInspector] public bool playedOnce;
+    [HideInInspector] public bool playedOnce = false;
     
 
     public override void Start()
@@ -32,6 +32,7 @@ public class CharacterEvent : InkDriverBase
         base.Start();
         isCharacterEvent = true;
         isStoryEvent = false;
+        playedOnce = false;
     }
 
     public bool SucceededEvent()

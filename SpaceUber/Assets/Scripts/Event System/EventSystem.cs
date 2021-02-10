@@ -105,12 +105,14 @@ public class EventSystem : MonoBehaviour
 		//If chat has cooleddown
 		if(daysSinceChat < chatCooldown)
         {
+			print("Cooldown active");
 			return false;
         } 
 		
 		//if no possible events are found
 		if(FindNextCharacterEvent(checkEvents) == null)
         {
+			print("Could not manage an event");
 			return false;
         }
 
@@ -264,18 +266,25 @@ public class EventSystem : MonoBehaviour
         ship.StopTickEvents();
 	}
 
+	/// <summary>
+	/// Generates a new character event. Does nothing
+	/// </summary>
+	/// <param name="possibleEvents"></param>
+	/// <returns></returns>
 	public IEnumerator StartNewCharacterEvent(List<GameObject> possibleEvents)
     {
 		chatting = true;
 		GameObject newEvent = FindNextCharacterEvent(possibleEvents);
 
 		asm.LoadSceneMerged("Event_CharacterFocused");
+		print("Starting a new character event");
+
 		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
 
 		eventCanvas = FindObjectOfType<EventCanvas>();
+
 		if (newEvent != null)
         {
-			
 			CreateEvent(newEvent);
         }
     }
@@ -293,11 +302,6 @@ public class EventSystem : MonoBehaviour
 		{
 			inkDriver.AssignStatusFromEventSystem(eventCanvas.titleBox, eventCanvas.textBox,eventCanvas.choiceResultsBox,
 				eventCanvas.backgroundImage, eventCanvas.buttonGroup, ship, campMan);
-
-			if(inkDriver.isCharacterEvent)
-            {
-				chatting = true;
-            }
 			
 		}
 
@@ -411,21 +415,31 @@ public class EventSystem : MonoBehaviour
 	private GameObject FindNextCharacterEvent(List<GameObject> possibleEvents)
     {
         //if charEvent matches requirements, pick this one and remove it from the group
-        if (possibleEvents.Count != 0)
+        
+		//foreach (var charEvent
+		//in from charEvent in possibleEvents
+		//   let eventDriver = charEvent.GetComponent<CharacterEvent>()
+		//   let requirements = eventDriver.requiredStats
+		//   where HasRequiredStats(requirements) && eventDriver.playedOnce == false //meets requirements and has never been played before
+		//   select charEvent)
+		//{
+		//	GameObject chosen = charEvent;
+		//	charEvent.GetComponent<CharacterEvent>().playedOnce = true;
+		//	return chosen;
+
+		//}
+
+		foreach( GameObject charEvent in possibleEvents)
         {
-			foreach (var charEvent
-			in from charEvent in possibleEvents
-			   let eventDriver = charEvent.GetComponent<CharacterEvent>()
-			   let requirements = eventDriver.requiredStats
-			   where HasRequiredStats(requirements) && eventDriver.playedOnce == false //meets requirements and has never been played before
-			   select charEvent)
-			{
-				GameObject chosen = charEvent;
-				charEvent.GetComponent<CharacterEvent>().playedOnce = true;
-				return chosen;
-				
-			}
-			
+			CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
+			List<Requirements> requirements = eventDriver.requiredStats;
+
+			eventDriver.playedOnce = false; //DELETE Later
+
+			if(HasRequiredStats(requirements) && eventDriver.playedOnce == false)
+            {
+				return charEvent;
+            }
 		}
 
 		return null;

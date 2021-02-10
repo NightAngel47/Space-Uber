@@ -195,7 +195,10 @@ public class CrewManagement : MonoBehaviour
         if (GameManager.instance.currentGameState != InGameStates.Events)
         {
             overclockButton.gameObject.SetActive(false);
+            chatButton.gameObject.SetActive(false);
         }
+
+        UpdateChatAvailability();
     }
 
     public void UpdateOutput()
@@ -346,6 +349,15 @@ public class CrewManagement : MonoBehaviour
         room.GetComponent<OverclockRoom>().PlayMiniGame();
     }
 
+    public void StartChat()
+    {
+        print("Starting a chat");
+        OverclockRoom ovRoom = room.GetComponent<OverclockRoom>();
+        StartCoroutine(EventSystem.instance.StartNewCharacterEvent(ovRoom.GetEvents()));
+        TurnOffPanel();
+        
+    }
+
     public void TurnOnOverclockButton()
     {
         if (room.GetComponent<OverclockRoom>().GetMiniGame() != MiniGameType.None)
@@ -364,16 +376,21 @@ public class CrewManagement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Changes whether or not the chat availability button will activate
+    /// </summary>
     public void UpdateChatAvailability()
     {
         OverclockRoom ovRoom = room.GetComponent<OverclockRoom>();
-        
+
         if(!ovRoom.hasEvents)
         {
             chatButton.gameObject.SetActive(false);
         }
         else
         {
+            print(ovRoom.GetEvents().Count + " events for this room");   
+            
             if (EventSystem.instance.CanChat(ovRoom.GetEvents()))
             {
                 chatButton.gameObject.SetActive(true);
