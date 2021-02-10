@@ -103,7 +103,7 @@ public class ObjectScript : MonoBehaviour
     {
         if (preplacedRoom == false)
         {
-            if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true)
+            if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true) // && PauseMenu.Instance.isPaused == false// commented out until menus are ready
             {
                 if (ObjectMover.hasPlaced == true)
                 {

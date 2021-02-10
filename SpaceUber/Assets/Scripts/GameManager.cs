@@ -7,6 +7,7 @@
  */
 
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -46,6 +47,8 @@ public class GameManager : MonoBehaviour
     private JobManager jobManager;
     
     private ShipStats ship;
+
+    [SerializeField] private List<ResourceDataType> resourceDataRef = new List<ResourceDataType>();
 
     /// <summary>
     /// Sets the instance of the GameManager using the Singleton pattern.
@@ -168,5 +171,10 @@ public class GameManager : MonoBehaviour
                 Debug.LogWarning($"The passed in game state, {state.ToString()}, doesn't have a transition setup.");
                 break;
         }
+    }
+
+    public ResourceDataType GetResourceData(int i)
+    {
+        return resourceDataRef[i];
     }
 }

@@ -71,6 +71,11 @@ public class CrewManagement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the Room Panel that shows up after building ship. This updates it so that 
+    /// all stats are correct for the room displayed and makes sure the buttons that need  
+    /// to be enabled are.
+    /// </summary>
     public void UpdateRoom(GameObject g)
     {
         for(int i = 0; i < overtimeStats.Count; i++)
@@ -134,7 +139,7 @@ public class CrewManagement : MonoBehaviour
             case MiniGameType.Security:
                 //security
                 resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
-                resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = shipStats.statIcons[1]; // resource icon
+                resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon; // resource icon
                 resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Security"; // resource name
                 resourceGO.transform.GetChild(2).gameObject.SetActive(false); // resource amount, which for some minigames can be variable so for now I'm just not showing it
                 overtimeStats.Add(resourceGO);
@@ -143,7 +148,7 @@ public class CrewManagement : MonoBehaviour
             case MiniGameType.Asteroids:
                 //shipweapons
                 resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
-                resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = shipStats.statIcons[2]; // resource icon
+                resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon; // resource icon
                 resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Ship Weapons";
                 resourceGO.transform.GetChild(2).gameObject.SetActive(false); // resource amount, which for some minigames can be variable so for now I'm just not showing it
                 overtimeStats.Add(resourceGO);
@@ -152,7 +157,7 @@ public class CrewManagement : MonoBehaviour
             case MiniGameType.CropHarvest:
                 //food amount
                 resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
-                resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = shipStats.statIcons[3]; // resource icon
+                resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon; // resource icon
                 resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Food Amount";
                 resourceGO.transform.GetChild(2).gameObject.SetActive(false); // resource amount, which for some minigames can be variable so for now I'm just not showing it
                 overtimeStats.Add(resourceGO);
@@ -161,7 +166,7 @@ public class CrewManagement : MonoBehaviour
             case MiniGameType.StabilizeEnergyLevels:
                 //Energy
                 resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
-                resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = shipStats.statIcons[5]; // resource icon
+                resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon; // resource icon
                 resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Energy";
                 resourceGO.transform.GetChild(2).gameObject.SetActive(false); // resource amount, which for some minigames can be variable so for now I'm just not showing it
                 overtimeStats.Add(resourceGO);
@@ -170,7 +175,7 @@ public class CrewManagement : MonoBehaviour
             case MiniGameType.SlotMachine:
                 //Credits
                 resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
-                resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = shipStats.statIcons[0]; // resource icon
+                resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon; // resource icon
                 resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Credits";
                 resourceGO.transform.GetChild(2).gameObject.SetActive(false); // resource amount, which for some minigames can be variable so for now I'm just not showing it
                 overtimeStats.Add(resourceGO);
@@ -179,7 +184,7 @@ public class CrewManagement : MonoBehaviour
             case MiniGameType.HullRepair:
                 //Hull Durability
                 resourceGO = Instantiate(statAndNumPrefab, overclockOutput.transform);
-                resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = shipStats.statIcons[6]; // resource icon
+                resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon; // resource icon
                 resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "Hull Durability";
                 resourceGO.transform.GetChild(2).gameObject.SetActive(false); // resource amount, which for some minigames can be variable so for now I'm just not showing it
                 overtimeStats.Add(resourceGO);
@@ -196,6 +201,10 @@ public class CrewManagement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the rooms output based on the crew assigned. So if any crew assigned it gives full amount, 
+    /// and gives percentage of full amount for when amount of crew matters.
+    /// </summary>
     public void UpdateOutput()
     {
         for (int i = 0; i < outputStats.Count; i++)
@@ -208,8 +217,8 @@ public class CrewManagement : MonoBehaviour
         foreach (var resource in room.GetComponent<RoomStats>().resources)
         {
             GameObject resourceGO = Instantiate(statAndNumPrefab, outputObject.transform);
-            resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = resource.resourceIcon; // resource icon
-            resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = resource.resourceType; // resource name
+            resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = resource.resourceType.resourceIcon; // resource icon
+            resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = resource.resourceType.resourceName; // resource name
 
             if (room.GetComponent<RoomStats>().flatOutput == false)
             {
@@ -220,7 +229,7 @@ public class CrewManagement : MonoBehaviour
                         resource.activeAmount = resource.amount;
                     }
 
-                    else if (room.GetComponent<RoomStats>().currentCrew == 0)
+                    else if (room.GetComponent<RoomStats>().currentCrew == 0 || room.GetComponent<RoomStats>().currentCrew < room.GetComponent<RoomStats>().minCrew)
                     {
                         resource.activeAmount = 0;
                     }
