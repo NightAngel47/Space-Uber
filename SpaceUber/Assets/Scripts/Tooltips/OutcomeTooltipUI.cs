@@ -48,7 +48,7 @@ public class OutcomeTooltipUI : MonoBehaviour
                 else
                 {
                     GameObject resourceGO = Instantiate(resourceUI, outcomeList.transform);
-                    resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GetResourceIcon(outcome.resource); // resource icon
+                    resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)outcome.resource).resourceIcon; // resource icon
                     resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = outcome.resource.ToString(); // resource name
                     resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = outcome.amount.ToString(); // resource amount
                     resourceGO.transform.GetChild(3).gameObject.SetActive(false); // outcome probability
@@ -92,7 +92,7 @@ public class OutcomeTooltipUI : MonoBehaviour
                     else
                     {
                         GameObject resourceGO = Instantiate(resourceUI, outcomeList.transform);
-                        resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GetResourceIcon(randomOutcome.outcomes[i].resource); // resource icon
+                        resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)randomOutcome.outcomes[i].resource).resourceIcon; // resource icon
                         resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = randomOutcome.outcomes[i].resource.ToString(); // resource name
                         resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = randomOutcome.outcomes[i].amount.ToString(); // resource amount
                         
@@ -112,43 +112,6 @@ public class OutcomeTooltipUI : MonoBehaviour
         {
             GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
             outcomeTextGO.GetComponent<TMP_Text>().text = defaultOutcomeText;
-        }
-    }
-
-    private Sprite GetResourceIcon(ResourceType resource)
-    {
-        switch (resource)
-        {
-            case ResourceType.Credits:
-                return icons[0];
-                break;
-            case ResourceType.Energy:
-                return icons[1];
-                break;
-            case ResourceType.Security:
-                return icons[2];
-                break;
-            case ResourceType.ShipWeapons:
-                return icons[3];
-                break;
-            case ResourceType.Crew:
-                return icons[4];
-                break;
-            case ResourceType.Food:
-                return icons[5];
-                break;
-            case ResourceType.FoodPerTick:
-                return icons[5];
-                break;
-            case ResourceType.HullDurability:
-                return icons[6];
-                break;
-            case ResourceType.Payout:
-                return icons[0];
-                break;
-            default:
-                return null;
-                break;
         }
     }
 }
