@@ -2,7 +2,7 @@
  * BackgroundBehaviour.cs
  * Author(s): Steven Drovie []
  * Created on: 2/9/2021 (en-US)
- * Description: 
+ * Description: Controls the space background made with shader.
  */
 
 using System;
@@ -10,35 +10,23 @@ using UnityEngine;
 
 public class BackgroundBehaviour : MonoBehaviour
 {
-    [SerializeField] private Material[] scrollingBackgroundMats = new Material[3];
+    private Material spaceMat;
+    private const string SCROLL_ACTIVE = "SCROLLACTIVE";
 
-    private const string ScrollActive = "SCROLLACTIVE";
-
-    private void Start()
+    private void Awake()
     {
-        ToggleScroll();
+        spaceMat = GetComponent<SpriteRenderer>().material;
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (spaceMat.IsKeywordEnabled(SCROLL_ACTIVE) && GameManager.instance.currentGameState != InGameStates.Events)
         {
-            ToggleScroll();
+            spaceMat.DisableKeyword(SCROLL_ACTIVE);
         }
-    }
-
-    void ToggleScroll()
-    {
-        foreach (Material bgMat in scrollingBackgroundMats)
+        else if (!spaceMat.IsKeywordEnabled(SCROLL_ACTIVE) && GameManager.instance.currentGameState == InGameStates.Events)
         {
-            if (bgMat.IsKeywordEnabled(ScrollActive))
-            {
-                bgMat.DisableKeyword(ScrollActive);
-            }
-            else
-            {
-                bgMat.EnableKeyword(ScrollActive);
-            }
+            spaceMat.EnableKeyword(SCROLL_ACTIVE);
         }
     }
 }
