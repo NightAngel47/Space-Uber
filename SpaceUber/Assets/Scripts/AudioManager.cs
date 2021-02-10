@@ -78,6 +78,7 @@ public class Sound
 [Serializable]
 public struct RadioStationTrackList
 {
+    public string name;
     public Sound[] tracks;
 }
 
@@ -227,7 +228,7 @@ public class AudioManager : MonoBehaviour
         {
             if (musicTracks[i].name == soundName)
             {
-                if (currentlyPlayingMusic != null) { currentlyPlayingMusic.Stop(); }
+                currentlyPlayingMusic?.Stop();
                 currentlyPlayingMusic = musicTracks[i];
                 musicTracks[i].ScaleVolume(musicVolume * masterVolume);
                 if (isMuted) musicTracks[i].ScaleVolume(0);
@@ -249,10 +250,9 @@ public class AudioManager : MonoBehaviour
                 if (radioTracks[i].tracks[0].name == radioTracks[station].tracks[0].name)
                 {
                     //stop current music and choose a random song from the station
-                    if (currentlyPlayingStation != null) { currentlyPlayingStation.Stop(); }
+                    currentlyPlayingStation?.Stop();
                     int randomSong = Random.Range(0, radioTracks[i].tracks.Length);
                     currentlyPlayingStation = radioTracks[i].tracks[randomSong];
-
 
                     radioTracks[i].tracks[randomSong].ScaleVolume(radioVolume * masterVolume);
                     if (isMuted) radioTracks[i].tracks[randomSong].ScaleVolume(0);
@@ -263,7 +263,7 @@ public class AudioManager : MonoBehaviour
         }
         catch (IndexOutOfRangeException e) {
             Debug.LogWarning("This station does not exist yet");
-            currentlyPlayingStation.Stop();
+            currentlyPlayingStation?.Stop();
         }
 
         //Debug.LogWarning("AudioManager: Station not found in List: " + station);
