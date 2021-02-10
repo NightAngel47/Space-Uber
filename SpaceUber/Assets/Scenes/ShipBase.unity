@@ -5217,7 +5217,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 444.1, y: -7.100006}
+  m_AnchoredPosition: {x: 444.09998, y: -7.1000366}
   m_SizeDelta: {x: -710.53156, y: -114.25638}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1165115806
@@ -7571,7 +7571,18 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1836060890}
+        m_MethodName: RadioVolSlider
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1561389994
 PrefabInstance:
   m_ObjectHideFlags: 0
