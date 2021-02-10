@@ -6,22 +6,16 @@ public class Tick : MonoBehaviour
 {
     private ShipStatsUI shipStatsUI;
     private ShipStats shipStats;
+    private MoraleManager moraleManager;
 
     //tick variables
     [SerializeField, Min(0.1f)] private float secondsPerTick = 5;
-
-    //mutiny variables
-    public int maxMutinyMorale = 39;
-    public float maxMutinyMoraleMutinyChance = 0.2f;
-    public float zeroMoraleMutinyChance = 1f;
-    public int baseMutinyCost = 100;
-    private int mutinyCount = 0;
-    public GameObject mutinyEvent;
 
     public void Awake()
     {
         shipStats = FindObjectOfType<ShipStats>();
         shipStatsUI = FindObjectOfType<ShipStatsUI>();
+        moraleManager = FindObjectOfType<MoraleManager>();
     }
 
     public float SecondsPerTick { get; set; } = 5;
@@ -61,7 +55,7 @@ public class Tick : MonoBehaviour
             if (missingFood < 0)
             {                   
                 // update crew morale based on missing food
-                shipStats.UpdateCrewMorale(missingFood * shipStats.foodMoraleDamageMultiplier);
+                moraleManager.CrewStarving(missingFood);
             }
             // add net food to food stat
             shipStats.Food += netFood;
@@ -69,22 +63,14 @@ public class Tick : MonoBehaviour
             // increment days since events
             shipStats.DaysSince++;
 
-            if(shipStats.Morale < 0)
+            if(moraleManager.CrewMorale < 0)
             {
-                shipStats.Morale = 0;
+                moraleManager.CrewMorale = 0;
             }
             
-            shipStatsUI.UpdateCrewMoraleUI(shipStats.Morale);
-
-            float mutinyChance = (maxMutinyMorale - shipStats.Morale) * zeroMoraleMutinyChance * (1 - maxMutinyMoraleMutinyChance) / maxMutinyMorale + maxMutinyMoraleMutinyChance;
-            if(mutinyChance > UnityEngine.Random.value)
-            {
-                mutinyCount++;
-                int mutinyCost = Mathf.RoundToInt((baseMutinyCost * ((100 - shipStats.Morale) / 100.0f)) * mutinyCount);
-                mutinyEvent.GetComponent<InkDriverBase>().nextChoices[0].choiceRequirements[0].requiredAmount = mutinyCost;
-                mutinyEvent.GetComponent<InkDriverBase>().nextChoices[0].outcomes[0].amount = -mutinyCost;
-                EventSystem.instance.CreateMutinyEvent(mutinyEvent);
-            }
+            shipStatsUI.UpdateCrewMoraleUI(moraleManager.CrewMorale);
+            
+            moraleManager.CheckMutiny();
             
             RoomStats[] rooms = FindObjectsOfType<RoomStats>();
             

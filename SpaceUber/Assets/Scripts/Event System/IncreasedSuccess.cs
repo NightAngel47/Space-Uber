@@ -73,7 +73,7 @@ public class IncreasedSuccess
                 shipStat = thisShip.Security;
                 break;
             case ResourceType.MORALE:
-                shipStat = thisShip.Morale;
+                shipStat = MoraleManager.instance.CrewMorale;
                 break;
             case ResourceType.CREDITS:
                 shipStat = thisShip.Credits;

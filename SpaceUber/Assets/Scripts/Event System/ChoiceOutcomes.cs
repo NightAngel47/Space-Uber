@@ -177,7 +177,7 @@ public class ChoiceOutcomes
                         }
                         break;
                     case ResourceType.Morale:
-                        ship.UpdateCrewMorale(amount);
+                        MoraleManager.instance.CrewMorale += amount;
                         SpawnStatChangeText(ship, amount, 7);
                         
                         if (amount < 0)

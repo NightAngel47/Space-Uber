@@ -60,29 +60,7 @@ public class OverclockController : MonoBehaviour
 	{
         if(succsess)
 		{
-            float moraleModifier = 1;
-            int currentMorale = shipStats.Morale;
-
-            switch(currentMorale)
-            {
-                case int cur when currentMorale >= 80 && currentMorale <= 100:
-                moraleModifier = 1.2f;
-                break;
-                case int cur when currentMorale >= 60 && currentMorale < 80:
-                moraleModifier = 1.1f;
-                break;
-                case int cur when currentMorale >= 40 && currentMorale < 60:
-                moraleModifier = 1.0f;
-                break;
-                case int cur when currentMorale >= 20 && currentMorale < 40:
-                moraleModifier = 0.9f;
-                break;
-                case int cur when currentMorale >= 0 && currentMorale < 20:
-                moraleModifier = 0.8f;
-                break;
-                default:
-                break;
-            }
+            float moraleModifier = MoraleManager.instance.GetMoraleModifier();
 
             if(miniGame == MiniGameType.Security)
             {

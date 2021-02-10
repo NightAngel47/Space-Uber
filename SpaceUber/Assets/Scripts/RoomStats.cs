@@ -44,7 +44,7 @@ public class RoomStats : MonoBehaviour
     private int shipHealth = 0;
     private int morale = 0;
 
-    private float moraleModifier = 1.2f;
+    private float moraleModifier;
 
     ShipStats shipStats;
 
@@ -62,10 +62,7 @@ public class RoomStats : MonoBehaviour
 
     void Start()
     {
-        if(ignoreMorale)
-        {
-            moraleModifier = 1;
-        }
+        moraleModifier = MoraleManager.instance.GetMoraleModifier(ignoreMorale);
 
         cam = Camera.main;
         shipStats = FindObjectOfType<ShipStats>();
@@ -213,32 +210,10 @@ public class RoomStats : MonoBehaviour
     {
         if(!ignoreMorale)
         {
-            float previousMoraleModifier = moraleModifier;
-            int currentMorale = shipStats.Morale;
-
-            switch(currentMorale)
+            float newMoraleModifier = MoraleManager.instance.GetMoraleModifier();
+            if(moraleModifier != newMoraleModifier)
             {
-                case int cur when currentMorale >= 80 && currentMorale <= 100:
-                    moraleModifier = 1.2f;
-                    break;
-                case int cur when currentMorale >= 60 && currentMorale < 80:
-                    moraleModifier = 1.1f;
-                    break;
-                case int cur when currentMorale >= 40 && currentMorale < 60:
-                    moraleModifier = 1.0f;
-                    break;
-                case int cur when currentMorale >= 20 && currentMorale < 40:
-                    moraleModifier = 0.9f;
-                    break;
-                case int cur when currentMorale >= 0 && currentMorale < 20:
-                    moraleModifier = 0.8f;
-                    break;
-                default:
-                    break;
-            }
-
-            if(moraleModifier != previousMoraleModifier)
-            {
+                moraleModifier = newMoraleModifier;
                 UpdateRoomStats();
             }
         }
@@ -341,7 +316,7 @@ public class RoomStats : MonoBehaviour
         shipStats.Food += food;
         shipStats.FoodPerTick += foodPerTick;
         shipStats.ShipHealthCurrent += new Vector2(shipHealth, shipHealth);
-        shipStats.UpdateCrewMorale(morale, true);
+        MoraleManager.instance.CrewMorale += morale;
     }
 
     /// <summary>
@@ -367,7 +342,7 @@ public class RoomStats : MonoBehaviour
         shipStats.Food += -food;
         shipStats.FoodPerTick += -foodPerTick;
         shipStats.ShipHealthCurrent += new Vector2(-shipHealth, -shipHealth);
-        shipStats.UpdateCrewMorale(-morale, true);
+        MoraleManager.instance.CrewMorale -= morale;
     }
 
     public void SpawnStatChangeText(int value, int icon = -1)

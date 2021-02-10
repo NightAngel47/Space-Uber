@@ -30,8 +30,6 @@ public class ShipStats : MonoBehaviour
     private int startingFood;
     [SerializeField, Tooltip("Starting amount of ship health"), Foldout("Starting Ship Stats")]
     private int startingShipHealth;
-    [SerializeField, Tooltip("Starting amount of crewMorale"), Foldout("Starting Ship Stats")]
-    private int startingMorale;
 
     public GameObject cantPlaceText;
     public Sprite[] statIcons;
@@ -42,8 +40,6 @@ public class ShipStats : MonoBehaviour
 
     private int credits;
     private int payout;
-    private int crewPaymentDefault = 5;
-    public float crewPaymentMoraleMultiplier = 2;
     private int energyMax;
     private int energyRemaining;
     private int security;
@@ -51,13 +47,10 @@ public class ShipStats : MonoBehaviour
     private int crewCapacity;
     private int crewCurrent;
     private int crewUnassigned;
-    public int crewLossMoraleMultiplier = 10;
     private int food;
     private int foodPerTick;
-    public int foodMoraleDamageMultiplier = 1;
     private int shipHealthMax;
     private int shipHealthCurrent;
-    public int crewMorale;
 
     /// <summary>
     /// Reference to the ship stats UI class.
@@ -68,6 +61,11 @@ public class ShipStats : MonoBehaviour
     /// Reference to tick
     /// </summary>
     private Tick tick;
+    
+    /// <summary>
+    /// Reference to morale manager
+    /// </summary>
+    private MoraleManager moraleManager;
 
     private int daysSince;
     [SerializeField] private TMP_Text daysSinceDisplay;
@@ -86,12 +84,12 @@ public class ShipStats : MonoBehaviour
     private int startFoodPerTick;
     private int startShipHealthMax;
     private int startShipHealthCurrent;
-    private int startCrewMorale;
 
     private void Awake()
     {
         shipStatsUI = GetComponent<ShipStatsUI>();
         tick = FindObjectOfType<Tick>();
+        moraleManager = FindObjectOfType<MoraleManager>();
     }
 
     private void Start()
@@ -104,7 +102,6 @@ public class ShipStats : MonoBehaviour
         CrewCurrent = new Vector3(startingCrew, startingCrew, startingCrew);
         Food = startingFood;
         ShipHealthCurrent = new Vector2(startingShipHealth, startingShipHealth);
-        UpdateCrewMorale(startingMorale);
     }
 
     /// <summary>
@@ -272,16 +269,16 @@ public class ShipStats : MonoBehaviour
             crewCapacity = (int)value.y;
             crewUnassigned = (int)value.z;
 
-            if (crewCurrent < 0)
+            if (crewCurrent - prevValue.x < 0)
             {
-                if(prevValue.z < 0)
+                if(crewUnassigned < 0)
                 {
-                    RemoveRandomCrew(Mathf.Abs((int)prevValue.z));
+                    RemoveRandomCrew(Mathf.Abs(crewUnassigned));
                 }
 
-                if(crewCurrent < crewCapacity)
+                if(crewCurrent - prevValue.x < crewCapacity - prevValue.y)
                 {
-                    UpdateCrewMorale(crewCurrent * crewLossMoraleMultiplier, true);
+                    moraleManager.CrewLoss((int)(crewCurrent - prevValue.x));
                 }
             }
 
@@ -309,9 +306,16 @@ public class ShipStats : MonoBehaviour
             {
                 crewUnassigned = 0;
             }
-            if (crewUnassigned >= crewCurrent)
+            
+            int crewInRooms = 0;
+            foreach(RoomStats room in rooms)
             {
-                crewUnassigned = crewCurrent;
+                crewInRooms += room.currentCrew;
+            }
+            
+            if (crewUnassigned + crewInRooms >= crewCurrent)
+            {
+                crewUnassigned = crewCurrent - crewInRooms;
             }
 
             shipStatsUI.UpdateCrewUI(crewUnassigned, crewCurrent, crewCapacity);
@@ -401,35 +405,6 @@ public class ShipStats : MonoBehaviour
         }
     }
 
-    public void UpdateCrewMorale(int crewMoraleAmount, bool hidden = false)
-    {
-        crewMorale += crewMoraleAmount;
-
-        /*
-        if (crewMoraleAmount >= 0)
-        {
-            AudioManager.instance.PlaySFX("Gain Morale");
-        }
-        else
-        {
-            AudioManager.instance.PlaySFX("Lose Morale");
-        }
-        */
-
-        if(crewMorale < 0)
-        {
-            crewMorale = 0;
-        }
-
-        if(crewMorale > 100)
-        {
-            crewMorale = 100;
-        }
-
-        shipStatsUI.UpdateCrewMoraleUI(crewMorale);
-        shipStatsUI.ShowCrewMoraleUIChange(crewMoraleAmount, hidden);
-    }
-
     public int DaysSince
     {
         get => daysSince;
@@ -439,19 +414,13 @@ public class ShipStats : MonoBehaviour
             daysSinceDisplay.text = daysSince.ToString();
         }
     }
-
-    public int Morale
-    {
-        get { return crewMorale; }
-        set { crewMorale = value; }
-    }
-
+    
     public void ResetDaysSince()
     {
         daysSince = 0;
         daysSinceDisplay.text = daysSince.ToString();
     }
-
+    
     private IEnumerator CheckDeathOnUnpause()
     {
         yield return new WaitUntil(() => tick.TicksPaused || tick.TickStop);
@@ -494,13 +463,12 @@ public class ShipStats : MonoBehaviour
         Debug.Log("Food " + Food);
         Debug.Log("ShipHealthCurrent " + ShipHealthCurrent);
         Debug.Log("Payout " + Payout);
-        Debug.Log("Morale " + Morale);
     }
 
     public void PayCrew(int amount)
     {
         Credits -= (amount * crewCurrent);
-        UpdateCrewMorale(Mathf.RoundToInt((amount - crewPaymentDefault) * crewPaymentMoraleMultiplier / crewPaymentDefault), true);
+        moraleManager.CrewPayment(amount);
     }
 
     public void RemoveRandomCrew(int amount)
@@ -558,7 +526,7 @@ public class ShipStats : MonoBehaviour
         startFoodPerTick = foodPerTick;
         startShipHealthMax = shipHealthMax;
         startShipHealthCurrent = shipHealthCurrent;
-        startCrewMorale = crewMorale;
+        moraleManager.SaveMorale();
     }
 
     public void ResetStats()
@@ -572,6 +540,6 @@ public class ShipStats : MonoBehaviour
         Food = startFood;
         FoodPerTick = startFoodPerTick;
         ShipHealthCurrent = new Vector2(startShipHealthCurrent, startShipHealthMax);
-        UpdateCrewMorale(startCrewMorale);
+        moraleManager.ResetMorale();
     }
 }
