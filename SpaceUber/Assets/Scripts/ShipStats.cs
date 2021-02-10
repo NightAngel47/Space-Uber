@@ -524,7 +524,7 @@ public class ShipStats : MonoBehaviour
         {
             if(crewLost[i] != 0)
             {
-                rooms[i].SpawnStatChangeText(crewLost[i], 4);
+                rooms[i].SpawnStatChangeText(crewLost[i], FindObjectOfType<GameManager>().GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
             }
         }
     }

@@ -19,7 +19,7 @@ public class MoveAndFadeBehaviour : MonoBehaviour
     private TMP_Text text;
     private float timeSinceFadeStart;
 
-    public List<Sprite> icons = new List<Sprite>();
+    public List<ResourceDataType> resources = new List<ResourceDataType>();
     
     void Start()
     {
@@ -61,12 +61,12 @@ public class MoveAndFadeBehaviour : MonoBehaviour
         }
     }
     
-    public void SetValue(int value, int icon)
+    public void SetValue(int value, Sprite icon = null)
     {
         StartCoroutine(SetValueWhenReady(value, icon));
     }
     
-    private IEnumerator SetValueWhenReady(int value, int icon)
+    private IEnumerator SetValueWhenReady(int value, Sprite icon)
     {
         yield return new WaitForSeconds(.01f);
 
@@ -82,14 +82,7 @@ public class MoveAndFadeBehaviour : MonoBehaviour
             text.color = red;
         }
 
-        if (icon == -1)
-        {
-            gameObject.transform.GetChild(0).gameObject.SetActive(false);
-        }
-        else
-        {
-            gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = icons[icon];
-        }
+        gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = icon;
 
         text.text = sign + value;
     }

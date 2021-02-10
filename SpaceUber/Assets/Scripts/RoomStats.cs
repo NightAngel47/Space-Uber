@@ -281,7 +281,7 @@ public class RoomStats : MonoBehaviour
         shipStats.ShipHealthCurrent += new Vector2(-shipHealth, -shipHealth);
     }
     
-    public void SpawnStatChangeText(int value, int icon = -1)
+    public void SpawnStatChangeText(int value, Sprite icon = null)
     {
         ShipStatsUI shipStatsUI = shipStats.GetComponent<ShipStatsUI>();
         GameObject statChangeUI = Instantiate(shipStatsUI.statChangeText);
