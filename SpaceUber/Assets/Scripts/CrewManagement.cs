@@ -217,8 +217,8 @@ public class CrewManagement : MonoBehaviour
         foreach (var resource in room.GetComponent<RoomStats>().resources)
         {
             GameObject resourceGO = Instantiate(statAndNumPrefab, outputObject.transform);
-            resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = resource.resourceIcon; // resource icon
-            resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = resource.resourceType; // resource name
+            resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = resource.resourceType.resourceIcon; // resource icon
+            resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = resource.resourceType.resourceName; // resource name
 
             if (room.GetComponent<RoomStats>().flatOutput == false)
             {
