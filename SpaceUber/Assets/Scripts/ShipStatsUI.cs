@@ -11,11 +11,12 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ShipStatsUI : MonoBehaviour
 {
     [SerializeField, Foldout("Ship Credits UI")] private TMP_Text creditsCurrentText;
-    [SerializeField, Foldout("Ship Credits UI")] private TMP_Text creditsTickText;
+    [FormerlySerializedAs("creditsTickText")] [SerializeField, Foldout("Ship Credits UI")] private TMP_Text creditsPayoutText;
 
     [SerializeField, Foldout("Ship Energy UI")] private TMP_Text energyCurrentText;
     [SerializeField, Foldout("Ship Energy UI")] private TMP_Text energyMaxText;
@@ -51,7 +52,7 @@ public class ShipStatsUI : MonoBehaviour
     [SerializeField, Foldout("Ship Hull UI")] private int hullWarningAmount = 25;
     
     [SerializeField, Foldout("Ship Credits Tooltip")] private TMP_Text creditsCurrentTooltipText;
-    [SerializeField, Foldout("Ship Credits Tooltip")] private TMP_Text creditsTickTooltipText;
+    [FormerlySerializedAs("creditsTickTooltipText")] [SerializeField, Foldout("Ship Credits Tooltip")] private TMP_Text creditsPayoutTooltipText;
     
     [SerializeField, Foldout("Ship Energy Tooltip")] private TMP_Text energyCurrentTooltipText;
     [SerializeField, Foldout("Ship Energy Tooltip")] private TMP_Text energyMaxTooltipText;
@@ -76,31 +77,31 @@ public class ShipStatsUI : MonoBehaviour
     {
 
     }
-    public void UpdateCreditsUI(int current, int tick = 0)
+    public void UpdateCreditsUI(int current, int payout = 0)
     {
         creditsCurrentText.text = current.ToString();
-        creditsTickText.text = tick.ToString();
+        creditsPayoutText.text = payout.ToString();
         creditsCurrentTooltipText.text = current.ToString();
-        creditsTickTooltipText.text = tick.ToString();
+        creditsPayoutTooltipText.text = payout.ToString();
     }
 
-    public void ShowCreditsUIChange(int currentChange, int tickChange = 0)
+    public void ShowCreditsUIChange(int currentChange, int payoutChange = 0)
     {
-        if ((GameManager.instance.currentGameState == InGameStates.ShipBuilding) || (GameManager.instance.currentGameState == InGameStates.CrewManagement && (currentChange > 0 || tickChange > 0)))
+        if ((GameManager.instance.currentGameState == InGameStates.ShipBuilding) || (GameManager.instance.currentGameState == InGameStates.CrewManagement && (currentChange > 0 || payoutChange > 0)))
         {
             
             SpawnStatChangeText(creditsCurrentText, currentChange, 0, 0);
 
-            SpawnStatChangeText(creditsTickText, tickChange, 0, 1);
+            SpawnStatChangeText(creditsPayoutText, payoutChange, 0, 1);
 
             if (currentChange != 0)
             {
                 StartCoroutine(JiggleText(creditsCurrentText));
             }
 
-            if (tickChange != 0)
+            if (payoutChange != 0)
             {
-                StartCoroutine(JiggleText(creditsTickText));
+                StartCoroutine(JiggleText(creditsPayoutText));
             }
         }
     }
@@ -174,7 +175,7 @@ public class ShipStatsUI : MonoBehaviour
     {
         crewCurrentText.text = unassigned.ToString();
         crewMaxText.text = current.ToString();
-        crewUnassignedTooltipText.text =unassigned.ToString();
+        crewUnassignedTooltipText.text = unassigned.ToString();
         crewCurrentTooltipText.text = current.ToString();
         crewMaxTooltipText.text = max.ToString();
     }
