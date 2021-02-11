@@ -1,8 +1,8 @@
 /*
  * EventRequirements.cs
  * Author(s): Scott Acker
- * Created on: 9/25/2020 
- * Description: Stores information about the requirements of either a choice or a job. Serializable and meant to be applied to 
+ * Created on: 9/25/2020
+ * Description: Stores information about the requirements of either a choice or a job. Serializable and meant to be applied to
  * different classes as a variable, not a script
  */
 
@@ -24,10 +24,10 @@ public class Requirements
     [Tooltip("The resource you would like to be compared")]
     [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
     private ResourceDataTypes selectedResource;
-    
+
     [Tooltip("How much of this resources is required for an event to run")]
     [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
-    private int requiredAmount;
+    public int requiredAmount;
 
     [Tooltip("Click this if you would like to check if the ship resource is LESS than the number supplied")]
     [SerializeField, ShowIf("isStatRequirement"),AllowNesting]
@@ -39,7 +39,7 @@ public class Requirements
     [Tooltip("If the requirement is approval-based")]
     [SerializeField, AllowNesting]
     private bool isApprovalRequirement = false;
-    
+
     [Tooltip("The character who's approval must be checked")]
     [SerializeField, ShowIf("isApprovalRequirement"), AllowNesting]
     private CharacterStats.Characters character = CharacterStats.Characters.None;
@@ -73,7 +73,7 @@ public class Requirements
     private int cloneTrustRequirement;
 
     [Tooltip("The minimum trust the VIPS must have in the player")]
-    [SerializeField, ShowIf("ctrTrustRequirements"), AllowNesting] 
+    [SerializeField, ShowIf("ctrTrustRequirements"), AllowNesting]
     private int VIPTrustRequirement;
     #endregion
 
@@ -140,9 +140,9 @@ public class Requirements
                 case ResourceDataTypes._Security:
                     shipStat = thisShip.Security;
                     break;
-                //case ResourceType.MORALE:
-                //    shipStat = thisShip.Morale;
-                //    break;
+                case ResourceDataTypes._Morale:
+                    shipStat = MoraleManager.instance.CrewMorale;
+                    break;
                 case ResourceDataTypes._Credits:
                     shipStat = thisShip.Credits;
                     break;

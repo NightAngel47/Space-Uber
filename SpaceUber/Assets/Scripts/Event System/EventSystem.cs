@@ -346,6 +346,31 @@ public class EventSystem : MonoBehaviour
 			CreateEvent(newEvent);
         }
     }
+	
+	public void CreateMutinyEvent(GameObject newEvent)
+	{
+		//If event button scene is loaded, hide the canvas until mutiny event is over
+		if (SceneManager.GetSceneByName("Event_Prompt").isLoaded)
+		{
+			eventPromptButton.gameObject.SetActive(false);
+		}
+	    
+		StartCoroutine(SetupMutinyEvent(newEvent));
+	}
+    
+	private IEnumerator SetupMutinyEvent(GameObject newEvent)
+	{
+		tick.StopTickUpdate();
+	    
+		sonarObjects.SetActive(false);
+	    
+		asm.LoadSceneMerged("Event_CharacterFocused");
+		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
+	    
+		eventCanvas = FindObjectOfType<EventCanvas>();
+	    
+		CreateEvent(newEvent);
+	}
 
 	/// <summary>
 	/// Spawns the event (Gameobject prefab) chosen in Travel().
@@ -374,33 +399,31 @@ public class EventSystem : MonoBehaviour
     public void ConcludeEvent()
 	{
 		ship.ResetDaysSince();
-		eventInstance.GetComponent<InkDriverBase>().ClearUI();
-
 		bool isRegularEvent = true;
-
-		//in case a random event isn't chosen
-		if (eventInstance != null)
+		
+		InkDriverBase concludedEvent = eventInstance.GetComponent<InkDriverBase>();
+		concludedEvent.ClearUI();
+		
+		if(concludedEvent.isCharacterEvent)
 		{
-			if(eventInstance.GetComponent<InkDriverBase>().isCharacterEvent)
-			{
-				isRegularEvent = false;
-				chatting = false;
-				daysSinceChat = 0;
-				eventInstance.GetComponent<CharacterEvent>().EndCharacterEvent();
-				//TODO: Find a way to overclock the connected room
-			}
-			else
-            {
-				//Potentially end the job entirely if this is meant to be the final event
-				if (overallEventIndex >= maxEvents)
-				{
-					ClearEventSystem();
-					ship.CashPayout();
-					GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);
-				}
-			}
-			Destroy(eventInstance);
+			isRegularEvent = false;
+			chatting = false;
+			daysSinceChat = 0;
+			eventInstance.GetComponent<CharacterEvent>().EndCharacterEvent();
+			//TODO: Find a way to overclock the connected room
 		}
+		else if (concludedEvent.isMutinyEvent)
+		{
+			isRegularEvent = false;
+		}
+		else if (overallEventIndex >= maxEvents) //Potentially end the job entirely if this is meant to be the final event
+		{
+			ClearEventSystem();
+			ship.CashPayout();
+			GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);
+		}
+			
+		Destroy(eventInstance);
 
 		//Go back to travel scene
 		asm.UnloadScene("Event_General");

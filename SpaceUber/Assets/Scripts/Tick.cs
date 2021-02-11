@@ -6,6 +6,7 @@ public class Tick : MonoBehaviour
 {
     private ShipStatsUI shipStatsUI;
     private ShipStats shipStats;
+    private MoraleManager moraleManager;
 
     //tick variables
     [SerializeField, Min(0.1f)] private float secondsPerTick = 5;
@@ -16,6 +17,7 @@ public class Tick : MonoBehaviour
     {
         shipStats = FindObjectOfType<ShipStats>();
         shipStatsUI = FindObjectOfType<ShipStatsUI>();
+        moraleManager = FindObjectOfType<MoraleManager>();
     }
 
     public void StartTickUpdate()
@@ -46,31 +48,38 @@ public class Tick : MonoBehaviour
             {
                 // reset seconds passsed
                 secondsPassed = 0;
-                
-                shipStats.Food += (shipStats.FoodPerTick - (int)shipStats.CrewCurrent.x);
-                //food += foodPerTick - crewCurrent;
-                if (shipStats.Food < 0)
+
+                // calculate net food produced per tick
+                int netFood = shipStats.FoodPerTick - (int) shipStats.CrewCurrent.x;
+                // calculate possible missing food
+                int missingFood = shipStats.Food + netFood;
+                // will there be missing food, thus starving crew?
+                if (missingFood < 0)
                 {
-                    //crewMorale += (food * foodMoraleDamageMultiplier);
-                    shipStats.Food = 0;
+                    // update crew morale based on missing food
+                    moraleManager.CrewStarving(missingFood);
                 }
-                shipStatsUI.UpdateFoodUI(shipStats.Food, shipStats.FoodPerTick, (int)shipStats.CrewCurrent.x);
+                // add net food to food stat
+                shipStats.Food += netFood;
 
                 // increment days since events
                 shipStats.DaysSince++;
 
-                //if(crewMorale < 0)
-                //{
-                //    crewMorale = 0;
-                //}
+                if(moraleManager.CrewMorale < 0)
+                {
+                    moraleManager.CrewMorale = 0;
+                }
 
-                //UpdateMoraleShipStatsUI();
+                shipStatsUI.UpdateCrewMoraleUI(moraleManager.CrewMorale);
 
-                //float mutinyChance = (maxMutinyMorale - crewMorale) * zeroMoraleMutinyChance / maxMutinyMorale;
-                //if(mutinyChance > UnityEngine.Random.value)
-                //{
-                //    GameManager.instance.ChangeInGameState(InGameStates.Mutiny);
-                //}
+                moraleManager.CheckMutiny();
+
+                RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+
+                foreach(RoomStats room in rooms)
+                {
+                    room.KeepRoomStatsUpToDateWithMorale();
+                }
 
                 if (shipStats.ShipHealthCurrent.x <= 0)
                 {
@@ -79,10 +88,10 @@ public class Tick : MonoBehaviour
                     AudioManager.instance.PlayMusicWithTransition("Death Theme");
                 }
             }
-            
+
             yield return new WaitForEndOfFrame();
         }
-        
+
         yield return new WaitForEndOfFrame();
     }
 }

@@ -4,7 +4,7 @@
  * Created on: 11/17/2020 (en-US)
  * Description: This stores the information that is required for an increased chance of a random outcome based on a certain stat.
  */
- 
+
 using NaughtyAttributes;
 using System;
 using System.Collections.Generic;
@@ -60,9 +60,9 @@ public class IncreasedSuccess
             case ResourceDataTypes._Security:
                 shipStat = thisShip.Security;
                 break;
-            //case ResourceType.MORALE:
-            //    shipStat = thisShip.Morale;
-            //    break;
+            case ResourceDataTypes._Morale:
+                shipStat = MoraleManager.instance.CrewMorale;
+                break;
             case ResourceDataTypes._Credits:
                 shipStat = thisShip.Credits;
                 break;

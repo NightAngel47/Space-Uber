@@ -38,6 +38,8 @@ public class ChoiceOutcomes
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolOutcomes;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int cloneTrustChange;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int VIPTrustChange;
+    [SerializeField] public bool changeGameState;
+    [SerializeField, ShowIf("changeGameState"), AllowNesting] public InGameStates state;
 
     public void StatChange(ShipStats ship, CampaignManager campMan, bool hasSubsequentChoices)
     {
@@ -182,6 +184,19 @@ public class ChoiceOutcomes
                             resultText += "\nYour payout increased by " + Math.Abs(amount);
                         }
                         break;
+                    case ResourceDataTypes._Morale:
+                        MoraleManager.instance.CrewMorale += amount;
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Morale).resourceIcon);
+
+                        if (amount < 0)
+                        {
+                            resultText += "\nYou lost " + Math.Abs(amount) + " crew morale";
+                        }
+                        else
+                        {
+                            resultText += "\nYou gained " + Math.Abs(amount) + " crew morale";
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -281,9 +296,15 @@ public class ChoiceOutcomes
                         break;
                 }
             }
-            if (!hasSubsequentChoices)
+
+            if(!hasSubsequentChoices)
             {
                 narrativeResultsBox.SetActive(true);
+            }
+
+            if(changeGameState)
+            {
+                GameManager.instance.ChangeInGameState(state);
             }
 
             //Debug.Log("Adding: " + resultText);
