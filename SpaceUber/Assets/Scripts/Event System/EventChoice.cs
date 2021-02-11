@@ -70,6 +70,14 @@ public class EventChoice
         bool requirementMatch = true;
         driver = thisDriver;
 
+        if (driver.isCharacterEvent)
+        {
+            foreach (ChoiceOutcomes outcome in this.outcomes)
+            {
+                outcome.AssignCharacterDriver((CharacterEvent)driver);
+            }
+        }
+
         if (hasRequirements)
         {
             //if anything in choiceRequirements does not match, this bool is automatically false
@@ -167,6 +175,8 @@ public class EventChoice
                 outcome.narrativeResultsBox = driver.resultsBox;
                 outcome.hasSubsequentChoices = hasSubsequentChoices;
                 outcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
+
+                
             }
         }
         

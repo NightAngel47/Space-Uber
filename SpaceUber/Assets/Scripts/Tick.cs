@@ -10,6 +10,8 @@ public class Tick : MonoBehaviour
 
     //tick variables
     [SerializeField, Min(0.1f)] private float secondsPerTick = 5;
+    private float secondsPassed;
+    private Coroutine tickCoroutine;
 
     public void Awake()
     {
@@ -18,98 +20,78 @@ public class Tick : MonoBehaviour
         moraleManager = FindObjectOfType<MoraleManager>();
     }
 
-    public float SecondsPerTick { get; set; } = 5;
-
-    public bool TicksPaused { get; set; }
-
-    public bool TickStop { get; set; } = true;
-
-    public void CallTickUpdate()
+    public void StartTickUpdate()
     {
-        TickStop = false;
-        TicksPaused = false;
-        StartCoroutine(TickUpdate());
+        secondsPassed = 0;
+        tickCoroutine = StartCoroutine(TickUpdate());
+    }
+
+    public void StopTickUpdate()
+    {
+        if (tickCoroutine != null)
+        {
+            StopCoroutine(tickCoroutine);
+        }
+    }
+
+    public bool IsTickStopped()
+    {
+        return tickCoroutine == null;
     }
 
     private IEnumerator TickUpdate()
     {
-        while (!TickStop)
+        while (GameManager.instance.currentGameState == InGameStates.Events)
         {
-            while (TicksPaused)
+            secondsPassed += Time.deltaTime;
+            if (secondsPassed >= secondsPerTick)
             {
-                yield return new WaitForFixedUpdate();
+                // reset seconds passsed
+                secondsPassed = 0;
+
+                // calculate net food produced per tick
+                int netFood = shipStats.FoodPerTick - (int) shipStats.CrewCurrent.x;
+                // calculate possible missing food
+                int missingFood = shipStats.Food + netFood;
+                // will there be missing food, thus starving crew?
+                if (missingFood < 0)
+                {
+                    // update crew morale based on missing food
+                    moraleManager.CrewStarving(missingFood);
+                }
+                // add net food to food stat
+                shipStats.Food += netFood;
+
+                // increment days since events
+                shipStats.DaysSince++;
+
+                if(moraleManager.CrewMorale < 0)
+                {
+                    moraleManager.CrewMorale = 0;
+                }
+
+                shipStatsUI.UpdateCrewMoraleUI(moraleManager.CrewMorale);
+
+                moraleManager.CheckMutiny();
+
+                RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+
+                foreach(RoomStats room in rooms)
+                {
+                    room.KeepRoomStatsUpToDateWithMorale();
+                }
+
+                if (shipStats.ShipHealthCurrent.x <= 0)
+                {
+                    GameManager.instance.ChangeInGameState(InGameStates.Death);
+                    AudioManager.instance.PlaySFX("Hull Death");
+                    AudioManager.instance.PlayMusicWithTransition("Death Theme");
+                }
             }
 
-            yield return new WaitForSeconds(SecondsPerTick);
-
-            while (TicksPaused)
-            {
-                yield return new WaitForFixedUpdate();
-            }
-
-            // calculate net food produced per tick
-            int netFood = shipStats.FoodPerTick - (int) shipStats.CrewCurrent.x;
-            // calculate possible missing food
-            int missingFood = shipStats.Food + netFood;
-            // will there be missing food, thus starving crew?
-            if (missingFood < 0)
-            {                   
-                // update crew morale based on missing food
-                moraleManager.CrewStarving(missingFood);
-            }
-            // add net food to food stat
-            shipStats.Food += netFood;
-
-            // increment days since events
-            shipStats.DaysSince++;
-
-            if(moraleManager.CrewMorale < 0)
-            {
-                moraleManager.CrewMorale = 0;
-            }
-            
-            shipStatsUI.UpdateCrewMoraleUI(moraleManager.CrewMorale);
-            
-            moraleManager.CheckMutiny();
-            
-            RoomStats[] rooms = FindObjectsOfType<RoomStats>();
-            
-            foreach(RoomStats room in rooms)
-            {
-                room.KeepRoomStatsUpToDateWithMorale();
-            }
-
-            if (shipStats.ShipHealthCurrent.x <= 0)
-            {
-                GameManager.instance.ChangeInGameState(InGameStates.Death);
-                AudioManager.instance.PlaySFX("Hull Death");
-                AudioManager.instance.PlayMusicWithTransition("Death Theme");
-            }
+            yield return new WaitForEndOfFrame();
         }
-    }
 
-    public void PauseTickEvents()
-    {
-        TicksPaused = true;
-    }
-
-    public void UnpauseTickEvents()
-    {
-        TicksPaused = false;
-    }
-
-    public void StopTickEvents()
-    {
-        TickStop = true;
-    }
-
-    public void StartTickEvents()
-    {
-        if (TickStop)
-        {
-            TickStop = false;
-            TicksPaused = false;
-            StartCoroutine(TickUpdate());
-        }
+        yield return new WaitForEndOfFrame();
     }
 }

@@ -100,9 +100,9 @@ public class ShipStatsUI : MonoBehaviour
         if ((GameManager.instance.currentGameState == InGameStates.ShipBuilding) || (GameManager.instance.currentGameState == InGameStates.CrewManagement && (currentChange > 0 || payoutChange > 0)))
         {
 
-            SpawnStatChangeText(creditsCurrentText, currentChange, 0, 0);
+            SpawnStatChangeText(creditsCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon, 0);
 
-            SpawnStatChangeText(creditsPayoutText, payoutChange, 0, 1);
+            SpawnStatChangeText(creditsPayoutText, payoutChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon, 1);
 
             if (currentChange != 0)
             {
@@ -128,8 +128,8 @@ public class ShipStatsUI : MonoBehaviour
     {
         if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
         {
-            SpawnStatChangeText(energyCurrentText, currentChange, 5, 1);
-            SpawnStatChangeText(energyMaxText, maxChange, 5, 2);
+            SpawnStatChangeText(energyCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon, 1);
+            SpawnStatChangeText(energyMaxText, maxChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon, 2);
 
             if (currentChange != 0)
             {
@@ -153,7 +153,7 @@ public class ShipStatsUI : MonoBehaviour
     {
         if ((GameManager.instance.currentGameState == InGameStates.ShipBuilding) || (GameManager.instance.currentGameState == InGameStates.CrewManagement && currentChange > 0 ))
         {
-            SpawnStatChangeText(securityCurrentText, currentChange, 1, 2);
+            SpawnStatChangeText(securityCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon, 2);
 
             if (currentChange != 0)
             {
@@ -172,7 +172,7 @@ public class ShipStatsUI : MonoBehaviour
     {
         if ((GameManager.instance.currentGameState == InGameStates.ShipBuilding) || (GameManager.instance.currentGameState == InGameStates.CrewManagement && currentChange > 0))
         {
-            SpawnStatChangeText(shipWeaponsCurrentText, currentChange, 2, 2);
+            SpawnStatChangeText(shipWeaponsCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon, 2);
 
             if (currentChange != 0)
             {
@@ -194,14 +194,14 @@ public class ShipStatsUI : MonoBehaviour
     {
         if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
         {
-            SpawnStatChangeText(crewCurrentText, unassignedChange, 4, 2);
-            SpawnStatChangeText(crewMaxText, currentChange, 4, 3);
+            SpawnStatChangeText(crewCurrentText, unassignedChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon, 2);
+            SpawnStatChangeText(crewMaxText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon, 3);
         }
         else
         {
             unassignedChange = -unassignedChange;
-            SpawnStatChangeText(crewCurrentText, unassignedChange, 4, 1);
-            SpawnStatChangeText(crewMaxText, currentChange, 4, 2);
+            SpawnStatChangeText(crewCurrentText, unassignedChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon, 1);
+            SpawnStatChangeText(crewMaxText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon, 2);
         }
 
         if(unassignedChange != 0)
@@ -228,8 +228,8 @@ public class ShipStatsUI : MonoBehaviour
     {
         if ((GameManager.instance.currentGameState == InGameStates.ShipBuilding) || (GameManager.instance.currentGameState == InGameStates.CrewManagement && (currentChange > 0 || tickChange > 0)))
         {
-            SpawnStatChangeText(foodCurrentText, currentChange, 3, 2);
-            SpawnStatChangeText(foodTickText, tickChange, 3, 2);
+            SpawnStatChangeText(foodCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon, 2);
+            SpawnStatChangeText(foodTickText, tickChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon, 2);
 
             if (currentChange != 0)
             {
@@ -268,8 +268,8 @@ public class ShipStatsUI : MonoBehaviour
 
     public void ShowHullUIChange(int currentChange, int maxChange)
     {
-        SpawnStatChangeText(hullCurrentText, currentChange, 6, 2);
-        SpawnStatChangeText(hullMaxText, maxChange, 6, 3);
+        SpawnStatChangeText(hullCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon, 2);
+        SpawnStatChangeText(hullMaxText, maxChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon, 3);
 
         if(currentChange != 0)
         {
@@ -330,7 +330,7 @@ public class ShipStatsUI : MonoBehaviour
     /// <param name="value"> How much the stat was changed</param>
     /// <param name="icon">The icon it should use when spawning</param>
     /// <param name="canvasNum">The canvas that stat ui should spawn at</param>
-    private void SpawnStatChangeText(TMP_Text statText, int value, int icon, int canvasNum)
+    private void SpawnStatChangeText(TMP_Text statText, int value, Sprite icon, int canvasNum)
     {
         if(value != 0)
         {
@@ -355,7 +355,7 @@ public class ShipStatsUI : MonoBehaviour
 
             MoveAndFadeBehaviour moveAndFadeBehaviour = instance.GetComponent<MoveAndFadeBehaviour>();
             moveAndFadeBehaviour.offset = new Vector2(0, -75);
-            moveAndFadeBehaviour.SetValue(value, -1);
+            moveAndFadeBehaviour.SetValue(value);
 
             if (roomBeingPlaced != null)
             {

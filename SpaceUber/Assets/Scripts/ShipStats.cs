@@ -14,8 +14,6 @@ using TMPro;
 
 public class ShipStats : MonoBehaviour
 {
-    public enum resources{ Credits, Energy, Security, ShipWeapons, Crew, Food, FoodPerTick, HullDurability, Stock}
-
     [SerializeField ,Tooltip("Starting amount of credits"), Foldout("Starting Ship Stats")]
     private int startingCredits;
     [SerializeField, Tooltip("Starting amount of energy"), Foldout("Starting Ship Stats")]
@@ -31,8 +29,10 @@ public class ShipStats : MonoBehaviour
     [SerializeField, Tooltip("Starting amount of ship health"), Foldout("Starting Ship Stats")]
     private int startingShipHealth;
 
+    [HideInInspector]
+    public CharacterStats cStats;
+
     public GameObject cantPlaceText;
-    public Sprite[] statIcons;
 
     private List<RoomStats> rooms;
 
@@ -61,7 +61,7 @@ public class ShipStats : MonoBehaviour
     /// Reference to tick
     /// </summary>
     private Tick tick;
-    
+
     /// <summary>
     /// Reference to morale manager
     /// </summary>
@@ -102,6 +102,9 @@ public class ShipStats : MonoBehaviour
         CrewCurrent = new Vector3(startingCrew, startingCrew, startingCrew);
         Food = startingFood;
         ShipHealthCurrent = new Vector2(startingShipHealth, startingShipHealth);
+        //UpdateCrewMorale(startingMorale);
+
+        cStats = gameObject.GetComponent<CharacterStats>();
     }
 
     /// <summary>
@@ -306,13 +309,13 @@ public class ShipStats : MonoBehaviour
             {
                 crewUnassigned = 0;
             }
-            
+
             int crewInRooms = 0;
             foreach(RoomStats room in rooms)
             {
                 crewInRooms += room.currentCrew;
             }
-            
+
             if (crewUnassigned + crewInRooms >= crewCurrent)
             {
                 crewUnassigned = crewCurrent - crewInRooms;
@@ -414,16 +417,16 @@ public class ShipStats : MonoBehaviour
             daysSinceDisplay.text = daysSince.ToString();
         }
     }
-    
+
     public void ResetDaysSince()
     {
         daysSince = 0;
         daysSinceDisplay.text = daysSince.ToString();
     }
-    
+
     private IEnumerator CheckDeathOnUnpause()
     {
-        yield return new WaitUntil(() => tick.TicksPaused || tick.TickStop);
+        yield return new WaitUntil(() => tick.IsTickStopped());
 
         CheckForDeath();
     }
@@ -506,7 +509,7 @@ public class ShipStats : MonoBehaviour
         {
             if(crewLost[i] != 0)
             {
-                rooms[i].SpawnStatChangeText(crewLost[i], 4);
+                rooms[i].SpawnStatChangeText(crewLost[i], GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
             }
         }
     }

@@ -60,6 +60,8 @@ public class RoomStats : MonoBehaviour
 
     private Camera cam;
 
+    public List<GameObject> CharacterEvents;
+
     void Start()
     {
         moraleModifier = MoraleManager.instance.GetMoraleModifier(ignoreMorale);
@@ -121,7 +123,7 @@ public class RoomStats : MonoBehaviour
         {
             if (flatOutput == true)
             {
-                switch (resource.resourceType)
+                switch (resource.resourceType.resourceName)
                 {
                     case "Credits":
                         credits += Mathf.RoundToInt(resource.amount * moraleModifier);
@@ -158,7 +160,7 @@ public class RoomStats : MonoBehaviour
             {
                 resource.minAmount = resource.amount - (int)(resource.amount * percent);
 
-                switch (resource.resourceType)
+                switch (resource.resourceType.resourceName)
                 {
                     case "Credits":
                         credits += Mathf.RoundToInt(resource.minAmount * moraleModifier);
@@ -255,7 +257,7 @@ public class RoomStats : MonoBehaviour
         {
             SetActiveAmount(resource);
 
-            switch (resource.resourceType)
+            switch (resource.resourceType.resourceName)
             {
                 case "Credits":
                     //credits -= resource.minAmount;
@@ -345,7 +347,7 @@ public class RoomStats : MonoBehaviour
         MoraleManager.instance.CrewMorale -= morale;
     }
 
-    public void SpawnStatChangeText(int value, int icon = -1)
+    public void SpawnStatChangeText(int value, Sprite icon = null)
     {
         ShipStatsUI shipStatsUI = shipStats.GetComponent<ShipStatsUI>();
         GameObject statChangeUI = Instantiate(shipStatsUI.statChangeText);

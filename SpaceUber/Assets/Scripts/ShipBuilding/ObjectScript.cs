@@ -103,7 +103,7 @@ public class ObjectScript : MonoBehaviour
     {
         if (preplacedRoom == false)
         {
-            if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true)
+            if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true) // && PauseMenu.Instance.isPaused == false// commented out until menus are ready
             {
                 if (ObjectMover.hasPlaced == true)
                 {
@@ -137,10 +137,11 @@ public class ObjectScript : MonoBehaviour
 
             if (GameManager.instance.currentGameState == InGameStates.CrewManagement
                || GameManager.instance.currentGameState == InGameStates.Events
-               && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.nextEventLockedIn)
+               && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn)
             {
                 roomTooltip.SetActive(true);
 
+                //if the object is clicked, open the room management menu
                 if (Input.GetMouseButton(0))
                 {
                     FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
