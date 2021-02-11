@@ -249,7 +249,6 @@ public class EventSystem : MonoBehaviour
             
             // wait for event to conclude
             yield return new WaitWhile((() => eventActive));
-            print("done");
 		}
 		
 		sonarObjects.SetActive(false);
@@ -290,7 +289,6 @@ public class EventSystem : MonoBehaviour
 	/// <returns></returns>
 	private IEnumerator StartStoryEvent()
 	{
-		print("story");
 		// Load Event_General Scene for upcoming event
 		asm.LoadSceneMerged("Event_General");
 		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_General").isLoaded);
@@ -307,7 +305,6 @@ public class EventSystem : MonoBehaviour
 	/// <returns></returns>
 	private IEnumerator StartRandomEvent()
 	{
-		print("random");
 		GameObject newEvent = RandomizeEvent();
 
 		// make sure there is a random event
