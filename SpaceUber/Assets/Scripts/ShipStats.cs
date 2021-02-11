@@ -442,7 +442,7 @@ public class ShipStats : MonoBehaviour
 
     private IEnumerator CheckDeathOnUnpause()
     {
-        yield return new WaitUntil(() => tick.TicksPaused || tick.TickStop);
+        yield return new WaitUntil(() => tick.IsTickStopped());
 
         CheckForDeath();
     }
