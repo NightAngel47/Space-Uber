@@ -193,8 +193,6 @@ public class RoomStats : MonoBehaviour
                         break;
                 }
             }
-            print(resource.minAmount);
-            print(resource.activeAmount);
         }
     }
 
