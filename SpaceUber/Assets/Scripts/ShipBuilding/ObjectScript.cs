@@ -199,7 +199,7 @@ public class ObjectScript : MonoBehaviour
         {
             r.TurnOnClickAgain();
 
-            if(r.nextToRoom == true && CalledFromSpawn == false)
+            if(r.nextToRoom == true && CalledFromSpawn == false && gameObject != r.gameObject)
             {
                 bool check = SpotChecker.instance.NextToRoomCall(r.gameObject, r.rotAdjust);
                 if (check == false)
