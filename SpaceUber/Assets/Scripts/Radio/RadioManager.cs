@@ -29,8 +29,9 @@ public class RadioManager : MonoBehaviour
 
     [SerializeField] private RadioStation[] stations = new RadioStation[6];
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitUntil(() => AudioManager.instance != null);
         AudioManager.instance.PlayRadio(currentStation);
         UpdateRadioUIInfo();
     }

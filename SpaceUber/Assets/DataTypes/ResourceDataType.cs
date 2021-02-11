@@ -59,5 +59,6 @@ public enum ResourceDataTypes
     _Energy,
     _Security,
     _FoodPerTick,
-    _Payout
+    _Payout,
+    _Morale
 }

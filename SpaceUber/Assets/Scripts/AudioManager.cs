@@ -160,14 +160,14 @@ public class AudioManager : MonoBehaviour
         {
             if (isMuted) 
             {
-                currentlyPlayingMusic.ScaleVolume(0);
-                currentlyPlayingStation.ScaleVolume(0);
+                currentlyPlayingMusic?.ScaleVolume(0);
+                currentlyPlayingStation?.ScaleVolume(0);
                 foreach(Sound sound in currentlyPlayingAmbience) { sound.ScaleVolume(0); }
             }
             else 
             {
-                currentlyPlayingMusic.ScaleVolume(musicVolume * masterVolume);
-                currentlyPlayingStation.ScaleVolume(radioVolume * masterVolume);
+                currentlyPlayingMusic?.ScaleVolume(musicVolume * masterVolume);
+                currentlyPlayingStation?.ScaleVolume(radioVolume * masterVolume);
                 foreach(Sound sound in currentlyPlayingAmbience) { sound.ScaleVolume(ambienceVolume * masterVolume); }
             }
         }

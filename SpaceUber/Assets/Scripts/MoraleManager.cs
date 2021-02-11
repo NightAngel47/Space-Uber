@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoraleManager : MonoBehaviour
 {
-    [SerializeField, Tooltip("Starting amount of crewMorale")] private int startingMorale;
+    [SerializeField, Tooltip("Starting amount of crewMorale")] private int startingMorale = 100;
     
     private int crewMorale;
     
@@ -23,7 +23,8 @@ public class MoraleManager : MonoBehaviour
     private int mutinyCount = 0;
     [SerializeField, Tooltip("The mutiny event")] private GameObject mutinyEvent;
     
-    [SerializeField, Tooltip("Values for determining the modifiers to apply to room and minigame output. X is the minimum bound of the tier and Y is the modifier value for that tier")] private List<Vector2> outputModifierInfo;
+    [SerializeField, Tooltip("Values for determining the modifiers to apply to room and minigame output. X is the minimum bound of the tier and Y is the modifier value for that tier")] 
+    private List<Vector2> outputModifierInfo;
     
     private ShipStatsUI shipStatsUI;
     
@@ -32,22 +33,21 @@ public class MoraleManager : MonoBehaviour
     private void Awake()
     {
         // Singleton pattern that makes sure that there is only one MoraleManager
-        if (instance) { Destroy(gameObject); }
-        else { instance = this; }
-    }
-    
-    private void Update()
-    {
-        if (instance == null)
+        if (instance)
+        {
+            Destroy(gameObject);
+        }
+        else
         {
             instance = this;
         }
+        
+        shipStatsUI = FindObjectOfType<ShipStatsUI>();
     }
     
     private void Start()
     {
         CrewMorale = startingMorale;
-        shipStatsUI = FindObjectOfType<ShipStatsUI>();
     }
     
     public int CrewMorale

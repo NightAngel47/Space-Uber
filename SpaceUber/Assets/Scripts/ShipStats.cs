@@ -310,17 +310,6 @@ public class ShipStats : MonoBehaviour
                 crewUnassigned = 0;
             }
 
-            int crewInRooms = 0;
-            foreach(RoomStats room in rooms)
-            {
-                crewInRooms += room.currentCrew;
-            }
-
-            if (crewUnassigned + crewInRooms >= crewCurrent)
-            {
-                crewUnassigned = crewCurrent - crewInRooms;
-            }
-
             shipStatsUI.UpdateCrewUI(crewUnassigned, crewCurrent, crewCapacity);
             shipStatsUI.ShowCrewUIChange((int)(value.z - prevValue.z), (int)(value.x - prevValue.x), (int)(value.y - prevValue.y));
         }

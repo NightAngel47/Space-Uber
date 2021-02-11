@@ -184,9 +184,9 @@ public class ChoiceOutcomes
                             resultText += "\nYour payout increased by " + Math.Abs(amount);
                         }
                         break;
-                    case ResourceType.Morale:
+                    case ResourceDataTypes._Morale:
                         MoraleManager.instance.CrewMorale += amount;
-                        SpawnStatChangeText(ship, amount, 7);
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Morale).resourceIcon);
 
                         if (amount < 0)
                         {

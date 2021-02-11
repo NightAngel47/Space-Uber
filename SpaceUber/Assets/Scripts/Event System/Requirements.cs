@@ -140,7 +140,7 @@ public class Requirements
                 case ResourceDataTypes._Security:
                     shipStat = thisShip.Security;
                     break;
-                case ResourceType.MORALE:
+                case ResourceDataTypes._Morale:
                     shipStat = MoraleManager.instance.CrewMorale;
                     break;
                 case ResourceDataTypes._Credits:

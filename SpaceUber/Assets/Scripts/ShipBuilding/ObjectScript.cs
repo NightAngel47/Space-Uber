@@ -101,52 +101,54 @@ public class ObjectScript : MonoBehaviour
 
     public void OnMouseOver()
     {
-        if (preplacedRoom == false)
+        if(preplacedRoom) return;
+        
+        if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true) // && PauseMenu.Instance.isPaused == false// commented out until menus are ready
         {
-            if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true) // && PauseMenu.Instance.isPaused == false// commented out until menus are ready
-            {
-                if (ObjectMover.hasPlaced == true)
-                {
-                    roomTooltip.SetActive(true);
-                }
-                else if (roomTooltip.activeSelf)
-                {
-                    roomTooltip.SetActive(false);
-                }
-
-                if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true)
-                {
-                    //buttons.SetActive(true);
-                    gameObject.GetComponent<RoomStats>().SubtractRoomStats();
-                    AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
-                    Edit();
-                }
-
-                if (Input.GetMouseButton(1))
-                {
-                    //buttons.SetActive(true);
-                    if (ObjectMover.hasPlaced == true)
-                    {
-                        gameObject.GetComponent<RoomStats>().SubtractRoomStats();
-                        AudioManager.instance.PlaySFX("Sell");
-                    }
-
-                    Delete();
-                }
-            }
-
-            if (GameManager.instance.currentGameState == InGameStates.CrewManagement
-               || GameManager.instance.currentGameState == InGameStates.Events
-               && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn)
+            if (ObjectMover.hasPlaced == true)
             {
                 roomTooltip.SetActive(true);
+            }
+            else if (roomTooltip.activeSelf)
+            {
+                roomTooltip.SetActive(false);
+            }
 
-                //if the object is clicked, open the room management menu
-                if (Input.GetMouseButton(0))
+            //if(preplacedRoom) return; // could moved preplacedRoom check here so tooltip can be activated.
+            
+            if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true)
+            {
+                //buttons.SetActive(true);
+                gameObject.GetComponent<RoomStats>().SubtractRoomStats();
+                AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
+                Edit();
+            }
+
+            if (Input.GetMouseButton(1))
+            {
+                //buttons.SetActive(true);
+                if (ObjectMover.hasPlaced == true)
                 {
-                    FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
-                    AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
+                    gameObject.GetComponent<RoomStats>().SubtractRoomStats();
+                    gameObject.GetComponent<RoomStats>().ReturnCrewOnRemove();
+                    AudioManager.instance.PlaySFX("Sell");
                 }
+
+                Delete();
+            }
+        }
+
+        if (GameManager.instance.currentGameState == InGameStates.CrewManagement
+           || GameManager.instance.currentGameState == InGameStates.Events
+           && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn)
+        {
+            roomTooltip.SetActive(true);
+
+            //if the object is clicked, open the room management menu
+            if (Input.GetMouseButton(0))
+            {
+                FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
+                AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
             }
         }
     }
