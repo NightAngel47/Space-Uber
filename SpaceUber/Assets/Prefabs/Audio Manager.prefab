@@ -2271,7 +2271,7 @@ MonoBehaviour:
       mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
         type: 2}
       volume: 0.7
-      pitch: 0
+      pitch: 1
       volumeVarience: 0
       pitchVarience: 0
   - name: SMTH
@@ -2281,17 +2281,49 @@ MonoBehaviour:
       mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
         type: 2}
       volume: 0.9
-      pitch: 0
+      pitch: 1
       volumeVarience: 0
       pitchVarience: 0
   - name: CTRY
-    tracks: []
+    tracks:
+    - name: Asteroid Jame Draft
+      clip: {fileID: 8300000, guid: 47f5c683db20d91429fd6fd3b2b0aa80, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.7
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
   - name: ZERO
-    tracks: []
+    tracks:
+    - name: ZERO_demo
+      clip: {fileID: 8300000, guid: ca2f2311e15d989478054074f37a4751, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.6
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
   - name: NOIS
-    tracks: []
+    tracks:
+    - name: NOIS_demo
+      clip: {fileID: 8300000, guid: 7ca923e57e5a2ec4fb4f22cd57bebe84, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.65
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
   - name: LBTC
-    tracks: []
+    tracks:
+    - name: LBTC_demo
+      clip: {fileID: 8300000, guid: f33470fc9da63724ba48b05edd8618e8, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.8
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
   currentlyPlayingAmbience: []
   masterVolume: 1
   sfxVolume: 1
