@@ -20,8 +20,10 @@ public class EventSystem : MonoBehaviour
 {
 	public static EventSystem instance;
 	private ShipStats ship;
+	private Tick tick;
 	private AdditiveSceneManager asm;
 	private EventCanvas eventCanvas;
+    private EventPromptButton eventPromptButton;
 	private CampaignManager campMan;
 	
 	private int maxEvents = 0;
@@ -49,9 +51,12 @@ public class EventSystem : MonoBehaviour
 	[Tooltip("Initial percentage chance of rolling an event")]
 	[SerializeField] private float startingEventChance = 5;
 
-	
-	private bool isTraveling = false;
+	private bool skippedToEvent;
+    public bool nextEventLockedIn;
+    private float eventRollCounter;
+
 	public bool eventActive { get; private set; } = false;
+    public bool promptActive = false;
 
 	[SerializeField] private GameObject sonarObjects;
 	[SerializeField] private EventWarning eventWarning;
@@ -67,6 +72,7 @@ public class EventSystem : MonoBehaviour
 		else { instance = this; }
 
 		ship = FindObjectOfType<ShipStats>();
+		tick = FindObjectOfType<Tick>();
 		asm = FindObjectOfType<AdditiveSceneManager>();
 		campMan = GetComponent<CampaignManager>();
 		
@@ -128,102 +134,121 @@ public class EventSystem : MonoBehaviour
 		//For the intro event
 		yield return new WaitWhile((() => eventActive));
 
-		float chanceOfEvent = startingEventChance;
 		while (GameManager.instance.currentGameState == InGameStates.Events)
 		{
-            ship.StartTickEvents();
+			tick.CallTickUpdate();
 			sonarObjects.SetActive(true);
 			sonar.ResetSonar();
+			float chanceOfEvent = startingEventChance;
 
 			yield return new WaitForSeconds(timeBeforeEventRoll); //start with one big chunk of time
 
-			//A check to be sure that the current game state is not the event scenes
-			if (GameManager.instance.currentGameState != InGameStates.Events)
-            {
-                break;
-            }
+            asm.LoadSceneMerged("Event_Prompt");
+            yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
+            eventPromptButton = FindObjectOfType<EventPromptButton>();
+            eventPromptButton.eventButton.onClick.AddListener(SpawnEvent);
 
-            #region Start sonar/event chance loop
-            //run random chances for event to take place in a loop
-            while (!WillRunEvent(chanceOfEvent))
-			{				
-				isTraveling = true;
-				chanceOfEvent+= chanceIncreasePerFreq;
-				yield return new WaitForSeconds(eventChanceFreq);
-			}
-			//Once again make sure that this is not an event scene
-            if(GameManager.instance.currentGameState != InGameStates.Events)
+            // roll for next event unless skipped to it
+            while (!skippedToEvent && eventRollCounter <= eventChanceFreq)
             {
-                break;
+	            // count up for every roll
+	            eventRollCounter += Time.deltaTime;
+	            // if reached next roll
+	            if (eventRollCounter >= eventChanceFreq)
+	            {
+		            if (WillRunEvent(chanceOfEvent))
+		            {
+			            nextEventLockedIn = true;
+			            break;
+		            }
+		            
+		            chanceOfEvent += chanceIncreasePerFreq;
+		            eventRollCounter = 0; // reset roll counter
+	            }
+	            
+	            yield return new WaitForEndOfFrame();
             }
-            #endregion
-
-            //Activate the warning for the next event now that one has been picked
-            if (eventWarning != null)
-			{
-				eventWarning.ActivateWarning();
-			}
-			ship.PauseTickEvents();
+            
+            if(nextEventLockedIn)
+            {
+                //Activate the warning for the next event now that one has been picked
+                if (eventWarning != null)
+                {
+                    eventWarning.ActivateWarning();
+                }
+                tick.PauseTickEvents();
+                FindObjectOfType<CrewManagement>().TurnOffPanel();
+            }
 
 			//wait until there is no longer an overclock microgame happening
 			yield return new WaitUntil(() => !OverclockController.instance.overclocking);
-			
-			//get rid of and reset sonar objects
-			eventWarning.DeactivateWarning();
-			sonarObjects.SetActive(false);
             
-			#region Spawn an event
-            if (overallEventIndex % 2 == 1 && overallEventIndex != 0) //if it's an even-numbered event, do a story 
-			{
-				// Load Event_General Scene for upcoming event
-				asm.LoadSceneMerged("Event_General");
-				yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_General").isLoaded);
+            //If event button was not clicked ahead of time
+            if (nextEventLockedIn && SceneManager.GetSceneByName("Event_Prompt").isLoaded)
+            {
+                eventPromptButton.backDrop.SetActive(true);
+            }
 
-				eventCanvas = FindObjectOfType<EventCanvas>();
+            //event is spawned by button (out of loop)
 
-				GameObject newEvent = FindNextStoryEvent();
-				CreateEvent(newEvent);
-				overallEventIndex++;
-
-				yield return new WaitWhile((() => eventActive));
-			}
-			else if (!eventActive && randomEventIndex < randomEvents.Count) //Pick a random event
-			{
-				GameObject newEvent = RandomizeEvent();
-
-				if (newEvent != null) //check to be sure a random event was still chosen
-				{
-					// Load Event_CharacterFocused Scene for upcoming event 
-					asm.LoadSceneMerged("Event_CharacterFocused");
-					yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
-
-					eventCanvas = FindObjectOfType<EventCanvas>();
-
-					CreateEvent(newEvent);
-					randomEventIndex++;
-					overallEventIndex++;
-
-					yield return new WaitWhile((() => eventActive));
-				}
-			}
-			#endregion
-
-			//set up the sonar for the next event
-			sonarObjects.SetActive(true);
-			sonar.ResetSonar();
-			ship.UnpauseTickEvents();
+            yield return new WaitWhile((() => eventActive));
 		}
-		isTraveling = false;
 		sonarObjects.SetActive(false);
-        ship.StopTickEvents();
+        tick.StopTickEvents();
 	}
 
-	/// <summary>
-	/// Spawns the event (Gameobject prefab) chosen in Travel().
-	/// Assigns the proper canvas to the created InkDriverBase script
-	/// </summary>
-	/// <param name="newEvent"></param>
-	private void CreateEvent(GameObject newEvent)
+    public void SpawnEvent()
+    {
+	    skippedToEvent = true;
+	    asm.UnloadScene("Event_Prompt");
+        tick.PauseTickEvents();
+
+        //get rid of and reset sonar objects
+        eventWarning.DeactivateWarning();
+        sonarObjects.SetActive(false);
+
+        StartCoroutine(EventSpawner());
+    }
+
+    private IEnumerator EventSpawner()
+    {
+        if (overallEventIndex % 2 == 1 && overallEventIndex != 0) //if it's an even-numbered event, do a story 
+        {
+            // Load Event_General Scene for upcoming event
+            asm.LoadSceneMerged("Event_General");
+            yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_General").isLoaded);
+
+            eventCanvas = FindObjectOfType<EventCanvas>();
+
+            GameObject newEvent = FindNextStoryEvent();
+            CreateEvent(newEvent);
+            overallEventIndex++;
+        }
+        else if (!eventActive && randomEventIndex < randomEvents.Count) //Pick a random event
+        {
+            GameObject newEvent = RandomizeEvent();
+
+            if (newEvent != null) //check to be sure a random event was still chosen
+            {
+                // Load Event_CharacterFocused Scene for upcoming event 
+                asm.LoadSceneMerged("Event_CharacterFocused");
+                yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
+                
+                eventCanvas = FindObjectOfType<EventCanvas>();
+
+                CreateEvent(newEvent);
+                randomEventIndex++;
+                overallEventIndex++;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Spawns the event (Gameobject prefab) chosen in Travel().
+    /// Assigns the proper canvas to the created InkDriverBase script
+    /// </summary>
+    /// <param name="newEvent"></param>
+    private void CreateEvent(GameObject newEvent)
 	{
 		eventInstance = Instantiate(newEvent, eventCanvas.canvas.transform);
 
@@ -234,15 +259,15 @@ public class EventSystem : MonoBehaviour
 			
 		}
 
-		eventActive = true;
-		//Does not increment overall event index because intro event does not increment it
-	}
+        eventActive = true;
+        //Does not increment overall event index because intro event does not increment it
+    }
 
-	/// <summary>
-	/// Ends the event that is currently running.
-	/// If the max number of events has been reached, go to the ending
-	/// </summary>
-	public void ConcludeEvent()
+    /// <summary>
+    /// Ends the event that is currently running.
+    /// If the max number of events has been reached, go to the ending
+    /// </summary>
+    public void ConcludeEvent()
 	{
 		ship.ResetDaysSince();
 		eventInstance.GetComponent<InkDriverBase>().ClearUI();
@@ -266,7 +291,17 @@ public class EventSystem : MonoBehaviour
 			GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);
 		}
 
-		eventActive = false;
+        //set up the sonar for the next event
+        sonarObjects.SetActive(true);
+        sonar.ResetSonar();
+        tick.UnpauseTickEvents();
+        
+        //reset for next event
+        skippedToEvent = false;
+        nextEventLockedIn = false;
+        eventRollCounter = 0;
+
+        eventActive = false;
 	}
 
 	private void ClearEventSystem()
@@ -298,7 +333,10 @@ public class EventSystem : MonoBehaviour
 	/// <returns></returns>
 	private bool WillRunEvent(float chances)
 	{
-		sonar.ShowNextDot();
+        if(sonar.gameObject.activeSelf)
+        {
+            sonar.ShowNextDot();
+        }
 		float rng = Random.Range(0, 101);
 
 		return rng <= chances;

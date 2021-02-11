@@ -11,14 +11,16 @@ using UnityEngine;
 
 public class Resource : MonoBehaviour
 {
-    [Dropdown("resourceTypes")]
-    public string resourceType;
+    //[Dropdown("resourceTypes")]
+    //public string resourceType;
 
-    private List<string> resourceTypes { get { return new List<string>() { "", "Credits", "Energy", "Security",
-        "Ship Weapons", "Crew", "Food", "Food Per Tick", "Hull Durability"}; } }
+    //private List<string> resourceTypes { get { return new List<string>() { "", "Credits", "Energy", "Security",
+    //    "Ship Weapons", "Crew", "Food", "Food Per Tick", "Hull Durability"}; } }
 
-    public Sprite resourceIcon;
-    
+    //public Sprite resourceIcon;
+
+    public ResourceDataType resourceType;
+
     public int amount;
     public int activeAmount = 0;
     public int minAmount;

@@ -95,7 +95,7 @@ public class SpawnObject : MonoBehaviour
 
     public void SpawnRoom(GameObject ga)
     {
-        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price && FindObjectOfType<ShipStats>().EnergyRemaining >= ga.GetComponent<RoomStats>().minPower) //checks to see if the player has enough credits for the room
+        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price && FindObjectOfType<ShipStats>().EnergyRemaining.x >= ga.GetComponent<RoomStats>().minPower) //checks to see if the player has enough credits for the room
         {
             if (lastSpawned == null || lastSpawned.GetComponent<ObjectMover>().enabled == false) //makes sure that the prior room is placed before the next room can be added
             {
@@ -188,16 +188,16 @@ public class SpawnObject : MonoBehaviour
                 AudioManager.instance.PlaySFX(cannotPlaceCredits[UnityEngine.Random.Range(0, cannotPlaceCredits.Length)]);
                 Debug.Log("Cannot Afford");
                 FindObjectOfType<ShipStats>().cantPlaceText.gameObject.SetActive(true);
-                FindObjectOfType<ShipStats>().cantPlaceText.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Image>().sprite = FindObjectOfType<ShipStats>().statIcons[0];
+                FindObjectOfType<ShipStats>().cantPlaceText.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon;
                 StartCoroutine(WaitForText());
             }
 
-            if (FindObjectOfType<ShipStats>().EnergyRemaining < ga.GetComponent<RoomStats>().minPower)
+            if (FindObjectOfType<ShipStats>().EnergyRemaining.x < ga.GetComponent<RoomStats>().minPower)
             {
                 AudioManager.instance.PlaySFX(cannotPlaceEnergy[UnityEngine.Random.Range(0, cannotPlaceEnergy.Length)]);
                 Debug.Log("No Energy");
                 FindObjectOfType<ShipStats>().cantPlaceText.gameObject.SetActive(true);
-                FindObjectOfType<ShipStats>().cantPlaceText.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Image>().sprite = FindObjectOfType<ShipStats>().statIcons[5];
+                FindObjectOfType<ShipStats>().cantPlaceText.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon;
                 StartCoroutine(WaitForText());
             }
         }
