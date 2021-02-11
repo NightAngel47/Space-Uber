@@ -34,6 +34,26 @@ public class Requirements
     private bool lessThan = false;
     #endregion
 
+    #region Character Approval Variables
+
+    [Tooltip("If the requirement is approval-based")]
+    [SerializeField, AllowNesting]
+    private bool isApprovalRequirement = false;
+    
+    [Tooltip("The character who's approval must be checked")]
+    [SerializeField, ShowIf("isApprovalRequirement"), AllowNesting]
+    private CharacterStats.Characters character = CharacterStats.Characters.None;
+
+    [Tooltip("The required approval rating for this event to pass")]
+    [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
+    private int requiredApproval;
+
+    [Tooltip("Whether or not the approval must be LESS than the number supplied")]
+    [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
+    private bool lessThanApproval = false;
+
+    #endregion
+
     #region Narrative Requirement Variables
     [Tooltip("If the requirement is narrative-based")]
     [SerializeField, AllowNesting]
@@ -242,7 +262,46 @@ public class Requirements
 
             result = roomIDs.Contains(lookingFor);
         }
-        
+        else if(isApprovalRequirement)
+        {
+            int approvalRating = 0;
+
+            switch (character)
+            {
+                case CharacterStats.Characters.KUON:
+                    approvalRating = thisShip.cStats.KuonApproval;
+                    break;
+                case CharacterStats.Characters.MATEO:
+                    approvalRating = thisShip.cStats.MateoApproval;
+                    break;
+                case CharacterStats.Characters.LANRI:
+                    approvalRating = thisShip.cStats.LanriApproval;
+                    break;
+                case CharacterStats.Characters.LEXA:
+                    approvalRating = thisShip.cStats.LexaApproval;
+                    break;
+                case CharacterStats.Characters.RIPLEY:
+                    approvalRating = thisShip.cStats.RipleyApproval;
+                    break;
+                default:
+                    Debug.Log("The character whose approval you wanted does not exist");
+                    approvalRating = 0;
+                    break;
+            }
+
+            if (lessThanApproval && approvalRating < requiredApproval) //Match
+            {
+                result = true;
+            }
+            else if(!lessThanApproval && approvalRating > requiredApproval) //another match
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+        }
 
         return result;
     }

@@ -32,6 +32,9 @@ public class ShipStats : MonoBehaviour
     [SerializeField, Tooltip("Starting amount of crewMorale"), Foldout("Starting Ship Stats")]
     private int startingMorale;
 
+    [HideInInspector]
+    public CharacterStats cStats;
+
     public GameObject cantPlaceText;
 
     private List<RoomStats> rooms;
@@ -106,6 +109,8 @@ public class ShipStats : MonoBehaviour
         Food = startingFood;
         ShipHealthCurrent = new Vector2(startingShipHealth, startingShipHealth);
         //UpdateCrewMorale(startingMorale);
+
+        cStats = gameObject.GetComponent<CharacterStats>();
     }
 
     /// <summary>
@@ -363,7 +368,7 @@ public class ShipStats : MonoBehaviour
     }
 
     /// <summary>
-    /// Property for shipHealthCurrent. Getter and Setter, sets the shipHealth max as well. x = shipHealthCurrent, y = shipHealthMax 
+    /// Property for shipHealthCurrent. Getter and Setter, sets the shipHealth max as well. x = shipHealthCurrent, y = shipHealthMax
     /// </summary>
     public Vector2 ShipHealthCurrent //x = shipHealthCurrent y = shipHealthMax
     {
@@ -392,7 +397,7 @@ public class ShipStats : MonoBehaviour
 
             shipStatsUI.UpdateHullUI(shipHealthCurrent, shipHealthMax);
             shipStatsUI.ShowHullUIChange((int)(value.x - prevValue.x), (int)(value.y - prevValue.y));
-            
+
             // check for death
             StartCoroutine(CheckDeathOnUnpause());
         }
@@ -401,8 +406,8 @@ public class ShipStats : MonoBehaviour
     public int DaysSince
     {
         get => daysSince;
-        set 
-        { 
+        set
+        {
             daysSince = value;
             daysSinceDisplay.text = daysSince.ToString();
         }
@@ -437,7 +442,7 @@ public class ShipStats : MonoBehaviour
 
     private IEnumerator CheckDeathOnUnpause()
     {
-        yield return new WaitUntil(() => tick.TicksPaused || tick.TickStop);
+        yield return new WaitUntil(() => tick.IsTickStopped());
 
         CheckForDeath();
     }
@@ -465,7 +470,7 @@ public class ShipStats : MonoBehaviour
     {
         return EnergyRemaining.x >= power;
     }
-    
+
     public void PrintShipStats()
     {
         Debug.Log("Credits " + Credits);
@@ -505,18 +510,18 @@ public class ShipStats : MonoBehaviour
             while(crewChecked <= selection)
             {
                 crewChecked += rooms[index].currentCrew;
-                
+
                 if(crewChecked > selection)
                 {
                     rooms[index].UpdateCurrentCrew(-1);
                     crewLost[index] += 1;
                     crewAssigned -= 1;
                 }
-                
+
                 index += 1;
             }
         }
-        
+
         for(int i = 0; i < crewLost.Length; i++)
         {
             if(crewLost[i] != 0)

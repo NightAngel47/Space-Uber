@@ -29,6 +29,7 @@ public class CrewManagement : MonoBehaviour
     private int minAssignableCrew;
     private RoomStats[] currentRoomList;
 
+    public Button chatButton;
     public Button overclockButton;
     public GameObject statAndNumPrefab;
     public GameObject outputObject;
@@ -46,6 +47,7 @@ public class CrewManagement : MonoBehaviour
         TurnOffPanel();
         
         overclockButton.gameObject.SetActive(false);
+        chatButton.gameObject.SetActive(false);
 
         currentRoomList = FindObjectsOfType<RoomStats>();
 
@@ -198,7 +200,10 @@ public class CrewManagement : MonoBehaviour
         if (GameManager.instance.currentGameState != InGameStates.Events)
         {
             overclockButton.gameObject.SetActive(false);
+            chatButton.gameObject.SetActive(false);
         }
+
+        UpdateChatAvailability();
     }
 
     /// <summary>
@@ -344,6 +349,7 @@ public class CrewManagement : MonoBehaviour
     public void TurnOnPanel()
     {
         statPanel.SetActive(true);
+        UpdateChatAvailability();
     }
 
     public void StartOverclockGame()
@@ -351,6 +357,15 @@ public class CrewManagement : MonoBehaviour
         TurnOffPanel();
         //crewManagementText.SetActive(false);
         room.GetComponent<OverclockRoom>().PlayMiniGame();
+    }
+
+    public void StartChat()
+    {
+        print("Starting a chat");
+        OverclockRoom ovRoom = room.GetComponent<OverclockRoom>();
+        StartCoroutine(EventSystem.instance.StartNewCharacterEvent(ovRoom.GetEvents()));
+        TurnOffPanel();
+        
     }
 
     public void TurnOnOverclockButton()
@@ -369,5 +384,33 @@ public class CrewManagement : MonoBehaviour
         {
             overclockButton.interactable = true;
         }
+    }
+
+    /// <summary>
+    /// Changes whether or not the chat availability button will activate
+    /// </summary>
+    public void UpdateChatAvailability()
+    {
+        OverclockRoom ovRoom = room.GetComponent<OverclockRoom>();
+
+        if(!ovRoom.hasEvents)
+        {
+            chatButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            print(ovRoom.GetEvents().Count + " events for this room");   
+            
+            if (EventSystem.instance.CanChat(ovRoom.GetEvents()))
+            {
+                chatButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                chatButton.gameObject.SetActive(false);
+            }
+        }
+
+        
     }
 }

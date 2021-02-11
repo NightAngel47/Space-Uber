@@ -9,6 +9,8 @@ public class Tick : MonoBehaviour
 
     //tick variables
     [SerializeField, Min(0.1f)] private float secondsPerTick = 5;
+    private float secondsPassed;
+    private Coroutine tickCoroutine;
 
     public void Awake()
     {
@@ -16,92 +18,71 @@ public class Tick : MonoBehaviour
         shipStatsUI = FindObjectOfType<ShipStatsUI>();
     }
 
-    public float SecondsPerTick { get; set; } = 5;
-
-    public bool TicksPaused { get; set; }
-
-    public bool TickStop { get; set; } = true;
-
-    public void CallTickUpdate()
+    public void StartTickUpdate()
     {
-        TickStop = false;
-        TicksPaused = false;
-        StartCoroutine(TickUpdate());
+        secondsPassed = 0;
+        tickCoroutine = StartCoroutine(TickUpdate());
+    }
+
+    public void StopTickUpdate()
+    {
+        if (tickCoroutine != null)
+        {
+            StopCoroutine(tickCoroutine);
+        }
+    }
+
+    public bool IsTickStopped()
+    {
+        return tickCoroutine == null;
     }
 
     private IEnumerator TickUpdate()
     {
-        while (!TickStop)
+        while (GameManager.instance.currentGameState == InGameStates.Events)
         {
-            while (TicksPaused)
+            secondsPassed += Time.deltaTime;
+            if (secondsPassed >= secondsPerTick)
             {
-                yield return new WaitForFixedUpdate();
+                // reset seconds passsed
+                secondsPassed = 0;
+                
+                shipStats.Food += (shipStats.FoodPerTick - (int)shipStats.CrewCurrent.x);
+                //food += foodPerTick - crewCurrent;
+                if (shipStats.Food < 0)
+                {
+                    //crewMorale += (food * foodMoraleDamageMultiplier);
+                    shipStats.Food = 0;
+                }
+                shipStatsUI.UpdateFoodUI(shipStats.Food, shipStats.FoodPerTick, (int)shipStats.CrewCurrent.x);
+
+                // increment days since events
+                shipStats.DaysSince++;
+
+                //if(crewMorale < 0)
+                //{
+                //    crewMorale = 0;
+                //}
+
+                //UpdateMoraleShipStatsUI();
+
+                //float mutinyChance = (maxMutinyMorale - crewMorale) * zeroMoraleMutinyChance / maxMutinyMorale;
+                //if(mutinyChance > UnityEngine.Random.value)
+                //{
+                //    GameManager.instance.ChangeInGameState(InGameStates.Mutiny);
+                //}
+
+                if (shipStats.ShipHealthCurrent.x <= 0)
+                {
+                    GameManager.instance.ChangeInGameState(InGameStates.Death);
+                    AudioManager.instance.PlaySFX("Hull Death");
+                    AudioManager.instance.PlayMusicWithTransition("Death Theme");
+                }
             }
-
-            yield return new WaitForSeconds(SecondsPerTick);
-
-            while (TicksPaused)
-            {
-                yield return new WaitForFixedUpdate();
-            }
-            //yield return new WaitWhile(() => ticksPaused);
-
-            shipStats.Food += (shipStats.FoodPerTick - (int)shipStats.CrewCurrent.x);
-            //food += foodPerTick - crewCurrent;
-            if (shipStats.Food < 0)
-            {
-                //crewMorale += (food * foodMoraleDamageMultiplier);
-                shipStats.Food = 0;
-            }
-            shipStatsUI.UpdateFoodUI(shipStats.Food, shipStats.FoodPerTick, (int)shipStats.CrewCurrent.x);
-
-            // increment days since events
-            shipStats.DaysSince++;
-
-            //if(crewMorale < 0)
-            //{
-            //    crewMorale = 0;
-            //}
-
-            //UpdateMoraleShipStatsUI();
-
-            //float mutinyChance = (maxMutinyMorale - crewMorale) * zeroMoraleMutinyChance / maxMutinyMorale;
-            //if(mutinyChance > UnityEngine.Random.value)
-            //{
-            //    GameManager.instance.ChangeInGameState(InGameStates.Mutiny);
-            //}
-
-            if (shipStats.ShipHealthCurrent.x <= 0)
-            {
-                GameManager.instance.ChangeInGameState(InGameStates.Death);
-                AudioManager.instance.PlaySFX("Hull Death");
-                AudioManager.instance.PlayMusicWithTransition("Death Theme");
-            }
+            
+            yield return new WaitForEndOfFrame();
         }
-    }
-
-    public void PauseTickEvents()
-    {
-        TicksPaused = true;
-    }
-
-    public void UnpauseTickEvents()
-    {
-        TicksPaused = false;
-    }
-
-    public void StopTickEvents()
-    {
-        TickStop = true;
-    }
-
-    public void StartTickEvents()
-    {
-        if (TickStop)
-        {
-            TickStop = false;
-            TicksPaused = false;
-            StartCoroutine(TickUpdate());
-        }
+        
+        yield return new WaitForEndOfFrame();
     }
 }
