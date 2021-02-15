@@ -270,7 +270,7 @@ public class CrewManagement : MonoBehaviour
             crewUnassignedText.text = "Unassigned Crew: " + shipStats.CrewCurrent.z;
             crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
             UpdateOutput();
-            room.GetComponent<RoomStats>().UpdateRoomStats();
+            room.GetComponent<RoomStats>().UpdateRoomStats(room.GetComponent<Resource>().resourceType);
 
             if (minAssignableCrew <= 0)
             {
@@ -289,7 +289,7 @@ public class CrewManagement : MonoBehaviour
             crewUnassignedText.text = "Unassigned Crew: " + shipStats.CrewCurrent.z;
             crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
             UpdateOutput();
-            room.GetComponent<RoomStats>().UpdateRoomStats();
+            room.GetComponent<RoomStats>().UpdateRoomStats(room.GetComponent<Resource>().resourceType);
 
             if (minAssignableCrew > 0)
             {

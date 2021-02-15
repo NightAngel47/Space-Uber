@@ -191,51 +191,132 @@ public class RoomStats : MonoBehaviour
         return isPowered;
     }
 
-    public void UpdateRoomStats()
+    public void UpdateRoomStats(ResourceDataType resourceData)
     {
         shipStats.roomBeingPlaced = gameObject;
-        SubtractRoomStats();
-        foreach (Resource resource in resources)
+        SubtractOneRoomStat(resourceData);
+
+        Resource resource = gameObject.GetComponent<Resource>();
+
+        switch (resourceData.Rt)
         {
-            switch (resource.resourceType.resourceName)
-            {
-                case "Credits":
-                    //credits -= resource.minAmount;
-                    credits = resource.activeAmount;
-                    break;
-                case "Energy":
-                    //energy -= resource.minAmount;
-                    energy = resource.activeAmount;
-                    break;
-                case "Security":
-                    //security -= resource.minAmount;
-                    security = resource.activeAmount;
-                    break;
-                case "Ship Weapons":
-                    //shipWeapons -= resource.minAmount;
-                    shipWeapons = resource.activeAmount;
-                    break;
-                case "Crew":
-                    //crew -= resource.minAmount;
-                    crew = resource.activeAmount;
-                    break;
-                case "Food":
-                    //food -= resource.minAmount;
-                    food = resource.activeAmount;
-                    break;
-                case "Food Per Tick":
-                    //foodPerTick -= resource.minAmount;
-                    foodPerTick = resource.activeAmount;
-                    break;
-                case "Hull Durability":
-                    //shipHealth -= resource.minAmount;
-                    shipHealth = resource.activeAmount;
-                    break;
-                default:
-                    break;
-            }
+            case ResourceDataTypes._Credits:
+                //credits -= resource.minAmount;
+                credits = resource.activeAmount;
+                break;
+            case ResourceDataTypes._Energy:
+                //energy -= resource.minAmount;
+                energy = resource.activeAmount;
+                break;
+            case ResourceDataTypes._Security:
+                //security -= resource.minAmount;
+                security = resource.activeAmount;
+                break;
+            case ResourceDataTypes._ShipWeapons:
+                //shipWeapons -= resource.minAmount;
+                shipWeapons = resource.activeAmount;
+                break;
+            case ResourceDataTypes._Crew:
+                //crew -= resource.minAmount;
+                crew = resource.activeAmount;
+                break;
+            case ResourceDataTypes._Food:
+                //food -= resource.minAmount;
+                food = resource.activeAmount;
+                break;
+            case ResourceDataTypes._FoodPerTick:
+                //foodPerTick -= resource.minAmount;
+                foodPerTick = resource.activeAmount;
+                break;
+            case ResourceDataTypes._HullDurability:
+                //shipHealth -= resource.minAmount;
+                shipHealth = resource.activeAmount;
+                break;
+            default:
+                break;
         }
-        AddRoomStats();
+        AddOneRoomStat(resourceData);
+    }
+
+    public void AddOneRoomStat(ResourceDataType resourceData)
+    {
+        switch (resourceData.Rt)
+        {
+            case ResourceDataTypes._Credits:
+                shipStats.Credits += -price;
+                break;
+            case ResourceDataTypes._Energy:
+                shipStats.EnergyRemaining += new Vector2(energy, energy);
+                shipStats.EnergyRemaining += new Vector2(-minPower, 0);
+                break;
+            case ResourceDataTypes._Security:
+                shipStats.Security += security;
+                break;
+            case ResourceDataTypes._ShipWeapons:
+                shipStats.ShipWeapons += shipWeapons;
+                break;
+            case ResourceDataTypes._Crew:
+                shipStats.CrewCurrent += new Vector3(crew, crew, crew);
+                break;
+            case ResourceDataTypes._Food:
+                shipStats.Food += food;
+                break;
+            case ResourceDataTypes._FoodPerTick:
+                shipStats.FoodPerTick += foodPerTick;
+                break;
+            case ResourceDataTypes._HullDurability:
+                shipStats.ShipHealthCurrent += new Vector2(shipHealth, shipHealth);
+                break;
+            case ResourceDataTypes._Payout:
+                shipStats.Payout += credits;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void SubtractOneRoomStat(ResourceDataType resourceData)
+    {
+        switch (resourceData.Rt)
+        {
+            case ResourceDataTypes._Credits:
+                shipStats.Credits += -price; if (usedRoom == true)
+                {
+                    shipStats.Credits += (int)(price * priceReducationPercent);
+                }
+                else
+                {
+                    shipStats.Credits += price;
+                }
+                break;
+            case ResourceDataTypes._Energy:
+                shipStats.EnergyRemaining += new Vector2(-energy, -energy);
+                shipStats.EnergyRemaining += new Vector2(minPower, 0);
+                break;
+            case ResourceDataTypes._Security:
+                shipStats.Security += -security;
+                break;
+            case ResourceDataTypes._ShipWeapons:
+                shipStats.ShipWeapons += -shipWeapons;
+                break;
+            case ResourceDataTypes._Crew:
+                shipStats.CrewCurrent += new Vector3(-crew, -crew, -crew);
+                break;
+            case ResourceDataTypes._Food:
+                shipStats.Food += -food;
+                break;
+            case ResourceDataTypes._FoodPerTick:
+                shipStats.FoodPerTick += -foodPerTick;
+                break;
+            case ResourceDataTypes._HullDurability:
+                shipStats.ShipHealthCurrent += new Vector2(-shipHealth, -shipHealth);
+                break;
+            case ResourceDataTypes._Payout:
+                shipStats.Payout += -credits;
+                break;
+            default:
+                break;
+        }
     }
 
     /// <summary>
