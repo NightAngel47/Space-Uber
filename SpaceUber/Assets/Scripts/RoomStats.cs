@@ -214,7 +214,8 @@ public class RoomStats : MonoBehaviour
             if(moraleModifier != newMoraleModifier)
             {
                 moraleModifier = newMoraleModifier;
-                UpdateRoomStats();
+                foreach (Resource resource in resources)
+                    UpdateRoomStats(resource.resourceType);
             }
         }
     }
