@@ -74,6 +74,7 @@ public class EventSystem : MonoBehaviour
 	private string lastEventTitle;
 
 	private bool chatting = false; //Whether or not the player is talking to a character
+	private bool mutiny;
 
 	[SerializeField, Tooltip("The maximum cooldown for a character chat in ticks.")] public int chatCooldown;
 	private int daysSinceChat;
@@ -199,12 +200,12 @@ public class EventSystem : MonoBehaviour
             asm.LoadSceneMerged("Event_Prompt");
             yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
             eventPromptButton = FindObjectOfType<EventPromptButton>();
-            eventPromptButton.eventButton.onClick.AddListener((() => SkipToEvent()));
+            eventPromptButton.eventButton.onClick.AddListener(SkipToEvent);
 
             // roll for next event unless skipped to it
             while (!skippedToEvent && eventRollCounter <= eventChanceFreq)
             {
-				if(!chatting) // don't increment timer when chatting with characters
+				if(!mutiny && !chatting) // don't increment timer when chatting with characters
 				{
 		            // count up for every roll
 		            eventRollCounter += Time.deltaTime;
@@ -259,9 +260,9 @@ public class EventSystem : MonoBehaviour
 	/// Called by the go to event button to spawn a random/story event
 	/// </summary>
 	/// <returns>Returns true when complete</returns>
-	private bool SkipToEvent()
+	private void SkipToEvent()
 	{
-		if (skippedToEvent) return false;
+		if (skippedToEvent) return;
 		
 	    skippedToEvent = true;
 	    asm.UnloadScene("Event_Prompt");
@@ -279,8 +280,6 @@ public class EventSystem : MonoBehaviour
 	    {
 		    StartCoroutine(StartRandomEvent());
 	    }
-
-        return true;
     }
 
 	/// <summary>
@@ -292,7 +291,6 @@ public class EventSystem : MonoBehaviour
 		// Load Event_General Scene for upcoming event
 		asm.LoadSceneMerged("Event_General");
 		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_General").isLoaded);
-		eventCanvas = FindObjectOfType<EventCanvas>();
 
 		GameObject newEvent = FindNextStoryEvent();
 		CreateEvent(newEvent);
@@ -317,7 +315,6 @@ public class EventSystem : MonoBehaviour
 		// Load Event_CharacterFocused Scene for upcoming event
 		asm.LoadSceneMerged("Event_CharacterFocused");
 		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
-		eventCanvas = FindObjectOfType<EventCanvas>();
 
 		CreateEvent(newEvent);
 		randomEventIndex++;
@@ -332,14 +329,14 @@ public class EventSystem : MonoBehaviour
 	public IEnumerator StartNewCharacterEvent(List<GameObject> possibleEvents)
     {
 		chatting = true;
+		tick.StopTickUpdate();
+		FindObjectOfType<CrewManagement>().TurnOffPanel();
 		GameObject newEvent = FindNextCharacterEvent(possibleEvents);
 
 		asm.LoadSceneMerged("Event_CharacterFocused");
 		print("Starting a new character event");
 
 		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
-
-		eventCanvas = FindObjectOfType<EventCanvas>();
 
 		if (newEvent != null)
         {
@@ -349,26 +346,30 @@ public class EventSystem : MonoBehaviour
 	
 	public void CreateMutinyEvent(GameObject newEvent)
 	{
+		mutiny = true;
+		tick.StopTickUpdate();
+		sonarObjects.SetActive(false);
+		FindObjectOfType<CrewManagement>().TurnOffPanel();
+		
 		//If event button scene is loaded, hide the canvas until mutiny event is over
 		if (SceneManager.GetSceneByName("Event_Prompt").isLoaded)
 		{
 			eventPromptButton.gameObject.SetActive(false);
 		}
-	    
+
+		// set event variables
+		InkDriverBase mutinyEvent = newEvent.GetComponent<InkDriverBase>();
+		int mutinyCost = MoraleManager.instance.GetMutinyCost();
+		mutinyEvent.nextChoices[0].choiceRequirements[0].requiredAmount = mutinyCost;
+		mutinyEvent.nextChoices[0].outcomes[0].amount = -mutinyCost;
+		
 		StartCoroutine(SetupMutinyEvent(newEvent));
 	}
     
 	private IEnumerator SetupMutinyEvent(GameObject newEvent)
 	{
-		tick.StopTickUpdate();
-	    
-		sonarObjects.SetActive(false);
-	    
 		asm.LoadSceneMerged("Event_CharacterFocused");
 		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
-	    
-		eventCanvas = FindObjectOfType<EventCanvas>();
-	    
 		CreateEvent(newEvent);
 	}
 
@@ -379,13 +380,13 @@ public class EventSystem : MonoBehaviour
 	/// <param name="newEvent"></param>
 	private void CreateEvent(GameObject newEvent)
 	{
+		eventCanvas = FindObjectOfType<EventCanvas>();
 		eventInstance = Instantiate(newEvent, eventCanvas.canvas.transform);
 
 		if (eventInstance.TryGetComponent(out InkDriverBase inkDriver))
 		{
 			inkDriver.AssignStatusFromEventSystem(eventCanvas.titleBox, eventCanvas.textBox,eventCanvas.choiceResultsBox,
 				eventCanvas.backgroundImage, eventCanvas.buttonGroup, ship, campMan);
-
 		}
 
         eventActive = true;
@@ -415,6 +416,7 @@ public class EventSystem : MonoBehaviour
 		else if (concludedEvent.isMutinyEvent)
 		{
 			isRegularEvent = false;
+			mutiny = false;
 		}
 		else if (overallEventIndex >= maxEvents) //Potentially end the job entirely if this is meant to be the final event
 		{
@@ -430,19 +432,19 @@ public class EventSystem : MonoBehaviour
 		asm.UnloadScene("Event_CharacterFocused");
 		AudioManager.instance.PlayMusicWithTransition("General Theme");
 
+		//reset for next event
+		eventActive = false;
+		sonarObjects.SetActive(true);
+		tick.StartTickUpdate();
+		
 		//set up for the next regular event
 		if (isRegularEvent)
 		{
-			sonarObjects.SetActive(true);
 			sonar.ResetSonar();
 			skippedToEvent = false;
 			nextEventLockedIn = false;
 			eventRollCounter = 0;
-			tick.StopTickUpdate();
 		}
-
-		//reset for next event
-        eventActive = false;
 	}
 
 	private void ClearEventSystem()
