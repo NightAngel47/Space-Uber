@@ -2,7 +2,7 @@
  * OutcomeTooltipUI.cs
  * Author(s): Sam Ferstein
  * Created on: 12/4/2020 (en-US)
- * Description: 
+ * Description:
  */
 
 using System.Collections;
@@ -30,7 +30,7 @@ public class OutcomeTooltipUI : MonoBehaviour
         {
             outcomeDescUI.text = description;
         }
-        
+
         if(isSecret)
         {
             GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
@@ -95,7 +95,7 @@ public class OutcomeTooltipUI : MonoBehaviour
                         resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)randomOutcome.outcomes[i].resource).resourceIcon; // resource icon
                         resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = randomOutcome.outcomes[i].resource.ToString(); // resource name
                         resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = randomOutcome.outcomes[i].amount.ToString(); // resource amount
-                        
+
                         if (i == 0)
                         {
                             resourceGO.transform.GetChild(3).GetComponent<TMP_Text>().text = randomOutcome.probability + "%"; // outcome probability

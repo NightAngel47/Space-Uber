@@ -29,6 +29,7 @@ public class CrewManagement : MonoBehaviour
     private int minAssignableCrew;
     private RoomStats[] currentRoomList;
 
+    public Button chatButton;
     public Button overclockButton;
     public GameObject statAndNumPrefab;
     public GameObject outputObject;
@@ -44,8 +45,9 @@ public class CrewManagement : MonoBehaviour
 
         statPanel = gameObject.transform.GetChild(0).gameObject;
         TurnOffPanel();
-        
+
         overclockButton.gameObject.SetActive(false);
+        chatButton.gameObject.SetActive(false);
 
         currentRoomList = FindObjectsOfType<RoomStats>();
 
@@ -54,7 +56,7 @@ public class CrewManagement : MonoBehaviour
             minAssignableCrew += r.minCrew;
             minAssignableCrew -= r.currentCrew;
         }
-        
+
         if (minAssignableCrew > 0)
         {
             sceneButtons[0].GetComponent<Button>().interactable = false;
@@ -62,7 +64,7 @@ public class CrewManagement : MonoBehaviour
 
         room = FindObjectOfType<ObjectScript>().gameObject;
     }
-    
+
     private void Update()
     {
         if (statPanel.activeSelf && EventSystem.instance.eventActive)
@@ -72,8 +74,8 @@ public class CrewManagement : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the Room Panel that shows up after building ship. This updates it so that 
-    /// all stats are correct for the room displayed and makes sure the buttons that need  
+    /// Updates the Room Panel that shows up after building ship. This updates it so that
+    /// all stats are correct for the room displayed and makes sure the buttons that need
     /// to be enabled are.
     /// </summary>
     public void UpdateRoom(GameObject g)
@@ -83,7 +85,7 @@ public class CrewManagement : MonoBehaviour
             Destroy(overtimeStats[i]);
         }
         overtimeStats.Clear();
-        
+
         room = g;
         roomStats = room.GetComponent<RoomStats>();
         shipStats.roomBeingPlaced = room;
@@ -99,7 +101,7 @@ public class CrewManagement : MonoBehaviour
         crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
         costsText.transform.GetChild(3).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().minCrew.ToString()
             + " - " + room.GetComponent<RoomStats>().maxCrew.ToString();
-        
+
         if(true || room.GetComponent<RoomStats>().maxPower == 0) // right now power management doesn't function so the buttons are just always disabled
         {
             powerAmount.transform.parent.GetChild(0).gameObject.SetActive(false);
@@ -110,7 +112,7 @@ public class CrewManagement : MonoBehaviour
             powerAmount.transform.parent.GetChild(0).gameObject.SetActive(true);
             powerAmount.transform.parent.GetChild(2).gameObject.SetActive(true);
         }
-        
+
         if(room.GetComponent<RoomStats>().maxCrew == 0)
         {
             crewAmount.transform.parent.GetChild(0).gameObject.SetActive(false);
@@ -194,15 +196,18 @@ public class CrewManagement : MonoBehaviour
                 overclockButton.gameObject.SetActive(false);
                 break;
         }
-        
+
         if (GameManager.instance.currentGameState != InGameStates.Events)
         {
             overclockButton.gameObject.SetActive(false);
+            chatButton.gameObject.SetActive(false);
         }
+
+        UpdateChatAvailability();
     }
 
     /// <summary>
-    /// Updates the rooms output based on the crew assigned. So if any crew assigned it gives full amount, 
+    /// Updates the rooms output based on the crew assigned. So if any crew assigned it gives full amount,
     /// and gives percentage of full amount for when amount of crew matters.
     /// </summary>
     public void UpdateOutput()
@@ -231,13 +236,12 @@ public class CrewManagement : MonoBehaviour
 
                     else if (room.GetComponent<RoomStats>().currentCrew == 0 || room.GetComponent<RoomStats>().currentCrew < room.GetComponent<RoomStats>().minCrew)
                     {
-                        resource.activeAmount = 0;
+                        resource.activeAmount = resource.minAmount;
                     }
-
                     else if (room.GetComponent<RoomStats>().currentCrew == room.GetComponent<RoomStats>().maxCrew - i)
                     {
                         float percent = (float)i / (float)crewRange;
-                        resource.activeAmount = resource.amount - (int)(resource.amount * percent);
+                        resource.activeAmount = (resource.amount - resource.minAmount) - (int)((resource.amount - resource.minAmount) * percent) + resource.minAmount;
                     }
                 }
 
@@ -265,7 +269,7 @@ public class CrewManagement : MonoBehaviour
         {
             roomStats.UpdateCurrentCrew(1);
             shipStats.CrewCurrent += new Vector3(0, 0, -1);
-            
+
             minAssignableCrew--;
             crewUnassignedText.text = "Unassigned Crew: " + shipStats.CrewCurrent.z;
             crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
@@ -344,6 +348,7 @@ public class CrewManagement : MonoBehaviour
     public void TurnOnPanel()
     {
         statPanel.SetActive(true);
+        UpdateChatAvailability();
     }
 
     public void StartOverclockGame()
@@ -351,6 +356,15 @@ public class CrewManagement : MonoBehaviour
         TurnOffPanel();
         //crewManagementText.SetActive(false);
         room.GetComponent<OverclockRoom>().PlayMiniGame();
+    }
+
+    public void StartChat()
+    {
+        print("Starting a chat");
+        OverclockRoom ovRoom = room.GetComponent<OverclockRoom>();
+        StartCoroutine(EventSystem.instance.StartNewCharacterEvent(ovRoom.GetEvents()));
+        TurnOffPanel();
+
     }
 
     public void TurnOnOverclockButton()
@@ -364,10 +378,38 @@ public class CrewManagement : MonoBehaviour
         {
             sceneButtons[i].SetActive(false);
         }
-        
+
         if(!overclockButton.interactable)
         {
             overclockButton.interactable = true;
         }
+    }
+
+    /// <summary>
+    /// Changes whether or not the chat availability button will activate
+    /// </summary>
+    public void UpdateChatAvailability()
+    {
+        OverclockRoom ovRoom = room.GetComponent<OverclockRoom>();
+
+        if(!ovRoom.hasEvents)
+        {
+            chatButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            print(ovRoom.GetEvents().Count + " events for this room");
+
+            if (EventSystem.instance.CanChat(ovRoom.GetEvents()))
+            {
+                chatButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                chatButton.gameObject.SetActive(false);
+            }
+        }
+
+
     }
 }

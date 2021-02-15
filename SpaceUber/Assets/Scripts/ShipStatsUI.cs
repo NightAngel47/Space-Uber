@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Serialization;
 
 public class ShipStatsUI : MonoBehaviour
@@ -33,6 +34,15 @@ public class ShipStatsUI : MonoBehaviour
     [SerializeField, Foldout("Ship Hull UI")] private TMP_Text hullCurrentText;
     [SerializeField, Foldout("Ship Hull UI")] private TMP_Text hullMaxText;
 
+    [SerializeField, Foldout("Crew Morale UI")] private Image crewMoraleImage;
+
+    //crew morale icon images
+    [SerializeField, Foldout("Crew Morale Icons")] private Sprite crewMoraleIcon1;
+    [SerializeField, Foldout("Crew Morale Icons")] private Sprite crewMoraleIcon2;
+    [SerializeField, Foldout("Crew Morale Icons")] private Sprite crewMoraleIcon3;
+    [SerializeField, Foldout("Crew Morale Icons")] private Sprite crewMoraleIcon4;
+    [SerializeField, Foldout("Crew Morale Icons")] private Sprite crewMoraleIcon5;
+
     //stat change text variables
     [Foldout("Stat Change UI")] public GameObject statChangeText;
     [Foldout("Stat Change UI")] public GameObject statChangeTextRoom;
@@ -50,24 +60,24 @@ public class ShipStatsUI : MonoBehaviour
     [SerializeField, Foldout("Ship Hull UI")] private Color hullTextDefault;
     [SerializeField, Foldout("Ship Hull UI")] private Color hullTextRed;
     [SerializeField, Foldout("Ship Hull UI")] private int hullWarningAmount = 25;
-    
+
     [SerializeField, Foldout("Ship Credits Tooltip")] private TMP_Text creditsCurrentTooltipText;
     [FormerlySerializedAs("creditsTickTooltipText")] [SerializeField, Foldout("Ship Credits Tooltip")] private TMP_Text creditsPayoutTooltipText;
-    
+
     [SerializeField, Foldout("Ship Energy Tooltip")] private TMP_Text energyCurrentTooltipText;
     [SerializeField, Foldout("Ship Energy Tooltip")] private TMP_Text energyMaxTooltipText;
-    
+
     [SerializeField, Foldout("Ship Security Tooltip")] private TMP_Text securityCurrentTooltipText;
     [SerializeField, Foldout("Ship Weapons Tooltip")] private TMP_Text shipWeaponsCurrentTooltipText;
-    
+
     [SerializeField, Foldout("Ship Crew Tooltip")] private TMP_Text crewUnassignedTooltipText;
     [SerializeField, Foldout("Ship Crew Tooltip")] private TMP_Text crewCurrentTooltipText;
     [SerializeField, Foldout("Ship Crew Tooltip")] private TMP_Text crewMaxTooltipText;
-    
+
     [SerializeField, Foldout("Ship Food Tooltip")] private TMP_Text foodCurrentTooltipText;
     [SerializeField, Foldout("Ship Food Tooltip")] private TMP_Text foodTickTooltipText;
     [SerializeField, Foldout("Ship Food Tooltip")] private TMP_Text foodNetTooltipText;
-    
+
     [SerializeField, Foldout("Ship Hull Tooltip")] private TMP_Text hullCurrentTooltipText;
     [SerializeField, Foldout("Ship Hull Tooltip")] private TMP_Text hullMaxTooltipText;
 
@@ -89,7 +99,7 @@ public class ShipStatsUI : MonoBehaviour
     {
         if ((GameManager.instance.currentGameState == InGameStates.ShipBuilding) || (GameManager.instance.currentGameState == InGameStates.CrewManagement && (currentChange > 0 || payoutChange > 0)))
         {
-            
+
             SpawnStatChangeText(creditsCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon, 0);
 
             SpawnStatChangeText(creditsPayoutText, payoutChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon, 1);
@@ -272,6 +282,47 @@ public class ShipStatsUI : MonoBehaviour
         }
     }
 
+    public void UpdateCrewMoraleUI(int current)
+    {
+        Sprite moraleIcon = null;
+
+        switch(current)
+        {
+            case int cur when current >= 80 && current <= 100:
+                moraleIcon = crewMoraleIcon1;
+                break;
+            case int cur when current >= 60 && current < 80:
+                moraleIcon = crewMoraleIcon2;
+                break;
+            case int cur when current >= 40 && current < 60:
+                moraleIcon = crewMoraleIcon3;
+                break;
+            case int cur when current >= 20 && current < 40:
+                moraleIcon = crewMoraleIcon4;
+                break;
+            case int cur when current >= 0 && current < 20:
+                moraleIcon = crewMoraleIcon5;
+                break;
+            default:
+                break;
+        }
+
+        crewMoraleImage.sprite = moraleIcon;
+    }
+
+    public void ShowCrewMoraleUIChange(int currentChange, bool hidden = false)
+    {
+        if((GameManager.instance.currentGameState == InGameStates.ShipBuilding) || (GameManager.instance.currentGameState == InGameStates.CrewManagement && currentChange > 0))
+        {
+            //Maybe Spawn Stat Change Text
+
+            if(currentChange != 0)
+            {
+                StartCoroutine(JiggleImage(crewMoraleImage));
+            }
+        }
+    }
+
     /// <summary>
     /// Spawns a pop-up of a number below the stat bar and where the object was clicked. Shows exactly how much a stat changes
     /// </summary>
@@ -351,6 +402,25 @@ public class ShipStatsUI : MonoBehaviour
         {
             Vector2 pos = text.GetComponent<RectTransform>().anchoredPosition;
             text.GetComponent<RectTransform>().anchoredPosition = pos + UnityEngine.Random.insideUnitCircle * jiggleAmount;
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    private IEnumerator JiggleImage(Image image)
+    {
+        IEnumerator coroutine = ImageJiggling(image);
+        StartCoroutine(coroutine);
+        yield return new WaitForSeconds(jiggleTime);
+        StopCoroutine(coroutine);
+        image.GetComponent<RectTransform>().anchoredPosition = image.GetComponent<StartPositionTracker>().GetPos();
+    }
+
+    private IEnumerator ImageJiggling(Image image)
+    {
+        while(true)
+        {
+            Vector2 pos = image.GetComponent<RectTransform>().anchoredPosition;
+            image.GetComponent<RectTransform>().anchoredPosition = pos + UnityEngine.Random.insideUnitCircle * jiggleAmount;
             yield return new WaitForFixedUpdate();
         }
     }

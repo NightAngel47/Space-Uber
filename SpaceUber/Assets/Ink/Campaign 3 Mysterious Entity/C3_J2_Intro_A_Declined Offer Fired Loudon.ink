@@ -1,0 +1,2 @@
+Having left the pit stop, you are to continue couriering Kellis's prize find into their awaiting hands. Although you still have about two-thirds of the way to go, with Loudon gone things should go smoothly. While some crew members are still uneasy about your cargo, without Equinox's pawn fueling them they'll subside soon enough.
+-> END

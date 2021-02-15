@@ -21,6 +21,9 @@ public class InkDriverBase : MonoBehaviour
 
     [SerializeField] private string eventName;
     public bool isStoryEvent;
+    [HideInInspector] public bool isCharacterEvent;
+    [HideInInspector] public bool isMutinyEvent;
+
     [ShowIf("isStoryEvent")] public int storyIndex;
     [SerializeField] private Sprite backgroundImage;
 
@@ -34,7 +37,7 @@ public class InkDriverBase : MonoBehaviour
     private TMP_Text textBox;
     [HideInInspector] public GameObject resultsBox;
     private Image backgroundUI;
-    private ShipStats thisShip;
+    protected ShipStats thisShip;
 
     [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
     private float textPrintSpeed = 0.1f;
@@ -53,7 +56,7 @@ public class InkDriverBase : MonoBehaviour
     [SerializeField] public List<Requirements> requiredStats = new List<Requirements>();
 
     [SerializeField, Tooltip("The first set of choices that a player will reach.")]
-    private List<EventChoice> nextChoices = new List<EventChoice>();
+    public List<EventChoice> nextChoices = new List<EventChoice>();
 
     [SerializeField] bool hasSubsequentChoices;
     [ShowIf("hasSubsequentChoices"), Tooltip("Sets of subsequent choices that can be accessed by index by an event choice.")]
@@ -71,12 +74,12 @@ public class InkDriverBase : MonoBehaviour
     private bool showingChoices = false;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         story = new Story(inkJSONAsset.text); //this draws text out of the JSON file
 
-
-
+        if (eventName == "Mutiny") isMutinyEvent = true; // automatically set isMutinyEvent used in Event System.
+        
         Refresh(); //starts the dialogue
         titleBox.text = eventName;
         backgroundUI.sprite = backgroundImage;
@@ -107,18 +110,6 @@ public class InkDriverBase : MonoBehaviour
         resultsBox.transform.GetChild(0).GetComponent<TMP_Text>().text = "";
         resultsBox.SetActive(false);
     }
-
-    //private void Update()
-    //{ //(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
-    //    if (!showingChoices && donePrinting)
-    //    {
-    //        //Refresh();
-    //        if(!story.canContinue && story.currentChoices.Count == 0)
-    //        {
-    //            EventSystem.instance.ConcludeEvent();
-    //        }
-    //    }
-    //}/
 
     public void ConcludeEvent()
     {
@@ -245,6 +236,7 @@ public class InkDriverBase : MonoBehaviour
     {
         string text = ""; //error check
         
+        //Allows the story to add different paragraphs up until the next choice
         while (story.canContinue)
         {
             text += story.Continue() + "\n";

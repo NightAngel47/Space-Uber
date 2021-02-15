@@ -24,17 +24,28 @@ public class ChoiceOutcomes
     [HideInInspector] public bool hasSubsequentChoices;
 
     [SerializeField] public bool isNarrativeOutcome;
+    [SerializeField] public bool isResourceOutcome;
+    [SerializeField] public bool isApprovalOutcome;
+
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public ResourceDataTypes resource;
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public int amount;
+
+    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character = CharacterStats.Characters.None;
+    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public int approvalChange;
+    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public bool correctAnswer;
+    [HideInInspector] public CharacterEvent characterDriver;
+
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolOutcomes;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int cloneTrustChange;
     [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int VIPTrustChange;
+    [SerializeField] public bool changeGameState;
+    [SerializeField, ShowIf("changeGameState"), AllowNesting] public InGameStates state;
 
     public void StatChange(ShipStats ship, CampaignManager campMan, bool hasSubsequentChoices)
     {
         if (ship != null)
         {
-            if (!isNarrativeOutcome)
+            if (!isNarrativeOutcome && !isApprovalOutcome) //Will change to "isResourceOutcome" when designers have the chance to check the box in all old events
             {
                 switch (resource)
                 {
@@ -134,7 +145,7 @@ public class ChoiceOutcomes
                     case ResourceDataTypes._FoodPerTick:
                         ship.FoodPerTick += amount;
                         SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._FoodPerTick).resourceIcon);
-                        
+
                         if (amount < 0)
                         {
                             resultText += "\nFood Per Tick decreased by " + Math.Abs(amount);
@@ -173,11 +184,24 @@ public class ChoiceOutcomes
                             resultText += "\nYour payout increased by " + Math.Abs(amount);
                         }
                         break;
+                    case ResourceDataTypes._Morale:
+                        MoraleManager.instance.CrewMorale += amount;
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Morale).resourceIcon);
+
+                        if (amount < 0)
+                        {
+                            resultText += "\nYou lost " + Math.Abs(amount) + " crew morale";
+                        }
+                        else
+                        {
+                            resultText += "\nYou gained " + Math.Abs(amount) + " crew morale";
+                        }
+                        break;
                     default:
                         break;
                 }
             }
-            else
+            else if(isNarrativeOutcome)
             {
                 //alter the trust variables
                 campMan.cateringToTheRich.ctr_cloneTrust += cloneTrustChange;
@@ -202,7 +226,7 @@ public class ChoiceOutcomes
                         break;
                     case CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledAtSafari:
                         campMan.cateringToTheRich.ctr_killedAtSafari = true;
-                        
+
                         if(campMan.cateringToTheRich.ctr_killedOnce == true) //killed beckett as well
                         {
                             campMan.cateringToTheRich.ctr_killedOnce = false;
@@ -212,7 +236,7 @@ public class ChoiceOutcomes
                             campMan.cateringToTheRich.ctr_killedOnce = true;
                         }
 
-                        
+
 
                         resultText += "\nYou killed at the safari";
                         break;
@@ -223,7 +247,7 @@ public class ChoiceOutcomes
                     default:
                         break;
                 }
-                
+
                 //TODO: Make resultText show up on the textbox somehow
                 narrativeResultsBox.gameObject.SetActive(true);
 
@@ -244,17 +268,57 @@ public class ChoiceOutcomes
                 {
                     resultText += "\n The VIPs have " + VIPTrustChange + "% more trust in you";
                 }
-                
+
             }
+            else //approval outcomes
+            {
+                if(correctAnswer)
+                {
+                    characterDriver.AnswerCorrectly();
+                }
+
+                switch (character)
+                {
+                    case CharacterStats.Characters.KUON:
+                        ship.cStats.KuonApproval += approvalChange;
+                        break;
+                    case CharacterStats.Characters.MATEO:
+                        ship.cStats.MateoApproval += approvalChange;
+                        break;
+                    case CharacterStats.Characters.LANRI:
+                        ship.cStats.LanriApproval += approvalChange;
+                        break;
+                    case CharacterStats.Characters.LEXA:
+                        ship.cStats.LexaApproval += approvalChange;
+                        break;
+                    case CharacterStats.Characters.RIPLEY:
+                        ship.cStats.RipleyApproval += approvalChange;
+                        break;
+                }
+            }
+
             if(!hasSubsequentChoices)
             {
                 narrativeResultsBox.SetActive(true);
             }
-            
+
+            if(changeGameState)
+            {
+                GameManager.instance.ChangeInGameState(state);
+            }
+
             //Debug.Log("Adding: " + resultText);
             narrativeResultsBox.transform.GetChild(0).GetComponent<TMP_Text>().text += resultText;
         }
 
+    }
+
+    /// <summary>
+    /// Assigns the corresponding character event driver to this choice and outcomes. Only used for character events
+    /// </summary>
+    public void AssignCharacterDriver(CharacterEvent driver)
+    {
+        characterDriver = driver;
     }
 
     private void SpawnStatChangeText(ShipStats ship, int value, Sprite icon)
@@ -271,18 +335,4 @@ public class ChoiceOutcomes
         moveAndFadeBehaviour.offset = new Vector2(0, +75);
         moveAndFadeBehaviour.SetValue(value, icon);
     }
-}
-
-public enum ResourceType
-{
-    Credits,
-    Energy,
-    Security,
-    ShipWeapons,
-    Crew,
-    Food,
-    FoodPerTick,
-    HullDurability,
-    Stock,
-    Payout
 }
