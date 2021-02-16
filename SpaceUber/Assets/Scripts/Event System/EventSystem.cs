@@ -198,7 +198,7 @@ public class EventSystem : MonoBehaviour
 			//start with one big chunk of time
 			while (timeBeforeEventCounter <= timeBeforeEventRoll)
 			{
-				if (!mutiny && !chatting) // don't increment timer when chatting with characters
+				if (!mutiny && !chatting) // don't increment timer during mutiny
 				{
 					// count up during the grace period
 					timeBeforeEventCounter += Time.deltaTime;
@@ -215,7 +215,7 @@ public class EventSystem : MonoBehaviour
             // roll for next event unless skipped to it
             while (!skippedToEvent && eventRollCounter <= eventChanceFreq)
             {
-				if(!mutiny && !chatting) // don't increment timer when chatting with characters
+				if(!mutiny && !chatting) // don't increment timer during mutiny
 				{
 		            // count up for every roll
 		            eventRollCounter += Time.deltaTime;
@@ -338,8 +338,9 @@ public class EventSystem : MonoBehaviour
 	/// <returns></returns>
 	public IEnumerator StartNewCharacterEvent(List<GameObject> possibleEvents)
     {
+	    //TODO: Change Character Events to not pause Tick
 		chatting = true;
-		tick.StopTickUpdate(); // pass false to not reset tick
+		tick.StopTickUpdate();
 		FindObjectOfType<CrewManagement>().TurnOffPanel();
 		GameObject newEvent = FindNextCharacterEvent(possibleEvents);
 
@@ -357,7 +358,7 @@ public class EventSystem : MonoBehaviour
 	public void CreateMutinyEvent(GameObject newEvent)
 	{
 		mutiny = true;
-		tick.StopTickUpdate(); // pass false to not reset tick
+		tick.StopTickUpdate();
 		sonarObjects.SetActive(false);
 		FindObjectOfType<CrewManagement>().TurnOffPanel();
 
