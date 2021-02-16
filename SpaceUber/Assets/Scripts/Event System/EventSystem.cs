@@ -117,24 +117,7 @@ public class EventSystem : MonoBehaviour
         }
     }
 
-	public bool CanChat(List<GameObject> checkEvents)
-    {
-		//If chat has cooleddown
-		if(daysSinceChat < chatCooldown)
-        {
-			print("Cooldown active");
-			return false;
-        }
-
-		//if no possible events are found
-		if(FindNextCharacterEvent(checkEvents) == null)
-        {
-			print("Could not manage an event");
-			return false;
-        }
-
-		return true;
-    }
+	
 
     /// <summary>
     /// Plays job intro
@@ -204,27 +187,24 @@ public class EventSystem : MonoBehaviour
             // roll for next event unless skipped to it
             while (!skippedToEvent && eventRollCounter <= eventChanceFreq)
             {
-				if(!chatting) // don't increment timer when chatting with characters
+				// count up for every roll
+				eventRollCounter += Time.deltaTime;
+				// if reached next roll
+				if (eventRollCounter >= eventChanceFreq)
 				{
-		            // count up for every roll
-		            eventRollCounter += Time.deltaTime;
-		            // if reached next roll
-		            if (eventRollCounter >= eventChanceFreq)
-		            {
-			            if (WillRunEvent(chanceOfEvent))
-			            {
-				            nextEventLockedIn = true;
-				            //Activate the warning for the next event now that one has been picked
-				            if (eventWarning != null)
-				            {
-					            eventWarning.ActivateWarning();
-				            }
-				            break;
-			            }
+					if (WillRunEvent(chanceOfEvent))
+					{
+						nextEventLockedIn = true;
+						//Activate the warning for the next event now that one has been picked
+						if (eventWarning != null)
+						{
+							eventWarning.ActivateWarning();
+						}
+						break;
+					}
 
-			            chanceOfEvent += chanceIncreasePerFreq;
-			            eventRollCounter = 0; // reset roll counter
-		            }
+					chanceOfEvent += chanceIncreasePerFreq;
+					eventRollCounter = 0; // reset roll counter
 				}
 
 	            yield return new WaitForEndOfFrame();
@@ -636,4 +616,23 @@ public class EventSystem : MonoBehaviour
 	        maxEvents += newJob.maxRandomEvents;
         }
     }
+
+	public bool CanChat(List<GameObject> checkEvents)
+	{
+		//If chat has cooleddown
+		if (daysSinceChat < chatCooldown)
+		{
+			print("Cooldown active");
+			return false;
+		}
+
+		//if no possible events are found
+		if (FindNextCharacterEvent(checkEvents) == null)
+		{
+			print("Could not manage an event");
+			return false;
+		}
+
+		return true;
+	}
 }
