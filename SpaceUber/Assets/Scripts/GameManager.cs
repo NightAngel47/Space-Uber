@@ -162,6 +162,10 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.LoadSceneSeperate("PromptScreen_End");
                 break;
             case InGameStates.Mutiny: // Loads the PromptScreen_Mutiny when the player reaches a mutiny.
+                additiveSceneManager.UnloadScene("Event_General");
+                additiveSceneManager.UnloadScene("Event_CharacterFocused");
+                additiveSceneManager.UnloadScene("Event_Prompt");
+                
                 additiveSceneManager.LoadSceneSeperate("PromptScreen_Mutiny");
                 break;
             case InGameStates.Death: // Loads the PromptScreen_Death when the player reaches a death.

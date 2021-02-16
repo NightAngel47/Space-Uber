@@ -61,11 +61,11 @@ public class EventSystem : MonoBehaviour
     private bool nextEventLockedIn;
     private float eventRollCounter;
     private float timeBeforeEventCounter;
+    private Coroutine travelCoroutine;
 
     public bool NextEventLockedIn => nextEventLockedIn;
     
 	public bool eventActive { get; private set; } = false;
-    public bool promptActive = false;
 
 	[SerializeField] private GameObject sonarObjects;
 	[SerializeField] private EventWarning eventWarning;
@@ -177,7 +177,7 @@ public class EventSystem : MonoBehaviour
         }
 
         //Go to the travel coroutine
-        StartCoroutine(Travel());
+        travelCoroutine = StartCoroutine(Travel());
     }
 
 	private IEnumerator Travel()
@@ -403,7 +403,6 @@ public class EventSystem : MonoBehaviour
     /// </summary>
     public void ConcludeEvent()
 	{
-		ship.ResetDaysSince();
 		bool isRegularEvent = true;
 		
 		InkDriverBase concludedEvent = eventInstance.GetComponent<InkDriverBase>();
@@ -424,7 +423,7 @@ public class EventSystem : MonoBehaviour
 		}
 		else if (overallEventIndex >= maxEvents) //Potentially end the job entirely if this is meant to be the final event
 		{
-			ClearEventSystem();
+			ClearEventSystemAtEndOfJob();
 			ship.CashPayout();
 			GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);
 		}
@@ -445,6 +444,7 @@ public class EventSystem : MonoBehaviour
 		if (isRegularEvent)
 		{
 			sonar.ResetSonar();
+			ship.ResetDaysSince();
 			skippedToEvent = false;
 			nextEventLockedIn = false;
 			eventRollCounter = 0;
@@ -452,7 +452,7 @@ public class EventSystem : MonoBehaviour
 		}
 	}
 
-	private void ClearEventSystem()
+	private void ClearEventSystemAtEndOfJob()
 	{
 		storyEvents.Clear();
 		randomEvents.Clear();
@@ -463,6 +463,15 @@ public class EventSystem : MonoBehaviour
 		randomEventIndex = 0;
 		eventInstance = null;
 		lastEventTitle = "";
+		chatting = false;
+		mutiny = false;
+		skippedToEvent = false;
+		nextEventLockedIn = false;
+		eventActive = false;
+		eventRollCounter = 0;
+		timeBeforeEventCounter = 0;
+		daysSinceChat = 0;
+		if(travelCoroutine != null) StopCoroutine(travelCoroutine);
 	}
 
 	public void ResetJob()
@@ -472,6 +481,15 @@ public class EventSystem : MonoBehaviour
 		randomEventIndex = 0;
 		eventInstance = null;
 		lastEventTitle = "";
+		chatting = false;
+		mutiny = false;
+		skippedToEvent = false;
+		nextEventLockedIn = false;
+		eventActive = false;
+		eventRollCounter = 0;
+		timeBeforeEventCounter = 0;
+		daysSinceChat = 0;
+		if(travelCoroutine != null) StopCoroutine(travelCoroutine);
 	}
 
 	/// <summary>
