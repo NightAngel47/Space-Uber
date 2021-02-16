@@ -22,10 +22,6 @@ jobs:
           - StandaloneLinux64 # Build a Linux 64-bit standalone.
           #- WebGL # WebGL.
     steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v2.3.2
         with:
           lfs: true
