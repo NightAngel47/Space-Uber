@@ -33,13 +33,13 @@ public class MoraleManager : MonoBehaviour
     private void Awake()
     {
         // Singleton pattern that makes sure that there is only one MoraleManager
-        if (instance)
+        if (instance == null)
         {
-            Destroy(gameObject);
+            instance = this;
         }
         else
         {
-            instance = this;
+            Destroy(gameObject);
         }
         
         shipStatsUI = FindObjectOfType<ShipStatsUI>();
@@ -105,11 +105,13 @@ public class MoraleManager : MonoBehaviour
         if(mutinyChance > UnityEngine.Random.value)
         {
             mutinyCount++;
-            int mutinyCost = Mathf.RoundToInt((baseMutinyCost * ((100 - crewMorale) / 100.0f)) * mutinyCount);
-            mutinyEvent.GetComponent<InkDriverBase>().nextChoices[0].choiceRequirements[0].requiredAmount = mutinyCost;
-            mutinyEvent.GetComponent<InkDriverBase>().nextChoices[0].outcomes[0].amount = -mutinyCost;
             EventSystem.instance.CreateMutinyEvent(mutinyEvent);
         }
+    }
+
+    public int GetMutinyCost()
+    {
+        return Mathf.RoundToInt((baseMutinyCost * ((100 - crewMorale) / 100.0f)) * mutinyCount);
     }
     
     public float GetMoraleModifier(bool ignoreMorale = false)
