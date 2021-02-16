@@ -66,7 +66,7 @@ jobs:
           name: Build
           path: build
       - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
-        if: github.base_ref == 'development' && github.event.pull_request.merged == true
+        if: github.ref == 'development'
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: ${{ matrix.targetPlatform }}
@@ -74,7 +74,7 @@ jobs:
           ITCH_USER: partyparrotpatrolparade
           PACKAGE: build/${{ matrix.targetPlatform }}
       - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
-        if: github.base_ref == 'master' && github.event.pull_request.merged == true
+        if: github.ref == 'master'
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: ${{ matrix.targetPlatform }}
