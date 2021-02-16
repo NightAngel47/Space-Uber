@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Tick : MonoBehaviour
 {
-    private ShipStatsUI shipStatsUI;
     private ShipStats shipStats;
-    private MoraleManager moraleManager;
 
     //tick variables
     [SerializeField, Min(0.1f)] private float secondsPerTick = 5;
@@ -16,22 +14,22 @@ public class Tick : MonoBehaviour
     public void Awake()
     {
         shipStats = FindObjectOfType<ShipStats>();
-        shipStatsUI = FindObjectOfType<ShipStatsUI>();
-        moraleManager = FindObjectOfType<MoraleManager>();
     }
 
     public void StartTickUpdate()
     {
         secondsPassed = 0;
-        tickCoroutine = StartCoroutine(TickUpdate());
+        if (tickCoroutine == null)
+        {
+            tickCoroutine = StartCoroutine(TickUpdate());
+        }
     }
 
     public void StopTickUpdate()
     {
-        if (tickCoroutine != null)
-        {
-            StopCoroutine(tickCoroutine);
-        }
+        if (tickCoroutine == null) return;
+        StopCoroutine(tickCoroutine);
+        tickCoroutine = null;
     }
 
     public bool IsTickStopped()
@@ -57,7 +55,7 @@ public class Tick : MonoBehaviour
                 if (missingFood < 0)
                 {
                     // update crew morale based on missing food
-                    moraleManager.CrewStarving(missingFood);
+                    MoraleManager.instance.CrewStarving(missingFood);
                 }
                 // add net food to food stat
                 shipStats.Food += netFood;
@@ -65,14 +63,7 @@ public class Tick : MonoBehaviour
                 // increment days since events
                 shipStats.DaysSince++;
 
-                if(moraleManager.CrewMorale < 0)
-                {
-                    moraleManager.CrewMorale = 0;
-                }
-
-                shipStatsUI.UpdateCrewMoraleUI(moraleManager.CrewMorale);
-
-                moraleManager.CheckMutiny();
+                MoraleManager.instance.CheckMutiny();
 
                 RoomStats[] rooms = FindObjectsOfType<RoomStats>();
 
