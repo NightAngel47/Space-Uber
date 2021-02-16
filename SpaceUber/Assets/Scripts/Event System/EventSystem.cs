@@ -73,8 +73,8 @@ public class EventSystem : MonoBehaviour
 
 	private string lastEventTitle;
 
-	private bool chatting = false; //Whether or not the player is talking to a character
-	private bool mutiny;
+	[HideInInspector] public bool chatting = false; //Whether or not the player is talking to a character
+	[HideInInspector] public bool mutiny;
 
 	[SerializeField, Tooltip("The maximum cooldown for a character chat in ticks.")] public int chatCooldown;
 	private int daysSinceChat;
@@ -196,7 +196,7 @@ public class EventSystem : MonoBehaviour
 			float chanceOfEvent = startingEventChance;
 
 			yield return new WaitForSeconds(timeBeforeEventRoll); //start with one big chunk of time
-
+            
             asm.LoadSceneMerged("Event_Prompt");
             yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
             eventPromptButton = FindObjectOfType<EventPromptButton>();
@@ -350,12 +350,6 @@ public class EventSystem : MonoBehaviour
 		tick.StopTickUpdate();
 		sonarObjects.SetActive(false);
 		FindObjectOfType<CrewManagement>().TurnOffPanel();
-		
-		//If event button scene is loaded, hide the canvas until mutiny event is over
-		if (SceneManager.GetSceneByName("Event_Prompt").isLoaded)
-		{
-			eventPromptButton.gameObject.SetActive(false);
-		}
 
 		// set event variables
 		InkDriverBase mutinyEvent = newEvent.GetComponent<InkDriverBase>();
