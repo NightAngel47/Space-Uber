@@ -372,6 +372,9 @@ public class EventSystem : MonoBehaviour
     
 	private IEnumerator SetupMutinyEvent(GameObject newEvent)
 	{
+		//wait until there is no longer an overclock microgame happening
+		yield return new WaitUntil(() => !OverclockController.instance.overclocking);
+		
 		asm.LoadSceneMerged("Event_CharacterFocused");
 		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
 		CreateEvent(newEvent);
