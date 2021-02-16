@@ -24,7 +24,7 @@ public class ObjectScript : MonoBehaviour
     public int objectNum;
 
     public bool canRotate;  //true can rotate | false cannot rotate
-    public bool nextToRoom; //true required next to x room | false no condition 
+    public bool nextToRoom; //true required next to x room | false no condition
     public int nextToRoomNum;
     public string nextToRoomName;
     public bool needsSpecificLocation;
@@ -32,7 +32,7 @@ public class ObjectScript : MonoBehaviour
     public static bool CalledFromSpawn = false;
 
     public string[] mouseOverAudio;
-    
+
     [SerializeField] private GameObject roomTooltip;
 
     [SerializeField] private ShapeType shapeDataTemplate = null;
@@ -65,9 +65,9 @@ public class ObjectScript : MonoBehaviour
         c = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
         c.a = 1;
         //parentObj = transform.parent.gameObject;
-        
+
         FindObjectOfType<EditCrewButton>().CheckForRooms();
-        
+
         ResetData();
     }
 
@@ -102,7 +102,7 @@ public class ObjectScript : MonoBehaviour
     public void OnMouseOver()
     {
         if(preplacedRoom) return;
-        
+
         if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true) // && PauseMenu.Instance.isPaused == false// commented out until menus are ready
         {
             if (ObjectMover.hasPlaced == true)
@@ -115,8 +115,8 @@ public class ObjectScript : MonoBehaviour
             }
 
             //if(preplacedRoom) return; // could moved preplacedRoom check here so tooltip can be activated.
-            
-            if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true)
+
+            if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true && !gameObject.GetComponent<ObjectMover>().enabled)
             {
                 //buttons.SetActive(true);
                 gameObject.GetComponent<RoomStats>().SubtractRoomStats();
@@ -153,6 +153,21 @@ public class ObjectScript : MonoBehaviour
         }
     }
 
+    public IEnumerator WaitToClickRoom()
+    {
+        ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
+        foreach (ObjectScript r in otherRooms)
+        {
+            r.TurnOffClickAgain();
+        }
+
+        yield return new WaitForSeconds(.25f);
+
+        foreach (ObjectScript r in otherRooms)
+        {
+            r.TurnOnClickAgain();
+        }
+    }
 
     public void OnMouseExit()
     {
