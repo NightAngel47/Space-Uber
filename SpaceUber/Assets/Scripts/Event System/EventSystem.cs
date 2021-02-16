@@ -60,6 +60,7 @@ public class EventSystem : MonoBehaviour
 	private bool skippedToEvent;
     private bool nextEventLockedIn;
     private float eventRollCounter;
+    private float timeBeforeEventCounter;
 
     public bool NextEventLockedIn => nextEventLockedIn;
     
@@ -183,19 +184,28 @@ public class EventSystem : MonoBehaviour
 	{
 		ship.ResetDaysSince();
 		campMan.cateringToTheRich.SaveEventChoices();
-
-		//For the intro event
-		yield return new WaitWhile((() => eventActive));
-
+		
 		// loops once per event
 		while (GameManager.instance.currentGameState == InGameStates.Events)
 		{
+			// wait till any active event is cleared before starting event timer for next event
+			yield return new WaitWhile((() => eventActive));
 			tick.StartTickUpdate();
 			sonarObjects.SetActive(true);
 			sonar.ResetSonar();
 			float chanceOfEvent = startingEventChance;
 
-			yield return new WaitForSeconds(timeBeforeEventRoll); //start with one big chunk of time
+			//start with one big chunk of time
+			while (timeBeforeEventCounter <= timeBeforeEventRoll)
+			{
+				if (!mutiny && !chatting) // don't increment timer when chatting with characters
+				{
+					// count up during the grace period
+					timeBeforeEventCounter += Time.deltaTime;
+				}
+				
+				yield return new WaitForEndOfFrame();
+			}
             
             asm.LoadSceneMerged("Event_Prompt");
             yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
@@ -329,7 +339,7 @@ public class EventSystem : MonoBehaviour
 	public IEnumerator StartNewCharacterEvent(List<GameObject> possibleEvents)
     {
 		chatting = true;
-		tick.StopTickUpdate();
+		tick.StopTickUpdate(); // pass false to not reset tick
 		FindObjectOfType<CrewManagement>().TurnOffPanel();
 		GameObject newEvent = FindNextCharacterEvent(possibleEvents);
 
@@ -347,7 +357,7 @@ public class EventSystem : MonoBehaviour
 	public void CreateMutinyEvent(GameObject newEvent)
 	{
 		mutiny = true;
-		tick.StopTickUpdate();
+		tick.StopTickUpdate(); // pass false to not reset tick
 		sonarObjects.SetActive(false);
 		FindObjectOfType<CrewManagement>().TurnOffPanel();
 
@@ -438,6 +448,7 @@ public class EventSystem : MonoBehaviour
 			skippedToEvent = false;
 			nextEventLockedIn = false;
 			eventRollCounter = 0;
+			timeBeforeEventCounter = 0;
 		}
 	}
 
