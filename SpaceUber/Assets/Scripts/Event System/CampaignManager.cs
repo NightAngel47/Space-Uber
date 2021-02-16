@@ -11,8 +11,16 @@ using UnityEngine;
 
 public class CampaignManager : MonoBehaviour
 {
+    public enum Campaigns
+    {
+        CateringToTheRich,
+        OtherCampaign
+    }
+
+    public Campaigns currentCamp = Campaigns.CateringToTheRich;
+
     public CateringToTheRich cateringToTheRich = new CateringToTheRich();
-    
+
     [Serializable]
     public class CateringToTheRich
     {
@@ -65,5 +73,10 @@ public class CampaignManager : MonoBehaviour
             ctr_VIPTrust = saved_ctr_VIPTrust;
             ctr_cloneTrust = saved_ctr_cloneTrust;
         }
+    }
+
+    public class OtherCampaign
+    {
+
     }
 }

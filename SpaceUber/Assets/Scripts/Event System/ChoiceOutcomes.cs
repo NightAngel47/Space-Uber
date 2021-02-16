@@ -35,11 +35,19 @@ public class ChoiceOutcomes
     [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public bool correctAnswer;
     [HideInInspector] public CharacterEvent characterDriver;
 
-    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolOutcomes;
-    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int cloneTrustChange;
-    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int VIPTrustChange;
+    [SerializeField, ShowIf("isNarrativeOutcome"),AllowNesting] private CampaignManager.Campaigns thisCampaign = CampaignManager.Campaigns.CateringToTheRich;
+    [SerializeField, ShowIf("IsCateringToTheRich"), AllowNesting] private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolOutcomes;
+    [SerializeField, ShowIf("IsCateringToTheRich"), AllowNesting] private int cloneTrustChange;
+    [SerializeField, ShowIf("IsCateringToTheRich"), AllowNesting] private int VIPTrustChange;
     [SerializeField] public bool changeGameState;
     [SerializeField, ShowIf("changeGameState"), AllowNesting] public InGameStates state;
+
+    #region campaign checks
+    public bool IsCateringToTheRich()
+    {
+        return thisCampaign == CampaignManager.Campaigns.CateringToTheRich;
+    }
+    #endregion
 
     public void StatChange(ShipStats ship, CampaignManager campMan, bool hasSubsequentChoices)
     {
@@ -203,71 +211,75 @@ public class ChoiceOutcomes
             }
             else if(isNarrativeOutcome)
             {
-                //alter the trust variables
-                campMan.cateringToTheRich.ctr_cloneTrust += cloneTrustChange;
-                campMan.cateringToTheRich.ctr_VIPTrust += VIPTrustChange;
-
-                //the selected bool will become true
-                switch (ctrBoolOutcomes)
+                if(thisCampaign == CampaignManager.Campaigns.CateringToTheRich)
                 {
-                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.SideWithScientist:
-                        campMan.cateringToTheRich.ctr_sideWithScientist = true;
-                        resultText += "\nYou sided with the scientist";
-                        break;
-                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.KillBeckett:
-                        campMan.cateringToTheRich.ctr_killBeckett = true;
-                        campMan.cateringToTheRich.ctr_killedOnce = true;
+                    //alter the trust variables
+                    campMan.cateringToTheRich.ctr_cloneTrust += cloneTrustChange;
+                    campMan.cateringToTheRich.ctr_VIPTrust += VIPTrustChange;
 
-                        resultText += "\nYou killed Beckett";
-                        break;
-                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.LetBalePilot:
-                        campMan.cateringToTheRich.ctr_letBalePilot = true;
-                        resultText += "\nYou let Bale pilot";
-                        break;
-                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledAtSafari:
-                        campMan.cateringToTheRich.ctr_killedAtSafari = true;
-
-                        if(campMan.cateringToTheRich.ctr_killedOnce == true) //killed beckett as well
-                        {
-                            campMan.cateringToTheRich.ctr_killedOnce = false;
-                        }
-                        else //no kills yet
-                        {
+                    //the selected bool will become true
+                    switch (ctrBoolOutcomes)
+                    {
+                        case CampaignManager.CateringToTheRich.NarrativeOutcomes.SideWithScientist:
+                            campMan.cateringToTheRich.ctr_sideWithScientist = true;
+                            resultText += "\nYou sided with the scientist";
+                            break;
+                        case CampaignManager.CateringToTheRich.NarrativeOutcomes.KillBeckett:
+                            campMan.cateringToTheRich.ctr_killBeckett = true;
                             campMan.cateringToTheRich.ctr_killedOnce = true;
-                        }
+
+                            resultText += "\nYou killed Beckett";
+                            break;
+                        case CampaignManager.CateringToTheRich.NarrativeOutcomes.LetBalePilot:
+                            campMan.cateringToTheRich.ctr_letBalePilot = true;
+                            resultText += "\nYou let Bale pilot";
+                            break;
+                        case CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledAtSafari:
+                            campMan.cateringToTheRich.ctr_killedAtSafari = true;
+
+                            if (campMan.cateringToTheRich.ctr_killedOnce == true) //killed beckett as well
+                            {
+                                campMan.cateringToTheRich.ctr_killedOnce = false;
+                            }
+                            else //no kills yet
+                            {
+                                campMan.cateringToTheRich.ctr_killedOnce = true;
+                            }
 
 
 
-                        resultText += "\nYou killed at the safari";
-                        break;
-                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.TellVIPsAboutClones:
-                        campMan.cateringToTheRich.ctr_tellVIPsAboutClones = true;
-                        resultText += "\nYou told the VIPs about the clones";
-                        break;
-                    default:
-                        break;
+                            resultText += "\nYou killed at the safari";
+                            break;
+                        case CampaignManager.CateringToTheRich.NarrativeOutcomes.TellVIPsAboutClones:
+                            campMan.cateringToTheRich.ctr_tellVIPsAboutClones = true;
+                            resultText += "\nYou told the VIPs about the clones";
+                            break;
+                        default:
+                            break;
+                    }
+
+                    //TODO: Make resultText show up on the textbox somehow
+                    narrativeResultsBox.gameObject.SetActive(true);
+
+                    if (cloneTrustChange < 0)
+                    {
+                        resultText += "\n The clones have " + cloneTrustChange + "% less trust in you";
+                    }
+                    else if (cloneTrustChange > 0)
+                    {
+                        resultText += "\n The clones have " + cloneTrustChange + "% more trust in you";
+                    }
+
+                    if (VIPTrustChange < 0)
+                    {
+                        resultText += "\n The VIPs have " + VIPTrustChange + "% less trust in you";
+                    }
+                    else if (VIPTrustChange > 0)
+                    {
+                        resultText += "\n The VIPs have " + VIPTrustChange + "% more trust in you";
+                    }
                 }
-
-                //TODO: Make resultText show up on the textbox somehow
-                narrativeResultsBox.gameObject.SetActive(true);
-
-                if(cloneTrustChange < 0)
-                {
-                    resultText += "\n The clones have " + cloneTrustChange + "% less trust in you";
-                }
-                else if(cloneTrustChange > 0)
-                {
-                    resultText += "\n The clones have " + cloneTrustChange + "% more trust in you";
-                }
-
-                if (VIPTrustChange < 0)
-                {
-                    resultText += "\n The VIPs have " + VIPTrustChange + "% less trust in you";
-                }
-                else if (VIPTrustChange > 0)
-                {
-                    resultText += "\n The VIPs have " + VIPTrustChange + "% more trust in you";
-                }
+                
 
             }
             else //approval outcomes

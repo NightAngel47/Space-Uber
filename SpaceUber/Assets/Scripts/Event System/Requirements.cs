@@ -59,13 +59,16 @@ public class Requirements
     [SerializeField, AllowNesting]
     private bool isNarrativeRequirement = false;
 
+    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private CampaignManager.Campaigns thisCampaign 
+        = CampaignManager.Campaigns.CateringToTheRich;
+
     [FormerlySerializedAs("ctrBoolRequirements")]
     [Tooltip("Select one item from this dropdown list. The selected variable must be true for this event to run"),
-     SerializeField, ShowIf("isNarrativeRequirement"), AllowNesting]
+     SerializeField, ShowIf("IsCateringToTheRich"), AllowNesting]
     private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrNarrativeOutcomes;
 
     [Tooltip("Click this if you would like to check trust variables for Catering to the Rich")]
-    [SerializeField, ShowIf("isNarrativeRequirement"), AllowNesting]
+    [SerializeField, ShowIf("IsCateringToTheRich"), AllowNesting]
     private bool ctrTrustRequirements = false;
 
     [Tooltip("The minimum trust the clones must have in the player")]
@@ -109,6 +112,12 @@ public class Requirements
     private RoomType necessaryRoom;
     #endregion
 
+    #region campaign checks
+    public bool IsCateringToTheRich()
+    {
+        return thisCampaign == CampaignManager.Campaigns.CateringToTheRich;
+    }
+    #endregion
     //
     //public string campaign;
     //[HideInInspector] public List<string> PossibleCampaigns => new List<string>() { "NA", "Catering to the Rich" };
