@@ -49,7 +49,7 @@ jobs:
           name: Build
           path: build
   deploy:
-    if: (github.ref == 'refs/heads/development' || github.ref == 'refs/heads/master')  && github.event == 'push'
+    if: (github.ref == 'refs/heads/development' || github.ref == 'refs/heads/master')  && github.event_name == 'push'
     needs: build
     name: Deployment for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
     runs-on: ubuntu-latest
@@ -71,7 +71,7 @@ jobs:
           name: Build
           path: build
       - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
-        if: github.ref == 'refs/heads/development' && github.event == 'push'
+        if: github.ref == 'refs/heads/development' && github.event_name == 'push'
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: ${{ matrix.targetPlatform }}
@@ -79,7 +79,7 @@ jobs:
           ITCH_USER: partyparrotpatrolparade
           PACKAGE: build/${{ matrix.targetPlatform }}
       - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
-        if: github.ref == 'refs/heads/master' && github.event == 'push'
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: ${{ matrix.targetPlatform }}
