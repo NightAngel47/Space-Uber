@@ -45,7 +45,8 @@ jobs:
           name: Build
           path: build
   deploy:
-    name: Build for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
+    needs: build
+    name: Deployment for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
