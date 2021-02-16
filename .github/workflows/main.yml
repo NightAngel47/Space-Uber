@@ -63,7 +63,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v2.0.8
         with:
-          name: ${{ matrix.targetPlatform }}
+          name: Build
           path: build
       - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
         env:
