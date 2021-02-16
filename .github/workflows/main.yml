@@ -32,7 +32,7 @@ jobs:
           restore-keys: |
             Library-${{ matrix.projectPath }}-
             Library-
-      - uses: webbertakken/unity-builder@v2.0-alpha-6
+      - uses: game-ci/unity-builder@v2.0-alpha-6
         with:
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
@@ -46,42 +46,32 @@ jobs:
           path: build
   deploy:
     needs: build
-    name: Deployment for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
+    name: Deployment for ${{ build.strategy.matrix.targetPlatform }} on version ${{ build.strategy.matrix.unityVersion }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        projectPath:
-          - SpaceUber
-        unityVersion:
-          - 2019.4.8f1
-        targetPlatform:
-          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
-          - StandaloneWindows64 # Build a Windows 64-bit standalone.
-          - StandaloneLinux64 # Build a Linux 64-bit standalone.
-          #- WebGL # WebGL.
     steps:
       - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
         if: github.base_ref == 'steven-deployment-fix' #&& github.event.pull_request.merged == true
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
-          CHANNEL: ${{ matrix.targetPlatform }}
+          CHANNEL: ${{ build.strategy.matrix.targetPlatform }}
           ITCH_GAME: a-cog-in-the-cosmic-machine-dev-build
           ITCH_USER: nightangel47
-          PACKAGE: build/${{ matrix.targetPlatform }}
+          PACKAGE: build/${{ build.strategy.matrix.targetPlatform }}
       - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
         if: github.base_ref == 'development' && github.event.pull_request.merged == true
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
-          CHANNEL: ${{ matrix.targetPlatform }}
+          CHANNEL: ${{ build.strategy.matrix.targetPlatform }}
           ITCH_GAME: a-cog-in-the-cosmic-machine-dev
           ITCH_USER: partyparrotpatrolparade
-          PACKAGE: build/${{ matrix.targetPlatform }}
+          PACKAGE: build/${{ build.strategy.matrix.targetPlatform }}
       - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
         if: github.base_ref == 'master' && github.event.pull_request.merged == true
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
-          CHANNEL: ${{ matrix.targetPlatform }}
+          CHANNEL: ${{ build.strategy.matrix.targetPlatform }}
           ITCH_GAME: a-cog-in-the-cosmic-machine
           ITCH_USER: partyparrotpatrolparade
-          PACKAGE: build/${{ matrix.targetPlatform }}
+          PACKAGE: build/${{ build.strategy.matrix.targetPlatform }}
