@@ -61,6 +61,10 @@ jobs:
           - StandaloneLinux64 # Build a Linux 64-bit standalone.
           #- WebGL # WebGL.
     steps:
+      - uses: actions/download-artifact@v2.0.8
+        with:
+          name: ${{ matrix.targetPlatform }}
+          path: build
       - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
