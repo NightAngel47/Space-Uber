@@ -438,11 +438,6 @@ public class RoomStats : MonoBehaviour
         moveAndFadeBehaviour.SetValue(value, icon);
     }
 
-    public float GetMoraleModifier()
-    {
-        return moraleModifier;
-    }
-
     public void ReturnCrewOnRemove()
     {
         // reset the ship's crew stats back to before room was placed

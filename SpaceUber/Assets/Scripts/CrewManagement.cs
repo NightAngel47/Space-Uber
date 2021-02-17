@@ -231,18 +231,17 @@ public class CrewManagement : MonoBehaviour
                 {
                     if (room.GetComponent<RoomStats>().currentCrew == room.GetComponent<RoomStats>().maxCrew)
                     {
-                        resource.activeAmount = (int)(resource.amount * room.GetComponent<RoomStats>().GetMoraleModifier());
+                        resource.activeAmount = resource.amount;
                     }
 
                     else if (room.GetComponent<RoomStats>().currentCrew == 0 || room.GetComponent<RoomStats>().currentCrew < room.GetComponent<RoomStats>().minCrew)
                     {
-                        resource.activeAmount = (int)(resource.minAmount * room.GetComponent<RoomStats>().GetMoraleModifier());
-            }
+                        resource.activeAmount = resource.minAmount;
+                    }
                     else if (room.GetComponent<RoomStats>().currentCrew == room.GetComponent<RoomStats>().maxCrew - i)
                     {
                         float percent = (float)i / (float)crewRange;
-                        resource.activeAmount = (int)(((resource.amount - resource.minAmount) - (int)((resource.amount - resource.minAmount) * percent) + resource.minAmount) 
-                            * room.GetComponent<RoomStats>().GetMoraleModifier());
+                        resource.activeAmount = (resource.amount - resource.minAmount) - (int)((resource.amount - resource.minAmount) * percent) + resource.minAmount;
                     }
                 }
 
