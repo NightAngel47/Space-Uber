@@ -8,15 +8,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : Singleton<PauseMenu>
 {
     public Canvas pauseCanvas;
 
-    public bool isPaused = false;
+    private bool isPaused = false;
+
+    private void Start()
+    {
+        gameObject.SetActive(false);
+    }
 
     void Update()
     {
+        Scene currentScene = SceneManager.GetActiveScene();
+
         if (Input.GetKeyDown("tab"))
         {
             CheckPaused();
