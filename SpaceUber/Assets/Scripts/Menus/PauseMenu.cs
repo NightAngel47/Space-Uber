@@ -16,16 +16,12 @@ public class PauseMenu : Singleton<PauseMenu>
 
     private bool isPaused = false;
 
-    private void Start()
-    {
-        gameObject.SetActive(false);
-    }
 
     void Update()
     {
         Scene currentScene = SceneManager.GetActiveScene();
 
-        if (Input.GetKeyDown("tab"))
+        if (Input.GetKeyDown("tab") && currentScene.name != "Menu_Main")
         {
             CheckPaused();
         }
@@ -37,16 +33,41 @@ public class PauseMenu : Singleton<PauseMenu>
     {
         if (pauseCanvas.gameObject.activeSelf == true)
         {
-            pauseCanvas.gameObject.SetActive(false);
-            isPaused = false;
-            Time.timeScale = 1.0f;
+            Unpause();
         }
         else if (pauseCanvas.gameObject.activeSelf == false)
         {
-            pauseCanvas.gameObject.SetActive(true);
-            isPaused = true;
-            Time.timeScale = 0f;
+            Pause();
         }
-
     }
+
+    public void Pause()
+    {
+        pauseCanvas.gameObject.SetActive(true);
+        isPaused = true;
+        Time.timeScale = 0f;
+    }
+    public void Unpause()
+    {
+        pauseCanvas.gameObject.SetActive(false);
+        isPaused = false;
+        Time.timeScale = 1.0f;
+    }
+
+    public void GoToScene(string sceneName)
+    {
+        StartCoroutine(LoadSceneAsync(sceneName));
+    }
+
+    //load scene specified in the button's inspector window
+    //change to that scene once it has loaded successfully
+    IEnumerator LoadSceneAsync(string sceneName)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!asyncLoad.isDone) yield return null;
+
+        Unpause();
+    }
+
 }
