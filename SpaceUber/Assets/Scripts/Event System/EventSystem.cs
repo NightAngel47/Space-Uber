@@ -66,10 +66,12 @@ public class EventSystem : MonoBehaviour
     public bool NextEventLockedIn => nextEventLockedIn;
     
 	public bool eventActive { get; private set; } = false;
-
-	[SerializeField] private GameObject sonarObjects;
-	[SerializeField] private EventWarning eventWarning;
-	[SerializeField] private EventSonar sonar;
+	
+	// loaded in from Interface_EventTimer
+	private GameObject sonarObjects; // event timer UI
+	private EventWarning eventWarning; // warning
+	private EventSonar sonar; // sonar
+	
 	private Job currentJob;
 
 	private string lastEventTitle;
@@ -90,16 +92,6 @@ public class EventSystem : MonoBehaviour
 		tick = FindObjectOfType<Tick>();
 		asm = FindObjectOfType<AdditiveSceneManager>();
 		campMan = GetComponent<CampaignManager>();
-
-		if(eventWarning != null)
-		{
-			eventWarning.DeactivateWarning();
-		}
-
-		//set sonar stuff
-		sonar.SetSpinRate( eventChanceFreq );
-		sonarObjects.SetActive(false);
-		chatting = false;
 	}
 
     private void Update()
@@ -117,6 +109,22 @@ public class EventSystem : MonoBehaviour
 		        StartCoroutine(StartNewCharacterEvent(allCharacterEvents));
 	        }
         }
+    }
+
+    private void SetUpEventTimer()
+    {
+	    eventWarning = FindObjectOfType<EventWarning>();
+	    sonar = FindObjectOfType<EventSonar>();
+	    sonarObjects = sonar.transform.parent.gameObject; // event timer UI
+	    
+	    //set sonar stuff
+	    sonar.SetSpinRate( eventChanceFreq );
+	    sonarObjects.SetActive(false);
+	    
+	    if(eventWarning != null)
+	    {
+		    eventWarning.DeactivateWarning();
+	    }
     }
 
 	public bool CanChat(List<GameObject> checkEvents)
@@ -143,6 +151,9 @@ public class EventSystem : MonoBehaviour
     /// </summary>
     public IEnumerator PlayIntro()
     {
+	    yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_EventTimer").isLoaded);
+	    SetUpEventTimer();
+	    
 		chatting = false;
 		while(currentJob == null)
         {
@@ -175,14 +186,14 @@ public class EventSystem : MonoBehaviour
         {
 			print("Found nothing in currentJob");
         }
-
+		
         //Go to the travel coroutine
         travelCoroutine = StartCoroutine(Travel());
     }
 
 	private IEnumerator Travel()
 	{
-		ship.ResetDaysSince();
+		tick.DaysSince = 0; // reset days since
 		campMan.cateringToTheRich.SaveEventChoices();
 		
 		// loops once per event
@@ -425,13 +436,7 @@ public class EventSystem : MonoBehaviour
 			isRegularEvent = false;
 			mutiny = false;
 		}
-		else if (overallEventIndex >= maxEvents) //Potentially end the job entirely if this is meant to be the final event
-		{
-			ClearEventSystemAtEndOfJob();
-			ship.CashPayout();
-			GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);
-		}
-			
+
 		Destroy(eventInstance);
 
 		//Go back to travel scene
@@ -448,11 +453,18 @@ public class EventSystem : MonoBehaviour
 		if (isRegularEvent)
 		{
 			sonar.ResetSonar();
-			ship.ResetDaysSince();
+			tick.DaysSince = 0; // reset days since
 			skippedToEvent = false;
 			nextEventLockedIn = false;
 			eventRollCounter = 0;
 			timeBeforeEventCounter = 0;
+		}
+		
+		if (overallEventIndex >= maxEvents) //Potentially end the job entirely if this is meant to be the final event
+		{
+			ClearEventSystemAtEndOfJob();
+			ship.CashPayout();
+			GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);
 		}
 	}
 
@@ -476,6 +488,7 @@ public class EventSystem : MonoBehaviour
 		timeBeforeEventCounter = 0;
 		daysSinceChat = 0;
 		if(travelCoroutine != null) StopCoroutine(travelCoroutine);
+		tick.StopTickUpdate();
 	}
 
 	public void ResetJob()
