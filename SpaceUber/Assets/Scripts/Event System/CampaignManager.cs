@@ -8,18 +8,51 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class CampaignManager : MonoBehaviour
 {
     public enum Campaigns
     {
         CateringToTheRich,
-        OtherCampaign
+        MysteriousEntity,
+        FinalTest
     }
 
     public Campaigns currentCamp = Campaigns.CateringToTheRich;
 
     public CateringToTheRich cateringToTheRich = new CateringToTheRich();
+
+    public void GoToNextCampaign()
+    {
+        switch(currentCamp)
+        {
+            case Campaigns.CateringToTheRich:
+                currentCamp = Campaigns.MysteriousEntity;
+                break;
+            case Campaigns.MysteriousEntity:
+                currentCamp = Campaigns.FinalTest;
+                break;
+            case Campaigns.FinalTest:
+                //do ending stuff
+                break;
+        }
+    }
+    public void GoToNextJob()
+    {
+        switch (currentCamp)
+        {
+            case Campaigns.CateringToTheRich:
+
+                break;
+            case Campaigns.MysteriousEntity:
+
+                break;
+            case Campaigns.FinalTest:
+
+                break;
+        }
+    }
 
     [Serializable]
     public class CateringToTheRich
@@ -75,8 +108,61 @@ public class CampaignManager : MonoBehaviour
         }
     }
 
-    public class OtherCampaign
+    [Serializable]
+    public class MysteriousEntity
     {
+        [HideInInspector] public int currentCampaignJobIndex = 0;
+        public List<Job> campaignJobs = new List<Job>();
 
+        public enum NarrativeOutcomes
+        {
+            NA,
+            //job 1, Event 2
+            KuonInvestigates,
+            //Job 1, event 3
+            DeclineOffer,
+            BribeLoudon,
+            BlackmailLoudon,
+            FireLoudon,
+            BlackmailEquinox,
+            AcceptOffer,
+            KeepLoudon
+
+
+        }
+
+        public bool me_kuonInvestigates;
+
+        public bool me_declineOffer;
+        public bool me_acceptOffer;
+        public bool me_bribeLoudon;
+        public bool me_blackmailLoudon;
+        public bool me_fireLOudon;
+        public bool me_blackmailEquinox;
+        public bool me_keepLoudon;
+
+    }
+
+    [Serializable]
+    public class FinalTest
+    {
+        [HideInInspector] public int currentCampaignJobIndex = 0;
+        public List<Job> campaignJobs = new List<Job>();
+
+        public int assetCount = 0;
+        public enum NarrativeVariables
+        {
+            LexaDoomed,
+            LanriExperiment,
+            TruthTold,
+            ScienceSavior,
+            KellisLoyalty
+        }
+
+        public bool ft_lexaDoomed;
+        public bool ft_lanriExperiment;
+        public bool ft_truthTold;
+        public bool ft_scienceSavior;
+        public bool ft_kellisLoyalty;
     }
 }
