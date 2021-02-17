@@ -16,7 +16,7 @@ public class EventPromptButton : MonoBehaviour
     private void Start()
     {
         backDrop.SetActive(false);
-        if(OverclockController.instance.overclocking)
+        if(OverclockController.instance.overclocking || EventSystem.instance.chatting || EventSystem.instance.mutiny)
         {
             eventButton.gameObject.SetActive(false);
         }
@@ -24,11 +24,11 @@ public class EventPromptButton : MonoBehaviour
 
     private void Update()
     {
-        if(eventButton.gameObject.activeSelf && OverclockController.instance.overclocking)
+        if(eventButton.gameObject.activeSelf && (OverclockController.instance.overclocking || EventSystem.instance.chatting || EventSystem.instance.mutiny))
         {
             eventButton.gameObject.SetActive(false);
         }
-        else if(!eventButton.gameObject.activeSelf && !OverclockController.instance.overclocking)
+        else if(!eventButton.gameObject.activeSelf && !(OverclockController.instance.overclocking || EventSystem.instance.chatting || EventSystem.instance.mutiny))
         {
             eventButton.gameObject.SetActive(true);
         }
