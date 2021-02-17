@@ -492,36 +492,29 @@ public class EventSystem : MonoBehaviour
 	/// <returns></returns>
 	private GameObject FindNextCharacterEvent(List<GameObject> possibleEvents)
     {
-        //if charEvent matches requirements, pick this one and remove it from the group
+		List<GameObject> goodEvents = new List<GameObject>(); //add all events that are possible to this list
 
-		//foreach (var charEvent
-		//in from charEvent in possibleEvents
-		//   let eventDriver = charEvent.GetComponent<CharacterEvent>()
-		//   let requirements = eventDriver.requiredStats
-		//   where HasRequiredStats(requirements) && eventDriver.playedOnce == false //meets requirements and has never been played before
-		//   select charEvent)
-		//{
-		//	GameObject chosen = charEvent;
-		//	charEvent.GetComponent<CharacterEvent>().playedOnce = true;
-		//	return chosen;
-
-		//}
-
-		foreach( GameObject charEvent in possibleEvents)
+		foreach ( GameObject charEvent in possibleEvents)
         {
+
 			CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
 			List<Requirements> requirements = eventDriver.requiredStats;
 
-			eventDriver.playedOnce = false; //DELETE Later
-
 			if(HasRequiredStats(requirements) && eventDriver.playedOnce == false)
             {
-				return charEvent;
+				goodEvents.Add(charEvent);
             }
 		}
 
-		return null;
-
+		if(goodEvents.Count > 0)
+        {
+			int chosen = Random.Range(0, goodEvents.Count);
+			return goodEvents[chosen];
+        }
+		else
+        {
+			return null;
+        }
 	}
 
 	/// <summary>
@@ -622,14 +615,12 @@ public class EventSystem : MonoBehaviour
 		//If chat has cooleddown
 		if (daysSinceChat < chatCooldown)
 		{
-			print("Cooldown active");
 			return false;
 		}
 
 		//if no possible events are found
 		if (FindNextCharacterEvent(checkEvents) == null)
 		{
-			print("Could not manage an event");
 			return false;
 		}
 

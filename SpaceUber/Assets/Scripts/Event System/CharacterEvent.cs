@@ -47,10 +47,12 @@ public class CharacterEvent : InkDriverBase
 
     /// <summary>
     /// Applies proper boost to the required room if the player gives the correct responses in a character event
+    /// Also marks this event as having been played once already
     /// </summary>
     public void EndCharacterEvent()
     {
         print("Ending this character event");
+        playedOnce = true;
 
         switch (thisCharacter)
         {
