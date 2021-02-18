@@ -109,7 +109,14 @@ public class ObjectScript : MonoBehaviour
             if (ObjectMover.hasPlaced == true)
             {
                 roomTooltip.SetActive(true);
-                toolTipOutputList.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = gameObject.GetComponent<RoomStats>().resources[0].activeAmount.ToString();
+                if (gameObject.GetComponent<RoomStats>().flatOutput == false)
+                {
+                    toolTipOutputList.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = gameObject.GetComponent<RoomStats>().resources[0].activeAmount.ToString();
+                }
+                else
+                {
+                    toolTipOutputList.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = gameObject.GetComponent<RoomStats>().resources[0].amount.ToString();
+                }
             }
             else if (roomTooltip.activeSelf)
             {
@@ -146,7 +153,14 @@ public class ObjectScript : MonoBehaviour
         {
             
             roomTooltip.SetActive(true);
-            toolTipOutputList.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = gameObject.GetComponent<RoomStats>().resources[0].activeAmount.ToString();
+            if (gameObject.GetComponent<RoomStats>().flatOutput == false)
+            {
+                toolTipOutputList.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = gameObject.GetComponent<RoomStats>().resources[0].activeAmount.ToString();
+            }
+            else
+            {
+                toolTipOutputList.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = gameObject.GetComponent<RoomStats>().resources[0].amount.ToString();
+            }
 
             //if the object is clicked, open the room management menu
             if (Input.GetMouseButton(0))
