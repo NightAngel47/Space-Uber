@@ -103,33 +103,37 @@ public class RoomStats : MonoBehaviour
                 switch (resource.resourceType.Rt)
                 {
                     case ResourceDataTypes._Credits:
-                        credits += Mathf.RoundToInt(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        credits += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._Energy:
-                        energy += Mathf.RoundToInt(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        energy += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._Security:
-                        security += Mathf.RoundToInt(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        security += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._ShipWeapons:
-                        shipWeapons += Mathf.RoundToInt(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        shipWeapons += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._Crew:
-                        crew += Mathf.RoundToInt(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        crew += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._Food:
-                        food += Mathf.RoundToInt(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        food += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._FoodPerTick:
-                        foodPerTick += Mathf.RoundToInt(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        foodPerTick += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._HullDurability:
-                        shipHealth += Mathf.RoundToInt(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        shipHealth += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._CrewMorale:
-                        morale += Mathf.RoundToInt(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        morale += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        break;
+                    case ResourceDataTypes._Payout:
+                        credits += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     default:
+                        Debug.LogError("Resource type: " + resource.resourceType.resourceName + " not setup in RoomStats");
                         break;
                 }
             }
@@ -140,33 +144,37 @@ public class RoomStats : MonoBehaviour
                 switch (resource.resourceType.Rt)
                 {
                     case ResourceDataTypes._Credits:
-                        credits += Mathf.RoundToInt(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        credits += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._Energy:
-                        energy += Mathf.RoundToInt(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        energy += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._Security:
-                        security += Mathf.RoundToInt(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        security += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._ShipWeapons:
-                        shipWeapons += Mathf.RoundToInt(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        shipWeapons += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._Crew:
-                        crew += Mathf.RoundToInt(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        crew += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._Food:
-                        food += Mathf.RoundToInt(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        food += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._FoodPerTick:
-                        foodPerTick += Mathf.RoundToInt(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        foodPerTick += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._HullDurability:
-                        shipHealth += Mathf.RoundToInt(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        shipHealth += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._CrewMorale:
-                        morale += Mathf.RoundToInt(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        morale += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        break;
+                    case ResourceDataTypes._Payout:
+                        credits += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     default:
+                        Debug.LogError("Resource type: " + resource.resourceType.resourceName + " not setup in RoomStats");
                         break;
                 }
             }
@@ -256,7 +264,11 @@ public class RoomStats : MonoBehaviour
             case ResourceDataTypes._CrewMorale:
                 morale = resource.activeAmount;
                 break;
+            case ResourceDataTypes._Payout:
+                credits = resource.activeAmount;
+                break;
             default:
+                Debug.LogError("Resource type: " + resource.resourceType.resourceName + " not setup in RoomStats");
                 break;
         }
         
@@ -296,6 +308,7 @@ public class RoomStats : MonoBehaviour
                 shipStats.Payout += credits;
                 break;
             default:
+                Debug.LogError("Resource type: " + resourceData.resourceName + " not setup in RoomStats");
                 break;
         }
     }
@@ -340,6 +353,7 @@ public class RoomStats : MonoBehaviour
                 shipStats.Payout += -credits;
                 break;
             default:
+                Debug.LogError("Resource type: " + resourceData.resourceName + " not setup in RoomStats");
                 break;
         }
     }
