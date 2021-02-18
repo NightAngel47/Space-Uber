@@ -33,13 +33,13 @@ public class MoraleManager : MonoBehaviour
     private void Awake()
     {
         // Singleton pattern that makes sure that there is only one MoraleManager
-        if (instance == null)
+        if (instance)
         {
-            instance = this;
+            Destroy(gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            instance = this;
         }
         
         shipStatsUI = FindObjectOfType<ShipStatsUI>();
@@ -57,7 +57,7 @@ public class MoraleManager : MonoBehaviour
         {
             int prevValue = crewMorale;
             crewMorale = value;
-        
+
             /*
             if (crewMoraleAmount >= 0)
             {
@@ -68,8 +68,19 @@ public class MoraleManager : MonoBehaviour
                 AudioManager.instance.PlaySFX("Lose Morale");
             }
             */
-        
-            if(crewMorale < 0)
+
+            //update rooms
+            RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+
+            foreach (RoomStats room in rooms)
+            { 
+                if (room.gameObject.GetComponent<ObjectScript>().preplacedRoom == false)
+                {
+                    room.KeepRoomStatsUpToDateWithMorale();
+                }
+            }
+
+            if (crewMorale < 0)
             {
                 crewMorale = 0;
             }
@@ -105,13 +116,11 @@ public class MoraleManager : MonoBehaviour
         if(mutinyChance > UnityEngine.Random.value)
         {
             mutinyCount++;
+            int mutinyCost = Mathf.RoundToInt((baseMutinyCost * ((100 - crewMorale) / 100.0f)) * mutinyCount);
+            mutinyEvent.GetComponent<InkDriverBase>().nextChoices[0].choiceRequirements[0].requiredAmount = mutinyCost;
+            mutinyEvent.GetComponent<InkDriverBase>().nextChoices[0].outcomes[0].amount = -mutinyCost;
             EventSystem.instance.CreateMutinyEvent(mutinyEvent);
         }
-    }
-
-    public int GetMutinyCost()
-    {
-        return Mathf.RoundToInt((baseMutinyCost * ((100 - crewMorale) / 100.0f)) * mutinyCount);
     }
     
     public float GetMoraleModifier(bool ignoreMorale = false)

@@ -44,8 +44,6 @@ public class RoomStats : MonoBehaviour
     private int shipHealth = 0;
     private int morale = 0;
 
-    private float moraleModifier;
-
     ShipStats shipStats;
 
     public bool flatOutput;
@@ -64,8 +62,6 @@ public class RoomStats : MonoBehaviour
 
     void Start()
     {
-        moraleModifier = MoraleManager.instance.GetMoraleModifier(ignoreMorale);
-
         cam = Camera.main;
         shipStats = FindObjectOfType<ShipStats>();
         StartCoroutine(LateStart(0.1f));
@@ -126,31 +122,31 @@ public class RoomStats : MonoBehaviour
                 switch (resource.resourceType.resourceName)
                 {
                     case "Credits":
-                        credits += Mathf.RoundToInt(resource.amount * moraleModifier);
+                        credits += Mathf.RoundToInt(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case "Energy":
-                        energy += Mathf.RoundToInt(resource.amount * moraleModifier);
+                        energy += Mathf.RoundToInt(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case "Security":
-                        security += Mathf.RoundToInt(resource.amount * moraleModifier);
+                        security += Mathf.RoundToInt(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case "Ship Weapons":
-                        shipWeapons += Mathf.RoundToInt(resource.amount * moraleModifier);
+                        shipWeapons += Mathf.RoundToInt(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case "Crew":
-                        crew += Mathf.RoundToInt(resource.amount * moraleModifier);
+                        crew += Mathf.RoundToInt(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case "Food":
-                        food += Mathf.RoundToInt(resource.amount * moraleModifier);
+                        food += Mathf.RoundToInt(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case "Food Per Tick":
-                        foodPerTick += Mathf.RoundToInt(resource.amount * moraleModifier);
+                        foodPerTick += Mathf.RoundToInt(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case "Hull Durability":
-                        shipHealth += Mathf.RoundToInt(resource.amount * moraleModifier);
+                        shipHealth += Mathf.RoundToInt(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case "Crew Morale":
-                        morale += Mathf.RoundToInt(resource.amount * moraleModifier);
+                        morale += Mathf.RoundToInt(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     default:
                         break;
@@ -163,31 +159,31 @@ public class RoomStats : MonoBehaviour
                 switch (resource.resourceType.resourceName)
                 {
                     case "Credits":
-                        credits += Mathf.RoundToInt(resource.minAmount * moraleModifier);
+                        credits += Mathf.RoundToInt(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case "Energy":
-                        energy += Mathf.RoundToInt(resource.minAmount * moraleModifier);
+                        energy += Mathf.RoundToInt(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case "Security":
-                        security += Mathf.RoundToInt(resource.minAmount * moraleModifier);
+                        security += Mathf.RoundToInt(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case "Ship Weapons":
-                        shipWeapons += Mathf.RoundToInt(resource.minAmount * moraleModifier);
+                        shipWeapons += Mathf.RoundToInt(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case "Crew":
-                        crew += Mathf.RoundToInt(resource.minAmount * moraleModifier);
+                        crew += Mathf.RoundToInt(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case "Food":
-                        food += Mathf.RoundToInt(resource.minAmount * moraleModifier);
+                        food += Mathf.RoundToInt(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case "Food Per Tick":
-                        foodPerTick += Mathf.RoundToInt(resource.minAmount * moraleModifier);
+                        foodPerTick += Mathf.RoundToInt(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case "Hull Durability":
-                        shipHealth += Mathf.RoundToInt(resource.minAmount * moraleModifier);
+                        shipHealth += Mathf.RoundToInt(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case "Crew Morale":
-                        morale += Mathf.RoundToInt(resource.minAmount * moraleModifier);
+                        morale += Mathf.RoundToInt(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     default:
                         break;
@@ -205,18 +201,11 @@ public class RoomStats : MonoBehaviour
     {
         return isPowered;
     }
-
     public void KeepRoomStatsUpToDateWithMorale()
     {
-        if(!ignoreMorale)
+        foreach (Resource resource in resources)
         {
-            float newMoraleModifier = MoraleManager.instance.GetMoraleModifier();
-            if(moraleModifier != newMoraleModifier)
-            {
-                moraleModifier = newMoraleModifier;
-                foreach (Resource resource in resources)
-                    UpdateRoomStats(resource.resourceType);
-            }
+            UpdateRoomStats(resource.resourceType);
         }
     }
 
@@ -259,35 +248,35 @@ public class RoomStats : MonoBehaviour
         {
             case ResourceDataTypes._Credits:
                 //credits -= resource.minAmount;
-                credits = Mathf.RoundToInt(resource.activeAmount * moraleModifier);
+                credits = resource.activeAmount;
                 break;
             case ResourceDataTypes._Energy:
                 //energy -= resource.minAmount;
-                energy = Mathf.RoundToInt(resource.activeAmount * moraleModifier);
+                energy = resource.activeAmount;
                 break;
             case ResourceDataTypes._Security:
                 //security -= resource.minAmount;
-                security = Mathf.RoundToInt(resource.activeAmount * moraleModifier);
+                security = resource.activeAmount;
                 break;
             case ResourceDataTypes._ShipWeapons:
                 //shipWeapons -= resource.minAmount;
-                shipWeapons = Mathf.RoundToInt(resource.activeAmount * moraleModifier);
+                shipWeapons = resource.activeAmount;
                 break;
             case ResourceDataTypes._Crew:
                 //crew -= resource.minAmount;
-                crew = Mathf.RoundToInt(resource.activeAmount * moraleModifier);
+                crew = resource.activeAmount;
                 break;
             case ResourceDataTypes._Food:
                 //food -= resource.minAmount;
-                food = Mathf.RoundToInt(resource.activeAmount * moraleModifier);
+                food = resource.activeAmount;
                 break;
             case ResourceDataTypes._FoodPerTick:
                 //foodPerTick -= resource.minAmount;
-                foodPerTick = Mathf.RoundToInt(resource.activeAmount * moraleModifier);
+                foodPerTick = resource.activeAmount;
                 break;
             case ResourceDataTypes._HullDurability:
                 //shipHealth -= resource.minAmount;
-                shipHealth = Mathf.RoundToInt(resource.activeAmount * moraleModifier);
+                shipHealth = resource.activeAmount;
                 break;
             default:
                 break;
