@@ -71,17 +71,20 @@ public class MoraleManager : MonoBehaviour
             }
             */
 
-            //update rooms
-            RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+            // update room outputs if there is a change in morale
+            if (value - prevValue != 0) 
+            {
+                RoomStats[] rooms = FindObjectsOfType<RoomStats>();
 
-            foreach (RoomStats room in rooms)
-            { 
-                if (room.gameObject.GetComponent<ObjectScript>().preplacedRoom == false)
-                {
-                    room.KeepRoomStatsUpToDateWithMorale();
+                foreach (RoomStats room in rooms)
+                { 
+                    if (room.gameObject.GetComponent<ObjectScript>().preplacedRoom == false)
+                    {
+                        room.KeepRoomStatsUpToDateWithMorale();
+                    }
                 }
             }
-
+            
             if (crewMorale < 0)
             {
                 crewMorale = 0;
