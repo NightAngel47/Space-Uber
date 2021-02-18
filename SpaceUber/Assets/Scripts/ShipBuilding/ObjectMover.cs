@@ -12,7 +12,12 @@ using UnityEngine.UI;
 
 public class ObjectMover : MonoBehaviour
 {
-    public static bool hasPlaced = true;
+    /// <summary>
+    /// Variable to keep track of if room is placed. 
+    /// True when able to spawn in a new room as there is no room not placed
+    /// False when room is in the process of being placed
+    /// </summary>
+    public static bool hasPlaced = true; 
     private ObjectScript os;
     private Color c;
 
@@ -35,8 +40,6 @@ public class ObjectMover : MonoBehaviour
         c.a = .5f;
         gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
         os = gameObject.GetComponent<ObjectScript>();
-
-
     }
 
     public void UpdateMouseBounds(float ymin, float ymax, float xmin, float xmax)
@@ -178,18 +181,19 @@ public class ObjectMover : MonoBehaviour
     public void Placement()
     {
         if (GameManager.instance.currentGameState != InGameStates.ShipBuilding) return;
-        if (FindObjectOfType<ShipStats>().Credits >= gameObject.GetComponent<RoomStats>().price && FindObjectOfType<ShipStats>().EnergyRemaining.x >= gameObject.GetComponent<RoomStats>().minPower)
+        //Checks to see if we have enough credits or energy to place the room
+        if (FindObjectOfType<ShipStats>().Credits >= gameObject.GetComponent<RoomStats>().price && FindObjectOfType<ShipStats>().EnergyRemaining.x >= gameObject.GetComponent<RoomStats>().minPower) 
         {
-            if (os.needsSpecificLocation == false)
+            if (os.needsSpecificLocation == false) //Check spots normally
             {
                 SpotChecker.instance.FillSpots(gameObject, os.rotAdjust);
             }
-            else
+            else //check for specific spots as required by parent room
             {
                 SpotChecker.instance.SpecificSpotCheck(gameObject, os.rotAdjust);
             }
 
-            if (SpotChecker.cannotPlace == false)
+            if (SpotChecker.cannotPlace == false) //Once spots are checked if cannotPlace = false/no room is placed there place room
             {
                 AudioManager.instance.PlaySFX(Placements[Random.Range(0, Placements.Length)]);
                 gameObject.GetComponent<RoomStats>().AddRoomStats();
@@ -207,34 +211,34 @@ public class ObjectMover : MonoBehaviour
                 }
 
 
-                StartCoroutine(ClickWait());
+                StartCoroutine(os.WaitToClickRoom());
 
                 gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = ObjectScript.c;
                 gameObject.GetComponent<ObjectMover>().enabled = false;
             }
 
-            else
+            else //If something is placed allow player to keep moving room
             {
                 TurnOnBeingDragged();
             }
         }
 
-        else
+        else //If not enough credits or energy allow player to keep moving room
         {
             TurnOnBeingDragged();
         }
     }
 
-    public IEnumerator ClickWait()
-    {
-        os.TurnOffClickAgain();
-        yield return new WaitForSeconds(.1f);
-        ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
-        foreach (ObjectScript r in otherRooms)
-        {
-            r.TurnOnClickAgain();
-        }
-    }
+    //public IEnumerator ClickWait()
+    //{
+    //    os.TurnOffClickAgain();
+    //    yield return new WaitForSeconds(.1f);
+    //    ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
+    //    foreach (ObjectScript r in otherRooms)
+    //    {
+    //        r.TurnOnClickAgain();
+    //    }
+    //}
 
     public IEnumerator WaitToPlace()
     {

@@ -62,9 +62,6 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     private Tick tick;
 
-    private int daysSince;
-    [SerializeField] private TMP_Text daysSinceDisplay;
-
     //stats at the start of the job
     private int startCredits;
     private int startPayout;
@@ -389,22 +386,6 @@ public class ShipStats : MonoBehaviour
             // check for death
             StartCoroutine(CheckDeathOnUnpause());
         }
-    }
-
-    public int DaysSince
-    {
-        get => daysSince;
-        set
-        {
-            daysSince = value;
-            daysSinceDisplay.text = daysSince.ToString();
-        }
-    }
-
-    public void ResetDaysSince()
-    {
-        daysSince = 0;
-        daysSinceDisplay.text = daysSince.ToString();
     }
 
     private IEnumerator CheckDeathOnUnpause()

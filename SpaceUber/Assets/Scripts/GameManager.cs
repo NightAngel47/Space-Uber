@@ -109,10 +109,10 @@ public class GameManager : MonoBehaviour
         {
             case InGameStates.JobSelect: // Loads Jobpicker for the player to pick their job
                 // unload ending screen if replaying
+                additiveSceneManager.UnloadScene("Interface_EventTimer");
                 additiveSceneManager.UnloadScene("PromptScreen_End");
                 additiveSceneManager.UnloadScene("PromptScreen_Death");
                 additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
-
                 additiveSceneManager.UnloadScene("CrewPayment");
 
                 additiveSceneManager.LoadSceneSeperate("Interface_JobList");
@@ -134,8 +134,9 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("PromptScreen_Death");
                 additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
                 additiveSceneManager.UnloadScene("CrewPayment");
-                
                 additiveSceneManager.UnloadScene("Starport BG");
+                
+                additiveSceneManager.LoadSceneMerged("Interface_EventTimer");
                 
                 ship.SaveStats();
 
@@ -149,16 +150,22 @@ public class GameManager : MonoBehaviour
                 {
                   room.UpdateUsedRoom();
                 }
-                //StartCoroutine(EventSystem.instance.Travel());
+                
                 StartCoroutine(EventSystem.instance.PlayIntro());
                 break;
 
             case InGameStates.CrewPayment:
+                additiveSceneManager.UnloadScene("Interface_EventTimer");
+                additiveSceneManager.UnloadScene("Event_General");
+                additiveSceneManager.UnloadScene("Event_CharacterFocused");
                 additiveSceneManager.UnloadScene("CrewManagement");
+                
                 additiveSceneManager.LoadSceneSeperate("CrewPayment");
                 break;
             case InGameStates.Ending: // Loads the PromptScreen_End when the player reaches a narrative ending.
+                additiveSceneManager.UnloadScene("Interface_EventTimer");
                 additiveSceneManager.UnloadScene("CrewPayment");
+                
                 additiveSceneManager.LoadSceneSeperate("PromptScreen_End");
                 break;
             case InGameStates.Mutiny: // Loads the PromptScreen_Mutiny when the player reaches a mutiny.
