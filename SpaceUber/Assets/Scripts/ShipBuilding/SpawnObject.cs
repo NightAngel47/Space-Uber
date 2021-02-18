@@ -188,7 +188,7 @@ public class SpawnObject : MonoBehaviour
                 AudioManager.instance.PlaySFX(cannotPlaceCredits[UnityEngine.Random.Range(0, cannotPlaceCredits.Length)]);
                 Debug.Log("Cannot Afford");
                 FindObjectOfType<ShipStats>().cantPlaceText.gameObject.SetActive(true);
-                FindObjectOfType<ShipStats>().cantPlaceText.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Image>().sprite = FindObjectOfType<ShipStats>().statIcons[0];
+                FindObjectOfType<ShipStats>().cantPlaceText.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon;
                 StartCoroutine(WaitForText());
             }
 
@@ -197,7 +197,7 @@ public class SpawnObject : MonoBehaviour
                 AudioManager.instance.PlaySFX(cannotPlaceEnergy[UnityEngine.Random.Range(0, cannotPlaceEnergy.Length)]);
                 Debug.Log("No Energy");
                 FindObjectOfType<ShipStats>().cantPlaceText.gameObject.SetActive(true);
-                FindObjectOfType<ShipStats>().cantPlaceText.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Image>().sprite = FindObjectOfType<ShipStats>().statIcons[5];
+                FindObjectOfType<ShipStats>().cantPlaceText.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon;
                 StartCoroutine(WaitForText());
             }
         }

@@ -9,14 +9,11 @@ using System;
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using NaughtyAttributes;
 using TMPro;
 
 public class ShipStats : MonoBehaviour
 {
-    public enum resources{ Credits, Energy, Security, ShipWeapons, Crew, Food, FoodPerTick, HullDurability, Stock}
-
     [SerializeField ,Tooltip("Starting amount of credits"), Foldout("Starting Ship Stats")]
     private int startingCredits;
     [SerializeField, Tooltip("Starting amount of energy"), Foldout("Starting Ship Stats")]
@@ -31,11 +28,11 @@ public class ShipStats : MonoBehaviour
     private int startingFood;
     [SerializeField, Tooltip("Starting amount of ship health"), Foldout("Starting Ship Stats")]
     private int startingShipHealth;
-    [SerializeField, Tooltip("Starting amount of crewMorale"), Foldout("Starting Ship Stats")]
-    private int startingMorale;
+
+    [HideInInspector]
+    public CharacterStats cStats;
 
     public GameObject cantPlaceText;
-    public Sprite[] statIcons;
 
     private List<RoomStats> rooms;
 
@@ -43,8 +40,6 @@ public class ShipStats : MonoBehaviour
 
     private int credits;
     private int payout;
-    private int crewPaymentDefault = 5;
-    private int crewPaymentMoraleMultiplier = 10;
     private int energyMax;
     private int energyRemaining;
     private int security;
@@ -54,10 +49,8 @@ public class ShipStats : MonoBehaviour
     private int crewUnassigned;
     private int food;
     private int foodPerTick;
-    private int foodMoraleDamageMultiplier = 2;
     private int shipHealthMax;
     private int shipHealthCurrent;
-    //private int crewMorale;
 
     /// <summary>
     /// Reference to the ship stats UI class.
@@ -68,13 +61,6 @@ public class ShipStats : MonoBehaviour
     /// Reference to tick
     /// </summary>
     private Tick tick;
-
-    private int daysSince;
-    [SerializeField] private TMP_Text daysSinceDisplay;
-
-    //mutiny calculations
-    private int maxMutinyMorale = 60;
-    private float zeroMoraleMutinyChance = 0.75f;
 
     //stats at the start of the job
     private int startCredits;
@@ -90,7 +76,6 @@ public class ShipStats : MonoBehaviour
     private int startFoodPerTick;
     private int startShipHealthMax;
     private int startShipHealthCurrent;
-    //private int startCrewMorale;
 
     private void Awake()
     {
@@ -109,6 +94,8 @@ public class ShipStats : MonoBehaviour
         Food = startingFood;
         ShipHealthCurrent = new Vector2(startingShipHealth, startingShipHealth);
         //UpdateCrewMorale(startingMorale);
+
+        cStats = gameObject.GetComponent<CharacterStats>();
     }
 
     /// <summary>
@@ -276,14 +263,18 @@ public class ShipStats : MonoBehaviour
             crewCapacity = (int)value.y;
             crewUnassigned = (int)value.z;
 
-            //if ((int)value.x < 0)
-            //{
-            //    Debug.Log("here");
-                if (crewUnassigned < 0)
+            if (crewCurrent - prevValue.x < 0)
+            {
+                if(crewUnassigned < 0)
                 {
                     RemoveRandomCrew(Mathf.Abs(crewUnassigned));
                 }
-            //}
+
+                if(crewCurrent - prevValue.x < crewCapacity - prevValue.y)
+                {
+                    MoraleManager.instance.CrewLoss((int)(crewCurrent - prevValue.x));
+                }
+            }
 
             /*
             if (crewRemainingAmount >= 0)
@@ -308,10 +299,6 @@ public class ShipStats : MonoBehaviour
             if (crewUnassigned <= 0)
             {
                 crewUnassigned = 0;
-            }
-            if (crewUnassigned >= crewCurrent)
-            {
-                crewUnassigned = crewCurrent;
             }
 
             shipStatsUI.UpdateCrewUI(crewUnassigned, crewCurrent, crewCapacity);
@@ -366,7 +353,7 @@ public class ShipStats : MonoBehaviour
     }
 
     /// <summary>
-    /// Property for shipHealthCurrent. Getter and Setter, sets the shipHealth max as well. x = shipHealthCurrent, y = shipHealthMax 
+    /// Property for shipHealthCurrent. Getter and Setter, sets the shipHealth max as well. x = shipHealthCurrent, y = shipHealthMax
     /// </summary>
     public Vector2 ShipHealthCurrent //x = shipHealthCurrent y = shipHealthMax
     {
@@ -395,52 +382,15 @@ public class ShipStats : MonoBehaviour
 
             shipStatsUI.UpdateHullUI(shipHealthCurrent, shipHealthMax);
             shipStatsUI.ShowHullUIChange((int)(value.x - prevValue.x), (int)(value.y - prevValue.y));
-            
+
             // check for death
             StartCoroutine(CheckDeathOnUnpause());
         }
     }
 
-    public int DaysSince
-    {
-        get => daysSince;
-        set 
-        { 
-            daysSince = value;
-            daysSinceDisplay.text = daysSince.ToString();
-        }
-    }
-
-    //public void UpdateCrewMorale(int crewMoraleAmount)
-    //{
-    //    crewMorale += crewMoraleAmount;
-    //
-    //    if (crewMoraleAmount >= 0)
-    //    {
-    //       AudioManager.instance.PlaySFX("Gain Morale");
-    //    }
-    //    else
-    //    {
-    //         AudioManager.instance.PlaySFX("Lose Morale");
-    //    }
-    //
-    //    if(crewMorale < 0)
-    //    {
-    //        crewMorale = 0;
-    //    }
-    //    // TODO update to work with changes from development
-    //    //UpdateShipStatsUI();
-    //}
-
-    public void ResetDaysSince()
-    {
-        daysSince = 0;
-        daysSinceDisplay.text = daysSince.ToString();
-    }
-
     private IEnumerator CheckDeathOnUnpause()
     {
-        yield return new WaitUntil(() => tick.TicksPaused || tick.TickStop);
+        yield return new WaitUntil(() => tick.IsTickStopped());
 
         CheckForDeath();
     }
@@ -468,7 +418,7 @@ public class ShipStats : MonoBehaviour
     {
         return EnergyRemaining.x >= power;
     }
-    
+
     public void PrintShipStats()
     {
         Debug.Log("Credits " + Credits);
@@ -485,8 +435,7 @@ public class ShipStats : MonoBehaviour
     public void PayCrew(int amount)
     {
         Credits -= (amount * crewCurrent);
-        //int BadMoraleMultiplier = (maxMutinyMorale - crewMorale) * crewPaymentMoraleMultiplier / maxMutinyMorale;
-        //UpdateCrewMorale(BadMoraleMultiplier * (ammount - crewPaymentDefault));
+        MoraleManager.instance.CrewPayment(amount);
     }
 
     public void RemoveRandomCrew(int amount)
@@ -508,23 +457,23 @@ public class ShipStats : MonoBehaviour
             while(crewChecked <= selection)
             {
                 crewChecked += rooms[index].currentCrew;
-                
+
                 if(crewChecked > selection)
                 {
                     rooms[index].UpdateCurrentCrew(-1);
                     crewLost[index] += 1;
                     crewAssigned -= 1;
                 }
-                
+
                 index += 1;
             }
         }
-        
+
         for(int i = 0; i < crewLost.Length; i++)
         {
             if(crewLost[i] != 0)
             {
-                rooms[i].SpawnStatChangeText(crewLost[i], 4);
+                rooms[i].SpawnStatChangeText(crewLost[i], GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
             }
         }
     }
@@ -544,7 +493,7 @@ public class ShipStats : MonoBehaviour
         startFoodPerTick = foodPerTick;
         startShipHealthMax = shipHealthMax;
         startShipHealthCurrent = shipHealthCurrent;
-        //startCrewMorale = crewMorale;
+        MoraleManager.instance.SaveMorale();
     }
 
     public void ResetStats()
@@ -558,6 +507,6 @@ public class ShipStats : MonoBehaviour
         Food = startFood;
         FoodPerTick = startFoodPerTick;
         ShipHealthCurrent = new Vector2(startShipHealthCurrent, startShipHealthMax);
-        //UpdateCrewMorale(startMorale);
+        MoraleManager.instance.ResetMorale();
     }
 }

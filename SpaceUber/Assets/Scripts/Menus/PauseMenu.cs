@@ -1,5 +1,5 @@
 /* PauseMenu.cs
- * Frank Calabrese 
+ * Frank Calabrese
  * 2/1/21
  * Pauses game by setting timescale to 0
  * blocks user interaction by activating a canvas
