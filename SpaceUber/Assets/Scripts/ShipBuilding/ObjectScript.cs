@@ -102,7 +102,7 @@ public class ObjectScript : MonoBehaviour
 
     public void OnMouseOver()
     {
-        if(preplacedRoom) return;
+        //if(preplacedRoom) return;
 
         if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true) // && PauseMenu.Instance.isPaused == false// commented out until menus are ready
         {
@@ -119,7 +119,7 @@ public class ObjectScript : MonoBehaviour
 
             //if(preplacedRoom) return; // could moved preplacedRoom check here so tooltip can be activated.
 
-            if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true && !gameObject.GetComponent<ObjectMover>().enabled)
+            if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true && !gameObject.GetComponent<ObjectMover>().enabled && preplacedRoom == false)
             {
                 //buttons.SetActive(true);
                 gameObject.GetComponent<RoomStats>().SubtractRoomStats();
@@ -127,7 +127,7 @@ public class ObjectScript : MonoBehaviour
                 Edit();
             }
 
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButton(1) && preplacedRoom == false)
             {
                 //buttons.SetActive(true);
                 if (ObjectMover.hasPlaced == true)
