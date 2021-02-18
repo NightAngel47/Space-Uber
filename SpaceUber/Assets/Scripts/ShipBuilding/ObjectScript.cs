@@ -108,8 +108,8 @@ public class ObjectScript : MonoBehaviour
         {
             if (ObjectMover.hasPlaced == true)
             {
-                toolTipOutputList.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = gameObject.GetComponent<RoomStats>().resources[0].activeAmount.ToString();
                 roomTooltip.SetActive(true);
+                toolTipOutputList.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = gameObject.GetComponent<RoomStats>().resources[0].activeAmount.ToString();
             }
             else if (roomTooltip.activeSelf)
             {
@@ -144,8 +144,9 @@ public class ObjectScript : MonoBehaviour
            || GameManager.instance.currentGameState == InGameStates.Events
            && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn)
         {
-            toolTipOutputList.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = gameObject.GetComponent<RoomStats>().resources[0].activeAmount.ToString();
+            
             roomTooltip.SetActive(true);
+            toolTipOutputList.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = gameObject.GetComponent<RoomStats>().resources[0].activeAmount.ToString();
 
             //if the object is clicked, open the room management menu
             if (Input.GetMouseButton(0))
