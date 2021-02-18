@@ -101,6 +101,8 @@ public class SpawnObject : MonoBehaviour
             {
                 ObjectMover.hasPlaced = false;
                 lastSpawned = Instantiate(ga, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0), Quaternion.identity);
+                Cursor.visible = false;
+                //HOVER UI does not happen when mouse is hidden
                 lastSpawned.GetComponent<ObjectMover>().TurnOnBeingDragged();
 
                 ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();

@@ -40,6 +40,7 @@ public class ObjectMover : MonoBehaviour
         c.a = .5f;
         gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
         os = gameObject.GetComponent<ObjectScript>();
+        
     }
 
     public void UpdateMouseBounds(float ymin, float ymax, float xmin, float xmax)
@@ -210,7 +211,8 @@ public class ObjectMover : MonoBehaviour
                     os.RoomHighlightSpotsOff();
                 }
 
-
+                Cursor.visible = true;
+                //HOVER UI does not happen when mouse is hidden
                 StartCoroutine(os.WaitToClickRoom());
 
                 gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = ObjectScript.c;
