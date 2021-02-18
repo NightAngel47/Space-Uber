@@ -26,6 +26,8 @@ public class MoraleManager : MonoBehaviour
     [SerializeField, Tooltip("Values for determining the modifiers to apply to room and minigame output. X is the minimum bound of the tier and Y is the modifier value for that tier")] 
     private List<Vector2> outputModifierInfo;
     
+    public List<Vector2> OutputModifierInfo => outputModifierInfo;
+    
     private ShipStatsUI shipStatsUI;
     
     public static MoraleManager instance;

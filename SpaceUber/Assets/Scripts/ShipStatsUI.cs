@@ -83,10 +83,6 @@ public class ShipStatsUI : MonoBehaviour
 
     private bool hullWarningActive = false;
 
-    public void ShowNarrativeOutcome(string outcome)
-    {
-
-    }
     public void UpdateCreditsUI(int current, int payout = 0)
     {
         creditsCurrentText.text = current.ToString();
@@ -97,19 +93,16 @@ public class ShipStatsUI : MonoBehaviour
 
     public void ShowCreditsUIChange(int currentChange, int payoutChange = 0)
     {
-        if (currentChange > 0 || payoutChange > 0)
+        if (currentChange > 0)
         {
-            if (currentChange != 0)
-            {
-                SpawnStatChangeText(creditsCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon, 0);
-                StartCoroutine(JiggleText(creditsCurrentText));
-            }
+            SpawnStatChangeText(creditsCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon, 0);
+            StartCoroutine(JiggleText(creditsCurrentText));
+        }
 
-            if (payoutChange != 0)
-            {
-                SpawnStatChangeText(creditsPayoutText, payoutChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon, 1);
-                StartCoroutine(JiggleText(creditsPayoutText));
-            }
+        if (payoutChange > 0)
+        {
+            SpawnStatChangeText(creditsPayoutText, payoutChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon, 1);
+            StartCoroutine(JiggleText(creditsPayoutText));
         }
     }
 
@@ -146,11 +139,8 @@ public class ShipStatsUI : MonoBehaviour
     {
         if (currentChange > 0)
         {
-            if (currentChange != 0)
-            {
-                SpawnStatChangeText(securityCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon, 2);
-                StartCoroutine(JiggleText(securityCurrentText));
-            }
+            SpawnStatChangeText(securityCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon, 2);
+            StartCoroutine(JiggleText(securityCurrentText));
         }
     }
 
@@ -164,11 +154,8 @@ public class ShipStatsUI : MonoBehaviour
     {
         if (currentChange > 0)
         {
-            if (currentChange != 0)
-            {
-                SpawnStatChangeText(shipWeaponsCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon, 2);
-                StartCoroutine(JiggleText(shipWeaponsCurrentText));
-            }
+            SpawnStatChangeText(shipWeaponsCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon, 2);
+            StartCoroutine(JiggleText(shipWeaponsCurrentText));
         }
     }
 
@@ -190,7 +177,6 @@ public class ShipStatsUI : MonoBehaviour
         }
         else
         {
-            unassignedChange = -unassignedChange;
             SpawnStatChangeText(crewCurrentText, unassignedChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon, 1);
             SpawnStatChangeText(crewMaxText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon, 2);
         }
@@ -217,50 +203,43 @@ public class ShipStatsUI : MonoBehaviour
 
     public void ShowFoodUIChange(int currentChange, int tickChange)
     {
-        if (currentChange > 0 || tickChange > 0)
+        if (currentChange > 0)
         {
-            if (currentChange != 0)
-            {
-                SpawnStatChangeText(foodCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon, 2);
-                StartCoroutine(JiggleText(foodCurrentText));
-            }
+            SpawnStatChangeText(foodCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon, 2);
+            StartCoroutine(JiggleText(foodCurrentText));
+        }
 
-            if (tickChange != 0)
-            {
-                SpawnStatChangeText(foodTickText, tickChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon, 2);
-                StartCoroutine(JiggleText(foodTickText));
-            }
+        if (tickChange > 0)
+        {
+            SpawnStatChangeText(foodTickText, tickChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon, 2);
+            StartCoroutine(JiggleText(foodTickText));
         }
     }
 
     public void UpdateHullUI(int current, int max)
     {
-        if (current> 0 || max > 0)
+        if (current <= 0 && max <= 0) return;
+        
+        hullCurrentText.text = current.ToString();
+        hullMaxText.text = max.ToString();
+        hullCurrentTooltipText.text = current.ToString();
+        hullMaxTooltipText.text = max.ToString();
+
+        if (current <= hullWarningAmount && hullWarningActive == false)
         {
-            hullCurrentText.text = current.ToString();
-            hullMaxText.text = max.ToString();
-            hullCurrentTooltipText.text = current.ToString();
-            hullMaxTooltipText.text = max.ToString();
+            hullWarningActive = true;
+            StartCoroutine(BlinkLoop());
+            StartCoroutine(BeepLoop());
+        }
 
-            if (current <= hullWarningAmount && hullWarningActive == false)
-            {
-                hullWarningActive = true;
-                StartCoroutine(BlinkLoop());
-                StartCoroutine(BeepLoop());
-            }
-
-            if (current > hullWarningAmount && hullWarningActive == true)
-            {
-                hullWarningActive = false;
-            }
+        if (current > hullWarningAmount && hullWarningActive == true)
+        {
+            hullWarningActive = false;
         }
     }
 
     public void ShowHullUIChange(int currentChange, int maxChange)
     {
-        
-        
-
         if(currentChange != 0)
         {
             SpawnStatChangeText(hullCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon, 2);
@@ -280,19 +259,19 @@ public class ShipStatsUI : MonoBehaviour
 
         switch(current)
         {
-            case int cur when current >= 80 && current <= 100:
+            case int cur when current >= MoraleManager.instance.OutputModifierInfo[0].x && current <= 100:
                 moraleIcon = crewMoraleIcon1;
                 break;
-            case int cur when current >= 60 && current < 80:
+            case int cur when current >= MoraleManager.instance.OutputModifierInfo[1].x && current < MoraleManager.instance.OutputModifierInfo[0].x:
                 moraleIcon = crewMoraleIcon2;
                 break;
-            case int cur when current >= 40 && current < 60:
+            case int cur when current >= MoraleManager.instance.OutputModifierInfo[2].x && current < MoraleManager.instance.OutputModifierInfo[1].x:
                 moraleIcon = crewMoraleIcon3;
                 break;
-            case int cur when current >= 20 && current < 40:
+            case int cur when current >= MoraleManager.instance.OutputModifierInfo[3].x && current < MoraleManager.instance.OutputModifierInfo[2].x:
                 moraleIcon = crewMoraleIcon4;
                 break;
-            case int cur when current >= 0 && current < 20:
+            case int cur when current >= MoraleManager.instance.OutputModifierInfo[4].x && current < MoraleManager.instance.OutputModifierInfo[3].x:
                 moraleIcon = crewMoraleIcon5;
                 break;
             default:

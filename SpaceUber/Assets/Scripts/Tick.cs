@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Tick : MonoBehaviour
 {
@@ -10,6 +12,10 @@ public class Tick : MonoBehaviour
     [SerializeField, Min(0.1f)] private float secondsPerTick = 5;
     private float secondsPassed;
     private Coroutine tickCoroutine;
+    
+    // days since variables
+    private int daysSince;
+    private TMP_Text daysSinceDisplay;
 
     public void Awake()
     {
@@ -39,6 +45,9 @@ public class Tick : MonoBehaviour
 
     private IEnumerator TickUpdate()
     {
+        yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_EventTimer").isLoaded);
+        daysSinceDisplay = GameObject.FindGameObjectWithTag("DaysSince").GetComponent<TMP_Text>();
+        
         while (GameManager.instance.currentGameState == InGameStates.Events)
         {
             secondsPassed += Time.deltaTime;
@@ -61,7 +70,7 @@ public class Tick : MonoBehaviour
                 shipStats.Food += netFood;
 
                 // increment days since events
-                shipStats.DaysSince++;
+                DaysSince++;
 
                 MoraleManager.instance.CheckMutiny();
 
@@ -77,5 +86,17 @@ public class Tick : MonoBehaviour
         }
 
         yield return new WaitForEndOfFrame();
+    }
+    
+    
+
+    public int DaysSince
+    {
+        get => daysSince;
+        set
+        {
+            daysSince = value;
+            if(daysSinceDisplay != null) daysSinceDisplay.text = daysSince.ToString();
+        }
     }
 }
