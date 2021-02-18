@@ -37,6 +37,6 @@ public class TransitionGameStates : MonoBehaviour
     
     public void ChangeToEnd()
     {
-        GameManager.instance.ChangeInGameState(InGameStates.Ending);
+        GameManager.instance.ChangeInGameState(InGameStates.MoneyEnding);
     }
 }
