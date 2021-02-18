@@ -19,9 +19,7 @@ public class PauseMenu : Singleton<PauseMenu>
 
     void Update()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-
-        if (Input.GetKeyDown("tab") && currentScene.name != "Menu_Main")
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Menu_Main")
         {
             CheckPaused();
         }

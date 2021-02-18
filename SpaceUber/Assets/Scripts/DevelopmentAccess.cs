@@ -30,13 +30,6 @@ public class DevelopmentAccess : MonoBehaviour
 
     void Update()
     {
-        #if UNITY_STANDALONE
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
-        #endif
-        
         if (Input.GetKeyDown(KeyCode.F2))
         {
             if (inTest)
