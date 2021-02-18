@@ -93,13 +93,13 @@ public class ShipStatsUI : MonoBehaviour
 
     public void ShowCreditsUIChange(int currentChange, int payoutChange = 0)
     {
-        if (currentChange > 0)
+        if (currentChange != 0)
         {
             SpawnStatChangeText(creditsCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon, 0);
             StartCoroutine(JiggleText(creditsCurrentText));
         }
 
-        if (payoutChange > 0)
+        if (payoutChange != 0)
         {
             SpawnStatChangeText(creditsPayoutText, payoutChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon, 1);
             StartCoroutine(JiggleText(creditsPayoutText));
@@ -137,7 +137,7 @@ public class ShipStatsUI : MonoBehaviour
 
     public void ShowSecurityUIChange(int currentChange)
     {
-        if (currentChange > 0)
+        if (currentChange != 0)
         {
             SpawnStatChangeText(securityCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon, 2);
             StartCoroutine(JiggleText(securityCurrentText));
@@ -152,7 +152,7 @@ public class ShipStatsUI : MonoBehaviour
 
     public void ShowShipWeaponsUIChange(int currentChange)
     {
-        if (currentChange > 0)
+        if (currentChange != 0)
         {
             SpawnStatChangeText(shipWeaponsCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon, 2);
             StartCoroutine(JiggleText(shipWeaponsCurrentText));
@@ -203,13 +203,13 @@ public class ShipStatsUI : MonoBehaviour
 
     public void ShowFoodUIChange(int currentChange, int tickChange)
     {
-        if (currentChange > 0)
+        if (currentChange != 0)
         {
             SpawnStatChangeText(foodCurrentText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon, 2);
             StartCoroutine(JiggleText(foodCurrentText));
         }
 
-        if (tickChange > 0)
+        if (tickChange != 0)
         {
             SpawnStatChangeText(foodTickText, tickChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon, 2);
             StartCoroutine(JiggleText(foodTickText));
