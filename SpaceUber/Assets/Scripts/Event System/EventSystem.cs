@@ -374,11 +374,11 @@ public class EventSystem : MonoBehaviour
 		FindObjectOfType<CrewManagement>().TurnOffPanel();
 
 		// set event variables
-		InkDriverBase mutinyEvent = newEvent.GetComponent<InkDriverBase>();
-		int mutinyCost = MoraleManager.instance.GetMutinyCost();
-		mutinyEvent.nextChoices[0].choiceRequirements[0].requiredAmount = mutinyCost;
-		mutinyEvent.nextChoices[0].outcomes[0].amount = -mutinyCost;
-		
+		//InkDriverBase mutinyEvent = newEvent.GetComponent<InkDriverBase>();
+		//int mutinyCost = MoraleManager.instance.GetMutinyCost();
+		//mutinyEvent.nextChoices[0].choiceRequirements[0].requiredAmount = mutinyCost;
+		//mutinyEvent.nextChoices[0].outcomes[0].amount = -mutinyCost;
+
 		StartCoroutine(SetupMutinyEvent(newEvent));
 	}
     
