@@ -60,7 +60,7 @@ public class IncreasedSuccess
             case ResourceDataTypes._Security:
                 shipStat = thisShip.Security;
                 break;
-            case ResourceDataTypes._Morale:
+            case ResourceDataTypes._CrewMorale:
                 shipStat = MoraleManager.instance.CrewMorale;
                 break;
             case ResourceDataTypes._Credits:

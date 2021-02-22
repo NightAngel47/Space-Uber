@@ -24,7 +24,7 @@ public class ObjectScript : MonoBehaviour
     public int objectNum;
 
     public bool canRotate;  //true can rotate | false cannot rotate
-    public bool nextToRoom; //true required next to x room | false no condition 
+    public bool nextToRoom; //true required next to x room | false no condition
     public int nextToRoomNum;
     public string nextToRoomName;
     public bool needsSpecificLocation;
@@ -32,8 +32,9 @@ public class ObjectScript : MonoBehaviour
     public static bool CalledFromSpawn = false;
 
     public string[] mouseOverAudio;
-    
+
     [SerializeField] private GameObject roomTooltip;
+    [SerializeField] private GameObject toolTipOutputList;
 
     [SerializeField] private ShapeType shapeDataTemplate = null;
 
@@ -65,9 +66,9 @@ public class ObjectScript : MonoBehaviour
         c = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
         c.a = 1;
         //parentObj = transform.parent.gameObject;
-        
+
         FindObjectOfType<EditCrewButton>().CheckForRooms();
-        
+
         ResetData();
     }
 
@@ -102,12 +103,14 @@ public class ObjectScript : MonoBehaviour
     public void OnMouseOver()
     {
         if(preplacedRoom) return;
-        
+
         if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true) // && PauseMenu.Instance.isPaused == false// commented out until menus are ready
         {
             if (ObjectMover.hasPlaced == true)
             {
-                roomTooltip.SetActive(true);
+                roomTooltip.SetActive(true);            
+                if(toolTipOutputList.transform.childCount > 0) toolTipOutputList.transform.GetChild(0).transform.GetChild(2).GetComponent<TMP_Text>().text = gameObject.GetComponent<RoomStats>().resources[0].activeAmount.ToString();
+
             }
             else if (roomTooltip.activeSelf)
             {
@@ -115,8 +118,8 @@ public class ObjectScript : MonoBehaviour
             }
 
             //if(preplacedRoom) return; // could moved preplacedRoom check here so tooltip can be activated.
-            
-            if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true)
+
+            if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true && !gameObject.GetComponent<ObjectMover>().enabled)
             {
                 //buttons.SetActive(true);
                 gameObject.GetComponent<RoomStats>().SubtractRoomStats();
@@ -142,8 +145,11 @@ public class ObjectScript : MonoBehaviour
            || GameManager.instance.currentGameState == InGameStates.Events
            && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn)
         {
+            
             roomTooltip.SetActive(true);
 
+            if(toolTipOutputList.transform.childCount > 0) toolTipOutputList.transform.GetChild(0).transform.GetChild(2).GetComponent<TMP_Text>().text = gameObject.GetComponent<RoomStats>().resources[0].activeAmount.ToString();
+            
             //if the object is clicked, open the room management menu
             if (Input.GetMouseButton(0))
             {
@@ -153,6 +159,21 @@ public class ObjectScript : MonoBehaviour
         }
     }
 
+    public IEnumerator WaitToClickRoom()
+    {
+        ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
+        foreach (ObjectScript r in otherRooms)
+        {
+            r.TurnOffClickAgain();
+        }
+
+        yield return new WaitForSeconds(.25f);
+
+        foreach (ObjectScript r in otherRooms)
+        {
+            r.TurnOnClickAgain();
+        }
+    }
 
     public void OnMouseExit()
     {
@@ -202,7 +223,7 @@ public class ObjectScript : MonoBehaviour
         {
             r.TurnOnClickAgain();
 
-            if(r.nextToRoom == true && CalledFromSpawn == false)
+            if(r.nextToRoom == true && CalledFromSpawn == false && gameObject != r.gameObject)
             {
                 bool check = SpotChecker.instance.NextToRoomCall(r.gameObject, r.rotAdjust);
                 if (check == false)

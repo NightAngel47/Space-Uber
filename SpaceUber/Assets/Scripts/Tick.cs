@@ -1,37 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Tick : MonoBehaviour
 {
-    private ShipStatsUI shipStatsUI;
     private ShipStats shipStats;
-    private MoraleManager moraleManager;
 
     //tick variables
     [SerializeField, Min(0.1f)] private float secondsPerTick = 5;
     private float secondsPassed;
     private Coroutine tickCoroutine;
+    
+    // days since variables
+    private int daysSince;
+    private TMP_Text daysSinceDisplay;
 
     public void Awake()
     {
         shipStats = FindObjectOfType<ShipStats>();
-        shipStatsUI = FindObjectOfType<ShipStatsUI>();
-        moraleManager = FindObjectOfType<MoraleManager>();
     }
 
     public void StartTickUpdate()
     {
         secondsPassed = 0;
-        tickCoroutine = StartCoroutine(TickUpdate());
+        if (tickCoroutine == null)
+        {
+            tickCoroutine = StartCoroutine(TickUpdate());
+        }
     }
 
     public void StopTickUpdate()
     {
-        if (tickCoroutine != null)
-        {
-            StopCoroutine(tickCoroutine);
-        }
+        if (tickCoroutine == null) return;
+        StopCoroutine(tickCoroutine);
+        tickCoroutine = null;
     }
 
     public bool IsTickStopped()
@@ -41,6 +45,9 @@ public class Tick : MonoBehaviour
 
     private IEnumerator TickUpdate()
     {
+        yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_EventTimer").isLoaded);
+        daysSinceDisplay = GameObject.FindGameObjectWithTag("DaysSince").GetComponent<TMP_Text>();
+        
         while (GameManager.instance.currentGameState == InGameStates.Events)
         {
             secondsPassed += Time.deltaTime;
@@ -57,29 +64,15 @@ public class Tick : MonoBehaviour
                 if (missingFood < 0)
                 {
                     // update crew morale based on missing food
-                    moraleManager.CrewStarving(missingFood);
+                    MoraleManager.instance.CrewStarving(missingFood);
                 }
                 // add net food to food stat
                 shipStats.Food += netFood;
 
                 // increment days since events
-                shipStats.DaysSince++;
+                DaysSince++;
 
-                if(moraleManager.CrewMorale < 0)
-                {
-                    moraleManager.CrewMorale = 0;
-                }
-
-                shipStatsUI.UpdateCrewMoraleUI(moraleManager.CrewMorale);
-
-                moraleManager.CheckMutiny();
-
-                RoomStats[] rooms = FindObjectsOfType<RoomStats>();
-
-                foreach(RoomStats room in rooms)
-                {
-                    room.KeepRoomStatsUpToDateWithMorale();
-                }
+                MoraleManager.instance.CheckMutiny();
 
                 if (shipStats.ShipHealthCurrent.x <= 0)
                 {
@@ -93,5 +86,17 @@ public class Tick : MonoBehaviour
         }
 
         yield return new WaitForEndOfFrame();
+    }
+    
+    
+
+    public int DaysSince
+    {
+        get => daysSince;
+        set
+        {
+            daysSince = value;
+            if(daysSinceDisplay != null) daysSinceDisplay.text = daysSince.ToString();
+        }
     }
 }

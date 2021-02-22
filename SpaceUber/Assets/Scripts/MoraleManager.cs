@@ -26,6 +26,8 @@ public class MoraleManager : MonoBehaviour
     [SerializeField, Tooltip("Values for determining the modifiers to apply to room and minigame output. X is the minimum bound of the tier and Y is the modifier value for that tier")] 
     private List<Vector2> outputModifierInfo;
     
+    public List<Vector2> OutputModifierInfo => outputModifierInfo;
+    
     private ShipStatsUI shipStatsUI;
     
     public static MoraleManager instance;
@@ -57,7 +59,7 @@ public class MoraleManager : MonoBehaviour
         {
             int prevValue = crewMorale;
             crewMorale = value;
-        
+
             /*
             if (crewMoraleAmount >= 0)
             {
@@ -68,8 +70,22 @@ public class MoraleManager : MonoBehaviour
                 AudioManager.instance.PlaySFX("Lose Morale");
             }
             */
-        
-            if(crewMorale < 0)
+
+            // update room outputs if there is a change in morale
+            if (value - prevValue != 0) 
+            {
+                RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+
+                foreach (RoomStats room in rooms)
+                { 
+                    if (room.gameObject.GetComponent<ObjectScript>().preplacedRoom == false)
+                    {
+                        room.KeepRoomStatsUpToDateWithMorale();
+                    }
+                }
+            }
+            
+            if (crewMorale < 0)
             {
                 crewMorale = 0;
             }

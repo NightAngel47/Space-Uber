@@ -5,6 +5,7 @@
  * Description: Data type for all the different shape types of the rooms, holds all the things that each room needs numbers for
  */
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,5 +61,5 @@ public enum ResourceDataTypes
     _Security,
     _FoodPerTick,
     _Payout,
-    _Morale
+    _CrewMorale
 }

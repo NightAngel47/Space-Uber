@@ -62,14 +62,6 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     private Tick tick;
 
-    /// <summary>
-    /// Reference to morale manager
-    /// </summary>
-    private MoraleManager moraleManager;
-
-    private int daysSince;
-    [SerializeField] private TMP_Text daysSinceDisplay;
-
     //stats at the start of the job
     private int startCredits;
     private int startPayout;
@@ -89,7 +81,6 @@ public class ShipStats : MonoBehaviour
     {
         shipStatsUI = GetComponent<ShipStatsUI>();
         tick = FindObjectOfType<Tick>();
-        moraleManager = FindObjectOfType<MoraleManager>();
     }
 
     private void Start()
@@ -281,7 +272,7 @@ public class ShipStats : MonoBehaviour
 
                 if(crewCurrent - prevValue.x < crewCapacity - prevValue.y)
                 {
-                    moraleManager.CrewLoss((int)(crewCurrent - prevValue.x));
+                    MoraleManager.instance.CrewLoss((int)(crewCurrent - prevValue.x));
                 }
             }
 
@@ -397,22 +388,6 @@ public class ShipStats : MonoBehaviour
         }
     }
 
-    public int DaysSince
-    {
-        get => daysSince;
-        set
-        {
-            daysSince = value;
-            daysSinceDisplay.text = daysSince.ToString();
-        }
-    }
-
-    public void ResetDaysSince()
-    {
-        daysSince = 0;
-        daysSinceDisplay.text = daysSince.ToString();
-    }
-
     private IEnumerator CheckDeathOnUnpause()
     {
         yield return new WaitUntil(() => tick.IsTickStopped());
@@ -460,7 +435,7 @@ public class ShipStats : MonoBehaviour
     public void PayCrew(int amount)
     {
         Credits -= (amount * crewCurrent);
-        moraleManager.CrewPayment(amount);
+        MoraleManager.instance.CrewPayment(amount);
     }
 
     public void RemoveRandomCrew(int amount)
@@ -518,7 +493,7 @@ public class ShipStats : MonoBehaviour
         startFoodPerTick = foodPerTick;
         startShipHealthMax = shipHealthMax;
         startShipHealthCurrent = shipHealthCurrent;
-        moraleManager.SaveMorale();
+        MoraleManager.instance.SaveMorale();
     }
 
     public void ResetStats()
@@ -532,6 +507,6 @@ public class ShipStats : MonoBehaviour
         Food = startFood;
         FoodPerTick = startFoodPerTick;
         ShipHealthCurrent = new Vector2(startShipHealthCurrent, startShipHealthMax);
-        moraleManager.ResetMorale();
+        MoraleManager.instance.ResetMorale();
     }
 }

@@ -6,7 +6,7 @@ env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
-  buildanddeploy:
+  build:
     name: Build for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
     runs-on: ubuntu-latest
     strategy:
@@ -32,7 +32,7 @@ jobs:
           restore-keys: |
             Library-${{ matrix.projectPath }}-
             Library-
-      - uses: webbertakken/unity-builder@v2.0-alpha-6
+      - uses: game-ci/unity-builder@v2.0-alpha-6
         with:
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
@@ -44,8 +44,30 @@ jobs:
         with:
           name: Build
           path: build
+  deploy:
+    if: (github.ref == 'refs/heads/development' || github.ref == 'refs/heads/master')  && github.event_name == 'push'
+    needs: build
+    name: Deployment for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        projectPath:
+          - SpaceUber
+        unityVersion:
+          - 2019.4.8f1
+        targetPlatform:
+          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+          - StandaloneWindows64 # Build a Windows 64-bit standalone.
+          - StandaloneLinux64 # Build a Linux 64-bit standalone.
+          #- WebGL # WebGL.
+    steps:
+      - uses: actions/download-artifact@v2.0.8
+        with:
+          name: Build
+          path: build
       - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
-        if: github.base_ref == 'development'
+        if: github.ref == 'refs/heads/development' && github.event_name == 'push'
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: ${{ matrix.targetPlatform }}
@@ -53,7 +75,7 @@ jobs:
           ITCH_USER: partyparrotpatrolparade
           PACKAGE: build/${{ matrix.targetPlatform }}
       - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
-        if: github.base_ref == 'master'
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: ${{ matrix.targetPlatform }}
