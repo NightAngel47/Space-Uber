@@ -390,14 +390,14 @@ public class EventSystem : MonoBehaviour
 			chatting = false;
 			daysSinceChat = 0;
 			eventInstance.GetComponent<CharacterEvent>().EndCharacterEvent();
-			//TODO: Find a way to overclock the connected room
 		}
 		else if (concludedEvent.isMutinyEvent)
 		{
 			isRegularEvent = false;
 		}
-		else if (overallEventIndex >= maxEvents) //Potentially end the job entirely if this is meant to be the final event
+		else if (overallEventIndex >= maxEvents) // end the job entirely if this is meant to be the final event
 		{
+			campMan.GoToNextJob(); //tells campaign manager to activate the next available job
 			ClearEventSystem();
 			ship.CashPayout();
 			GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);

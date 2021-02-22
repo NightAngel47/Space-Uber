@@ -22,6 +22,50 @@ public class CampaignManager : MonoBehaviour
     public Campaigns currentCamp = Campaigns.CateringToTheRich;
 
     public CateringToTheRich cateringToTheRich = new CateringToTheRich();
+    public MysteriousEntity mysteriousEntity = new MysteriousEntity();
+    public FinalTest finalTest = new FinalTest();
+
+    /// <summary>
+    /// Returns a list of all jobs that are available for the current campaign.
+    /// To be used in JobManager
+    /// </summary>
+    /// <returns></returns>
+    public List<Job> GetAvailableJobs()
+    {
+        List<Job> available = new List<Job>();
+        switch (currentCamp)
+        {
+            case Campaigns.CateringToTheRich:
+                available = cateringToTheRich.campaignJobs;
+                break;
+            case Campaigns.MysteriousEntity:
+                available = mysteriousEntity.campaignJobs;
+                break;
+            case Campaigns.FinalTest:
+                available = finalTest.campaignJobs;
+                break;
+        }
+
+        return available;
+    }
+
+    public int GetCurrentCampaignIndex()
+    {
+        int index = 0;
+        switch (currentCamp)
+        {
+            case Campaigns.CateringToTheRich:
+                index = cateringToTheRich.currentCampaignJobIndex;
+                break;
+            case Campaigns.MysteriousEntity:
+                index = mysteriousEntity.currentCampaignJobIndex;
+                break;
+            case Campaigns.FinalTest:
+                index = finalTest.currentCampaignJobIndex;
+                break;
+        }
+        return index;
+    }
 
     public void GoToNextCampaign()
     {
@@ -43,13 +87,30 @@ public class CampaignManager : MonoBehaviour
         switch (currentCamp)
         {
             case Campaigns.CateringToTheRich:
+                cateringToTheRich.currentCampaignJobIndex++;
 
+                if (finalTest.currentCampaignJobIndex > 3)
+                {
+                    GoToNextCampaign();
+                }
                 break;
+
             case Campaigns.MysteriousEntity:
-
+                mysteriousEntity.currentCampaignJobIndex++;
+                
+                if (finalTest.currentCampaignJobIndex > 3)
+                {
+                    GoToNextCampaign();
+                }
                 break;
-            case Campaigns.FinalTest:
 
+            case Campaigns.FinalTest:
+                finalTest.currentCampaignJobIndex++;
+                
+                if(finalTest.currentCampaignJobIndex > 3)
+                {
+                    //ENd game
+                }
                 break;
         }
     }
