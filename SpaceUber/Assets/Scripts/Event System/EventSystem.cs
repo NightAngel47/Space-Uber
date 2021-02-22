@@ -20,13 +20,18 @@ public class EventSystem : MonoBehaviour
 {
 	public static EventSystem instance;
 	private ShipStats ship;
+	private Tick tick;
 	private AdditiveSceneManager asm;
 	private EventCanvas eventCanvas;
+    private EventPromptButton eventPromptButton;
 	private CampaignManager campMan;
-	
+
 	private int maxEvents = 0;
 	private List<GameObject> storyEvents = new List<GameObject>();
 	private List<GameObject> randomEvents = new List<GameObject>();
+
+	[SerializeField, Tooltip("All possible character events. Temporary")]
+	private List<GameObject> allCharacterEvents;
 
 	//how many events (story and random) have occurred
 	private int overallEventIndex = 0;
@@ -35,6 +40,9 @@ public class EventSystem : MonoBehaviour
 	//how many random events have passed. Tells code how many events to ignore at the start of the list
 	private int randomEventIndex = 0;
 
+	/// <summary>
+	/// The specific event being played right now
+	/// </summary>
 	GameObject eventInstance;
 
 	[Tooltip("How many seconds it will take to attempt an event roll")]
@@ -49,16 +57,30 @@ public class EventSystem : MonoBehaviour
 	[Tooltip("Initial percentage chance of rolling an event")]
 	[SerializeField] private float startingEventChance = 5;
 
-	
-	private bool isTraveling = false;
-	public bool eventActive { get; private set; } = false;
+	private bool skippedToEvent;
+    private bool nextEventLockedIn;
+    private float eventRollCounter;
+    private float timeBeforeEventCounter;
+    private Coroutine travelCoroutine;
 
-	[SerializeField] private GameObject sonarObjects;
-	[SerializeField] private EventWarning eventWarning;
-	[SerializeField] private EventSonar sonar;
+    public bool NextEventLockedIn => nextEventLockedIn;
+    
+	public bool eventActive { get; private set; } = false;
+	
+	// loaded in from Interface_EventTimer
+	private GameObject sonarObjects; // event timer UI
+	private EventWarning eventWarning; // warning
+	private EventSonar sonar; // sonar
+	
 	private Job currentJob;
 
 	private string lastEventTitle;
+
+	[HideInInspector] public bool chatting = false; //Whether or not the player is talking to a character
+	[HideInInspector] public bool mutiny;
+
+	[SerializeField, Tooltip("The maximum cooldown for a character chat in ticks.")] public int chatCooldown;
+	private int daysSinceChat;
 
 	private void Awake()
 	{
@@ -67,29 +89,78 @@ public class EventSystem : MonoBehaviour
 		else { instance = this; }
 
 		ship = FindObjectOfType<ShipStats>();
+		tick = FindObjectOfType<Tick>();
 		asm = FindObjectOfType<AdditiveSceneManager>();
 		campMan = GetComponent<CampaignManager>();
-		
-		if(eventWarning != null)
-		{
-			eventWarning.DeactivateWarning();
-		}
-
-		//set sonar stuff
-		sonar.SetSpinRate( eventChanceFreq );
-		sonarObjects.SetActive(false);
 	}
 
-	/// <summary>
-	/// Plays job intro
-	/// </summary>
-	public IEnumerator PlayIntro()
+    private void Update()
     {
+	    //TODO Remove once character events are complete, only for testing
+        if(Input.GetKeyDown(KeyCode.F9) && GameManager.instance.currentGameState == InGameStates.Events)
+        {
+	        if(chatting && SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded)
+	        {
+		        chatting = false;
+		        asm.UnloadScene("Event_CharacterFocused");
+	        }
+	        else
+	        {
+		        StartCoroutine(StartNewCharacterEvent(allCharacterEvents));
+	        }
+        }
+    }
+
+    private void SetUpEventTimer()
+    {
+	    eventWarning = FindObjectOfType<EventWarning>();
+	    sonar = FindObjectOfType<EventSonar>();
+	    sonarObjects = sonar.transform.parent.gameObject; // event timer UI
+	    
+	    //set sonar stuff
+	    sonar.SetSpinRate( eventChanceFreq );
+	    sonarObjects.SetActive(false);
+	    
+	    if(eventWarning != null)
+	    {
+		    eventWarning.DeactivateWarning();
+	    }
+    }
+
+	public bool CanChat(List<GameObject> checkEvents)
+    {
+		//If chat has cooleddown
+		if(daysSinceChat < chatCooldown)
+        {
+			print("Cooldown active");
+			return false;
+        }
+
+		//if no possible events are found
+		if(FindNextCharacterEvent(checkEvents) == null)
+        {
+			print("Could not manage an event");
+			return false;
+        }
+
+		return true;
+    }
+
+    /// <summary>
+    /// Plays job intro
+    /// </summary>
+    public IEnumerator PlayIntro()
+    {
+	    yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_EventTimer").isLoaded);
+	    SetUpEventTimer();
+	    
+		chatting = false;
 		while(currentJob == null)
         {
 			yield return null;
         }
 
+		//check for an introduction "event"
 		GameObject intro = null;
 		foreach (var introEvent in currentJob.introEvents)
 		{
@@ -115,107 +186,210 @@ public class EventSystem : MonoBehaviour
         {
 			print("Found nothing in currentJob");
         }
-
+		
         //Go to the travel coroutine
-        StartCoroutine(EventSystem.instance.Travel());
+        travelCoroutine = StartCoroutine(Travel());
     }
 
-	public IEnumerator Travel()
+	private IEnumerator Travel()
 	{
-		ship.ResetDaysSince();
+		tick.DaysSince = 0; // reset days since
 		campMan.cateringToTheRich.SaveEventChoices();
-
-		//For the intro event
-		yield return new WaitWhile((() => eventActive));
-
-		float chanceOfEvent = startingEventChance;
+		
+		// loops once per event
 		while (GameManager.instance.currentGameState == InGameStates.Events)
 		{
-            ship.StartTickEvents();
+			// wait till any active event is cleared before starting event timer for next event
+			yield return new WaitWhile((() => eventActive));
+			tick.StartTickUpdate();
 			sonarObjects.SetActive(true);
 			sonar.ResetSonar();
+			float chanceOfEvent = startingEventChance;
 
-			yield return new WaitForSeconds(timeBeforeEventRoll); //start with one big chunk of time
-
-			//A check to be sure that the current game state is not the event scenes
-			if (GameManager.instance.currentGameState != InGameStates.Events)
-            {
-                break;
-            }
-
-            #region Start sonar/event chance loop
-            //run random chances for event to take place in a loop
-            while (!WillRunEvent(chanceOfEvent))
-			{				
-				isTraveling = true;
-				chanceOfEvent+= chanceIncreasePerFreq;
-				yield return new WaitForSeconds(eventChanceFreq);
-			}
-			//Once again make sure that this is not an event scene
-            if(GameManager.instance.currentGameState != InGameStates.Events)
-            {
-                break;
-            }
-            #endregion
-
-            //Activate the warning for the next event now that one has been picked
-            if (eventWarning != null)
+			//start with one big chunk of time
+			while (timeBeforeEventCounter <= timeBeforeEventRoll)
 			{
-				eventWarning.ActivateWarning();
+				if (!mutiny && !chatting) // don't increment timer during mutiny
+				{
+					// count up during the grace period
+					timeBeforeEventCounter += Time.deltaTime;
+				}
+				
+				yield return new WaitForEndOfFrame();
 			}
-			ship.PauseTickEvents();
+            
+            asm.LoadSceneMerged("Event_Prompt");
+            yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
+            eventPromptButton = FindObjectOfType<EventPromptButton>();
+            eventPromptButton.eventButton.onClick.AddListener(SkipToEvent);
+
+            // roll for next event unless skipped to it
+            while (!skippedToEvent && eventRollCounter <= eventChanceFreq)
+            {
+				if(!mutiny && !chatting) // don't increment timer during mutiny
+				{
+		            // count up for every roll
+		            eventRollCounter += Time.deltaTime;
+		            // if reached next roll
+		            if (eventRollCounter >= eventChanceFreq)
+		            {
+			            if (WillRunEvent(chanceOfEvent))
+			            {
+				            nextEventLockedIn = true;
+				            //Activate the warning for the next event now that one has been picked
+				            if (eventWarning != null)
+				            {
+					            eventWarning.ActivateWarning();
+				            }
+				            break;
+			            }
+
+			            chanceOfEvent += chanceIncreasePerFreq;
+			            eventRollCounter = 0; // reset roll counter
+		            }
+				}
+
+	            yield return new WaitForEndOfFrame();
+            }
+            
+            // once event rolled or skipped
+            
+            tick.StopTickUpdate();
+            FindObjectOfType<CrewManagement>().TurnOffPanel();
 
 			//wait until there is no longer an overclock microgame happening
 			yield return new WaitUntil(() => !OverclockController.instance.overclocking);
-			
-			//get rid of and reset sonar objects
-			eventWarning.DeactivateWarning();
-			sonarObjects.SetActive(false);
+
+            //If event button was not clicked ahead of time
+            if (nextEventLockedIn && SceneManager.GetSceneByName("Event_Prompt").isLoaded)
+            {
+                eventPromptButton.backDrop.SetActive(true);
+            }
+
+            // wait for player to go click button to go to event
+            yield return new WaitUntil((() => skippedToEvent));
             
-			#region Spawn an event
-            if (overallEventIndex % 2 == 1 && overallEventIndex != 0) //if it's an even-numbered event, do a story 
-			{
-				// Load Event_General Scene for upcoming event
-				asm.LoadSceneMerged("Event_General");
-				yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_General").isLoaded);
-
-				eventCanvas = FindObjectOfType<EventCanvas>();
-
-				GameObject newEvent = FindNextStoryEvent();
-				CreateEvent(newEvent);
-				overallEventIndex++;
-
-				yield return new WaitWhile((() => eventActive));
-			}
-			else if (!eventActive && randomEventIndex < randomEvents.Count) //Pick a random event
-			{
-				GameObject newEvent = RandomizeEvent();
-
-				if (newEvent != null) //check to be sure a random event was still chosen
-				{
-					// Load Event_CharacterFocused Scene for upcoming event 
-					asm.LoadSceneMerged("Event_CharacterFocused");
-					yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
-
-					eventCanvas = FindObjectOfType<EventCanvas>();
-
-					CreateEvent(newEvent);
-					randomEventIndex++;
-					overallEventIndex++;
-
-					yield return new WaitWhile((() => eventActive));
-				}
-			}
-			#endregion
-
-			//set up the sonar for the next event
-			sonarObjects.SetActive(true);
-			sonar.ResetSonar();
-			ship.UnpauseTickEvents();
+            // wait for event to conclude
+            yield return new WaitWhile((() => eventActive));
 		}
-		isTraveling = false;
+		
 		sonarObjects.SetActive(false);
-        ship.StopTickEvents();
+        tick.StopTickUpdate();
+	}
+
+	/// <summary>
+	/// Called by the go to event button to spawn a random/story event
+	/// </summary>
+	/// <returns>Returns true when complete</returns>
+	private void SkipToEvent()
+	{
+		if (skippedToEvent) return;
+		
+	    skippedToEvent = true;
+	    asm.UnloadScene("Event_Prompt");
+	    
+	    //get rid of and reset sonar objects
+	    eventWarning.DeactivateWarning();
+	    sonarObjects.SetActive(false);
+
+	    //if it's an even-numbered event, do a story
+	    if (overallEventIndex % 2 == 1 && overallEventIndex != 0)
+	    {
+		    StartCoroutine(StartStoryEvent());
+	    }
+	    else
+	    {
+		    StartCoroutine(StartRandomEvent());
+	    }
+    }
+
+	/// <summary>
+	/// Starts the next story event
+	/// </summary>
+	/// <returns></returns>
+	private IEnumerator StartStoryEvent()
+	{
+		// Load Event_General Scene for upcoming event
+		asm.LoadSceneMerged("Event_General");
+		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_General").isLoaded);
+
+		GameObject newEvent = FindNextStoryEvent();
+		CreateEvent(newEvent);
+		overallEventIndex++;
+	}
+
+	/// <summary>
+	/// Starts random story event
+	/// </summary>
+	/// <returns></returns>
+	private IEnumerator StartRandomEvent()
+	{
+		GameObject newEvent = RandomizeEvent();
+
+		// make sure there is a random event
+		while (newEvent == null)
+		{
+			Debug.LogWarning("Didn't find a random event, trying again.");
+			newEvent = RandomizeEvent();
+		}
+		
+		// Load Event_CharacterFocused Scene for upcoming event
+		asm.LoadSceneMerged("Event_CharacterFocused");
+		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
+
+		CreateEvent(newEvent);
+		randomEventIndex++;
+		overallEventIndex++;
+	}
+
+	/// <summary>
+	/// Generates a new character event. Does nothing
+	/// </summary>
+	/// <param name="possibleEvents"></param>
+	/// <returns></returns>
+	public IEnumerator StartNewCharacterEvent(List<GameObject> possibleEvents)
+    {
+	    //TODO: Change Character Events to not pause Tick
+		chatting = true;
+		tick.StopTickUpdate();
+		FindObjectOfType<CrewManagement>().TurnOffPanel();
+		GameObject newEvent = FindNextCharacterEvent(possibleEvents);
+
+		asm.LoadSceneMerged("Event_CharacterFocused");
+		print("Starting a new character event");
+
+		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
+
+		if (newEvent != null)
+        {
+			CreateEvent(newEvent);
+        }
+    }
+	
+	public void CreateMutinyEvent(GameObject newEvent)
+	{
+		mutiny = true;
+		tick.StopTickUpdate();
+		sonarObjects.SetActive(false);
+		FindObjectOfType<CrewManagement>().TurnOffPanel();
+
+		// set event variables
+		//InkDriverBase mutinyEvent = newEvent.GetComponent<InkDriverBase>();
+		//int mutinyCost = MoraleManager.instance.GetMutinyCost();
+		//mutinyEvent.nextChoices[0].choiceRequirements[0].requiredAmount = mutinyCost;
+		//mutinyEvent.nextChoices[0].outcomes[0].amount = -mutinyCost;
+
+		StartCoroutine(SetupMutinyEvent(newEvent));
+	}
+    
+	private IEnumerator SetupMutinyEvent(GameObject newEvent)
+	{
+		//wait until there is no longer an overclock microgame happening
+		yield return new WaitUntil(() => !OverclockController.instance.overclocking);
+		
+		asm.LoadSceneMerged("Event_CharacterFocused");
+		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
+		CreateEvent(newEvent);
 	}
 
 	/// <summary>
@@ -225,51 +399,76 @@ public class EventSystem : MonoBehaviour
 	/// <param name="newEvent"></param>
 	private void CreateEvent(GameObject newEvent)
 	{
+		eventCanvas = FindObjectOfType<EventCanvas>();
 		eventInstance = Instantiate(newEvent, eventCanvas.canvas.transform);
 
 		if (eventInstance.TryGetComponent(out InkDriverBase inkDriver))
 		{
 			inkDriver.AssignStatusFromEventSystem(eventCanvas.titleBox, eventCanvas.textBox,eventCanvas.choiceResultsBox,
 				eventCanvas.backgroundImage, eventCanvas.buttonGroup, ship, campMan);
-			
 		}
 
-		eventActive = true;
-		//Does not increment overall event index because intro event does not increment it
-	}
+        eventActive = true;
+        //Does not increment overall event index because intro event does not increment it
+    }
 
-	/// <summary>
-	/// Ends the event that is currently running.
-	/// If the max number of events has been reached, go to the ending
-	/// </summary>
-	public void ConcludeEvent()
+    /// <summary>
+    /// Ends the event that is currently running.
+    /// If the max number of events has been reached, go to the ending
+    /// </summary>
+    public void ConcludeEvent()
 	{
-		ship.ResetDaysSince();
-		eventInstance.GetComponent<InkDriverBase>().ClearUI();
-
-		//in case a random event isn't chosen
-		if (eventInstance != null)
+		bool isRegularEvent = true;
+		
+		InkDriverBase concludedEvent = eventInstance.GetComponent<InkDriverBase>();
+		concludedEvent.ClearUI();
+		
+		if(concludedEvent.isCharacterEvent)
 		{
-			Destroy(eventInstance);
+			isRegularEvent = false;
+			chatting = false;
+			daysSinceChat = 0;
+			eventInstance.GetComponent<CharacterEvent>().EndCharacterEvent();
+			//TODO: Find a way to overclock the connected room
 		}
+		else if (concludedEvent.isMutinyEvent)
+		{
+			isRegularEvent = false;
+			mutiny = false;
+		}
+
+		Destroy(eventInstance);
 
 		//Go back to travel scene
 		asm.UnloadScene("Event_General");
 		asm.UnloadScene("Event_CharacterFocused");
 		AudioManager.instance.PlayMusicWithTransition("General Theme");
 
-		//Potentially end the job entirely
-		if (overallEventIndex >= maxEvents)
+		//reset for next event
+		eventActive = false;
+		sonarObjects.SetActive(true);
+		tick.StartTickUpdate();
+		
+		//set up for the next regular event
+		if (isRegularEvent)
 		{
-			ClearEventSystem();
+			sonar.ResetSonar();
+			tick.DaysSince = 0; // reset days since
+			skippedToEvent = false;
+			nextEventLockedIn = false;
+			eventRollCounter = 0;
+			timeBeforeEventCounter = 0;
+		}
+		
+		if (overallEventIndex >= maxEvents) //Potentially end the job entirely if this is meant to be the final event
+		{
+			ClearEventSystemAtEndOfJob();
 			ship.CashPayout();
 			GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);
 		}
-
-		eventActive = false;
 	}
 
-	private void ClearEventSystem()
+	private void ClearEventSystemAtEndOfJob()
 	{
 		storyEvents.Clear();
 		randomEvents.Clear();
@@ -280,6 +479,16 @@ public class EventSystem : MonoBehaviour
 		randomEventIndex = 0;
 		eventInstance = null;
 		lastEventTitle = "";
+		chatting = false;
+		mutiny = false;
+		skippedToEvent = false;
+		nextEventLockedIn = false;
+		eventActive = false;
+		eventRollCounter = 0;
+		timeBeforeEventCounter = 0;
+		daysSinceChat = 0;
+		if(travelCoroutine != null) StopCoroutine(travelCoroutine);
+		tick.StopTickUpdate();
 	}
 
 	public void ResetJob()
@@ -289,31 +498,43 @@ public class EventSystem : MonoBehaviour
 		randomEventIndex = 0;
 		eventInstance = null;
 		lastEventTitle = "";
+		chatting = false;
+		mutiny = false;
+		skippedToEvent = false;
+		nextEventLockedIn = false;
+		eventActive = false;
+		eventRollCounter = 0;
+		timeBeforeEventCounter = 0;
+		daysSinceChat = 0;
+		if(travelCoroutine != null) StopCoroutine(travelCoroutine);
 	}
 
 	/// <summary>
-	/// Decides whether or not an event will run. 
+	/// Decides whether or not an event will run.
 	/// </summary>
 	/// <param name="chances">The number of times that the event chance has failed. The higher it is, the more likely an event</param>
 	/// <returns></returns>
 	private bool WillRunEvent(float chances)
 	{
-		sonar.ShowNextDot();
+        if(sonar.gameObject.activeSelf)
+        {
+            sonar.ShowNextDot();
+        }
 		float rng = Random.Range(0, 101);
 
 		return rng <= chances;
 	}
 
 	/// <summary>
-	/// Finds the next story event by cycling through all possible versions of the next story event. 
+	/// Finds the next story event by cycling through all possible versions of the next story event.
 	/// </summary>
 	/// <returns></returns>
 	private GameObject FindNextStoryEvent()
     {
 		// search for the next event with the correct variation
-		foreach (var storyEvent 
-			in from storyEvent in storyEvents 
-			let story = storyEvent.GetComponent<InkDriverBase>() let requirements = story.requiredStats 
+		foreach (var storyEvent
+			in from storyEvent in storyEvents
+			let story = storyEvent.GetComponent<InkDriverBase>() let requirements = story.requiredStats
 			where story.storyIndex == storyEventIndex && HasRequiredStats(requirements) select storyEvent)
 		{
 			++storyEventIndex;
@@ -323,6 +544,47 @@ public class EventSystem : MonoBehaviour
 		Debug.LogWarning("Couldn't find next story event");
 		return null;
     }
+
+	/// <summary>
+	/// Returns the next chosen event that can be played from the possible list supplied.
+	/// If null, do not allow players to go into the event screen. Instead, inform them that no new events
+	/// are available.
+	/// </summary>
+	/// <param name="possibleEvents"></param>
+	/// <returns></returns>
+	private GameObject FindNextCharacterEvent(List<GameObject> possibleEvents)
+    {
+        //if charEvent matches requirements, pick this one and remove it from the group
+
+		//foreach (var charEvent
+		//in from charEvent in possibleEvents
+		//   let eventDriver = charEvent.GetComponent<CharacterEvent>()
+		//   let requirements = eventDriver.requiredStats
+		//   where HasRequiredStats(requirements) && eventDriver.playedOnce == false //meets requirements and has never been played before
+		//   select charEvent)
+		//{
+		//	GameObject chosen = charEvent;
+		//	charEvent.GetComponent<CharacterEvent>().playedOnce = true;
+		//	return chosen;
+
+		//}
+
+		foreach( GameObject charEvent in possibleEvents)
+        {
+			CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
+			List<Requirements> requirements = eventDriver.requiredStats;
+
+			eventDriver.playedOnce = false; //DELETE Later
+
+			if(HasRequiredStats(requirements) && eventDriver.playedOnce == false)
+            {
+				return charEvent;
+            }
+		}
+
+		return null;
+
+	}
 
 	/// <summary>
 	/// Picks a random event to spawn. The random numbers include the eventIndex to the count of storyEvents list

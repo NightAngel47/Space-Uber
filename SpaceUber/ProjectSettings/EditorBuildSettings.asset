@@ -6,26 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menus/Menu_Main.unity
+    guid: 3e378678ce2d6304a9c43e4de328121d
+  - enabled: 1
+    path: Assets/Scenes/Menus/LoadingScreen.unity
+    guid: b95a3deda28d826468efc20008d9ff78
+  - enabled: 1
+    path: Assets/Scenes/Interfaces/Interface_PauseMenu.unity
+    guid: d1196965f9a431d4baabe59ffeab31a9
+  - enabled: 1
     path: Assets/Scenes/ShipBase.unity
     guid: fa6658769dc89ee499de2fad1dee8bc9
-  - enabled: 1
-    path: Assets/Scenes/Backgrounds/Space BG.unity
-    guid: d5a63ce7a5e1742498dbe6b68a02c8b7
-  - enabled: 1
-    path: Assets/Scenes/Backgrounds/StarPort BG.unity
-    guid: 2a12bda1e7465df438e807fba5c7710c
-  - enabled: 1
-    path: Assets/Scenes/Interfaces/Interface_JobList.unity
-    guid: 2eafbb744a00edb419fa791424b088f9
-  - enabled: 1
-    path: Assets/Scenes/Prompt Screens/PromptScreen_Start.unity
-    guid: f2a096034793839469648a8f01bcb604
-  - enabled: 1
-    path: Assets/Scenes/Prompt Screens/PromptScreen_End.unity
-    guid: 1e4d1e9e8e54ce04faf90e9ca347699c
-  - enabled: 1
-    path: Assets/Scenes/Prompt Screens/PromptScreen_Death.unity
-    guid: 61a82ac02a0af40e083deb7f288651f7
   - enabled: 1
     path: Assets/Scenes/ShipBuilding.unity
     guid: d6aaea48ec791fb418a939f904eaaa92
@@ -36,8 +27,41 @@ EditorBuildSettings:
     path: Assets/Scenes/CrewPayment.unity
     guid: d67b851ce4131472da1390cec85ec94c
   - enabled: 1
+    path: Assets/Scenes/Backgrounds/Space BG.unity
+    guid: d5a63ce7a5e1742498dbe6b68a02c8b7
+  - enabled: 1
+    path: Assets/Scenes/Backgrounds/StarPort BG.unity
+    guid: 2a12bda1e7465df438e807fba5c7710c
+  - enabled: 1
+    path: Assets/Scenes/Interfaces/Interface_Radio.unity
+    guid: b5f2d54d993314b45998b59f27f849e8
+  - enabled: 1
+    path: Assets/Scenes/Interfaces/Interface_JobList.unity
+    guid: 2eafbb744a00edb419fa791424b088f9
+  - enabled: 1
+    path: Assets/Scenes/Interfaces/Interface_EventTimer.unity
+    guid: 7437e8a0ed1f9ba459a20a2f5d85d5c8
+  - enabled: 1
+    path: Assets/Scenes/Prompt Screens/PromptScreen_Start.unity
+    guid: f2a096034793839469648a8f01bcb604
+  - enabled: 1
+    path: Assets/Scenes/Prompt Screens/PromptScreen_End.unity
+    guid: 1e4d1e9e8e54ce04faf90e9ca347699c
+  - enabled: 1
+    path: Assets/Scenes/Prompt Screens/PromptScreen_Death.unity
+    guid: 61a82ac02a0af40e083deb7f288651f7
+  - enabled: 1
+    path: Assets/Scenes/Prompt Screens/PromptScreen_Mutiny.unity
+    guid: f582a9610cd0c46f18c3ba09a7d1c450
+  - enabled: 1
+    path: Assets/Scenes/Events/Event_Prompt.unity
+    guid: d6a4c22821553c846859b9eca91f56fa
+  - enabled: 1
     path: Assets/Scenes/Events/Event_General.unity
     guid: b6542f88d08a050449ddb6865e570651
+  - enabled: 1
+    path: Assets/Scenes/Events/Event_CharacterFocused.unity
+    guid: a264bb79a1715924fb4b071bb0db48b4
   - enabled: 1
     path: Assets/Scenes/MiniGames/MiniGames Testing Menu.unity
     guid: c5d9bf7f42e0d0a4eb0c8003f38d6c36
@@ -53,9 +77,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MiniGames/Security.unity
     guid: 0ebe3d1636d64474e879b7be20ccdad9
-  - enabled: 1
-    path: Assets/Scenes/Events/Event_CharacterFocused.unity
-    guid: a264bb79a1715924fb4b071bb0db48b4
   - enabled: 1
     path: Assets/Scenes/MiniGames/SlotMachine.unity
     guid: b975470365dbca04ebde48bfd15c5fca
