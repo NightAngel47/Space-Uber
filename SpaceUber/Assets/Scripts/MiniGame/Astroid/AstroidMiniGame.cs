@@ -23,7 +23,7 @@ public class AstroidMiniGame : MiniGame
 	{
 		if (!gameOver)
 		{
-			scoreText.text = "Astroids Remaining: " + requiredAstroids;
+			scoreText.text = "Asteroids Remaining: " + requiredAstroids;
 			if (requiredAstroids == 0) { EndMiniGameSuccess(); }
 			if (damageTillFailure == 0) { EndMiniGameFail(true); }
 		}
