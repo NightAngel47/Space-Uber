@@ -199,6 +199,9 @@ public class ObjectMover : MonoBehaviour
                 AudioManager.instance.PlaySFX(Placements[Random.Range(0, Placements.Length)]);
                 gameObject.GetComponent<RoomStats>().AddRoomStats();
 
+                //makes sure the room is on the lower layer so that the new rooms can be on top without flickering
+                gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
+
                 hasPlaced = true;
 
                 if (os.needsSpecificLocation == true)
@@ -221,6 +224,7 @@ public class ObjectMover : MonoBehaviour
 
             else //If something is placed allow player to keep moving room
             {
+                hasPlaced = false;
                 TurnOnBeingDragged();
             }
         }

@@ -185,6 +185,8 @@ public class ObjectScript : MonoBehaviour
 
     public void Edit()
     {
+        Cursor.visible = false;
+
         c.a = .5f;
         gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
         c.a = 1;
@@ -215,6 +217,8 @@ public class ObjectScript : MonoBehaviour
 
     public void Delete()
     {
+        Cursor.visible = true;
+
         //buttons.SetActive(false);
         SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
         ObjectMover.hasPlaced = true;

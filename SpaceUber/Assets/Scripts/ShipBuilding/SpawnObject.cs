@@ -105,6 +105,9 @@ public class SpawnObject : MonoBehaviour
                 //HOVER UI does not happen when mouse is hidden
                 lastSpawned.GetComponent<ObjectMover>().TurnOnBeingDragged();
 
+                //rooms being placed will appear on top of other rooms that are already placed
+                lastSpawned.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+
                 ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
                 ObjectScript.CalledFromSpawn = true;
                 foreach (ObjectScript r in otherRooms)
