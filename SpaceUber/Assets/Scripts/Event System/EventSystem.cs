@@ -50,11 +50,14 @@ public class EventSystem : MonoBehaviour
 	[Tooltip("Initial percentage chance of rolling an event")]
 	[SerializeField] private float startingEventChance = 5;
 
-	private bool skippedToEvent;
+    [Tooltip("The percentage chance of rolling an event per failure")]
+    [SerializeField] public float chanceOfEvent;
+
+    private bool skippedToEvent;
     public bool nextEventLockedIn;
     private float eventRollCounter;
 
-	public bool eventActive { get; private set; } = false;
+    public bool eventActive { get; private set; } = false;
     public bool promptActive = false;
 
 	[SerializeField] private GameObject sonarObjects;
@@ -126,7 +129,7 @@ public class EventSystem : MonoBehaviour
 
 	public IEnumerator Travel()
 	{
-		ship.ResetDaysSince();
+        ship.ResetDaysSince();
 		campMan.cateringToTheRich.SaveEventChoices();
 
 		//For the intro event
@@ -137,7 +140,7 @@ public class EventSystem : MonoBehaviour
             ship.StartTickEvents();
 			sonarObjects.SetActive(true);
 			sonar.ResetSonar();
-			float chanceOfEvent = startingEventChance;
+			chanceOfEvent = startingEventChance;
 
 			yield return new WaitForSeconds(timeBeforeEventRoll); //start with one big chunk of time
 
@@ -145,12 +148,12 @@ public class EventSystem : MonoBehaviour
             yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
             eventPromptButton = FindObjectOfType<EventPromptButton>();
             eventPromptButton.eventButton.onClick.AddListener(SpawnEvent);
-
+            
             // roll for next event unless skipped to it
             while (!skippedToEvent && eventRollCounter <= eventChanceFreq)
             {
-	            // count up for every roll
-	            eventRollCounter += Time.deltaTime;
+                // count up for every roll
+                eventRollCounter += Time.deltaTime;
 	            // if reached next roll
 	            if (eventRollCounter >= eventChanceFreq)
 	            {
@@ -159,9 +162,9 @@ public class EventSystem : MonoBehaviour
 			            nextEventLockedIn = true;
 			            break;
 		            }
-		            
-		            chanceOfEvent += chanceIncreasePerFreq;
-		            eventRollCounter = 0; // reset roll counter
+                    
+                    chanceOfEvent += chanceIncreasePerFreq;
+                    eventRollCounter = 0; // reset roll counter
 	            }
 	            
 	            yield return new WaitForEndOfFrame();
@@ -189,9 +192,10 @@ public class EventSystem : MonoBehaviour
 
             //event is spawned by button (out of loop)
 
+            chanceIncreasePerFreq = 20;
             yield return new WaitWhile((() => eventActive));
-		}
-		sonarObjects.SetActive(false);
+        }
+        sonarObjects.SetActive(false);
         ship.StopTickEvents();
 	}
 
