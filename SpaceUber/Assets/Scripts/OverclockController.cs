@@ -25,6 +25,13 @@ public class OverclockController : MonoBehaviour
     [SerializeField] float failHullDurabilityBaseAdjustment = -5;
     public float cooldownTime = 5;
 
+    [SerializeField] float cropPercentIncrease = 5;
+    [SerializeField] float securityPercentIncrease = 5;
+    [SerializeField] float asteroidPercentIncrease = 5;
+    [SerializeField] float energyPercentIncrease = 5;
+    [SerializeField] float hullRepairPercentIncrease = 5;
+    [SerializeField] float slotPercentIncrease = 5;
+
     //If a room is already being overclocked
     public bool overclocking = false;
     OverclockRoom activeRoom;
@@ -64,31 +71,37 @@ public class OverclockController : MonoBehaviour
             {
                 shipStats.UpdateSecurityAmount(Mathf.RoundToInt(securityBaseAdjustment * statModification));
                 SpawnStatChangeText(Mathf.RoundToInt(securityBaseAdjustment * statModification), 1);
+                EventSystem.instance.chanceOfEvent += securityPercentIncrease;
             }
             if(miniGame == MiniGameType.Asteroids)
             {
                 shipStats.UpdateShipWeaponsAmount(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification));
                 SpawnStatChangeText(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification), 2);
+                EventSystem.instance.chanceOfEvent += asteroidPercentIncrease;
             }
             if(miniGame == MiniGameType.CropHarvest)
             {
                 shipStats.UpdateFoodAmount(Mathf.RoundToInt(foodBaseAdjustment * statModification));
                 SpawnStatChangeText(Mathf.RoundToInt(foodBaseAdjustment * statModification), 3);
+                EventSystem.instance.chanceOfEvent += cropPercentIncrease;
             }
             if(miniGame == MiniGameType.StabilizeEnergyLevels)
             {
                 shipStats.UpdateEnergyAmount(Mathf.RoundToInt(energyBaseAdjustment * statModification));
                 SpawnStatChangeText(Mathf.RoundToInt(energyBaseAdjustment * statModification), 6);
+                EventSystem.instance.chanceOfEvent += energyPercentIncrease;
             }
             if(miniGame == MiniGameType.SlotMachine)
             {
                 shipStats.UpdateCreditsAmount(Mathf.RoundToInt(statModification));
                 SpawnStatChangeText(Mathf.RoundToInt(statModification), 0);
+                EventSystem.instance.chanceOfEvent += slotPercentIncrease;
             }
             if(miniGame == MiniGameType.HullRepair)
             {
                 shipStats.UpdateHullDurabilityAmount(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification));
                 SpawnStatChangeText(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification), 6);
+                EventSystem.instance.chanceOfEvent += hullRepairPercentIncrease;
             }
         }
         else

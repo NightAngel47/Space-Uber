@@ -13,14 +13,6 @@ public class HullRepairMiniGame : MiniGame
 	[SerializeField] HullGridSquare[] gridSquares;
 	[SerializeField] Color coveredColor = Color.green;
 	[SerializeField] Color uncoveredColor = Color.red;
-    [Tooltip("Percent to increase the frequency of an event showing up after finishing a minigame.")]
-    public float percentIncrease = 5;
-    private EventSystem eventSystem;
-
-    private void Start()
-    {
-        eventSystem = FindObjectOfType<EventSystem>();
-    }
 
     private void Update()
 	{
@@ -30,7 +22,6 @@ public class HullRepairMiniGame : MiniGame
         {
             if (gridCoveredCount == gridSquares.Length)
             {
-                eventSystem.chanceOfEvent += percentIncrease;
                 EndMiniGameSuccess();
                 AudioManager.instance.PlaySFX("Fixed");
             }

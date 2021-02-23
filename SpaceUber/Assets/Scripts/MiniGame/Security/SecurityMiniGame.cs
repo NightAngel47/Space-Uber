@@ -33,14 +33,10 @@ public class SecurityMiniGame : MiniGame
     public string[] Incorrect;
     [Tooltip("SFX names")]
     public string[] DisplaySound;
-    [Tooltip("Percent to increase the frequency of an event showing up after finishing a minigame.")]
-    public float percentIncrease = 5;
-    private EventSystem eventSystem;
 
     void Start() 
     { 
         GenerateCode();
-        eventSystem = FindObjectOfType<EventSystem>();
         foreach (Toggle toggle in successTrackers) { toggle.isOn = false; }
     }
 
@@ -59,7 +55,6 @@ public class SecurityMiniGame : MiniGame
                 if (successes == successTrackers.Length)
                 {
                     Debug.Log("win");
-                    eventSystem.chanceOfEvent += percentIncrease;
                     EndMiniGameSuccess();
                 }
                 else 

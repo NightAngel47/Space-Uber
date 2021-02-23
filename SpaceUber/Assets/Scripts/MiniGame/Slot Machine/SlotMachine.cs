@@ -82,9 +82,6 @@ public class SlotMachine : MiniGame
     [SerializeField] PayoutMultipliers payoutMultipliers;
     [SerializeField] float winDelay = 1;
     [SerializeField] Button[] buttons;
-    [Tooltip("Percent to increase the frequency of an event showing up after finishing a minigame.")]
-    public float percentIncrease = 5;
-    private EventSystem eventSystem;
 
     bool spinning = false;
     bool gameStarted = false;
@@ -97,7 +94,6 @@ public class SlotMachine : MiniGame
 
     void Start() 
     {
-        eventSystem = FindObjectOfType<EventSystem>();
         sound = false;
         shipStats = OverclockController.instance.ShipStats();
         foreach (SlotReel reel in reels) { reel.SetSpeed(reelSpeed); }
@@ -284,7 +280,6 @@ public class SlotMachine : MiniGame
 	{
         sound = true;
         yield return new WaitForSeconds(winDelay);
-        eventSystem.chanceOfEvent += percentIncrease;
         EndMiniGameSuccess();
     }
 

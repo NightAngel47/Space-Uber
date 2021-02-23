@@ -18,14 +18,6 @@ public class AstroidMiniGame : MiniGame
     [SerializeField]TMP_Text scoreText = null;
 	[Tooltip("Number of times asteroids can hit the hull to lose the game.")]
 	public int damageTillFailure = 3;
-    [Tooltip("Percent to increase the frequency of an event showing up after finishing a minigame.")]
-    public float percentIncrease = 5;
-    private EventSystem eventSystem;
-
-    private void Start()
-    {
-        eventSystem = FindObjectOfType<EventSystem>();
-    }
 
     private void Update()
 	{
@@ -34,7 +26,6 @@ public class AstroidMiniGame : MiniGame
 			scoreText.text = "Astroids Remaining: " + requiredAstroids;
 			if (requiredAstroids == 0)
             {
-                eventSystem.chanceOfEvent += percentIncrease;
                 EndMiniGameSuccess();
             }
 			if (damageTillFailure == 0) { EndMiniGameFail(true); }
