@@ -14,6 +14,11 @@ public class MenuButton : MonoBehaviour
 {
     [SerializeField] string sceneToLoad;
 
+    private void Start()
+    {
+        Destroy(GameObject.Find("Spot Checker"));
+    }
+
     public void quitGame()
     {
         Application.Quit();
