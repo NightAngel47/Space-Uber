@@ -74,13 +74,6 @@ public class Tick : MonoBehaviour
 
                 MoraleManager.instance.CheckMutiny();
 
-                RoomStats[] rooms = FindObjectsOfType<RoomStats>();
-
-                foreach(RoomStats room in rooms)
-                {
-                    room.KeepRoomStatsUpToDateWithMorale();
-                }
-
                 if (shipStats.ShipHealthCurrent.x <= 0)
                 {
                     GameManager.instance.ChangeInGameState(InGameStates.Death);
