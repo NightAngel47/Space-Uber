@@ -172,10 +172,16 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("Event_General");
                 additiveSceneManager.UnloadScene("Event_CharacterFocused");
                 additiveSceneManager.UnloadScene("Event_Prompt");
+                additiveSceneManager.UnloadScene("Interface_EventTimer");
                 
                 additiveSceneManager.LoadSceneSeperate("PromptScreen_Mutiny");
                 break;
             case InGameStates.Death: // Loads the PromptScreen_Death when the player reaches a death.
+                additiveSceneManager.UnloadScene("Event_General");
+                additiveSceneManager.UnloadScene("Event_CharacterFocused");
+                additiveSceneManager.UnloadScene("Event_Prompt");
+                additiveSceneManager.UnloadScene("Interface_EventTimer");
+                
                 additiveSceneManager.LoadSceneSeperate("PromptScreen_Death");
                 break;
             default: // Output Warning when the passed in game state doesn't have a transition setup.

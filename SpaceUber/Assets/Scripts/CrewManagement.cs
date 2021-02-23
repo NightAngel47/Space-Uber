@@ -210,50 +210,32 @@ public class CrewManagement : MonoBehaviour
     /// Updates the rooms output based on the crew assigned. So if any crew assigned it gives full amount,
     /// and gives percentage of full amount for when amount of crew matters.
     /// </summary>
-    public void UpdateOutput()
+    private void UpdateOutput()
     {
-        for (int i = 0; i < outputStats.Count; i++)
+        foreach (var stat in outputStats)
         {
-            Destroy(outputStats[i]);
+            Destroy(stat);
         }
         outputStats.Clear();
 
-        int crewRange = room.GetComponent<RoomStats>().maxCrew - room.GetComponent<RoomStats>().minCrew + 1;
         foreach (var resource in room.GetComponent<RoomStats>().resources)
         {
             GameObject resourceGO = Instantiate(statAndNumPrefab, outputObject.transform);
             resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = resource.resourceType.resourceIcon; // resource icon
             resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = resource.resourceType.resourceName; // resource name
 
+            room.GetComponent<RoomStats>().SetActiveAmount(resource);
+            
             if (room.GetComponent<RoomStats>().flatOutput == false)
             {
-                for (int i = crewRange - 1; i >= 0; i--)
-                {
-                    if (room.GetComponent<RoomStats>().currentCrew == room.GetComponent<RoomStats>().maxCrew)
-                    {
-                        resource.activeAmount = resource.amount;
-                    }
-
-                    else if (room.GetComponent<RoomStats>().currentCrew == 0 || room.GetComponent<RoomStats>().currentCrew < room.GetComponent<RoomStats>().minCrew)
-                    {
-                        resource.activeAmount = resource.minAmount;
-                    }
-                    else if (room.GetComponent<RoomStats>().currentCrew == room.GetComponent<RoomStats>().maxCrew - i)
-                    {
-                        float percent = (float)i / (float)crewRange;
-                        resource.activeAmount = (resource.amount - resource.minAmount) - (int)((resource.amount - resource.minAmount) * percent) + resource.minAmount;
-                    }
-                }
-
-                resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = resource.activeAmount.ToString() + " / " + resource.amount.ToString(); // resource amount
+                resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text =
+                    resource.activeAmount.ToString();  // This part wasn't being called before, by uncommenting it'll fix it, but ruin the text placement in the UI + " / " + (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(room.GetComponent<RoomStats>().ignoreMorale)); // resource amount
             }
             else
             {
-                //just the assgined active amount
-                //might need to do things here
+                resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = resource.activeAmount.ToString(); // resource amount
             }
 
-            resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = resource.activeAmount.ToString(); // resource amount
             outputStats.Add(resourceGO);
         }
     }
@@ -269,7 +251,6 @@ public class CrewManagement : MonoBehaviour
         {
             roomStats.UpdateCurrentCrew(1);
             shipStats.CrewCurrent += new Vector3(0, 0, -1);
-
             minAssignableCrew--;
             crewUnassignedText.text = "Unassigned Crew: " + shipStats.CrewCurrent.z;
             crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
