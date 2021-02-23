@@ -207,30 +207,30 @@ public class EventSystem : MonoBehaviour
             // roll for next event unless skipped to it
             while (!skippedToEvent && eventRollCounter <= eventChanceFreq)
             {
-							if(!mutiny) // check if in mutiny
+				if(!mutiny) // check if in mutiny
+				{
+					// count up for every roll
+					eventRollCounter += Time.deltaTime;
+					// if reached next roll
+					if (eventRollCounter >= eventChanceFreq)
+					{
+						if (WillRunEvent(chanceOfEvent))
+						{
+							nextEventLockedIn = true;
+							//Activate the warning for the next event now that one has been picked
+							if (eventWarning != null)
 							{
-								// count up for every roll
-								eventRollCounter += Time.deltaTime;
-								// if reached next roll
-								if (eventRollCounter >= eventChanceFreq)
-								{
-									if (WillRunEvent(chanceOfEvent))
-									{
-										nextEventLockedIn = true;
-										//Activate the warning for the next event now that one has been picked
-										if (eventWarning != null)
-										{
-											eventWarning.ActivateWarning();
-										}
-										break;
-									}
-
-									chanceOfEvent += chanceIncreasePerFreq;
-									eventRollCounter = 0; // reset roll counter
-								}
-
-											yield return new WaitForEndOfFrame();
+								eventWarning.ActivateWarning();
 							}
+							break;
+						}
+
+						chanceOfEvent += chanceIncreasePerFreq;
+						eventRollCounter = 0; // reset roll counter
+					}
+
+								yield return new WaitForEndOfFrame();
+				}
             }
 
             // once event rolled or skipped
@@ -336,13 +336,11 @@ public class EventSystem : MonoBehaviour
 		FindObjectOfType<CrewManagement>().TurnOffPanel();
 		GameObject newEvent = FindNextCharacterEvent(possibleEvents);
 
-		asm.LoadSceneMerged("Event_CharacterFocused");
-		print("Starting a new character event");
-
-		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
-
 		if (newEvent != null)
         {
+			asm.LoadSceneMerged("Event_CharacterFocused");
+			print("Starting a new character event");
+			yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
 			CreateEvent(newEvent);
         }
     }
@@ -390,7 +388,7 @@ public class EventSystem : MonoBehaviour
 		}
 
         eventActive = true;
-        //Does not increment overall event index because intro event does not increment it
+        //Does not increment overall event index here because intro event does not increment it
     }
 
     /// <summary>
@@ -539,13 +537,19 @@ public class EventSystem : MonoBehaviour
 
 		foreach ( GameObject charEvent in possibleEvents)
         {
-
 			CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
 			List<Requirements> requirements = eventDriver.requiredStats;
 
-			if(HasRequiredStats(requirements) && eventDriver.playedOnce == false)
+			print("PlayedOnce = " + eventDriver.PlayedOnce);
+			print("Requirements passed: " + HasRequiredStats(requirements));
+
+
+			if (HasRequiredStats(requirements) && eventDriver.PlayedOnce == false)
             {
 				goodEvents.Add(charEvent);
+            }
+			else
+            {
             }
 		}
 
@@ -655,6 +659,7 @@ public class EventSystem : MonoBehaviour
 
 	public bool CanChat(List<GameObject> checkEvents)
 	{
+		return true; //Test code, delete later
 		//If chat has cooleddown
 		if (daysSinceChat < chatCooldown)
 		{

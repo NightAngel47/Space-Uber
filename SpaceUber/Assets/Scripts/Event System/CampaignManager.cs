@@ -180,16 +180,16 @@ public class CampaignManager : MonoBehaviour
             NA,
             //job 1, Event 2
             KuonInvestigates,
-            //Job 1, event 3
-            DeclineOffer,
-            BribeLoudon,
-            BlackmailLoudon,
-            FireLoudon,
-            BlackmailEquinox,
-            AcceptOffer,
-            KeepLoudon
+            //No listed titles for j2E3
+            OpenedCargo
 
+        }
 
+        public enum J2E3Outcomes
+        {
+            Decline_Bribe,
+            Decline_Fire,
+            Accept
         }
 
         public bool me_kuonInvestigates;
