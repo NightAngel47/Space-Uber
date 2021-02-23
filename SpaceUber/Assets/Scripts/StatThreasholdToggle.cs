@@ -19,35 +19,35 @@ public class StatThreasholdToggle : MonoBehaviour
         switch (stat)
         {
             case ResourceDataTypes._HullDurability:
-            shipStat = (int)ship.ShipHealthCurrent.x;
-            break;
+                shipStat = (int)ship.ShipHealthCurrent.x;
+                break;
             case ResourceDataTypes._Energy:
-            shipStat = (int)ship.EnergyRemaining.x;
-            break;
+                shipStat = (int)ship.EnergyRemaining.x;
+                break;
             case ResourceDataTypes._Crew:
-            shipStat = (int)ship.CrewCurrent.x;
-            break;
+                shipStat = (int)ship.CrewCurrent.x;
+                break;
             case ResourceDataTypes._Food:
-            shipStat = ship.Food;
-            break;
+                shipStat = ship.Food;
+                break;
             case ResourceDataTypes._FoodPerTick:
-            shipStat = ship.FoodPerTick;
-            break;
+                shipStat = ship.FoodPerTick;
+                break;
             case ResourceDataTypes._ShipWeapons:
-            shipStat = ship.ShipWeapons;
-            break;
+                shipStat = ship.ShipWeapons;
+                break;
             case ResourceDataTypes._Security:
-            shipStat = ship.Security;
-            break;
+                shipStat = ship.Security;
+                break;
             case ResourceDataTypes._CrewMorale:
-            shipStat = MoraleManager.instance.CrewMorale;
-            break;
+                shipStat = MoraleManager.instance.CrewMorale;
+                break;
             case ResourceDataTypes._Credits:
-            shipStat = ship.Credits;
-            break;
+                shipStat = ship.Credits;
+                break;
             case ResourceDataTypes._Payout:
-            shipStat = ship.Payout;
-            break;
+                shipStat = ship.Payout;
+                break;
         }
         
         onBelowThreashold.SetActive(shipStat < threashold);

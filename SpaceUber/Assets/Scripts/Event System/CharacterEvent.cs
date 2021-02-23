@@ -26,6 +26,7 @@ public class CharacterEvent : InkDriverBase
 
     [HideInInspector] public bool playedOnce = false;
     
+    private CharacterStats cStats;
 
     public override void Start()
     {
@@ -33,6 +34,7 @@ public class CharacterEvent : InkDriverBase
         isCharacterEvent = true;
         isStoryEvent = false;
         playedOnce = false;
+        cStats = FindObjectOfType<CharacterStats>();
     }
 
     public bool SucceededEvent()
@@ -63,22 +65,25 @@ public class CharacterEvent : InkDriverBase
 
                 SpawnStatChangeText(newSecurityValue, GameManager.instance.GetResourceData((int) ResourceDataTypes._Security).resourceIcon);
                 SpawnStatChangeText(newWeaponsValue, GameManager.instance.GetResourceData((int) ResourceDataTypes._ShipWeapons).resourceIcon);
+                cStats.KuonSuccesses++;
                 break;
             case CharacterStats.Characters.MATEO: //Boosts energy
                 thisShip.EnergyRemaining += new Vector2(energyBoost, 0);
                 SpawnStatChangeText(energyBoost, GameManager.instance.GetResourceData((int) ResourceDataTypes._Energy).resourceIcon);
                 print("Adding " + energyBoost + " energy");
+                cStats.MateoSuccesses++;
                 break;
             case CharacterStats.Characters.LANRI: //boosts Food
                 thisShip.Food += foodBoost;
                 SpawnStatChangeText(foodBoost, GameManager.instance.GetResourceData((int) ResourceDataTypes._Food).resourceIcon);
                 print("Adding " + foodBoost + " food");
+                cStats.LanriSuccesses++;
                 break;
             case CharacterStats.Characters.LEXA: //gives +10 to morale
-
+                cStats.LexaSuccesses++;
                 break;
             case CharacterStats.Characters.RIPLEY: //gives +10 morale
-
+                cStats.RipleySuccesses++;
                 break;
         }
     }
