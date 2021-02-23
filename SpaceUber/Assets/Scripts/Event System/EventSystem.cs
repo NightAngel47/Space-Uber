@@ -57,7 +57,9 @@ public class EventSystem : MonoBehaviour
 	[Tooltip("Initial percentage chance of rolling an event")]
 	[SerializeField] private float startingEventChance = 5;
 
-    [Tooltip("The percentage chance of rolling an event per failure")]
+    /// <summary>
+    /// The percentage chance of rolling an event per failure
+    /// </summary>
     [HideInInspector] public float chanceOfEvent;
 
     private bool skippedToEvent;
