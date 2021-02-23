@@ -14,28 +14,39 @@ public class OverclockRoom : MonoBehaviour
 {
     [Tooltip("Name of mini game scene")]
     [SerializeField] MiniGameType miniGame;
-    bool cooledDown = true;
+
+    public bool hasEvents = false;
+
+    [SerializeField, Tooltip("All events that can happen with this room"),ShowIf("hasEvents")]
+    private List<GameObject> roomEvents;
+
+    private bool minigameCooledDown = true;
 
     public void PlayMiniGame()
     {
 	    if (GameManager.instance.currentGameState == InGameStates.Events 
-	        && !EventSystem.instance.eventActive && !OverclockController.instance.overclocking && cooledDown)
+	        && !EventSystem.instance.eventActive && !OverclockController.instance.overclocking && minigameCooledDown)
 	    {
 		    OverclockController.instance.StartMiniGame(miniGame, this);
 	    }
     }
 
-    public void StartCoolDown() { StartCoroutine(Cooldown()); }
+    public void StartMinigameCooldown() { StartCoroutine(MinigameCooldown()); }
 
-    IEnumerator Cooldown()
+    private IEnumerator MinigameCooldown()
 	{
-        cooledDown = false;
+        minigameCooledDown = false;
         yield return new WaitForSeconds(OverclockController.instance.cooldownTime);
-        cooledDown = true;
+        minigameCooledDown = true;
 	}
 
     public MiniGameType GetMiniGame()
     {
         return miniGame;
+    }
+
+    public List<GameObject> GetEvents()
+    {
+        return roomEvents;
     }
 }

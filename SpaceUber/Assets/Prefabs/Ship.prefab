@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6273300032395514629}
   - component: {fileID: 6273300031087700530}
   - component: {fileID: 6273300031087700531}
+  - component: {fileID: 4639997261357532628}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -104,6 +105,7 @@ MonoBehaviour:
   startingFood: 0
   startingShipHealth: 100
   startingMorale: 100
+  cStats: {fileID: 0}
   cantPlaceText: {fileID: 0}
   statIcons:
   - {fileID: 21300000, guid: 2bbae6bacf5f9da4697f3b6af192e12a, type: 3}
@@ -154,6 +156,20 @@ MonoBehaviour:
   hullTextDefault: {r: 1, g: 1, b: 1, a: 1}
   hullTextRed: {r: 1, g: 0, b: 0, a: 1}
   hullWarningAmount: 25
+  creditsCurrentTooltipText: {fileID: 0}
+  creditsTickTooltipText: {fileID: 0}
+  energyCurrentTooltipText: {fileID: 0}
+  energyMaxTooltipText: {fileID: 0}
+  securityCurrentTooltipText: {fileID: 0}
+  shipWeaponsCurrentTooltipText: {fileID: 0}
+  crewUnassignedTooltipText: {fileID: 0}
+  crewCurrentTooltipText: {fileID: 0}
+  crewMaxTooltipText: {fileID: 0}
+  foodCurrentTooltipText: {fileID: 0}
+  foodTickTooltipText: {fileID: 0}
+  foodNetTooltipText: {fileID: 0}
+  hullCurrentTooltipText: {fileID: 0}
+  hullMaxTooltipText: {fileID: 0}
 --- !u!114 &6273300031087700531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,3 +294,15 @@ MonoBehaviour:
       - {fileID: 0}
       - {fileID: 0}
       - {fileID: 0}
+--- !u!114 &4639997261357532628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6273300032395514628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b27743803be26794e959492babbcafcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
