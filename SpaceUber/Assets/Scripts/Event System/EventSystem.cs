@@ -212,7 +212,7 @@ public class EventSystem : MonoBehaviour
 			//start with one big chunk of time
 			while (timeBeforeEventCounter <= timeBeforeEventRoll)
 			{
-				if (!mutiny && !chatting) // don't increment timer during mutiny
+				if (!mutiny) // don't increment timer during mutiny
 				{
 					// count up during the grace period
 					timeBeforeEventCounter += Time.deltaTime;
@@ -229,8 +229,8 @@ public class EventSystem : MonoBehaviour
             // roll for next event unless skipped to it
             while (!skippedToEvent && eventRollCounter <= eventChanceFreq)
             {
-							if(!mutiny) // don't increment timer during mutiny
-							{
+				if(!mutiny) // don't increment timer during mutiny
+				{
 		            // count up for every roll
 		            eventRollCounter += Time.deltaTime;
 		            // if reached next roll
@@ -250,12 +250,9 @@ public class EventSystem : MonoBehaviour
 			            chanceOfEvent += chanceIncreasePerFreq;
 			            eventRollCounter = 0; // reset roll counter
 		            }
-
-	                chanceOfEvent += chanceIncreasePerFreq;
-	                eventRollCounter = 0; // reset roll counter
-		          }
-
-		          yield return new WaitForEndOfFrame();
+				}
+				
+				yield return new WaitForEndOfFrame();
             }
 
             // once event rolled or skipped
@@ -263,8 +260,8 @@ public class EventSystem : MonoBehaviour
             tick.StopTickUpdate();
             FindObjectOfType<CrewManagement>().TurnOffPanel();
 
-						//wait until there is no longer an overclock microgame happening
-						yield return new WaitUntil(() => !OverclockController.instance.overclocking);
+			//wait until there is no longer an overclock microgame happening
+			yield return new WaitUntil(() => !OverclockController.instance.overclocking);
 
             //If event button was not clicked ahead of time
             if (nextEventLockedIn && SceneManager.GetSceneByName("Event_Prompt").isLoaded)
