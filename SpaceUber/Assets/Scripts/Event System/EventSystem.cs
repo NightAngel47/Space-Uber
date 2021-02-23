@@ -57,21 +57,26 @@ public class EventSystem : MonoBehaviour
 	[Tooltip("Initial percentage chance of rolling an event")]
 	[SerializeField] private float startingEventChance = 5;
 
-	private bool skippedToEvent;
-    private bool nextEventLockedIn;
+    /// <summary>
+    /// The percentage chance of rolling an event per failure
+    /// </summary>
+    [HideInInspector] public float chanceOfEvent;
+
+    private bool skippedToEvent;
+    public bool nextEventLockedIn;
     private float eventRollCounter;
     private float timeBeforeEventCounter;
     private Coroutine travelCoroutine;
 
     public bool NextEventLockedIn => nextEventLockedIn;
-    
+
 	public bool eventActive { get; private set; } = false;
-	
+
 	// loaded in from Interface_EventTimer
 	private GameObject sonarObjects; // event timer UI
 	private EventWarning eventWarning; // warning
 	private EventSonar sonar; // sonar
-	
+
 	private Job currentJob;
 
 	private string lastEventTitle;
@@ -116,11 +121,11 @@ public class EventSystem : MonoBehaviour
 	    eventWarning = FindObjectOfType<EventWarning>();
 	    sonar = FindObjectOfType<EventSonar>();
 	    sonarObjects = sonar.transform.parent.gameObject; // event timer UI
-	    
+
 	    //set sonar stuff
 	    sonar.SetSpinRate( eventChanceFreq );
 	    sonarObjects.SetActive(false);
-	    
+
 	    if(eventWarning != null)
 	    {
 		    eventWarning.DeactivateWarning();
@@ -153,7 +158,7 @@ public class EventSystem : MonoBehaviour
     {
 	    yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_EventTimer").isLoaded);
 	    SetUpEventTimer();
-	    
+
 		chatting = false;
 		while(currentJob == null)
         {
@@ -186,7 +191,7 @@ public class EventSystem : MonoBehaviour
         {
 			print("Found nothing in currentJob");
         }
-		
+
         //Go to the travel coroutine
         travelCoroutine = StartCoroutine(Travel());
     }
@@ -195,7 +200,7 @@ public class EventSystem : MonoBehaviour
 	{
 		tick.DaysSince = 0; // reset days since
 		campMan.cateringToTheRich.SaveEventChoices();
-		
+
 		// loops once per event
 		while (GameManager.instance.currentGameState == InGameStates.Events)
 		{
@@ -204,20 +209,20 @@ public class EventSystem : MonoBehaviour
 			tick.StartTickUpdate();
 			sonarObjects.SetActive(true);
 			sonar.ResetSonar();
-			float chanceOfEvent = startingEventChance;
+			chanceOfEvent = startingEventChance;
 
 			//start with one big chunk of time
 			while (timeBeforeEventCounter <= timeBeforeEventRoll)
 			{
-				if (!mutiny && !chatting) // don't increment timer during mutiny
+				if (!mutiny) // don't increment timer during mutiny
 				{
 					// count up during the grace period
 					timeBeforeEventCounter += Time.deltaTime;
 				}
-				
+
 				yield return new WaitForEndOfFrame();
 			}
-            
+
             asm.LoadSceneMerged("Event_Prompt");
             yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
             eventPromptButton = FindObjectOfType<EventPromptButton>();
@@ -226,7 +231,7 @@ public class EventSystem : MonoBehaviour
             // roll for next event unless skipped to it
             while (!skippedToEvent && eventRollCounter <= eventChanceFreq)
             {
-				if(!mutiny && !chatting) // don't increment timer during mutiny
+				if(!mutiny) // don't increment timer during mutiny
 				{
 		            // count up for every roll
 		            eventRollCounter += Time.deltaTime;
@@ -248,12 +253,12 @@ public class EventSystem : MonoBehaviour
 			            eventRollCounter = 0; // reset roll counter
 		            }
 				}
-
-	            yield return new WaitForEndOfFrame();
+				
+				yield return new WaitForEndOfFrame();
             }
-            
+
             // once event rolled or skipped
-            
+
             tick.StopTickUpdate();
             FindObjectOfType<CrewManagement>().TurnOffPanel();
 
@@ -268,11 +273,11 @@ public class EventSystem : MonoBehaviour
 
             // wait for player to go click button to go to event
             yield return new WaitUntil((() => skippedToEvent));
-            
+
             // wait for event to conclude
             yield return new WaitWhile((() => eventActive));
 		}
-		
+
 		sonarObjects.SetActive(false);
         tick.StopTickUpdate();
 	}
@@ -284,10 +289,10 @@ public class EventSystem : MonoBehaviour
 	private void SkipToEvent()
 	{
 		if (skippedToEvent) return;
-		
+
 	    skippedToEvent = true;
 	    asm.UnloadScene("Event_Prompt");
-	    
+
 	    //get rid of and reset sonar objects
 	    eventWarning.DeactivateWarning();
 	    sonarObjects.SetActive(false);
@@ -332,7 +337,7 @@ public class EventSystem : MonoBehaviour
 			Debug.LogWarning("Didn't find a random event, trying again.");
 			newEvent = RandomizeEvent();
 		}
-		
+
 		// Load Event_CharacterFocused Scene for upcoming event
 		asm.LoadSceneMerged("Event_CharacterFocused");
 		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
@@ -365,7 +370,7 @@ public class EventSystem : MonoBehaviour
 			CreateEvent(newEvent);
         }
     }
-	
+
 	public void CreateMutinyEvent(GameObject newEvent)
 	{
 		mutiny = true;
@@ -381,12 +386,12 @@ public class EventSystem : MonoBehaviour
 
 		StartCoroutine(SetupMutinyEvent(newEvent));
 	}
-    
+
 	private IEnumerator SetupMutinyEvent(GameObject newEvent)
 	{
 		//wait until there is no longer an overclock microgame happening
 		yield return new WaitUntil(() => !OverclockController.instance.overclocking);
-		
+
 		asm.LoadSceneMerged("Event_CharacterFocused");
 		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
 		CreateEvent(newEvent);
@@ -421,10 +426,10 @@ public class EventSystem : MonoBehaviour
     public void ConcludeEvent()
 	{
 		bool isRegularEvent = true;
-		
+
 		InkDriverBase concludedEvent = eventInstance.GetComponent<InkDriverBase>();
 		concludedEvent.ClearUI();
-		
+
 		if(concludedEvent.isCharacterEvent)
 		{
 			isRegularEvent = false;
@@ -451,7 +456,7 @@ public class EventSystem : MonoBehaviour
 		eventActive = false;
 		sonarObjects.SetActive(true);
 		tick.StartTickUpdate();
-		
+
 		//set up for the next regular event
 		if (isRegularEvent)
 		{
@@ -462,7 +467,7 @@ public class EventSystem : MonoBehaviour
 			eventRollCounter = 0;
 			timeBeforeEventCounter = 0;
 		}
-		
+
 		if (overallEventIndex >= maxEvents) //Potentially end the job entirely if this is meant to be the final event
 		{
 			ClearEventSystemAtEndOfJob();

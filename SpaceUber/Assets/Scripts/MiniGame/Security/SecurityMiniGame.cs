@@ -36,8 +36,8 @@ public class SecurityMiniGame : MiniGame
 
     void Start() 
     { 
-        GenerateCode(); 
-        foreach(Toggle toggle in successTrackers) { toggle.isOn = false; }
+        GenerateCode();
+        foreach (Toggle toggle in successTrackers) { toggle.isOn = false; }
     }
 
     void Update()
@@ -52,7 +52,11 @@ public class SecurityMiniGame : MiniGame
                 AudioManager.instance.PlaySFX(Correct[Random.Range(0, Correct.Length - 1)]);
                 for (int i = 0; i < successes; i++) { successTrackers[i].isOn = true; }
                 for(int i = successes; i < successTrackers.Length; i++) { successTrackers[i].isOn = false; }
-                if (successes == successTrackers.Length) { Debug.Log("win"); EndMiniGameSuccess(); }
+                if (successes == successTrackers.Length)
+                {
+                    Debug.Log("win");
+                    EndMiniGameSuccess();
+                }
                 else 
                 {
                     Debug.Log("");
