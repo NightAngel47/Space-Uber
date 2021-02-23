@@ -375,6 +375,8 @@ public class RoomStats : MonoBehaviour
         shipStats.FoodPerTick += foodPerTick;
         shipStats.ShipHealthCurrent += new Vector2(shipHealth, shipHealth);
         MoraleManager.instance.CrewMorale += morale;
+        
+        AnalyticsManager.AddRoomForAnalytics(this);
     }
 
     /// <summary>
@@ -401,6 +403,8 @@ public class RoomStats : MonoBehaviour
         shipStats.FoodPerTick += -foodPerTick;
         shipStats.ShipHealthCurrent += new Vector2(-shipHealth, -shipHealth);
         MoraleManager.instance.CrewMorale -= morale;
+        
+        AnalyticsManager.SubtractRoomForAnalytics(this);
     }
 
     public void SpawnStatChangeText(int value, Sprite icon = null)

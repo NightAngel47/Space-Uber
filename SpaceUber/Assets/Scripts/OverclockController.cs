@@ -56,6 +56,8 @@ public class OverclockController : MonoBehaviour
         activeRoom = room;
         AudioManager.instance.PlaySFX("Overclock");
         additiveSceneManager.LoadSceneMerged(miniGame.ToString());
+
+        AnalyticsManager.OnMiniGameStarted(miniGame);
     }
 
     public void EndMiniGame(MiniGameType miniGame, bool success, float statModification = 0)
@@ -114,6 +116,8 @@ public class OverclockController : MonoBehaviour
         }
         activeRoom = null;
         //FindObjectOfType<CrewManagement>().crewManagementText.SetActive(true);
+        
+        AnalyticsManager.OnMiniGameFinished(miniGame, success, statModification);
 	}
 
 

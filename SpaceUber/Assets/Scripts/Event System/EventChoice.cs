@@ -177,12 +177,10 @@ public class EventChoice
                 outcome.narrativeResultsBox = driver.resultsBox;
                 outcome.hasSubsequentChoices = hasSubsequentChoices;
                 outcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
-
-                
             }
         }
         
-        AnalyticsManager.OnEventComplete(driver, this);
+        AnalyticsManager.EventChoiceData.Add(choiceName);
     }
 
     /// <summary>
