@@ -415,7 +415,9 @@ public class EventSystem : MonoBehaviour
 
         eventActive = true;
         //Does not increment overall event index because intro event does not increment it
-    }
+        
+        AnalyticsManager.OnEventStarted(inkDriver, nextEventLockedIn);
+	}
 
     /// <summary>
     /// Ends the event that is currently running.
@@ -442,6 +444,7 @@ public class EventSystem : MonoBehaviour
 			mutiny = false;
 		}
 
+		AnalyticsManager.OnEventComplete(concludedEvent);
 		Destroy(eventInstance);
 
 		//Go back to travel scene
