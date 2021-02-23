@@ -17,19 +17,19 @@ public class CharacterSignatureBehaviour : MonoBehaviour
         switch (character)
         {
             case CharacterStats.Characters.KUON:
-                successes = cStats.KuonSuccesses;
+                successes = cStats.KuonApproval;
                 break;
             case CharacterStats.Characters.LANRI:
-                successes = cStats.LanriSuccesses;
+                successes = cStats.LanriApproval;
                 break;
             case CharacterStats.Characters.LEXA:
-                successes = cStats.LexaSuccesses;
+                successes = cStats.LexaApproval;
                 break;
             case CharacterStats.Characters.MATEO:
-                successes = cStats.MateoSuccesses;
+                successes = cStats.MateoApproval;
                 break;
             case CharacterStats.Characters.RIPLEY:
-                successes = cStats.RipleySuccesses;
+                successes = cStats.RipleyApproval;
                 break;
         }
         

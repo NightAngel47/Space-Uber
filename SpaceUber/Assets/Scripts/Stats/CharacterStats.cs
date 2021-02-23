@@ -27,12 +27,6 @@ public class CharacterStats : MonoBehaviour
     private int lexaApproval;
     private int mateoApproval;
     private int ripleyApproval;
-    
-    private int kuonSuccesses;
-    private int lanriSuccesses;
-    private int lexaSuccesses;
-    private int mateoSuccesses;
-    private int ripleySuccesses;
 
     private int approvalMax = 10;
     private int approvalMin = -10;
@@ -100,47 +94,6 @@ public class CharacterStats : MonoBehaviour
             Mathf.Clamp(ripleyApproval, approvalMin, approvalMax);
         }
     }
-    
-    public int KuonSuccesses
-    {
-        get { return kuonSuccesses; }
-        set
-        {
-            kuonSuccesses = value;
-        }
-    }
-    public int MateoSuccesses
-    {
-        get { return mateoSuccesses; }
-        set
-        {
-            mateoSuccesses = value;
-        }
-    }
-    public int LanriSuccesses
-    {
-        get { return lanriSuccesses; }
-        set
-        {
-            lanriSuccesses = value;
-        }
-    }
-    public int LexaSuccesses
-    {
-        get { return lexaSuccesses; }
-        set
-        {
-            lexaSuccesses = value;
-        }
-    }
-    public int RipleySuccesses
-    {
-        get { return ripleySuccesses; }
-        set
-        {
-            ripleySuccesses = value;
-        }
-    }
 
     #endregion
 
@@ -151,11 +104,5 @@ public class CharacterStats : MonoBehaviour
         lexaApproval = lexaApprovalInit;
         lanriApproval = lanriApprovalInit;
         ripleyApproval = ripleyApprovalInit;
-        
-        kuonSuccesses = 0;
-        mateoSuccesses = 0;
-        lexaSuccesses = 0;
-        lanriSuccesses = 0;
-        ripleySuccesses = 0;
     }
 }
