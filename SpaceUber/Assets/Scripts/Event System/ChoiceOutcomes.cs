@@ -35,17 +35,38 @@ public class ChoiceOutcomes
     [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public bool correctAnswer;
     [HideInInspector] public CharacterEvent characterDriver;
 
+    #region Initialized Narrative Variables
     [SerializeField, ShowIf("isNarrativeOutcome"),AllowNesting] private CampaignManager.Campaigns thisCampaign = CampaignManager.Campaigns.CateringToTheRich;
+
     [SerializeField, ShowIf("IsCateringToTheRich"), AllowNesting] private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolOutcomes;
     [SerializeField, ShowIf("IsCateringToTheRich"), AllowNesting] private int cloneTrustChange;
     [SerializeField, ShowIf("IsCateringToTheRich"), AllowNesting] private int VIPTrustChange;
+
+    [SerializeField, ShowIf("IsMysteriousEntity"), AllowNesting] private CampaignManager.MysteriousEntity.NarrativeOutcomes meMainOutcomes;
+    [SerializeField, ShowIf("IsMysteriousEntity"), AllowNesting] private CampaignManager.MysteriousEntity.J2E3Outcomes j2E3Outcomes;
+
+    [SerializeField, ShowIf("IsFinalTest"), AllowNesting] private CampaignManager.FinalTest.NarrativeVariables finalTestNarrativeOutcomes;
+    [SerializeField, ShowIf("IsFinalTest"), AllowNesting] private int assetCountChange = 0;
+
     [SerializeField] public bool changeGameState;
+    #endregion
+
     [SerializeField, ShowIf("changeGameState"), AllowNesting] public InGameStates state;
 
-    #region campaign checks
+    #region Check for Campaign
     public bool IsCateringToTheRich()
     {
         return thisCampaign == CampaignManager.Campaigns.CateringToTheRich;
+    }
+
+    public bool IsMysteriousEntity()
+    {
+        return thisCampaign == CampaignManager.Campaigns.MysteriousEntity;
+    }
+
+    public bool IsFinalTest()
+    {
+        return thisCampaign == CampaignManager.Campaigns.FinalTest;
     }
     #endregion
 
@@ -258,28 +279,99 @@ public class ChoiceOutcomes
                             break;
                     }
 
-                    //TODO: Make resultText show up on the textbox somehow
-                    narrativeResultsBox.gameObject.SetActive(true);
-
                     if (cloneTrustChange < 0)
                     {
-                        resultText += "\n The clones have " + cloneTrustChange + "% less trust in you";
+                        resultText += "\nThe clones have " + cloneTrustChange + "% less trust in you";
                     }
                     else if (cloneTrustChange > 0)
                     {
-                        resultText += "\n The clones have " + cloneTrustChange + "% more trust in you";
+                        resultText += "\nThe clones have " + cloneTrustChange + "% more trust in you";
                     }
 
                     if (VIPTrustChange < 0)
                     {
-                        resultText += "\n The VIPs have " + VIPTrustChange + "% less trust in you";
+                        resultText += "\nThe VIPs have " + VIPTrustChange + "% less trust in you";
                     }
                     else if (VIPTrustChange > 0)
                     {
-                        resultText += "\n The VIPs have " + VIPTrustChange + "% more trust in you";
+                        resultText += "\nThe VIPs have " + VIPTrustChange + "% more trust in you";
                     }
                 }
-                
+                else if(thisCampaign == CampaignManager.Campaigns.MysteriousEntity)
+                {
+                    //the selected bool will become true
+                    switch (meMainOutcomes)
+                    {
+                        case CampaignManager.MysteriousEntity.NarrativeOutcomes.KuonInvestigates:
+                            campMan.mysteriousEntity.me_kuonInvestigates = true;
+                            resultText += "\nYou allowed Kuon to investigate";
+
+                            break;
+                        case CampaignManager.MysteriousEntity.NarrativeOutcomes.OpenedCargo:
+                            campMan.mysteriousEntity.me_openedCargo = true;
+                            resultText += "\nYou opened the cargo";
+                            break;
+                    }
+
+                    switch (j2E3Outcomes)
+                    {
+                        case CampaignManager.MysteriousEntity.J2E3Outcomes.Accept:
+                            campMan.mysteriousEntity.me_Accept = true;
+                            resultText += "\nYou accepted the offer";
+                            break;
+                        case CampaignManager.MysteriousEntity.J2E3Outcomes.Decline_Bribe:
+                            campMan.mysteriousEntity.me_declineBribe = true;
+                            resultText += "\nYou declined the offer and bribed Loudon to stay";
+                            break;
+                        case CampaignManager.MysteriousEntity.J2E3Outcomes.Decline_Fire:
+                            campMan.mysteriousEntity.me_declineFire = true;
+                            resultText += "\nYou declined the offer and said good riddance to Loudon";
+                            break;
+                    }
+                }
+                else if(thisCampaign == CampaignManager.Campaigns.FinalTest)
+                {
+                    campMan.finalTest.assetCount += assetCountChange;
+
+                    if (assetCountChange < 0)
+                    {
+                        if (assetCountChange == 1)
+                            resultText += "\nYou have gained 1 asset";
+                        else
+                            resultText += "\nYou have gained " + assetCountChange + " assets";
+                    }
+                    else if (assetCountChange > 0)
+                    {
+                        if (assetCountChange == 1)
+                            resultText += "\nYou have lost 1 asset";
+                        else
+                            resultText += "\nYou have lost " + assetCountChange + " assets";
+                    }
+
+                    switch(finalTestNarrativeOutcomes)
+                    {
+                        case CampaignManager.FinalTest.NarrativeVariables.KellisLoyalty:
+                            campMan.finalTest.ft_kellisLoyalty = true;
+                            resultText += "\nYou have sided with Kellis";
+                            break;
+                        case CampaignManager.FinalTest.NarrativeVariables.LanriExperiment:
+                            campMan.finalTest.ft_lanriExperiment = true;
+                            resultText += "\nYou have allowed Lanri to experiment";
+                            break;
+                        case CampaignManager.FinalTest.NarrativeVariables.LexaDoomed:
+                            campMan.finalTest.ft_lexaDoomed = true;
+                            resultText += "\nYou left Lexa to face her doom alone";
+                            break;
+                        case CampaignManager.FinalTest.NarrativeVariables.ScienceSavior:
+                            campMan.finalTest.ft_scienceSavior = true;
+                            resultText += "\nYou have become a savior through the power of science";
+                            break;
+                        case CampaignManager.FinalTest.NarrativeVariables.TruthTold:
+                            campMan.finalTest.ft_truthTold = true;
+                            resultText += "\nYou told everyone the truth";
+                            break;
+                    }
+                }
 
             }
             else //approval outcomes

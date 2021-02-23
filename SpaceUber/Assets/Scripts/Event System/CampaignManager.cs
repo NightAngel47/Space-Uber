@@ -115,6 +115,11 @@ public class CampaignManager : MonoBehaviour
         }
     }
 
+    public void AlterNarrativeVariable(MysteriousEntity.NarrativeOutcomes meMainOutcomes, string newText)
+    {
+
+    }
+
     [Serializable]
     public class CateringToTheRich
     {
@@ -187,20 +192,18 @@ public class CampaignManager : MonoBehaviour
 
         public enum J2E3Outcomes
         {
+            NA,
             Decline_Bribe,
             Decline_Fire,
             Accept
         }
 
         public bool me_kuonInvestigates;
+        public bool me_openedCargo;
 
-        public bool me_declineOffer;
-        public bool me_acceptOffer;
-        public bool me_bribeLoudon;
-        public bool me_blackmailLoudon;
-        public bool me_fireLOudon;
-        public bool me_blackmailEquinox;
-        public bool me_keepLoudon;
+        public bool me_declineBribe;
+        public bool me_declineFire;
+        public bool me_Accept;
 
     }
 
@@ -213,6 +216,7 @@ public class CampaignManager : MonoBehaviour
         public int assetCount = 0;
         public enum NarrativeVariables
         {
+            NA,
             LexaDoomed,
             LanriExperiment,
             TruthTold,
