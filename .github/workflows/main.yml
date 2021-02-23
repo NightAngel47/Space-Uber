@@ -1,4 +1,4 @@
-name: Build Test Deploy
+name: BuildTestDeploy
 
 on: [push, pull_request]
 
@@ -50,7 +50,7 @@ jobs:
           path: build
   deploy:
     if: (github.ref == 'refs/heads/development' || github.ref == 'refs/heads/master')  && github.event_name == 'push'
-    needs: buildAndTest
+    needs: build
     name: Deployment for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
     runs-on: ubuntu-latest
     strategy:
