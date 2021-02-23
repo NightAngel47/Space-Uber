@@ -1,8 +1,8 @@
 /*
  * EventRequirements.cs
  * Author(s): Scott Acker
- * Created on: 9/25/2020 
- * Description: Stores information about the requirements of either a choice or a job. Serializable and meant to be applied to 
+ * Created on: 9/25/2020
+ * Description: Stores information about the requirements of either a choice or a job. Serializable and meant to be applied to
  * different classes as a variable, not a script
  */
 
@@ -17,33 +17,41 @@ public class Requirements
 {
     #region Stat Requirement Stuff
 
-    public enum ResourceType
-    {
-        HULL,
-        ENERGY,
-        CREW,
-        FOOD,
-        WEAPONS,
-        SECURITY,
-        CREDITS,
-        //MORALE
-    }
-
     [Tooltip("If the requirement is stat-based")]
     [SerializeField, AllowNesting]
     private bool isStatRequirement = false;
 
     [Tooltip("The resource you would like to be compared")]
     [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
-    private ResourceType selectedResource;
-    
+    private ResourceDataTypes selectedResource;
+
     [Tooltip("How much of this resources is required for an event to run")]
     [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
-    private int requiredAmount;
+    public int requiredAmount;
 
     [Tooltip("Click this if you would like to check if the ship resource is LESS than the number supplied")]
     [SerializeField, ShowIf("isStatRequirement"),AllowNesting]
     private bool lessThan = false;
+    #endregion
+
+    #region Character Approval Variables
+
+    [Tooltip("If the requirement is approval-based")]
+    [SerializeField, AllowNesting]
+    private bool isApprovalRequirement = false;
+
+    [Tooltip("The character who's approval must be checked")]
+    [SerializeField, ShowIf("isApprovalRequirement"), AllowNesting]
+    private CharacterStats.Characters character = CharacterStats.Characters.None;
+
+    [Tooltip("The required approval rating for this event to pass")]
+    [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
+    private int requiredApproval;
+
+    [Tooltip("Whether or not the approval must be LESS than the number supplied")]
+    [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
+    private bool lessThanApproval = false;
+
     #endregion
 
     #region Narrative Requirement Variables
@@ -65,7 +73,7 @@ public class Requirements
     private int cloneTrustRequirement;
 
     [Tooltip("The minimum trust the VIPS must have in the player")]
-    [SerializeField, ShowIf("ctrTrustRequirements"), AllowNesting] 
+    [SerializeField, ShowIf("ctrTrustRequirements"), AllowNesting]
     private int VIPTrustRequirement;
     #endregion
 
@@ -114,28 +122,28 @@ public class Requirements
             int shipStat = 0;
             switch (selectedResource)
             {
-                case ResourceType.HULL:
-                    shipStat = thisShip.ShipHealthCurrent;
+                case ResourceDataTypes._HullDurability:
+                    shipStat = (int)thisShip.ShipHealthCurrent.x;
                     break;
-                case ResourceType.ENERGY:
-                    shipStat = thisShip.EnergyRemaining;
+                case ResourceDataTypes._Energy:
+                    shipStat = (int)thisShip.EnergyRemaining.x;
                     break;
-                case ResourceType.CREW:
-                    shipStat = thisShip.CrewCurrent;
+                case ResourceDataTypes._Crew:
+                    shipStat = (int)thisShip.CrewCurrent.x;
                     break;
-                case ResourceType.FOOD:
+                case ResourceDataTypes._Food:
                     shipStat = thisShip.Food;
                     break;
-                case ResourceType.WEAPONS:
+                case ResourceDataTypes._ShipWeapons:
                     shipStat = thisShip.ShipWeapons;
                     break;
-                case ResourceType.SECURITY:
+                case ResourceDataTypes._Security:
                     shipStat = thisShip.Security;
                     break;
-                //case ResourceType.MORALE:
-                //    shipStat = thisShip.Morale;
-                //    break;
-                case ResourceType.CREDITS:
+                case ResourceDataTypes._CrewMorale:
+                    shipStat = MoraleManager.instance.CrewMorale;
+                    break;
+                case ResourceDataTypes._Credits:
                     shipStat = thisShip.Credits;
                     break;
             }
@@ -254,7 +262,46 @@ public class Requirements
 
             result = roomIDs.Contains(lookingFor);
         }
-        
+        else if(isApprovalRequirement)
+        {
+            int approvalRating = 0;
+
+            switch (character)
+            {
+                case CharacterStats.Characters.KUON:
+                    approvalRating = thisShip.cStats.KuonApproval;
+                    break;
+                case CharacterStats.Characters.MATEO:
+                    approvalRating = thisShip.cStats.MateoApproval;
+                    break;
+                case CharacterStats.Characters.LANRI:
+                    approvalRating = thisShip.cStats.LanriApproval;
+                    break;
+                case CharacterStats.Characters.LEXA:
+                    approvalRating = thisShip.cStats.LexaApproval;
+                    break;
+                case CharacterStats.Characters.RIPLEY:
+                    approvalRating = thisShip.cStats.RipleyApproval;
+                    break;
+                default:
+                    Debug.Log("The character whose approval you wanted does not exist");
+                    approvalRating = 0;
+                    break;
+            }
+
+            if (lessThanApproval && approvalRating < requiredApproval) //Match
+            {
+                result = true;
+            }
+            else if(!lessThanApproval && approvalRating > requiredApproval) //another match
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+        }
 
         return result;
     }
