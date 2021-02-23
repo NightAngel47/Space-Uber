@@ -6,6 +6,7 @@
  */
 
 using System.Collections;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,13 +18,32 @@ public class OverclockController : MonoBehaviour
     private ShipStats shipStats;
     private AdditiveSceneManager additiveSceneManager;
 
-    [SerializeField] float foodBaseAdjustment = 1;
-    [SerializeField] float securityBaseAdjustment = 1;
-    [SerializeField] float shipWeaponsBaseAdjustment = 1;
-    [SerializeField] float energyBaseAdjustment = 1;
-    [SerializeField] float hullRepairBaseAdjustment = 5;
-    [SerializeField] float failHullDurabilityBaseAdjustment = -5;
+    [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame."), Foldout("Mini-Game Adjustments")] 
+    float foodBaseAdjustment = 1;
+    [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame."), Foldout("Mini-Game Adjustments")] 
+    float securityBaseAdjustment = 1;
+    [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame."), Foldout("Mini-Game Adjustments")] 
+    float shipWeaponsBaseAdjustment = 1;
+    [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame."), Foldout("Mini-Game Adjustments")] 
+    float energyBaseAdjustment = 1;
+    [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame."), Foldout("Mini-Game Adjustments")] 
+    float hullRepairBaseAdjustment = 5;
+    [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame."), Foldout("Mini-Game Adjustments")] 
+    float failHullDurabilityBaseAdjustment = -5;
     public float cooldownTime = 5;
+
+    [SerializeField, Tooltip("Percent to increase the frequency of an event showing up after finishing a minigame."), Foldout("Mini-Game Event Spawn Increase Chances")] 
+    float cropPercentIncrease = 5;
+    [SerializeField, Tooltip("Percent to increase the frequency of an event showing up after finishing a minigame."), Foldout("Mini-Game Event Spawn Increase Chances")] 
+    float securityPercentIncrease = 5;
+    [SerializeField, Tooltip("Percent to increase the frequency of an event showing up after finishing a minigame."), Foldout("Mini-Game Event Spawn Increase Chances")] 
+    float asteroidPercentIncrease = 5;
+    [SerializeField, Tooltip("Percent to increase the frequency of an event showing up after finishing a minigame."), Foldout("Mini-Game Event Spawn Increase Chances")] 
+    float energyPercentIncrease = 5;
+    [SerializeField, Tooltip("Percent to increase the frequency of an event showing up after finishing a minigame."), Foldout("Mini-Game Event Spawn Increase Chances")] 
+    float hullRepairPercentIncrease = 5;
+    [SerializeField, Tooltip("Percent to increase the frequency of an event showing up after finishing a minigame."), Foldout("Mini-Game Event Spawn Increase Chances")] 
+    float slotPercentIncrease = 5;
 
     //If a room is already being overclocked
     public bool overclocking = false;
@@ -68,31 +88,37 @@ public class OverclockController : MonoBehaviour
             {
                 shipStats.Security += Mathf.RoundToInt(securityBaseAdjustment * statModification * moraleModifier);
                 SpawnStatChangeText(Mathf.RoundToInt(securityBaseAdjustment * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
+                EventSystem.instance.chanceOfEvent += securityPercentIncrease;
             }
             if(miniGame == MiniGameType.Asteroids)
             {
                 shipStats.ShipWeapons += Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification * moraleModifier);
                 SpawnStatChangeText(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
+                EventSystem.instance.chanceOfEvent += asteroidPercentIncrease;
             }
             if(miniGame == MiniGameType.CropHarvest)
             {
                 shipStats.Food += Mathf.RoundToInt(foodBaseAdjustment * statModification * moraleModifier);
                 SpawnStatChangeText(Mathf.RoundToInt(foodBaseAdjustment * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
+                EventSystem.instance.chanceOfEvent += cropPercentIncrease;
             }
             if(miniGame == MiniGameType.StabilizeEnergyLevels)
             {
                 shipStats.EnergyRemaining += new Vector2(Mathf.RoundToInt(energyBaseAdjustment * statModification * moraleModifier), 0);
                 SpawnStatChangeText(Mathf.RoundToInt(energyBaseAdjustment * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
+                EventSystem.instance.chanceOfEvent += energyPercentIncrease;
             }
             if(miniGame == MiniGameType.SlotMachine)
             {
                 shipStats.Credits += Mathf.RoundToInt(statModification * moraleModifier);
                 SpawnStatChangeText(Mathf.RoundToInt(statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon);
+                EventSystem.instance.chanceOfEvent += slotPercentIncrease;
             }
             if(miniGame == MiniGameType.HullRepair)
             {
                 shipStats.ShipHealthCurrent += new Vector2(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification * moraleModifier), 0);
                 SpawnStatChangeText(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon);
+                EventSystem.instance.chanceOfEvent += hullRepairPercentIncrease;
             }
         }
         else
