@@ -540,11 +540,11 @@ public class EventSystem : MonoBehaviour
 			CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
 			List<Requirements> requirements = eventDriver.requiredStats;
 
-			print("PlayedOnce = " + eventDriver.PlayedOnce);
-			print("Requirements passed: " + HasRequiredStats(requirements));
+			//print("PlayedOnce = " + eventDriver.PlayedOnce);
+			//print("Requirements passed: " + HasRequiredStats(requirements));
 
 
-			if (HasRequiredStats(requirements) && eventDriver.PlayedOnce == false)
+			if (HasRequiredStats(requirements) /*&& eventDriver.PlayedOnce == false*/)
             {
 				goodEvents.Add(charEvent);
             }
@@ -560,6 +560,7 @@ public class EventSystem : MonoBehaviour
         }
 		else
         {
+			print("Could not get an event");
 			return null;
         }
 	}
@@ -659,7 +660,6 @@ public class EventSystem : MonoBehaviour
 
 	public bool CanChat(List<GameObject> checkEvents)
 	{
-		return true; //Test code, delete later
 		//If chat has cooleddown
 		if (daysSinceChat < chatCooldown)
 		{

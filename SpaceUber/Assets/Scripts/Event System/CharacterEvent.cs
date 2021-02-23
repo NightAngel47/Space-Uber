@@ -31,6 +31,7 @@ public class CharacterEvent : InkDriverBase
         get { return playedOnce; }
         set { playedOnce = value; }
     }
+
     public override void Start()
     {
         base.Start();
