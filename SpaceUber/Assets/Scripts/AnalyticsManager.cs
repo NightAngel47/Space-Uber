@@ -31,6 +31,7 @@ public static class AnalyticsManager
     /// <param name="eventLockedIn">If </param>
     public static void OnEventStarted(InkDriverBase gameEvent, bool eventLockedIn)
     {
+        EventChoiceData.Clear();
         string eventType = GetEventType(ref gameEvent);
         Dictionary<string, object> data = new Dictionary<string, object>
         {
@@ -63,19 +64,20 @@ public static class AnalyticsManager
         
         Dictionary<string, object> data = new Dictionary<string, object>
         {
-            {"eventName", gameEvent.EventName},         // tracks the event name
-            {"timeInEvent", timeInEvent}                // tracks how long the player was in the event
+            {"eventName", gameEvent.EventName},                 // tracks the event name
+            {"timeInEvent", timeInEvent}                        // tracks how long the player was in the event
         };
 
         string choiceNames = "";
         for (var i = 0; i < EventChoiceData.Count; i++)
         {
             choiceNames += EventChoiceData[i];
-            data.Add("choiceName", choiceNames);        // tracks the choice name
+            data.Add("choiceName" + i, EventChoiceData[i]);     // tracks the choice name
             if (i + 1 < EventChoiceData.Count) choiceNames += " > ";
         }
         
         data.Add(gameEvent.EventName, choiceNames);     // tracks event name with all event choices
+        EventChoiceData.Clear();
 
         Analytics.CustomEvent(eventType + "-completed", data);
         
