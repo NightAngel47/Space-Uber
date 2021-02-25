@@ -115,7 +115,7 @@ public class CampaignManager : MonoBehaviour
         }
     }
 
-    public void AlterNarrativeVariable(MysteriousEntity.NarrativeOutcomes meMainOutcomes, string newText)
+    public void AlterNarrativeVariable(MysteriousEntity.NarrativeVariables meMainOutcomes, string newText)
     {
 
     }
@@ -180,7 +180,7 @@ public class CampaignManager : MonoBehaviour
         [HideInInspector] public int currentCampaignJobIndex = 0;
         public List<Job> campaignJobs = new List<Job>();
 
-        public enum NarrativeOutcomes
+        public enum NarrativeVariables
         {
             NA,
             //job 1, Event 2
@@ -190,7 +190,7 @@ public class CampaignManager : MonoBehaviour
 
         }
 
-        public enum J2E3Outcomes
+        public enum J2E3Variables
         {
             NA,
             Decline_Bribe,

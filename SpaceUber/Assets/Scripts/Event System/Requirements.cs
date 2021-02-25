@@ -55,6 +55,8 @@ public class Requirements
     #endregion
 
     #region Narrative Requirement Variables
+
+    #region Catering to the Rich
     [Tooltip("If the requirement is narrative-based")]
     [SerializeField, AllowNesting]
     private bool isNarrativeRequirement = false;
@@ -78,6 +80,39 @@ public class Requirements
     [Tooltip("The minimum trust the VIPS must have in the player")]
     [SerializeField, ShowIf("ctrTrustRequirements"), AllowNesting]
     private int VIPTrustRequirement;
+    #endregion
+
+    #region Mysterious Entity Narrative Variables
+    [Tooltip("Will this use the basic narrative booleans for Mysterious Entity, or the ones for Job 2, Event 3"),
+     SerializeField, ShowIf("IsMysteriousEntity"), AllowNesting]
+    private bool meBasicNarrativeBools = true;
+
+    [Tooltip("Select one item from this dropdown list. The selected variable must be true for this event to run"),
+    SerializeField, ShowIf("meBasicNarrativeBools"), AllowNesting]
+    private CampaignManager.MysteriousEntity.NarrativeVariables meBasicOutcomes = CampaignManager.MysteriousEntity.NarrativeVariables.NA;
+
+    [Tooltip("Select one item from this dropdown list. The selected variable must be true for this event to run"),
+    SerializeField, HideIf("meBasicNarrativeBools"), AllowNesting]
+    private CampaignManager.MysteriousEntity.J2E3Variables meJ2E3Outcomes = CampaignManager.MysteriousEntity.J2E3Variables.NA;
+    #endregion
+
+    #region Final Test narrative variables
+        [Tooltip("Select one item from this dropdown list. The selected variable must be true for this event to run"),
+         SerializeField, HideIf("ftAssetCheck"), AllowNesting]
+        private CampaignManager.FinalTest.NarrativeVariables ftOutcomes = CampaignManager.FinalTest.NarrativeVariables.NA;
+
+        [Tooltip("Check this if this is an asset count requirement"),
+         SerializeField, ShowIf("IsFinalTest"), AllowNesting]
+        private bool ftAssetCheck = false;
+
+        [Tooltip("Select one item from this dropdown list. The selected variable must be true for this event to run"),
+         SerializeField, ShowIf("ftAssetCheck"), AllowNesting]
+        private int requiredAssetCount = 0;
+
+        [Tooltip("Check this if the requirement is to have an asset count LESS than the number above"),
+         SerializeField, ShowIf("ftAssetCheck"), AllowNesting]
+        private bool lessThanAssetCount;
+    #endregion
     #endregion
 
     #region Room Requirement Variables
@@ -116,6 +151,16 @@ public class Requirements
     public bool IsCateringToTheRich()
     {
         return thisCampaign == CampaignManager.Campaigns.CateringToTheRich;
+    }
+
+    public bool IsMysteriousEntity()
+    {
+        return thisCampaign == CampaignManager.Campaigns.MysteriousEntity;
+    }
+
+    public bool IsFinalTest()
+    {
+        return thisCampaign == CampaignManager.Campaigns.FinalTest;
     }
     #endregion
     //
@@ -168,42 +213,117 @@ public class Requirements
         }
         else if (isNarrativeRequirement)
         {
-            //check if the selected bool is true or not
-            switch(ctrNarrativeOutcomes)
+            switch(thisCampaign)
             {
-                case CampaignManager.CateringToTheRich.NarrativeOutcomes.SideWithScientist:
-                    result = campMan.cateringToTheRich.ctr_sideWithScientist;
-                    break;
-                case CampaignManager.CateringToTheRich.NarrativeOutcomes.KillBeckett:
-                    result = campMan.cateringToTheRich.ctr_killBeckett;
-                    break;
-                case CampaignManager.CateringToTheRich.NarrativeOutcomes.LetBalePilot:
-                    result = campMan.cateringToTheRich.ctr_letBalePilot;
-                    break;
-                case CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledAtSafari:
-                    result = campMan.cateringToTheRich.ctr_killedAtSafari;
-                    break;
-                case CampaignManager.CateringToTheRich.NarrativeOutcomes.TellVIPsAboutClones:
-                    result = campMan.cateringToTheRich.ctr_tellVIPsAboutClones;
-                    break;
-                default:
-                    break;
-            }
-            if(ctrTrustRequirements)
-            {
+                case CampaignManager.Campaigns.CateringToTheRich:
+                    //check if the selected bool is true or not
+                    
+                    if (ctrTrustRequirements)
+                    {
 
-                switch (ctrNarrativeOutcomes)
-                {
-                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.VIPTrust:
-                        result = campMan.cateringToTheRich.ctr_VIPTrust >= VIPTrustRequirement;
-                        break;
-                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.CloneTrust:
-                        result = campMan.cateringToTheRich.ctr_cloneTrust >= cloneTrustRequirement;
-                        break;
-                    default:
-                        break;
-                }
+                        switch (ctrNarrativeOutcomes)
+                        {
+                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.VIPTrust:
+                                result = campMan.cateringToTheRich.ctr_VIPTrust >= VIPTrustRequirement;
+                                break;
+                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.CloneTrust:
+                                result = campMan.cateringToTheRich.ctr_cloneTrust >= cloneTrustRequirement;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (ctrNarrativeOutcomes)
+                        {
+                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.SideWithScientist:
+                                result = campMan.cateringToTheRich.ctr_sideWithScientist;
+                                break;
+                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.KillBeckett:
+                                result = campMan.cateringToTheRich.ctr_killBeckett;
+                                break;
+                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.LetBalePilot:
+                                result = campMan.cateringToTheRich.ctr_letBalePilot;
+                                break;
+                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledAtSafari:
+                                result = campMan.cateringToTheRich.ctr_killedAtSafari;
+                                break;
+                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.TellVIPsAboutClones:
+                                result = campMan.cateringToTheRich.ctr_tellVIPsAboutClones;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+
+                case CampaignManager.Campaigns.MysteriousEntity:
+                    if (meBasicNarrativeBools)
+                    {
+                        switch (meBasicOutcomes)
+                        {
+                            case CampaignManager.MysteriousEntity.NarrativeVariables.OpenedCargo:
+                                result = campMan.mysteriousEntity.me_openedCargo;
+                                break;
+                            case CampaignManager.MysteriousEntity.NarrativeVariables.KuonInvestigates:
+                                result = campMan.mysteriousEntity.me_kuonInvestigates;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (meJ2E3Outcomes)
+                        {
+                            case CampaignManager.MysteriousEntity.J2E3Variables.Accept:
+                                result = campMan.mysteriousEntity.me_Accept;
+                                break;
+                            case CampaignManager.MysteriousEntity.J2E3Variables.Decline_Bribe:
+                                result = campMan.mysteriousEntity.me_declineBribe;
+                                break;
+                            case CampaignManager.MysteriousEntity.J2E3Variables.Decline_Fire:
+                                result = campMan.mysteriousEntity.me_declineFire;
+                                break;
+                        }
+                    }
+                    break;
+
+                case CampaignManager.Campaigns.FinalTest:
+                    if(ftAssetCheck)
+                    {
+                        if(lessThanAssetCount)
+                        {
+                            result = (campMan.finalTest.assetCount < requiredAssetCount);
+                        }
+                        else
+                        {
+                            result = (campMan.finalTest.assetCount >= requiredAssetCount);
+                        }
+                    }
+                    else
+                    {
+                        switch (ftOutcomes)
+                        {
+                            case CampaignManager.FinalTest.NarrativeVariables.KellisLoyalty:
+                                result = campMan.finalTest.ft_kellisLoyalty;
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.LanriExperiment:
+                                result = campMan.finalTest.ft_lanriExperiment;
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.LexaDoomed:
+                                result = campMan.finalTest.ft_lexaDoomed;
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.ScienceSavior:
+                                result = campMan.finalTest.ft_scienceSavior;
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.TruthTold:
+                                result = campMan.finalTest.ft_truthTold;
+                                break;
+                        }
+                    }
+                    break;
             }
+            
         }
         else if (isRoomRequirement)
         {
