@@ -100,6 +100,11 @@ public class ObjectScript : MonoBehaviour
         }
     }
 
+    public void OnMouseUp()
+    {
+        StartCoroutine(WaitToClickRoom());
+    }
+
     public void OnMouseOver()
     {
         //if(preplacedRoom) return;
