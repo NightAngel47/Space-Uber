@@ -21,14 +21,6 @@ public class CharacterEvent : InkDriverBase
     private int correctAnswers;
 
 
-    private bool playedOnce = false;
-
-    public bool PlayedOnce
-    {
-        get { return playedOnce; }
-        set { playedOnce = value; }
-    }
-
     private enum AnswerState
     {
         GOOD,
@@ -43,7 +35,6 @@ public class CharacterEvent : InkDriverBase
         base.Start();
         isCharacterEvent = true;
         isStoryEvent = false;
-        playedOnce = false;
     }
 
     public void AnswerCorrectly()
@@ -58,7 +49,6 @@ public class CharacterEvent : InkDriverBase
     public void EndCharacterEvent()
     {
         print("Ending this character event");
-        playedOnce = true;
 
 
         if(correctAnswers == Mathf.RoundToInt(totalAnswers/2))

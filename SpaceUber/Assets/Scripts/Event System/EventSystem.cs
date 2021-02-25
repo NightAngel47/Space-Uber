@@ -504,6 +504,21 @@ public class EventSystem : MonoBehaviour
 		return null;
     }
 
+	private bool HasPossibleCharacterEvent(List<GameObject> possibleEvents)
+    {
+		foreach (GameObject charEvent in possibleEvents)
+		{
+			CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
+			List<Requirements> requirements = eventDriver.requiredStats;
+
+			if (HasRequiredStats(requirements))
+			{
+				return true; //end function as soon as one is found
+			}
+		}
+		return false;
+    }
+
 	/// <summary>
 	/// Returns the next chosen event that can be played from the possible list supplied.
 	/// If null, do not allow players to go into the event screen. Instead, inform them that no new events
@@ -520,22 +535,16 @@ public class EventSystem : MonoBehaviour
 			CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
 			List<Requirements> requirements = eventDriver.requiredStats;
 
-			//print("PlayedOnce = " + eventDriver.PlayedOnce);
-			//print("Requirements passed: " + HasRequiredStats(requirements));
-
-
-			if (HasRequiredStats(requirements) /*&& eventDriver.PlayedOnce == false*/)
+			if (HasRequiredStats(requirements))
             {
 				goodEvents.Add(charEvent);
-            }
-			else
-            {
             }
 		}
 
 		if(goodEvents.Count > 0)
         {
 			int chosen = Random.Range(0, goodEvents.Count);
+			possibleEvents.Remove(goodEvents[chosen]); //remove this one from the list
 			return goodEvents[chosen];
         }
 		else
@@ -643,12 +652,14 @@ public class EventSystem : MonoBehaviour
 		//If chat has cooleddown
 		if (tick.DaysSinceChat < chatCooldown)
 		{
+			print("Not ready to chat");
 			return false;
 		}
 
 		//if no possible events are found
-		if (FindNextCharacterEvent(checkEvents) == null)
+		if (!HasPossibleCharacterEvent(checkEvents))
 		{
+			print("No events available");
 			return false;
 		}
 
