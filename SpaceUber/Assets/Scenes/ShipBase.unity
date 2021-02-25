@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -7386,21 +7386,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Audio Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: radioTracks.Array.data[1].tracks.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 48d187f626ad92247b9b0c91b25fbe20, type: 3}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: radioTracks.Array.data[0].tracks.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: db7be6b5836bb354893c97c0039ae58a, type: 3}
-    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
-        type: 3}
-      propertyPath: radioTracks.Array.data[2].tracks.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 34a67b62822b1e741a3d3063a6922fbf, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfd00d5985b7e774da68f5c929635ee4, type: 3}
 --- !u!1001 &1886676204
