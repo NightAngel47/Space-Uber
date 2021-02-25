@@ -21,7 +21,7 @@ public class EndingRestartBehaviour : MonoBehaviour
     
     public void RestartGame()
     {
-        Destroy(GameObject.Find("Spot Checker"));
+        Destroy(FindObjectOfType<SpotChecker>().gameObject);
         SceneManager.LoadScene("ShipBase");
         AudioManager.instance.PlayMusicWithTransition("General Theme");
     }
