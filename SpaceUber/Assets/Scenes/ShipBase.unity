@@ -5477,6 +5477,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
         type: 3}
+      propertyPath: allCharacterEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
+        type: 3}
       propertyPath: eventWarning
       value: 
       objectReference: {fileID: 0}
@@ -5500,6 +5505,12 @@ PrefabInstance:
       propertyPath: panel
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
+        type: 3}
+      propertyPath: allCharacterEvents.Array.data[0]
+      value: 
+      objectReference: {fileID: 3614183300006707724, guid: a2a2021758622a44d85d1ed2e42a49c7,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe5d639606919114a9b48eb746a06bc6, type: 3}
 --- !u!114 &1350692055 stripped
