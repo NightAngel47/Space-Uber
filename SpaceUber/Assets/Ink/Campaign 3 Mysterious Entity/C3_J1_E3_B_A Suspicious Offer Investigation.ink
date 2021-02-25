@@ -10,7 +10,7 @@ You could also accept their offer. The more valuable cargo has trackers built in
 
 
 === Blackmail1 ===
-You send a message back, telling them that their little game is up. You give Kuon orders to escort Loudon off the ship once you meet up with [rival company's] ship. In exchange for their mole, you will be taking some of their supplies as your own. Hopefully things go smoothly from here on.
+You send a message back, telling them that their little game is up. You give Kuon orders to escort Loudon off the ship once you meet up with Equinox's ship. In exchange for their mole, you will be taking some of their supplies as your own. Hopefully things go smoothly from here on.
 -> END
 
 === Blackmail2 ===
