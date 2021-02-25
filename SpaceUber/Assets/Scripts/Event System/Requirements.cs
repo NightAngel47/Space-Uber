@@ -55,14 +55,17 @@ public class Requirements
     #endregion
 
     #region Narrative Requirement Variables
-
-    #region Catering to the Rich
+    
     [Tooltip("If the requirement is narrative-based")]
     [SerializeField, AllowNesting]
     private bool isNarrativeRequirement = false;
 
-    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private CampaignManager.Campaigns thisCampaign 
+    [SerializeField, ShowIf("isNarrativeRequirement"), AllowNesting]
+    private CampaignManager.Campaigns thisCampaign
         = CampaignManager.Campaigns.CateringToTheRich;
+
+    #region Catering to the Rich
+
 
     [FormerlySerializedAs("ctrBoolRequirements")]
     [Tooltip("Select one item from this dropdown list. The selected variable must be true for this event to run"),
