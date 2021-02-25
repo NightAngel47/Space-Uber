@@ -60,6 +60,7 @@ public class CharacterEvent : InkDriverBase
         print("Ending this character event");
         playedOnce = true;
 
+
         if(correctAnswers == Mathf.RoundToInt(totalAnswers/2))
         {
             answersState = AnswerState.NEUTRAL;
@@ -75,7 +76,7 @@ public class CharacterEvent : InkDriverBase
         switch(answersState)
         {
             case AnswerState.GOOD:
-                //TODO: Boost morale by 10
+                MoraleManager.instance.CrewMorale += 10;
                 switch (thisCharacter)
                 {
                     case CharacterStats.Characters.KUON: //Kuon boosts security and weapons by 10%
@@ -94,19 +95,19 @@ public class CharacterEvent : InkDriverBase
                         SpawnStatChangeText(20, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
                         break;
                     case CharacterStats.Characters.LEXA: //gives +10 to morale
-
+                        MoraleManager.instance.CrewMorale += 10;
                         break;
                     case CharacterStats.Characters.RIPLEY: //gives +10 morale
-
+                        MoraleManager.instance.CrewMorale += 10;
                         break;
                 }
                 break;
             case AnswerState.NEUTRAL:
-                //TODO: Boost morale by 10
+                MoraleManager.instance.CrewMorale += 10;
                 break;
 
             case AnswerState.BAD:
-                //toDO: lose ten morale
+                MoraleManager.instance.CrewMorale -= 10;
                 switch (thisCharacter)
                 {
                     case CharacterStats.Characters.KUON: //Kuon boosts security and weapons by 10%
@@ -125,10 +126,10 @@ public class CharacterEvent : InkDriverBase
                         SpawnStatChangeText(-20, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
                         break;
                     case CharacterStats.Characters.LEXA: //gives -10 to morale
-
+                        MoraleManager.instance.CrewMorale -= 10;
                         break;
                     case CharacterStats.Characters.RIPLEY: //gives -10 morale
-
+                        MoraleManager.instance.CrewMorale -= 10;
                         break;
                 }
                 break;
