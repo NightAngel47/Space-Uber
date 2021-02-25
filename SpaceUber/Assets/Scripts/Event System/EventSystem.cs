@@ -30,9 +30,6 @@ public class EventSystem : MonoBehaviour
 	private List<GameObject> storyEvents = new List<GameObject>();
 	private List<GameObject> randomEvents = new List<GameObject>();
 
-	[SerializeField, Tooltip("All possible character events. Temporary")]
-	private List<GameObject> allCharacterEvents;
-
 	//how many events (story and random) have occurred
 	private int overallEventIndex = 0;
 	// How many story events have occurred. Tells the code which story event to play
@@ -99,38 +96,21 @@ public class EventSystem : MonoBehaviour
 		campMan = GetComponent<CampaignManager>();
 	}
 
-    private void Update()
-    {
-	    //TODO Remove once character events are complete, only for testing
-        if(Input.GetKeyDown(KeyCode.F9) && GameManager.instance.currentGameState == InGameStates.Events)
-        {
-	        if(chatting && SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded)
-	        {
-		        chatting = false;
-		        asm.UnloadScene("Event_CharacterFocused");
-	        }
-	        else
-	        {
-		        StartCoroutine(StartNewCharacterEvent(allCharacterEvents));
-	        }
-        }
-    }
+	private void SetUpEventTimer()
+	{
+		eventWarning = FindObjectOfType<EventWarning>();
+		sonar = FindObjectOfType<EventSonar>();
+		sonarObjects = sonar.transform.parent.gameObject; // event timer UI
 
-		private void SetUpEventTimer()
+		//set sonar stuff
+		sonar.SetSpinRate( eventChanceFreq );
+		sonarObjects.SetActive(false);
+
+		if(eventWarning != null)
 		{
-			eventWarning = FindObjectOfType<EventWarning>();
-			sonar = FindObjectOfType<EventSonar>();
-			sonarObjects = sonar.transform.parent.gameObject; // event timer UI
-
-			//set sonar stuff
-			sonar.SetSpinRate( eventChanceFreq );
-			sonarObjects.SetActive(false);
-
-			if(eventWarning != null)
-			{
-				eventWarning.DeactivateWarning();
-			}
+			eventWarning.DeactivateWarning();
 		}
+	}
 
     /// <summary>
     /// Plays job intro
@@ -147,16 +127,9 @@ public class EventSystem : MonoBehaviour
         }
 
 		//check for an introduction "event"
-		GameObject intro = null;
-		foreach (var introEvent in currentJob.introEvents)
-		{
-			List<Requirements> requirements = introEvent.GetComponent<InkDriverBase>().requiredStats;
-			if (HasRequiredStats(requirements))
-			{
-				intro = introEvent;
-				break;
-			}
-		}
+		GameObject intro = (from introEvent in currentJob.introEvents 
+			let requirements = introEvent.GetComponent<InkDriverBase>().requiredStats 
+			where HasRequiredStats(requirements) select introEvent).FirstOrDefault();
 
 		if (intro != null)
         {
@@ -233,9 +206,9 @@ public class EventSystem : MonoBehaviour
 						chanceOfEvent += chanceIncreasePerFreq;
 						eventRollCounter = 0; // reset roll counter
 					}
-
-								yield return new WaitForEndOfFrame();
 				}
+					
+				yield return new WaitForEndOfFrame();
             }
 
             // once event rolled or skipped
