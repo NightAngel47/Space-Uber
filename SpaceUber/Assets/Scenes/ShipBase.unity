@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3056,13 +3056,1545 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
         type: 3}
+      propertyPath: sfxTracks.Array.size
+      value: 297
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
       propertyPath: sfxTracks.Array.data[245].volumeVarience
-      value: 0
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
         type: 3}
       propertyPath: sfxTracks.Array.data[245].volume
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[200].name
+      value: Place Hydro 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[200].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: dab5849060c0c404aa77ca251fa3e4b4, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[200].volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[200].volumeVarience
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[200].pitchVarience
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[201].name
+      value: Place Hydro 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[201].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c3da8d6a86f85942aa2e20e5564769c, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[202].name
+      value: Confirm 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[202].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: c0429e3eb2a2f184b84753acf9e29833, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[203].name
+      value: Confirm 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[203].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3df8b82d49c35e345b0df50dc9d66017, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[203].volume
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[203].pitchVarience
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[204].name
+      value: Confirm 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[204].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 63d30ba8fd476b44b984958a0e069cc2, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[204].pitchVarience
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[205].name
+      value: Deny 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[205].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 41f727be6ad41b44dafac1022887530c, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[206].name
+      value: Deny 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[206].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0117cdb55fa12364ab731d6cdc74a532, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[206].volume
+      value: 0.555
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[206].volumeVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[207].name
+      value: Deny 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[207].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: c0fcbb6d86c045e45a6bce46574ee906, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[207].volume
+      value: 0.555
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[207].pitchVarience
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[208].name
+      value: Sell
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[208].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5e47c6df9f6807b49b5a588766be1dc6, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[209].name
+      value: Overclock
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[209].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: d279aec6ec15ec048868ba921a967fe3, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[209].volume
       value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[209].volumeVarience
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[209].pitchVarience
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[210].name
+      value: De-Overclock
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[210].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: e475d7b77aa30d84ca36b5179bda8e92, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[210].volume
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[210].volumeVarience
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[210].pitchVarience
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[211].name
+      value: Sonar Blip
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[211].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 040f4f7ae641851458aa15eb84c16ce2, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[212].name
+      value: Press 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[212].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9be77f3ebbf1f2e469547ab8e1047e9e, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[213].name
+      value: Press 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[213].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 448cec4fb349eda40a33981669246976, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[214].name
+      value: Press 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[214].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 10ba01fc243a50f4eb5c50ca0b979910, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[215].name
+      value: Press 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[215].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 48dcb8b7a03ecf049b16a8932c2c33bf, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[216].name
+      value: Press 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[216].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: cfd6037e9449f0942bc55217ccc6b5ad, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[217].name
+      value: Press 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[217].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c147897e2b278043ab0fc5345140e94, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[218].name
+      value: Press 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[218].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5c8c831ed46770d4cb4ce56dabbb9407, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[219].name
+      value: Press 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[219].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: c96b8868b32c67e4b885fcae5a531989, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[220].name
+      value: Press 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[220].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 699ec1e483d4b754eaeb435b5af33517, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[220].volume
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[220].pitchVarience
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[221].name
+      value: Press 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[221].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 67a13e847aa08cd4d88e73cc1dc19929, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[221].volume
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[221].pitchVarience
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[222].name
+      value: Slider
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[222].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 87102308c9093944abfb9a9d1f3e5da4, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[223].name
+      value: Switch 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[223].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3aabe3b55105e2b45ba65c6151b43a31, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[224].name
+      value: Switch 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[224].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3f02900a1350a5741ba10ced881c09a2, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[224].volume
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[224].volumeVarience
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[224].pitchVarience
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[225].name
+      value: Switch 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[225].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b5b9955ea0f060d4dbcbd513acd61455, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[225].volumeVarience
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[225].pitchVarience
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[226].name
+      value: Display
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[226].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b581392bdc97de046871895ef882b459, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[227].name
+      value: Trim 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[227].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6c3eafb3cda0acb4cb291c272da47779, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[228].name
+      value: Trim 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[228].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4ae73f0e396867841a602d8bf492873b, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[229].name
+      value: Trim 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[229].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2bee69579199a4b4c90121af9cd9e2d5, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[230].name
+      value: Watering 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[230].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 034f89147541b0a4ea59a250d44377f0, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[231].name
+      value: Watering 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[231].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3878645ecf1eb4e4ab262ba1576a570e, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[231].volume
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[232].name
+      value: Watering 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[232].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0489d47768bdf0f47bc002b03c038aa0, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[232].volume
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[232].volumeVarience
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[233].name
+      value: Fert 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[233].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 18730d15b5d86074992d8e66bc0e3d74, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[233].volume
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[234].name
+      value: Fert 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[234].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 56768c948006bde469518ef2207e4041, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[235].name
+      value: Plant 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[235].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 17b31bd9a859d434a95bfb220c85e708, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[235].volume
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[235].volumeVarience
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[235].pitchVarience
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[236].name
+      value: Plant 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[236].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b62ad0612eae388489d2238d0f673bc1, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[237].name
+      value: Hull Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[237].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 48282811b61b23141a8c7c92687d06a0, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[238].name
+      value: Fire 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[238].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 027a0063b52e65e45a3dca6052c80ece, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[239].name
+      value: Fire 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[239].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: da5ac442fa5248b45b7d67d1950488a6, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[240].name
+      value: Fire 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[240].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30e6bf65f2c47ce4b9cdba1836656ef5, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[241].name
+      value: Break 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[242].name
+      value: Break 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[242].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 98256ef62f42ead468ecad88b5a1378b, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[243].name
+      value: Break 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[243].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 98256ef62f42ead468ecad88b5a1378b, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[243].volume
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[243].pitchVarience
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[244].name
+      value: Low Health
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[244].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0ac5d1dcbfc082c4fafe0792243eb7b8, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[245].name
+      value: Free Bet
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[245].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f65aa80d55a00134593ac92dfbfe5bf6, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[246].name
+      value: Small Bet
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[246].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 03b571f482653554b8d2c4377072e9bb, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[246].volume
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[246].volumeVarience
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[247].name
+      value: Medium Bet
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[247].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0238ebcbc95cb8f499a4c391e26974b4, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[247].volumeVarience
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[247].pitchVarience
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[248].name
+      value: Large Bet
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[248].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f77a404552665a247916309b6d27cbd4, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[248].volume
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[248].volumeVarience
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[248].pitchVarience
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[249].name
+      value: Stop Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[249].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: c167fbb667a5ee243a9f4c03d544012c, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[250].volume
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[250].volumeVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[250].pitchVarience
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[251].name
+      value: Pull Crank
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[251].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 33cf77d3a5cb7d94f9a101a70d052cfc, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[251].volume
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[251].volumeVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[251].pitchVarience
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[252].name
+      value: Pull Crank
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[252].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 33cf77d3a5cb7d94f9a101a70d052cfc, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[252].volume
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[252].volumeVarience
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[253].name
+      value: Slot Reel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[253].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6213798f078c4da4fba0a2837e3d72ce, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[254].name
+      value: Pay11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[254].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0aab3a2c0ff8c4046adcdb7eb0b0060b, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[255].name
+      value: Pay111
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[255].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: c65802e8e684839489997858b6657e53, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[256].name
+      value: Pay22
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[256].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7c35f5d130b55424281ead3d8c20dd53, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[257].name
+      value: Pay222
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[257].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7d4bcde4fdd4af846a612c6a16301c4c, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[258].name
+      value: Pay33
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[258].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0a50d1139bae8b4428f53b89ca4ccb5b, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[259].name
+      value: Pay333
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[259].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3603508f8ff07f047898f5c419c843af, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[260].name
+      value: Pay44
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[260].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3f08f26528766ab42be067bf7fedb425, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[261].name
+      value: Pay444
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[261].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f8d531d694837094485107d415eb8d52, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[262].name
+      value: Pay55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[262].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b9ceda9525c6c114d87987b498440800, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[263].name
+      value: Pay555
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[263].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b4b435658f8190f4db9c04becb5f7e8a, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[264].name
+      value: Pay66
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[264].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b67ff3dee4396da44b4632949aebe1b5, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[265].name
+      value: Pay666
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[265].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 05c1385b37936a845b0053e119ee6dce, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[265].volume
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[265].volumeVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[265].pitchVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[266].name
+      value: Pay0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[266].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8c972bfc909ffb04baae3546953f2c3f, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[266].volume
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[266].pitchVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[267].name
+      value: Fixed
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[267].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: db88950eade903c4cbf7b605df937e9e, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[267].volume
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[268].name
+      value: Escort Out
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[268].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: e35ba08f743467a439a42ca79d12187c, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[268].volume
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[268].volumeVarience
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[268].pitchVarience
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[269].name
+      value: Airlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[269].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2a9294c726f7f7246b7b787cb7a3fa86, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[269].volumeVarience
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[269].pitchVarience
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[270].name
+      value: Auction
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[270].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 25152461874573941814b1a860162bf9, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[271].name
+      value: Mulch
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[271].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: c697f8172ddb6f641a8ced98c6c56f28, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[272].name
+      value: Bad Safari
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[272].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 894f04b282b5d6f4aa96323c0a833874, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[273].name
+      value: Not Enough Credits 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[274].name
+      value: Not Enough Credits 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[274].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: a5aad567bd3465d4d82d9e3d8755b009, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[275].name
+      value: Not Enough Credits 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[275].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: a5aad567bd3465d4d82d9e3d8755b009, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[276].name
+      value: Not Enough Energy 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[276].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: cf7e87a649df41d478f62b7a0d6769e8, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[277].name
+      value: Not Enough Energy 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[277].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b2b4f62789dc962419c342e388a65e93, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[278].name
+      value: Not Enough Energy 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[278].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b80f9ea9c52d76043bf1f4e858794721, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[279].name
+      value: Not Enough Space 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[279].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 76cc1127f01fd7543821fb86140ce41b, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[280].name
+      value: Not Enough Space 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[280].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5b50fa1eeb8b8cf409e611e5362582c3, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[280].volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[280].volumeVarience
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[280].pitchVarience
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[281].name
+      value: Not Enough Space 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[281].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: c4f40e9a780383748bcecf812130163f, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[282].name
+      value: Gain Credits
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[282].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: fd03ac14c8b01f144b74b541701d01f3, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[283].name
+      value: Gain Crew
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[283].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 52ed2e6bbe1f034478c0f4d48ee3f1de, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[284].name
+      value: Gain Energy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[284].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 87150ec3297a3024f921e6fab1da60ad, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[285].name
+      value: Gain Food
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[285].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2c1d8c5bb39370a4baf104c471d6263d, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[286].name
+      value: Gain Hull
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[286].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 379c1fdef606e5c4d83ea6c6c925d3f3, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[287].name
+      value: Gain Morale
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[287].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 95b4797713d498046af33eba78216ab6, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[288].name
+      value: Gain Weapons
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[288].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3aa23578e8fd4ab4382a1856f2eff147, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[289].name
+      value: Lose Credits
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[289].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: c5c7b6e8f32888e41b63e37f6f7406af, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[290].name
+      value: Lose Crew
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[290].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7c940082061a6c546a4f15005fb7d5c2, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[291].name
+      value: Lose Energy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[291].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b26f322d978e8b441a08413ef5b10e23, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[292].name
+      value: Lose Food
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[292].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 649dcdf5bbac1824ba27b974c394ad97, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[293].name
+      value: Lose Hull
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[293].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 14e636c81b0aa064c95b71e1a04508e1, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[294].name
+      value: Lose Morale
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[294].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0324870f76d469e49ba62549d96ff6fd, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[295].name
+      value: Lose Security
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[295].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8979e2522707fab428d31f7a96ab4995, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[295].mixer
+      value: 
+      objectReference: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[295].volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[295].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[295].volumeVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[295].pitchVarience
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[201].volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[201].volumeVarience
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[201].pitchVarience
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[204].volume
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[205].pitchVarience
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[207].volumeVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[208].volume
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[208].pitchVarience
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[211].volume
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[211].volumeVarience
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[211].pitchVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[222].volume
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[222].pitchVarience
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[225].volume
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[226].volumeVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[226].pitchVarience
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[233].volumeVarience
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[234].volume
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[236].volume
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[236].volumeVarience
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[236].pitchVarience
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[241].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: a53d5926b02cc67488cf30d2f7de980f, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[244].volume
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[244].pitchVarience
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[247].volume
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[249].volume
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[249].volumeVarience
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[249].pitchVarience
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[250].name
+      value: Grab Crank
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[250].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8145098863e9d0b4d83daa631363089c, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[252].pitchVarience
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[253].volume
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[253].volumeVarience
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[266].volumeVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[267].pitchVarience
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[269].volume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[270].volumeVarience
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[270].pitchVarience
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[273].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0d1edd662d6837747b386abd256101e9, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[281].volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[281].volumeVarience
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[281].pitchVarience
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[296].name
+      value: Lose Weapons
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[296].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 765db36a21b275040a045311352d24fc, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[296].mixer
+      value: 
+      objectReference: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[296].volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[296].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[296].volumeVarience
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: sfxTracks.Array.data[296].pitchVarience
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfd00d5985b7e774da68f5c929635ee4, type: 3}
@@ -7108,6 +8640,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ship
+      objectReference: {fileID: 0}
+    - target: {fileID: 6273300032395514628, guid: 17581060db283ed4a8d97970348901ea,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6273300032395514629, guid: 17581060db283ed4a8d97970348901ea,
         type: 3}
