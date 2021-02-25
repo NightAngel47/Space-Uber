@@ -11,21 +11,26 @@ using UnityEngine;
 
 public class CharacterEvent : InkDriverBase
 {
-    [SerializeField,Tooltip("The character that this event focuses on")] 
+    [SerializeField,Tooltip("The character that this event focuses on")]
     private CharacterStats.Characters thisCharacter = CharacterStats.Characters.None;
     [Tooltip("How many correct answers have been given")]
     private int correctAnswers;
-    [SerializeField, Tooltip("How many correct responses the player needs to get a boost")] 
+    [SerializeField, Tooltip("How many correct responses the player needs to get a boost")]
     private int requiredCorrectAnswers;
 
     [SerializeField, Tooltip("How much energy the player will gain from all correct answers")]
     private int energyBoost;
-    
+
     [SerializeField, Tooltip("How much food the player will gain from all correct answers")]
     private int foodBoost;
 
-    [HideInInspector] public bool playedOnce = false;
-    
+    private bool playedOnce = false;
+
+    public bool PlayedOnce
+    {
+        get { return playedOnce; }
+        set { playedOnce = value; }
+    }
 
     public override void Start()
     {
@@ -47,10 +52,12 @@ public class CharacterEvent : InkDriverBase
 
     /// <summary>
     /// Applies proper boost to the required room if the player gives the correct responses in a character event
+    /// Also marks this event as having been played once already
     /// </summary>
     public void EndCharacterEvent()
     {
         print("Ending this character event");
+        playedOnce = true;
 
         switch (thisCharacter)
         {
@@ -93,12 +100,12 @@ public class CharacterEvent : InkDriverBase
     {
         GameObject statChangeText = thisShip.GetComponent<ShipStatsUI>().statChangeText;
         GameObject instance = Instantiate(statChangeText);
-    
+
         RectTransform rect = instance.GetComponent<RectTransform>();
         rect.anchoredPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
         instance.transform.parent = thisShip.GetComponent<ShipStatsUI>().canvas;
-        
+
         MoveAndFadeBehaviour moveAndFadeBehaviour = instance.GetComponent<MoveAndFadeBehaviour>();
         moveAndFadeBehaviour.offset = new Vector2(0, +75);
         moveAndFadeBehaviour.SetValue(value, icon);

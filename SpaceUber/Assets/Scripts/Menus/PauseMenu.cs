@@ -19,7 +19,7 @@ public class PauseMenu : Singleton<PauseMenu>
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Menu_Main")
+        if (Input.GetKeyDown(KeyCode.Escape)) // && SceneManager.GetActiveScene().name != "Menu_Main"
         {
             CheckPaused();
         }
@@ -63,9 +63,9 @@ public class PauseMenu : Singleton<PauseMenu>
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
 
-        while (!asyncLoad.isDone) yield return null;
-
         Unpause();
+
+        while (!asyncLoad.isDone) yield return null;
     }
 
 }

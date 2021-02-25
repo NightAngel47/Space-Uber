@@ -19,12 +19,15 @@ public class AstroidMiniGame : MiniGame
 	[Tooltip("Number of times asteroids can hit the hull to lose the game.")]
 	public int damageTillFailure = 3;
 
-	private void Update()
+    private void Update()
 	{
 		if (!gameOver)
 		{
 			scoreText.text = "Astroids Remaining: " + requiredAstroids;
-			if (requiredAstroids == 0) { EndMiniGameSuccess(); }
+			if (requiredAstroids == 0)
+            {
+                EndMiniGameSuccess();
+            }
 			if (damageTillFailure == 0) { EndMiniGameFail(true); }
 		}
 	}
