@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceType: {fileID: 11400000, guid: 160c3fbb104fdc44793d026b1f6cd7ef, type: 2}
-  amount: 12
+  amount: 5
   activeAmount: 0
   minAmount: 0
 --- !u!1001 &7568809509892926143
@@ -81,20 +81,25 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: price
-      value: 60
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomDescription
-      value: 'The central hub of ship security. Increases Security based on crew
-        assigned.
+      value: 'The central hub of ship security. Increases Security.
 
-        The shape of this room is 2x1.'
+        The
+        shape of this room is 2x1.'
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomName
       value: Armory
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: flatOutput
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4570362770752095651, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
