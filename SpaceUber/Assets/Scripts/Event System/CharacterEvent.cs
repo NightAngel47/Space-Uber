@@ -13,16 +13,13 @@ public class CharacterEvent : InkDriverBase
 {
     [SerializeField,Tooltip("The character that this event focuses on")]
     private CharacterStats.Characters thisCharacter = CharacterStats.Characters.None;
+
+    [Tooltip("How many opportunities are given for players to respond"),SerializeField]
+    private int totalAnswers;
+    
     [Tooltip("How many correct answers have been given")]
     private int correctAnswers;
-    [SerializeField, Tooltip("How many correct responses the player needs to get a boost")]
-    private int requiredCorrectAnswers;
 
-    [SerializeField, Tooltip("How much energy the player will gain from all correct answers")]
-    private int energyBoost;
-
-    [SerializeField, Tooltip("How much food the player will gain from all correct answers")]
-    private int foodBoost;
 
     private bool playedOnce = false;
 
@@ -32,17 +29,21 @@ public class CharacterEvent : InkDriverBase
         set { playedOnce = value; }
     }
 
+    private enum AnswerState
+    {
+        GOOD,
+        NEUTRAL,
+        BAD
+    }
+
+    private AnswerState answersState = AnswerState.NEUTRAL;
+
     public override void Start()
     {
         base.Start();
         isCharacterEvent = true;
         isStoryEvent = false;
         playedOnce = false;
-    }
-
-    public bool SucceededEvent()
-    {
-        return correctAnswers >= requiredCorrectAnswers;
     }
 
     public void AnswerCorrectly()
@@ -59,35 +60,53 @@ public class CharacterEvent : InkDriverBase
         print("Ending this character event");
         playedOnce = true;
 
-        switch (thisCharacter)
+        if(correctAnswers == Mathf.RoundToInt(totalAnswers/2))
         {
-            case CharacterStats.Characters.KUON: //Kuon boosts security and weapons by 10%
-                int newSecurityValue = thisShip.Security + Mathf.RoundToInt(thisShip.Security * .1f);
-                int newWeaponsValue = thisShip.ShipWeapons + Mathf.RoundToInt(thisShip.ShipWeapons * .1f);
-
-                thisShip.Security = newSecurityValue;
-                thisShip.ShipWeapons = newWeaponsValue;
-
-                SpawnStatChangeText(newSecurityValue, GameManager.instance.GetResourceData((int) ResourceDataTypes._Security).resourceIcon);
-                SpawnStatChangeText(newWeaponsValue, GameManager.instance.GetResourceData((int) ResourceDataTypes._ShipWeapons).resourceIcon);
-                break;
-            case CharacterStats.Characters.MATEO: //Boosts energy
-                thisShip.EnergyRemaining += new Vector2(energyBoost, 0);
-                SpawnStatChangeText(energyBoost, GameManager.instance.GetResourceData((int) ResourceDataTypes._Energy).resourceIcon);
-                print("Adding " + energyBoost + " energy");
-                break;
-            case CharacterStats.Characters.LANRI: //boosts Food
-                thisShip.Food += foodBoost;
-                SpawnStatChangeText(foodBoost, GameManager.instance.GetResourceData((int) ResourceDataTypes._Food).resourceIcon);
-                print("Adding " + foodBoost + " food");
-                break;
-            case CharacterStats.Characters.LEXA: //gives +10 to morale
-
-                break;
-            case CharacterStats.Characters.RIPLEY: //gives +10 morale
-
-                break;
+            answersState = AnswerState.NEUTRAL;
+        }else if (correctAnswers >= Mathf.RoundToInt(totalAnswers / 2)) //more than half correct answers
+        {
+            answersState = AnswerState.GOOD;
         }
+        else if (correctAnswers <= Mathf.RoundToInt(totalAnswers / 2)) //more than half wrong answers
+        {
+            answersState = AnswerState.BAD;
+        }
+        switch(answersState)
+        {
+            case AnswerState.GOOD:
+                //TODO: Boost morale by 10
+                switch (thisCharacter)
+                {
+                    case CharacterStats.Characters.KUON: //Kuon boosts security and weapons by 10%
+                        thisShip.Security += 10;
+                        thisShip.ShipWeapons += 10;
+
+                        SpawnStatChangeText(10, GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
+                        SpawnStatChangeText(10, GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
+                        break;
+                    case CharacterStats.Characters.MATEO: //Boosts energy
+                        thisShip.EnergyRemaining += new Vector2(10, 0);
+                        SpawnStatChangeText(20, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
+                        break;
+                    case CharacterStats.Characters.LANRI: //boosts Food
+                        thisShip.Food += 20;
+                        SpawnStatChangeText(20, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
+                        print("Adding " + 20 + " food");
+                        break;
+                    case CharacterStats.Characters.LEXA: //gives +20 to morale
+
+                        break;
+                    case CharacterStats.Characters.RIPLEY: //gives +20 morale
+
+                        break;
+                }
+                break;
+            case AnswerState.NEUTRAL:
+                //TODO: Boost morale by 10
+                break;
+
+        }
+        
     }
 
     /// <summary>
