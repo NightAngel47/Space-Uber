@@ -48,12 +48,12 @@ public class ShipBuildingUIController : MonoBehaviour
     {
         objectsToSpawn = GameObject.FindGameObjectWithTag("ObjectsToSpawn");
         tab = shipBuildingTab.Credits;
-
+        UpdateRoomInfo();
     }
 
     private void Update()
     {
-        UpdateRoomInfo();
+        
 
         
 
@@ -112,36 +112,43 @@ public class ShipBuildingUIController : MonoBehaviour
     {
         tab = shipBuildingTab.Credits;
         GetRoomsToDisplay();
+        UpdateRoomInfo();
     }
     public void ToCrewTab()
     {
         tab = shipBuildingTab.Crew;
         GetRoomsToDisplay();
+        UpdateRoomInfo();
     }
     public void ToFoodTab()
     {
         tab = shipBuildingTab.Food;
         GetRoomsToDisplay();
+        UpdateRoomInfo();
     }
     public void ToHullDurabilityTab()
     {
         tab = shipBuildingTab.HullDurability;
         GetRoomsToDisplay();
+        UpdateRoomInfo();
     }
     public void ToPowerTab()
     {
         tab = shipBuildingTab.Power;
         GetRoomsToDisplay();
+        UpdateRoomInfo();
     }
     public void ToShipWeaponsTab()
     {
         tab = shipBuildingTab.ShipWeapons;
         GetRoomsToDisplay();
+        UpdateRoomInfo();
     }
     public void ToSecurityTab()
     {
         tab = shipBuildingTab.Security;
         GetRoomsToDisplay();
+        UpdateRoomInfo();
     }
 
 
