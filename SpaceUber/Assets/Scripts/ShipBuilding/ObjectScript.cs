@@ -223,7 +223,10 @@ public class ObjectScript : MonoBehaviour
         Cursor.visible = true;
 
         //buttons.SetActive(false);
-        SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
+        if(ObjectMover.hasPlaced == true)
+        {
+            SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
+        }
         ObjectMover.hasPlaced = true;
         ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
         foreach (ObjectScript r in otherRooms)
