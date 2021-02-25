@@ -14,6 +14,7 @@ public class CampaignManager : MonoBehaviour
 {
     public enum Campaigns
     {
+        NA,
         CateringToTheRich,
         MysteriousEntity,
         FinalTest
@@ -185,19 +186,12 @@ public class CampaignManager : MonoBehaviour
             NA,
             //job 1, Event 2
             KuonInvestigates,
-            //No listed titles for j2E3
+            Decline_Bribe,
+            Decline_Fire,
+            Accept,
             OpenedCargo
 
         }
-
-        public enum J2E3Variables
-        {
-            NA,
-            Decline_Bribe,
-            Decline_Fire,
-            Accept
-        }
-
         public bool me_kuonInvestigates;
         public bool me_openedCargo;
 
