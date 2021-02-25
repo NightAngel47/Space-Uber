@@ -104,6 +104,5 @@ public class CharacterStats : MonoBehaviour
         lexaApproval = lexaApprovalInit;
         lanriApproval = lanriApprovalInit;
         ripleyApproval = ripleyApprovalInit;
-
     }
 }
