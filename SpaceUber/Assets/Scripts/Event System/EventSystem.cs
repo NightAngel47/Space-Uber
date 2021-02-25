@@ -57,8 +57,13 @@ public class EventSystem : MonoBehaviour
 	[Tooltip("Initial percentage chance of rolling an event")]
 	[SerializeField] private float startingEventChance = 5;
 
-	private bool skippedToEvent;
-    private bool nextEventLockedIn;
+    /// <summary>
+    /// The percentage chance of rolling an event per failure
+    /// </summary>
+    [HideInInspector] public float chanceOfEvent;
+
+    private bool skippedToEvent;
+    public bool nextEventLockedIn;
     private float eventRollCounter;
     private float timeBeforeEventCounter;
     private Coroutine travelCoroutine;
@@ -185,12 +190,12 @@ public class EventSystem : MonoBehaviour
 			tick.StartTickUpdate();
 			sonarObjects.SetActive(true);
 			sonar.ResetSonar();
-			float chanceOfEvent = startingEventChance;
+			chanceOfEvent = startingEventChance;
 
 			//start with one big chunk of time
 			while (timeBeforeEventCounter <= timeBeforeEventRoll)
 			{
-				if (!mutiny && !chatting) // don't increment timer during mutiny
+				if (!mutiny) // don't increment timer during mutiny
 				{
 					// count up during the grace period
 					timeBeforeEventCounter += Time.deltaTime;
@@ -207,7 +212,7 @@ public class EventSystem : MonoBehaviour
             // roll for next event unless skipped to it
             while (!skippedToEvent && eventRollCounter <= eventChanceFreq)
             {
-				if(!mutiny) // check if in mutiny
+				if(!mutiny) // don't increment timer during mutiny
 				{
 					// count up for every roll
 					eventRollCounter += Time.deltaTime;
@@ -388,8 +393,10 @@ public class EventSystem : MonoBehaviour
 		}
 
         eventActive = true;
-        //Does not increment overall event index here because intro event does not increment it
-    }
+        //Does not increment overall event index because intro event does not increment it
+
+        AnalyticsManager.OnEventStarted(inkDriver, nextEventLockedIn);
+	}
 
     /// <summary>
     /// Ends the event that is currently running.
@@ -415,6 +422,7 @@ public class EventSystem : MonoBehaviour
 			mutiny = false;
 		}
 
+		AnalyticsManager.OnEventComplete(concludedEvent);
 		Destroy(eventInstance);
 
 		//Go back to travel scene

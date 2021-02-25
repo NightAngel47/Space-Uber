@@ -23,11 +23,10 @@ public class EnergyLevelStabalizeMiniGame : MiniGame
 	float[] sliderTargets = null;
 	int[] buttonSwitchTargets = null;
 
-
-	private void Start()
+    private void Start()
 	{
 		InitializeGame();
-		int goal = 50;
+        int goal = 50;
 		//Ensure starting game state doesn't start within 10 of goal
 		while (Mathf.Abs(CalculatePowerLevel() - goal) < 10) { InitializeGame(); }
 	}
@@ -46,7 +45,10 @@ public class EnergyLevelStabalizeMiniGame : MiniGame
 
 			total += 50;
 			optimizationText.text = (total + "%");
-			if (total == 100) { EndMiniGameSuccess(); }
+			if (total == 100)
+            {
+                EndMiniGameSuccess();
+            }
 		}
 	}
 
