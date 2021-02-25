@@ -25,7 +25,6 @@ public class CharacterEvent : InkDriverBase
     private int foodBoost;
 
     [HideInInspector] public bool playedOnce = false;
-    
 
     public override void Start()
     {
@@ -75,10 +74,10 @@ public class CharacterEvent : InkDriverBase
                 print("Adding " + foodBoost + " food");
                 break;
             case CharacterStats.Characters.LEXA: //gives +10 to morale
-
+            
                 break;
             case CharacterStats.Characters.RIPLEY: //gives +10 morale
-
+                
                 break;
         }
     }
