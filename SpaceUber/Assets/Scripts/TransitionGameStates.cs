@@ -10,6 +10,13 @@ using UnityEngine;
 
 public class TransitionGameStates : MonoBehaviour
 {
+    private ShipStats ship;
+    
+    private void Start()
+    {
+        ship = FindObjectOfType<ShipStats>();
+    }
+
     public void ChangeToJobSelect()
     {
         GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
@@ -18,10 +25,13 @@ public class TransitionGameStates : MonoBehaviour
     public void ChangeToShipBuilding()
     {
         GameManager.instance.ChangeInGameState(InGameStates.ShipBuilding);
+        
+        AnalyticsManager.OnEnteringStarport(ship);
     }
 
     public void ChangeToEvents()
     {
+        AnalyticsManager.OnLeavingStarport(ship);
         //TODO add overclock button turn on, currently adding it so it appears but needs to be better can remove tag when updated
         FindObjectOfType<CrewManagement>().TurnOnOverclockButton();
 
@@ -31,7 +41,7 @@ public class TransitionGameStates : MonoBehaviour
 
     public void ChangeToCrewManagement()
     {
-        FindObjectOfType<ShipStats>().cantPlaceText.SetActive(false);
+        ship.cantPlaceText.SetActive(false);
         GameManager.instance.ChangeInGameState(InGameStates.CrewManagement);
     }
     
