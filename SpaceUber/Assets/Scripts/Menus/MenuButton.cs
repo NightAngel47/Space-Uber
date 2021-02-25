@@ -2,7 +2,7 @@
  * Frank Calabrese 
  * 2/1/21
  * Contains methods used by the buttons of the menus
- * such as loading scenes and opening other panels
+ * such as starting and quitting the game
  */
 
 using System.Collections;
@@ -12,23 +12,21 @@ using UnityEngine.SceneManagement;
 
 public class MenuButton : MonoBehaviour
 {
+    [SerializeField] string sceneToLoad;
+
+    private void Start()
+    {
+        Destroy(GameObject.Find("Spot Checker"));
+    }
+
     public void quitGame()
     {
         Application.Quit();
     }
 
-    public void GoToScene(string sceneName)
+    public void startGame()
     {
-        StartCoroutine(LoadSceneAsync(sceneName));
-    }
-
-    //load scene specified in the button's inspector window
-    //change to that scene once it has loaded successfully
-    IEnumerator LoadSceneAsync(string sceneName)
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-
-        while (!asyncLoad.isDone) yield return null;
+        SceneManager.LoadScene("LoadingScreen");
     }
 
 

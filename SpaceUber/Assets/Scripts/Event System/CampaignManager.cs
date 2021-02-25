@@ -8,11 +8,118 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class CampaignManager : MonoBehaviour
 {
+    public enum Campaigns
+    {
+        CateringToTheRich,
+        MysteriousEntity,
+        FinalTest
+    }
+
+    public Campaigns currentCamp = Campaigns.CateringToTheRich;
+
     public CateringToTheRich cateringToTheRich = new CateringToTheRich();
-    
+    public MysteriousEntity mysteriousEntity = new MysteriousEntity();
+    public FinalTest finalTest = new FinalTest();
+
+    /// <summary>
+    /// Returns a list of all jobs that are available for the current campaign.
+    /// To be used in JobManager
+    /// </summary>
+    /// <returns></returns>
+    public List<Job> GetAvailableJobs()
+    {
+        List<Job> available = new List<Job>();
+        switch (currentCamp)
+        {
+            case Campaigns.CateringToTheRich:
+                available = cateringToTheRich.campaignJobs;
+                break;
+            case Campaigns.MysteriousEntity:
+                available = mysteriousEntity.campaignJobs;
+                break;
+            case Campaigns.FinalTest:
+                available = finalTest.campaignJobs;
+                break;
+        }
+
+        return available;
+    }
+
+    public int GetCurrentCampaignIndex()
+    {
+        int index = 0;
+        switch (currentCamp)
+        {
+            case Campaigns.CateringToTheRich:
+                index = cateringToTheRich.currentCampaignJobIndex;
+                break;
+            case Campaigns.MysteriousEntity:
+                index = mysteriousEntity.currentCampaignJobIndex;
+                break;
+            case Campaigns.FinalTest:
+                index = finalTest.currentCampaignJobIndex;
+                break;
+        }
+        return index;
+    }
+
+    public void GoToNextCampaign()
+    {
+        switch(currentCamp)
+        {
+            case Campaigns.CateringToTheRich:
+                currentCamp = Campaigns.MysteriousEntity;
+                break;
+            case Campaigns.MysteriousEntity:
+                currentCamp = Campaigns.FinalTest;
+                break;
+            case Campaigns.FinalTest:
+                //do ending stuff
+                break;
+        }
+    }
+    public void GoToNextJob()
+    {
+        switch (currentCamp)
+        {
+            case Campaigns.CateringToTheRich:
+                cateringToTheRich.currentCampaignJobIndex++;
+
+                if (finalTest.currentCampaignJobIndex > 3)
+                {
+                    GoToNextCampaign();
+                }
+                break;
+
+            case Campaigns.MysteriousEntity:
+                mysteriousEntity.currentCampaignJobIndex++;
+                
+                if (finalTest.currentCampaignJobIndex > 3)
+                {
+                    GoToNextCampaign();
+                }
+                break;
+
+            case Campaigns.FinalTest:
+                finalTest.currentCampaignJobIndex++;
+                
+                if(finalTest.currentCampaignJobIndex > 3)
+                {
+                    //ENd game
+                }
+                break;
+        }
+    }
+
+    public void AlterNarrativeVariable(MysteriousEntity.NarrativeVariables meMainOutcomes, string newText)
+    {
+
+    }
+
     [Serializable]
     public class CateringToTheRich
     {
@@ -65,5 +172,62 @@ public class CampaignManager : MonoBehaviour
             ctr_VIPTrust = saved_ctr_VIPTrust;
             ctr_cloneTrust = saved_ctr_cloneTrust;
         }
+    }
+
+    [Serializable]
+    public class MysteriousEntity
+    {
+        [HideInInspector] public int currentCampaignJobIndex = 0;
+        public List<Job> campaignJobs = new List<Job>();
+
+        public enum NarrativeVariables
+        {
+            NA,
+            //job 1, Event 2
+            KuonInvestigates,
+            //No listed titles for j2E3
+            OpenedCargo
+
+        }
+
+        public enum J2E3Variables
+        {
+            NA,
+            Decline_Bribe,
+            Decline_Fire,
+            Accept
+        }
+
+        public bool me_kuonInvestigates;
+        public bool me_openedCargo;
+
+        public bool me_declineBribe;
+        public bool me_declineFire;
+        public bool me_Accept;
+
+    }
+
+    [Serializable]
+    public class FinalTest
+    {
+        [HideInInspector] public int currentCampaignJobIndex = 0;
+        public List<Job> campaignJobs = new List<Job>();
+
+        public int assetCount = 0;
+        public enum NarrativeVariables
+        {
+            NA,
+            LexaDoomed,
+            LanriExperiment,
+            TruthTold,
+            ScienceSavior,
+            KellisLoyalty
+        }
+
+        public bool ft_lexaDoomed;
+        public bool ft_lanriExperiment;
+        public bool ft_truthTold;
+        public bool ft_scienceSavior;
+        public bool ft_kellisLoyalty;
     }
 }
