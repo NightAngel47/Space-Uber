@@ -81,8 +81,7 @@ public class EventSystem : MonoBehaviour
 	[HideInInspector] public bool chatting = false; //Whether or not the player is talking to a character
 	[HideInInspector] public bool mutiny;
 
-	[SerializeField, Tooltip("The maximum cooldown for a character chat in ticks.")] public int chatCooldown;
-	private int daysSinceChat;
+	[SerializeField, Tooltip("The maximum cooldown for a character chat in ticks.")] public int chatCooldown = 3;
 
 	private void Awake()
 	{
@@ -386,7 +385,7 @@ public class EventSystem : MonoBehaviour
 		{
 			isRegularEvent = false;
 			chatting = false;
-			daysSinceChat = 0;
+			tick.DaysSinceChat = 0;
 			eventInstance.GetComponent<CharacterEvent>().EndCharacterEvent();
 		}
 		else if (concludedEvent.isMutinyEvent)
@@ -446,8 +445,8 @@ public class EventSystem : MonoBehaviour
 		eventActive = false;
 		eventRollCounter = 0;
 		timeBeforeEventCounter = 0;
-		daysSinceChat = 0;
-		if(travelCoroutine != null) StopCoroutine(travelCoroutine);
+		tick.DaysSinceChat = 0;
+		if (travelCoroutine != null) StopCoroutine(travelCoroutine);
 		tick.StopTickUpdate();
 	}
 
@@ -465,7 +464,7 @@ public class EventSystem : MonoBehaviour
 		eventActive = false;
 		eventRollCounter = 0;
 		timeBeforeEventCounter = 0;
-		daysSinceChat = 0;
+		tick.DaysSinceChat = 0;
 		if(travelCoroutine != null) StopCoroutine(travelCoroutine);
 	}
 
@@ -642,7 +641,7 @@ public class EventSystem : MonoBehaviour
 	public bool CanChat(List<GameObject> checkEvents)
 	{
 		//If chat has cooleddown
-		if (daysSinceChat < chatCooldown)
+		if (tick.DaysSinceChat < chatCooldown)
 		{
 			return false;
 		}

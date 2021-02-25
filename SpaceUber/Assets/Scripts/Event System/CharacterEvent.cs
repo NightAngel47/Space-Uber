@@ -71,6 +71,7 @@ public class CharacterEvent : InkDriverBase
         {
             answersState = AnswerState.BAD;
         }
+
         switch(answersState)
         {
             case AnswerState.GOOD:
@@ -85,24 +86,51 @@ public class CharacterEvent : InkDriverBase
                         SpawnStatChangeText(10, GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
                         break;
                     case CharacterStats.Characters.MATEO: //Boosts energy
-                        thisShip.EnergyRemaining += new Vector2(10, 0);
+                        thisShip.EnergyRemaining += new Vector2(20, 0);
                         SpawnStatChangeText(20, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
                         break;
                     case CharacterStats.Characters.LANRI: //boosts Food
                         thisShip.Food += 20;
                         SpawnStatChangeText(20, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
-                        print("Adding " + 20 + " food");
                         break;
-                    case CharacterStats.Characters.LEXA: //gives +20 to morale
+                    case CharacterStats.Characters.LEXA: //gives +10 to morale
 
                         break;
-                    case CharacterStats.Characters.RIPLEY: //gives +20 morale
+                    case CharacterStats.Characters.RIPLEY: //gives +10 morale
 
                         break;
                 }
                 break;
             case AnswerState.NEUTRAL:
                 //TODO: Boost morale by 10
+                break;
+
+            case AnswerState.BAD:
+                //toDO: lose ten morale
+                switch (thisCharacter)
+                {
+                    case CharacterStats.Characters.KUON: //Kuon boosts security and weapons by 10%
+                        thisShip.Security -= 10;
+                        thisShip.ShipWeapons -= 10;
+
+                        SpawnStatChangeText(-10, GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
+                        SpawnStatChangeText(-10, GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
+                        break;
+                    case CharacterStats.Characters.MATEO: //Boosts energy
+                        thisShip.EnergyRemaining += new Vector2(-20, 0);
+                        SpawnStatChangeText(20, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
+                        break;
+                    case CharacterStats.Characters.LANRI: //boosts Food
+                        thisShip.Food -= 20;
+                        SpawnStatChangeText(-20, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
+                        break;
+                    case CharacterStats.Characters.LEXA: //gives -10 to morale
+
+                        break;
+                    case CharacterStats.Characters.RIPLEY: //gives -10 morale
+
+                        break;
+                }
                 break;
 
         }
