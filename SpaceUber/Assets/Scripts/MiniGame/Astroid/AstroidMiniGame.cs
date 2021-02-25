@@ -19,7 +19,7 @@ public class AstroidMiniGame : MiniGame
 	[Tooltip("Number of times asteroids can hit the hull to lose the game.")]
 	public int damageTillFailure = 3;
 
-	private void Update()
+    private void Update()
 	{
 		if (!gameOver)
 		{

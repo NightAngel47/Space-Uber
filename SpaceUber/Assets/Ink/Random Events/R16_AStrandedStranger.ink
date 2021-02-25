@@ -1,0 +1,10 @@
+Your ship intercepts a curious distress signal, coming not from another ship, but from an escape pod. As you approach the source of the signal you catch a glimpse of the pod, floating in solitude amongst the stars. A communications channel is opened and the person in the pod speaks through garbled static. “Lost...kicked out...looking for help…”. It only takes a  few moments to dock the pod and soon the doors open. Out steps a middle-aged man, whose face is lined with dark stubble and subtle scars. His body is adorned with a dark jacket and a few knives. He appears to be incredibly fit for his age. “Thanks, I must've been in that thing for at least a few days. Now I'll cut straight to the chase, I'm looking for work. You hiring?” Kuon seems opposed, “Hold on. Just who are you, why were you the only one in that pod, and why did you think it necessary to bring weapons with you?” The man chuckles in response, “Listen skippy, the fewer questions you ask the better off everyone will be.” You can see the veins in Kuon's forehead start to throb, but it seems the decision is up to you.
++[Hire Him]->Hire
++[Decline His Offer]->Decline
+
+== Hire ==
+The man smiles wryly, “Good choice. Treat me better than my last crew and I promise to make it worth your while.” This does little to assuage Kuon, but he begrudgingly accepts your decision. The man settles into a bunk and begins cleaning his nails with one of his many knives. You press on.
+->DONE
+== Decline ==
+The man lets out a heavy sigh, “I understand, we only just met after all. Still, thanks for rescuing me. Just drop me off wherever I guess…” He settles into a bunk and turns away from the rest of the crew. Eventually, you find a refueling station and he departs from your ship. “Thanks again for everything, and then some.” He gives a sly wink as the landing ramp retracts. It wasn't until slightly later that you realize he made off with some of your food reserves. An unfortunate outcome, but not entirely unexpected. You continue on your journey.
+->DONE
