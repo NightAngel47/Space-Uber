@@ -187,6 +187,9 @@ public class ObjectScript : MonoBehaviour
     {
         Cursor.visible = false;
 
+        //rooms being placed will appear on top of other rooms that are already placed
+        gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+
         c.a = .5f;
         gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
         c.a = 1;
