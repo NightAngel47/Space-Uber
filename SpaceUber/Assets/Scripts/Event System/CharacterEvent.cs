@@ -13,41 +13,39 @@ public class CharacterEvent : InkDriverBase
 {
     [SerializeField,Tooltip("The character that this event focuses on")]
     private CharacterStats.Characters thisCharacter = CharacterStats.Characters.None;
-    [Tooltip("How many correct answers have been given")]
-    private int correctAnswers;
-    [SerializeField, Tooltip("How many correct responses the player needs to get a boost")]
-    private int requiredCorrectAnswers;
 
-    [SerializeField, Tooltip("How much energy the player will gain from all correct answers")]
-    private int energyBoost;
+    [Tooltip("The total approval from this character")]
+    private int characterApproval = 50;
 
-    [SerializeField, Tooltip("How much food the player will gain from all correct answers")]
-    private int foodBoost;
+    [Tooltip("The starting level of approval for this event"), SerializeField]
+    private int startingApproval;
 
-    private bool playedOnce = false;
+    [Tooltip("The minimum approval for a good outcome"), SerializeField]
+    private int goodApprovalMin;
 
-    public bool PlayedOnce
+    [Tooltip("Maximum approval for a bad outcome"), SerializeField]
+    private int badApprovalMax;
+
+    private enum AnswerState
     {
-        get { return playedOnce; }
-        set { playedOnce = value; }
+        GOOD,
+        NEUTRAL,
+        BAD
     }
+
+    private AnswerState answersState = AnswerState.NEUTRAL;
 
     public override void Start()
     {
         base.Start();
         isCharacterEvent = true;
         isStoryEvent = false;
-        playedOnce = false;
+        characterApproval = 50;
     }
 
-    public bool SucceededEvent()
+    public void ChangeEventApproval(int change)
     {
-        return correctAnswers >= requiredCorrectAnswers;
-    }
-
-    public void AnswerCorrectly()
-    {
-        ++correctAnswers;
+        characterApproval += change;
     }
 
     /// <summary>
@@ -57,37 +55,83 @@ public class CharacterEvent : InkDriverBase
     public void EndCharacterEvent()
     {
         print("Ending this character event");
-        playedOnce = true;
 
-        switch (thisCharacter)
+        if(characterApproval >= goodApprovalMin)
         {
-            case CharacterStats.Characters.KUON: //Kuon boosts security and weapons by 10%
-                int newSecurityValue = thisShip.Security + Mathf.RoundToInt(thisShip.Security * .1f);
-                int newWeaponsValue = thisShip.ShipWeapons + Mathf.RoundToInt(thisShip.ShipWeapons * .1f);
-
-                thisShip.Security = newSecurityValue;
-                thisShip.ShipWeapons = newWeaponsValue;
-
-                SpawnStatChangeText(newSecurityValue, GameManager.instance.GetResourceData((int) ResourceDataTypes._Security).resourceIcon);
-                SpawnStatChangeText(newWeaponsValue, GameManager.instance.GetResourceData((int) ResourceDataTypes._ShipWeapons).resourceIcon);
-                break;
-            case CharacterStats.Characters.MATEO: //Boosts energy
-                thisShip.EnergyRemaining += new Vector2(energyBoost, 0);
-                SpawnStatChangeText(energyBoost, GameManager.instance.GetResourceData((int) ResourceDataTypes._Energy).resourceIcon);
-                print("Adding " + energyBoost + " energy");
-                break;
-            case CharacterStats.Characters.LANRI: //boosts Food
-                thisShip.Food += foodBoost;
-                SpawnStatChangeText(foodBoost, GameManager.instance.GetResourceData((int) ResourceDataTypes._Food).resourceIcon);
-                print("Adding " + foodBoost + " food");
-                break;
-            case CharacterStats.Characters.LEXA: //gives +10 to morale
-
-                break;
-            case CharacterStats.Characters.RIPLEY: //gives +10 morale
-
-                break;
+            answersState = AnswerState.GOOD;
         }
+        else if (characterApproval < badApprovalMax)
+        {
+            answersState = AnswerState.BAD;
+        }
+        else
+        {
+            answersState = AnswerState.NEUTRAL;
+        }
+
+        switch(answersState)
+        {
+            case AnswerState.GOOD:
+                MoraleManager.instance.CrewMorale += 10;
+                switch (thisCharacter)
+                {
+                    case CharacterStats.Characters.KUON: //Kuon boosts security and weapons by 10%
+                        thisShip.Security += 10;
+                        thisShip.ShipWeapons += 10;
+
+                        SpawnStatChangeText(10, GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
+                        SpawnStatChangeText(10, GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
+                        break;
+                    case CharacterStats.Characters.MATEO: //Boosts energy
+                        thisShip.EnergyRemaining += new Vector2(20, 0);
+                        SpawnStatChangeText(20, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
+                        break;
+                    case CharacterStats.Characters.LANRI: //boosts Food
+                        thisShip.Food += 20;
+                        SpawnStatChangeText(20, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
+                        break;
+                    case CharacterStats.Characters.LEXA: //gives +10 to morale
+                        MoraleManager.instance.CrewMorale += 10;
+                        break;
+                    case CharacterStats.Characters.RIPLEY: //gives +10 morale
+                        MoraleManager.instance.CrewMorale += 10;
+                        break;
+                }
+                break;
+            case AnswerState.NEUTRAL:
+                MoraleManager.instance.CrewMorale += 10;
+                break;
+
+            case AnswerState.BAD:
+                MoraleManager.instance.CrewMorale -= 10;
+                switch (thisCharacter)
+                {
+                    case CharacterStats.Characters.KUON: //Kuon boosts security and weapons by 10%
+                        thisShip.Security -= 10;
+                        thisShip.ShipWeapons -= 10;
+
+                        SpawnStatChangeText(-10, GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
+                        SpawnStatChangeText(-10, GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
+                        break;
+                    case CharacterStats.Characters.MATEO: //Boosts energy
+                        thisShip.EnergyRemaining += new Vector2(-20, 0);
+                        SpawnStatChangeText(20, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
+                        break;
+                    case CharacterStats.Characters.LANRI: //boosts Food
+                        thisShip.Food -= 20;
+                        SpawnStatChangeText(-20, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
+                        break;
+                    case CharacterStats.Characters.LEXA: //gives -10 to morale
+                        MoraleManager.instance.CrewMorale -= 10;
+                        break;
+                    case CharacterStats.Characters.RIPLEY: //gives -10 morale
+                        MoraleManager.instance.CrewMorale -= 10;
+                        break;
+                }
+                break;
+
+        }
+        
     }
 
     /// <summary>
