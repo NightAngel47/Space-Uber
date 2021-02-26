@@ -216,7 +216,7 @@ public class ObjectMover : MonoBehaviour
 
                 Cursor.visible = true;
                 //HOVER UI does not happen when mouse is hidden
-                //StartCoroutine(os.WaitToClickRoom());
+                StartCoroutine(os.WaitToClickRoom());
 
                 gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = ObjectScript.c;
                 gameObject.GetComponent<ObjectMover>().enabled = false;

@@ -60,6 +60,8 @@ public class ObjectScript : MonoBehaviour
 
     public bool clickAgain = true;
 
+    private bool mouseReleased = false;
+
     private void Start()
     {
         //rotAdjust = false;
@@ -102,7 +104,10 @@ public class ObjectScript : MonoBehaviour
 
     public void OnMouseUp()
     {
-        StartCoroutine(WaitToClickRoom());
+        //StartCoroutine(WaitToClickRoom());
+        //clickAgain = true;
+
+        mouseReleased = true;
     }
 
     public void OnMouseOver()
@@ -172,6 +177,7 @@ public class ObjectScript : MonoBehaviour
             r.TurnOffClickAgain();
         }
 
+        yield return new WaitUntil(() => mouseReleased);
         yield return new WaitForSeconds(.25f);
 
         foreach (ObjectScript r in otherRooms)
@@ -191,6 +197,7 @@ public class ObjectScript : MonoBehaviour
     public void Edit()
     {
         Cursor.visible = false;
+        clickAgain = false;
 
         //rooms being placed will appear on top of other rooms that are already placed
         gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
@@ -226,9 +233,10 @@ public class ObjectScript : MonoBehaviour
     public void Delete()
     {
         Cursor.visible = true;
+        clickAgain = false;
 
         //buttons.SetActive(false);
-        if(ObjectMover.hasPlaced == true)
+        if (ObjectMover.hasPlaced == true)
         {
             SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
         }
