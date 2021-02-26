@@ -1,0 +1,448 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8773465804254390566
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[2].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: eventName
+      value: A Discussion with Ripley
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: backgroundImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 06d21e773fff8874d87a91c713d66f27,
+        type: 3}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: thisCharacter
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: inkJSONAsset
+      value: 
+      objectReference: {fileID: 4900000, guid: 8716bbb33101525449be5bb0274bbed4, type: 3}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: eventBGM
+      value: General Theme
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].choiceName
+      value: Admit to the fact that you are incapable of feeling emotion, but mention
+        that your programming allows you to understand why someone would feel a certain
+        way
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].outcomeName
+      value: Positive
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].isApprovalOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].eventApprovalChange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].hasSubsequentChoices
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].choiceName
+      value: Confess that you cannot feel emotion, but let her know you would still
+        like to assist her
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[0].outcomeName
+      value: Neutral
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[0].isApprovalOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].choiceName
+      value: Inform her that you have no need for emotions and that regardless of
+        the circumstances you will assist in her decision. After all, you run the
+        ship.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].outcomes.Array.data[0].outcomeName
+      value: Negative
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].outcomes.Array.data[0].isApprovalOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].outcomes.Array.data[0].eventApprovalChange
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].hasSubsequentChoices
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].hasSubsequentChoices
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: hasSubsequentChoices
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].subsequentChoicesName
+      value: '#2'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].subsequentChoicesName
+      value: '#3'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceName
+      value: "Agree that it shouldn\u2019t matter, but advise she let him in. What\u2019s
+        the harm?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[0].outcomeName
+      value: Neutral
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[0].isApprovalOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].hasSubsequentChoices
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].subsequentChoiceIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].choiceName
+      value: "Shoo the man away, his friend is dead and he\u2019s not coming back"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.data[0].outcomeName
+      value: Negative
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.data[0].isApprovalOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.data[0].eventApprovalChange
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].hasSubsequentChoices
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].subsequentChoiceIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].choiceName
+      value: "Explain that it\u2019s still important to gain a sense of closure when
+        someone you care about passes away. Otherwise, it could lead to mental health
+        problems down the road."
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].outcomes.Array.data[0].outcomeName
+      value: Positive
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].outcomes.Array.data[0].isApprovalOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].outcomes.Array.data[0].eventApprovalChange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].hasSubsequentChoices
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].subsequentChoiceIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].choiceName
+      value: 'Agree that such activities carry no intrinsic value, after all, the
+        departed all leave the ship the same way: through the airlock.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].outcomes.Array.data[0].outcomeName
+      value: Negative
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].outcomes.Array.data[0].isApprovalOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].outcomes.Array.data[0].eventApprovalChange
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].choiceName
+      value: "Mention that while you both see no real point to such formalities,
+        it couldn\u2019t hurt to consider"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].outcomes.Array.data[0].outcomeName
+      value: Neutral
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].outcomes.Array.data[0].isApprovalOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[2].choiceName
+      value: "Explain that how she feels is ultimately irrelevant. What\u2019s important
+        is how such a ceremony would assist in the grieving process."
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[2].outcomes.Array.data[0].outcomeName
+      value: Positive
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: goodApprovalMin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: badApprovalMax
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593567, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_Name
+      value: A DIscussion with Ripley
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 52a7a344084ef654789f7ca96de3299c, type: 3}
