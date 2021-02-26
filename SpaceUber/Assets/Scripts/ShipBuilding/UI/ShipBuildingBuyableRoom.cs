@@ -31,7 +31,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         needsCredits.text = "" + roomPrefab.GetComponent<RoomStats>().price;
         needsPower.text = "" + roomPrefab.GetComponent<RoomStats>().minPower;
         needsCrew.text = "" + roomPrefab.GetComponent<RoomStats>().minCrew;
-        producesResource.text = roomPrefab.GetComponent<Resource>().resourceType.name;
+        producesResource.text = roomPrefab.GetComponent<Resource>().resourceType.resourceName;
         producesAmount.text = "" + roomPrefab.GetComponent<Resource>().amount;
     }
 
