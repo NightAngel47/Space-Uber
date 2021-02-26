@@ -59,9 +59,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
+      propertyPath: roomEvents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
       propertyPath: miniGame
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: hasEvents
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: roomEvents.Array.data[0]
+      value: 
+      objectReference: {fileID: 3614183300006707724, guid: a2a2021758622a44d85d1ed2e42a49c7,
+        type: 3}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: price
@@ -162,7 +178,7 @@ PrefabInstance:
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: Placements.Array.size
-      value: 45
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -172,7 +188,7 @@ PrefabInstance:
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: Placements.Array.data[0]
-      value: Arp 1
+      value: Place Armor 1
       objectReference: {fileID: 0}
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -197,12 +213,12 @@ PrefabInstance:
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: Placements.Array.data[1]
-      value: Arp 2
+      value: Place Armor 2
       objectReference: {fileID: 0}
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: Placements.Array.data[2]
-      value: Arp 3
+      value: Place Armor 3
       objectReference: {fileID: 0}
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
