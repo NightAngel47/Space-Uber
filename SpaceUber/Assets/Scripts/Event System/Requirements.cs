@@ -55,22 +55,25 @@ public class Requirements
     #endregion
 
     #region Narrative Requirement Variables
-
-    #region Catering to the Rich
+    
     [Tooltip("If the requirement is narrative-based")]
     [SerializeField, AllowNesting]
     private bool isNarrativeRequirement = false;
 
-    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private CampaignManager.Campaigns thisCampaign 
+    [SerializeField, ShowIf("isNarrativeRequirement"), AllowNesting]
+    private CampaignManager.Campaigns thisCampaign
         = CampaignManager.Campaigns.CateringToTheRich;
+
+    #region Catering to the Rich
+
 
     [FormerlySerializedAs("ctrBoolRequirements")]
     [Tooltip("Select one item from this dropdown list. The selected variable must be true for this event to run"),
-     SerializeField, ShowIf("IsCateringToTheRich"), AllowNesting]
+     SerializeField, ShowIf(EConditionOperator.And, "isNarrativeRequirement", "IsCateringToTheRich"), AllowNesting]
     private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrNarrativeOutcomes;
 
     [Tooltip("Click this if you would like to check trust variables for Catering to the Rich")]
-    [SerializeField, ShowIf("IsCateringToTheRich"), AllowNesting]
+    [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeRequirement", "IsCateringToTheRich"), AllowNesting]
     private bool ctrTrustRequirements = false;
 
     [Tooltip("The minimum trust the clones must have in the player")]
@@ -83,22 +86,16 @@ public class Requirements
     #endregion
 
     #region Mysterious Entity Narrative Variables
-    [Tooltip("Will this use the basic narrative booleans for Mysterious Entity, or the ones for Job 2, Event 3"),
-     SerializeField, ShowIf("IsMysteriousEntity"), AllowNesting]
-    private bool meBasicNarrativeBools = true;
 
     [Tooltip("Select one item from this dropdown list. The selected variable must be true for this event to run"),
-    SerializeField, ShowIf("meBasicNarrativeBools"), AllowNesting]
-    private CampaignManager.MysteriousEntity.NarrativeVariables meBasicOutcomes = CampaignManager.MysteriousEntity.NarrativeVariables.NA;
+    SerializeField, ShowIf("IsMysteriousEntity"), AllowNesting]
+    private CampaignManager.MysteriousEntity.NarrativeVariables meNarrativeRequirements = CampaignManager.MysteriousEntity.NarrativeVariables.NA;
 
-    [Tooltip("Select one item from this dropdown list. The selected variable must be true for this event to run"),
-    SerializeField, HideIf("meBasicNarrativeBools"), AllowNesting]
-    private CampaignManager.MysteriousEntity.J2E3Variables meJ2E3Outcomes = CampaignManager.MysteriousEntity.J2E3Variables.NA;
     #endregion
 
     #region Final Test narrative variables
         [Tooltip("Select one item from this dropdown list. The selected variable must be true for this event to run"),
-         SerializeField, HideIf("ftAssetCheck"), AllowNesting]
+         SerializeField, ShowIf("IsFinalTest"), AllowNesting]
         private CampaignManager.FinalTest.NarrativeVariables ftOutcomes = CampaignManager.FinalTest.NarrativeVariables.NA;
 
         [Tooltip("Check this if this is an asset count requirement"),
@@ -259,33 +256,25 @@ public class Requirements
                     break;
 
                 case CampaignManager.Campaigns.MysteriousEntity:
-                    if (meBasicNarrativeBools)
+                    switch (meNarrativeRequirements)
                     {
-                        switch (meBasicOutcomes)
-                        {
-                            case CampaignManager.MysteriousEntity.NarrativeVariables.OpenedCargo:
-                                result = campMan.mysteriousEntity.me_openedCargo;
-                                break;
-                            case CampaignManager.MysteriousEntity.NarrativeVariables.KuonInvestigates:
-                                result = campMan.mysteriousEntity.me_kuonInvestigates;
-                                break;
-                        }
+                        case CampaignManager.MysteriousEntity.NarrativeVariables.OpenedCargo:
+                            result = campMan.mysteriousEntity.me_openedCargo;
+                            break;
+                        case CampaignManager.MysteriousEntity.NarrativeVariables.KuonInvestigates:
+                            result = campMan.mysteriousEntity.me_kuonInvestigates;
+                            break;
+                        case CampaignManager.MysteriousEntity.NarrativeVariables.Accept:
+                            result = campMan.mysteriousEntity.me_Accept;
+                            break;
+                        case CampaignManager.MysteriousEntity.NarrativeVariables.Decline_Bribe:
+                            result = campMan.mysteriousEntity.me_declineBribe;
+                            break;
+                        case CampaignManager.MysteriousEntity.NarrativeVariables.Decline_Fire:
+                            result = campMan.mysteriousEntity.me_declineFire;
+                            break;
                     }
-                    else
-                    {
-                        switch (meJ2E3Outcomes)
-                        {
-                            case CampaignManager.MysteriousEntity.J2E3Variables.Accept:
-                                result = campMan.mysteriousEntity.me_Accept;
-                                break;
-                            case CampaignManager.MysteriousEntity.J2E3Variables.Decline_Bribe:
-                                result = campMan.mysteriousEntity.me_declineBribe;
-                                break;
-                            case CampaignManager.MysteriousEntity.J2E3Variables.Decline_Fire:
-                                result = campMan.mysteriousEntity.me_declineFire;
-                                break;
-                        }
-                    }
+                 
                     break;
 
                 case CampaignManager.Campaigns.FinalTest:

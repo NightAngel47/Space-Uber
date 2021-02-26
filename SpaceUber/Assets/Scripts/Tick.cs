@@ -15,6 +15,7 @@ public class Tick : MonoBehaviour
     
     // days since variables
     private int daysSince;
+    private int daysSinceChat;
     private TMP_Text daysSinceDisplay;
 
     public void Awake()
@@ -71,6 +72,7 @@ public class Tick : MonoBehaviour
 
                 // increment days since events
                 DaysSince++;
+                daysSinceChat++;
 
                 MoraleManager.instance.CheckMutiny();
 
@@ -97,6 +99,15 @@ public class Tick : MonoBehaviour
         {
             daysSince = value;
             if(daysSinceDisplay != null) daysSinceDisplay.text = daysSince.ToString();
+        }
+    }
+
+    public int DaysSinceChat
+    {
+        get => daysSinceChat;
+        set
+        {
+            daysSince = value;
         }
     }
 }
