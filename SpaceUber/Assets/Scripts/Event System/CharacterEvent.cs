@@ -14,12 +14,17 @@ public class CharacterEvent : InkDriverBase
     [SerializeField,Tooltip("The character that this event focuses on")]
     private CharacterStats.Characters thisCharacter = CharacterStats.Characters.None;
 
-    [Tooltip("How many opportunities are given for players to respond"),SerializeField]
-    private int totalAnswers;
-    
-    [Tooltip("How many correct answers have been given")]
-    private int correctAnswers;
+    [Tooltip("The total approval from this character")]
+    private int characterApproval = 50;
 
+    [Tooltip("The starting level of approval for this event"), SerializeField]
+    private int startingApproval;
+
+    [Tooltip("The minimum approval for a good outcome"), SerializeField]
+    private int goodApprovalMin;
+
+    [Tooltip("Maximum approval for a bad outcome"), SerializeField]
+    private int badApprovalMax;
 
     private enum AnswerState
     {
@@ -35,11 +40,12 @@ public class CharacterEvent : InkDriverBase
         base.Start();
         isCharacterEvent = true;
         isStoryEvent = false;
+        characterApproval = 50;
     }
 
-    public void AnswerCorrectly()
+    public void ChangeEventApproval(int change)
     {
-        ++correctAnswers;
+        characterApproval += change;
     }
 
     /// <summary>
@@ -50,17 +56,17 @@ public class CharacterEvent : InkDriverBase
     {
         print("Ending this character event");
 
-
-        if(correctAnswers == Mathf.RoundToInt(totalAnswers/2))
-        {
-            answersState = AnswerState.NEUTRAL;
-        }else if (correctAnswers >= Mathf.RoundToInt(totalAnswers / 2)) //more than half correct answers
+        if(characterApproval >= goodApprovalMin)
         {
             answersState = AnswerState.GOOD;
         }
-        else if (correctAnswers <= Mathf.RoundToInt(totalAnswers / 2)) //more than half wrong answers
+        else if (characterApproval < badApprovalMax)
         {
             answersState = AnswerState.BAD;
+        }
+        else
+        {
+            answersState = AnswerState.NEUTRAL;
         }
 
         switch(answersState)

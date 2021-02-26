@@ -30,9 +30,8 @@ public class ChoiceOutcomes
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public ResourceDataTypes resource;
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public int amount;
 
-    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character = CharacterStats.Characters.None;
-    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public int approvalChange;
-    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public bool correctAnswer;
+    //[SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character = CharacterStats.Characters.None;
+    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public int eventApprovalChange;
     [HideInInspector] public CharacterEvent characterDriver;
 
     #region Initialized Narrative Variables
@@ -377,29 +376,27 @@ public class ChoiceOutcomes
             }
             else //approval outcomes
             {
-                if(correctAnswer)
-                {
-                    characterDriver.AnswerCorrectly();
-                }
+                characterDriver.ChangeEventApproval(eventApprovalChange);
 
-                switch (character)
-                {
-                    case CharacterStats.Characters.KUON:
-                        ship.cStats.KuonApproval += approvalChange;
-                        break;
-                    case CharacterStats.Characters.MATEO:
-                        ship.cStats.MateoApproval += approvalChange;
-                        break;
-                    case CharacterStats.Characters.LANRI:
-                        ship.cStats.LanriApproval += approvalChange;
-                        break;
-                    case CharacterStats.Characters.LEXA:
-                        ship.cStats.LexaApproval += approvalChange;
-                        break;
-                    case CharacterStats.Characters.RIPLEY:
-                        ship.cStats.RipleyApproval += approvalChange;
-                        break;
-                }
+                //TODO: Changes character specific approval. To be implemented as someone sees fit
+                //switch (character)
+                //{
+                //    case CharacterStats.Characters.KUON:
+                //        ship.cStats.KuonApproval += approvalChange;
+                //        break;
+                //    case CharacterStats.Characters.MATEO:
+                //        ship.cStats.MateoApproval += approvalChange;
+                //        break;
+                //    case CharacterStats.Characters.LANRI:
+                //        ship.cStats.LanriApproval += approvalChange;
+                //        break;
+                //    case CharacterStats.Characters.LEXA:
+                //        ship.cStats.LexaApproval += approvalChange;
+                //        break;
+                //    case CharacterStats.Characters.RIPLEY:
+                //        ship.cStats.RipleyApproval += approvalChange;
+                //        break;
+                //}
             }
 
             if(!hasSubsequentChoices) //do at the end of the event
