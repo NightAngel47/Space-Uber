@@ -24,6 +24,9 @@ public class CharacterEvent : InkDriverBase
     [SerializeField, Tooltip("How much food the player will gain from all correct answers")]
     private int foodBoost;
 
+    [SerializeField, Tooltip("Percent to increase the frequency of an event showing up after finishing a character event")]
+    private float characterPercentIncrease = 5;
+
     [HideInInspector] public bool playedOnce = false;
     
 
@@ -81,6 +84,7 @@ public class CharacterEvent : InkDriverBase
 
                 break;
         }
+        EventSystem.instance.chanceOfEvent += characterPercentIncrease;
     }
 
     /// <summary>
