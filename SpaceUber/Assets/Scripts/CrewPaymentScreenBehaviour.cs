@@ -17,19 +17,6 @@ public class CrewPaymentScreenBehaviour : MonoBehaviour
     {
         // pay crew
         ship.PayCrew(amount);
-        
-        // continue to next job, or end game
-        if(campaignManager.cateringToTheRich.currentCampaignJobIndex < campaignManager.cateringToTheRich.campaignJobs.Count)
-        {
-            GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
-        }
-        else if(false)
-        {
-            // once the campaignManager refactor is done there should be an option here to continue to the next campaign
-        }
-        else
-        {
-            GameManager.instance.ChangeInGameState(InGameStates.MoneyEnding);
-        }
+        campaignManager.GoToNextJob(); //tells campaign manager to activate the next available job
     }
 }

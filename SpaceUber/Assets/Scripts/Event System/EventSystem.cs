@@ -60,7 +60,7 @@ public class EventSystem : MonoBehaviour
     [HideInInspector] public float chanceOfEvent;
 
     private bool skippedToEvent;
-    public bool nextEventLockedIn;
+    private bool nextEventLockedIn;
     private float eventRollCounter;
     private float timeBeforeEventCounter;
     private Coroutine travelCoroutine;
@@ -420,7 +420,6 @@ public class EventSystem : MonoBehaviour
 
 		if (overallEventIndex >= maxEvents) //Potentially end the job entirely if this is meant to be the final event
 		{
-			campMan.GoToNextJob(); //tells campaign manager to activate the next available job
 			ClearEventSystemAtEndOfJob();
 			ship.CashPayout();
 			GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);

@@ -14,13 +14,12 @@ public class CampaignManager : MonoBehaviour
 {
     public enum Campaigns
     {
-        NA,
         CateringToTheRich,
         MysteriousEntity,
         FinalTest
     }
 
-    public Campaigns currentCamp = Campaigns.CateringToTheRich;
+    [ReadOnly, SerializeField] private Campaigns currentCamp = Campaigns.CateringToTheRich;
 
     public CateringToTheRich cateringToTheRich = new CateringToTheRich();
     public MysteriousEntity mysteriousEntity = new MysteriousEntity();
@@ -33,54 +32,54 @@ public class CampaignManager : MonoBehaviour
     /// <returns></returns>
     public List<Job> GetAvailableJobs()
     {
-        List<Job> available = new List<Job>();
         switch (currentCamp)
         {
             case Campaigns.CateringToTheRich:
-                available = cateringToTheRich.campaignJobs;
-                break;
+                return cateringToTheRich.campaignJobs;
             case Campaigns.MysteriousEntity:
-                available = mysteriousEntity.campaignJobs;
-                break;
+                return mysteriousEntity.campaignJobs;
             case Campaigns.FinalTest:
-                available = finalTest.campaignJobs;
-                break;
+                return finalTest.campaignJobs;
+            default:
+                Debug.LogError("Current Campaign Available Jobs for " + currentCamp + " not setup.");
+                return null;
         }
-
-        return available;
     }
 
     public int GetCurrentCampaignIndex()
     {
-        int index = 0;
         switch (currentCamp)
         {
             case Campaigns.CateringToTheRich:
-                index = cateringToTheRich.currentCampaignJobIndex;
-                break;
+                return cateringToTheRich.currentCampaignJobIndex;
             case Campaigns.MysteriousEntity:
-                index = mysteriousEntity.currentCampaignJobIndex;
-                break;
+                return mysteriousEntity.currentCampaignJobIndex;
             case Campaigns.FinalTest:
-                index = finalTest.currentCampaignJobIndex;
-                break;
+                return finalTest.currentCampaignJobIndex;
+            default:
+                Debug.LogError("Current Campaign Index for " + currentCamp + " not setup.");
+                return 0;
         }
-        return index;
     }
 
-    public void GoToNextCampaign()
+    private void GoToNextCampaign()
     {
         switch(currentCamp)
         {
             case Campaigns.CateringToTheRich:
                 currentCamp = Campaigns.MysteriousEntity;
+                GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
                 break;
             case Campaigns.MysteriousEntity:
                 currentCamp = Campaigns.FinalTest;
+                GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
                 break;
             case Campaigns.FinalTest:
-                //do ending stuff
+                GameManager.instance.ChangeInGameState(InGameStates.MoneyEnding); // go to ending
                 break;
+            default:
+                Debug.LogError("Current Campaign " + currentCamp + " not setup.");
+                return;
         }
     }
     public void GoToNextJob()
@@ -89,30 +88,45 @@ public class CampaignManager : MonoBehaviour
         {
             case Campaigns.CateringToTheRich:
                 cateringToTheRich.currentCampaignJobIndex++;
-
-                if (finalTest.currentCampaignJobIndex > 3)
+                
+                if (cateringToTheRich.currentCampaignJobIndex >= cateringToTheRich.campaignJobs.Count)
                 {
                     GoToNextCampaign();
+                }
+                else
+                {
+                    GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
                 }
                 break;
 
             case Campaigns.MysteriousEntity:
                 mysteriousEntity.currentCampaignJobIndex++;
                 
-                if (finalTest.currentCampaignJobIndex > 3)
+                if (mysteriousEntity.currentCampaignJobIndex >= mysteriousEntity.campaignJobs.Count)
                 {
                     GoToNextCampaign();
+                }
+                else
+                {
+                    GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
                 }
                 break;
 
             case Campaigns.FinalTest:
                 finalTest.currentCampaignJobIndex++;
                 
-                if(finalTest.currentCampaignJobIndex > 3)
+                if(finalTest.currentCampaignJobIndex >= finalTest.campaignJobs.Count)
                 {
-                    //ENd game
+                    GoToNextCampaign();
+                }
+                else
+                {
+                    GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
                 }
                 break;
+            default:
+                Debug.LogError("Current Campaign Jobs for " + currentCamp + " not setup.");
+                return;
         }
     }
 
@@ -124,7 +138,7 @@ public class CampaignManager : MonoBehaviour
     [Serializable]
     public class CateringToTheRich
     {
-        [HideInInspector] public int currentCampaignJobIndex = 0;
+        [ReadOnly] public int currentCampaignJobIndex = 0;
         public List<Job> campaignJobs = new List<Job>();
         
         public enum NarrativeOutcomes { NA, SideWithScientist, KillBeckett, LetBalePilot, KilledAtSafari, KilledOnce, TellVIPsAboutClones, VIPTrust, CloneTrust}
@@ -178,7 +192,7 @@ public class CampaignManager : MonoBehaviour
     [Serializable]
     public class MysteriousEntity
     {
-        [HideInInspector] public int currentCampaignJobIndex = 0;
+        [ReadOnly] public int currentCampaignJobIndex = 0;
         public List<Job> campaignJobs = new List<Job>();
 
         public enum NarrativeVariables
@@ -204,7 +218,7 @@ public class CampaignManager : MonoBehaviour
     [Serializable]
     public class FinalTest
     {
-        [HideInInspector] public int currentCampaignJobIndex = 0;
+        [ReadOnly] public int currentCampaignJobIndex = 0;
         public List<Job> campaignJobs = new List<Job>();
 
         public int assetCount = 0;

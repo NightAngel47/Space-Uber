@@ -37,7 +37,7 @@ public class JobManager : MonoBehaviour
         yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_JobList").isLoaded);
         jobListUI = FindObjectOfType<JobListUI>();
 
-        for (var i = 0; i < campaignManager.cateringToTheRich.campaignJobs.Count; i++)
+        for (var i = 0; i < campaignManager.GetAvailableJobs().Count; i++)
         {
             Job thisJob = campaignManager.GetAvailableJobs()[i];
             // Show available job currently handles both primary and side jobs,
@@ -89,10 +89,5 @@ public class JobManager : MonoBehaviour
         //ship.gameObject.GetComponent<ShipStatsUI>().UpdateCreditsUI(ship.Credits, ship.Payout);
         es.TakeStoryJobEvents(selectedMainJob);
         es.TakeSideJobEvents(selectedSideJobs);
-    }
-
-    public void EndJob()
-    {
-        campaignManager.GoToNextJob();
     }
 }
