@@ -66,7 +66,7 @@ public class ShipBuildingUIController : MonoBehaviour
 
     private void UpdateRoomInfo()
     {
-        roomImage.sprite = roomPrefab.GetComponent<Sprite>();
+        roomImage = roomPrefab.GetComponent<Image>();
 
         rname.text = roomPrefab.GetComponent<RoomStats>().roomName;
         needsCredits.text = "" + roomPrefab.GetComponent<RoomStats>().price;

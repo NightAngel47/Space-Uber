@@ -20,10 +20,19 @@ public class RoomPanelToggle : MonoBehaviour
             shopAnimator.SetBool("isOpen", true);
             isOpen = true;
         }
-       // else
-        //{
-        //    shopAnimator.SetBool("isOpen", false);
-         //   isOpen = false;
-        //}
+        else
+        {
+            shopAnimator.SetBool("isOpen", false);
+            isOpen = false;
+        }
+    }
+
+    public void OpenPanel()
+    {
+        if (isOpen == false)
+        {
+            shopAnimator.SetBool("isOpen", true);
+            isOpen = true;
+        }
     }
 }
