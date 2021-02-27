@@ -74,11 +74,27 @@ public class ObjectScript : MonoBehaviour
         ResetData();
     }
 
+    public void Update()
+    {
+        if(Input.GetMouseButtonUp(0))
+        {
+            StartCoroutine(WaitToClickRoom());
+            Debug.Log("here");
+            //mouseReleased = true;
+        }
+
+        //if(Input.GetMouseButtonDown(0))
+        //{
+        //    clickAgain = false;
+        //}
+    }
+
     public void TurnOnClickAgain()
     {
         if (preplacedRoom == false)
         {
             clickAgain = true;
+            mouseReleased = false;
             CalledFromSpawn = false;
         }
     }
@@ -102,13 +118,13 @@ public class ObjectScript : MonoBehaviour
         }
     }
 
-    public void OnMouseUp()
-    {
-        //StartCoroutine(WaitToClickRoom());
-        //clickAgain = true;
+    //public void OnMouseUp()
+    //{
+    //    //StartCoroutine(WaitToClickRoom());
+    //    //clickAgain = true;
 
-        mouseReleased = true;
-    }
+    //    mouseReleased = true;
+    //}
 
     public void OnMouseOver()
     {
@@ -129,7 +145,7 @@ public class ObjectScript : MonoBehaviour
 
             //if(preplacedRoom) return; // could moved preplacedRoom check here so tooltip can be activated.
 
-            if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true && !gameObject.GetComponent<ObjectMover>().enabled && preplacedRoom == false)
+            if (Input.GetMouseButtonDown(0) && ObjectMover.hasPlaced == true && !gameObject.GetComponent<ObjectMover>().enabled && preplacedRoom == false)
             {
                 //buttons.SetActive(true);
                 gameObject.GetComponent<RoomStats>().SubtractRoomStats();
@@ -177,9 +193,9 @@ public class ObjectScript : MonoBehaviour
             r.TurnOffClickAgain();
         }
 
-        yield return new WaitUntil(() => mouseReleased);
+        //yield return new WaitUntil(() => mouseReleased);
         yield return new WaitForSeconds(.25f);
-
+        
         foreach (ObjectScript r in otherRooms)
         {
             r.TurnOnClickAgain();
