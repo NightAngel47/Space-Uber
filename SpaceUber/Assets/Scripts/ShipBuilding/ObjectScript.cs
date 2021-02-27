@@ -79,7 +79,6 @@ public class ObjectScript : MonoBehaviour
         if(Input.GetMouseButtonUp(0))
         {
             StartCoroutine(WaitToClickRoom());
-            Debug.Log("here");
             //mouseReleased = true;
         }
 
