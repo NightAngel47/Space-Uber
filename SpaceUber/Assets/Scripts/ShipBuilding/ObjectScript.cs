@@ -79,14 +79,7 @@ public class ObjectScript : MonoBehaviour
         if(Input.GetMouseButtonUp(0))
         {
             StartCoroutine(WaitToClickRoom());
-            Debug.Log("here");
-            //mouseReleased = true;
         }
-
-        //if(Input.GetMouseButtonDown(0))
-        //{
-        //    clickAgain = false;
-        //}
     }
 
     public void TurnOnClickAgain()
@@ -105,16 +98,17 @@ public class ObjectScript : MonoBehaviour
         {
             clickAgain = false;
 
-            if (nextToRoom == true && CalledFromSpawn == false)
-            {
-                bool check = SpotChecker.instance.NextToRoomCall(gameObject, rotAdjust);
-                if (check == false)
-                {
-                    Debug.Log("Room not placed next to required room, it has been auto removed");
-                    SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
-                    Destroy(gameObject);
-                }
-            }
+            //if (nextToRoom == true && CalledFromSpawn == false)
+            //{
+            //    bool check = SpotChecker.instance.NextToRoomCall(gameObject, rotAdjust);
+            //    if (check == false)
+            //    {
+            //        Debug.Log("Room not placed next to required room, it has been auto removed");
+
+            //        SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
+            //        Destroy(gameObject);
+            //    }
+            //}
         }
     }
 
