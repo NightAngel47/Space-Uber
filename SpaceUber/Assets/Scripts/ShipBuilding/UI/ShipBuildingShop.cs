@@ -84,8 +84,8 @@ public class ShipBuildingShop : MonoBehaviour
                 break;
             case shipBuildingTab.Power:
                 shopSlot1.roomPrefab = roomCoreChargingTerminal;
-                shopSlot2.roomPrefab = roomTeleportationStation;
-                shopSlot3.roomPrefab = roomWarpDrive;
+                shopSlot2.gameObject.SetActive(false);
+                shopSlot3.gameObject.SetActive(false);
                 break;
             case shipBuildingTab.ShipWeapons:
                 shopSlot1.roomPrefab = roomPhotonTorpedos;
