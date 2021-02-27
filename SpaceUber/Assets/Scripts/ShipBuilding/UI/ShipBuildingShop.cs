@@ -33,6 +33,15 @@ public class ShipBuildingShop : MonoBehaviour
     [SerializeField] GameObject roomVIPLounge;
     [SerializeField] GameObject roomWarpDrive;
 
+    [SerializeField] Sprite creditsIcon;
+    [SerializeField] Sprite crewIcon;
+    [SerializeField] Sprite foodIcon;
+    [SerializeField] Sprite hullIcon;
+    [SerializeField] Sprite powerIcon;
+    [SerializeField] Sprite weaponsIcon;
+    [SerializeField] Sprite securityIcon;
+
+
     private void Start()
     {
         objectsToSpawn = GameObject.FindGameObjectWithTag("ObjectsToSpawn");
@@ -103,6 +112,8 @@ public class ShipBuildingShop : MonoBehaviour
             tab = shipBuildingTab.None;
             return;
         }
+
+        ChangeIcons(creditsIcon);
         tab = shipBuildingTab.Credits;
         GetRoomsToDisplay();
         UpdateRoomInfo();
@@ -115,6 +126,8 @@ public class ShipBuildingShop : MonoBehaviour
             tab = shipBuildingTab.None;
             return;
         }
+
+        ChangeIcons(crewIcon);
         tab = shipBuildingTab.Crew;
         GetRoomsToDisplay();
         UpdateRoomInfo();
@@ -127,6 +140,8 @@ public class ShipBuildingShop : MonoBehaviour
             tab = shipBuildingTab.None;
             return;
         }
+
+        ChangeIcons(foodIcon);
         tab = shipBuildingTab.Food;
         GetRoomsToDisplay();
         UpdateRoomInfo();
@@ -139,6 +154,8 @@ public class ShipBuildingShop : MonoBehaviour
             tab = shipBuildingTab.None;
             return;
         }
+
+        ChangeIcons(hullIcon);
         tab = shipBuildingTab.HullDurability;
         GetRoomsToDisplay();
         UpdateRoomInfo();
@@ -151,6 +168,8 @@ public class ShipBuildingShop : MonoBehaviour
             tab = shipBuildingTab.None;
             return;
         }
+
+        ChangeIcons(powerIcon);
         tab = shipBuildingTab.Power;
         GetRoomsToDisplay();
         UpdateRoomInfo();
@@ -163,6 +182,8 @@ public class ShipBuildingShop : MonoBehaviour
             tab = shipBuildingTab.None;
             return;
         }
+
+        ChangeIcons(weaponsIcon);
         tab = shipBuildingTab.ShipWeapons;
         GetRoomsToDisplay();
         UpdateRoomInfo();
@@ -175,6 +196,8 @@ public class ShipBuildingShop : MonoBehaviour
             tab = shipBuildingTab.None;
             return;
         }
+
+        ChangeIcons(securityIcon);
         tab = shipBuildingTab.Security;
         GetRoomsToDisplay();
         UpdateRoomInfo();
@@ -185,6 +208,13 @@ public class ShipBuildingShop : MonoBehaviour
         shopSlot1.UpdateRoomInfo();
         shopSlot2.UpdateRoomInfo();
         shopSlot3.UpdateRoomInfo();
+    }
+
+    private void ChangeIcons(Sprite spr)
+    {
+        shopSlot1.resourceIcon.sprite = spr;
+        shopSlot2.resourceIcon.sprite = spr;
+        shopSlot3.resourceIcon.sprite = spr;
     }
 
     

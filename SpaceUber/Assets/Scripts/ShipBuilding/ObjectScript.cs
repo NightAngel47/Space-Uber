@@ -20,6 +20,7 @@ public class ObjectScript : MonoBehaviour
     public int rotAdjust = 1;
     public static Color c;
 
+    public string roomSize;
     public int shapeType;
     public int objectNum;
 
