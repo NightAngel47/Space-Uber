@@ -1,3 +1,9 @@
+/* Frank Calabrese
+ * CrewManagementRoomDetailsMenu.cs
+ * holds various stats of rooms like name, image, etc.
+ * swaps them out depending on what room is being viewed
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,8 +63,8 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
 
         if (selectedRoom.GetComponent<Resource>() != null)
         {
-            producesResource.text = selectedRoom.GetComponent<Resource>().resourceType.resourceName;
-            producesAmount.text = "" + selectedRoom.GetComponent<Resource>().amount;
+            //producesResource.text = "" + selectedRoom.GetComponent<Resource>().resourceType.resourceName;
+            //producesAmount.text = "/" + selectedRoom.GetComponent<Resource>().amount + " maximum";
         }
         else
         {

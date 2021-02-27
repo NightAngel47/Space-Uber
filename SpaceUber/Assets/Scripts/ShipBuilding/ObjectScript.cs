@@ -155,7 +155,7 @@ public class ObjectScript : MonoBehaviour
             //if the object is clicked, open the room management menu
             if (Input.GetMouseButton(0))
             {
-                //FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
+                FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
                 FindObjectOfType<RoomPanelToggle>().OpenPanel();
                 FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(gameObject);
                 FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();

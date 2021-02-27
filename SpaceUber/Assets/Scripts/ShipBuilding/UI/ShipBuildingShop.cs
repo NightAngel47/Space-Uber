@@ -1,7 +1,7 @@
 /* Frank Calabrese
  * ShipBuildingShop.cs
  * various functions pertaining to the shipbuilding shop UI
- * Controls what rooms are displayed. 
+ * Controls what rooms are displayed for purchase. 
  */
 
 using System.Collections;
