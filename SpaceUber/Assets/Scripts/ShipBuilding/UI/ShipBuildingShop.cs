@@ -1,3 +1,9 @@
+/* Frank Calabrese
+ * ShipBuildingShop.cs
+ * various functions pertaining to the shipbuilding shop UI
+ * Controls what rooms are displayed. 
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -1,3 +1,9 @@
+/* Frank Calabrese
+ * ShipBuildingBuyableRoom.cs
+ * Changes what room it holds/displays
+ * based off of instructions from ShipBuildingShop.cs
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

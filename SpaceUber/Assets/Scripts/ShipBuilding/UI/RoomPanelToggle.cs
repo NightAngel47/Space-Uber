@@ -1,3 +1,8 @@
+/* Frank Calabrese
+ * RoomPanelToggle.cs
+ * various controls for the shipbuilding, radio, and crew management UI
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
