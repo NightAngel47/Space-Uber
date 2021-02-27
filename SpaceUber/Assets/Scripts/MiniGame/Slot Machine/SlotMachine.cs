@@ -140,13 +140,14 @@ public class SlotMachine : MiniGame
 
     void DetectEndOfGame()
 	{
+        float moraleModifier = MoraleManager.instance.GetMoraleModifier();
         if (!spinning && gameStarted && !gameFinished)
         {
             gameFinished = true;
             foreach (SlotReel reel in reels) { slotValues.Add(reel.GetSlot().GetValue()); }
             PayUp();
             statModification = payout;
-            winMessage = "You win " + payout + " credits!";
+            winMessage = "You win " + Mathf.RoundToInt(payout * moraleModifier) + " credits!";
             StartCoroutine(EndGame());
         }
     }
