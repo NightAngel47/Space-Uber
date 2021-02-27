@@ -397,11 +397,7 @@ public class CrewManagement : MonoBehaviour
     {
         OverclockRoom ovRoom = room.GetComponent<OverclockRoom>();
 
-        if(!ovRoom.hasEvents)
-        {
-            chatButton.gameObject.SetActive(false);
-        }
-        else
+        if(ovRoom.hasEvents && GameManager.instance.currentGameState == InGameStates.Events)
         {
             print(ovRoom.GetEvents().Count + " events for this room");
 
@@ -413,6 +409,10 @@ public class CrewManagement : MonoBehaviour
             {
                 chatButton.gameObject.SetActive(false);
             }
+        }
+        else
+        {
+            chatButton.gameObject.SetActive(false);
         }
 
 

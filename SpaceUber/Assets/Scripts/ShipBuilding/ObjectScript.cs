@@ -128,7 +128,7 @@ public class ObjectScript : MonoBehaviour
         {
             if (ObjectMover.hasPlaced == true)
             {
-                roomTooltip.SetActive(true);            
+                roomTooltip.SetActive(true);
                 if(toolTipOutputList.transform.childCount > 0) toolTipOutputList.transform.GetChild(0).transform.GetChild(2).GetComponent<TMP_Text>().text = gameObject.GetComponent<RoomStats>().resources[0].activeAmount.ToString();
 
             }
@@ -165,11 +165,11 @@ public class ObjectScript : MonoBehaviour
            || GameManager.instance.currentGameState == InGameStates.Events
            && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn)
         {
-            
+
             roomTooltip.SetActive(true);
 
             if(toolTipOutputList.transform.childCount > 0) toolTipOutputList.transform.GetChild(0).transform.GetChild(2).GetComponent<TMP_Text>().text = gameObject.GetComponent<RoomStats>().resources[0].activeAmount.ToString();
-            
+
             //if the object is clicked, open the room management menu
             if (Input.GetMouseButton(0))
             {
@@ -189,7 +189,7 @@ public class ObjectScript : MonoBehaviour
 
         //yield return new WaitUntil(() => mouseReleased);
         yield return new WaitForSeconds(.25f);
-        
+
         foreach (ObjectScript r in otherRooms)
         {
             r.TurnOnClickAgain();

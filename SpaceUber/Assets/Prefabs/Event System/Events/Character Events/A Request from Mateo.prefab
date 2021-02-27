@@ -1,0 +1,344 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7629287846321859581
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: inkJSONAsset
+      value: 
+      objectReference: {fileID: 4900000, guid: 17dabf981d1e948458bc363c13ef3e9a, type: 3}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: eventName
+      value: A Request from Mateo
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: backgroundImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 9825f477aeb533744b8b1d924f7f00a2,
+        type: 3}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: eventBGM
+      value: General Theme
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: thisCharacter
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].choiceName
+      value: Mention that you are indifferent to these nicknames, but you see no
+        problem in it continuing
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].outcomeName
+      value: Neutral
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].isApprovalOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].choiceName
+      value: Inform him that referring to you as anything other than your given designation
+        is a breach of protocol and that any further incidents will result in a deduction
+        of pay.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[0].outcomeName
+      value: Negative
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[0].isApprovalOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[0].eventApprovalChange
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].hasSubsequentChoices
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].hasSubsequentChoices
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].hasSubsequentChoices
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: hasSubsequentChoices
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].choiceName
+      value: Let him know that you find it amusing that he manages to have a different
+        name for each separate encounter you have.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].outcomes.Array.data[0].outcomeName
+      value: Positive
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].outcomes.Array.data[0].isApprovalOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].outcomes.Array.data[0].eventApprovalChange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].subsequentChoicesName
+      value: '#2'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceName
+      value: "Tell him you\u2019d be happy to provide him with better tools, just
+        so long as he promises to actually use them to improve the ship"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[0].outcomeName
+      value: Positive
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[0].isApprovalOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[0].eventApprovalChange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].choiceName
+      value: Inform him that new tools are currently out of the question, but you
+        would provide him with replacements at the earliest convenience
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.data[0].outcomeName
+      value: Neutral
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.data[0].isApprovalOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].choiceName
+      value: "You\u2019ll consider replacing the tools when you see Mateo actually
+        do his job instead of tinkering in the workshop"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].outcomes.Array.data[0].outcomeName
+      value: Negative
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].outcomes.Array.data[0].isApprovalOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].outcomes.Array.data[0].eventApprovalChange
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: goodApprovalMin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: badApprovalMax
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234566933638593567, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: m_Name
+      value: A Request from Mateo
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 52a7a344084ef654789f7ca96de3299c, type: 3}
