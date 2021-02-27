@@ -365,6 +365,10 @@ public class ChoiceOutcomes
                                 campMan.finalTest.ft_truthTold = true;
                                 resultText += "\nYou told everyone the truth";
                                 break;
+                            case CampaignManager.FinalTest.NarrativeVariables.EndgamePlan:
+                                campMan.finalTest.ft_endgamePlan = true;
+                                resultText += "\nYou came up with a plan";
+                                break;
                         }
                         break;
                 }
