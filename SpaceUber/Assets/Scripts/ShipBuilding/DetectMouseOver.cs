@@ -13,4 +13,9 @@ public class DetectMouseOver : MonoBehaviour
     {
         transform.parent.GetComponent<ObjectScript>().OnMouseExit();
     }
+
+    //public void OnMouseUp()
+    //{
+    //    transform.parent.GetComponent<ObjectScript>().OnMouseUp();
+    //}
 }

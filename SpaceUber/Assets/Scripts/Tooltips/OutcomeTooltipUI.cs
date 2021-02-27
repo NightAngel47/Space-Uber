@@ -18,7 +18,6 @@ public class OutcomeTooltipUI : MonoBehaviour
     [SerializeField] private GameObject outcomeText;
     [SerializeField] private string defaultOutcomeText;
     [SerializeField] private RectTransform outcomeList;
-    [SerializeField] private List<Sprite> icons = new List<Sprite>();
 
     public void SetOutcomeData(string description, List<ChoiceOutcomes> outcomes, bool isSecret)
     {
@@ -49,7 +48,7 @@ public class OutcomeTooltipUI : MonoBehaviour
                 {
                     GameObject resourceGO = Instantiate(resourceUI, outcomeList.transform);
                     resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)outcome.resource).resourceIcon; // resource icon
-                    resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = outcome.resource.ToString(); // resource name
+                    resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = GameManager.instance.GetResourceData((int)outcome.resource).resourceName; // resource name
                     resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = outcome.amount.ToString(); // resource amount
                     resourceGO.transform.GetChild(3).gameObject.SetActive(false); // outcome probability
                 }
