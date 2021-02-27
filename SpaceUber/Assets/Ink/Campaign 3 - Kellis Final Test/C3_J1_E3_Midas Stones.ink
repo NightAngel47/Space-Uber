@@ -40,6 +40,7 @@ You took heavy loses to your security team and ammo stores, but are able to hook
 ->End_Scene
 
 ==End_Scene==
-As you fly back to Dispatch to report the situation, you spot countless small lights on the horizon, wreckage superheating as it falls into the atmosphere. Every piece glows the same gold as the monsters. 
+As you fly back to Dispatch to report the situation, you realize that something has gotten onto the ship. One of the creatures is in your server room, your effective consciousness. It raises one of its powerful claws, which would bring you complete oblivion. Then it stops and stands there docile. "You are my mind, reforged." the voice spreads throughout your being. 
+The monster stays there, non-hostile, at least to you. You decide not to mess with it for the time being. While flying you spot countless small lights on the horizon, wreckage superheating as it falls into the atmosphere. Every piece glows the same gold as the monster now in your ship.
 If just a few pieces could threaten your entire ship, there’s no telling what a blanket rain across the planet could do. According to protocol, it’s not your job to think about it.
 ->END

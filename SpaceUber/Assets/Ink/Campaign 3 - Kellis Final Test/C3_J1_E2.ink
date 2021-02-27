@@ -18,7 +18,7 @@ Lexa takes the insult without hitting back.
 "Just because I work for you doesn’t mean I stop being a person." Lexa replies.
 "People like you are why we can't stomp down the competition." the CEO complains to himself, "If you serve the company's plan, we can do things none of you could do on your own. We could even save people!" he lowers his head, "But we need you to work with us."
 "You've had the money for years, I'll lay down my life for your profits once you do something useful with them."
-The man laughs, and comments halfheartedly about Lexa being a firebrand. After a moment he sighs, "No, laughing that off didn’t really work. Will you need her?" your boss is now speaking directly to you, "Once this mission is over, do you need this woman alive?"
+The man laughs, and comments halfheartedly about Lexa being a firebrand. After a moment he sighs and his implants light up. "No, laughing that off didn’t really work. Will you need her?" your boss is speaking directly to you, Lexa left out of the loop. "Once this mission is over, do you need this woman alive?"
 
 *[I Need Lexa Alive]
 -> Lexa_Living
@@ -28,11 +28,13 @@ The man laughs, and comments halfheartedly about Lexa being a firebrand. After a
 ==Lexa_Living==
 You tell the boss that the hands-on experience of the former captain has been essential and will continue to be even as you move into the mass-production phase. Your explanation quickly becomes a defense of the entire human element of your ship’s chain of command, you citing Lanhri, Mateo, Kuon, and Ripley as other essential perspectives to do your job. 
 Your measured response gives the man much needed time to cool and by the end he laughs, “Alright, no more, no more. I will recall this talk when the board and I discuss the human element in a few weeks. Thank you.”
+To Lexa, this conversation isn't happening, and she continues to jab the CEO every couple seconds he stands there, not speaking.
 ->Scene_2
 
 ==Lexa_Doomed==
 You tell the boss that most arguments Lexa and the rest of your crew makes are easy to anticipate, and wouldn’t be very useful once you move into the mass-production phase. Your explanation is quickly extrapolated to a criticism of the entire human element of your ship’s chain of command.
 The man smiles coldly at the end of your response, “Thank you, now at least I know what happens to her once this is over. And I’m sure the board will be interested in your ideas when we meet over the human element in a few weeks.”
+To Lexa, this conversation isn't happening, and she continues to jab the CEO every couple seconds he stands there, not speaking.
 ->Scene_2
 
 ==Scene_2
@@ -41,10 +43,9 @@ The man smiles coldly at the end of your response, “Thank you, now at least I 
 [if security died] (The man ignores Lexa as he directs the final orders of business to you, "Moving on, your security team took a hit while securing the asset, I’ll put in a work order to get you some new men, here's hoping they last longer then the last ones.")
 
 He reads off his retinas, "Ah, and the yellow creatures you came into contact with. You are keep their existence secret. Thankfully, Echo-28 can be cleansed quite easily. Sending you the clearance codes for the continuation of your job now."
-The CEO claps his hands together, "Alright! That should be everything sorted, I'm glad to be working with a professional." he turns to Lexa, "You are dismissed."
+The CEO claps his hands together and speaks outloud again, "Alright! That should be everything sorted, I'm glad to be working with a professional." he turns to Lexa, "You are dismissed."
 
-[if you stood up for Lexa] (Lexa returns to the ship in relative silence, but seems to grow more animated the closer to the ship she gets, "Thank you,” she says to no one but you, "I'm glad you’ve got my back. I hope you know I have yours.")
-[if you damned Lexa] (Lexa returns to the ship in silence, giving a sidelong glance to every maintenance hallway you pass. "I'm glad." she starts, "I'm glad I finally know whose side you're on. I’m sure you know what happened to the captain before me." She lets the words hang as she climbs back aboard.)
+Lexa returns to the ship in relative silence, but seems to grow more animated the closer to the ship she gets, "I'm guessing he started talking to you at the end there? Well. I'm not dead so it looks like you have my back. Thanks for that." 
 
 Kellis wants you to pick up the next asset ASAP, so within an hour of docking, you again take off.
 -> END
