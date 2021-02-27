@@ -22,7 +22,7 @@ public class CrewManagement : MonoBehaviour
     public GameObject crewAmount;
     public GameObject powerAmount;
     public GameObject overclockOutput;
-    private GameObject statPanel;
+    [SerializeField] GameObject statPanel;
 
     private GameObject room;
 
@@ -43,7 +43,7 @@ public class CrewManagement : MonoBehaviour
         shipStats = FindObjectOfType<ShipStats>();
         crewUnassignedText.text = "Unassigned Crew: " + (int)shipStats.CrewCurrent.z;
 
-        statPanel = gameObject.transform.GetChild(0).gameObject;
+        //statPanel = gameObject.transform.GetChild(0).gameObject;
         TurnOffPanel();
 
         overclockButton.gameObject.SetActive(false);

@@ -1179,6 +1179,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256035004}
   m_CullTransparentMesh: 0
+--- !u!1 &260767166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 260767167}
+  m_Layer: 0
+  m_Name: statPanel?
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &260767167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260767166}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1139635635}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &262872216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,7 +1461,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1080581835}
+      - m_Target: {fileID: 1139635634}
         m_MethodName: AddCrew
         m_Mode: 1
         m_Arguments:
@@ -1842,6 +1872,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button_TwoBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1139635633}
+    - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5, type: 3}
 --- !u!224 &391369389 stripped
@@ -1850,6 +1895,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 391369388}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &391369390 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 391369388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &454979932
 GameObject:
   m_ObjectHideFlags: 0
@@ -5319,6 +5376,65 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 345, y: 0}
   m_Pivot: {x: 1, y: 0.5}
+--- !u!1 &1139635633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1139635635}
+  - component: {fileID: 1139635634}
+  m_Layer: 0
+  m_Name: CrewManagement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1139635634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139635633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56eee52834ad0647b45d395632ce3ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crewUnassignedText: {fileID: 0}
+  crewManagementText: {fileID: 0}
+  roomText: {fileID: 0}
+  costsText: {fileID: 0}
+  crewAmount: {fileID: 1709631531}
+  powerAmount: {fileID: 0}
+  overclockOutput: {fileID: 0}
+  statPanel: {fileID: 260767166}
+  chatButton: {fileID: 1521663816}
+  overclockButton: {fileID: 391369390}
+  statAndNumPrefab: {fileID: 0}
+  outputObject: {fileID: 0}
+  sceneButtons:
+  - {fileID: 1834532680}
+  - {fileID: 1974891725}
+--- !u!4 &1139635635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139635633}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 555.077, y: 296.44232, z: -525.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 260767167}
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1158953374
 GameObject:
   m_ObjectHideFlags: 0
@@ -7460,6 +7576,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button_TwoBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1139635634}
+    - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: StartChat
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5, type: 3}
 --- !u!224 &1521663815 stripped
@@ -7468,6 +7604,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1521663814}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1521663816 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1521663814}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1588041330
 GameObject:
   m_ObjectHideFlags: 0
@@ -9011,11 +9159,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Begin Job
       objectReference: {fileID: 0}
+    - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ChangeToEvents
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5, type: 3}
 --- !u!224 &1834532679 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8963481259364165004, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1834532678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1834532680 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8963481259364165005, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
     type: 3}
   m_PrefabInstance: {fileID: 1834532678}
   m_PrefabAsset: {fileID: 0}
@@ -9869,6 +10028,12 @@ PrefabInstance:
 --- !u!224 &1974891724 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8963481259364165004, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1974891723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1974891725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8963481259364165005, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
     type: 3}
   m_PrefabInstance: {fileID: 1974891723}
   m_PrefabAsset: {fileID: 0}
@@ -10738,8 +10903,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1080581835}
-        m_MethodName: RemoveCrew
+      - m_Target: {fileID: 1139635634}
+        m_MethodName: SubtractCrew
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
