@@ -14,8 +14,9 @@ public class PauseMenu : Singleton<PauseMenu>
 {
     public Canvas pauseCanvas;
 
-    private bool isPaused = false;
+    private static bool isPaused = false;
 
+    public static bool IsPaused => isPaused;
 
     void Update()
     {
