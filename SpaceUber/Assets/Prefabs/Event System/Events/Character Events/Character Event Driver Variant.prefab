@@ -1,88 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1970168920850692441
+--- !u!1001 &8691853082767313999
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
-        type: 3}
-      propertyPath: nextChoices.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
-        type: 3}
-      propertyPath: nextChoices.Array.data[0].outcomes.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
-        type: 3}
-      propertyPath: eventName
-      value: Overclocking Kuon
-      objectReference: {fileID: 0}
-    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
-        type: 3}
-      propertyPath: inkJSONAsset
-      value: 
-      objectReference: {fileID: 4900000, guid: d22ee4d8bb19245498182b5b5ce7897e, type: 3}
-    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
-        type: 3}
-      propertyPath: thisCharacter
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
-        type: 3}
-      propertyPath: nextChoices.Array.data[0].choiceName
-      value: Approve Overclocking
-      objectReference: {fileID: 0}
-    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
-        type: 3}
-      propertyPath: nextChoices.Array.data[1].choiceName
-      value: Deny Overclocking
-      objectReference: {fileID: 0}
-    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
-        type: 3}
-      propertyPath: nextChoices.Array.data[0].description
-      value: "Increases the ship\u2019s Security, but will also increase food consumption"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
-        type: 3}
-      propertyPath: nextChoices.Array.data[1].description
-      value: Aside from some disappointment, there will be no change
-      objectReference: {fileID: 0}
-    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
-        type: 3}
-      propertyPath: requiredCorrectAnswers
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
-        type: 3}
-      propertyPath: backgroundImage
-      value: 
-      objectReference: {fileID: 21300000, guid: 9825f477aeb533744b8b1d924f7f00a2,
-        type: 3}
-    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
-        type: 3}
-      propertyPath: totalAnswers
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
-        type: 3}
-      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].isResourceOutcome
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
-        type: 3}
-      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].isNarrativeOutcome
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
-        type: 3}
-      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].isApprovalOutcome
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -191,7 +115,7 @@ PrefabInstance:
     - target: {fileID: 5234566933638593567, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: m_Name
-      value: Overclocking Kuon
+      value: Character Event Driver
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52a7a344084ef654789f7ca96de3299c, type: 3}

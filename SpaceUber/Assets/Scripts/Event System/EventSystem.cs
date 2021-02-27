@@ -60,7 +60,7 @@ public class EventSystem : MonoBehaviour
     [HideInInspector] public float chanceOfEvent;
 
     private bool skippedToEvent;
-    public bool nextEventLockedIn;
+    private bool nextEventLockedIn;
     private float eventRollCounter;
     private float timeBeforeEventCounter;
     private Coroutine travelCoroutine;
@@ -215,8 +215,8 @@ public class EventSystem : MonoBehaviour
             tick.StopTickUpdate();
             FindObjectOfType<CrewManagement>().TurnOffPanel();
 
-			//wait until there is no longer an overclock microgame happening
-			yield return new WaitUntil(() => !OverclockController.instance.overclocking);
+			//wait until done with minigame and/or character event
+			yield return new WaitUntil(() => !OverclockController.instance.overclocking && !chatting);
 
             //If event button was not clicked ahead of time
             if (nextEventLockedIn && SceneManager.GetSceneByName("Event_Prompt").isLoaded)
@@ -420,7 +420,6 @@ public class EventSystem : MonoBehaviour
 
 		if (overallEventIndex >= maxEvents) //Potentially end the job entirely if this is meant to be the final event
 		{
-			campMan.GoToNextJob(); //tells campaign manager to activate the next available job
 			ClearEventSystemAtEndOfJob();
 			ship.CashPayout();
 			GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);

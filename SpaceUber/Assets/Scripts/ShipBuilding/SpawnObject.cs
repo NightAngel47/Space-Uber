@@ -11,6 +11,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Linq;
 
 public class SpawnObject : MonoBehaviour
 {
@@ -52,13 +53,19 @@ public class SpawnObject : MonoBehaviour
         if (donePreplacedRoom == false)
         {
             donePreplacedRoom = true;
-            ObjectMover.hasPlaced = false;
-            lastSpawned = Instantiate(powercore, new Vector3(4, 2, 0), Quaternion.identity);
-            lastSpawned.GetComponent<ObjectMover>().TurnOffBeingDragged();
-            lastSpawned.GetComponent<ObjectScript>().preplacedRoom = true;
-            ObjectMover.hasPlaced = true;
 
-            StartCoroutine(PreplacedRoom());
+            // Check if power core has already been placed
+            if (!FindObjectsOfType<ObjectScript>().Any(objectScript => objectScript.preplacedRoom && objectScript.GetComponent<RoomStats>().roomName.Equals(powercore.GetComponent<RoomStats>().roomName)))
+            {
+                // if the power core hasn't been placed then place a power core
+                ObjectMover.hasPlaced = false;
+                lastSpawned = Instantiate(powercore, new Vector3(4, 2, 0), Quaternion.identity);
+                lastSpawned.GetComponent<ObjectMover>().TurnOffBeingDragged();
+                lastSpawned.GetComponent<ObjectScript>().preplacedRoom = true;
+                ObjectMover.hasPlaced = true;
+
+                StartCoroutine(PreplacedRoom());
+            }
         }
 
         CreateRoomSpawnButtons(); 
@@ -101,7 +108,12 @@ public class SpawnObject : MonoBehaviour
             {
                 ObjectMover.hasPlaced = false;
                 lastSpawned = Instantiate(ga, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0), Quaternion.identity);
+                Cursor.visible = false;
+                //HOVER UI does not happen when mouse is hidden
                 lastSpawned.GetComponent<ObjectMover>().TurnOnBeingDragged();
+
+                //rooms being placed will appear on top of other rooms that are already placed
+                lastSpawned.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
 
                 ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
                 ObjectScript.CalledFromSpawn = true;
