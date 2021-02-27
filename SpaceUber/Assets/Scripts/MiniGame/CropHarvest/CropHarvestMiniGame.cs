@@ -19,9 +19,13 @@ public class CropHarvestMiniGame : MiniGame
     int score = 0;
     bool gameOver = false;
 
-	void Update()
+    void Update()
     {
-        if(score == requiredScore&&!gameOver) { gameOver = true; EndMiniGameSuccess();  }
+        if(score == requiredScore&&!gameOver)
+        {
+            gameOver = true;
+            EndMiniGameSuccess();
+        }
     }
 
     public void IncrementScore() { score++; }

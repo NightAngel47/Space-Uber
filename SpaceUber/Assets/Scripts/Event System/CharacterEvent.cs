@@ -11,76 +11,127 @@ using UnityEngine;
 
 public class CharacterEvent : InkDriverBase
 {
-    [SerializeField,Tooltip("The character that this event focuses on")] 
+    [SerializeField,Tooltip("The character that this event focuses on")]
     private CharacterStats.Characters thisCharacter = CharacterStats.Characters.None;
-    [Tooltip("How many correct answers have been given")]
-    private int correctAnswers;
-    [SerializeField, Tooltip("How many correct responses the player needs to get a boost")] 
-    private int requiredCorrectAnswers;
 
-    [SerializeField, Tooltip("How much energy the player will gain from all correct answers")]
-    private int energyBoost;
-    
-    [SerializeField, Tooltip("How much food the player will gain from all correct answers")]
-    private int foodBoost;
+    [Tooltip("The total approval from this character")]
+    private int characterApproval = 50;
 
-    [HideInInspector] public bool playedOnce = false;
-    
+    [Tooltip("The starting level of approval for this event"), SerializeField]
+    private int startingApproval;
+
+    [Tooltip("The minimum approval for a good outcome"), SerializeField]
+    private int goodApprovalMin;
+
+    [Tooltip("Maximum approval for a bad outcome"), SerializeField]
+    private int badApprovalMax;
+
+    private enum AnswerState
+    {
+        GOOD,
+        NEUTRAL,
+        BAD
+    }
+
+    private AnswerState answersState = AnswerState.NEUTRAL;
 
     public override void Start()
     {
         base.Start();
         isCharacterEvent = true;
         isStoryEvent = false;
-        playedOnce = false;
+        characterApproval = 50;
     }
 
-    public bool SucceededEvent()
+    public void ChangeEventApproval(int change)
     {
-        return correctAnswers >= requiredCorrectAnswers;
-    }
-
-    public void AnswerCorrectly()
-    {
-        ++correctAnswers;
+        characterApproval += change;
     }
 
     /// <summary>
     /// Applies proper boost to the required room if the player gives the correct responses in a character event
+    /// Also marks this event as having been played once already
     /// </summary>
     public void EndCharacterEvent()
     {
         print("Ending this character event");
 
-        switch (thisCharacter)
+        if(characterApproval >= goodApprovalMin)
         {
-            case CharacterStats.Characters.KUON: //Kuon boosts security and weapons by 10%
-                int newSecurityValue = thisShip.Security + Mathf.RoundToInt(thisShip.Security * .1f);
-                int newWeaponsValue = thisShip.ShipWeapons + Mathf.RoundToInt(thisShip.ShipWeapons * .1f);
-
-                thisShip.Security = newSecurityValue;
-                thisShip.ShipWeapons = newWeaponsValue;
-
-                SpawnStatChangeText(newSecurityValue, GameManager.instance.GetResourceData((int) ResourceDataTypes._Security).resourceIcon);
-                SpawnStatChangeText(newWeaponsValue, GameManager.instance.GetResourceData((int) ResourceDataTypes._ShipWeapons).resourceIcon);
-                break;
-            case CharacterStats.Characters.MATEO: //Boosts energy
-                thisShip.EnergyRemaining += new Vector2(energyBoost, 0);
-                SpawnStatChangeText(energyBoost, GameManager.instance.GetResourceData((int) ResourceDataTypes._Energy).resourceIcon);
-                print("Adding " + energyBoost + " energy");
-                break;
-            case CharacterStats.Characters.LANRI: //boosts Food
-                thisShip.Food += foodBoost;
-                SpawnStatChangeText(foodBoost, GameManager.instance.GetResourceData((int) ResourceDataTypes._Food).resourceIcon);
-                print("Adding " + foodBoost + " food");
-                break;
-            case CharacterStats.Characters.LEXA: //gives +10 to morale
-
-                break;
-            case CharacterStats.Characters.RIPLEY: //gives +10 morale
-
-                break;
+            answersState = AnswerState.GOOD;
         }
+        else if (characterApproval < badApprovalMax)
+        {
+            answersState = AnswerState.BAD;
+        }
+        else
+        {
+            answersState = AnswerState.NEUTRAL;
+        }
+
+        switch(answersState)
+        {
+            case AnswerState.GOOD:
+                MoraleManager.instance.CrewMorale += 10;
+                switch (thisCharacter)
+                {
+                    case CharacterStats.Characters.KUON: //Kuon boosts security and weapons by 10%
+                        thisShip.Security += 10;
+                        thisShip.ShipWeapons += 10;
+
+                        SpawnStatChangeText(10, GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
+                        SpawnStatChangeText(10, GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
+                        break;
+                    case CharacterStats.Characters.MATEO: //Boosts energy
+                        thisShip.EnergyRemaining += new Vector2(20, 0);
+                        SpawnStatChangeText(20, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
+                        break;
+                    case CharacterStats.Characters.LANRI: //boosts Food
+                        thisShip.Food += 20;
+                        SpawnStatChangeText(20, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
+                        break;
+                    case CharacterStats.Characters.LEXA: //gives +10 to morale
+                        MoraleManager.instance.CrewMorale += 10;
+                        break;
+                    case CharacterStats.Characters.RIPLEY: //gives +10 morale
+                        MoraleManager.instance.CrewMorale += 10;
+                        break;
+                }
+                break;
+            case AnswerState.NEUTRAL:
+                MoraleManager.instance.CrewMorale += 10;
+                break;
+
+            case AnswerState.BAD:
+                MoraleManager.instance.CrewMorale -= 10;
+                switch (thisCharacter)
+                {
+                    case CharacterStats.Characters.KUON: //Kuon boosts security and weapons by 10%
+                        thisShip.Security -= 10;
+                        thisShip.ShipWeapons -= 10;
+
+                        SpawnStatChangeText(-10, GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
+                        SpawnStatChangeText(-10, GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
+                        break;
+                    case CharacterStats.Characters.MATEO: //Boosts energy
+                        thisShip.EnergyRemaining += new Vector2(-20, 0);
+                        SpawnStatChangeText(20, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
+                        break;
+                    case CharacterStats.Characters.LANRI: //boosts Food
+                        thisShip.Food -= 20;
+                        SpawnStatChangeText(-20, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
+                        break;
+                    case CharacterStats.Characters.LEXA: //gives -10 to morale
+                        MoraleManager.instance.CrewMorale -= 10;
+                        break;
+                    case CharacterStats.Characters.RIPLEY: //gives -10 morale
+                        MoraleManager.instance.CrewMorale -= 10;
+                        break;
+                }
+                break;
+
+        }
+        
     }
 
     /// <summary>
@@ -93,12 +144,12 @@ public class CharacterEvent : InkDriverBase
     {
         GameObject statChangeText = thisShip.GetComponent<ShipStatsUI>().statChangeText;
         GameObject instance = Instantiate(statChangeText);
-    
+
         RectTransform rect = instance.GetComponent<RectTransform>();
         rect.anchoredPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
         instance.transform.parent = thisShip.GetComponent<ShipStatsUI>().canvas;
-        
+
         MoveAndFadeBehaviour moveAndFadeBehaviour = instance.GetComponent<MoveAndFadeBehaviour>();
         moveAndFadeBehaviour.offset = new Vector2(0, +75);
         moveAndFadeBehaviour.SetValue(value, icon);

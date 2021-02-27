@@ -8,15 +8,137 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class CampaignManager : MonoBehaviour
 {
+    public enum Campaigns
+    {
+        CateringToTheRich,
+        MysteriousEntity,
+        FinalTest
+    }
+
+    [ReadOnly, SerializeField] private Campaigns currentCamp = Campaigns.CateringToTheRich;
+
     public CateringToTheRich cateringToTheRich = new CateringToTheRich();
-    
+    public MysteriousEntity mysteriousEntity = new MysteriousEntity();
+    public FinalTest finalTest = new FinalTest();
+
+    /// <summary>
+    /// Returns a list of all jobs that are available for the current campaign.
+    /// To be used in JobManager
+    /// </summary>
+    /// <returns></returns>
+    public List<Job> GetAvailableJobs()
+    {
+        switch (currentCamp)
+        {
+            case Campaigns.CateringToTheRich:
+                return cateringToTheRich.campaignJobs;
+            case Campaigns.MysteriousEntity:
+                return mysteriousEntity.campaignJobs;
+            case Campaigns.FinalTest:
+                return finalTest.campaignJobs;
+            default:
+                Debug.LogError("Current Campaign Available Jobs for " + currentCamp + " not setup.");
+                return null;
+        }
+    }
+
+    public int GetCurrentCampaignIndex()
+    {
+        switch (currentCamp)
+        {
+            case Campaigns.CateringToTheRich:
+                return cateringToTheRich.currentCampaignJobIndex;
+            case Campaigns.MysteriousEntity:
+                return mysteriousEntity.currentCampaignJobIndex;
+            case Campaigns.FinalTest:
+                return finalTest.currentCampaignJobIndex;
+            default:
+                Debug.LogError("Current Campaign Index for " + currentCamp + " not setup.");
+                return 0;
+        }
+    }
+
+    private void GoToNextCampaign()
+    {
+        switch(currentCamp)
+        {
+            case Campaigns.CateringToTheRich:
+                currentCamp = Campaigns.MysteriousEntity;
+                GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
+                break;
+            case Campaigns.MysteriousEntity:
+                currentCamp = Campaigns.FinalTest;
+                GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
+                break;
+            case Campaigns.FinalTest:
+                GameManager.instance.ChangeInGameState(InGameStates.MoneyEnding); // go to ending
+                break;
+            default:
+                Debug.LogError("Current Campaign " + currentCamp + " not setup.");
+                return;
+        }
+    }
+    public void GoToNextJob()
+    {
+        switch (currentCamp)
+        {
+            case Campaigns.CateringToTheRich:
+                cateringToTheRich.currentCampaignJobIndex++;
+                
+                if (cateringToTheRich.currentCampaignJobIndex >= cateringToTheRich.campaignJobs.Count)
+                {
+                    GoToNextCampaign();
+                }
+                else
+                {
+                    GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
+                }
+                break;
+
+            case Campaigns.MysteriousEntity:
+                mysteriousEntity.currentCampaignJobIndex++;
+                
+                if (mysteriousEntity.currentCampaignJobIndex >= mysteriousEntity.campaignJobs.Count)
+                {
+                    GoToNextCampaign();
+                }
+                else
+                {
+                    GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
+                }
+                break;
+
+            case Campaigns.FinalTest:
+                finalTest.currentCampaignJobIndex++;
+                
+                if(finalTest.currentCampaignJobIndex >= finalTest.campaignJobs.Count)
+                {
+                    GoToNextCampaign();
+                }
+                else
+                {
+                    GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
+                }
+                break;
+            default:
+                Debug.LogError("Current Campaign Jobs for " + currentCamp + " not setup.");
+                return;
+        }
+    }
+
+    public void AlterNarrativeVariable(MysteriousEntity.NarrativeVariables meMainOutcomes, string newText)
+    {
+
+    }
+
     [Serializable]
     public class CateringToTheRich
     {
-        [HideInInspector] public int currentCampaignJobIndex = 0;
+        [ReadOnly] public int currentCampaignJobIndex = 0;
         public List<Job> campaignJobs = new List<Job>();
         
         public enum NarrativeOutcomes { NA, SideWithScientist, KillBeckett, LetBalePilot, KilledAtSafari, KilledOnce, TellVIPsAboutClones, VIPTrust, CloneTrust}
@@ -65,5 +187,55 @@ public class CampaignManager : MonoBehaviour
             ctr_VIPTrust = saved_ctr_VIPTrust;
             ctr_cloneTrust = saved_ctr_cloneTrust;
         }
+    }
+
+    [Serializable]
+    public class MysteriousEntity
+    {
+        [ReadOnly] public int currentCampaignJobIndex = 0;
+        public List<Job> campaignJobs = new List<Job>();
+
+        public enum NarrativeVariables
+        {
+            NA,
+            //job 1, Event 2
+            KuonInvestigates,
+            Decline_Bribe,
+            Decline_Fire,
+            Accept,
+            OpenedCargo
+
+        }
+        public bool me_kuonInvestigates;
+        public bool me_openedCargo;
+
+        public bool me_declineBribe;
+        public bool me_declineFire;
+        public bool me_Accept;
+
+    }
+
+    [Serializable]
+    public class FinalTest
+    {
+        [ReadOnly] public int currentCampaignJobIndex = 0;
+        public List<Job> campaignJobs = new List<Job>();
+
+        public int assetCount = 0;
+        public enum NarrativeVariables
+        {
+            NA,
+            LexaDoomed,
+            LanriExperiment,
+            TruthTold,
+            ScienceSavior,
+            KellisLoyalty
+        }
+
+        public bool ft_lexaDoomed;
+        public bool ft_lanriExperiment;
+        public bool ft_truthTold;
+        public bool ft_scienceSavior;
+        public bool ft_kellisLoyalty;
     }
 }
