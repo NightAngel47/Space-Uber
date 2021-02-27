@@ -60,6 +60,8 @@ public class ObjectScript : MonoBehaviour
 
     public bool clickAgain = true;
 
+    private bool mouseReleased = false;
+
     private void Start()
     {
         //rotAdjust = false;
@@ -72,11 +74,26 @@ public class ObjectScript : MonoBehaviour
         ResetData();
     }
 
+    public void Update()
+    {
+        if(Input.GetMouseButtonUp(0))
+        {
+            StartCoroutine(WaitToClickRoom());
+            //mouseReleased = true;
+        }
+
+        //if(Input.GetMouseButtonDown(0))
+        //{
+        //    clickAgain = false;
+        //}
+    }
+
     public void TurnOnClickAgain()
     {
         if (preplacedRoom == false)
         {
             clickAgain = true;
+            mouseReleased = false;
             CalledFromSpawn = false;
         }
     }
@@ -100,9 +117,17 @@ public class ObjectScript : MonoBehaviour
         }
     }
 
+    //public void OnMouseUp()
+    //{
+    //    //StartCoroutine(WaitToClickRoom());
+    //    //clickAgain = true;
+
+    //    mouseReleased = true;
+    //}
+
     public void OnMouseOver()
     {
-        if(preplacedRoom) return;
+        //if(preplacedRoom) return;
 
         if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true) // && PauseMenu.Instance.isPaused == false// commented out until menus are ready
         {
@@ -119,7 +144,7 @@ public class ObjectScript : MonoBehaviour
 
             //if(preplacedRoom) return; // could moved preplacedRoom check here so tooltip can be activated.
 
-            if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true && !gameObject.GetComponent<ObjectMover>().enabled)
+            if (Input.GetMouseButtonDown(0) && ObjectMover.hasPlaced == true && !gameObject.GetComponent<ObjectMover>().enabled && preplacedRoom == false)
             {
                 //buttons.SetActive(true);
                 gameObject.GetComponent<RoomStats>().SubtractRoomStats();
@@ -127,7 +152,7 @@ public class ObjectScript : MonoBehaviour
                 Edit();
             }
 
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButton(1) && preplacedRoom == false)
             {
                 //buttons.SetActive(true);
                 if (ObjectMover.hasPlaced == true)
@@ -167,8 +192,9 @@ public class ObjectScript : MonoBehaviour
             r.TurnOffClickAgain();
         }
 
+        //yield return new WaitUntil(() => mouseReleased);
         yield return new WaitForSeconds(.25f);
-
+        
         foreach (ObjectScript r in otherRooms)
         {
             r.TurnOnClickAgain();
@@ -185,6 +211,12 @@ public class ObjectScript : MonoBehaviour
 
     public void Edit()
     {
+        Cursor.visible = false;
+        clickAgain = false;
+
+        //rooms being placed will appear on top of other rooms that are already placed
+        gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+
         c.a = .5f;
         gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
         c.a = 1;
@@ -215,8 +247,14 @@ public class ObjectScript : MonoBehaviour
 
     public void Delete()
     {
+        Cursor.visible = true;
+        clickAgain = false;
+
         //buttons.SetActive(false);
-        SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
+        if (ObjectMover.hasPlaced == true)
+        {
+            SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
+        }
         ObjectMover.hasPlaced = true;
         ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
         foreach (ObjectScript r in otherRooms)
