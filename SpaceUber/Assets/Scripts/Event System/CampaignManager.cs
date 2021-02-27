@@ -229,7 +229,8 @@ public class CampaignManager : MonoBehaviour
             LanriExperiment,
             TruthTold,
             ScienceSavior,
-            KellisLoyalty
+            KellisLoyalty,
+            EndgamePlan
         }
 
         public bool ft_lexaDoomed;
@@ -237,5 +238,6 @@ public class CampaignManager : MonoBehaviour
         public bool ft_truthTold;
         public bool ft_scienceSavior;
         public bool ft_kellisLoyalty;
+        public bool ft_endgamePlan;
     }
 }

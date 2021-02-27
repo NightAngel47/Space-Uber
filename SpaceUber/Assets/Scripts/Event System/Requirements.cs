@@ -308,6 +308,9 @@ public class Requirements
                             case CampaignManager.FinalTest.NarrativeVariables.TruthTold:
                                 result = campMan.finalTest.ft_truthTold;
                                 break;
+                            case CampaignManager.FinalTest.NarrativeVariables.EndgamePlan:
+                                result = campMan.finalTest.ft_endgamePlan;
+                                break;
                         }
                     }
                     break;
