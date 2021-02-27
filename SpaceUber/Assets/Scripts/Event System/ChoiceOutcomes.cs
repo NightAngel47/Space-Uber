@@ -31,7 +31,7 @@ public class ChoiceOutcomes
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public int amount;
 
     //[SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character = CharacterStats.Characters.None;
-    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public int eventApprovalChange;
+    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterEvent.AnswerState answerType;
     [HideInInspector] public CharacterEvent characterDriver;
 
     #region Initialized Narrative Variables
@@ -365,12 +365,31 @@ public class ChoiceOutcomes
                                 campMan.finalTest.ft_truthTold = true;
                                 resultText += "\nYou told everyone the truth";
                                 break;
+                            case CampaignManager.FinalTest.NarrativeVariables.EndgamePlan:
+                                campMan.finalTest.ft_endgamePlan = true;
+                                resultText += "\nYou came up with a plan";
+                                break;
                         }
                         break;
                 }
             }
             else //approval outcomes
             {
+                int eventApprovalChange = 0;
+
+                if(answerType == CharacterEvent.AnswerState.POSITIVE)
+                {
+                    eventApprovalChange = 1;
+                }
+                if (answerType == CharacterEvent.AnswerState.NEGATIVE)
+                {
+                    eventApprovalChange = -1;
+                }
+                if (answerType == CharacterEvent.AnswerState.NEUTRAL)
+                {
+                    eventApprovalChange = 0;
+                }
+
                 characterDriver.ChangeEventApproval(eventApprovalChange);
 
                 //TODO: Changes character specific approval. To be implemented as someone sees fit
