@@ -21,7 +21,7 @@ public class RoomPanelToggle : MonoBehaviour
 
     public void TogglePanelVis()
     {
-        if (isOpen == false)
+        if (isOpen == false && !OverclockController.instance.overclocking)
         {
             shopAnimator.SetBool(IsOpen, true);
             isOpen = true;
