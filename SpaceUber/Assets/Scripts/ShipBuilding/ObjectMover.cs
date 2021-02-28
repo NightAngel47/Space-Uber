@@ -220,6 +220,8 @@ public class ObjectMover : MonoBehaviour
 
                 gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = ObjectScript.c;
                 gameObject.GetComponent<ObjectMover>().enabled = false;
+                
+                FindObjectOfType<EditCrewButton>().CheckForRooms();
             }
 
             else //If something is placed allow player to keep moving room

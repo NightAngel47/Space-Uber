@@ -70,8 +70,6 @@ public class ObjectScript : MonoBehaviour
         c.a = 1;
         //parentObj = transform.parent.gameObject;
 
-        FindObjectOfType<EditCrewButton>().CheckForRooms();
-
         ResetData();
     }
 
@@ -164,7 +162,6 @@ public class ObjectScript : MonoBehaviour
            || GameManager.instance.currentGameState == InGameStates.Events
            && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn)
         {
-
             roomTooltip.SetActive(true);
             
             //if the object is clicked, open the room management menu

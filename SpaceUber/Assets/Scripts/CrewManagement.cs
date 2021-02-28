@@ -12,13 +12,8 @@ using UnityEngine.UI;
 
 public class CrewManagement : MonoBehaviour
 {
-    private int crewAddAmount = 1;
     private ShipStats shipStats;
     private RoomStats roomStats;
-    public TMP_Text crewUnassignedText;
-    public GameObject crewManagementText;
-    public GameObject roomText;
-    public GameObject costsText;
     public GameObject crewAmount;
     public GameObject powerAmount;
     public GameObject overclockOutput;
@@ -41,10 +36,8 @@ public class CrewManagement : MonoBehaviour
 
     public void Start()
     {
-        
-
         shipStats = FindObjectOfType<ShipStats>();
-        crewUnassignedText.text = "Unassigned Crew: " + (int)shipStats.CrewCurrent.z;
+        //crewUnassignedText.text = "Unassigned Crew: " + (int)shipStats.CrewCurrent.z;
 
         //statPanel = gameObject.transform.GetChild(0).gameObject;
         TurnOffPanel();
@@ -244,11 +237,6 @@ public class CrewManagement : MonoBehaviour
         }
     }
 
-    public void ChangeAmount(int a)
-    {
-        crewAddAmount = a;
-    }
-
     public void AddCrew()
     {
         if (shipStats.CrewCurrent.z > 0 && roomStats.currentCrew < roomStats.maxCrew)
@@ -307,44 +295,6 @@ public class CrewManagement : MonoBehaviour
         {
             sceneButtons[0].GetComponent<Button>().interactable = false;
         }
-    }
-
-    //public void AddPower()
-    //{
-    //    if(ss.HasEnoughPower(rs.minPower) && rs.GetIsPowered() == false)
-    //    {
-    //        ss.UpdateEnergyAmount(-rs.minPower);
-    //        rs.SetIsPowered();
-    //        powerAmount.GetComponent<TextMeshProUGUI>().text = rs.minPower.ToString();
-    //        UpdateOutput();
-    //    }
-    //}
-
-    //public void SubtractPower()
-    //{
-    //    if (rs.GetIsPowered() == true)
-    //    {
-    //        ss.UpdateEnergyAmount(rs.minPower);
-    //        rs.SetIsPowered();
-    //        powerAmount.GetComponent<TextMeshProUGUI>().text = rs.minPower.ToString();
-    //        UpdateOutput();
-    //    }
-    //}
-
-    public void LoseCrew(int crewLost)
-    {
-        RoomStats[] currentRoomList = FindObjectsOfType<RoomStats>();
-
-        do
-        {
-            int rand = Random.Range(0, currentRoomList.Length);
-
-            if (currentRoomList[rand].currentCrew > 0)
-            {
-                currentRoomList[rand].currentCrew -= 1;
-                crewLost -= 1;
-            }
-        } while (crewLost > 0);
     }
 
     public void TurnOffPanel()
