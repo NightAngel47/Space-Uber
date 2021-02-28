@@ -51,7 +51,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         roomDesc.text = roomStats.roomDescription;
         needsCredits.text = roomStats.price.ToString();
         needsPower.text = roomStats.minPower.ToString();
-        needsCrew.text = roomStats.minCrew.ToString();
+        needsCrew.text = roomStats.minCrew.ToString() + "-" + roomStats.maxCrew.ToString();
         currentCrew.text = roomStats.currentCrew.ToString();
         roomSize.text = selectedRoom.GetComponent<ObjectScript>().roomSize;
 
