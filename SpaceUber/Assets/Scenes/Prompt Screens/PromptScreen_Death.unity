@@ -664,7 +664,7 @@ PrefabInstance:
     - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}
@@ -745,7 +745,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 878182988}
+      objectReference: {fileID: 0}
     - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -900,18 +900,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 297aa69f198706346bdcf602e2af6dba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &878182988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 878182986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 455b2d6b66d68d4478b7824079a1e84d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &878182989 stripped
@@ -2014,7 +2002,7 @@ PrefabInstance:
     - target: {fileID: 249980073178906750, guid: e08a91a11145047ba8d05eb79f6c3ef9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 249980073178906750, guid: e08a91a11145047ba8d05eb79f6c3ef9,
         type: 3}
@@ -2040,7 +2028,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1187498032565026086}
+      objectReference: {fileID: 1187498032565026087}
     - target: {fileID: 249980073178906750, guid: e08a91a11145047ba8d05eb79f6c3ef9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -2049,7 +2037,7 @@ PrefabInstance:
     - target: {fileID: 249980073178906750, guid: e08a91a11145047ba8d05eb79f6c3ef9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: ChangeToJobSelect
+      value: RestartGame
       objectReference: {fileID: 0}
     - target: {fileID: 249980073178906750, guid: e08a91a11145047ba8d05eb79f6c3ef9,
         type: 3}
@@ -2266,18 +2254,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1187498032565026082}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1187498032565026086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187498032565026084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 455b2d6b66d68d4478b7824079a1e84d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1187498032565026087
 MonoBehaviour:
   m_ObjectHideFlags: 0

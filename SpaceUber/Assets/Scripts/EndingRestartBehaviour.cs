@@ -21,14 +21,20 @@ public class EndingRestartBehaviour : MonoBehaviour
     
     public void RestartGame()
     {
-        SceneManager.LoadScene("ShipBase");
+        SavingLoadingManager.DeleteSave();
+        SceneManager.LoadScene("LoadingScreen");
         AudioManager.instance.PlayMusicWithTransition("General Theme");
     }
     
     public void ResetJob()
     {
+        SceneManager.LoadScene("LoadingScreen");
+        AudioManager.instance.PlayMusicWithTransition("General Theme");
+        
+        /*
         ship.ResetStats();
         campaignManager.cateringToTheRich.ResetEventChoicesToJobStart();
         EventSystem.instance.ResetJob();
+        */
     }
 }

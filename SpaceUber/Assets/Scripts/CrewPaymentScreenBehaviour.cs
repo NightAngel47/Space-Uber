@@ -18,6 +18,8 @@ public class CrewPaymentScreenBehaviour : MonoBehaviour
         // pay crew
         ship.PayCrew(amount);
         
+        ship.SaveStats();
+        
         // continue to next job, or end campaign
         if (campaignManager.cateringToTheRich.currentCampaignJobIndex <
             campaignManager.cateringToTheRich.campaignJobs.Count)

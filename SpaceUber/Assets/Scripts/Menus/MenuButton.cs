@@ -14,15 +14,18 @@ public class MenuButton : MonoBehaviour
 {
     [SerializeField] string sceneToLoad;
 
-    public void quitGame()
+    public void QuitGame()
     {
         Application.Quit();
     }
 
-    public void startGame()
+    public void StartGame()
     {
         SceneManager.LoadScene("LoadingScreen");
     }
-
-
+    
+    public void DeleteSave()
+    {
+        SavingLoadingManager.DeleteSave();
+    }
 }
