@@ -308,8 +308,17 @@ public class Requirements
                             case CampaignManager.FinalTest.NarrativeVariables.TruthTold:
                                 result = campMan.finalTest.ft_truthTold;
                                 break;
-                            case CampaignManager.FinalTest.NarrativeVariables.EndgamePlan:
-                                result = campMan.finalTest.ft_endgamePlan;
+                            case CampaignManager.FinalTest.NarrativeVariables.LexaPlan:
+                                result = campMan.finalTest.ft_lexaPlan;
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.MateoPlan:
+                                result = campMan.finalTest.ft_mateoPlan;
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.LanriRipleyPlan:
+                                result = campMan.finalTest.ft_lanriRipleyPlan;
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.KuonPlan:
+                                result = campMan.finalTest.ft_kuonPlan;
                                 break;
                         }
                     }

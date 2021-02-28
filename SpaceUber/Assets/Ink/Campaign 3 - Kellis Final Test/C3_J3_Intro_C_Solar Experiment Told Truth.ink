@@ -1,0 +1,3 @@
+You've been summoned back to Dispatch for another performance review. Announcements have been made across the solar system, mass evacuation orders, observations of the sun's size and coloration, calls for corporate aid. 
+Things have been stirred to a panic, and for good reason. Given the amount of time left, only a fraction of the population would escape. Kellis is reeling you back to HQ likely to address this, and you hope, give you guidance on how to proceed with your mission. 
+Lanri has said that the sun is growing by the day, and soon will render the closer planets to it completely unlivable. Your time to finish Kellis' final test is closing, but the first matter is returning to Dispatch.

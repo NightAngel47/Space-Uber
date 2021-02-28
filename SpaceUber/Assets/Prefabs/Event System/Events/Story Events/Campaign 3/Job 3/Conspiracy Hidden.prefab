@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5926717481994739889
+--- !u!1001 &7205692621679402872
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,118 +9,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: nextChoices.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[0].outcomes.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[1].outcomes.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
       propertyPath: requiredStats.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: eventName
-      value: A Bloody Sleep
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: isStoryEvent
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: inkJSONAsset
       value: 
-      objectReference: {fileID: 4900000, guid: e77dc288a9d384240bbd58df560f5450, type: 3}
+      objectReference: {fileID: 4900000, guid: c7def0f382278ea418c9e4781c39aa75, type: 3}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: storyIndex
+      propertyPath: eventName
+      value: The Hidden Conspiracy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: isStoryEvent
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[0].choiceName
-      value: Use Supply of Plasma
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[0].description
-      value: 'Use the supply of plasma to keep the  comatose crew members alive '
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].outcomeName
-      value: Supply
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[1].outcomeName
-      value: Supply
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].amount
-      value: -100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[1].resource
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[1].amount
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[1].choiceName
-      value: Have Crew Donate Blood
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[1].description
-      value: 'Have others donate blood to keep the  comatose crew members alive '
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[0].outcomeName
-      value: Donate
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[1].outcomeName
-      value: Donate
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[0].resource
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[0].amount
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[1].resource
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[1].amount
-      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -135,17 +40,17 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: requiredStats.Array.data[0].thisCampaign
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: requiredStats.Array.data[0].meNarrativeRequirements
-      value: 5
+      propertyPath: storyIndex
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name
-      value: A Bloody Sleep
+      value: Conspiracy Hidden
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
