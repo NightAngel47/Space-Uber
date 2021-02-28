@@ -140,6 +140,7 @@ public class GameManager : MonoBehaviour
                 
                 ship.SaveStats();
                 MoraleManager.instance.SaveMorale();
+                ship.cStats.SaveStats();
 
                 // Remove unplaced rooms from the ShipBuilding state
                 if (!ObjectMover.hasPlaced)

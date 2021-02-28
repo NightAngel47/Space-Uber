@@ -99,10 +99,36 @@ public class CharacterStats : MonoBehaviour
 
     private void Start()
     {
-        kuonApproval = kuonApprovalInit;
-        mateoApproval = mateoApprovalInit;
-        lexaApproval = lexaApprovalInit;
-        lanriApproval = lanriApprovalInit;
-        ripleyApproval = ripleyApprovalInit;
+        if(SavingLoadingManager.instance.GetHasSave())
+        {
+            ResetStats();
+        }
+        else
+        {
+            kuonApproval = kuonApprovalInit;
+            mateoApproval = mateoApprovalInit;
+            lexaApproval = lexaApprovalInit;
+            lanriApproval = lanriApprovalInit;
+            ripleyApproval = ripleyApprovalInit;
+            SaveStats();
+        }
+    }
+    
+    public void SaveStats()
+    {
+        SavingLoadingManager.instance.Save<int>("kuonApproval", kuonApproval);
+        SavingLoadingManager.instance.Save<int>("mateoApproval", mateoApproval);
+        SavingLoadingManager.instance.Save<int>("lexaApproval", lexaApproval);
+        SavingLoadingManager.instance.Save<int>("lanriApproval", lanriApproval);
+        SavingLoadingManager.instance.Save<int>("ripleyApproval", ripleyApproval);
+    }
+    
+    public void ResetStats()
+    {
+        KuonApproval = SavingLoadingManager.instance.Load<int>("kuonApproval");
+        MateoApproval = SavingLoadingManager.instance.Load<int>("mateoApproval");
+        LexaApproval = SavingLoadingManager.instance.Load<int>("lexaApproval");
+        LanriApproval = SavingLoadingManager.instance.Load<int>("lanriApproval");
+        RipleyApproval = SavingLoadingManager.instance.Load<int>("ripleyApproval");
     }
 }
