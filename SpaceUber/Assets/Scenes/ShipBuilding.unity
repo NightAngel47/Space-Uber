@@ -4274,6 +4274,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: ChangeToCrewManagement
       objectReference: {fileID: 0}
+    - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 727756690}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5, type: 3}
 --- !u!224 &727756687 stripped
@@ -4298,6 +4303,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 906f8063fa61796459071f2d75053bfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &727756690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727756688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 455b2d6b66d68d4478b7824079a1e84d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &749125897
