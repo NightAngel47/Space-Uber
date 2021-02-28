@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8163409855304584907
+--- !u!1001 &3908953310339217930
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -14,8 +14,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
       propertyPath: subsequentChoices.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -25,26 +30,16 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.size
+      propertyPath: nextChoices.Array.data[0].choiceRequirements.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].outcomes.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].outcomes.Array.size
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceRequirements.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
@@ -54,8 +49,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
+      propertyPath: inkJSONAsset
+      value: 
+      objectReference: {fileID: 4900000, guid: 44ed56d9d90d8417fb6b3b6f6e729947, type: 3}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
       propertyPath: eventName
-      value: The Entity
+      value: Overrun
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -64,43 +64,72 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: inkJSONAsset
-      value: 
-      objectReference: {fileID: 4900000, guid: 01d2d9638a6d0cc4bbbafe5cf8fe96ec, type: 3}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
       propertyPath: storyIndex
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
+      propertyPath: eventBGM
+      value: General Theme
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
       propertyPath: nextChoices.Array.data[0].choiceName
-      value: Alter the Relics
+      value: Attempt to Collect Asset
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: nextChoices.Array.data[0].description
-      value: Appease the Entity by Altering the Artifacts
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].outcomeName
+      value: -hull
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: nextChoices.Array.data[1].choiceName
-      value: Call the Entity's Bluff
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].resource
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: nextChoices.Array.data[1].description
-      value: "Tell the entity you know it won\u2019t let your crew  members die regardless
-        of what you choose "
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].amount
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: nextChoices.Array.data[1].hasSubsequentChoices
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[1].outcomeName
+      value: -security
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[1].resource
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[2].outcomeName
+      value: +asset
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[2].isNarrativeOutcome
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: nextChoices.Array.data[0].hasSubsequentChoices
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[2].thisCampaign
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[2].assetCountChange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].choiceName
+      value: Flee, Collect Next Asset
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].hasSubsequentChoices
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
@@ -110,179 +139,143 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: nextChoices.Array.data[1].subsequentChoiceIndex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
       propertyPath: subsequentChoices.Array.data[0].subsequentChoicesName
-      value: Altered
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[1].subsequentChoicesName
-      value: Bluffed
+      value: Asset 2
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceName
-      value: Continue with Tampering
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].description
-      value: 'Allow the crew to finish their job altering the relics '
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[1].outcomeName
-      value: Tamper
+      value: Attempt to Collect Asset
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[0].outcomeName
-      value: Tamper
+      value: -hull
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[2].outcomeName
-      value: Tamper
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[0].resource
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[0].amount
-      value: 150
+      value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[1].outcomeName
+      value: -weapons
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[1].resource
-      value: 9
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[1].amount
-      value: 30
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[2].resource
-      value: 4
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[2].outcomeName
+      value: -food
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[2].amount
-      value: 4
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[3].outcomeName
+      value: +asset
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[3].amount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[3].isNarrativeOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[3].thisCampaign
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[3].assetCountChange
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].choiceName
-      value: Have Kuon Blast the Artifact
+      value: Flee
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].description
-      value: 'Prevent the altering of the relics by severing the entity''s link to
-        this world '
+      propertyPath: nextChoices.Array.data[0].hasRequirements
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.data[0].outcomeName
-      value: Blast
+      propertyPath: nextChoices.Array.data[0].choiceRequirements.Array.data[0].isStatRequirement
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.data[0].amount
-      value: 300
+      propertyPath: nextChoices.Array.data[0].choiceRequirements.Array.data[0].selectedResource
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].choiceName
-      value: Let the Entity Finish
+      propertyPath: nextChoices.Array.data[0].choiceRequirements.Array.data[0].requiredAmount
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].description
-      value: 'Let the entity finish altering the obelisk '
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].hasRequirements
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].outcomes.Array.data[0].outcomeName
-      value: Finish
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceRequirements.Array.data[0].isStatRequirement
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].outcomes.Array.data[0].amount
-      value: 150
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceRequirements.Array.data[0].selectedResource
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].outcomes.Array.data[1].resource
-      value: 4
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceRequirements.Array.data[0].requiredAmount
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].outcomes.Array.data[2].resource
-      value: 9
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceRequirements.Array.data[1].isStatRequirement
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].outcomes.Array.data[1].outcomeName
-      value: Finish
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceRequirements.Array.data[1].selectedResource
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].outcomes.Array.data[1].amount
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].outcomes.Array.data[2].outcomeName
-      value: Finish
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].outcomes.Array.data[2].amount
-      value: -25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].choiceName
-      value: Have Kuon Stop the Entity
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].description
-      value: 'Prevent the entity from altering the obelisk '
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].outcomes.Array.data[1].resource
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].outcomes.Array.data[0].outcomeName
-      value: Stop
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].outcomes.Array.data[1].outcomeName
-      value: Stop
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].outcomes.Array.data[0].amount
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].outcomes.Array.data[1].amount
-      value: -30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].hasSubsequentChoices
-      value: 0
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceRequirements.Array.data[1].requiredAmount
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -292,28 +285,17 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: requiredStats.Array.data[0].thisCampaign
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: requiredStats.Array.data[0].meNarrativeRequirements
-      value: 5
+      propertyPath: requiredStats.Array.data[0].ftOutcomes
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: eventBGM
-      value: General Theme
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: backgroundImage
-      value: 
-      objectReference: {fileID: 21300000, guid: c54a7b147a3dc4644a80fe2f0ab2d30f,
-        type: 3}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name
-      value: The Entity
+      value: OverrunA
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
