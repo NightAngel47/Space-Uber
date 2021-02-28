@@ -69,28 +69,10 @@ public class GameManager : MonoBehaviour
         ship = FindObjectOfType<ShipStats>();
     }
 
-    private void Start()
-    {
-        StartCoroutine(DelayedStart());
-    }
-
-    /// <summary>
-    /// Delay starting the game when loaded in.
-    /// This give the time for the additive scene manager to clear, before loading new scenes.
-    /// </summary>
-    private IEnumerator DelayedStart()
+    private IEnumerator Start()
     {
         yield return new WaitForEndOfFrame();
         ChangeInGameState(InGameStates.JobSelect);
-    }
-
-    private void Update()
-    {
-        // I was getting errors in scripts trying to access GameManager.instance.  Hopefully this fixes it.
-        if (instance == null)
-        {
-            instance = this;
-        }
     }
 
     /// <summary>

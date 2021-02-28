@@ -6,6 +6,7 @@
  */
 
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -59,6 +60,8 @@ public class CrewManagement : MonoBehaviour
         }
 
         room = FindObjectOfType<ObjectScript>().gameObject;
+
+        CheckForMinCrew();
     }
 
     private void Update()
@@ -267,34 +270,9 @@ public class CrewManagement : MonoBehaviour
         }
     }
 
-    public void CheckForMinCrew()
+    private void CheckForMinCrew()
     {
-        RoomStats[] rooms = FindObjectsOfType<RoomStats>();
-        bool minCrewMet = false;
-
-        foreach (RoomStats room in rooms)
-        {
-            if (room.gameObject.GetComponent<RoomStats>().minCrew > room.gameObject.GetComponent<RoomStats>().currentCrew)
-            {
-                minCrewMet = false;
-                break;
-            }
-
-            else
-            {
-                minCrewMet = true;
-            }
-
-        }
-
-        if(minCrewMet == true)
-        {
-            sceneButtons[0].GetComponent<Button>().interactable = true;
-        }
-        else
-        {
-            sceneButtons[0].GetComponent<Button>().interactable = false;
-        }
+        sceneButtons[0].GetComponent<ButtonTwoBehaviour>().SetButtonInteractable(FindObjectsOfType<RoomStats>().All(room => room.minCrew <= room.currentCrew));
     }
 
     public void TurnOffPanel()
