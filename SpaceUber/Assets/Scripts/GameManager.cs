@@ -81,7 +81,15 @@ public class GameManager : MonoBehaviour
     private IEnumerator DelayedStart()
     {
         yield return new WaitForEndOfFrame();
-        ChangeInGameState(InGameStates.JobSelect);
+        if(SavingLoadingManager.instance.GetHasSave() && SavingLoadingManager.instance.Load<bool>("hasSelectedJob"))
+        {
+            ChangeInGameState(InGameStates.ShipBuilding);
+            additiveSceneManager.UnloadScene("Interface_JobList");
+        }
+        else
+        {
+            ChangeInGameState(InGameStates.JobSelect);
+        }
     }
 
     private void Update()
@@ -118,11 +126,13 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.LoadSceneSeperate("Interface_JobList");
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
                 jobManager.RefreshJobList();
+                SavingLoadingManager.instance.Save<bool>("hasSelectedJob", false);
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
                 additiveSceneManager.UnloadScene("CrewManagement");
 
                 additiveSceneManager.LoadSceneSeperate("ShipBuilding");
+                SavingLoadingManager.instance.Save<bool>("hasSelectedJob", true);
                 break;
             case InGameStates.CrewManagement:
                 additiveSceneManager.UnloadScene("ShipBuilding");
