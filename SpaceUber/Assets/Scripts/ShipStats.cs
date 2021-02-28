@@ -496,7 +496,7 @@ public class ShipStats : MonoBehaviour
         EnergyRemaining = new Vector2(SavingLoadingManager.instance.Load<int>("energyRemaining"), SavingLoadingManager.instance.Load<int>("energyMax"));
         Security = SavingLoadingManager.instance.Load<int>("security");
         ShipWeapons = SavingLoadingManager.instance.Load<int>("shipWeapons");
-        CrewCurrent = new Vector3(SavingLoadingManager.instance.Load<int>("crewUnassigned"), SavingLoadingManager.instance.Load<int>("crewCurrent"), SavingLoadingManager.instance.Load<int>("crewCapacity"));
+        CrewCurrent = new Vector3(SavingLoadingManager.instance.Load<int>("crewCurrent"), SavingLoadingManager.instance.Load<int>("crewCapacity"), SavingLoadingManager.instance.Load<int>("crewUnassigned"));
         Food = SavingLoadingManager.instance.Load<int>("food");
         FoodPerTick = SavingLoadingManager.instance.Load<int>("foodPerTick");
         ShipHealthCurrent = new Vector2(SavingLoadingManager.instance.Load<int>("shipHealthCurrent"), SavingLoadingManager.instance.Load<int>("shipHealthMax"));
