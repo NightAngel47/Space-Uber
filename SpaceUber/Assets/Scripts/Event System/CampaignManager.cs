@@ -230,7 +230,10 @@ public class CampaignManager : MonoBehaviour
             TruthTold,
             ScienceSavior,
             KellisLoyalty,
-            LexaPlan
+            LexaPlan,
+            MateoPlan,
+            LanriRipleyPlan,
+            KuonPlan
         }
 
         public bool ft_lexaDoomed;
