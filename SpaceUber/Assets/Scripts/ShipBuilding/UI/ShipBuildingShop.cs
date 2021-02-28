@@ -11,23 +11,27 @@ using UnityEngine.UI;
 
 public class ShipBuildingShop : MonoBehaviour
 {
-    private enum ShipBuildingTab { None, Credits, Crew, Food, HullDurability, Energy, ShipWeapons, Security }
+    private enum ShipBuildingTab { None = -1, Credits, Crew, Food, HullDurability, Energy, ShipWeapons, Security }
     ShipBuildingTab tab = ShipBuildingTab.None;
     private SpawnObject objectsToSpawn;
 
     [SerializeField] RoomPanelToggle shopToggle;
-    [SerializeField] ShipBuildingBuyableRoom[] shopSlots = new ShipBuildingBuyableRoom[3];
+    ShipBuildingBuyableRoom[] shopSlots = new ShipBuildingBuyableRoom[3];
 
     [SerializeField] Sprite blackButton;
     [SerializeField] Sprite redButton;
-    [SerializeField] GameObject creditsButton;
-    [SerializeField] GameObject crewButton;
-    [SerializeField] GameObject foodButton;
-    [SerializeField] GameObject hullButton;
-    [SerializeField] GameObject powerButton;
-    [SerializeField] GameObject weaponsButton;
-    [SerializeField] GameObject securityButton;
+    [SerializeField] private RectTransform shopTabsContainer;
+    private Image[] shopTabs = new Image[0];
 
+    private void Awake()
+    {
+        shopSlots = GetComponentsInChildren<ShipBuildingBuyableRoom>();
+        shopTabs = new Image[shopTabsContainer.childCount];
+        for (int i = 0; i < shopTabs.Length; ++i)
+        {
+            shopTabs[i] = shopTabsContainer.GetChild(i).GetComponent<Image>();
+        }
+    }
 
     private void Start()
     {
@@ -39,41 +43,23 @@ public class ShipBuildingShop : MonoBehaviour
         Enum.TryParse("_" + resourceDataType, true, out ResourceDataTypes resourceType);
         Enum.TryParse(resourceDataType, true, out ShipBuildingTab shipBuildingTab);
 
-        ResetButtons();
-        switch(resourceType)
-        {
-            case ResourceDataTypes._Food:
-                foodButton.GetComponent<Image>().sprite = redButton;
-                break;
-            case ResourceDataTypes._Credits:
-                creditsButton.GetComponent<Image>().sprite = redButton;
-                break;
-            case ResourceDataTypes._Crew:
-                crewButton.GetComponent<Image>().sprite = redButton;
-                break;
-            case ResourceDataTypes._HullDurability:
-                hullButton.GetComponent<Image>().sprite = redButton;
-                break;
-            case ResourceDataTypes._Security:
-                securityButton.GetComponent<Image>().sprite = redButton;
-                break;
-            case ResourceDataTypes._ShipWeapons:
-                weaponsButton.GetComponent<Image>().sprite = redButton;
-                break;
-            case ResourceDataTypes._Energy:
-                powerButton.GetComponent<Image>().sprite = redButton;
-                break;
-        }
-        
         // close if same tab
         if (tab == shipBuildingTab)
         {
             shopToggle.TogglePanelVis();
+            shopTabs[(int) tab].sprite = blackButton;
             tab = ShipBuildingTab.None;
             return;
         }
+
+        if (tab != ShipBuildingTab.None)
+        {
+            shopTabs[(int) tab].sprite = blackButton;
+        }
+        
         // set ship building tab
         tab = shipBuildingTab;
+        shopTabs[(int) tab].sprite = redButton;
 
         // set shop slots based on resource type
         ResourceDataTypes[] resourceDataTypesArray = null;
@@ -131,17 +117,5 @@ public class ShipBuildingShop : MonoBehaviour
             shopSlots[i].gameObject.SetActive(false);
             ++i;
         }
-    }
-
-    public void ResetButtons()
-    {
-        foodButton.GetComponent<Image>().sprite = blackButton;
-        creditsButton.GetComponent<Image>().sprite = blackButton;
-        crewButton.GetComponent<Image>().sprite = blackButton;
-        hullButton.GetComponent<Image>().sprite = blackButton;
-        securityButton.GetComponent<Image>().sprite = blackButton;
-        weaponsButton.GetComponent<Image>().sprite = blackButton;
-        powerButton.GetComponent<Image>().sprite = blackButton;
-       
     }
 }
