@@ -7,6 +7,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShipBuildingShop : MonoBehaviour
 {
@@ -16,8 +17,18 @@ public class ShipBuildingShop : MonoBehaviour
 
     [SerializeField] RoomPanelToggle shopToggle;
     [SerializeField] ShipBuildingBuyableRoom[] shopSlots = new ShipBuildingBuyableRoom[3];
-    
-    
+
+    [SerializeField] Sprite blackButton;
+    [SerializeField] Sprite redButton;
+    [SerializeField] GameObject creditsButton;
+    [SerializeField] GameObject crewButton;
+    [SerializeField] GameObject foodButton;
+    [SerializeField] GameObject hullButton;
+    [SerializeField] GameObject powerButton;
+    [SerializeField] GameObject weaponsButton;
+    [SerializeField] GameObject securityButton;
+
+
     private void Start()
     {
         objectsToSpawn = FindObjectOfType<SpawnObject>();
@@ -27,6 +38,32 @@ public class ShipBuildingShop : MonoBehaviour
     {
         Enum.TryParse("_" + resourceDataType, true, out ResourceDataTypes resourceType);
         Enum.TryParse(resourceDataType, true, out ShipBuildingTab shipBuildingTab);
+
+        ResetButtons();
+        switch(resourceType)
+        {
+            case ResourceDataTypes._Food:
+                foodButton.GetComponent<Image>().sprite = redButton;
+                break;
+            case ResourceDataTypes._Credits:
+                creditsButton.GetComponent<Image>().sprite = redButton;
+                break;
+            case ResourceDataTypes._Crew:
+                crewButton.GetComponent<Image>().sprite = redButton;
+                break;
+            case ResourceDataTypes._HullDurability:
+                hullButton.GetComponent<Image>().sprite = redButton;
+                break;
+            case ResourceDataTypes._Security:
+                securityButton.GetComponent<Image>().sprite = redButton;
+                break;
+            case ResourceDataTypes._ShipWeapons:
+                weaponsButton.GetComponent<Image>().sprite = redButton;
+                break;
+            case ResourceDataTypes._Energy:
+                powerButton.GetComponent<Image>().sprite = redButton;
+                break;
+        }
         
         // close if same tab
         if (tab == shipBuildingTab)
@@ -94,5 +131,17 @@ public class ShipBuildingShop : MonoBehaviour
             shopSlots[i].gameObject.SetActive(false);
             ++i;
         }
+    }
+
+    public void ResetButtons()
+    {
+        foodButton.GetComponent<Image>().sprite = blackButton;
+        creditsButton.GetComponent<Image>().sprite = blackButton;
+        crewButton.GetComponent<Image>().sprite = blackButton;
+        hullButton.GetComponent<Image>().sprite = blackButton;
+        securityButton.GetComponent<Image>().sprite = blackButton;
+        weaponsButton.GetComponent<Image>().sprite = blackButton;
+        powerButton.GetComponent<Image>().sprite = blackButton;
+       
     }
 }
