@@ -29,10 +29,7 @@ public class ShipStats : MonoBehaviour
     [SerializeField, Tooltip("Starting amount of ship health"), Foldout("Starting Ship Stats")]
     private int startingShipHealth;
 
-    [HideInInspector]
-    public CharacterStats cStats;
-
-    public GameObject cantPlaceText;
+    [HideInInspector] public CharacterStats cStats;
 
     private List<RoomStats> rooms;
 

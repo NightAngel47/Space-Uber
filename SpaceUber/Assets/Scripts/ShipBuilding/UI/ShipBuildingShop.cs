@@ -7,7 +7,6 @@
 using System;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ShipBuildingShop : MonoBehaviour
 {

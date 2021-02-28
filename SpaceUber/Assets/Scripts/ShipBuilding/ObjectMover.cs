@@ -254,12 +254,6 @@ public class ObjectMover : MonoBehaviour
         canPlace = true;
     }
 
-    public IEnumerator WaitForText()
-    {
-        yield return new WaitForSeconds(3);
-        FindObjectOfType<ShipStats>().cantPlaceText.SetActive(false);
-    }
-
     //public void LayoutPlacement() //for spawning from layout to make sure they act as if they were placed normallys
     //{
     //    hasPlaced = true;

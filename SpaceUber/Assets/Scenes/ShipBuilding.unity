@@ -2745,6 +2745,7 @@ GameObject:
   m_Component:
   - component: {fileID: 536875702}
   - component: {fileID: 536875703}
+  - component: {fileID: 536875704}
   m_Layer: 5
   m_Name: Alert Window
   m_TagString: Untagged
@@ -2766,7 +2767,7 @@ RectTransform:
   - {fileID: 217592104}
   - {fileID: 1634876760}
   m_Father: {fileID: 615575893}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -2792,6 +2793,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &536875704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536875701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d05ce70dff3b0147a3f12637efa5fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 1119910295}
+  statText: {fileID: 1659928070}
+  activeTime: 2
 --- !u!1 &540441673
 GameObject:
   m_ObjectHideFlags: 0
@@ -3706,9 +3722,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 536875702}
   - {fileID: 637779970}
   - {fileID: 727756687}
+  - {fileID: 536875702}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3885,7 +3901,7 @@ RectTransform:
   - {fileID: 985766748}
   - {fileID: 1197596913}
   m_Father: {fileID: 615575893}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
@@ -4209,7 +4225,7 @@ PrefabInstance:
     - target: {fileID: 8963481259364165004, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8963481259364165004, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
         type: 3}
