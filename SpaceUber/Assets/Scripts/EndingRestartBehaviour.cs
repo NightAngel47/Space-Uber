@@ -22,12 +22,14 @@ public class EndingRestartBehaviour : MonoBehaviour
     public void RestartGame()
     {
         SavingLoadingManager.DeleteSave();
+        Destroy(FindObjectOfType<SpotChecker>().gameObject);
         SceneManager.LoadScene("LoadingScreen");
         AudioManager.instance.PlayMusicWithTransition("General Theme");
     }
     
     public void ResetJob()
     {
+        Destroy(FindObjectOfType<SpotChecker>().gameObject);
         SceneManager.LoadScene("LoadingScreen");
         AudioManager.instance.PlayMusicWithTransition("General Theme");
         

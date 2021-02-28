@@ -1,8 +1,8 @@
 /*
  * JobSelectScreen.cs
- * Author(s): 
+ * Author(s): Scott Acker
  * Created on: 10/19/2020 (en-US)
- * Description: 
+ * Description: Manages which jobs are available for the player to pick from
  */
 
 using System.Collections.Generic;
@@ -37,16 +37,17 @@ public class JobManager : MonoBehaviour
         yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_JobList").isLoaded);
         jobListUI = FindObjectOfType<JobListUI>();
 
-        for (var i = 0; i < campaignManager.cateringToTheRich.campaignJobs.Count; i++)
+        for (var i = 0; i < campaignManager.GetAvailableJobs().Count; i++)
         {
-            Job job = campaignManager.cateringToTheRich.campaignJobs[i];
+            Job thisJob = campaignManager.GetAvailableJobs()[i];
             // Show available job currently handles both primary and side jobs,
             // might need to change when side jobs are added
-            if (job.campaignIndexAvailable ==
-                campaignManager.cateringToTheRich.currentCampaignJobIndex ||
-                job.isSideJob)
+
+            if (thisJob.campaignIndexAvailable ==
+                campaignManager.GetCurrentCampaignIndex() ||
+                thisJob.isSideJob)
             {
-                jobListUI.ShowAvailableJob(job, i);
+                jobListUI.ShowAvailableJob(thisJob, i);
             }
         }
 
@@ -88,6 +89,5 @@ public class JobManager : MonoBehaviour
         //ship.gameObject.GetComponent<ShipStatsUI>().UpdateCreditsUI(ship.Credits, ship.Payout);
         es.TakeStoryJobEvents(selectedMainJob);
         es.TakeSideJobEvents(selectedSideJobs);
-        campaignManager.cateringToTheRich.currentCampaignJobIndex++;
     }
 }

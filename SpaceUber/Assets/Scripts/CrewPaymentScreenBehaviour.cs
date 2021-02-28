@@ -20,15 +20,6 @@ public class CrewPaymentScreenBehaviour : MonoBehaviour
         
         ship.SaveStats();
         
-        // continue to next job, or end campaign
-        if (campaignManager.cateringToTheRich.currentCampaignJobIndex <
-            campaignManager.cateringToTheRich.campaignJobs.Count)
-        {
-            GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
-        }
-        else
-        {
-            GameManager.instance.ChangeInGameState(InGameStates.Ending);
-        }
+        campaignManager.GoToNextJob(); //tells campaign manager to activate the next available job
     }
 }
