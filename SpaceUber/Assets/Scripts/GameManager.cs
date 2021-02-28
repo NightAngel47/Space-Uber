@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
         {
             case InGameStates.JobSelect: // Loads Jobpicker for the player to pick their job
                 // unload ending screen if replaying
-                additiveSceneManager.UnloadScene("Interface_EventTimer");
+                additiveSceneManager.UnloadScene("Interface_Runtime");
                 additiveSceneManager.UnloadScene("PromptScreen_End");
                 additiveSceneManager.UnloadScene("PromptScreen_Death");
                 additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("CrewPayment");
                 additiveSceneManager.UnloadScene("Starport BG");
                 
-                additiveSceneManager.LoadSceneMerged("Interface_EventTimer");
+                additiveSceneManager.LoadSceneMerged("Interface_Runtime");
                 
                 ship.SaveStats();
 
@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case InGameStates.CrewPayment:
-                additiveSceneManager.UnloadScene("Interface_EventTimer");
+                additiveSceneManager.UnloadScene("Interface_Runtime");
                 additiveSceneManager.UnloadScene("Event_General");
                 additiveSceneManager.UnloadScene("Event_CharacterFocused");
                 additiveSceneManager.UnloadScene("CrewManagement");
@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour
                 break;
             case InGameStates.MoneyEnding: // Loads the PromptScreen_Money_End when the player reaches a narrative ending.
                 additiveSceneManager.UnloadScene("Interface_JobList");
-                additiveSceneManager.UnloadScene("Interface_EventTimer");
+                additiveSceneManager.UnloadScene("Interface_Runtime");
                 additiveSceneManager.UnloadScene("Interface_Radio");
                 additiveSceneManager.UnloadScene("CrewPayment");
                 
@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("Event_General");
                 additiveSceneManager.UnloadScene("Event_CharacterFocused");
                 additiveSceneManager.UnloadScene("Event_Prompt");
-                additiveSceneManager.UnloadScene("Interface_EventTimer");
+                additiveSceneManager.UnloadScene("Interface_Runtime");
                 
                 additiveSceneManager.LoadSceneSeperate("PromptScreen_Death");
                 break;
