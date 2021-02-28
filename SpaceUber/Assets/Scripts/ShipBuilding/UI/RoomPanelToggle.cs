@@ -3,51 +3,108 @@
  * various controls for the shipbuilding, radio, and crew management UI
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class RoomPanelToggle : MonoBehaviour
+public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private Animator shopAnimator;
+    private Animator panelAnimator;
     private bool isOpen;
+
+    [SerializeField] Sprite blackButton;
+    [SerializeField] Sprite redButton;
+    [SerializeField] private Image[] panelTabs = new Image[0];
+    private int currentTabIndex = -1;
+    private bool isMouseOverObject;
+    
     private static readonly int IsOpen = Animator.StringToHash("isOpen");
 
     private void Start()
     {
-        isOpen = false;
+        panelAnimator = GetComponent<Animator>();
     }
 
-
-    public void TogglePanelVis()
+    private void Update()
     {
-        if (isOpen == false && !OverclockController.instance.overclocking)
+        if (Input.GetMouseButtonDown(0) && 
+            GameManager.instance.currentGameState != InGameStates.ShipBuilding && 
+            !ObjectScript.roomIsHovered && !isMouseOverObject)
         {
-            shopAnimator.SetBool(IsOpen, true);
-            isOpen = true;
-        }
-        else
-        {
-            shopAnimator.SetBool(IsOpen, false);
-            isOpen = false;
+            ClosePanel();
         }
     }
 
-    public void OpenPanel()
-    {
-        if (isOpen == false)
-        {
-            shopAnimator.SetBool(IsOpen, true);
-            isOpen = true;
-        }
-    }
-
-    public void ClosePanel()
+    public void TogglePanelVis(int tabIndex = -1)
     {
         if (isOpen)
         {
-            shopAnimator.SetBool(IsOpen, false);
-            isOpen = false;
+            ClosePanel(tabIndex);
         }
+        else
+        {
+            OpenPanel(tabIndex);
+        }
+    }
+
+    public void OpenPanel(int tabIndex = -1, bool isRoomDetails = false)
+    {
+        if (OverclockController.instance.overclocking) return;
+
+        if (!isRoomDetails || currentTabIndex != 0)
+        {
+            SetSelectedTab(tabIndex);
+        }
+
+        if (isOpen) return;
+        
+        panelAnimator.SetBool(IsOpen, true);
+        isOpen = true;
+    }
+
+    public void ClosePanel(int tabIndex = -1)
+    {
+        if (!isOpen) return;
+        
+        panelAnimator.SetBool(IsOpen, false);
+        isOpen = false;
+        
+        if (tabIndex != -1)
+        {
+            SetSelectedTab(tabIndex);
+        }
+        else
+        {
+            foreach (Image panelTab in panelTabs)
+            {
+                panelTab.sprite = blackButton;
+                currentTabIndex = -1;
+            }
+        }
+    }
+
+    private void SetSelectedTab(int tabIndex)
+    {
+        if (currentTabIndex == tabIndex)
+        {
+            panelTabs[currentTabIndex].sprite = blackButton;
+            currentTabIndex = -1;
+        }
+        else
+        {
+            if(currentTabIndex != -1) panelTabs[currentTabIndex].sprite = blackButton;
+            currentTabIndex = tabIndex;
+            panelTabs[currentTabIndex].sprite = redButton;
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        isMouseOverObject = true;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        isMouseOverObject = false;
     }
 }

@@ -16,8 +16,7 @@ using Random = UnityEngine.Random;
 
 public class ObjectScript : MonoBehaviour
 {
-    [Foldout("Data")]
-    public int rotAdjust = 1;
+    [Foldout("Data")] public int rotAdjust = 1;
     public static Color c;
 
     public string roomSize;
@@ -39,30 +38,22 @@ public class ObjectScript : MonoBehaviour
 
     [SerializeField] private ShapeType shapeDataTemplate = null;
 
-    [Foldout("Data")]
-    public ShapeType shapeData = null;
+    [Foldout("Data")] public ShapeType shapeData = null;
     public ShapeTypes shapeTypes => shapeData.St;
-
-    [Foldout("Data")]
-    public float boundsUp;
-    [Foldout("Data")]
-    public float boundsDown;
-    [Foldout("Data")]
-    public float boundsLeft;
-    [Foldout("Data")]
-    public float boundsRight;
-    [Foldout("Data")]
-    public float rotBoundsRight;
-    [Foldout("Data")]
-    public float rotBoundsUp;
-
-    [Foldout("Data")]
-    public Vector3 rotAdjustVal;
+    
+    [Foldout("Data")] public float boundsUp;
+    [Foldout("Data")] public float boundsDown;
+    [Foldout("Data")] public float boundsLeft;
+    [Foldout("Data")] public float boundsRight;
+    [Foldout("Data")] public float rotBoundsRight;
+    [Foldout("Data")] public float rotBoundsUp;
+    [Foldout("Data")] public Vector3 rotAdjustVal;
 
     public bool clickAgain = true;
 
     private bool mouseReleased = false;
-
+    public static bool roomIsHovered;
+    
     private void Start()
     {
         //rotAdjust = false;
@@ -128,6 +119,7 @@ public class ObjectScript : MonoBehaviour
             if (ObjectMover.hasPlaced && !PauseMenu.IsPaused)
             {
                 roomTooltip.SetActive(true);
+                roomIsHovered = true;
             }
             else if (roomTooltip.activeSelf)
             {
@@ -163,12 +155,13 @@ public class ObjectScript : MonoBehaviour
            && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn)
         {
             roomTooltip.SetActive(true);
+            roomIsHovered = true;
             
             //if the object is clicked, open the room management menu
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
-                FindObjectOfType<RoomPanelToggle>().OpenPanel();
+                FindObjectOfType<RoomPanelToggle>().OpenPanel(0, true);
                 FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(gameObject);
                 FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
                 AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
@@ -199,6 +192,8 @@ public class ObjectScript : MonoBehaviour
         {
             roomTooltip.SetActive(false);
         }
+        
+        roomIsHovered = false;
     }
 
     public void Edit()

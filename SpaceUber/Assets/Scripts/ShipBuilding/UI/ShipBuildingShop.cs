@@ -18,19 +18,9 @@ public class ShipBuildingShop : MonoBehaviour
     [SerializeField] RoomPanelToggle shopToggle;
     ShipBuildingBuyableRoom[] shopSlots = new ShipBuildingBuyableRoom[3];
 
-    [SerializeField] Sprite blackButton;
-    [SerializeField] Sprite redButton;
-    [SerializeField] private RectTransform shopTabsContainer;
-    private Image[] shopTabs = new Image[0];
-
     private void Awake()
     {
         shopSlots = GetComponentsInChildren<ShipBuildingBuyableRoom>();
-        shopTabs = new Image[shopTabsContainer.childCount];
-        for (int i = 0; i < shopTabs.Length; ++i)
-        {
-            shopTabs[i] = shopTabsContainer.GetChild(i).GetComponent<Image>();
-        }
     }
 
     private void Start()
@@ -46,20 +36,14 @@ public class ShipBuildingShop : MonoBehaviour
         // close if same tab
         if (tab == shipBuildingTab)
         {
-            shopToggle.TogglePanelVis();
-            shopTabs[(int) tab].sprite = blackButton;
+            shopToggle.ClosePanel((int) tab);
             tab = ShipBuildingTab.None;
             return;
-        }
-
-        if (tab != ShipBuildingTab.None)
-        {
-            shopTabs[(int) tab].sprite = blackButton;
         }
         
         // set ship building tab
         tab = shipBuildingTab;
-        shopTabs[(int) tab].sprite = redButton;
+        shopToggle.OpenPanel((int) tab);
 
         // set shop slots based on resource type
         ResourceDataTypes[] resourceDataTypesArray = null;
