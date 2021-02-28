@@ -281,7 +281,6 @@ GameObject:
   - component: {fileID: 8963481259364165006}
   - component: {fileID: 8963481259364165007}
   - component: {fileID: 8963481259364165003}
-  - component: {fileID: 8963481259364165000}
   m_Layer: 5
   m_Name: Button_TwoBlue
   m_TagString: Untagged
@@ -401,8 +400,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8963481259364165000}
-        m_MethodName: ChangeToShipBuilding
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -439,15 +438,3 @@ MonoBehaviour:
   - Confirm 1
   - Confirm 2
   - Confirm 3
---- !u!114 &8963481259364165000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8963481259364165005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 455b2d6b66d68d4478b7824079a1e84d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
