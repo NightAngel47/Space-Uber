@@ -41,4 +41,13 @@ public class RoomPanelToggle : MonoBehaviour
             isOpen = true;
         }
     }
+
+    public void ClosePanel()
+    {
+        if (isOpen)
+        {
+            shopAnimator.SetBool(IsOpen, false);
+            isOpen = false;
+        }
+    }
 }

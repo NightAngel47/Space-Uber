@@ -256,8 +256,7 @@ public class CrewManagement : MonoBehaviour
             roomStats.UpdateCurrentCrew(1);
             shipStats.CrewCurrent += new Vector3(0, 0, -1);
             minAssignableCrew--;
-            crewUnassignedText.text = "Unassigned Crew: " + shipStats.CrewCurrent.z;
-            crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
+            FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(roomStats.currentCrew);
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats(room.GetComponent<Resource>().resourceType);
 
@@ -272,8 +271,7 @@ public class CrewManagement : MonoBehaviour
             roomStats.UpdateCurrentCrew(-1);
             shipStats.CrewCurrent += new Vector3(0, 0, 1);
             minAssignableCrew++;
-            crewUnassignedText.text = "Unassigned Crew: " + shipStats.CrewCurrent.z;
-            crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
+            FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(roomStats.currentCrew);
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats(room.GetComponent<Resource>().resourceType);
 
@@ -351,7 +349,7 @@ public class CrewManagement : MonoBehaviour
 
     public void TurnOffPanel()
     {
-        statPanel.SetActive(false);
+        FindObjectOfType<RoomPanelToggle>().ClosePanel();
     }
 
     public void TurnOnPanel()
