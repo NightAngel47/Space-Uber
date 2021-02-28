@@ -17,7 +17,7 @@ using UnityEngine;
 ///     Events          player can run into story and random events.
 ///     Ending          player has reached a narrative ending.
 /// </summary>
-public enum InGameStates { None, JobSelect, ShipBuilding, CrewManagement, Events, Ending, Mutiny, Death ,CrewPayment }
+public enum InGameStates { None, JobSelect, ShipBuilding, CrewManagement, Events, MoneyEnding, MoraleEnding, Mutiny, Death ,CrewPayment }
 
 /// <summary>
 /// Manages the state of the game while the player is playing.
@@ -162,11 +162,18 @@ public class GameManager : MonoBehaviour
                 
                 additiveSceneManager.LoadSceneSeperate("CrewPayment");
                 break;
-            case InGameStates.Ending: // Loads the PromptScreen_End when the player reaches a narrative ending.
+            case InGameStates.MoneyEnding: // Loads the PromptScreen_Money_End when the player reaches a narrative ending.
+                additiveSceneManager.UnloadScene("Interface_JobList");
                 additiveSceneManager.UnloadScene("Interface_EventTimer");
+                additiveSceneManager.UnloadScene("Interface_Radio");
                 additiveSceneManager.UnloadScene("CrewPayment");
                 
-                additiveSceneManager.LoadSceneSeperate("PromptScreen_End");
+                additiveSceneManager.LoadSceneSeperate("PromptScreen_Money_End");
+                break;
+            case InGameStates.MoraleEnding: // Loads the PromptScreen_Morale_End after the PromptScreen_Money_End.
+                additiveSceneManager.UnloadScene("PromptScreen_Money_End");
+                
+                additiveSceneManager.LoadSceneSeperate("PromptScreen_Morale_End");
                 break;
             case InGameStates.Mutiny: // Loads the PromptScreen_Mutiny when the player reaches a mutiny.
                 additiveSceneManager.UnloadScene("Event_General");

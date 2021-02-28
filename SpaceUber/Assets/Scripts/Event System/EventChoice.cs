@@ -21,6 +21,8 @@ public class EventChoice
     [SerializeField] private string choiceName;
     [SerializeField] public string description;
 
+    public string ChoiceName => choiceName;
+
     [SerializeField] private bool changeMusic;
     [SerializeField] private bool playSFX;
     [SerializeField, ShowIf("changeMusic"), AllowNesting] private bool withoutTransition;
@@ -175,11 +177,10 @@ public class EventChoice
                 outcome.narrativeResultsBox = driver.resultsBox;
                 outcome.hasSubsequentChoices = hasSubsequentChoices;
                 outcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
-
-                
             }
         }
         
+        AnalyticsManager.EventChoiceData.Add(choiceName);
     }
 
     /// <summary>

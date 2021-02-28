@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfec50bf890af17479ff38a5eee6322e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceType: {fileID: 11400000, guid: 418fcaa298da0964caa4045c19422ea6, type: 2}
-  amount: 250
+  resourceType: {fileID: 11400000, guid: 160c3fbb104fdc44793d026b1f6cd7ef, type: 2}
+  amount: 12
   activeAmount: 0
   minAmount: 0
 --- !u!1001 &6021959994680589200
@@ -115,9 +115,25 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 7c4cd627b6c763c4bb910fca25a27bda, type: 2}
     - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
-      propertyPath: miniGame
-      value: 5
+      propertyPath: roomEvents.Array.size
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: miniGame
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: hasEvents
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: roomEvents.Array.data[0]
+      value: 
+      objectReference: {fileID: 1725932300848155161, guid: 9d04a7496feeae5409483fe2975eeb98,
+        type: 3}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomName
@@ -126,10 +142,8 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomDescription
-      value: 'A place to hold any evildoers on your ship. Gives Credits at the end
-        of the job.
-
-        The shape of this room is 3x3.'
+      value: "A place to hold any evildoers on your ship. Increases Security based
+        on crew assigned. \nThe shape of this room is 3x3."
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -154,12 +168,12 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: minPower
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: maxPower
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4570362770752095651, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}

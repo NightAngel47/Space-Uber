@@ -261,10 +261,7 @@ public class CrewManagement : MonoBehaviour
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats(room.GetComponent<Resource>().resourceType);
 
-            if (minAssignableCrew <= 0)
-            {
-                sceneButtons[0].GetComponent<Button>().interactable = true;
-            }
+            CheckForMinCrew();
         }
     }
 
@@ -280,10 +277,37 @@ public class CrewManagement : MonoBehaviour
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats(room.GetComponent<Resource>().resourceType);
 
-            if (minAssignableCrew > 0)
+            CheckForMinCrew();
+        }
+    }
+
+    public void CheckForMinCrew()
+    {
+        RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+        bool minCrewMet = false;
+
+        foreach (RoomStats room in rooms)
+        {
+            if (room.gameObject.GetComponent<RoomStats>().minCrew > room.gameObject.GetComponent<RoomStats>().currentCrew)
             {
-                sceneButtons[0].GetComponent<Button>().interactable = false;
+                minCrewMet = false;
+                break;
             }
+
+            else
+            {
+                minCrewMet = true;
+            }
+
+        }
+
+        if(minCrewMet == true)
+        {
+            sceneButtons[0].GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            sceneButtons[0].GetComponent<Button>().interactable = false;
         }
     }
 
@@ -377,11 +401,7 @@ public class CrewManagement : MonoBehaviour
     {
         OverclockRoom ovRoom = room.GetComponent<OverclockRoom>();
 
-        if(!ovRoom.hasEvents)
-        {
-            chatButton.gameObject.SetActive(false);
-        }
-        else
+        if(ovRoom.hasEvents && GameManager.instance.currentGameState == InGameStates.Events)
         {
             print(ovRoom.GetEvents().Count + " events for this room");
 
@@ -393,6 +413,10 @@ public class CrewManagement : MonoBehaviour
             {
                 chatButton.gameObject.SetActive(false);
             }
+        }
+        else
+        {
+            chatButton.gameObject.SetActive(false);
         }
 
 
