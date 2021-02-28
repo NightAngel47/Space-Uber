@@ -30,21 +30,18 @@ public class ChoiceOutcomes
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public ResourceDataTypes resource;
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public int amount;
 
-    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character = CharacterStats.Characters.None;
-    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public int approvalChange;
-    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public bool correctAnswer;
+    //[SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character = CharacterStats.Characters.None;
+    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterEvent.AnswerState answerType;
     [HideInInspector] public CharacterEvent characterDriver;
 
     #region Initialized Narrative Variables
     [SerializeField, ShowIf("isNarrativeOutcome"),AllowNesting] private CampaignManager.Campaigns thisCampaign = CampaignManager.Campaigns.CateringToTheRich;
 
-    [SerializeField, ShowIf("IsCateringToTheRich"), AllowNesting] private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolOutcomes;
-    [SerializeField, ShowIf("IsCateringToTheRich"), AllowNesting] private int cloneTrustChange;
-    [SerializeField, ShowIf("IsCateringToTheRich"), AllowNesting] private int VIPTrustChange;
+    [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeOutcome", "IsCateringToTheRich"), AllowNesting] private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolOutcomes;
+    [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeOutcome", "IsCateringToTheRich"), AllowNesting] private int cloneTrustChange;
+    [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeOutcome", "IsCateringToTheRich"), AllowNesting] private int VIPTrustChange;
 
     [SerializeField, ShowIf("IsMysteriousEntity"), AllowNesting] private CampaignManager.MysteriousEntity.NarrativeVariables meMainOutcomes;
-    [SerializeField, ShowIf("IsMysteriousEntity"), AllowNesting] private CampaignManager.MysteriousEntity.J2E3Variables j2E3Outcomes;
-
     [SerializeField, ShowIf("IsFinalTest"), AllowNesting] private CampaignManager.FinalTest.NarrativeVariables finalTestNarrativeOutcomes;
     [SerializeField, ShowIf("IsFinalTest"), AllowNesting] private int assetCountChange = 0;
 
@@ -299,6 +296,7 @@ public class ChoiceOutcomes
                             resultText += "\nThe VIPs have " + VIPTrustChange + "% more trust in you";
                         }
                         break;
+                        
                     case CampaignManager.Campaigns.MysteriousEntity:
                         //the selected bool will become true
                         switch (meMainOutcomes)
@@ -312,25 +310,21 @@ public class ChoiceOutcomes
                                 campMan.mysteriousEntity.me_openedCargo = true;
                                 resultText += "\nYou opened the cargo";
                                 break;
-                        }
 
-                        switch (j2E3Outcomes)
-                        {
-                            case CampaignManager.MysteriousEntity.J2E3Variables.Accept:
+                            case CampaignManager.MysteriousEntity.NarrativeVariables.Accept:
                                 campMan.mysteriousEntity.me_Accept = true;
                                 resultText += "\nYou accepted the offer";
                                 break;
-                            case CampaignManager.MysteriousEntity.J2E3Variables.Decline_Bribe:
+                            case CampaignManager.MysteriousEntity.NarrativeVariables.Decline_Bribe:
                                 campMan.mysteriousEntity.me_declineBribe = true;
                                 resultText += "\nYou declined the offer and bribed Loudon to stay";
                                 break;
-                            case CampaignManager.MysteriousEntity.J2E3Variables.Decline_Fire:
+                            case CampaignManager.MysteriousEntity.NarrativeVariables.Decline_Fire:
                                 campMan.mysteriousEntity.me_declineFire = true;
                                 resultText += "\nYou declined the offer and said good riddance to Loudon";
                                 break;
                         }
                         break;
-
                     case CampaignManager.Campaigns.FinalTest:
                         campMan.finalTest.assetCount += assetCountChange;
 
@@ -371,35 +365,52 @@ public class ChoiceOutcomes
                                 campMan.finalTest.ft_truthTold = true;
                                 resultText += "\nYou told everyone the truth";
                                 break;
+                            case CampaignManager.FinalTest.NarrativeVariables.EndgamePlan:
+                                campMan.finalTest.ft_endgamePlan = true;
+                                resultText += "\nYou came up with a plan";
+                                break;
                         }
                         break;
                 }
             }
             else //approval outcomes
             {
-                if(correctAnswer)
+                int eventApprovalChange = 0;
+
+                if(answerType == CharacterEvent.AnswerState.POSITIVE)
                 {
-                    characterDriver.AnswerCorrectly();
+                    eventApprovalChange = 1;
+                }
+                if (answerType == CharacterEvent.AnswerState.NEGATIVE)
+                {
+                    eventApprovalChange = -1;
+                }
+                if (answerType == CharacterEvent.AnswerState.NEUTRAL)
+                {
+                    eventApprovalChange = 0;
                 }
 
-                switch (character)
-                {
-                    case CharacterStats.Characters.KUON:
-                        ship.cStats.KuonApproval += approvalChange;
-                        break;
-                    case CharacterStats.Characters.MATEO:
-                        ship.cStats.MateoApproval += approvalChange;
-                        break;
-                    case CharacterStats.Characters.LANRI:
-                        ship.cStats.LanriApproval += approvalChange;
-                        break;
-                    case CharacterStats.Characters.LEXA:
-                        ship.cStats.LexaApproval += approvalChange;
-                        break;
-                    case CharacterStats.Characters.RIPLEY:
-                        ship.cStats.RipleyApproval += approvalChange;
-                        break;
-                }
+                characterDriver.ChangeEventApproval(eventApprovalChange);
+
+                //TODO: Changes character specific approval. To be implemented as someone sees fit
+                //switch (character)
+                //{
+                //    case CharacterStats.Characters.KUON:
+                //        ship.cStats.KuonApproval += approvalChange;
+                //        break;
+                //    case CharacterStats.Characters.MATEO:
+                //        ship.cStats.MateoApproval += approvalChange;
+                //        break;
+                //    case CharacterStats.Characters.LANRI:
+                //        ship.cStats.LanriApproval += approvalChange;
+                //        break;
+                //    case CharacterStats.Characters.LEXA:
+                //        ship.cStats.LexaApproval += approvalChange;
+                //        break;
+                //    case CharacterStats.Characters.RIPLEY:
+                //        ship.cStats.RipleyApproval += approvalChange;
+                //        break;
+                //}
             }
 
             if(!hasSubsequentChoices) //do at the end of the event
