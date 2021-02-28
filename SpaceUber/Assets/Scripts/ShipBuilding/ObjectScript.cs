@@ -126,7 +126,7 @@ public class ObjectScript : MonoBehaviour
 
         if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true) // && PauseMenu.Instance.isPaused == false// commented out until menus are ready
         {
-            if (ObjectMover.hasPlaced == true)
+            if (ObjectMover.hasPlaced && !PauseMenu.IsPaused)
             {
                 roomTooltip.SetActive(true);
                 if(toolTipOutputList.transform.childCount > 0) toolTipOutputList.transform.GetChild(0).transform.GetChild(2).GetComponent<TMP_Text>().text = gameObject.GetComponent<RoomStats>().resources[0].activeAmount.ToString();
