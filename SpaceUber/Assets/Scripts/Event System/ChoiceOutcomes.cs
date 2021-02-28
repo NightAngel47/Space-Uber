@@ -365,9 +365,21 @@ public class ChoiceOutcomes
                                 campMan.finalTest.ft_truthTold = true;
                                 resultText += "\nYou told everyone the truth";
                                 break;
-                            case CampaignManager.FinalTest.NarrativeVariables.EndgamePlan:
-                                campMan.finalTest.ft_endgamePlan = true;
-                                resultText += "\nYou came up with a plan";
+                            case CampaignManager.FinalTest.NarrativeVariables.LexaPlan:
+                                campMan.finalTest.ft_lexaPlan = true;
+                                resultText += "\nYou went with Lexa's plan";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.MateoPlan:
+                                campMan.finalTest.ft_mateoPlan = true;
+                                resultText += "\nYou went with Mateo's plan";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.LanriRipleyPlan:
+                                campMan.finalTest.ft_lanriRipleyPlan = true;
+                                resultText += "\nYou went with Lanri and Ripley's plan";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.KuonPlan:
+                                campMan.finalTest.ft_kuonPlan = true;
+                                resultText += "\nYou went with Kuon's plan";
                                 break;
                         }
                         break;
