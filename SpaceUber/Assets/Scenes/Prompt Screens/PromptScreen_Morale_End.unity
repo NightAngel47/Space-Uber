@@ -473,7 +473,7 @@ PrefabInstance:
     - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeToJobSelect
+      value: ClickPlay
       objectReference: {fileID: 0}
     - target: {fileID: 509883202669863463, guid: ac8be24e767cf794eb851308f2ba4fe2,
         type: 3}
@@ -644,16 +644,16 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 405826500}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &405826503
+--- !u!114 &405826503 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3583342504700849187, guid: ac8be24e767cf794eb851308f2ba4fe2,
+    type: 3}
+  m_PrefabInstance: {fileID: 405826500}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 405826502}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 455b2d6b66d68d4478b7824079a1e84d, type: 3}
+  m_Script: {fileID: 11500000, guid: 093fe5c779844da489ca1f98d9bcb5a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &405826504

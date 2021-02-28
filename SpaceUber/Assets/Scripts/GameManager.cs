@@ -139,6 +139,7 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.LoadSceneMerged("Interface_EventTimer");
                 
                 ship.SaveStats();
+                MoraleManager.instance.SaveMorale();
 
                 // Remove unplaced rooms from the ShipBuilding state
                 if (!ObjectMover.hasPlaced)
