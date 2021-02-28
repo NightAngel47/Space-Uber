@@ -4173,6 +4173,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Help Button
       objectReference: {fileID: 0}
+    - target: {fileID: 1040641097312660084, guid: 9dc64659265c1f14d8a2854107d48461,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1040641097312660085, guid: 9dc64659265c1f14d8a2854107d48461,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6989,7 +6994,7 @@ GameObject:
   - component: {fileID: 1935109997}
   - component: {fileID: 1935109996}
   m_Layer: 5
-  m_Name: Credits
+  m_Name: Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7132,7 +7137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1998521134
 RectTransform:
   m_ObjectHideFlags: 0
