@@ -16,7 +16,7 @@ using System.Linq;
 public class SpawnObject : MonoBehaviour
 {
     [SerializeField] private List<GameObject> allRoomList = new List<GameObject>();
-    [SerializeField] private List<GameObject> availableRooms = new List<GameObject>();
+    public List<GameObject> availableRooms = new List<GameObject>();
     [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private GameObject buttonPanel;
     [SerializeField] private Vector2 spawnLoc;

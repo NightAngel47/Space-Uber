@@ -11,6 +11,7 @@ public class RoomPanelToggle : MonoBehaviour
 {
     [SerializeField] private Animator shopAnimator;
     private bool isOpen;
+    private static readonly int IsOpen = Animator.StringToHash("isOpen");
 
     private void Start()
     {
@@ -22,12 +23,12 @@ public class RoomPanelToggle : MonoBehaviour
     {
         if (isOpen == false)
         {
-            shopAnimator.SetBool("isOpen", true);
+            shopAnimator.SetBool(IsOpen, true);
             isOpen = true;
         }
         else
         {
-            shopAnimator.SetBool("isOpen", false);
+            shopAnimator.SetBool(IsOpen, false);
             isOpen = false;
         }
     }
@@ -36,7 +37,7 @@ public class RoomPanelToggle : MonoBehaviour
     {
         if (isOpen == false)
         {
-            shopAnimator.SetBool("isOpen", true);
+            shopAnimator.SetBool(IsOpen, true);
             isOpen = true;
         }
     }

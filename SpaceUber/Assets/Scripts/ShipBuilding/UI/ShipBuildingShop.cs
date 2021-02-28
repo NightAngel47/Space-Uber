@@ -4,224 +4,95 @@
  * Controls what rooms are displayed for purchase. 
  */
 
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using System.Linq;
 using UnityEngine;
 
 public class ShipBuildingShop : MonoBehaviour
 {
-    public enum shipBuildingTab { None, Credits, Crew, Food, HullDurability, Power, ShipWeapons, Security }
-    shipBuildingTab tab;
-
-    
-    private GameObject objectsToSpawn;
+    private enum ShipBuildingTab { None, Credits, Crew, Food, HullDurability, Energy, ShipWeapons, Security }
+    ShipBuildingTab tab = ShipBuildingTab.None;
+    private SpawnObject objectsToSpawn;
 
     [SerializeField] RoomPanelToggle shopToggle;
-
-    [SerializeField] ShipBuildingBuyableRoom shopSlot1;
-    [SerializeField] ShipBuildingBuyableRoom shopSlot2;
-    [SerializeField] ShipBuildingBuyableRoom shopSlot3;
-
-    [SerializeField] GameObject roomArmory;
-    [SerializeField] GameObject roomArmorPlating;
-    [SerializeField] GameObject roomBrig;
-    [SerializeField] GameObject roomBunks;
-    [SerializeField] GameObject roomCoreChargingTerminal;
-    [SerializeField] GameObject roomEnergyCannon;
-    [SerializeField] GameObject roomHydroponics;
-    [SerializeField] GameObject roomMedbay;
-    [SerializeField] GameObject roomPantry;
-    [SerializeField] GameObject roomPhotonTorpedos;
-    [SerializeField] GameObject roomPowerCore;
-    [SerializeField] GameObject roomShieldGenerator;
-    [SerializeField] GameObject roomStorage;
-    [SerializeField] GameObject roomTeleportationStation;
-    [SerializeField] GameObject roomVIPLounge;
-    [SerializeField] GameObject roomWarpDrive;
-
-    [SerializeField] Sprite creditsIcon;
-    [SerializeField] Sprite crewIcon;
-    [SerializeField] Sprite foodIcon;
-    [SerializeField] Sprite hullIcon;
-    [SerializeField] Sprite powerIcon;
-    [SerializeField] Sprite weaponsIcon;
-    [SerializeField] Sprite securityIcon;
-
-
+    [SerializeField] ShipBuildingBuyableRoom[] shopSlots = new ShipBuildingBuyableRoom[3];
+    
+    
     private void Start()
     {
-        objectsToSpawn = GameObject.FindGameObjectWithTag("ObjectsToSpawn");
-        tab = shipBuildingTab.None;
-        UpdateRoomInfo();
+        objectsToSpawn = FindObjectOfType<SpawnObject>();
     }
 
-    private void GetRoomsToDisplay()
+    public void ToResourceTab(string resourceDataType)
     {
-        if (shopSlot1.gameObject.activeSelf == false) shopSlot1.gameObject.SetActive(true);
-        if (shopSlot2.gameObject.activeSelf == false) shopSlot2.gameObject.SetActive(true);
-        if (shopSlot3.gameObject.activeSelf == false) shopSlot3.gameObject.SetActive(true);
-
-        switch (tab)
+        Enum.TryParse("_" + resourceDataType, true, out ResourceDataTypes resourceType);
+        Enum.TryParse(resourceDataType, true, out ShipBuildingTab shipBuildingTab);
+        
+        // close if same tab
+        if (tab == shipBuildingTab)
         {
-            case shipBuildingTab.None:
-                shopSlot1.gameObject.SetActive(false);
-                shopSlot2.gameObject.SetActive(false);
-                shopSlot3.gameObject.SetActive(false);
+            shopToggle.TogglePanelVis();
+            tab = ShipBuildingTab.None;
+            return;
+        }
+        // set ship building tab
+        tab = shipBuildingTab;
+
+        // set shop slots based on resource type
+        ResourceDataTypes[] resourceDataTypesArray = null;
+        switch (resourceType)
+        {
+            case ResourceDataTypes._Food:
+            case ResourceDataTypes._FoodPerTick:
+                resourceDataTypesArray = new []{ResourceDataTypes._Food, ResourceDataTypes._FoodPerTick};
                 break;
-            case shipBuildingTab.Credits:
-                shopSlot1.roomPrefab = roomBrig;
-                shopSlot2.roomPrefab = roomStorage;
-                shopSlot3.roomPrefab = roomVIPLounge;
-                break;
-            case shipBuildingTab.Crew:
-                shopSlot1.roomPrefab = roomBunks;
-                shopSlot2.roomPrefab = roomMedbay;
-                shopSlot3.gameObject.SetActive(false);
-                break;
-            case shipBuildingTab.Food:
-                shopSlot1.roomPrefab = roomHydroponics;
-                shopSlot2.roomPrefab = roomPantry;
-                shopSlot3.gameObject.SetActive(false);
-                break;
-            case shipBuildingTab.HullDurability:
-                shopSlot1.roomPrefab = roomArmorPlating;
-                shopSlot2.roomPrefab = roomShieldGenerator;
-                shopSlot3.gameObject.SetActive(false);
-                break;
-            case shipBuildingTab.Power:
-                shopSlot1.roomPrefab = roomCoreChargingTerminal;
-                shopSlot2.gameObject.SetActive(false);
-                shopSlot3.gameObject.SetActive(false);
-                break;
-            case shipBuildingTab.ShipWeapons:
-                shopSlot1.roomPrefab = roomPhotonTorpedos;
-                shopSlot2.roomPrefab = roomEnergyCannon;
-                shopSlot3.gameObject.SetActive(false);
-                break;
-            case shipBuildingTab.Security:
-                shopSlot1.roomPrefab = roomArmory;
-                shopSlot2.gameObject.SetActive(false);
-                shopSlot3.gameObject.SetActive(false);
+            case ResourceDataTypes._Credits:
+            case ResourceDataTypes._Payout:
+                resourceDataTypesArray = new []{ResourceDataTypes._Credits, ResourceDataTypes._Payout};
                 break;
             default:
-                Debug.LogError("ShipBuildingUIController state is unset");
+                resourceDataTypesArray = new[] {resourceType};
                 break;
         }
-
+        SetShopSlots(resourceDataTypesArray);
     }
 
-    public void ToCreditsTab()
+    void SetShopSlots(ResourceDataTypes[] resourceDataTypesArray)
     {
-        if(tab == shipBuildingTab.Credits)
+        // reset shop slots
+        foreach (var slot in shopSlots)
         {
-            shopToggle.TogglePanelVis();
-            tab = shipBuildingTab.None;
-            return;
+            slot.gameObject.SetActive(true);
+        }
+        
+        // find matching resource rooms
+        int i = 0;
+        foreach (var roomPrefab in objectsToSpawn.availableRooms)
+        {
+            if (!roomPrefab.TryGetComponent(out Resource resource)) continue;
+            if (resourceDataTypesArray.All(resourceDataType => resource.resourceType.Rt != resourceDataType)) continue;
+            shopSlots[i].roomPrefab = roomPrefab;
+            shopSlots[i].UpdateRoomInfo();
+            ++i;
+            if(i > shopSlots.Length) break;
         }
 
-        ChangeIcons(creditsIcon);
-        tab = shipBuildingTab.Credits;
-        GetRoomsToDisplay();
-        UpdateRoomInfo();
-    }
-    public void ToCrewTab()
-    {
-        if (tab == shipBuildingTab.Crew)
+        // special exception case for medbay
+        if (resourceDataTypesArray[0] == ResourceDataTypes._Crew)
         {
-            shopToggle.TogglePanelVis();
-            tab = shipBuildingTab.None;
-            return;
+            foreach (var roomPrefab in objectsToSpawn.availableRooms.Where(roomPrefab => roomPrefab.GetComponent<RoomStats>().roomName.Equals("Medbay")))
+            {
+                shopSlots[i].roomPrefab = roomPrefab;
+                shopSlots[i].UpdateRoomInfo();
+                ++i;
+            }
         }
 
-        ChangeIcons(crewIcon);
-        tab = shipBuildingTab.Crew;
-        GetRoomsToDisplay();
-        UpdateRoomInfo();
-    }
-    public void ToFoodTab()
-    {
-        if (tab == shipBuildingTab.Food)
+        // set reset of the slots to inactive
+        while (i < shopSlots.Length)
         {
-            shopToggle.TogglePanelVis();
-            tab = shipBuildingTab.None;
-            return;
+            shopSlots[i].gameObject.SetActive(false);
+            ++i;
         }
-
-        ChangeIcons(foodIcon);
-        tab = shipBuildingTab.Food;
-        GetRoomsToDisplay();
-        UpdateRoomInfo();
     }
-    public void ToHullDurabilityTab()
-    {
-        if (tab == shipBuildingTab.HullDurability)
-        {
-            shopToggle.TogglePanelVis();
-            tab = shipBuildingTab.None;
-            return;
-        }
-
-        ChangeIcons(hullIcon);
-        tab = shipBuildingTab.HullDurability;
-        GetRoomsToDisplay();
-        UpdateRoomInfo();
-    }
-    public void ToPowerTab()
-    {
-        if (tab == shipBuildingTab.Power)
-        {
-            shopToggle.TogglePanelVis();
-            tab = shipBuildingTab.None;
-            return;
-        }
-
-        ChangeIcons(powerIcon);
-        tab = shipBuildingTab.Power;
-        GetRoomsToDisplay();
-        UpdateRoomInfo();
-    }
-    public void ToShipWeaponsTab()
-    {
-        if (tab == shipBuildingTab.ShipWeapons)
-        {
-            shopToggle.TogglePanelVis();
-            tab = shipBuildingTab.None;
-            return;
-        }
-
-        ChangeIcons(weaponsIcon);
-        tab = shipBuildingTab.ShipWeapons;
-        GetRoomsToDisplay();
-        UpdateRoomInfo();
-    }
-    public void ToSecurityTab()
-    {
-        if (tab == shipBuildingTab.Security)
-        {
-            shopToggle.TogglePanelVis();
-            tab = shipBuildingTab.None;
-            return;
-        }
-
-        ChangeIcons(securityIcon);
-        tab = shipBuildingTab.Security;
-        GetRoomsToDisplay();
-        UpdateRoomInfo();
-    }
-
-    private void UpdateRoomInfo()
-    {
-        shopSlot1.UpdateRoomInfo();
-        shopSlot2.UpdateRoomInfo();
-        shopSlot3.UpdateRoomInfo();
-    }
-
-    private void ChangeIcons(Sprite spr)
-    {
-        shopSlot1.resourceIcon.sprite = spr;
-        shopSlot2.resourceIcon.sprite = spr;
-        shopSlot3.resourceIcon.sprite = spr;
-    }
-
-    
 }
