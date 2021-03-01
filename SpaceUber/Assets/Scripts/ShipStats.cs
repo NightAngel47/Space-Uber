@@ -29,10 +29,7 @@ public class ShipStats : MonoBehaviour
     [SerializeField, Tooltip("Starting amount of ship health"), Foldout("Starting Ship Stats")]
     private int startingShipHealth;
 
-    [HideInInspector]
-    public CharacterStats cStats;
-
-    public GameObject cantPlaceText;
+    [HideInInspector] public CharacterStats cStats;
 
     private List<RoomStats> rooms;
 
@@ -62,28 +59,26 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     private Tick tick;
 
-    //stats at the start of the job
-    private int startCredits;
-    private int startPayout;
-    private int startEnergyMax;
-    private int startEnergyRemaining;
-    private int startSecurity;
-    private int startShipWeapons;
-    private int startCrewCapacity;
-    private int startCrewCurrent;
-    private int startCrewUnassigned;
-    private int startFood;
-    private int startFoodPerTick;
-    private int startShipHealthMax;
-    private int startShipHealthCurrent;
-
     private void Awake()
     {
         shipStatsUI = GetComponent<ShipStatsUI>();
         tick = FindObjectOfType<Tick>();
+        cStats = gameObject.GetComponent<CharacterStats>();
     }
 
     private void Start()
+    {
+        if(SavingLoadingManager.instance.GetHasSave())
+        {
+            LoadShipStats();
+        }
+        else
+        {
+            SetStartingStats();
+        }
+    }
+
+    private void SetStartingStats()
     {
         Credits = startingCredits;
         Payout = 0;
@@ -92,10 +87,8 @@ public class ShipStats : MonoBehaviour
         ShipWeapons = startingShipWeapons;
         CrewCurrent = new Vector3(startingCrew, startingCrew, startingCrew);
         Food = startingFood;
+        FoodPerTick = 0;
         ShipHealthCurrent = new Vector2(startingShipHealth, startingShipHealth);
-        //UpdateCrewMorale(startingMorale);
-
-        cStats = gameObject.GetComponent<CharacterStats>();
     }
 
     /// <summary>
@@ -361,8 +354,8 @@ public class ShipStats : MonoBehaviour
         set
         {
             Vector2 prevValue = new Vector2(shipHealthCurrent, shipHealthMax);
-            shipHealthMax = (int)value.y;
             shipHealthCurrent = (int)value.x;
+            shipHealthMax = (int)value.y;
 
             if (shipHealthCurrent >= shipHealthMax)
             {
@@ -478,35 +471,33 @@ public class ShipStats : MonoBehaviour
         }
     }
 
-    public void SaveStats()
+    public void SaveShipStats()
     {
-        startCredits = credits;
-        startPayout = payout;
-        startEnergyMax = energyMax;
-        startEnergyRemaining = energyRemaining;
-        startSecurity = security;
-        startShipWeapons = shipWeapons;
-        startCrewCapacity = crewCapacity;
-        startCrewCurrent = crewCurrent;
-        startCrewUnassigned = crewUnassigned;
-        startFood = food;
-        startFoodPerTick = foodPerTick;
-        startShipHealthMax = shipHealthMax;
-        startShipHealthCurrent = shipHealthCurrent;
-        MoraleManager.instance.SaveMorale();
+        SavingLoadingManager.instance.Save<int>("credits", credits);
+        SavingLoadingManager.instance.Save<int>("payout", payout);
+        SavingLoadingManager.instance.Save<int>("energyMax", energyMax);
+        SavingLoadingManager.instance.Save<int>("energyRemaining", energyRemaining);
+        SavingLoadingManager.instance.Save<int>("security", security);
+        SavingLoadingManager.instance.Save<int>("shipWeapons", shipWeapons);
+        SavingLoadingManager.instance.Save<int>("crewCapacity", crewCapacity);
+        SavingLoadingManager.instance.Save<int>("crewCurrent", crewCurrent);
+        SavingLoadingManager.instance.Save<int>("crewUnassigned", crewUnassigned);
+        SavingLoadingManager.instance.Save<int>("food", food);
+        SavingLoadingManager.instance.Save<int>("foodPerTick", foodPerTick);
+        SavingLoadingManager.instance.Save<int>("shipHealthMax", shipHealthMax);
+        SavingLoadingManager.instance.Save<int>("shipHealthCurrent", shipHealthCurrent);
     }
 
-    public void ResetStats()
+    public void LoadShipStats()
     {
-        Credits = startCredits;
-        Payout = startPayout;
-        EnergyRemaining = new Vector2(startEnergyRemaining, startEnergyMax);
-        Security = startSecurity;
-        ShipWeapons = startShipWeapons;
-        CrewCurrent = new Vector3(startCrewUnassigned, startCrewCurrent, startCrewCapacity);
-        Food = startFood;
-        FoodPerTick = startFoodPerTick;
-        ShipHealthCurrent = new Vector2(startShipHealthCurrent, startShipHealthMax);
-        MoraleManager.instance.ResetMorale();
+        Credits = SavingLoadingManager.instance.Load<int>("credits");
+        Payout = SavingLoadingManager.instance.Load<int>("payout");
+        EnergyRemaining = new Vector2(SavingLoadingManager.instance.Load<int>("energyRemaining"), SavingLoadingManager.instance.Load<int>("energyMax"));
+        Security = SavingLoadingManager.instance.Load<int>("security");
+        ShipWeapons = SavingLoadingManager.instance.Load<int>("shipWeapons");
+        CrewCurrent = new Vector3(SavingLoadingManager.instance.Load<int>("crewCurrent"), SavingLoadingManager.instance.Load<int>("crewCapacity"), SavingLoadingManager.instance.Load<int>("crewUnassigned"));
+        Food = SavingLoadingManager.instance.Load<int>("food");
+        FoodPerTick = SavingLoadingManager.instance.Load<int>("foodPerTick");
+        ShipHealthCurrent = new Vector2(SavingLoadingManager.instance.Load<int>("shipHealthCurrent"), SavingLoadingManager.instance.Load<int>("shipHealthMax"));
     }
 }

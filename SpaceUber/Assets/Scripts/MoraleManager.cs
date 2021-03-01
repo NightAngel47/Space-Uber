@@ -9,8 +9,6 @@ public class MoraleManager : MonoBehaviour
     
     private int crewMorale;
     
-    private int startCrewMorale;
-    
     [SerializeField, Tooltip("Value of the \"normal\" payment that won't affect morale")] private int crewPaymentDefault = 5;
     [SerializeField, Tooltip("Amount crew morale is affected by different payments")] private float crewPaymentMoraleMultiplier = 2;
     [SerializeField, Tooltip("Amount crew morale is affected by crew loss")] private int crewLossMoraleMultiplier = 10;
@@ -50,7 +48,15 @@ public class MoraleManager : MonoBehaviour
     
     private void Start()
     {
-        CrewMorale = startingMorale;
+        if(SavingLoadingManager.instance.GetHasSave())
+        {
+            ResetMorale();
+        }
+        else
+        {
+            CrewMorale = startingMorale;
+            SaveMorale();
+        }
     }
     
     public int CrewMorale
@@ -145,11 +151,13 @@ public class MoraleManager : MonoBehaviour
     
     public void SaveMorale()
     {
-        startCrewMorale = crewMorale;
+        SavingLoadingManager.instance.Save<int>("crewMorale", crewMorale);
+        SavingLoadingManager.instance.Save<int>("mutinyCount", mutinyCount);
     }
     
     public void ResetMorale()
     {
-        CrewMorale = startCrewMorale;
+        CrewMorale = SavingLoadingManager.instance.Load<int>("crewMorale");
+        mutinyCount = SavingLoadingManager.instance.Load<int>("mutinyCount");
     }
 }

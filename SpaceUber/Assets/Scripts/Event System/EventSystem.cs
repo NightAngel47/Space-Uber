@@ -116,7 +116,7 @@ public class EventSystem : MonoBehaviour
     /// </summary>
     public IEnumerator PlayIntro()
     {
-	    yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_EventTimer").isLoaded);
+	    yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_Runtime").isLoaded);
 	    SetUpEventTimer();
 
 		chatting = false;
