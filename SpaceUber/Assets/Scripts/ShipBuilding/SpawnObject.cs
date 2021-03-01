@@ -16,7 +16,7 @@ using System.Linq;
 public class SpawnObject : MonoBehaviour
 {
     [SerializeField] private List<GameObject> allRoomList = new List<GameObject>();
-    [SerializeField] private List<GameObject> availableRooms = new List<GameObject>();
+    public List<GameObject> availableRooms = new List<GameObject>();
     [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private GameObject buttonPanel;
     [SerializeField] private Vector2 spawnLoc;
@@ -80,8 +80,8 @@ public class SpawnObject : MonoBehaviour
         lastSpawned.GetComponent<ObjectMover>().enabled = false;
         lastSpawned.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
         
-        SavingLoadingManager.instance.SaveRooms();
         FindObjectOfType<ShipStats>().SaveShipStats();
+        SavingLoadingManager.instance.SaveRooms();
     }
 
     public void SetAvailableRoomList(List<GameObject> l)
@@ -201,27 +201,17 @@ public class SpawnObject : MonoBehaviour
             if (FindObjectOfType<ShipStats>().Credits < ga.GetComponent<RoomStats>().price)
             {
                 AudioManager.instance.PlaySFX(cannotPlaceCredits[UnityEngine.Random.Range(0, cannotPlaceCredits.Length)]);
-                Debug.Log("Cannot Afford");
-                FindObjectOfType<ShipStats>().cantPlaceText.gameObject.SetActive(true);
-                FindObjectOfType<ShipStats>().cantPlaceText.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon;
-                StartCoroutine(WaitForText());
+                //Debug.Log("Cannot Afford");
+                FindObjectOfType<ShipBuildingAlertWindow>().OpenAlert(GameManager.instance.GetResourceData((int) ResourceDataTypes._Credits));
             }
 
             if (FindObjectOfType<ShipStats>().EnergyRemaining.x < ga.GetComponent<RoomStats>().minPower)
             {
                 AudioManager.instance.PlaySFX(cannotPlaceEnergy[UnityEngine.Random.Range(0, cannotPlaceEnergy.Length)]);
-                Debug.Log("No Energy");
-                FindObjectOfType<ShipStats>().cantPlaceText.gameObject.SetActive(true);
-                FindObjectOfType<ShipStats>().cantPlaceText.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon;
-                StartCoroutine(WaitForText());
+                //Debug.Log("No Energy");
+                FindObjectOfType<ShipBuildingAlertWindow>().OpenAlert(GameManager.instance.GetResourceData((int) ResourceDataTypes._Energy));
             }
         }
-    }
-
-    public IEnumerator WaitForText()
-    {
-        yield return new WaitForSeconds(2);
-        FindObjectOfType<ShipStats>().cantPlaceText.SetActive(false);
     }
 
     public void NextToRoomHighlight(GameObject cube)

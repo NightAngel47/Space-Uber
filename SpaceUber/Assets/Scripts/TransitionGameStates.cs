@@ -6,6 +6,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TransitionGameStates : MonoBehaviour
@@ -41,7 +42,6 @@ public class TransitionGameStates : MonoBehaviour
 
     public void ChangeToCrewManagement()
     {
-        ship.cantPlaceText.SetActive(false);
         GameManager.instance.ChangeInGameState(InGameStates.CrewManagement);
     }
     

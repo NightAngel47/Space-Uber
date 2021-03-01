@@ -220,6 +220,8 @@ public class ObjectMover : MonoBehaviour
 
                 gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = ObjectScript.c;
                 gameObject.GetComponent<ObjectMover>().enabled = false;
+                
+                FindObjectOfType<EditCrewButton>().CheckForRooms();
             }
 
             else //If something is placed allow player to keep moving room
@@ -250,12 +252,6 @@ public class ObjectMover : MonoBehaviour
     {
         yield return new WaitForSeconds(.1f);
         canPlace = true;
-    }
-
-    public IEnumerator WaitForText()
-    {
-        yield return new WaitForSeconds(3);
-        FindObjectOfType<ShipStats>().cantPlaceText.SetActive(false);
     }
 
     //public void LayoutPlacement() //for spawning from layout to make sure they act as if they were placed normallys
