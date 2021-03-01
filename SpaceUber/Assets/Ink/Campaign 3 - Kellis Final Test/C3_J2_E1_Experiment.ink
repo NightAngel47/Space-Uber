@@ -9,6 +9,7 @@ After enduring your conversation with the CEO, you continue to the next section 
 
 
 ==ExperimentOnMidasCreatures==
+
 Lanri bobs her head up and down a few times before letting out a sigh of preparation. She heads off to her quarters to gether her neede materials. After a couple hours, she sprints to a contact station to gain your attention. "I think I did it! WOOOOOOOO! Ok sorry. I think I can develop a cure to reverse the effets of those golden obelisks. It will take me a liiiiiiittle bit of time, but i'll get it done!
 -> END
 
