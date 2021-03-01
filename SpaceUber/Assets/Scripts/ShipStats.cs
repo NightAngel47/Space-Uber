@@ -500,4 +500,11 @@ public class ShipStats : MonoBehaviour
         FoodPerTick = SavingLoadingManager.instance.Load<int>("foodPerTick");
         ShipHealthCurrent = new Vector2(SavingLoadingManager.instance.Load<int>("shipHealthCurrent"), SavingLoadingManager.instance.Load<int>("shipHealthMax"));
     }
+
+    public int[] GetCoreStats()
+    {
+        int[] stats = { crewUnassigned, (shipHealthMax - shipHealthCurrent), food, foodPerTick, security, shipWeapons };
+
+        return stats;
+    }
 }
