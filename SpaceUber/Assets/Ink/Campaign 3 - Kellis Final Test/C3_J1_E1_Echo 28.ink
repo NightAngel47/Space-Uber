@@ -45,6 +45,8 @@ Kuon, [the asset,] [the guards,] and [the security team] climb back aboard, with
 -> Weapon_Escape
 *[Bait Them With Food]
 -> Food_Escape
+*[Lockdown and Get Hit]
+-> Tank_Escape
 
 ==Security_Escape==
 You rush the security team to the cargo hold to establish a firing line. Kuon asserts himself as the line's core through sheer force of violence, dispensing of anything within 10 meters of himself in seconds, and barking orders whenever the pursuers get past his reach. 
@@ -67,3 +69,10 @@ The golden wave continues to rush forwards, but begins to turn off-course, some 
 The doors ratchet shut as the ship blasts upwards. The horde regarding the ship eyelessly as they prowl over the jettisoned food.
 [-Security]
 -> END
+
+==Tank_Escape==
+You lock down the portholes of your ship and route all available power to your shields. More and more of the golden monsters rush out the blast doors while the first wave strikes the side of your ship. 
+They begin to push their heads and claws through the electric blue of your shields, their pure weight causing the shields to buckle. Claws reach your ship and rip backwards, disabling the forcefield in that vicinity. The creatures begin rapidly tearing apart your ship, trying to reach a hallway or room. 
+The forcefield blips out of existence as your engines recieve all power and the ship blasts upwards. The massive crowd stares eyelessly as your ship departs.  
+[--Hull]
+->END
