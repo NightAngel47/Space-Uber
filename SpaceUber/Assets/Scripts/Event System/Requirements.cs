@@ -45,17 +45,17 @@ public class Requirements
     private CharacterStats.Characters character = CharacterStats.Characters.None;
 
     [Tooltip("The required approval rating for this event to pass")]
-    [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
+    [SerializeField, ShowIf("isApprovalRequirement"), AllowNesting]
     private int requiredApproval;
 
     [Tooltip("Whether or not the approval must be LESS than the number supplied")]
-    [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
+    [SerializeField, ShowIf("isApprovalRequirement"), AllowNesting]
     private bool lessThanApproval = false;
 
     #endregion
 
     #region Narrative Requirement Variables
-    
+
     [Tooltip("If the requirement is narrative-based")]
     [SerializeField, AllowNesting]
     private bool isNarrativeRequirement = false;
@@ -205,7 +205,7 @@ public class Requirements
             }
             else
             {
-                result = shipStat > requiredAmount;
+                result = shipStat >= requiredAmount;
             }
         }
         else if (isNarrativeRequirement)
@@ -214,7 +214,7 @@ public class Requirements
             {
                 case CampaignManager.Campaigns.CateringToTheRich:
                     //check if the selected bool is true or not
-                    
+
                     if (ctrTrustRequirements)
                     {
 
@@ -258,7 +258,7 @@ public class Requirements
                     }
                     break;
             }
-            
+
         }
         else if (isRoomRequirement)
         {

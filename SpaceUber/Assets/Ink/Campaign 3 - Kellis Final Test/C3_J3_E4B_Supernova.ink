@@ -18,7 +18,7 @@ Stop both catastrophies.
 -> END
 
 ==DeclineHelpA==
-Stop one of 2 catastrophies, the other still occurs.
+Stop the supernova, the Midas Creatures overtake the entire solar system.
 -> END
 
 ==ContinueToCollect==
@@ -33,5 +33,5 @@ Stop both catastrophies.
 -> END
 
 ==DeclineHelpB==
-Stop one of 2 catastrophies, the other still occurs
+Stop the supernova, the Midas Creatures overtake the entire solar system.
 -> END

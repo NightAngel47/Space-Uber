@@ -351,6 +351,10 @@ public class ChoiceOutcomes
                             case CampaignManager.FinalTest.NarrativeVariables.KuonPlan:
                                 resultText += "\nYou went with Kuon's plan";
                                 break;
+                            case CampaignManager.FinalTest.NarrativeVariables.ResearchShared:
+                                campMan.finalTest.ft_researchShared = true;
+                                resultText += "\nYou shared your research";
+                                break;
                         }
                         break;
                 }
