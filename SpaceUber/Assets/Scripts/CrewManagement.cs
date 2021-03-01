@@ -313,8 +313,6 @@ public class CrewManagement : MonoBehaviour
         {
             button.SetActive(false);
         }
-        
-        crewManagementText.SetActive(false);
 
         if(!overclockButton.interactable)
         {
