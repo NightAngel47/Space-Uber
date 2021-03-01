@@ -40,7 +40,7 @@ public class ObjectScript : MonoBehaviour
 
     [Foldout("Data")] public ShapeType shapeData = null;
     public ShapeTypes shapeTypes => shapeData.St;
-    
+
     [Foldout("Data")] public float boundsUp;
     [Foldout("Data")] public float boundsDown;
     [Foldout("Data")] public float boundsLeft;
@@ -53,7 +53,7 @@ public class ObjectScript : MonoBehaviour
 
     private bool mouseReleased = false;
     public static bool roomIsHovered;
-    
+
     private void Start()
     {
         //rotAdjust = false;
@@ -61,7 +61,15 @@ public class ObjectScript : MonoBehaviour
         c.a = 1;
         //parentObj = transform.parent.gameObject;
 
+        StartCoroutine(WaitForEditCrewButtonToLoad());
+        
         ResetData();
+    }
+
+    private IEnumerator WaitForEditCrewButtonToLoad()
+    {
+        yield return new WaitWhile(() => FindObjectOfType<EditCrewButton>() == null);
+        FindObjectOfType<EditCrewButton>().CheckForRooms();
     }
 
     public void Update()
@@ -156,7 +164,7 @@ public class ObjectScript : MonoBehaviour
         {
             roomTooltip.SetActive(true);
             roomIsHovered = true;
-            
+
             //if the object is clicked, open the room management menu
             if (Input.GetMouseButtonDown(0))
             {
@@ -192,7 +200,7 @@ public class ObjectScript : MonoBehaviour
         {
             roomTooltip.SetActive(false);
         }
-        
+
         roomIsHovered = false;
     }
 
@@ -396,7 +404,7 @@ public class ObjectScript : MonoBehaviour
         }
     }
 
-    private void ResetData()
+    public void ResetData()
     {
         shapeData = shapeDataTemplate.CloneData();
         boundsUp = shapeData.boundsUp;

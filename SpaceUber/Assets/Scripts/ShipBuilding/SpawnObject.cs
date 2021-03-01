@@ -79,6 +79,9 @@ public class SpawnObject : MonoBehaviour
         lastSpawned.GetComponent<RoomStats>().AddRoomStats();
         lastSpawned.GetComponent<ObjectMover>().enabled = false;
         lastSpawned.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
+        
+        SavingLoadingManager.instance.SaveRooms();
+        FindObjectOfType<ShipStats>().SaveShipStats();
     }
 
     public void SetAvailableRoomList(List<GameObject> l)

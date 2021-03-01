@@ -9,6 +9,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// The states that the game can be in:
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
     /// Reference to the JobManager used to refresh the job list in job select state
     /// </summary>
     private JobManager jobManager;
-    
+
     private ShipStats ship;
 
     [SerializeField] private List<ResourceDataType> resourceDataRef = new List<ResourceDataType>();
@@ -57,22 +58,39 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         // Singleton pattern that makes sure that there is only one GameManager
-        if (instance) { Destroy(gameObject); }
-        else { instance = this; }
+        if (instance)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
 
         // Sets the reference to the AdditiveSceneManager in the active scene.
         additiveSceneManager = FindObjectOfType<AdditiveSceneManager>();
 
         // Sets the reference to the JobManager in the active scene
         jobManager = FindObjectOfType<JobManager>();
-        
+
         ship = FindObjectOfType<ShipStats>();
     }
 
+    /// <summary>
+    /// Delay starting the game when loaded in.
+    /// This give the time for the additive scene manager to clear, before loading new scenes.
+    /// </summary>
     private IEnumerator Start()
     {
-        yield return new WaitForEndOfFrame();
-        ChangeInGameState(InGameStates.JobSelect);
+        yield return new WaitUntil(() => additiveSceneManager && ship && jobManager);
+        if (SavingLoadingManager.instance.GetHasSave())
+        {
+            LoadGameState();
+        }
+        else
+        {
+            ChangeInGameState(InGameStates.JobSelect);
+        }
     }
 
     /// <summary>
@@ -100,10 +118,13 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.LoadSceneSeperate("Interface_JobList");
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
                 jobManager.RefreshJobList();
+                SaveGameState();
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
+                additiveSceneManager.UnloadScene("Interface_JobList");
                 additiveSceneManager.UnloadScene("CrewManagement");
 
+                additiveSceneManager.LoadSceneSeperate("Starport BG");
                 additiveSceneManager.LoadSceneSeperate("ShipBuilding");
                 break;
             case InGameStates.CrewManagement:
@@ -117,10 +138,21 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
                 additiveSceneManager.UnloadScene("CrewPayment");
                 additiveSceneManager.UnloadScene("Starport BG");
-                
+
+                // load in crew management if player loads into events first
+                if (!SceneManager.GetSceneByName("CrewManagement").isLoaded)
+                {
+                    additiveSceneManager.LoadSceneSeperate("CrewManagement");
+                    StartCoroutine(SetupCrewManagementIfLoadedIntoEvents());
+                }
+
                 additiveSceneManager.LoadSceneMerged("Interface_Runtime");
-                
-                ship.SaveStats();
+                SaveGameState();
+
+                MoraleManager.instance.SaveMorale();
+                ship.cStats.SaveCharacterStats();
+                ship.SaveShipStats();
+                SavingLoadingManager.instance.SaveRooms();
 
                 // Remove unplaced rooms from the ShipBuilding state
                 if (!ObjectMover.hasPlaced)
@@ -132,16 +164,15 @@ public class GameManager : MonoBehaviour
                 {
                   room.UpdateUsedRoom();
                 }
-                
+
                 StartCoroutine(EventSystem.instance.PlayIntro());
                 break;
-
             case InGameStates.CrewPayment:
                 additiveSceneManager.UnloadScene("Interface_Runtime");
                 additiveSceneManager.UnloadScene("Event_General");
                 additiveSceneManager.UnloadScene("Event_CharacterFocused");
                 additiveSceneManager.UnloadScene("CrewManagement");
-                
+
                 additiveSceneManager.LoadSceneSeperate("CrewPayment");
                 break;
             case InGameStates.MoneyEnding: // Loads the PromptScreen_Money_End when the player reaches a narrative ending.
@@ -149,20 +180,20 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("Interface_Runtime");
                 additiveSceneManager.UnloadScene("Interface_Radio");
                 additiveSceneManager.UnloadScene("CrewPayment");
-                
+
                 additiveSceneManager.LoadSceneSeperate("PromptScreen_Money_End");
                 break;
             case InGameStates.MoraleEnding: // Loads the PromptScreen_Morale_End after the PromptScreen_Money_End.
                 additiveSceneManager.UnloadScene("PromptScreen_Money_End");
-                
+
                 additiveSceneManager.LoadSceneSeperate("PromptScreen_Morale_End");
                 break;
             case InGameStates.Mutiny: // Loads the PromptScreen_Mutiny when the player reaches a mutiny.
                 additiveSceneManager.UnloadScene("Event_General");
                 additiveSceneManager.UnloadScene("Event_CharacterFocused");
                 additiveSceneManager.UnloadScene("Event_Prompt");
-                additiveSceneManager.UnloadScene("Interface_EventTimer");
-                
+                additiveSceneManager.UnloadScene("Interface_Runtime");
+
                 additiveSceneManager.LoadSceneSeperate("PromptScreen_Mutiny");
                 break;
             case InGameStates.Death: // Loads the PromptScreen_Death when the player reaches a death.
@@ -170,7 +201,7 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("Event_CharacterFocused");
                 additiveSceneManager.UnloadScene("Event_Prompt");
                 additiveSceneManager.UnloadScene("Interface_Runtime");
-                
+
                 additiveSceneManager.LoadSceneSeperate("PromptScreen_Death");
                 break;
             default: // Output Warning when the passed in game state doesn't have a transition setup.
@@ -182,5 +213,21 @@ public class GameManager : MonoBehaviour
     public ResourceDataType GetResourceData(int i)
     {
         return resourceDataRef[i];
+    }
+
+    private IEnumerator SetupCrewManagementIfLoadedIntoEvents()
+    {
+        yield return new WaitUntil(() => SceneManager.GetSceneByName("CrewManagement").isLoaded);
+        FindObjectOfType<CrewManagement>().FinishWithCrewAssignment();
+    }
+
+    private void SaveGameState()
+    {
+        SavingLoadingManager.instance.Save<InGameStates>("currentGameState", currentGameState);
+    }
+
+    private void LoadGameState()
+    {
+        ChangeInGameState(SavingLoadingManager.instance.Load<InGameStates>("currentGameState"));
     }
 }
