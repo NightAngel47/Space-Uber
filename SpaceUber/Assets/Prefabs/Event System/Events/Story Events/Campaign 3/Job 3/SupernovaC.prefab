@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2198099161955360124
+--- !u!1001 &7521287296121188351
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -30,13 +30,8 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: requiredStats.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: inkJSONAsset
-      value: 
-      objectReference: {fileID: 4900000, guid: a7b9930233f2f4d9183a637543edc3b2, type: 3}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: eventName
@@ -59,6 +54,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
+      propertyPath: hasSubsequentChoices
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: inkJSONAsset
+      value: 
+      objectReference: {fileID: 4900000, guid: 5814b6d3315804d63b8a6fdf65e4ee2c, type: 3}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
       propertyPath: nextChoices.Array.data[0].choiceName
       value: Agree
       objectReference: {fileID: 0}
@@ -79,18 +84,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: hasSubsequentChoices
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
       propertyPath: subsequentChoices.Array.data[0].subsequentChoicesName
       value: Agreed
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[1].subsequentChoicesName
-      value: Collected
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -99,8 +94,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].hasSecretOutcomes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].choiceName
       value: Decline Equinox's Help
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].hasSecretOutcomes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].subsequentChoicesName
+      value: Collected
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -109,8 +119,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].hasSecretOutcomes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
       propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].choiceName
       value: Decline Equinox's Help
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].hasSecretOutcomes
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -125,47 +145,12 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: requiredStats.Array.data[0].ftOutcomes
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].hasSecretOutcomes
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].hasSecretOutcomes
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].hasSecretOutcomes
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].hasSecretOutcomes
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: requiredStats.Array.data[1].isNarrativeRequirement
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: requiredStats.Array.data[1].thisCampaign
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: requiredStats.Array.data[1].ftOutcomes
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name
-      value: SupernovaA
+      value: SupernovaC
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
