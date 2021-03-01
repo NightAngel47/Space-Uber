@@ -6,6 +6,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TransitionGameStates : MonoBehaviour
@@ -33,7 +34,7 @@ public class TransitionGameStates : MonoBehaviour
     {
         AnalyticsManager.OnLeavingStarport(ship);
         //TODO add overclock button turn on, currently adding it so it appears but needs to be better can remove tag when updated
-        FindObjectOfType<CrewManagement>().TurnOnOverclockButton();
+        FindObjectOfType<CrewManagement>().FinishWithCrewAssignment();
 
         GameManager.instance.ChangeInGameState(InGameStates.Events);
         AudioManager.instance.PlayMusicWithTransition("General Theme");
@@ -41,7 +42,6 @@ public class TransitionGameStates : MonoBehaviour
 
     public void ChangeToCrewManagement()
     {
-        ship.cantPlaceText.SetActive(false);
         GameManager.instance.ChangeInGameState(InGameStates.CrewManagement);
     }
     
