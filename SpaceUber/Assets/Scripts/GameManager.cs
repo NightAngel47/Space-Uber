@@ -86,10 +86,12 @@ public class GameManager : MonoBehaviour
         if (SavingLoadingManager.instance.GetHasSave())
         {
             LoadGameState();
+            SavingLoadingManager.instance.LoadRooms();
         }
         else
         {
             ChangeInGameState(InGameStates.JobSelect);
+            SavingLoadingManager.instance.NewSave(); // start new save here
         }
     }
 
@@ -126,6 +128,7 @@ public class GameManager : MonoBehaviour
 
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
                 additiveSceneManager.LoadSceneSeperate("ShipBuilding");
+                SaveGameState();
                 break;
             case InGameStates.CrewManagement:
                 additiveSceneManager.UnloadScene("ShipBuilding");

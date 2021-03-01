@@ -14,7 +14,7 @@ public class EndingRestartBehaviour : MonoBehaviour
     
     public void RestartGame() // TODO: change to different state vs wiping save (probably need to check with design)
     {
-        SavingLoadingManager.instance.DeleteSave();
+        SavingLoadingManager.instance.SetHasSaveFalse();
         if(FindObjectOfType<SpotChecker>()) Destroy(FindObjectOfType<SpotChecker>().gameObject);
         SceneManager.LoadScene("LoadingScreen");
         AudioManager.instance.PlayMusicWithTransition("General Theme");

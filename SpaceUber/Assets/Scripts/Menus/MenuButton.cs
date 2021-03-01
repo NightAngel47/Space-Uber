@@ -48,7 +48,7 @@ public class MenuButton : MonoBehaviour
     {
         if (SavingLoadingManager.instance.GetHasSave())
         {
-            SavingLoadingManager.instance.DeleteSave();
+            SavingLoadingManager.instance.SetHasSaveFalse();
             StartGame();
         }
         else
