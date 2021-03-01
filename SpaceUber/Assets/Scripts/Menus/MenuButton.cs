@@ -5,6 +5,7 @@
  * such as starting and quitting the game
  */
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,11 +15,18 @@ public class MenuButton : MonoBehaviour
 {
     [SerializeField] private GameObject menuButtons;
     [SerializeField] private GameObject menuButtonsWithContinue;
-    
-    private void Start()
+
+    private void Awake()
+    {
+        menuButtons.SetActive(false);
+        menuButtonsWithContinue.SetActive(false);
+    }
+
+    private IEnumerator Start()
     {
         if(FindObjectOfType<SpotChecker>()) Destroy(FindObjectOfType<SpotChecker>().gameObject);
 
+        yield return new WaitUntil(() => FindObjectOfType<SavingLoadingManager>());
         if (SavingLoadingManager.instance.GetHasSave())
         {
             menuButtons.SetActive(false);
@@ -40,13 +48,13 @@ public class MenuButton : MonoBehaviour
     {
         if (SavingLoadingManager.instance.GetHasSave())
         {
-            //TODO: ask if they want to delete.
+            SavingLoadingManager.instance.DeleteSave();
+            StartGame();
         }
-    }
-
-    public void DeleteSave()
-    {
-        SavingLoadingManager.instance.DeleteSave();
+        else
+        {
+            StartGame();
+        }
     }
 
     public void QuitGame()
