@@ -394,30 +394,7 @@ public class Requirements
         }
         else if(isApprovalRequirement)
         {
-            int approvalRating = 0;
-
-            switch (character)
-            {
-                case CharacterStats.Characters.KUON:
-                    approvalRating = thisShip.cStats.KuonApproval;
-                    break;
-                case CharacterStats.Characters.MATEO:
-                    approvalRating = thisShip.cStats.MateoApproval;
-                    break;
-                case CharacterStats.Characters.LANRI:
-                    approvalRating = thisShip.cStats.LanriApproval;
-                    break;
-                case CharacterStats.Characters.LEXA:
-                    approvalRating = thisShip.cStats.LexaApproval;
-                    break;
-                case CharacterStats.Characters.RIPLEY:
-                    approvalRating = thisShip.cStats.RipleyApproval;
-                    break;
-                default:
-                    Debug.Log("The character whose approval you wanted does not exist");
-                    approvalRating = 0;
-                    break;
-            }
+            int approvalRating = thisShip.cStats.GetCharacterApproval(character);
 
             if (lessThanApproval && approvalRating < requiredApproval) //Match
             {

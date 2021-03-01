@@ -7,7 +7,7 @@ using ACTools.Saving;
 public class SavingLoadingManager : MonoBehaviour
 {
     public static SavingLoadingManager instance;
-    
+    private static string projectName = "CogInTheCosmicMachine";
     private bool hasSave;
     
     [SerializeField] private List<GameObject> roomPrefabs = new List<GameObject>();
@@ -23,11 +23,11 @@ public class SavingLoadingManager : MonoBehaviour
             instance = this;
         }
         
-        hasSave = LoadData.FromBinaryFile<bool>("CogInTheCosmicMachine", "hasSave");
+        hasSave = LoadData.FromBinaryFile<bool>(projectName, "hasSave");
         
         if(!hasSave)
         {
-            SaveData.ToBinaryFile<bool>("CogInTheCosmicMachine", "hasSave", true);
+            SaveData.ToBinaryFile<bool>(projectName, "hasSave", true);
         }
     }
     
@@ -45,12 +45,12 @@ public class SavingLoadingManager : MonoBehaviour
     
     public T Load<T>(string name)
     {
-        return LoadData.FromBinaryFile<T>("CogInTheCosmicMachine", name);
+        return LoadData.FromBinaryFile<T>(projectName, name);
     }
     
     public void Save<T>(string name, T data)
     {
-        SaveData.ToBinaryFile<T>("CogInTheCosmicMachine", name, data);
+        SaveData.ToBinaryFile<T>(projectName, name, data);
     }
     
     public bool GetHasSave()
@@ -60,7 +60,7 @@ public class SavingLoadingManager : MonoBehaviour
     
     public static void DeleteSave()
     {
-        SaveData.ToBinaryFile<bool>("CogInTheCosmicMachine", "hasSave", false);
+        SaveData.ToBinaryFile<bool>(projectName, "hasSave", false);
     }
     
     public enum RoomType {None = -1, ArmorPlating, Armory, Brig, Bunks, CoreChargingTerminal, EnergyCannon, Hydroponics, Medbay, Pantry, PhotonTorpedoes, PowerCore, ShieldGenerator, Storage, VIPLounge}

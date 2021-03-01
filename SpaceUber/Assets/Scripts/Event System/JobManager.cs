@@ -25,6 +25,7 @@ public class JobManager : MonoBehaviour
 
     public void RefreshJobList()
     {
+        SavingLoadingManager.instance.Save<bool>("hasSelectedJob", false);
         StartCoroutine(UpdateJobList());
     }
     
@@ -89,5 +90,6 @@ public class JobManager : MonoBehaviour
         //ship.gameObject.GetComponent<ShipStatsUI>().UpdateCreditsUI(ship.Credits, ship.Payout);
         es.TakeStoryJobEvents(selectedMainJob);
         es.TakeSideJobEvents(selectedSideJobs);
+        SavingLoadingManager.instance.Save<bool>("hasSelectedJob", true);
     }
 }

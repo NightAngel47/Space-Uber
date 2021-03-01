@@ -57,8 +57,14 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         // Singleton pattern that makes sure that there is only one GameManager
-        if (instance) { Destroy(gameObject); }
-        else { instance = this; }
+        if (instance)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
 
         // Sets the reference to the AdditiveSceneManager in the active scene.
         additiveSceneManager = FindObjectOfType<AdditiveSceneManager>();
@@ -68,36 +74,21 @@ public class GameManager : MonoBehaviour
         
         ship = FindObjectOfType<ShipStats>();
     }
-
-    private void Start()
-    {
-        StartCoroutine(DelayedStart());
-    }
-
+    
     /// <summary>
     /// Delay starting the game when loaded in.
     /// This give the time for the additive scene manager to clear, before loading new scenes.
     /// </summary>
-    private IEnumerator DelayedStart()
+    private IEnumerator Start()
     {
         yield return new WaitForEndOfFrame();
         if(SavingLoadingManager.instance.GetHasSave() && SavingLoadingManager.instance.Load<bool>("hasSelectedJob"))
         {
             ChangeInGameState(InGameStates.ShipBuilding);
-            additiveSceneManager.UnloadScene("Interface_JobList");
         }
         else
         {
             ChangeInGameState(InGameStates.JobSelect);
-        }
-    }
-
-    private void Update()
-    {
-        // I was getting errors in scripts trying to access GameManager.instance.  Hopefully this fixes it.
-        if (instance == null)
-        {
-            instance = this;
         }
     }
 
@@ -126,13 +117,12 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.LoadSceneSeperate("Interface_JobList");
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
                 jobManager.RefreshJobList();
-                SavingLoadingManager.instance.Save<bool>("hasSelectedJob", false);
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
+                additiveSceneManager.UnloadScene("Interface_JobList");
                 additiveSceneManager.UnloadScene("CrewManagement");
 
                 additiveSceneManager.LoadSceneSeperate("ShipBuilding");
-                SavingLoadingManager.instance.Save<bool>("hasSelectedJob", true);
                 break;
             case InGameStates.CrewManagement:
                 additiveSceneManager.UnloadScene("ShipBuilding");
@@ -150,7 +140,7 @@ public class GameManager : MonoBehaviour
                 
                 ship.SaveStats();
                 MoraleManager.instance.SaveMorale();
-                ship.cStats.SaveStats();
+                ship.cStats.SaveCharacterStats();
                 SavingLoadingManager.instance.SaveRooms();
 
                 // Remove unplaced rooms from the ShipBuilding state
@@ -166,7 +156,6 @@ public class GameManager : MonoBehaviour
                 
                 StartCoroutine(EventSystem.instance.PlayIntro());
                 break;
-
             case InGameStates.CrewPayment:
                 additiveSceneManager.UnloadScene("Interface_EventTimer");
                 additiveSceneManager.UnloadScene("Event_General");

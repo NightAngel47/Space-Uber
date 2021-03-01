@@ -20,7 +20,7 @@ public class CrewPaymentScreenBehaviour : MonoBehaviour
         
         ship.SaveStats();
         MoraleManager.instance.SaveMorale();
-        ship.cStats.SaveStats();
+        ship.cStats.SaveCharacterStats();
         SavingLoadingManager.instance.SaveRooms();
         
         campaignManager.GoToNextJob(); //tells campaign manager to activate the next available job
