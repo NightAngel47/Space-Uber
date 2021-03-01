@@ -6,28 +6,62 @@
  */
 
 using System.Collections;
-using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuButton : MonoBehaviour
 {
-    [SerializeField] string sceneToLoad;
+    [SerializeField] private GameObject menuButtons;
+    [SerializeField] private GameObject menuButtonsWithContinue;
 
-    private void Start()
+    private void Awake()
     {
-        Destroy(GameObject.Find("Spot Checker"));
+        menuButtons.SetActive(false);
+        menuButtonsWithContinue.SetActive(false);
     }
 
-    public void quitGame()
+    private IEnumerator Start()
     {
-        Application.Quit();
+        if(FindObjectOfType<SpotChecker>()) Destroy(FindObjectOfType<SpotChecker>().gameObject);
+
+        yield return new WaitUntil(() => FindObjectOfType<SavingLoadingManager>());
+        if (SavingLoadingManager.instance.GetHasSave())
+        {
+            menuButtons.SetActive(false);
+            menuButtonsWithContinue.SetActive(true);
+        }
+        else
+        {
+            menuButtons.SetActive(true);
+            menuButtonsWithContinue.SetActive(false);
+        }
     }
 
-    public void startGame()
+    public void StartGame()
     {
         SceneManager.LoadScene("LoadingScreen");
     }
 
+    public void NewGame()
+    {
+        if (SavingLoadingManager.instance.GetHasSave())
+        {
+            SavingLoadingManager.instance.SetHasSaveFalse();
+            StartGame();
+        }
+        else
+        {
+            StartGame();
+        }
+    }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+
+        #if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+        #endif
+    }
 }

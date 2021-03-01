@@ -116,7 +116,7 @@ public class EventSystem : MonoBehaviour
     /// </summary>
     public IEnumerator PlayIntro()
     {
-	    yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_EventTimer").isLoaded);
+	    yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_Runtime").isLoaded);
 	    SetUpEventTimer();
 
 		chatting = false;
@@ -215,8 +215,8 @@ public class EventSystem : MonoBehaviour
             tick.StopTickUpdate();
             FindObjectOfType<CrewManagement>().TurnOffPanel();
 
-			//wait until there is no longer an overclock microgame happening
-			yield return new WaitUntil(() => !OverclockController.instance.overclocking);
+			//wait until done with minigame and/or character event
+			yield return new WaitUntil(() => !OverclockController.instance.overclocking && !chatting);
 
             //If event button was not clicked ahead of time
             if (nextEventLockedIn && SceneManager.GetSceneByName("Event_Prompt").isLoaded)

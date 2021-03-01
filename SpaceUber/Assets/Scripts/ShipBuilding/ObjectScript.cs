@@ -16,10 +16,10 @@ using Random = UnityEngine.Random;
 
 public class ObjectScript : MonoBehaviour
 {
-    [Foldout("Data")]
-    public int rotAdjust = 1;
+    [Foldout("Data")] public int rotAdjust = 1;
     public static Color c;
 
+    public string roomSize;
     public int shapeType;
     public int objectNum;
 
@@ -38,27 +38,21 @@ public class ObjectScript : MonoBehaviour
 
     [SerializeField] private ShapeType shapeDataTemplate = null;
 
-    [Foldout("Data")]
-    public ShapeType shapeData = null;
+    [Foldout("Data")] public ShapeType shapeData = null;
     public ShapeTypes shapeTypes => shapeData.St;
 
-    [Foldout("Data")]
-    public float boundsUp;
-    [Foldout("Data")]
-    public float boundsDown;
-    [Foldout("Data")]
-    public float boundsLeft;
-    [Foldout("Data")]
-    public float boundsRight;
-    [Foldout("Data")]
-    public float rotBoundsRight;
-    [Foldout("Data")]
-    public float rotBoundsUp;
-
-    [Foldout("Data")]
-    public Vector3 rotAdjustVal;
+    [Foldout("Data")] public float boundsUp;
+    [Foldout("Data")] public float boundsDown;
+    [Foldout("Data")] public float boundsLeft;
+    [Foldout("Data")] public float boundsRight;
+    [Foldout("Data")] public float rotBoundsRight;
+    [Foldout("Data")] public float rotBoundsUp;
+    [Foldout("Data")] public Vector3 rotAdjustVal;
 
     public bool clickAgain = true;
+
+    private bool mouseReleased = false;
+    public static bool roomIsHovered;
 
     private void Start()
     {
@@ -67,9 +61,23 @@ public class ObjectScript : MonoBehaviour
         c.a = 1;
         //parentObj = transform.parent.gameObject;
 
-        FindObjectOfType<EditCrewButton>().CheckForRooms();
-
+        StartCoroutine(WaitForEditCrewButtonToLoad());
+        
         ResetData();
+    }
+
+    private IEnumerator WaitForEditCrewButtonToLoad()
+    {
+        yield return new WaitWhile(() => FindObjectOfType<EditCrewButton>() == null);
+        FindObjectOfType<EditCrewButton>().CheckForRooms();
+    }
+
+    public void Update()
+    {
+        if(Input.GetMouseButtonUp(0))
+        {
+            StartCoroutine(WaitToClickRoom());
+        }
     }
 
     public void TurnOnClickAgain()
@@ -77,6 +85,7 @@ public class ObjectScript : MonoBehaviour
         if (preplacedRoom == false)
         {
             clickAgain = true;
+            mouseReleased = false;
             CalledFromSpawn = false;
         }
     }
@@ -87,30 +96,38 @@ public class ObjectScript : MonoBehaviour
         {
             clickAgain = false;
 
-            if (nextToRoom == true && CalledFromSpawn == false)
-            {
-                bool check = SpotChecker.instance.NextToRoomCall(gameObject, rotAdjust);
-                if (check == false)
-                {
-                    Debug.Log("Room not placed next to required room, it has been auto removed");
-                    SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
-                    Destroy(gameObject);
-                }
-            }
+            //if (nextToRoom == true && CalledFromSpawn == false)
+            //{
+            //    bool check = SpotChecker.instance.NextToRoomCall(gameObject, rotAdjust);
+            //    if (check == false)
+            //    {
+            //        Debug.Log("Room not placed next to required room, it has been auto removed");
+
+            //        SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
+            //        Destroy(gameObject);
+            //    }
+            //}
         }
     }
 
+    //public void OnMouseUp()
+    //{
+    //    //StartCoroutine(WaitToClickRoom());
+    //    //clickAgain = true;
+
+    //    mouseReleased = true;
+    //}
+
     public void OnMouseOver()
     {
-        if(preplacedRoom) return;
+        //if(preplacedRoom) return;
 
         if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true) // && PauseMenu.Instance.isPaused == false// commented out until menus are ready
         {
-            if (ObjectMover.hasPlaced == true)
+            if (ObjectMover.hasPlaced && !PauseMenu.IsPaused)
             {
-                roomTooltip.SetActive(true);            
-                if(toolTipOutputList.transform.childCount > 0) toolTipOutputList.transform.GetChild(0).transform.GetChild(2).GetComponent<TMP_Text>().text = gameObject.GetComponent<RoomStats>().resources[0].activeAmount.ToString();
-
+                roomTooltip.SetActive(true);
+                roomIsHovered = true;
             }
             else if (roomTooltip.activeSelf)
             {
@@ -119,7 +136,7 @@ public class ObjectScript : MonoBehaviour
 
             //if(preplacedRoom) return; // could moved preplacedRoom check here so tooltip can be activated.
 
-            if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true && !gameObject.GetComponent<ObjectMover>().enabled)
+            if (Input.GetMouseButtonDown(0) && ObjectMover.hasPlaced == true && !gameObject.GetComponent<ObjectMover>().enabled && preplacedRoom == false)
             {
                 //buttons.SetActive(true);
                 gameObject.GetComponent<RoomStats>().SubtractRoomStats();
@@ -127,7 +144,7 @@ public class ObjectScript : MonoBehaviour
                 Edit();
             }
 
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButton(1) && preplacedRoom == false)
             {
                 //buttons.SetActive(true);
                 if (ObjectMover.hasPlaced == true)
@@ -145,15 +162,16 @@ public class ObjectScript : MonoBehaviour
            || GameManager.instance.currentGameState == InGameStates.Events
            && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn)
         {
-            
             roomTooltip.SetActive(true);
+            roomIsHovered = true;
 
-            if(toolTipOutputList.transform.childCount > 0) toolTipOutputList.transform.GetChild(0).transform.GetChild(2).GetComponent<TMP_Text>().text = gameObject.GetComponent<RoomStats>().resources[0].activeAmount.ToString();
-            
             //if the object is clicked, open the room management menu
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
+                FindObjectOfType<RoomPanelToggle>().OpenPanel(0, true);
+                FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(gameObject);
+                FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
                 AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
             }
         }
@@ -167,6 +185,7 @@ public class ObjectScript : MonoBehaviour
             r.TurnOffClickAgain();
         }
 
+        //yield return new WaitUntil(() => mouseReleased);
         yield return new WaitForSeconds(.25f);
 
         foreach (ObjectScript r in otherRooms)
@@ -181,10 +200,18 @@ public class ObjectScript : MonoBehaviour
         {
             roomTooltip.SetActive(false);
         }
+
+        roomIsHovered = false;
     }
 
     public void Edit()
     {
+        Cursor.visible = false;
+        clickAgain = false;
+
+        //rooms being placed will appear on top of other rooms that are already placed
+        gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+
         c.a = .5f;
         gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
         c.a = 1;
@@ -215,8 +242,14 @@ public class ObjectScript : MonoBehaviour
 
     public void Delete()
     {
+        Cursor.visible = true;
+        clickAgain = false;
+
         //buttons.SetActive(false);
-        SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
+        if (ObjectMover.hasPlaced == true)
+        {
+            SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
+        }
         ObjectMover.hasPlaced = true;
         ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
         foreach (ObjectScript r in otherRooms)
@@ -371,7 +404,7 @@ public class ObjectScript : MonoBehaviour
         }
     }
 
-    private void ResetData()
+    public void ResetData()
     {
         shapeData = shapeDataTemplate.CloneData();
         boundsUp = shapeData.boundsUp;
