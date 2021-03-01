@@ -5,8 +5,6 @@
  * Description: 
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
@@ -14,19 +12,15 @@ public class CharacterStats : MonoBehaviour
     #region Variables
     public enum Characters
     {
-        None,
-        KUON,
-        LANRI,
-        LEXA,
-        MATEO,
-        RIPLEY
+        None = -1,
+        Kuon,
+        Lanri,
+        Lexa,
+        Mateo,
+        Ripley
     }
 
-    private int kuonApproval;
-    private int lanriApproval;
-    private int lexaApproval;
-    private int mateoApproval;
-    private int ripleyApproval;
+    private int[] characterApprovals = new int[5];
 
     private int approvalMax = 10;
     private int approvalMin = -10;
@@ -47,51 +41,51 @@ public class CharacterStats : MonoBehaviour
     private int ripleyApprovalInit;
     #endregion
 
-
     #region Getters/Setters
     public int KuonApproval
     {
-        get { return kuonApproval; }
+        get => characterApprovals[(int) Characters.Kuon];
         set
         {
-            kuonApproval = value;
-            Mathf.Clamp(kuonApproval, approvalMin, approvalMax);
+            characterApprovals[(int) Characters.Kuon] = value;
+            Mathf.Clamp(characterApprovals[(int) Characters.Kuon], approvalMin, approvalMax);
         }
     }
+
     public int MateoApproval
     {
-        get { return mateoApproval; }
+        get => characterApprovals[(int) Characters.Mateo];
         set
         {
-            mateoApproval = value;
-            Mathf.Clamp(mateoApproval, approvalMin, approvalMax);
+            characterApprovals[(int) Characters.Mateo] = value;
+            Mathf.Clamp(characterApprovals[(int) Characters.Mateo], approvalMin, approvalMax);
         }
     }
     public int LanriApproval
     {
-        get { return lanriApproval; }
+        get => characterApprovals[(int) Characters.Lanri];
         set
         {
-            lanriApproval = value;
-            Mathf.Clamp(lanriApproval, approvalMin, approvalMax);
+            characterApprovals[(int) Characters.Lanri] = value;
+            Mathf.Clamp(characterApprovals[(int) Characters.Lanri], approvalMin, approvalMax);
         }
     }
     public int LexaApproval
     {
-        get { return lexaApproval; }
+        get => characterApprovals[(int) Characters.Lexa];
         set
         {
-            lexaApproval = value;
-            Mathf.Clamp(lexaApproval, approvalMin, approvalMax);
+            characterApprovals[(int) Characters.Lexa] = value;
+            Mathf.Clamp(characterApprovals[(int) Characters.Lexa], approvalMin, approvalMax);
         }
     }
     public int RipleyApproval
     {
-        get { return ripleyApproval; }
+        get => characterApprovals[(int) Characters.Ripley];
         set 
         { 
-            ripleyApproval = value;
-            Mathf.Clamp(ripleyApproval, approvalMin, approvalMax);
+            characterApprovals[(int) Characters.Ripley] = value;
+            Mathf.Clamp(characterApprovals[(int) Characters.Ripley], approvalMin, approvalMax);
         }
     }
 
@@ -99,10 +93,33 @@ public class CharacterStats : MonoBehaviour
 
     private void Start()
     {
-        kuonApproval = kuonApprovalInit;
-        mateoApproval = mateoApprovalInit;
-        lexaApproval = lexaApprovalInit;
-        lanriApproval = lanriApprovalInit;
-        ripleyApproval = ripleyApprovalInit;
+        if(SavingLoadingManager.instance.GetHasSave())
+        {
+            ResetCharacterStats();
+        }
+        else
+        {
+            characterApprovals[(int) Characters.Kuon] = kuonApprovalInit;
+            characterApprovals[(int) Characters.Mateo] = mateoApprovalInit;
+            characterApprovals[(int) Characters.Lexa] = lexaApprovalInit;
+            characterApprovals[(int) Characters.Lanri] = lanriApprovalInit;
+            characterApprovals[(int) Characters.Ripley] = ripleyApprovalInit;
+            SaveCharacterStats();
+        }
+    }
+
+    public int GetCharacterApproval(Characters character)
+    {
+        return characterApprovals[(int) character];
+    }
+    
+    public void SaveCharacterStats()
+    {
+        SavingLoadingManager.instance.Save<int[]>("characterApprovals", characterApprovals);
+    }
+    
+    public void ResetCharacterStats()
+    {
+        characterApprovals = SavingLoadingManager.instance.Load<int[]>("characterApprovals");
     }
 }

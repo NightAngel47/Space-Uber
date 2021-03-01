@@ -238,43 +238,26 @@ public class ChoiceOutcomes
                         campMan.cateringToTheRich.ctr_VIPTrust += VIPTrustChange;
 
                         //the selected bool will become true
+                        campMan.cateringToTheRich.SetCtrNarrativeOutcome(ctrBoolOutcomes, true);
                         switch (ctrBoolOutcomes)
                         {
                             case CampaignManager.CateringToTheRich.NarrativeOutcomes.SideWithScientist:
-                                campMan.cateringToTheRich.ctr_sideWithScientist = true;
                                 resultText += "\nYou sided with the scientist";
                                 break;
                             case CampaignManager.CateringToTheRich.NarrativeOutcomes.KillBeckett:
-                                campMan.cateringToTheRich.ctr_killBeckett = true;
-                                campMan.cateringToTheRich.ctr_killedOnce = true;
-
+                                campMan.cateringToTheRich.SetCtrNarrativeOutcome(CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledOnce, true);
                                 resultText += "\nYou killed Beckett";
                                 break;
                             case CampaignManager.CateringToTheRich.NarrativeOutcomes.LetBalePilot:
-                                campMan.cateringToTheRich.ctr_letBalePilot = true;
                                 resultText += "\nYou let Bale pilot";
                                 break;
                             case CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledAtSafari:
-                                campMan.cateringToTheRich.ctr_killedAtSafari = true;
-
-                                if (campMan.cateringToTheRich.ctr_killedOnce == true) //killed beckett as well
-                                {
-                                    campMan.cateringToTheRich.ctr_killedOnce = false;
-                                }
-                                else //no kills yet
-                                {
-                                    campMan.cateringToTheRich.ctr_killedOnce = true;
-                                }
-
-
-
+                                campMan.cateringToTheRich.SetCtrNarrativeOutcome(CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledOnce, 
+                                    !campMan.cateringToTheRich.GetCtrNarrativeOutcome(CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledOnce));
                                 resultText += "\nYou killed at the safari";
                                 break;
                             case CampaignManager.CateringToTheRich.NarrativeOutcomes.TellVIPsAboutClones:
-                                campMan.cateringToTheRich.ctr_tellVIPsAboutClones = true;
                                 resultText += "\nYou told the VIPs about the clones";
-                                break;
-                            default:
                                 break;
                         }
 
@@ -299,28 +282,23 @@ public class ChoiceOutcomes
                         
                     case CampaignManager.Campaigns.MysteriousEntity:
                         //the selected bool will become true
+                        campMan.mysteriousEntity.SetMeNarrativeVariable(meMainOutcomes, true);
                         switch (meMainOutcomes)
                         {
                             case CampaignManager.MysteriousEntity.NarrativeVariables.KuonInvestigates:
-                                campMan.mysteriousEntity.me_kuonInvestigates = true;
                                 resultText += "\nYou allowed Kuon to investigate";
-
                                 break;
                             case CampaignManager.MysteriousEntity.NarrativeVariables.OpenedCargo:
-                                campMan.mysteriousEntity.me_openedCargo = true;
                                 resultText += "\nYou opened the cargo";
                                 break;
 
                             case CampaignManager.MysteriousEntity.NarrativeVariables.Accept:
-                                campMan.mysteriousEntity.me_Accept = true;
                                 resultText += "\nYou accepted the offer";
                                 break;
                             case CampaignManager.MysteriousEntity.NarrativeVariables.Decline_Bribe:
-                                campMan.mysteriousEntity.me_declineBribe = true;
                                 resultText += "\nYou declined the offer and bribed Loudon to stay";
                                 break;
                             case CampaignManager.MysteriousEntity.NarrativeVariables.Decline_Fire:
-                                campMan.mysteriousEntity.me_declineFire = true;
                                 resultText += "\nYou declined the offer and said good riddance to Loudon";
                                 break;
                         }
@@ -343,43 +321,38 @@ public class ChoiceOutcomes
                                 resultText += "\nYou have lost " + assetCountChange + " assets";
                         }
 
+                        campMan.finalTest.SetFtNarrativeVariable(finalTestNarrativeOutcomes, true);
                         switch (finalTestNarrativeOutcomes)
                         {
                             case CampaignManager.FinalTest.NarrativeVariables.KellisLoyalty:
-                                campMan.finalTest.ft_kellisLoyalty = true;
                                 resultText += "\nYou have sided with Kellis";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.LanriExperiment:
-                                campMan.finalTest.ft_lanriExperiment = true;
                                 resultText += "\nYou have allowed Lanri to experiment";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.LexaDoomed:
-                                campMan.finalTest.ft_lexaDoomed = true;
                                 resultText += "\nYou left Lexa to face her doom alone";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.ScienceSavior:
-                                campMan.finalTest.ft_scienceSavior = true;
                                 resultText += "\nYou have become a savior through the power of science";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.TruthTold:
-                                campMan.finalTest.ft_truthTold = true;
                                 resultText += "\nYou told everyone the truth";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.LexaPlan:
-                                campMan.finalTest.ft_lexaPlan = true;
                                 resultText += "\nYou went with Lexa's plan";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.MateoPlan:
-                                campMan.finalTest.ft_mateoPlan = true;
                                 resultText += "\nYou went with Mateo's plan";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.LanriRipleyPlan:
-                                campMan.finalTest.ft_lanriRipleyPlan = true;
                                 resultText += "\nYou went with Lanri and Ripley's plan";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.KuonPlan:
-                                campMan.finalTest.ft_kuonPlan = true;
                                 resultText += "\nYou went with Kuon's plan";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.ResearchShared:
+                                resultText += "\nYou shared your research";
                                 break;
                         }
                         break;

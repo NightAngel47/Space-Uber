@@ -106,18 +106,18 @@ public class CharacterEvent : InkDriverBase
                 MoraleManager.instance.CrewMorale += positiveMoraleBoost;
                 switch (thisCharacter)
                 {
-                    case CharacterStats.Characters.KUON: //Kuon boosts security and weapons by 10%
+                    case CharacterStats.Characters.Kuon: //Kuon boosts security and weapons by 10%
                         thisShip.Security += securityBoost;
                         thisShip.ShipWeapons += weaponsBoost;
 
                         SpawnStatChangeText(securityBoost, GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
                         SpawnStatChangeText(weaponsBoost, GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
                         break;
-                    case CharacterStats.Characters.MATEO: //Boosts energy
+                    case CharacterStats.Characters.Mateo: //Boosts energy
                         thisShip.EnergyRemaining += new Vector2(energyBoost, 0);
                         SpawnStatChangeText(energyBoost, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
                         break;
-                    case CharacterStats.Characters.LANRI: //boosts Food
+                    case CharacterStats.Characters.Lanri: //boosts Food
                         thisShip.Food += foodBoost;
                         SpawnStatChangeText(foodBoost, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
                         break;
@@ -137,18 +137,18 @@ public class CharacterEvent : InkDriverBase
                 MoraleManager.instance.CrewMorale += moraleLoss;
                 switch (thisCharacter)
                 {
-                    case CharacterStats.Characters.KUON: //loses security and weapons by 10
+                    case CharacterStats.Characters.Kuon: //loses security and weapons by 10
                         thisShip.Security += securityLoss;
                         thisShip.ShipWeapons += weaponsLoss;
 
                         SpawnStatChangeText(securityLoss, GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
                         SpawnStatChangeText(weaponsLoss, GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
                         break;
-                    case CharacterStats.Characters.MATEO: //Loses energy
+                    case CharacterStats.Characters.Mateo: //Loses energy
                         thisShip.EnergyRemaining += new Vector2(energyLoss, 0);
                         SpawnStatChangeText(energyLoss, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
                         break;
-                    case CharacterStats.Characters.LANRI: //loses Food
+                    case CharacterStats.Characters.Lanri: //loses Food
                         thisShip.Food = foodLoss;
                         SpawnStatChangeText(foodLoss, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
                         break;
@@ -188,22 +188,22 @@ public class CharacterEvent : InkDriverBase
 
     private bool IsMateo()
     {
-        return thisCharacter == CharacterStats.Characters.MATEO;
+        return thisCharacter == CharacterStats.Characters.Mateo;
     }
     private bool IsLexa()
     {
-        return thisCharacter == CharacterStats.Characters.LEXA;
+        return thisCharacter == CharacterStats.Characters.Lexa;
     }
     private bool IsRipley()
     {
-        return thisCharacter == CharacterStats.Characters.RIPLEY;
+        return thisCharacter == CharacterStats.Characters.Ripley;
     }
     private bool IsKuon()
     {
-        return thisCharacter == CharacterStats.Characters.KUON;
+        return thisCharacter == CharacterStats.Characters.Kuon;
     }
     private bool IsLanri()
     {
-        return thisCharacter == CharacterStats.Characters.LANRI;
+        return thisCharacter == CharacterStats.Characters.Lanri;
     }
 }

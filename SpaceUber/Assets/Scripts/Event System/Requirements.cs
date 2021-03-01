@@ -45,17 +45,17 @@ public class Requirements
     private CharacterStats.Characters character = CharacterStats.Characters.None;
 
     [Tooltip("The required approval rating for this event to pass")]
-    [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
+    [SerializeField, ShowIf("isApprovalRequirement"), AllowNesting]
     private int requiredApproval;
 
     [Tooltip("Whether or not the approval must be LESS than the number supplied")]
-    [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
+    [SerializeField, ShowIf("isApprovalRequirement"), AllowNesting]
     private bool lessThanApproval = false;
 
     #endregion
 
     #region Narrative Requirement Variables
-    
+
     [Tooltip("If the requirement is narrative-based")]
     [SerializeField, AllowNesting]
     private bool isNarrativeRequirement = false;
@@ -205,7 +205,7 @@ public class Requirements
             }
             else
             {
-                result = shipStat > requiredAmount;
+                result = shipStat >= requiredAmount;
             }
         }
         else if (isNarrativeRequirement)
@@ -214,7 +214,7 @@ public class Requirements
             {
                 case CampaignManager.Campaigns.CateringToTheRich:
                     //check if the selected bool is true or not
-                    
+
                     if (ctrTrustRequirements)
                     {
 
@@ -232,49 +232,12 @@ public class Requirements
                     }
                     else
                     {
-                        switch (ctrNarrativeOutcomes)
-                        {
-                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.SideWithScientist:
-                                result = campMan.cateringToTheRich.ctr_sideWithScientist;
-                                break;
-                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.KillBeckett:
-                                result = campMan.cateringToTheRich.ctr_killBeckett;
-                                break;
-                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.LetBalePilot:
-                                result = campMan.cateringToTheRich.ctr_letBalePilot;
-                                break;
-                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledAtSafari:
-                                result = campMan.cateringToTheRich.ctr_killedAtSafari;
-                                break;
-                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.TellVIPsAboutClones:
-                                result = campMan.cateringToTheRich.ctr_tellVIPsAboutClones;
-                                break;
-                            default:
-                                break;
-                        }
+                        result = campMan.cateringToTheRich.GetCtrNarrativeOutcome(ctrNarrativeOutcomes);
                     }
                     break;
 
                 case CampaignManager.Campaigns.MysteriousEntity:
-                    switch (meNarrativeRequirements)
-                    {
-                        case CampaignManager.MysteriousEntity.NarrativeVariables.OpenedCargo:
-                            result = campMan.mysteriousEntity.me_openedCargo;
-                            break;
-                        case CampaignManager.MysteriousEntity.NarrativeVariables.KuonInvestigates:
-                            result = campMan.mysteriousEntity.me_kuonInvestigates;
-                            break;
-                        case CampaignManager.MysteriousEntity.NarrativeVariables.Accept:
-                            result = campMan.mysteriousEntity.me_Accept;
-                            break;
-                        case CampaignManager.MysteriousEntity.NarrativeVariables.Decline_Bribe:
-                            result = campMan.mysteriousEntity.me_declineBribe;
-                            break;
-                        case CampaignManager.MysteriousEntity.NarrativeVariables.Decline_Fire:
-                            result = campMan.mysteriousEntity.me_declineFire;
-                            break;
-                    }
-                 
+                    result = campMan.mysteriousEntity.GetMeNarrativeVariable(meNarrativeRequirements);
                     break;
 
                 case CampaignManager.Campaigns.FinalTest:
@@ -291,40 +254,11 @@ public class Requirements
                     }
                     else
                     {
-                        switch (ftOutcomes)
-                        {
-                            case CampaignManager.FinalTest.NarrativeVariables.KellisLoyalty:
-                                result = campMan.finalTest.ft_kellisLoyalty;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.LanriExperiment:
-                                result = campMan.finalTest.ft_lanriExperiment;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.LexaDoomed:
-                                result = campMan.finalTest.ft_lexaDoomed;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.ScienceSavior:
-                                result = campMan.finalTest.ft_scienceSavior;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.TruthTold:
-                                result = campMan.finalTest.ft_truthTold;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.LexaPlan:
-                                result = campMan.finalTest.ft_lexaPlan;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.MateoPlan:
-                                result = campMan.finalTest.ft_mateoPlan;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.LanriRipleyPlan:
-                                result = campMan.finalTest.ft_lanriRipleyPlan;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.KuonPlan:
-                                result = campMan.finalTest.ft_kuonPlan;
-                                break;
-                        }
+                        result = campMan.finalTest.GetFtNarrativeVariable(ftOutcomes);
                     }
                     break;
             }
-            
+
         }
         else if (isRoomRequirement)
         {
@@ -394,30 +328,7 @@ public class Requirements
         }
         else if(isApprovalRequirement)
         {
-            int approvalRating = 0;
-
-            switch (character)
-            {
-                case CharacterStats.Characters.KUON:
-                    approvalRating = thisShip.cStats.KuonApproval;
-                    break;
-                case CharacterStats.Characters.MATEO:
-                    approvalRating = thisShip.cStats.MateoApproval;
-                    break;
-                case CharacterStats.Characters.LANRI:
-                    approvalRating = thisShip.cStats.LanriApproval;
-                    break;
-                case CharacterStats.Characters.LEXA:
-                    approvalRating = thisShip.cStats.LexaApproval;
-                    break;
-                case CharacterStats.Characters.RIPLEY:
-                    approvalRating = thisShip.cStats.RipleyApproval;
-                    break;
-                default:
-                    Debug.Log("The character whose approval you wanted does not exist");
-                    approvalRating = 0;
-                    break;
-            }
+            int approvalRating = thisShip.cStats.GetCharacterApproval(character);
 
             if (lessThanApproval && approvalRating < requiredApproval) //Match
             {
