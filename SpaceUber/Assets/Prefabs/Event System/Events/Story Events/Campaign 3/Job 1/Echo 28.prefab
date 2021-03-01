@@ -25,7 +25,7 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -55,6 +55,16 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[3].choiceRequirements.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[3].outcomes.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
@@ -296,6 +306,52 @@ PrefabInstance:
         type: 3}
       propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].finalTestNarrativeOutcomes
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[3].choiceName
+      value: Lockdown, Take the Hit
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[3].description
+      value: Activate shields and hope your engines power up faster than the creatures
+        break through.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[3].hasRequirements
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[3].choiceRequirements.Array.data[0].isStatRequirement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[3].choiceRequirements.Array.data[0].selectedResource
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[3].choiceRequirements.Array.data[0].requiredAmount
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[3].outcomes.Array.data[0].outcomeName
+      value: -hull
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[3].outcomes.Array.data[0].resource
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[3].outcomes.Array.data[0].amount
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
