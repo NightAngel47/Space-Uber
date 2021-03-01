@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -62,7 +63,7 @@ public class SavingLoadingManager : MonoBehaviour
         SaveData.ToBinaryFile<bool>("CogInTheCosmicMachine", "hasSave", false);
     }
     
-    public enum RoomType {None, ArmorPlating, Armory, Brig, Bunks, CoreChargingTerminal, EnergyCannon, Hydroponics, Medbay, Pantry, PhotonTorpedoes, PowerCore, ShieldGenerator, Storage, TeleportationStation, VIPLounge, WarpDrive}
+    public enum RoomType {None = -1, ArmorPlating, Armory, Brig, Bunks, CoreChargingTerminal, EnergyCannon, Hydroponics, Medbay, Pantry, PhotonTorpedoes, PowerCore, ShieldGenerator, Storage, VIPLounge}
     
     public void SaveRooms()
     {
@@ -79,78 +80,26 @@ public class SavingLoadingManager : MonoBehaviour
     public void LoadRooms()
     {
         RoomData[] data = Load<RoomData[]>("roomData");
-        
-        for(int i = 0; i < data.Length; i++)
+
+        foreach (var roomData in data)
         {
-            ConvertDataToRoom(data[i]);
+            ConvertDataToRoom(roomData);
         }
-        
-        
     }
     
     private RoomData ConvertRoomToData(GameObject room)
     {
         RoomData roomData = new RoomData();
-        roomData.x = (int) room.transform.position.x;
-        roomData.y = (int) room.transform.position.y;
-        roomData.rotation = room.GetComponent<ObjectScript>().rotAdjust;
-        roomData.crew = room.GetComponent<RoomStats>().currentCrew;
-        roomData.isPrePlaced = room.GetComponent<ObjectScript>().preplacedRoom;
-        
-        switch(room.GetComponent<RoomStats>().roomName)
-        {
-            case "Armor Plating":
-                roomData.type = RoomType.ArmorPlating;
-                break;
-            case "Armory":
-                roomData.type = RoomType.Armory;
-                break;
-            case "Brig":
-                roomData.type = RoomType.Brig;
-                break;
-            case "Bunks":
-                roomData.type = RoomType.Bunks;
-                break;
-            case "Core Charging Terminal":
-                roomData.type = RoomType.CoreChargingTerminal;
-                break;
-            case "Energy Cannon":
-                roomData.type = RoomType.EnergyCannon;
-                break;
-            case "Hydroponics":
-                roomData.type = RoomType.Hydroponics;
-                break;
-            case "Medbay":
-                roomData.type = RoomType.Medbay;
-                break;
-            case "Pantry":
-                roomData.type = RoomType.Pantry;
-                break;
-            case "Photon Torpedoes":
-                roomData.type = RoomType.PhotonTorpedoes;
-                break;
-            case "Power Core":
-                roomData.type = RoomType.PowerCore;
-                break;
-            case "Shield Generator":
-                roomData.type = RoomType.ShieldGenerator;
-                break;
-            case "Storage":
-                roomData.type = RoomType.Storage;
-                break;
-            case "Teleportation Station":
-                roomData.type = RoomType.TeleportationStation;
-                break;
-            case "VIP Lounge":
-                roomData.type = RoomType.VIPLounge;
-                break;
-            case "Warp Drive":
-                roomData.type = RoomType.WarpDrive;
-                break;
-            default:
-                roomData.type = RoomType.None;
-                break;
-        }
+        var position = room.transform.position;
+        roomData.x = (int) position.x;
+        roomData.y = (int) position.y;
+        ObjectScript os = room.GetComponent<ObjectScript>();
+        roomData.rotation = os.rotAdjust;
+        roomData.isPrePlaced = os.preplacedRoom;
+        RoomStats roomStats = room.GetComponent<RoomStats>();
+        roomData.crew = roomStats.currentCrew;
+        Enum.TryParse(roomStats.roomName, true, out RoomType roomType);
+        roomData.type = roomType;
         
         return roomData;
     }
@@ -159,61 +108,7 @@ public class SavingLoadingManager : MonoBehaviour
     {
         ObjectMover.hasPlaced = false;
         
-        GameObject room;
-        switch(roomData.type)
-        {
-            case RoomType.ArmorPlating:
-                room = Instantiate(roomPrefabs[0], new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
-                break;
-            case RoomType.Armory:
-                room = Instantiate(roomPrefabs[1], new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
-                break;
-            case RoomType.Brig:
-                room = Instantiate(roomPrefabs[2], new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
-                break;
-            case RoomType.Bunks:
-                room = Instantiate(roomPrefabs[3], new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
-                break;
-            case RoomType.CoreChargingTerminal:
-                room = Instantiate(roomPrefabs[4], new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
-                break;
-            case RoomType.EnergyCannon:
-                room = Instantiate(roomPrefabs[5], new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
-                break;
-            case RoomType.Hydroponics:
-                room = Instantiate(roomPrefabs[6], new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
-                break;
-            case RoomType.Medbay:
-                room = Instantiate(roomPrefabs[7], new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
-                break;
-            case RoomType.Pantry:
-                room = Instantiate(roomPrefabs[8], new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
-                break;
-            case RoomType.PhotonTorpedoes:
-                room = Instantiate(roomPrefabs[9], new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
-                break;
-            case RoomType.PowerCore:
-                room = Instantiate(roomPrefabs[10], new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
-                break;
-            case RoomType.ShieldGenerator:
-                room = Instantiate(roomPrefabs[11], new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
-                break;
-            case RoomType.Storage:
-                room = Instantiate(roomPrefabs[12], new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
-                break;
-            case RoomType.TeleportationStation:
-                room = Instantiate(roomPrefabs[13], new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
-                break;
-            case RoomType.VIPLounge:
-                room = Instantiate(roomPrefabs[14], new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
-                break;
-            case RoomType.WarpDrive:
-                room = Instantiate(roomPrefabs[15], new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
-                break;
-            default:
-                return;
-        }
-        
+        GameObject room = Instantiate(roomPrefabs[(int) roomData.type], new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);;
         ObjectMover om = room.GetComponent<ObjectMover>();
         ObjectScript os = room.GetComponent<ObjectScript>();
         
@@ -260,7 +155,7 @@ public class SavingLoadingManager : MonoBehaviour
         }
     }
     
-    [System.Serializable]
+    [Serializable]
     public struct RoomData
     {
         public int x;
