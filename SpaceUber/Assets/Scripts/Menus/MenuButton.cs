@@ -12,25 +12,45 @@ using UnityEngine.SceneManagement;
 
 public class MenuButton : MonoBehaviour
 {
-    [SerializeField] string sceneToLoad;
-
+    [SerializeField] private GameObject menuButtons;
+    [SerializeField] private GameObject menuButtonsWithContinue;
+    
     private void Start()
     {
-        Destroy(GameObject.Find("Spot Checker"));
-    }
+        if(FindObjectOfType<SpotChecker>()) Destroy(FindObjectOfType<SpotChecker>().gameObject);
 
-    public void QuitGame()
-    {
-        Application.Quit();
+        if (SavingLoadingManager.instance.GetHasSave())
+        {
+            menuButtons.SetActive(false);
+            menuButtonsWithContinue.SetActive(true);
+        }
+        else
+        {
+            menuButtons.SetActive(true);
+            menuButtonsWithContinue.SetActive(false);
+        }
     }
 
     public void StartGame()
     {
         SceneManager.LoadScene("LoadingScreen");
     }
-    
+
+    public void NewGame()
+    {
+        if (SavingLoadingManager.instance.GetHasSave())
+        {
+            //TODO: ask if they want to delete.
+        }
+    }
+
     public void DeleteSave()
     {
-        SavingLoadingManager.DeleteSave();
+        SavingLoadingManager.instance.DeleteSave();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

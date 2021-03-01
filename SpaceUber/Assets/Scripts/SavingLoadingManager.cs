@@ -32,17 +32,17 @@ public class SavingLoadingManager : MonoBehaviour
         }
     }
     
-    private void Start()
-    {
-        if(hasSave)
-        {
-            LoadRooms();
-        }
-        else
-        {
-            SaveRooms();
-        }
-    }
+    // private void Start()
+    // {
+    //     if(hasSave)
+    //     {
+    //         LoadRooms();
+    //     }
+    //     else
+    //     {
+    //         SaveRooms();
+    //     }
+    // }
     
     public T Load<T>(string name)
     {
@@ -59,7 +59,7 @@ public class SavingLoadingManager : MonoBehaviour
         return hasSave;
     }
     
-    public static void DeleteSave()
+    public void DeleteSave()
     {
         SaveData.ToBinaryFile<bool>(projectName, "hasSave", false);
     }
