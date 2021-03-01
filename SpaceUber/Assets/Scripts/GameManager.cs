@@ -9,6 +9,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// The states that the game can be in:
@@ -57,8 +58,14 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         // Singleton pattern that makes sure that there is only one GameManager
-        if (instance) { Destroy(gameObject); }
-        else { instance = this; }
+        if (instance)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
 
         // Sets the reference to the AdditiveSceneManager in the active scene.
         additiveSceneManager = FindObjectOfType<AdditiveSceneManager>();
@@ -68,28 +75,21 @@ public class GameManager : MonoBehaviour
         
         ship = FindObjectOfType<ShipStats>();
     }
-
-    private void Start()
-    {
-        StartCoroutine(DelayedStart());
-    }
-
+    
     /// <summary>
     /// Delay starting the game when loaded in.
     /// This give the time for the additive scene manager to clear, before loading new scenes.
     /// </summary>
-    private IEnumerator DelayedStart()
+    private IEnumerator Start()
     {
-        yield return new WaitForEndOfFrame();
-        ChangeInGameState(InGameStates.JobSelect);
-    }
-
-    private void Update()
-    {
-        // I was getting errors in scripts trying to access GameManager.instance.  Hopefully this fixes it.
-        if (instance == null)
+        yield return new WaitUntil(() => additiveSceneManager && ship && jobManager);
+        if (SavingLoadingManager.instance.GetHasSave())
         {
-            instance = this;
+            LoadGameState();
+        }
+        else
+        {
+            ChangeInGameState(InGameStates.JobSelect);
         }
     }
 
@@ -118,10 +118,13 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.LoadSceneSeperate("Interface_JobList");
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
                 jobManager.RefreshJobList();
+                SaveGameState();
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
+                additiveSceneManager.UnloadScene("Interface_JobList");
                 additiveSceneManager.UnloadScene("CrewManagement");
 
+                additiveSceneManager.LoadSceneSeperate("Starport BG");
                 additiveSceneManager.LoadSceneSeperate("ShipBuilding");
                 break;
             case InGameStates.CrewManagement:
@@ -136,9 +139,20 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("CrewPayment");
                 additiveSceneManager.UnloadScene("Starport BG");
                 
-                additiveSceneManager.LoadSceneMerged("Interface_EventTimer");
+                // load in crew management if player loads into events first
+                if (!SceneManager.GetSceneByName("CrewManagement").isLoaded)
+                {
+                    additiveSceneManager.LoadSceneSeperate("CrewManagement");
+                    StartCoroutine(SetupCrewManagementIfLoadedIntoEvents());
+                }
                 
-                ship.SaveStats();
+                additiveSceneManager.LoadSceneMerged("Interface_EventTimer");
+                SaveGameState();
+                
+                MoraleManager.instance.SaveMorale();
+                ship.cStats.SaveCharacterStats();
+                ship.SaveShipStats();
+                SavingLoadingManager.instance.SaveRooms();
 
                 // Remove unplaced rooms from the ShipBuilding state
                 if (!ObjectMover.hasPlaced)
@@ -153,7 +167,6 @@ public class GameManager : MonoBehaviour
                 
                 StartCoroutine(EventSystem.instance.PlayIntro());
                 break;
-
             case InGameStates.CrewPayment:
                 additiveSceneManager.UnloadScene("Interface_EventTimer");
                 additiveSceneManager.UnloadScene("Event_General");
@@ -200,5 +213,21 @@ public class GameManager : MonoBehaviour
     public ResourceDataType GetResourceData(int i)
     {
         return resourceDataRef[i];
+    }
+
+    private IEnumerator SetupCrewManagementIfLoadedIntoEvents()
+    {
+        yield return new WaitUntil(() => SceneManager.GetSceneByName("CrewManagement").isLoaded);
+        FindObjectOfType<CrewManagement>().FinishWithCrewAssignment();
+    }
+
+    private void SaveGameState()
+    {
+        SavingLoadingManager.instance.Save<InGameStates>("currentGameState", currentGameState);
+    }
+
+    private void LoadGameState()
+    {
+        ChangeInGameState(SavingLoadingManager.instance.Load<InGameStates>("currentGameState"));
     }
 }

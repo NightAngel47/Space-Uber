@@ -68,10 +68,16 @@ public class ObjectScript : MonoBehaviour
         c = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
         c.a = 1;
         //parentObj = transform.parent.gameObject;
-
-        FindObjectOfType<EditCrewButton>().CheckForRooms();
-
+        
+        StartCoroutine(WaitForEditCrewButtonToLoad());
+        
         ResetData();
+    }
+    
+    private IEnumerator WaitForEditCrewButtonToLoad()
+    {
+        yield return new WaitWhile(() => FindObjectOfType<EditCrewButton>() == null);
+        FindObjectOfType<EditCrewButton>().CheckForRooms();
     }
 
     public void Update()
@@ -404,7 +410,7 @@ public class ObjectScript : MonoBehaviour
         }
     }
 
-    private void ResetData()
+    public void ResetData()
     {
         shapeData = shapeDataTemplate.CloneData();
         boundsUp = shapeData.boundsUp;
