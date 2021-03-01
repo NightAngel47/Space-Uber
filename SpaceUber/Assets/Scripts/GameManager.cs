@@ -148,10 +148,9 @@ public class GameManager : MonoBehaviour
                     additiveSceneManager.LoadSceneSeperate("CrewManagement");
                     StartCoroutine(SetupCrewManagementIfLoadedIntoEvents());
                 }
-
                 additiveSceneManager.LoadSceneMerged("Interface_Runtime");
-                SaveGameState();
 
+                SaveGameState();
                 MoraleManager.instance.SaveMorale();
                 ship.cStats.SaveCharacterStats();
                 ship.SaveShipStats();

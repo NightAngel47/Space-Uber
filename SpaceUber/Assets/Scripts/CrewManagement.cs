@@ -5,6 +5,7 @@
  * Description:
  */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -304,7 +305,7 @@ public class CrewManagement : MonoBehaviour
 
     public void FinishWithCrewAssignment()
     {
-        if (room.GetComponent<OverclockRoom>().GetMiniGame() != MiniGameType.None)
+        if (room != null && room.GetComponent<OverclockRoom>().GetMiniGame() != MiniGameType.None)
         {
             overclockButton.gameObject.SetActive(true);
         }
@@ -313,6 +314,8 @@ public class CrewManagement : MonoBehaviour
         {
             button.SetActive(false);
         }
+        
+        crewAssignmentCanvas.SetActive(false);
 
         if(!overclockButton.interactable)
         {
@@ -337,10 +340,5 @@ public class CrewManagement : MonoBehaviour
         {
             chatButton.gameObject.SetActive(false);
         }
-    }
-
-    public void DoneManaging()
-    {
-        crewAssignmentCanvas.SetActive(false);
     }
 }
