@@ -18,7 +18,7 @@ Stop both catastrophies.
 -> END
 
 ==DeclineHelpA==
-Cured the Midas Creatures, the supernova goes off and destroys the entire solar system.
+Stop the supernova, the Midas Creatures overtake the entire solar system.
 -> END
 
 ==ContinueToCollect==
@@ -33,5 +33,5 @@ Stop both catastrophies.
 -> END
 
 ==DeclineHelpB==
-Cured the Midas Creatures, the supernova goes off and destroys the entire solar system.
+Stop the supernova, the Midas Creatures overtake the entire solar system.
 -> END
