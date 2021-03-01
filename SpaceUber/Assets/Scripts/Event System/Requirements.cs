@@ -320,6 +320,9 @@ public class Requirements
                             case CampaignManager.FinalTest.NarrativeVariables.KuonPlan:
                                 result = campMan.finalTest.ft_kuonPlan;
                                 break;
+                            case CampaignManager.FinalTest.NarrativeVariables.ResearchShared:
+                                result = campMan.finalTest.ft_researchShared;
+                                break;
                         }
                     }
                     break;
