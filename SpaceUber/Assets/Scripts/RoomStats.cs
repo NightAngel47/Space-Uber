@@ -71,7 +71,6 @@ public class RoomStats : MonoBehaviour
     public void UpdateUsedRoom()
     {
         usedRoom = true;
-        roomTooltipUI.RoomIsUsed();
     }
 
     public void UpdateCurrentCrew(int crew)

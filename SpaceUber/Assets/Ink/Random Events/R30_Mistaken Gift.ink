@@ -1,7 +1,7 @@
 After a cargo container was delivered to you by a space drone, Lexa approaches you. "The shipment we just received has a supply of food and desserts, as well as a note. It appears it was meant for some other ship as a gift, but that drone must have malfunctioned and given it to us instead.
 "I personally feel we should return it. The drone can only go so far, so the sender should still be nearby. Plus, its the right thing to do. I know the crew would enjoy the contents, but they don't belong to us. It's your call."
-+ [Keep Gift (+Food +Morale)] -> Keep
-+ [Return Gift (+Credits)] -> Honesty
++ [Keep Gift] -> Keep
++ [Return Gift] -> Honesty
 
 
 === Keep ===
