@@ -15,12 +15,12 @@ PrefabInstance:
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
       propertyPath: storyEvents.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
       propertyPath: introEvents.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
@@ -157,24 +157,24 @@ PrefabInstance:
         type: 3}
       propertyPath: storyEvents.Array.data[0]
       value: 
-      objectReference: {fileID: 4949632676076634166, guid: 9a9cbfa84e89743438d0b0b36a4b2b91,
+      objectReference: {fileID: 8979255586837592591, guid: 8c34f2404e47c81469cedbd31874e263,
         type: 3}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
       propertyPath: storyEvents.Array.data[1]
       value: 
-      objectReference: {fileID: 7585411845574283023, guid: 1a73d5a2fa65efa41bf38efe5df7a572,
+      objectReference: {fileID: 4938049290470502067, guid: 4c322187ac1172c49a42ac91fde1778d,
         type: 3}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
       propertyPath: storyEvents.Array.data[2]
       value: 
-      objectReference: {fileID: 5412039318200636427, guid: e483452f3bb68a54790b3ef9c70727f2,
+      objectReference: {fileID: 2220260190518127, guid: 42a07acb640a51a40bf32d875850150c,
         type: 3}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
       propertyPath: jobName
-      value: Dreams of Death
+      value: The Solution
       objectReference: {fileID: 0}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
@@ -254,6 +254,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7272458766203768250, guid: 268f29224e6f6a44792e29eb7275c082,
         type: 3}
+    - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
+        type: 3}
+      propertyPath: introEvents.Array.data[3]
+      value: 
+      objectReference: {fileID: 6217756322884035257, guid: 5aa8ecd6e65efe44baa2fd0f246befd3,
+        type: 3}
+    - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
+        type: 3}
+      propertyPath: storyEvents.Array.data[3]
+      value: 
+      objectReference: {fileID: 1462735111868031295, guid: b594ae3dac7918149834b1579801f3e3,
+        type: 3}
+    - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
+        type: 3}
+      propertyPath: payout
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 6620000524830208261, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -45,11 +45,11 @@ public class Requirements
     private CharacterStats.Characters character = CharacterStats.Characters.None;
 
     [Tooltip("The required approval rating for this event to pass")]
-    [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
+    [SerializeField, ShowIf("isApprovalRequirement"), AllowNesting]
     private int requiredApproval;
 
     [Tooltip("Whether or not the approval must be LESS than the number supplied")]
-    [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
+    [SerializeField, ShowIf("isApprovalRequirement"), AllowNesting]
     private bool lessThanApproval = false;
 
     #endregion
@@ -205,7 +205,7 @@ public class Requirements
             }
             else
             {
-                result = shipStat > requiredAmount;
+                result = shipStat >= requiredAmount;
             }
         }
         else if (isNarrativeRequirement)
@@ -319,6 +319,9 @@ public class Requirements
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.KuonPlan:
                                 result = campMan.finalTest.ft_kuonPlan;
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.ResearchShared:
+                                result = campMan.finalTest.ft_researchShared;
                                 break;
                         }
                     }

@@ -229,6 +229,7 @@ public class CampaignManager : MonoBehaviour
             LanriExperiment,
             TruthTold,
             ScienceSavior,
+            ResearchShared,
             KellisLoyalty,
             LexaPlan,
             MateoPlan,
@@ -245,6 +246,7 @@ public class CampaignManager : MonoBehaviour
         public bool ft_mateoPlan;
         public bool ft_lanriRipleyPlan;
         public bool ft_kuonPlan;
+        public bool ft_researchShared;
 
     }
 }
