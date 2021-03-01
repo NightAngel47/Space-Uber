@@ -205,7 +205,7 @@ public class CampaignManager : MonoBehaviour
                 Debug.LogError("Current Campaign Jobs for " + currentCamp + " not setup.");
                 break;
         }
-        
+
     }
 
     [Serializable]
@@ -225,7 +225,7 @@ public class CampaignManager : MonoBehaviour
         {
             return ctrNarrativeOutcomes[(int) outcome];
         }
-        
+
         public void SetCtrNarrativeOutcome(NarrativeOutcomes outcome, bool state)
         {
             ctrNarrativeOutcomes[(int) outcome] = state;
@@ -264,12 +264,12 @@ public class CampaignManager : MonoBehaviour
         }
 
         private bool[] meNarrativeVariables = new bool[5];
-        
+
         public bool GetMeNarrativeVariable(NarrativeVariables variable)
         {
             return meNarrativeVariables[(int) variable];
         }
-        
+
         public void SetMeNarrativeVariable(NarrativeVariables variable, bool state)
         {
             meNarrativeVariables[(int) variable] = state;
@@ -304,16 +304,17 @@ public class CampaignManager : MonoBehaviour
             LexaPlan,
             MateoPlan,
             LanriRipleyPlan,
-            KuonPlan
+            KuonPlan,
+            ResearchShared
         }
 
         private bool[] ftNarrativeVariables = new bool[10];
-        
+
         public bool GetFtNarrativeVariable(NarrativeVariables variable)
         {
             return ftNarrativeVariables[(int) variable];
         }
-        
+
         public void SetFtNarrativeVariable(NarrativeVariables variable, bool state)
         {
             ftNarrativeVariables[(int) variable] = state;
