@@ -1,2 +1,0 @@
-You're to have a performance review at Kellis HQ in a couple days, and you've been advised to show progress by then. 
-The closest asset ready for pickup is waiting on a nearby moon and the schedule allows you to pick it up before you're due back at base, though you'll be dipping under the wire. Lexa quips that the faster management wants something done, the more meetings they put in the way of the actual work. 

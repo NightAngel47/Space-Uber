@@ -81,7 +81,7 @@ public class CampaignManager : MonoBehaviour
                 Debug.LogError("Current Campaign " + currentCamp + " not setup.");
                 return;
         }
-        
+
         SaveData();
     }
     public void GoToNextJob()
@@ -90,7 +90,7 @@ public class CampaignManager : MonoBehaviour
         {
             case Campaigns.CateringToTheRich:
                 cateringToTheRich.currentCampaignJobIndex++;
-                
+
                 if (cateringToTheRich.currentCampaignJobIndex >= cateringToTheRich.campaignJobs.Count)
                 {
                     GoToNextCampaign();
@@ -103,7 +103,7 @@ public class CampaignManager : MonoBehaviour
 
             case Campaigns.MysteriousEntity:
                 mysteriousEntity.currentCampaignJobIndex++;
-                
+
                 if (mysteriousEntity.currentCampaignJobIndex >= mysteriousEntity.campaignJobs.Count)
                 {
                     GoToNextCampaign();
@@ -116,7 +116,7 @@ public class CampaignManager : MonoBehaviour
 
             case Campaigns.FinalTest:
                 finalTest.currentCampaignJobIndex++;
-                
+
                 if(finalTest.currentCampaignJobIndex >= finalTest.campaignJobs.Count)
                 {
                     GoToNextCampaign();
@@ -130,7 +130,7 @@ public class CampaignManager : MonoBehaviour
                 Debug.LogError("Current Campaign Jobs for " + currentCamp + " not setup.");
                 return;
         }
-        
+
         SaveData();
     }
 
@@ -138,7 +138,7 @@ public class CampaignManager : MonoBehaviour
     {
 
     }
-    
+
     private void Start()
     {
         if(SavingLoadingManager.instance.GetHasSave())
@@ -150,15 +150,15 @@ public class CampaignManager : MonoBehaviour
             SaveData();
         }
     }
-    
+
     private void SaveData()
     {
         cateringToTheRich.SaveEventChoices();
         mysteriousEntity.SaveEventChoices();
         finalTest.SaveEventChoices();
-        
+
         SavingLoadingManager.instance.Save<Campaigns>("currentCamp", currentCamp);
-        
+
         int currentJob;
         switch (currentCamp)
         {
@@ -178,15 +178,15 @@ public class CampaignManager : MonoBehaviour
         }
         SavingLoadingManager.instance.Save<int>("currentJob", currentJob);
     }
-    
+
     private void ResetData()
     {
         cateringToTheRich.ResetEventChoicesToJobStart();
         mysteriousEntity.ResetEventChoicesToJobStart();
         finalTest.ResetEventChoicesToJobStart();
-        
+
         currentCamp = SavingLoadingManager.instance.Load<Campaigns>("currentCamp");
-        
+
         switch (currentCamp)
         {
             case Campaigns.CateringToTheRich:
@@ -209,16 +209,16 @@ public class CampaignManager : MonoBehaviour
     {
         [ReadOnly] public int currentCampaignJobIndex = 0;
         public List<Job> campaignJobs = new List<Job>();
-        
+
         public enum NarrativeOutcomes { NA, SideWithScientist, KillBeckett, LetBalePilot, KilledAtSafari, KilledOnce, TellVIPsAboutClones, VIPTrust, CloneTrust}
-        
+
         public bool ctr_sideWithScientist;
         public bool ctr_killBeckett;
         public bool ctr_letBalePilot;
         public bool ctr_killedAtSafari;
         public bool ctr_tellVIPsAboutClones;
         public bool ctr_killedOnce;
-        
+
         public int ctr_VIPTrust = 50;
         public int ctr_cloneTrust = 50;
 
@@ -233,7 +233,7 @@ public class CampaignManager : MonoBehaviour
             SavingLoadingManager.instance.Save<int>("ctr_VIPTrust", ctr_VIPTrust);
             SavingLoadingManager.instance.Save<int>("ctr_cloneTrust", ctr_cloneTrust);
         }
-        
+
         public void ResetEventChoicesToJobStart()
         {
             ctr_sideWithScientist = SavingLoadingManager.instance.Load<bool>("ctr_sideWithScientist");
@@ -265,11 +265,11 @@ public class CampaignManager : MonoBehaviour
         }
         public bool me_kuonInvestigates;
         public bool me_openedCargo;
-        
+
         public bool me_declineBribe;
         public bool me_declineFire;
         public bool me_Accept;
-        
+
         public void SaveEventChoices()
         {
             SavingLoadingManager.instance.Save<bool>("me_kuonInvestigates", me_kuonInvestigates);
@@ -278,7 +278,7 @@ public class CampaignManager : MonoBehaviour
             SavingLoadingManager.instance.Save<bool>("me_declineFire", me_declineFire);
             SavingLoadingManager.instance.Save<bool>("me_Accept", me_Accept);
         }
-        
+
         public void ResetEventChoicesToJobStart()
         {
             me_kuonInvestigates = SavingLoadingManager.instance.Load<bool>("me_kuonInvestigates");
@@ -304,7 +304,10 @@ public class CampaignManager : MonoBehaviour
             TruthTold,
             ScienceSavior,
             KellisLoyalty,
-            EndgamePlan
+            LexaPlan,
+            MateoPlan,
+            LanriRipleyPlan,
+            KuonPlan
         }
 
         public bool ft_lexaDoomed;
@@ -313,7 +316,11 @@ public class CampaignManager : MonoBehaviour
         public bool ft_scienceSavior;
         public bool ft_kellisLoyalty;
         public bool ft_endgamePlan;
-        
+        public bool ft_lexaPlan;
+        public bool ft_mateoPlan;
+        public bool ft_lanriRipleyPlan;
+        public bool ft_kuonPlan;
+
         public void SaveEventChoices()
         {
             SavingLoadingManager.instance.Save<bool>("ft_lexaDoomed", ft_lexaDoomed);
@@ -322,8 +329,12 @@ public class CampaignManager : MonoBehaviour
             SavingLoadingManager.instance.Save<bool>("ft_scienceSavior", ft_scienceSavior);
             SavingLoadingManager.instance.Save<bool>("ft_kellisLoyalty", ft_kellisLoyalty);
             SavingLoadingManager.instance.Save<bool>("ft_endgamePlan", ft_endgamePlan);
+            SavingLoadingManager.instance.Save<bool>("ft_lexaPlan", ft_lexaPlan);
+            SavingLoadingManager.instance.Save<bool>("ft_mateoPlan", ft_mateoPlan);
+            SavingLoadingManager.instance.Save<bool>("ft_lanriRipleyPlan", ft_lanriRipleyPlan);
+            SavingLoadingManager.instance.Save<bool>("ft_kuonPlan", ft_kuonPlan);
         }
-        
+
         public void ResetEventChoicesToJobStart()
         {
             ft_lexaDoomed = SavingLoadingManager.instance.Load<bool>("ft_lexaDoomed");
@@ -332,6 +343,10 @@ public class CampaignManager : MonoBehaviour
             ft_scienceSavior = SavingLoadingManager.instance.Load<bool>("ft_scienceSavior");
             ft_kellisLoyalty = SavingLoadingManager.instance.Load<bool>("ft_kellisLoyalty");
             ft_endgamePlan = SavingLoadingManager.instance.Load<bool>("ft_endgamePlan");
+            ft_lexaPlan = SavingLoadingManager.instance.Load<bool>("ft_lexaPlan");
+            ft_mateoPlan = SavingLoadingManager.instance.Load<bool>("ft_mateoPlan");
+            ft_lanriRipleyPlan = SavingLoadingManager.instance.Load<bool>("ft_lanriRipleyPlan");
+            ft_kuonPlan = SavingLoadingManager.instance.Load<bool>("ft_kuonPlan");
         }
     }
 }

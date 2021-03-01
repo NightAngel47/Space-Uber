@@ -1,0 +1,4 @@
+Your loyalty was tested in Avanshore, and despite the casualties along the way, Kellis has found it more than sufficient. Having shown the proper amount of initiative that keeps you in line, and the proper amount of forward-thinking to serve their goals, you have been cleared for the next step: Mass production.
+The CEO himself will be riding on your ship along with a myriad of Kellis board members  who hope to be impressed with this new venture. The destination is the facility where you were once built. 
+You don't need him to tell you to be on your best behavior, though you don't imagine your crew has the same reservations. Depending on the whims of the board or the CEO himself, any member of your crew may be terminated during the voyage, their name blacklisted once it's over. 
+While such a threat may make some employees docile, you suspect this crew is anything but typical. A silent threat looms between these parties, as you carry on towards your fate.
