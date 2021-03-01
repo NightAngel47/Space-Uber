@@ -20,7 +20,12 @@ public class EditCrewButton : MonoBehaviour
         editCrewButton = GetComponent<ButtonTwoBehaviour>();
         editCrewButton.SetButtonInteractable(false);
     }
-    
+
+    private void Start()
+    {
+        CheckForRooms();
+    }
+
     public void CheckForRooms()
     {
         editCrewButton.SetButtonInteractable(FindObjectsOfType<RoomStats>().Length > minRoomPlacedToContinue);
