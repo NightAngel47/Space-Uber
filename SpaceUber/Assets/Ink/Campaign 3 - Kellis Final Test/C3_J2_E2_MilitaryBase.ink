@@ -10,7 +10,7 @@ You can help the military base fight off the Midas Creatures, or try to escape w
 
 ==HelpMilitaryBase==
 You ready your ship's weapons and security team. The super-human nature of the Midas Creatures makes them a great foe. However, the combined might of your ship and the military base eventually smash through the semmingly endless waves of MCs. Once the onslaught finally ends, the highest remaining military official present slowly makes his way to you.
-"What you just did for us was one of the most noble things I have ever seen, AI. We are forever in your debt. Please take a few resourses, its the least we can do for you. Best of luck on your mission."
+"What you just did for us was one of the most noble things I have ever seen... and you're not even human. We are forever in your debt. Please take a few of our base's resourses, its the least we can do for you. Best of luck on your mission."
 -> END
 
 ==AttepmtEscape==
