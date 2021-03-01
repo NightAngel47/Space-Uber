@@ -210,38 +210,33 @@ public class CampaignManager : MonoBehaviour
         [ReadOnly] public int currentCampaignJobIndex = 0;
         public List<Job> campaignJobs = new List<Job>();
 
-        public enum NarrativeOutcomes { NA, SideWithScientist, KillBeckett, LetBalePilot, KilledAtSafari, KilledOnce, TellVIPsAboutClones, VIPTrust, CloneTrust}
+        public enum NarrativeOutcomes { NA = -1, SideWithScientist, KillBeckett, LetBalePilot, KilledAtSafari, KilledOnce, TellVIPsAboutClones, VIPTrust, CloneTrust}
 
-        public bool ctr_sideWithScientist;
-        public bool ctr_killBeckett;
-        public bool ctr_letBalePilot;
-        public bool ctr_killedAtSafari;
-        public bool ctr_tellVIPsAboutClones;
-        public bool ctr_killedOnce;
+        private bool[] ctrNarrativeOutcomes = new bool[6];
 
         public int ctr_VIPTrust = 50;
         public int ctr_cloneTrust = 50;
 
+        public bool GetCtrNarrativeOutcome(NarrativeOutcomes outcome)
+        {
+            return ctrNarrativeOutcomes[(int) outcome];
+        }
+        
+        public void SetCtrNarrativeOutcome(NarrativeOutcomes outcome, bool state)
+        {
+            ctrNarrativeOutcomes[(int) outcome] = state;
+        }
+
         public void SaveEventChoices()
         {
-            SavingLoadingManager.instance.Save<bool>("ctr_sideWithScientist", ctr_sideWithScientist);
-            SavingLoadingManager.instance.Save<bool>("ctr_killBeckett", ctr_killBeckett);
-            SavingLoadingManager.instance.Save<bool>("ctr_letBalePilot", ctr_letBalePilot);
-            SavingLoadingManager.instance.Save<bool>("ctr_killedAtSafari", ctr_killedAtSafari);
-            SavingLoadingManager.instance.Save<bool>("ctr_tellVIPsAboutClones", ctr_tellVIPsAboutClones);
-            SavingLoadingManager.instance.Save<bool>("ctr_killedOnce", ctr_killedOnce);
+            SavingLoadingManager.instance.Save<bool[]>("ctrNarrativeOutcomes", ctrNarrativeOutcomes);
             SavingLoadingManager.instance.Save<int>("ctr_VIPTrust", ctr_VIPTrust);
             SavingLoadingManager.instance.Save<int>("ctr_cloneTrust", ctr_cloneTrust);
         }
 
         public void ResetEventChoicesToJobStart()
         {
-            ctr_sideWithScientist = SavingLoadingManager.instance.Load<bool>("ctr_sideWithScientist");
-            ctr_killBeckett = SavingLoadingManager.instance.Load<bool>("ctr_killBeckett");
-            ctr_letBalePilot = SavingLoadingManager.instance.Load<bool>("ctr_letBalePilot");
-            ctr_killedAtSafari = SavingLoadingManager.instance.Load<bool>("ctr_killedAtSafari");
-            ctr_tellVIPsAboutClones = SavingLoadingManager.instance.Load<bool>("ctr_tellVIPsAboutClones");
-            ctr_killedOnce = SavingLoadingManager.instance.Load<bool>("ctr_killedOnce");
+            ctrNarrativeOutcomes = SavingLoadingManager.instance.Load<bool[]>("ctrNarrativeOutcomes");
             ctr_VIPTrust = SavingLoadingManager.instance.Load<int>("ctr_VIPTrust");
             ctr_cloneTrust = SavingLoadingManager.instance.Load<int>("ctr_cloneTrust");
         }
@@ -255,7 +250,7 @@ public class CampaignManager : MonoBehaviour
 
         public enum NarrativeVariables
         {
-            NA,
+            NA = -1,
             //job 1, Event 2
             KuonInvestigates,
             Decline_Bribe,
@@ -263,29 +258,27 @@ public class CampaignManager : MonoBehaviour
             Accept,
             OpenedCargo
         }
-        public bool me_kuonInvestigates;
-        public bool me_openedCargo;
 
-        public bool me_declineBribe;
-        public bool me_declineFire;
-        public bool me_Accept;
+        private bool[] meNarrativeVariables = new bool[5];
+        
+        public bool GetMeNarrativeVariable(NarrativeVariables variable)
+        {
+            return meNarrativeVariables[(int) variable];
+        }
+        
+        public void SetMeNarrativeVariable(NarrativeVariables variable, bool state)
+        {
+            meNarrativeVariables[(int) variable] = state;
+        }
 
         public void SaveEventChoices()
         {
-            SavingLoadingManager.instance.Save<bool>("me_kuonInvestigates", me_kuonInvestigates);
-            SavingLoadingManager.instance.Save<bool>("me_openedCargo", me_openedCargo);
-            SavingLoadingManager.instance.Save<bool>("me_declineBribe", me_declineBribe);
-            SavingLoadingManager.instance.Save<bool>("me_declineFire", me_declineFire);
-            SavingLoadingManager.instance.Save<bool>("me_Accept", me_Accept);
+            SavingLoadingManager.instance.Save<bool[]>("narrativeVariables", meNarrativeVariables);
         }
 
         public void ResetEventChoicesToJobStart()
         {
-            me_kuonInvestigates = SavingLoadingManager.instance.Load<bool>("me_kuonInvestigates");
-            me_openedCargo = SavingLoadingManager.instance.Load<bool>("me_openedCargo");
-            me_declineBribe = SavingLoadingManager.instance.Load<bool>("me_declineBribe");
-            me_declineFire = SavingLoadingManager.instance.Load<bool>("me_declineFire");
-            me_Accept = SavingLoadingManager.instance.Load<bool>("me_Accept");
+            meNarrativeVariables = SavingLoadingManager.instance.Load<bool[]>("narrativeVariables");
         }
     }
 
@@ -298,7 +291,7 @@ public class CampaignManager : MonoBehaviour
         public int assetCount = 0;
         public enum NarrativeVariables
         {
-            NA,
+            NA = -1,
             LexaDoomed,
             LanriExperiment,
             TruthTold,
@@ -310,43 +303,26 @@ public class CampaignManager : MonoBehaviour
             KuonPlan
         }
 
-        public bool ft_lexaDoomed;
-        public bool ft_lanriExperiment;
-        public bool ft_truthTold;
-        public bool ft_scienceSavior;
-        public bool ft_kellisLoyalty;
-        public bool ft_endgamePlan;
-        public bool ft_lexaPlan;
-        public bool ft_mateoPlan;
-        public bool ft_lanriRipleyPlan;
-        public bool ft_kuonPlan;
+        private bool[] ftNarrativeVariables = new bool[10];
+        
+        public bool GetFtNarrativeVariable(NarrativeVariables variable)
+        {
+            return ftNarrativeVariables[(int) variable];
+        }
+        
+        public void SetFtNarrativeVariable(NarrativeVariables variable, bool state)
+        {
+            ftNarrativeVariables[(int) variable] = state;
+        }
 
         public void SaveEventChoices()
         {
-            SavingLoadingManager.instance.Save<bool>("ft_lexaDoomed", ft_lexaDoomed);
-            SavingLoadingManager.instance.Save<bool>("ft_lanriExperiment", ft_lanriExperiment);
-            SavingLoadingManager.instance.Save<bool>("ft_truthTold", ft_truthTold);
-            SavingLoadingManager.instance.Save<bool>("ft_scienceSavior", ft_scienceSavior);
-            SavingLoadingManager.instance.Save<bool>("ft_kellisLoyalty", ft_kellisLoyalty);
-            SavingLoadingManager.instance.Save<bool>("ft_endgamePlan", ft_endgamePlan);
-            SavingLoadingManager.instance.Save<bool>("ft_lexaPlan", ft_lexaPlan);
-            SavingLoadingManager.instance.Save<bool>("ft_mateoPlan", ft_mateoPlan);
-            SavingLoadingManager.instance.Save<bool>("ft_lanriRipleyPlan", ft_lanriRipleyPlan);
-            SavingLoadingManager.instance.Save<bool>("ft_kuonPlan", ft_kuonPlan);
+            SavingLoadingManager.instance.Save<bool[]>("ftNarrativeVariables", ftNarrativeVariables);
         }
 
         public void ResetEventChoicesToJobStart()
         {
-            ft_lexaDoomed = SavingLoadingManager.instance.Load<bool>("ft_lexaDoomed");
-            ft_lanriExperiment = SavingLoadingManager.instance.Load<bool>("ft_lanriExperiment");
-            ft_truthTold = SavingLoadingManager.instance.Load<bool>("ft_truthTold");
-            ft_scienceSavior = SavingLoadingManager.instance.Load<bool>("ft_scienceSavior");
-            ft_kellisLoyalty = SavingLoadingManager.instance.Load<bool>("ft_kellisLoyalty");
-            ft_endgamePlan = SavingLoadingManager.instance.Load<bool>("ft_endgamePlan");
-            ft_lexaPlan = SavingLoadingManager.instance.Load<bool>("ft_lexaPlan");
-            ft_mateoPlan = SavingLoadingManager.instance.Load<bool>("ft_mateoPlan");
-            ft_lanriRipleyPlan = SavingLoadingManager.instance.Load<bool>("ft_lanriRipleyPlan");
-            ft_kuonPlan = SavingLoadingManager.instance.Load<bool>("ft_kuonPlan");
+            ftNarrativeVariables = SavingLoadingManager.instance.Load<bool[]>("ftNarrativeVariables");
         }
     }
 }

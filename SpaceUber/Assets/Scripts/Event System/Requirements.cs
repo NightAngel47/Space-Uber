@@ -232,49 +232,12 @@ public class Requirements
                     }
                     else
                     {
-                        switch (ctrNarrativeOutcomes)
-                        {
-                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.SideWithScientist:
-                                result = campMan.cateringToTheRich.ctr_sideWithScientist;
-                                break;
-                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.KillBeckett:
-                                result = campMan.cateringToTheRich.ctr_killBeckett;
-                                break;
-                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.LetBalePilot:
-                                result = campMan.cateringToTheRich.ctr_letBalePilot;
-                                break;
-                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledAtSafari:
-                                result = campMan.cateringToTheRich.ctr_killedAtSafari;
-                                break;
-                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.TellVIPsAboutClones:
-                                result = campMan.cateringToTheRich.ctr_tellVIPsAboutClones;
-                                break;
-                            default:
-                                break;
-                        }
+                        result = campMan.cateringToTheRich.GetCtrNarrativeOutcome(ctrNarrativeOutcomes);
                     }
                     break;
 
                 case CampaignManager.Campaigns.MysteriousEntity:
-                    switch (meNarrativeRequirements)
-                    {
-                        case CampaignManager.MysteriousEntity.NarrativeVariables.OpenedCargo:
-                            result = campMan.mysteriousEntity.me_openedCargo;
-                            break;
-                        case CampaignManager.MysteriousEntity.NarrativeVariables.KuonInvestigates:
-                            result = campMan.mysteriousEntity.me_kuonInvestigates;
-                            break;
-                        case CampaignManager.MysteriousEntity.NarrativeVariables.Accept:
-                            result = campMan.mysteriousEntity.me_Accept;
-                            break;
-                        case CampaignManager.MysteriousEntity.NarrativeVariables.Decline_Bribe:
-                            result = campMan.mysteriousEntity.me_declineBribe;
-                            break;
-                        case CampaignManager.MysteriousEntity.NarrativeVariables.Decline_Fire:
-                            result = campMan.mysteriousEntity.me_declineFire;
-                            break;
-                    }
-                 
+                    result = campMan.mysteriousEntity.GetMeNarrativeVariable(meNarrativeRequirements);
                     break;
 
                 case CampaignManager.Campaigns.FinalTest:
@@ -291,36 +254,7 @@ public class Requirements
                     }
                     else
                     {
-                        switch (ftOutcomes)
-                        {
-                            case CampaignManager.FinalTest.NarrativeVariables.KellisLoyalty:
-                                result = campMan.finalTest.ft_kellisLoyalty;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.LanriExperiment:
-                                result = campMan.finalTest.ft_lanriExperiment;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.LexaDoomed:
-                                result = campMan.finalTest.ft_lexaDoomed;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.ScienceSavior:
-                                result = campMan.finalTest.ft_scienceSavior;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.TruthTold:
-                                result = campMan.finalTest.ft_truthTold;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.LexaPlan:
-                                result = campMan.finalTest.ft_lexaPlan;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.MateoPlan:
-                                result = campMan.finalTest.ft_mateoPlan;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.LanriRipleyPlan:
-                                result = campMan.finalTest.ft_lanriRipleyPlan;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.KuonPlan:
-                                result = campMan.finalTest.ft_kuonPlan;
-                                break;
-                        }
+                        result = campMan.finalTest.GetFtNarrativeVariable(ftOutcomes);
                     }
                     break;
             }
