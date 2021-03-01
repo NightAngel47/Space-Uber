@@ -6404,18 +6404,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45fc566d142b78a4bb7dec4c65b5790a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hullRepairButton: {fileID: 1438678663}
-  repairToolTipText:
+  crewRefillButton: {fileID: 1438678663}
+  refillToolTipText:
   - {fileID: 1205025057}
   - {fileID: 1205025056}
-  hullDamage: 10
-  priceForHullRepair: 100
-  crewRefillButton: {fileID: 779398904}
-  refillToolTipText:
-  - {fileID: 1210997808}
-  - {fileID: 1210997807}
   crewLost: 1
   priceForCrewReplacement: 20
+  hullRepairButton: {fileID: 779398904}
+  repairToolTipText:
+  - {fileID: 1210997808}
+  - {fileID: 1210997807}
+  hullDamage: 10
+  priceForHullRepair: 100
 --- !u!1001 &992248575
 PrefabInstance:
   m_ObjectHideFlags: 0
