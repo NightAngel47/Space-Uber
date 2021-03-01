@@ -372,17 +372,19 @@ public class CrewManagement : MonoBehaviour
 
     }
 
-    public void TurnOnOverclockButton()
+    public void FinishWithCrewAssignment()
     {
         if (room.GetComponent<OverclockRoom>().GetMiniGame() != MiniGameType.None)
         {
             overclockButton.gameObject.SetActive(true);
         }
 
-        for (int i = 0; i < sceneButtons.Length; i++)
+        foreach (var button in sceneButtons)
         {
-            sceneButtons[i].SetActive(false);
+            button.SetActive(false);
         }
+        
+        crewManagementText.SetActive(false);
 
         if(!overclockButton.interactable)
         {
@@ -401,20 +403,11 @@ public class CrewManagement : MonoBehaviour
         {
             print(ovRoom.GetEvents().Count + " events for this room");
 
-            if (EventSystem.instance.CanChat(ovRoom.GetEvents()))
-            {
-                chatButton.gameObject.SetActive(true);
-            }
-            else
-            {
-                chatButton.gameObject.SetActive(false);
-            }
+            chatButton.gameObject.SetActive(EventSystem.instance.CanChat(ovRoom.GetEvents()));
         }
         else
         {
             chatButton.gameObject.SetActive(false);
         }
-
-
     }
 }

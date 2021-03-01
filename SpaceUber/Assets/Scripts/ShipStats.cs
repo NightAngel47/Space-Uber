@@ -72,7 +72,7 @@ public class ShipStats : MonoBehaviour
     {
         if(SavingLoadingManager.instance.GetHasSave())
         {
-            ResetStats();
+            LoadShipStats();
         }
         else
         {
@@ -86,7 +86,7 @@ public class ShipStats : MonoBehaviour
             FoodPerTick = 0;
             ShipHealthCurrent = new Vector2(startingShipHealth, startingShipHealth);
             
-            SaveStats();
+            SaveShipStats();
         }
 
         cStats = gameObject.GetComponent<CharacterStats>();
@@ -472,7 +472,7 @@ public class ShipStats : MonoBehaviour
         }
     }
 
-    public void SaveStats()
+    public void SaveShipStats()
     {
         SavingLoadingManager.instance.Save<int>("credits", credits);
         SavingLoadingManager.instance.Save<int>("payout", payout);
@@ -489,7 +489,7 @@ public class ShipStats : MonoBehaviour
         SavingLoadingManager.instance.Save<int>("shipHealthCurrent", shipHealthCurrent);
     }
 
-    public void ResetStats()
+    public void LoadShipStats()
     {
         Credits = SavingLoadingManager.instance.Load<int>("credits");
         Payout = SavingLoadingManager.instance.Load<int>("payout");

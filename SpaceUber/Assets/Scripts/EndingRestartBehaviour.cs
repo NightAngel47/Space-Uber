@@ -10,33 +10,20 @@ using UnityEngine.SceneManagement;
 
 public class EndingRestartBehaviour : MonoBehaviour
 {
-    private ShipStats ship;
-    private CampaignManager campaignManager;
-
-    private void Start()
-    {
-        ship = FindObjectOfType<ShipStats>();
-        campaignManager = FindObjectOfType<CampaignManager>();
-    }
+    //TODO: provide an option to go back to ship building upon death
     
-    public void RestartGame()
+    public void RestartGame() // TODO: change to different state vs wiping save (probably need to check with design)
     {
         SavingLoadingManager.DeleteSave();
-        Destroy(FindObjectOfType<SpotChecker>().gameObject);
+        if(FindObjectOfType<SpotChecker>()) Destroy(FindObjectOfType<SpotChecker>().gameObject);
         SceneManager.LoadScene("LoadingScreen");
         AudioManager.instance.PlayMusicWithTransition("General Theme");
     }
     
     public void ResetJob()
     {
-        Destroy(FindObjectOfType<SpotChecker>().gameObject);
+        if(FindObjectOfType<SpotChecker>()) Destroy(FindObjectOfType<SpotChecker>().gameObject);
         SceneManager.LoadScene("LoadingScreen");
         AudioManager.instance.PlayMusicWithTransition("General Theme");
-        
-        /*
-        ship.ResetStats();
-        campaignManager.cateringToTheRich.ResetEventChoicesToJobStart();
-        EventSystem.instance.ResetJob();
-        */
     }
 }

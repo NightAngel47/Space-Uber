@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using ACTools.Saving;
 
@@ -63,8 +64,6 @@ public class SavingLoadingManager : MonoBehaviour
         SaveData.ToBinaryFile<bool>(projectName, "hasSave", false);
     }
     
-    public enum RoomType {None = -1, ArmorPlating, Armory, Brig, Bunks, CoreChargingTerminal, EnergyCannon, Hydroponics, Medbay, Pantry, PhotonTorpedoes, PowerCore, ShieldGenerator, Storage, VIPLounge}
-    
     public void SaveRooms()
     {
         RoomStats[] rooms = FindObjectsOfType<RoomStats>();
@@ -96,10 +95,9 @@ public class SavingLoadingManager : MonoBehaviour
         ObjectScript os = room.GetComponent<ObjectScript>();
         roomData.rotation = os.rotAdjust;
         roomData.isPrePlaced = os.preplacedRoom;
+        roomData.objectNum = os.objectNum;
         RoomStats roomStats = room.GetComponent<RoomStats>();
         roomData.crew = roomStats.currentCrew;
-        Enum.TryParse(roomStats.roomName, true, out RoomType roomType);
-        roomData.type = roomType;
         
         return roomData;
     }
@@ -107,8 +105,13 @@ public class SavingLoadingManager : MonoBehaviour
     private void ConvertDataToRoom(RoomData roomData)
     {
         ObjectMover.hasPlaced = false;
-        
-        GameObject room = Instantiate(roomPrefabs[(int) roomData.type], new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);;
+
+        GameObject room = null;
+        foreach (GameObject roomPrefab in roomPrefabs.Where(roomPrefab => roomPrefab.GetComponent<ObjectScript>().objectNum == roomData.objectNum))
+        {
+            room = Instantiate(roomPrefab, new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
+        }
+
         ObjectMover om = room.GetComponent<ObjectMover>();
         ObjectScript os = room.GetComponent<ObjectScript>();
         
@@ -144,7 +147,6 @@ public class SavingLoadingManager : MonoBehaviour
     private IEnumerator UpdateSpotChecker(GameObject room, bool isPrePlaced, int rotation)
     {
         yield return new WaitWhile(() => FindObjectOfType<SpotChecker>() == null);
-        
         if(isPrePlaced)
         {
             FindObjectOfType<SpotChecker>().FillPreplacedSpots(room);
@@ -163,6 +165,6 @@ public class SavingLoadingManager : MonoBehaviour
         public int rotation;
         public int crew;
         public bool isPrePlaced;
-        public RoomType type;
+        public int objectNum;
     }
 }

@@ -82,7 +82,7 @@ public class CampaignManager : MonoBehaviour
                 return;
         }
 
-        SaveData();
+        SaveCampaignData();
     }
     public void GoToNextJob()
     {
@@ -131,7 +131,7 @@ public class CampaignManager : MonoBehaviour
                 return;
         }
 
-        SaveData();
+        SaveCampaignData();
     }
 
     public void AlterNarrativeVariable(MysteriousEntity.NarrativeVariables meMainOutcomes, string newText)
@@ -143,15 +143,15 @@ public class CampaignManager : MonoBehaviour
     {
         if(SavingLoadingManager.instance.GetHasSave())
         {
-            ResetData();
+            LoadCampaignData();
         }
         else
         {
-            SaveData();
+            SaveCampaignData();
         }
     }
 
-    private void SaveData()
+    public void SaveCampaignData()
     {
         cateringToTheRich.SaveEventChoices();
         mysteriousEntity.SaveEventChoices();
@@ -179,7 +179,7 @@ public class CampaignManager : MonoBehaviour
         SavingLoadingManager.instance.Save<int>("currentJob", currentJob);
     }
 
-    private void ResetData()
+    private void LoadCampaignData()
     {
         cateringToTheRich.ResetEventChoicesToJobStart();
         mysteriousEntity.ResetEventChoicesToJobStart();
@@ -190,18 +190,22 @@ public class CampaignManager : MonoBehaviour
         switch (currentCamp)
         {
             case Campaigns.CateringToTheRich:
-                cateringToTheRich.currentCampaignJobIndex = SavingLoadingManager.instance.Load<int>("currentJob");;
+                cateringToTheRich.currentCampaignJobIndex = SavingLoadingManager.instance.Load<int>("currentJob");
+                EventSystem.instance.TakeStoryJobEvents(cateringToTheRich.campaignJobs[cateringToTheRich.currentCampaignJobIndex]);
                 break;
             case Campaigns.MysteriousEntity:
-                mysteriousEntity.currentCampaignJobIndex = SavingLoadingManager.instance.Load<int>("currentJob");;
+                mysteriousEntity.currentCampaignJobIndex = SavingLoadingManager.instance.Load<int>("currentJob");
+                EventSystem.instance.TakeStoryJobEvents(mysteriousEntity.campaignJobs[mysteriousEntity.currentCampaignJobIndex]);
                 break;
             case Campaigns.FinalTest:
-                finalTest.currentCampaignJobIndex = SavingLoadingManager.instance.Load<int>("currentJob");;
+                finalTest.currentCampaignJobIndex = SavingLoadingManager.instance.Load<int>("currentJob");
+                EventSystem.instance.TakeStoryJobEvents(finalTest.campaignJobs[finalTest.currentCampaignJobIndex]);
                 break;
             default:
                 Debug.LogError("Current Campaign Jobs for " + currentCamp + " not setup.");
                 break;
         }
+        
     }
 
     [Serializable]
