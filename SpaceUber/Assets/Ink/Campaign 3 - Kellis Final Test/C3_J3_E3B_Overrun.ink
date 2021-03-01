@@ -17,9 +17,11 @@ Do you still want to try to collect the asset?
 
 ==AttemptAssetCollection2B==
 You again prepare for battle all by yourself, launching an all out attack on the Midas Creatures, again blowing up an enitre side of the building to create a gap you can enter. You speed you way in, load the asset onto you ship, and get out of there. While successful, you sustain even more significant damages from the MCs. Your ship is in desparate need of repair, but you were able to collect both assets on this planet.
+Lanri again contacts you. "Boss, the solution is ready. I'll make the preparation to out it into action. We can finally save the people!"
 -> END
 ==DontCollectB==
 You fly away, determining it too risky to collect this one. Kellis' CEO might be satisfied with you bringing one asset back.
+Lanri again contacts you. "Boss, the solution is ready. I'll make the preparation to out it into action. We can finally save the people!"
 -> END
 
 
@@ -34,7 +36,9 @@ Do you still want to try to collect the asset?
 
 ==AttemptAssetCollection2C==
 You go into the chaos as a lone ship, Kuon leads the weapons team as they begin tearing down the walls of Midas Creatures. Eventually, you're able to create a gap. You enter the government building and quickly collect the asset inside. But not before many MCs reach your ship and cause significant damages. However, you make it out alive with the asset.
+Lanri again contacts you. "Boss, the solution is ready. I'll make the preparation to out it into action. We can finally save the people!"
 -> END
 ==DontCollectC==
 You fly away again, determining it too risky to collect the asset. Kellis' CEO will likely be upset you didn't collect more assets when you had the chance.
+Lanri again contacts you. "Boss, the solution is ready. I'll make the preparation to out it into action. We can finally save the people!"
 -> END
