@@ -29,10 +29,7 @@ public class ShipStats : MonoBehaviour
     [SerializeField, Tooltip("Starting amount of ship health"), Foldout("Starting Ship Stats")]
     private int startingShipHealth;
 
-    [HideInInspector]
-    public CharacterStats cStats;
-
-    public GameObject cantPlaceText;
+    [HideInInspector] public CharacterStats cStats;
 
     private List<RoomStats> rooms;
 
@@ -66,6 +63,7 @@ public class ShipStats : MonoBehaviour
     {
         shipStatsUI = GetComponent<ShipStatsUI>();
         tick = FindObjectOfType<Tick>();
+        cStats = gameObject.GetComponent<CharacterStats>();
     }
 
     private void Start()
@@ -76,20 +74,21 @@ public class ShipStats : MonoBehaviour
         }
         else
         {
-            Credits = startingCredits;
-            Payout = 0;
-            EnergyRemaining = new Vector2(startingEnergy, startingEnergy);
-            Security = startingSecurity;
-            ShipWeapons = startingShipWeapons;
-            CrewCurrent = new Vector3(startingCrew, startingCrew, startingCrew);
-            Food = startingFood;
-            FoodPerTick = 0;
-            ShipHealthCurrent = new Vector2(startingShipHealth, startingShipHealth);
-            
-            SaveShipStats();
+            SetStartingStats();
         }
+    }
 
-        cStats = gameObject.GetComponent<CharacterStats>();
+    private void SetStartingStats()
+    {
+        Credits = startingCredits;
+        Payout = 0;
+        EnergyRemaining = new Vector2(startingEnergy, startingEnergy);
+        Security = startingSecurity;
+        ShipWeapons = startingShipWeapons;
+        CrewCurrent = new Vector3(startingCrew, startingCrew, startingCrew);
+        Food = startingFood;
+        FoodPerTick = 0;
+        ShipHealthCurrent = new Vector2(startingShipHealth, startingShipHealth);
     }
 
     /// <summary>
@@ -355,8 +354,8 @@ public class ShipStats : MonoBehaviour
         set
         {
             Vector2 prevValue = new Vector2(shipHealthCurrent, shipHealthMax);
-            shipHealthMax = (int)value.y;
             shipHealthCurrent = (int)value.x;
+            shipHealthMax = (int)value.y;
 
             if (shipHealthCurrent >= shipHealthMax)
             {

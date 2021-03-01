@@ -5,24 +5,22 @@
  * Description:
  */
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
 public class CrewManagement : MonoBehaviour
 {
-    private int crewAddAmount = 1;
     private ShipStats shipStats;
     private RoomStats roomStats;
-    public TMP_Text crewUnassignedText;
-    public GameObject crewManagementText;
-    public GameObject roomText;
-    public GameObject costsText;
     public GameObject crewAmount;
     public GameObject powerAmount;
     public GameObject overclockOutput;
-    private GameObject statPanel;
+    [SerializeField] GameObject statPanel;
+    [SerializeField] GameObject crewAssignmentCanvas;
 
     private GameObject room;
 
@@ -41,9 +39,9 @@ public class CrewManagement : MonoBehaviour
     public void Start()
     {
         shipStats = FindObjectOfType<ShipStats>();
-        crewUnassignedText.text = "Unassigned Crew: " + (int)shipStats.CrewCurrent.z;
+        //crewUnassignedText.text = "Unassigned Crew: " + (int)shipStats.CrewCurrent.z;
 
-        statPanel = gameObject.transform.GetChild(0).gameObject;
+        //statPanel = gameObject.transform.GetChild(0).gameObject;
         TurnOffPanel();
 
         overclockButton.gameObject.SetActive(false);
@@ -63,6 +61,8 @@ public class CrewManagement : MonoBehaviour
         }
 
         room = FindObjectOfType<ObjectScript>().gameObject;
+
+        CheckForMinCrew();
     }
 
     private void Update()
@@ -92,25 +92,26 @@ public class CrewManagement : MonoBehaviour
 
         statPanel.SetActive(true);
 
-        roomText.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().roomName;
-        costsText.transform.GetChild(1).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().price.ToString();
-        costsText.transform.GetChild(2).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().minPower.ToString()
-            + " - " + room.GetComponent<RoomStats>().maxPower.ToString();
-        roomText.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().roomDescription;
-        powerAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().minPower.ToString();
-        crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
-        costsText.transform.GetChild(3).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().minCrew.ToString()
-            + " - " + room.GetComponent<RoomStats>().maxCrew.ToString();
+        //FUNCTIONALITY MOVED TO CrewManagementRoomDetailsMenu.cs
+        //roomText.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().roomName;
+        //costsText.transform.GetChild(1).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().price.ToString();
+        //costsText.transform.GetChild(2).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().minPower.ToString()
+          //  + " - " + room.GetComponent<RoomStats>().maxPower.ToString();
+        //roomText.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().roomDescription;
+        //powerAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().minPower.ToString();
+        //crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
+        //costsText.transform.GetChild(3).gameObject.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().minCrew.ToString()
+            //+ " - " + room.GetComponent<RoomStats>().maxCrew.ToString();
 
         if(true || room.GetComponent<RoomStats>().maxPower == 0) // right now power management doesn't function so the buttons are just always disabled
         {
             powerAmount.transform.parent.GetChild(0).gameObject.SetActive(false);
-            powerAmount.transform.parent.GetChild(2).gameObject.SetActive(false);
+            powerAmount.transform.parent.GetChild(1).gameObject.SetActive(false);
         }
         else
         {
             powerAmount.transform.parent.GetChild(0).gameObject.SetActive(true);
-            powerAmount.transform.parent.GetChild(2).gameObject.SetActive(true);
+            powerAmount.transform.parent.GetChild(1).gameObject.SetActive(true);
         }
 
         if(room.GetComponent<RoomStats>().maxCrew == 0)
@@ -229,7 +230,7 @@ public class CrewManagement : MonoBehaviour
             if (room.GetComponent<RoomStats>().flatOutput == false)
             {
                 resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text =
-                    resource.activeAmount.ToString();  // This part wasn't being called before, by uncommenting it'll fix it, but ruin the text placement in the UI + " / " + (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(room.GetComponent<RoomStats>().ignoreMorale)); // resource amount
+                    resource.activeAmount.ToString() + " / " + resource.amount.ToString();  // This part wasn't being called before, by uncommenting it'll fix it, but ruin the text placement in the UI + " / " + (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(room.GetComponent<RoomStats>().ignoreMorale)); // resource amount
             }
             else
             {
@@ -240,11 +241,6 @@ public class CrewManagement : MonoBehaviour
         }
     }
 
-    public void ChangeAmount(int a)
-    {
-        crewAddAmount = a;
-    }
-
     public void AddCrew()
     {
         if (shipStats.CrewCurrent.z > 0 && roomStats.currentCrew < roomStats.maxCrew)
@@ -252,8 +248,7 @@ public class CrewManagement : MonoBehaviour
             roomStats.UpdateCurrentCrew(1);
             shipStats.CrewCurrent += new Vector3(0, 0, -1);
             minAssignableCrew--;
-            crewUnassignedText.text = "Unassigned Crew: " + shipStats.CrewCurrent.z;
-            crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
+            FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(roomStats.currentCrew);
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats(room.GetComponent<Resource>().resourceType);
 
@@ -268,8 +263,7 @@ public class CrewManagement : MonoBehaviour
             roomStats.UpdateCurrentCrew(-1);
             shipStats.CrewCurrent += new Vector3(0, 0, 1);
             minAssignableCrew++;
-            crewUnassignedText.text = "Unassigned Crew: " + shipStats.CrewCurrent.z;
-            crewAmount.GetComponent<TextMeshProUGUI>().text = room.GetComponent<RoomStats>().currentCrew.ToString();
+            FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(roomStats.currentCrew);
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats(room.GetComponent<Resource>().resourceType);
 
@@ -277,77 +271,14 @@ public class CrewManagement : MonoBehaviour
         }
     }
 
-    public void CheckForMinCrew()
+    private void CheckForMinCrew()
     {
-        RoomStats[] rooms = FindObjectsOfType<RoomStats>();
-        bool minCrewMet = false;
-
-        foreach (RoomStats room in rooms)
-        {
-            if (room.gameObject.GetComponent<RoomStats>().minCrew > room.gameObject.GetComponent<RoomStats>().currentCrew)
-            {
-                minCrewMet = false;
-                break;
-            }
-
-            else
-            {
-                minCrewMet = true;
-            }
-
-        }
-
-        if(minCrewMet == true)
-        {
-            sceneButtons[0].GetComponent<Button>().interactable = true;
-        }
-        else
-        {
-            sceneButtons[0].GetComponent<Button>().interactable = false;
-        }
-    }
-
-    //public void AddPower()
-    //{
-    //    if(ss.HasEnoughPower(rs.minPower) && rs.GetIsPowered() == false)
-    //    {
-    //        ss.UpdateEnergyAmount(-rs.minPower);
-    //        rs.SetIsPowered();
-    //        powerAmount.GetComponent<TextMeshProUGUI>().text = rs.minPower.ToString();
-    //        UpdateOutput();
-    //    }
-    //}
-
-    //public void SubtractPower()
-    //{
-    //    if (rs.GetIsPowered() == true)
-    //    {
-    //        ss.UpdateEnergyAmount(rs.minPower);
-    //        rs.SetIsPowered();
-    //        powerAmount.GetComponent<TextMeshProUGUI>().text = rs.minPower.ToString();
-    //        UpdateOutput();
-    //    }
-    //}
-
-    public void LoseCrew(int crewLost)
-    {
-        RoomStats[] currentRoomList = FindObjectsOfType<RoomStats>();
-
-        do
-        {
-            int rand = Random.Range(0, currentRoomList.Length);
-
-            if (currentRoomList[rand].currentCrew > 0)
-            {
-                currentRoomList[rand].currentCrew -= 1;
-                crewLost -= 1;
-            }
-        } while (crewLost > 0);
+        sceneButtons[0].GetComponent<ButtonTwoBehaviour>().SetButtonInteractable(FindObjectsOfType<RoomStats>().All(room => room.minCrew <= room.currentCrew));
     }
 
     public void TurnOffPanel()
     {
-        statPanel.SetActive(false);
+        FindObjectOfType<RoomPanelToggle>().ClosePanel();
     }
 
     public void TurnOnPanel()
@@ -374,7 +305,7 @@ public class CrewManagement : MonoBehaviour
 
     public void FinishWithCrewAssignment()
     {
-        if (room.GetComponent<OverclockRoom>().GetMiniGame() != MiniGameType.None)
+        if (room != null && room.GetComponent<OverclockRoom>().GetMiniGame() != MiniGameType.None)
         {
             overclockButton.gameObject.SetActive(true);
         }
@@ -384,7 +315,7 @@ public class CrewManagement : MonoBehaviour
             button.SetActive(false);
         }
         
-        crewManagementText.SetActive(false);
+        crewAssignmentCanvas.SetActive(false);
 
         if(!overclockButton.interactable)
         {

@@ -25,25 +25,24 @@ public class SavingLoadingManager : MonoBehaviour
         }
         
         hasSave = LoadData.FromBinaryFile<bool>(projectName, "hasSave");
-        
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F8) && hasSave) // kill it with fire at your own convenience
+        {
+            SetHasSaveFalse();
+        }
+    }
+
+    public void NewSave()
+    {
         if(!hasSave)
         {
             SaveData.ToBinaryFile<bool>(projectName, "hasSave", true);
         }
     }
-    
-    private void Start()
-    {
-        if(hasSave)
-        {
-            LoadRooms();
-        }
-        else
-        {
-            SaveRooms();
-        }
-    }
-    
+
     public T Load<T>(string name)
     {
         return LoadData.FromBinaryFile<T>(projectName, name);
@@ -58,10 +57,11 @@ public class SavingLoadingManager : MonoBehaviour
     {
         return hasSave;
     }
-    
-    public static void DeleteSave()
+
+    public void SetHasSaveFalse()
     {
         SaveData.ToBinaryFile<bool>(projectName, "hasSave", false);
+        Debug.LogWarning("Save file has been deleted.");
     }
     
     public void SaveRooms()
