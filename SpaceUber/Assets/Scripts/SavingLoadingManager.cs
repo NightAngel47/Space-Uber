@@ -103,6 +103,11 @@ public class SavingLoadingManager : MonoBehaviour
         RoomStats roomStats = room.GetComponent<RoomStats>();
         roomData.crew = roomStats.currentCrew;
         roomData.usedRoom = roomStats.usedRoom;
+        roomData.resourceActiveAmounts = new int[roomStats.resources.Count];
+        for (var i = 0; i < roomStats.resources.Count; i++)
+        {
+            roomData.resourceActiveAmounts[i] = roomStats.resources[i].activeAmount;
+        }
 
         return roomData;
     }
@@ -127,13 +132,10 @@ public class SavingLoadingManager : MonoBehaviour
         om.TurnOffBeingDragged();
         os.preplacedRoom = roomData.isPrePlaced;
         roomStats.usedRoom = roomData.usedRoom;
-        if (roomStats.flatOutput)
+        roomStats.currentCrew = roomData.crew;
+        if (!roomStats.flatOutput)
         {
-            roomStats.currentCrew = roomData.crew;
-        }
-        else
-        {
-            StartCoroutine(UpdateRoomActiveAmount(roomStats, roomData.crew));
+            StartCoroutine(UpdateRoomStat(roomStats, roomData));
         }
 
         room.transform.GetChild(0).transform.Rotate(0, 0, -90 * (roomData.rotation - 1));
@@ -172,15 +174,13 @@ public class SavingLoadingManager : MonoBehaviour
         }
     }
 
-    private IEnumerator UpdateRoomActiveAmount(RoomStats roomStats, int crewCount)
+    private IEnumerator UpdateRoomStat(RoomStats roomStats, RoomData roomData)
     {
-        print(roomStats.roomName);
-        yield return new WaitUntil(() => roomStats.GetComponent<Resource>() && FindObjectOfType<CrewManagement>());
-        CrewManagement crewManagement = FindObjectOfType<CrewManagement>();
-        crewManagement.UpdateRoom(roomStats.gameObject);
-        for (int i = 0; i < crewCount; ++i)
+        yield return new WaitUntil((() => roomStats.GetComponent<Resource>()));
+        for (var i = 0; i < roomStats.resources.Count; i++)
         {
-            crewManagement.AddCrew(true);
+            Resource resource = roomStats.resources[i];
+            roomStats.SetStatOnLoad(resource, roomData.resourceActiveAmounts[i]);
         }
     }
     
@@ -194,5 +194,6 @@ public class SavingLoadingManager : MonoBehaviour
         public bool isPrePlaced;
         public int objectNum;
         public bool usedRoom;
+        public int[] resourceActiveAmounts;
     }
 }

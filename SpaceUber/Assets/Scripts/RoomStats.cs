@@ -180,9 +180,54 @@ public class RoomStats : MonoBehaviour
                         break;
                 }
             }
-
-            SetActiveAmount(resource);
         }
+    }
+
+    /// <summary>
+    /// Used when setting value from save for rooms that don't cooperate :(
+    /// </summary>
+    /// <param name="resource"></param>
+    /// <param name="value"></param>
+    public void SetStatOnLoad(Resource resource, int value)
+    {
+        switch (resource.resourceType.Rt)
+        {
+            case ResourceDataTypes._Credits:
+                credits += value;
+                break;
+            case ResourceDataTypes._Energy:
+                energy += value;
+                break;
+            case ResourceDataTypes._Security:
+                security += value;
+                break;
+            case ResourceDataTypes._ShipWeapons:
+                shipWeapons += value;
+                break;
+            case ResourceDataTypes._Crew:
+                crew += value;
+                break;
+            case ResourceDataTypes._Food:
+                food += value;
+                break;
+            case ResourceDataTypes._FoodPerTick:
+                foodPerTick += value;
+                break;
+            case ResourceDataTypes._HullDurability:
+                shipHealth += value;
+                break;
+            case ResourceDataTypes._CrewMorale:
+                morale += value;
+                break;
+            case ResourceDataTypes._Payout:
+                credits += value;
+                break;
+            default:
+                Debug.LogError("Resource type: " + resource.resourceType.resourceName + " not setup in RoomStats");
+                break;
+        }
+        
+        SetActiveAmount(resource);
     }
 
     public void SetIsPowered()
