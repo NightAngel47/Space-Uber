@@ -21,16 +21,16 @@ You already are in the air with the asset, you don't have to worry about a poten
 -> EscapeWithAssetA
 
 ==HelpPolititiansA==
-"You shoot youself back down to the ground. Suffer heavy damage, but the government is forever in your debt
+You shoot youself back down to the ground. Kuon heads the team as you rip through dozens upon dozens of Midas Creatures. They eventually catch onto your attack. A few of the MCs leap high into the air and latch onto you ship. You're able to shake them off, but only after they rip some chunks of the hull and weapons off. You suffer some heavy damage overall, but the government is now forever in your debt.
 -> END
 
 ==EscapeWithAssetA==
-"Escape without any issues. you successfully aquired another asset.
+You escape without any issues and leave the government complex to fend for itself. Everyone in there is probably doomed, but you successfully aquired another asset for Kellis.
 -> END
 
 
 ==DontSayAnything==
-Loading the asset onto your ship goes smoothyl as possible. you thank the Polititian for his help and set off to collect the next asset.
+Loading the asset onto your ship goes as smoothly as it possible could. you thank the Polititian for his time and the meal and set off to collect the next asset.
 
 + Help the Polititians
 -> HelpPolititiansB
@@ -38,9 +38,9 @@ Loading the asset onto your ship goes smoothyl as possible. you thank the Politi
 -> EscapeWithAssetB
 
 ==HelpPolititiansB==
-"You shoot youself back down to the ground. Suffer heavy damage, but the government is forever in your debt
+You shoot youself back down to the ground. Kuon heads the team as you rip through dozens upon dozens of Midas Creatures. They eventually catch onto your attack. A few of the MCs leap high into the air and latch onto you ship. You're able to shake them off, but only after they rip some chunks of the hull and weapons off. You suffer some heavy damage overall, but the government is now forever in your debt.
 -> END
 
 ==EscapeWithAssetB==
-"Escape without any issues. you successfully aquired another asset.
+You escape without any issues and leave the government complex to fend for itself. Everyone in there is probably doomed, but you successfully aquired another asset for Kellis.
 -> END
