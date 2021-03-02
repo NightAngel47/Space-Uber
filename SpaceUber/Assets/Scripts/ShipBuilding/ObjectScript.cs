@@ -152,7 +152,7 @@ public class ObjectScript : MonoBehaviour
 
         if (GameManager.instance.currentGameState == InGameStates.CrewManagement
            || GameManager.instance.currentGameState == InGameStates.Events
-           && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn)
+           && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn && !PauseMenu.IsPaused)
         {
             roomTooltip.SetActive(true);
             roomIsHovered = true;

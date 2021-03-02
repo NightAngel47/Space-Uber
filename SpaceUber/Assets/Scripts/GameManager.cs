@@ -86,6 +86,22 @@ public class GameManager : MonoBehaviour
         if (SavingLoadingManager.instance.GetHasSave())
         {
             LoadGameState();
+            yield return new WaitForEndOfFrame();
+            switch (currentGameState)
+            {
+                case InGameStates.ShipBuilding:
+                    yield return new WaitUntil(() => FindObjectOfType<SpotChecker>());
+                    break;
+                case InGameStates.CrewManagement:
+                    yield return new WaitUntil(() => FindObjectOfType<CrewManagement>());
+                    break;
+                case InGameStates.Events:
+                    yield return new WaitUntil(() => FindObjectOfType<SpotChecker>() && FindObjectOfType<CrewManagement>());
+                    break;
+                default:
+                    Debug.LogWarning("In Game stat not setup for loading.");
+                    break;
+            }
             SavingLoadingManager.instance.LoadRooms();
         }
         else
@@ -142,30 +158,21 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("CrewPayment");
                 additiveSceneManager.UnloadScene("Starport BG");
 
-                // load in crew management if player loads into events first
-                if (!SceneManager.GetSceneByName("CrewManagement").isLoaded)
+                // if loading from continue
+                if (!FindObjectOfType<CrewManagement>() || !FindObjectOfType<SpotChecker>())
                 {
-                    additiveSceneManager.LoadSceneSeperate("CrewManagement");
-                    StartCoroutine(SetupCrewManagementIfLoadedIntoEvents());
+                    StartCoroutine(SetupNeededManagersIfLoadedIntoEvents());
                 }
+                else // if coming from crew management
+                {
+                    SaveGameState();
+                    MoraleManager.instance.SaveMorale();
+                    ship.cStats.SaveCharacterStats();
+                    ship.SaveShipStats();
+                    SavingLoadingManager.instance.SaveRooms();
+                }
+                
                 additiveSceneManager.LoadSceneMerged("Interface_Runtime");
-
-                SaveGameState();
-                MoraleManager.instance.SaveMorale();
-                ship.cStats.SaveCharacterStats();
-                ship.SaveShipStats();
-                SavingLoadingManager.instance.SaveRooms();
-
-                // Remove unplaced rooms from the ShipBuilding state
-                if (!ObjectMover.hasPlaced)
-                {
-                    ObjectMover.hasPlaced = true;
-                    Destroy(FindObjectOfType<ObjectMover>().gameObject);
-                }
-                foreach(RoomStats room in FindObjectsOfType<RoomStats>())
-                {
-                  room.UpdateUsedRoom();
-                }
 
                 StartCoroutine(EventSystem.instance.PlayIntro());
                 break;
@@ -217,10 +224,17 @@ public class GameManager : MonoBehaviour
         return resourceDataRef[i];
     }
 
-    private IEnumerator SetupCrewManagementIfLoadedIntoEvents()
+    private IEnumerator SetupNeededManagersIfLoadedIntoEvents()
     {
+        // load ship building for spot checker to load into don't destroy on load
+        additiveSceneManager.LoadSceneSeperate("ShipBuilding");
+        yield return new WaitUntil(() => SceneManager.GetSceneByName("ShipBuilding").isLoaded);
+        additiveSceneManager.UnloadScene("ShipBuilding"); // unload cause not needed anymore
+        
+        // load crew management for crew management to be loaded
+        additiveSceneManager.LoadSceneSeperate("CrewManagement");
         yield return new WaitUntil(() => SceneManager.GetSceneByName("CrewManagement").isLoaded);
-        FindObjectOfType<CrewManagement>().FinishWithCrewAssignment();
+        FindObjectOfType<CrewManagement>().FinishWithCrewAssignment(); // deactivate crew assignment elements
     }
 
     private void SaveGameState()
