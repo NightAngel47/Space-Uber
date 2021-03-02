@@ -130,9 +130,9 @@ public class SlotMachine : MiniGame
             gameStarted = true;
             switch(betAmount)
 			{
-                case BetAmount.Small: shipStats.UpdateCreditsAmount(-smallBet);  break;
-                case BetAmount.Medium: shipStats.UpdateCreditsAmount(-mediumBet);  break;
-                case BetAmount.Large: shipStats.UpdateCreditsAmount(-largeBet);  break;
+                case BetAmount.Small: shipStats.Credits += -smallBet;  break;
+                case BetAmount.Medium: shipStats.Credits += -mediumBet;  break;
+                case BetAmount.Large: shipStats.Credits += -largeBet;  break;
 			}
             StartCoroutine(Spin()); 
         }
@@ -140,13 +140,14 @@ public class SlotMachine : MiniGame
 
     void DetectEndOfGame()
 	{
+        float moraleModifier = MoraleManager.instance.GetMoraleModifier();
         if (!spinning && gameStarted && !gameFinished)
         {
             gameFinished = true;
             foreach (SlotReel reel in reels) { slotValues.Add(reel.GetSlot().GetValue()); }
             PayUp();
             statModification = payout;
-            winMessage = "You win " + payout + " credits!";
+            winMessage = "You win " + Mathf.RoundToInt(payout * moraleModifier) + " credits!";
             StartCoroutine(EndGame());
         }
     }

@@ -12,30 +12,22 @@ using UnityEngine.UI;
 
 public class EditCrewButton : MonoBehaviour
 {
-    private Button editCrewButton;
+    private ButtonTwoBehaviour editCrewButton;
+    [SerializeField] private int minRoomPlacedToContinue = 1;
 
     private void Awake()
     {
-        editCrewButton = GetComponent<Button>();
-        editCrewButton.interactable = false;
+        editCrewButton = GetComponent<ButtonTwoBehaviour>();
+        editCrewButton.SetButtonInteractable(false);
     }
 
     private void Start()
     {
-        StartCoroutine(CheckForRooms());
+        CheckForRooms();
     }
 
-    public IEnumerator CheckForRooms()
+    public void CheckForRooms()
     {
-        yield return new WaitForSeconds(.25f);
-
-        if (FindObjectsOfType<RoomStats>().Length > 0)
-        {
-            editCrewButton.interactable = true;
-        }
-        else
-        {
-            editCrewButton.interactable = false;
-        }
+        editCrewButton.SetButtonInteractable(FindObjectsOfType<RoomStats>().Length > minRoomPlacedToContinue);
     }
 }

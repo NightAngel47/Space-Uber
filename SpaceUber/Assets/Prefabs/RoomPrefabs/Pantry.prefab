@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfec50bf890af17479ff38a5eee6322e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceType: Food
-  resourceIcon: {fileID: 21300000, guid: 19fdf56f9832ad64bb59df8a09898f9e, type: 3}
-  amount: 7
+  resourceType: {fileID: 11400000, guid: 2ce4c992a1bf5bb4dbcf0b00f2e6cfd8, type: 2}
+  amount: 25
   activeAmount: 0
   minAmount: 0
 --- !u!1001 &2811606532750026443
@@ -158,6 +157,11 @@ PrefabInstance:
       propertyPath: nextToRoomName
       value: Hydroponics
       objectReference: {fileID: 0}
+    - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: roomSize
+      value: 1 x 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: SFXs.Array.size
@@ -166,7 +170,7 @@ PrefabInstance:
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: Placements.Array.size
-      value: 45
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -176,7 +180,7 @@ PrefabInstance:
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: Placements.Array.data[0]
-      value: Arp 1
+      value: Place Pantry 1
       objectReference: {fileID: 0}
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -201,12 +205,12 @@ PrefabInstance:
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: Placements.Array.data[1]
-      value: Arp 2
+      value: Place Pantry 2
       objectReference: {fileID: 0}
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: Placements.Array.data[2]
-      value: Arp 3
+      value: Place Pantry 3
       objectReference: {fileID: 0}
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}

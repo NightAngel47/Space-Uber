@@ -75,7 +75,12 @@ public class Sound
     public void Stop() { source.Stop(); }
 }
 
-    
+[Serializable]
+public struct RadioStationTrackList
+{
+    public string name;
+    public Sound[] tracks;
+}
 
 public class AudioManager : MonoBehaviour
 {
@@ -84,11 +89,13 @@ public class AudioManager : MonoBehaviour
     [SerializeField] Sound[] musicTracks = null;
     [SerializeField] Sound[] sfxTracks = null;
     [SerializeField] Sound[] ambientTracks = null;
+    [SerializeField] RadioStationTrackList[] radioTracks = null;
     [SerializeField] List<Sound> currentlyPlayingAmbience = new List<Sound>();
     [Range(0f, 1f)] public float masterVolume = 1;
     [Range(0f, 1f)] public float sfxVolume = 1;
     [Range(0f, 1f)] public float musicVolume = 1;
     [Range(0f, 1f)] public float ambienceVolume = 1;
+    [Range(0f, 1f)] public float radioVolume = 0;
     [Tooltip("Time it takes for current track to fade out")]
     [SerializeField] float fadeOutTime = 1;
     [Tooltip("Time window of overlap of current track fade out and next track fade in")]
@@ -97,6 +104,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] float fadeInTime = 1;
 
     Sound currentlyPlayingMusic = null;
+    Sound currentlyPlayingStation = null;
 
     public bool isMuted = false;
 
@@ -115,6 +123,10 @@ public class AudioManager : MonoBehaviour
         InitializeTracks(musicTracks);
         InitializeTracks(sfxTracks);
         InitializeTracks(ambientTracks);
+        foreach (var station in radioTracks)
+        {
+            InitializeTracks(station.tracks);
+        }
         
         PlayMusicWithTransition("General Theme");
     }
@@ -148,12 +160,14 @@ public class AudioManager : MonoBehaviour
         {
             if (isMuted) 
             {
-                currentlyPlayingMusic.ScaleVolume(0); 
+                currentlyPlayingMusic?.ScaleVolume(0);
+                currentlyPlayingStation?.ScaleVolume(0);
                 foreach(Sound sound in currentlyPlayingAmbience) { sound.ScaleVolume(0); }
             }
             else 
             {
-                currentlyPlayingMusic.ScaleVolume(musicVolume * masterVolume); 
+                currentlyPlayingMusic?.ScaleVolume(musicVolume * masterVolume);
+                currentlyPlayingStation?.ScaleVolume(radioVolume * masterVolume);
                 foreach(Sound sound in currentlyPlayingAmbience) { sound.ScaleVolume(ambienceVolume * masterVolume); }
             }
         }
@@ -214,7 +228,7 @@ public class AudioManager : MonoBehaviour
         {
             if (musicTracks[i].name == soundName)
             {
-                if (currentlyPlayingMusic != null) { currentlyPlayingMusic.Stop(); }
+                currentlyPlayingMusic?.Stop();
                 currentlyPlayingMusic = musicTracks[i];
                 musicTracks[i].ScaleVolume(musicVolume * masterVolume);
                 if (isMuted) musicTracks[i].ScaleVolume(0);
@@ -223,6 +237,36 @@ public class AudioManager : MonoBehaviour
             }
         }
         Debug.LogWarning("AudioManager: Sound not found in List: " + soundName);
+    }
+
+    public void PlayRadio(int station)
+    {
+        try
+        {
+            if (currentlyPlayingStation != null && currentlyPlayingStation.name == radioTracks[station].tracks[0].name) { return; }
+            //Search stations to match up the name of the first track
+            for (int i = 0; i < radioTracks.Length; i++)
+            {
+                if (radioTracks[i].tracks[0].name == radioTracks[station].tracks[0].name)
+                {
+                    //stop current music and choose a random song from the station
+                    currentlyPlayingStation?.Stop();
+                    int randomSong = Random.Range(0, radioTracks[i].tracks.Length);
+                    currentlyPlayingStation = radioTracks[i].tracks[randomSong];
+
+                    radioTracks[i].tracks[randomSong].ScaleVolume(radioVolume * masterVolume);
+                    if (isMuted) radioTracks[i].tracks[randomSong].ScaleVolume(0);
+                    radioTracks[i].tracks[randomSong].PlayLoop();
+                    return;
+                }
+            }
+        }
+        catch (IndexOutOfRangeException e) {
+            Debug.LogWarning("This station does not exist yet");
+            currentlyPlayingStation?.Stop();
+        }
+
+        //Debug.LogWarning("AudioManager: Station not found in List: " + station);
     }
 
     /// <summary>

@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 5740368950282066039}
   - component: {fileID: 2641448655269380362}
   m_Layer: 0
-  m_Name: RoomPrefabBase
+  m_Name: _RoomPrefabBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -499,6 +499,7 @@ MonoBehaviour:
   roomDescription: 
   roomName: 
   flatOutput: 0
+  ignoreMorale: 0
   usedRoom: 0
   isPowered: 0
   roomTooltipUI: {fileID: 2405372060552023348}
@@ -507,6 +508,7 @@ MonoBehaviour:
   - {fileID: 5766507605158571097}
   - {fileID: 1410969508493415506}
   - {fileID: 8858348380208273083}
+  CharacterEvents: []
 --- !u!114 &5740368950282066039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,6 +522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotAdjust: 1
+  roomSize: 
   shapeType: 0
   objectNum: 0
   canRotate: 1
@@ -530,6 +533,7 @@ MonoBehaviour:
   preplacedRoom: 0
   mouseOverAudio: []
   roomTooltip: {fileID: 3286901568247703781}
+  toolTipOutputList: {fileID: 0}
   shapeDataTemplate: {fileID: 0}
   shapeData: {fileID: 0}
   boundsUp: 0
@@ -553,6 +557,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miniGame: 0
+  hasEvents: 0
+  roomEvents: []
 --- !u!1 &8502931638391405075
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,17 +924,7 @@ PrefabInstance:
     - target: {fileID: 8336208683231013642, guid: ba3df1af6a7a95d4b9b5691ad38f4bbe,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 3.657
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336208683231013642, guid: ba3df1af6a7a95d4b9b5691ad38f4bbe,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336208683231013642, guid: ba3df1af6a7a95d4b9b5691ad38f4bbe,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 6
+      value: 2.6
       objectReference: {fileID: 0}
     - target: {fileID: 8336208683231013642, guid: ba3df1af6a7a95d4b9b5691ad38f4bbe,
         type: 3}

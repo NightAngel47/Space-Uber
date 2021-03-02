@@ -24,23 +24,60 @@ public class ChoiceOutcomes
     [HideInInspector] public bool hasSubsequentChoices;
 
     [SerializeField] public bool isNarrativeOutcome;
-    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public ResourceType resource;
+    [SerializeField] public bool isResourceOutcome;
+    [SerializeField] public bool isApprovalOutcome;
+
+    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public ResourceDataTypes resource;
     [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public int amount;
-    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolOutcomes;
-    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int cloneTrustChange;
-    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private int VIPTrustChange;
+
+    //[SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character = CharacterStats.Characters.None;
+    [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterEvent.AnswerState answerType;
+    [HideInInspector] public CharacterEvent characterDriver;
+
+    #region Initialized Narrative Variables
+    [SerializeField, ShowIf("isNarrativeOutcome"),AllowNesting] private CampaignManager.Campaigns thisCampaign = CampaignManager.Campaigns.CateringToTheRich;
+
+    [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeOutcome", "IsCateringToTheRich"), AllowNesting] private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolOutcomes;
+    [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeOutcome", "IsCateringToTheRich"), AllowNesting] private int cloneTrustChange;
+    [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeOutcome", "IsCateringToTheRich"), AllowNesting] private int VIPTrustChange;
+
+    [SerializeField, ShowIf("IsMysteriousEntity"), AllowNesting] private CampaignManager.MysteriousEntity.NarrativeVariables meMainOutcomes;
+    [SerializeField, ShowIf("IsFinalTest"), AllowNesting] private CampaignManager.FinalTest.NarrativeVariables finalTestNarrativeOutcomes;
+    [SerializeField, ShowIf("IsFinalTest"), AllowNesting] private int assetCountChange = 0;
+
+    [SerializeField] public bool changeGameState;
+    #endregion
+
+    [SerializeField, ShowIf("changeGameState"), AllowNesting] public InGameStates state;
+
+    #region Check for Campaign
+    public bool IsCateringToTheRich()
+    {
+        return thisCampaign == CampaignManager.Campaigns.CateringToTheRich;
+    }
+
+    public bool IsMysteriousEntity()
+    {
+        return thisCampaign == CampaignManager.Campaigns.MysteriousEntity;
+    }
+
+    public bool IsFinalTest()
+    {
+        return thisCampaign == CampaignManager.Campaigns.FinalTest;
+    }
+    #endregion
 
     public void StatChange(ShipStats ship, CampaignManager campMan, bool hasSubsequentChoices)
     {
         if (ship != null)
         {
-            if (!isNarrativeOutcome)
+            if (!isNarrativeOutcome && !isApprovalOutcome) //Will change to "isResourceOutcome" when designers have the chance to check the box in all old events
             {
                 switch (resource)
                 {
-                    case ResourceType.Credits:
-                        ship.UpdateCreditsAmount(amount);
-                        SpawnStatChangeText(ship, amount, 0);
+                    case ResourceDataTypes._Credits:
+                        ship.Credits += amount;
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon);
 
                         if(amount < 0)
                         {
@@ -52,9 +89,9 @@ public class ChoiceOutcomes
                         }
 
                         break;
-                    case ResourceType.Energy:
-                        ship.UpdateEnergyAmount(amount);
-                        SpawnStatChangeText(ship, amount, 5);
+                    case ResourceDataTypes._Energy:
+                        ship.EnergyRemaining += new Vector2(amount, 0);
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
 
                         if (amount < 0)
                         {
@@ -65,9 +102,9 @@ public class ChoiceOutcomes
                             resultText += "\nYou gained " + Math.Abs(amount) + " energy";
                         }
                         break;
-                    case ResourceType.Security:
-                        ship.UpdateSecurityAmount(amount);
-                        SpawnStatChangeText(ship, amount, 1);
+                    case ResourceDataTypes._Security:
+                        ship.Security += amount;
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
 
                         if (amount < 0)
                         {
@@ -79,9 +116,9 @@ public class ChoiceOutcomes
                         }
 
                         break;
-                    case ResourceType.ShipWeapons:
-                        ship.UpdateShipWeaponsAmount(amount);
-                        SpawnStatChangeText(ship, amount, 2);
+                    case ResourceDataTypes._ShipWeapons:
+                        ship.ShipWeapons += amount;
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
 
                         if (amount < 0)
                         {
@@ -92,36 +129,36 @@ public class ChoiceOutcomes
                             resultText += "\nYou gained " + Math.Abs(amount) + " weapons";
                         }
                         break;
-                    case ResourceType.Crew:
+                    case ResourceDataTypes._Crew:
                         if(amount < 0)
                         {
                             int amountFromAssigned;
                             int amountFromUnassigned;
-                            if(ship.CrewCurrent - ship.CrewUnassigned >= -amount)
+                            if(ship.CrewCurrent.x - ship.CrewCurrent.z >= -amount)
                             {
                                 amountFromAssigned = -amount;
                                 amountFromUnassigned = 0;
                             }
                             else
                             {
-                                amountFromAssigned = ship.CrewCurrent - ship.CrewUnassigned;
+                                amountFromAssigned = (int)ship.CrewCurrent.x - (int)ship.CrewCurrent.z;
                                 amountFromUnassigned = -amount - amountFromAssigned;
                             }
                             ship.RemoveRandomCrew(amountFromAssigned);
-                            ship.UpdateCrewAmount(-amountFromUnassigned, amount);
-                            SpawnStatChangeText(ship, amount);
+                            ship.CrewCurrent += new Vector3(amount, -amountFromUnassigned, 0);
+                            SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                             resultText += "\nYou lost " + Math.Abs(amount) + " crew";
                         }
                         else
                         {
-                            ship.UpdateCrewAmount(amount, amount);
-                            SpawnStatChangeText(ship, amount);
+                            ship.CrewCurrent += new Vector3(amount, amount, 0);
+                            SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                             resultText += "\nYou gained " + Math.Abs(amount) + " crew";
                         }
                         break;
-                    case ResourceType.Food:
-                        ship.UpdateFoodAmount(amount);
-                        SpawnStatChangeText(ship, amount, 3);
+                    case ResourceDataTypes._Food:
+                        ship.Food += amount;
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
                         if (amount < 0)
                         {
                             resultText += "\nYou lost " + Math.Abs(amount) + " food";
@@ -131,9 +168,9 @@ public class ChoiceOutcomes
                             resultText += "\nYou gained " + Math.Abs(amount) + " food";
                         }
                         break;
-                    case ResourceType.FoodPerTick:
-                        ship.UpdateFoodPerTickAmount(amount);
-                        SpawnStatChangeText(ship, amount, 3);
+                    case ResourceDataTypes._FoodPerTick:
+                        ship.FoodPerTick += amount;
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._FoodPerTick).resourceIcon);
 
                         if (amount < 0)
                         {
@@ -144,9 +181,13 @@ public class ChoiceOutcomes
                             resultText += "\nFood Per Tick increased by " + Math.Abs(amount);
                         }
                         break;
-                    case ResourceType.HullDurability:
-                        ship.UpdateHullDurabilityAmount(amount, 0, hasSubsequentChoices);
-                        SpawnStatChangeText(ship, amount, 6);
+                    case ResourceDataTypes._HullDurability:
+                        ship.ShipHealthCurrent += new Vector2(amount, 0);
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon);
+                        if(hasSubsequentChoices && ship.ShipHealthCurrent.x <= 0)
+                        {
+                            ship.CheckForDeath();
+                        }
 
                         if (amount < 0)
                         {
@@ -157,9 +198,9 @@ public class ChoiceOutcomes
                             resultText += "\nYou gained " + Math.Abs(amount) + " hull durability";
                         }
                         break;
-                    case ResourceType.Payout:
-                        ship.UpdatePayoutAmount(amount);
-                        SpawnStatChangeText(ship, amount, 0);
+                    case ResourceDataTypes._Payout:
+                        ship.Payout += amount;
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Payout).resourceIcon);
                         if (amount < 0)
                         {
                             resultText += "\nYour payout decreased by " + Math.Abs(amount);
@@ -169,91 +210,219 @@ public class ChoiceOutcomes
                             resultText += "\nYour payout increased by " + Math.Abs(amount);
                         }
                         break;
+                    case ResourceDataTypes._CrewMorale:
+                        MoraleManager.instance.CrewMorale += amount;
+                        SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._CrewMorale).resourceIcon);
+
+                        if (amount < 0)
+                        {
+                            resultText += "\nYou lost " + Math.Abs(amount) + " crew morale";
+                        }
+                        else
+                        {
+                            resultText += "\nYou gained " + Math.Abs(amount) + " crew morale";
+                        }
+                        break;
                     default:
                         break;
                 }
             }
-            else
+            else if(isNarrativeOutcome)
             {
-                //alter the trust variables
-                campMan.cateringToTheRich.ctr_cloneTrust += cloneTrustChange;
-                campMan.cateringToTheRich.ctr_VIPTrust += VIPTrustChange;
-
-                //the selected bool will become true
-                switch (ctrBoolOutcomes)
+                switch(thisCampaign)
                 {
-                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.SideWithScientist:
-                        campMan.cateringToTheRich.ctr_sideWithScientist = true;
-                        resultText += "\nYou sided with the scientist";
-                        break;
-                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.KillBeckett:
-                        campMan.cateringToTheRich.ctr_killBeckett = true;
-                        campMan.cateringToTheRich.ctr_killedOnce = true;
-
-                        resultText += "\nYou killed Beckett";
-                        break;
-                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.LetBalePilot:
-                        campMan.cateringToTheRich.ctr_letBalePilot = true;
-                        resultText += "\nYou let Bale pilot";
-                        break;
-                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledAtSafari:
-                        campMan.cateringToTheRich.ctr_killedAtSafari = true;
+                    case CampaignManager.Campaigns.CateringToTheRich:
                         
-                        if(campMan.cateringToTheRich.ctr_killedOnce == true) //killed beckett as well
+                        //alter the trust variables
+                        campMan.cateringToTheRich.ctr_cloneTrust += cloneTrustChange;
+                        campMan.cateringToTheRich.ctr_VIPTrust += VIPTrustChange;
+
+                        //the selected bool will become true
+                        campMan.cateringToTheRich.SetCtrNarrativeOutcome(ctrBoolOutcomes, true);
+                        switch (ctrBoolOutcomes)
                         {
-                            campMan.cateringToTheRich.ctr_killedOnce = false;
-                        }
-                        else //no kills yet
-                        {
-                            campMan.cateringToTheRich.ctr_killedOnce = true;
+                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.SideWithScientist:
+                                resultText += "\nYou sided with the scientist";
+                                break;
+                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.KillBeckett:
+                                campMan.cateringToTheRich.SetCtrNarrativeOutcome(CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledOnce, true);
+                                resultText += "\nYou killed Beckett";
+                                break;
+                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.LetBalePilot:
+                                resultText += "\nYou let Bale pilot";
+                                break;
+                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledAtSafari:
+                                campMan.cateringToTheRich.SetCtrNarrativeOutcome(CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledOnce, 
+                                    !campMan.cateringToTheRich.GetCtrNarrativeOutcome(CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledOnce));
+                                resultText += "\nYou killed at the safari";
+                                break;
+                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.TellVIPsAboutClones:
+                                resultText += "\nYou told the VIPs about the clones";
+                                break;
                         }
 
+                        if (cloneTrustChange < 0)
+                        {
+                            resultText += "\nThe clones have " + cloneTrustChange + "% less trust in you";
+                        }
+                        else if (cloneTrustChange > 0)
+                        {
+                            resultText += "\nThe clones have " + cloneTrustChange + "% more trust in you";
+                        }
+
+                        if (VIPTrustChange < 0)
+                        {
+                            resultText += "\nThe VIPs have " + VIPTrustChange + "% less trust in you";
+                        }
+                        else if (VIPTrustChange > 0)
+                        {
+                            resultText += "\nThe VIPs have " + VIPTrustChange + "% more trust in you";
+                        }
+                        break;
                         
+                    case CampaignManager.Campaigns.MysteriousEntity:
+                        //the selected bool will become true
+                        campMan.mysteriousEntity.SetMeNarrativeVariable(meMainOutcomes, true);
+                        switch (meMainOutcomes)
+                        {
+                            case CampaignManager.MysteriousEntity.NarrativeVariables.KuonInvestigates:
+                                resultText += "\nYou allowed Kuon to investigate";
+                                break;
+                            case CampaignManager.MysteriousEntity.NarrativeVariables.OpenedCargo:
+                                resultText += "\nYou opened the cargo";
+                                break;
 
-                        resultText += "\nYou killed at the safari";
+                            case CampaignManager.MysteriousEntity.NarrativeVariables.Accept:
+                                resultText += "\nYou accepted the offer";
+                                break;
+                            case CampaignManager.MysteriousEntity.NarrativeVariables.Decline_Bribe:
+                                resultText += "\nYou declined the offer and bribed Loudon to stay";
+                                break;
+                            case CampaignManager.MysteriousEntity.NarrativeVariables.Decline_Fire:
+                                resultText += "\nYou declined the offer and said good riddance to Loudon";
+                                break;
+                        }
                         break;
-                    case CampaignManager.CateringToTheRich.NarrativeOutcomes.TellVIPsAboutClones:
-                        campMan.cateringToTheRich.ctr_tellVIPsAboutClones = true;
-                        resultText += "\nYou told the VIPs about the clones";
-                        break;
-                    default:
-                        break;
-                }
-                
-                //TODO: Make resultText show up on the textbox somehow
-                narrativeResultsBox.gameObject.SetActive(true);
+                    case CampaignManager.Campaigns.FinalTest:
+                        campMan.finalTest.assetCount += assetCountChange;
 
-                if(cloneTrustChange < 0)
-                {
-                    resultText += "\n The clones have " + cloneTrustChange + "% less trust in you";
-                }
-                else if(cloneTrustChange > 0)
-                {
-                    resultText += "\n The clones have " + cloneTrustChange + "% more trust in you";
-                }
+                        if (assetCountChange < 0)
+                        {
+                            if (assetCountChange == 1)
+                                resultText += "\nYou have gained 1 asset";
+                            else
+                                resultText += "\nYou have gained " + assetCountChange + " assets";
+                        }
+                        else if (assetCountChange > 0)
+                        {
+                            if (assetCountChange == 1)
+                                resultText += "\nYou have lost 1 asset";
+                            else
+                                resultText += "\nYou have lost " + assetCountChange + " assets";
+                        }
 
-                if (VIPTrustChange < 0)
-                {
-                    resultText += "\n The VIPs have " + VIPTrustChange + "% less trust in you";
+                        campMan.finalTest.SetFtNarrativeVariable(finalTestNarrativeOutcomes, true);
+                        switch (finalTestNarrativeOutcomes)
+                        {
+                            case CampaignManager.FinalTest.NarrativeVariables.KellisLoyalty:
+                                resultText += "\nYou have sided with Kellis";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.LanriExperiment:
+                                resultText += "\nYou have allowed Lanri to experiment";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.LexaDoomed:
+                                resultText += "\nYou left Lexa to face her doom alone";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.ScienceSavior:
+                                resultText += "\nYou have become a savior through the power of science";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.TruthTold:
+                                resultText += "\nYou told everyone the truth";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.LexaPlan:
+                                resultText += "\nYou went with Lexa's plan";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.MateoPlan:
+                                resultText += "\nYou went with Mateo's plan";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.LanriRipleyPlan:
+                                resultText += "\nYou went with Lanri and Ripley's plan";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.KuonPlan:
+                                resultText += "\nYou went with Kuon's plan";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.ResearchShared:
+                                resultText += "\nYou shared your research";
+                                break;
+                        }
+                        break;
                 }
-                else if (VIPTrustChange > 0)
-                {
-                    resultText += "\n The VIPs have " + VIPTrustChange + "% more trust in you";
-                }
-                
             }
-            if(!hasSubsequentChoices)
+            else //approval outcomes
+            {
+                int eventApprovalChange = 0;
+
+                if(answerType == CharacterEvent.AnswerState.POSITIVE)
+                {
+                    eventApprovalChange = 1;
+                }
+                if (answerType == CharacterEvent.AnswerState.NEGATIVE)
+                {
+                    eventApprovalChange = -1;
+                }
+                if (answerType == CharacterEvent.AnswerState.NEUTRAL)
+                {
+                    eventApprovalChange = 0;
+                }
+
+                characterDriver.ChangeEventApproval(eventApprovalChange);
+
+                //TODO: Changes character specific approval. To be implemented as someone sees fit
+                //switch (character)
+                //{
+                //    case CharacterStats.Characters.KUON:
+                //        ship.cStats.KuonApproval += approvalChange;
+                //        break;
+                //    case CharacterStats.Characters.MATEO:
+                //        ship.cStats.MateoApproval += approvalChange;
+                //        break;
+                //    case CharacterStats.Characters.LANRI:
+                //        ship.cStats.LanriApproval += approvalChange;
+                //        break;
+                //    case CharacterStats.Characters.LEXA:
+                //        ship.cStats.LexaApproval += approvalChange;
+                //        break;
+                //    case CharacterStats.Characters.RIPLEY:
+                //        ship.cStats.RipleyApproval += approvalChange;
+                //        break;
+                //}
+            }
+
+            if(!hasSubsequentChoices) //do at the end of the event
             {
                 narrativeResultsBox.SetActive(true);
             }
-            
+
+            if(changeGameState)
+            {
+                GameManager.instance.ChangeInGameState(state);
+            }
+
             //Debug.Log("Adding: " + resultText);
             narrativeResultsBox.transform.GetChild(0).GetComponent<TMP_Text>().text += resultText;
         }
 
     }
 
-    private void SpawnStatChangeText(ShipStats ship, int value, int icon = -1)
+    /// <summary>
+    /// Assigns the corresponding character event driver to this choice and outcomes. Only used for character events
+    /// </summary>
+    public void AssignCharacterDriver(CharacterEvent driver)
+    {
+        characterDriver = driver;
+    }
+
+    private void SpawnStatChangeText(ShipStats ship, int value, Sprite icon)
     {
         GameObject statChangeText = ship.GetComponent<ShipStatsUI>().statChangeText;
         GameObject instance = GameObject.Instantiate(statChangeText);
@@ -267,18 +436,4 @@ public class ChoiceOutcomes
         moveAndFadeBehaviour.offset = new Vector2(0, +75);
         moveAndFadeBehaviour.SetValue(value, icon);
     }
-}
-
-public enum ResourceType
-{
-    Credits,
-    Energy,
-    Security,
-    ShipWeapons,
-    Crew,
-    Food,
-    FoodPerTick,
-    HullDurability,
-    Stock,
-    Payout
 }

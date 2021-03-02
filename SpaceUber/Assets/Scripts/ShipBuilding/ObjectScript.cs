@@ -16,15 +16,15 @@ using Random = UnityEngine.Random;
 
 public class ObjectScript : MonoBehaviour
 {
-    [Foldout("Data")]
-    public int rotAdjust = 1;
+    [Foldout("Data")] public int rotAdjust = 1;
     public static Color c;
 
+    public string roomSize;
     public int shapeType;
     public int objectNum;
 
     public bool canRotate;  //true can rotate | false cannot rotate
-    public bool nextToRoom; //true required next to x room | false no condition 
+    public bool nextToRoom; //true required next to x room | false no condition
     public int nextToRoomNum;
     public string nextToRoomName;
     public bool needsSpecificLocation;
@@ -32,32 +32,27 @@ public class ObjectScript : MonoBehaviour
     public static bool CalledFromSpawn = false;
 
     public string[] mouseOverAudio;
-    
+
     [SerializeField] private GameObject roomTooltip;
+    [SerializeField] private GameObject toolTipOutputList;
 
     [SerializeField] private ShapeType shapeDataTemplate = null;
 
-    [Foldout("Data")]
-    public ShapeType shapeData = null;
+    [Foldout("Data")] public ShapeType shapeData = null;
     public ShapeTypes shapeTypes => shapeData.St;
 
-    [Foldout("Data")]
-    public float boundsUp;
-    [Foldout("Data")]
-    public float boundsDown;
-    [Foldout("Data")]
-    public float boundsLeft;
-    [Foldout("Data")]
-    public float boundsRight;
-    [Foldout("Data")]
-    public float rotBoundsRight;
-    [Foldout("Data")]
-    public float rotBoundsUp;
-
-    [Foldout("Data")]
-    public Vector3 rotAdjustVal;
+    [Foldout("Data")] public float boundsUp;
+    [Foldout("Data")] public float boundsDown;
+    [Foldout("Data")] public float boundsLeft;
+    [Foldout("Data")] public float boundsRight;
+    [Foldout("Data")] public float rotBoundsRight;
+    [Foldout("Data")] public float rotBoundsUp;
+    [Foldout("Data")] public Vector3 rotAdjustVal;
 
     public bool clickAgain = true;
+
+    private bool mouseReleased = false;
+    public static bool roomIsHovered;
 
     private void Start()
     {
@@ -66,9 +61,15 @@ public class ObjectScript : MonoBehaviour
         c.a = 1;
         //parentObj = transform.parent.gameObject;
         
-        FindObjectOfType<EditCrewButton>().CheckForRooms();
-        
         ResetData();
+    }
+
+    public void Update()
+    {
+        if(Input.GetMouseButtonUp(0))
+        {
+            StartCoroutine(WaitToClickRoom());
+        }
     }
 
     public void TurnOnClickAgain()
@@ -76,6 +77,7 @@ public class ObjectScript : MonoBehaviour
         if (preplacedRoom == false)
         {
             clickAgain = true;
+            mouseReleased = false;
             CalledFromSpawn = false;
         }
     }
@@ -86,70 +88,103 @@ public class ObjectScript : MonoBehaviour
         {
             clickAgain = false;
 
-            if (nextToRoom == true && CalledFromSpawn == false)
-            {
-                bool check = SpotChecker.instance.NextToRoomCall(gameObject, rotAdjust);
-                if (check == false)
-                {
-                    Debug.Log("Room not placed next to required room, it has been auto removed");
-                    SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
-                    Destroy(gameObject);
-                }
-            }
+            //if (nextToRoom == true && CalledFromSpawn == false)
+            //{
+            //    bool check = SpotChecker.instance.NextToRoomCall(gameObject, rotAdjust);
+            //    if (check == false)
+            //    {
+            //        Debug.Log("Room not placed next to required room, it has been auto removed");
+
+            //        SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
+            //        Destroy(gameObject);
+            //    }
+            //}
         }
     }
+
+    //public void OnMouseUp()
+    //{
+    //    //StartCoroutine(WaitToClickRoom());
+    //    //clickAgain = true;
+
+    //    mouseReleased = true;
+    //}
 
     public void OnMouseOver()
     {
-        if (preplacedRoom == false)
+        //if(preplacedRoom) return;
+
+        if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true) // && PauseMenu.Instance.isPaused == false// commented out until menus are ready
         {
-            if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true)
-            {
-                if (ObjectMover.hasPlaced == true)
-                {
-                    roomTooltip.SetActive(true);
-                }
-                else if (roomTooltip.activeSelf)
-                {
-                    roomTooltip.SetActive(false);
-                }
-
-                if (Input.GetMouseButton(0) && ObjectMover.hasPlaced == true)
-                {
-                    //buttons.SetActive(true);
-                    gameObject.GetComponent<RoomStats>().SubtractRoomStats();
-                    AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
-                    Edit();
-                }
-
-                if (Input.GetMouseButton(1))
-                {
-                    //buttons.SetActive(true);
-                    if (ObjectMover.hasPlaced == true)
-                    {
-                        gameObject.GetComponent<RoomStats>().SubtractRoomStats();
-                        AudioManager.instance.PlaySFX("Sell");
-                    }
-
-                    Delete();
-                }
-            }
-
-            if (GameManager.instance.currentGameState == InGameStates.CrewManagement
-               || GameManager.instance.currentGameState == InGameStates.Events
-               && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive)
+            if (ObjectMover.hasPlaced && !PauseMenu.IsPaused)
             {
                 roomTooltip.SetActive(true);
+                roomIsHovered = true;
+            }
+            else if (roomTooltip.activeSelf)
+            {
+                roomTooltip.SetActive(false);
+            }
 
-                if (Input.GetMouseButton(0))
+            //if(preplacedRoom) return; // could moved preplacedRoom check here so tooltip can be activated.
+
+            if (Input.GetMouseButtonDown(0) && ObjectMover.hasPlaced == true && !gameObject.GetComponent<ObjectMover>().enabled && preplacedRoom == false)
+            {
+                //buttons.SetActive(true);
+                gameObject.GetComponent<RoomStats>().SubtractRoomStats();
+                AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
+                Edit();
+            }
+
+            if (Input.GetMouseButton(1) && preplacedRoom == false)
+            {
+                //buttons.SetActive(true);
+                if (ObjectMover.hasPlaced == true)
                 {
-                    FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
-                    AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
+                    gameObject.GetComponent<RoomStats>().SubtractRoomStats();
+                    gameObject.GetComponent<RoomStats>().ReturnCrewOnRemove();
+                    AudioManager.instance.PlaySFX("Sell");
                 }
+
+                Delete();
+            }
+        }
+
+        if (GameManager.instance.currentGameState == InGameStates.CrewManagement
+           || GameManager.instance.currentGameState == InGameStates.Events
+           && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn && !PauseMenu.IsPaused)
+        {
+            roomTooltip.SetActive(true);
+            roomIsHovered = true;
+
+            //if the object is clicked, open the room management menu
+            if (Input.GetMouseButtonDown(0))
+            {
+                FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
+                FindObjectOfType<RoomPanelToggle>().OpenPanel(0, true);
+                FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(gameObject);
+                FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
+                AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
             }
         }
     }
 
+    public IEnumerator WaitToClickRoom()
+    {
+        ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
+        foreach (ObjectScript r in otherRooms)
+        {
+            r.TurnOffClickAgain();
+        }
+
+        //yield return new WaitUntil(() => mouseReleased);
+        yield return new WaitForSeconds(.25f);
+
+        foreach (ObjectScript r in otherRooms)
+        {
+            r.TurnOnClickAgain();
+        }
+    }
 
     public void OnMouseExit()
     {
@@ -157,10 +192,18 @@ public class ObjectScript : MonoBehaviour
         {
             roomTooltip.SetActive(false);
         }
+
+        roomIsHovered = false;
     }
 
     public void Edit()
     {
+        Cursor.visible = false;
+        clickAgain = false;
+
+        //rooms being placed will appear on top of other rooms that are already placed
+        gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+
         c.a = .5f;
         gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
         c.a = 1;
@@ -191,20 +234,27 @@ public class ObjectScript : MonoBehaviour
 
     public void Delete()
     {
+        Cursor.visible = true;
+        clickAgain = false;
+
         //buttons.SetActive(false);
-        SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
+        if (ObjectMover.hasPlaced == true)
+        {
+            SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
+        }
         ObjectMover.hasPlaced = true;
         ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
         foreach (ObjectScript r in otherRooms)
         {
             r.TurnOnClickAgain();
 
-            if(r.nextToRoom == true && CalledFromSpawn == false)
+            if(r.nextToRoom == true && CalledFromSpawn == false && gameObject != r.gameObject)
             {
                 bool check = SpotChecker.instance.NextToRoomCall(r.gameObject, r.rotAdjust);
                 if (check == false)
                 {
                     SpotChecker.instance.RemoveSpots(r.gameObject, r.rotAdjust);
+                    r.gameObject.GetComponent<RoomStats>().SubtractRoomStats();
                     Destroy(r.gameObject);
                 }
             }
@@ -346,7 +396,7 @@ public class ObjectScript : MonoBehaviour
         }
     }
 
-    private void ResetData()
+    public void ResetData()
     {
         shapeData = shapeDataTemplate.CloneData();
         boundsUp = shapeData.boundsUp;

@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfec50bf890af17479ff38a5eee6322e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceType: Hull Durability
-  resourceIcon: {fileID: 21300000, guid: 0debb1fcbafb17643af5888234dd7323, type: 3}
-  amount: 11
+  resourceType: {fileID: 11400000, guid: 418056c5f48660f4fa1affe0e1d5e95d, type: 2}
+  amount: 60
   activeAmount: 0
   minAmount: 0
 --- !u!1001 &2228332728607482427
@@ -257,6 +256,11 @@ PrefabInstance:
         type: 3}
       propertyPath: mouseOverAudio.Array.data[4]
       value: Generate 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: roomSize
+      value: 2 x 2
       objectReference: {fileID: 0}
     - target: {fileID: 6635282969121139961, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}

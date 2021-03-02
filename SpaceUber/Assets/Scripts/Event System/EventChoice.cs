@@ -21,6 +21,8 @@ public class EventChoice
     [SerializeField] private string choiceName;
     [SerializeField] public string description;
 
+    public string ChoiceName => choiceName;
+
     [SerializeField] private bool changeMusic;
     [SerializeField] private bool playSFX;
     [SerializeField, ShowIf("changeMusic"), AllowNesting] private bool withoutTransition;
@@ -36,7 +38,7 @@ public class EventChoice
     }
 
     [SerializeField] private bool hasRequirements;
-    [SerializeField, ShowIf("hasRequirements")] private List<Requirements> choiceRequirements = new List<Requirements>();
+    [SerializeField, ShowIf("hasRequirements")] public List<Requirements> choiceRequirements = new List<Requirements>();
     
     [SerializeField] private bool hasPercentChange;
     [SerializeField, ShowIf("hasPercentChange")] private List<IncreasedSuccess> percentIncrease = new List<IncreasedSuccess>();
@@ -46,7 +48,7 @@ public class EventChoice
     public bool hasSecretOutcomes;
     [SerializeField] private bool hasRandomEnding;    
     [SerializeField, ShowIf("hasRandomEnding")] private List<MultipleRandom> randomEndingOutcomes = new List<MultipleRandom>();
-    [SerializeField, HideIf("hasRandomEnding")] private List<ChoiceOutcomes> outcomes = new List<ChoiceOutcomes>();
+    [SerializeField, HideIf("hasRandomEnding")] public List<ChoiceOutcomes> outcomes = new List<ChoiceOutcomes>();
     private int randomizedResult;
     
     [SerializeField] private bool hasSubsequentChoices;
@@ -69,6 +71,14 @@ public class EventChoice
     {
         bool requirementMatch = true;
         driver = thisDriver;
+
+        if (driver.isCharacterEvent)
+        {
+            foreach (ChoiceOutcomes outcome in this.outcomes)
+            {
+                outcome.AssignCharacterDriver((CharacterEvent)driver);
+            }
+        }
 
         if (hasRequirements)
         {
@@ -170,6 +180,7 @@ public class EventChoice
             }
         }
         
+        AnalyticsManager.EventChoiceData.Add(choiceName);
     }
 
     /// <summary>

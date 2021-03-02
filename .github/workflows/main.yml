@@ -1,14 +1,12 @@
 name: Build
 
-on:
-  pull_request: {}
-  push: {}
+on: [push, pull_request]
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
-  buildandtest:
+  build:
     name: Build for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
     runs-on: ubuntu-latest
     strategy:
@@ -22,7 +20,7 @@ jobs:
           - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
           - StandaloneWindows64 # Build a Windows 64-bit standalone.
           - StandaloneLinux64 # Build a Linux 64-bit standalone.
-          - WebGL # WebGL.
+          #- WebGL # WebGL.
     steps:
       - uses: actions/checkout@v2.3.2
         with:
@@ -34,14 +32,53 @@ jobs:
           restore-keys: |
             Library-${{ matrix.projectPath }}-
             Library-
-      - uses: webbertakken/unity-builder@v1.2
+      - uses: game-ci/unity-builder@v2.0-alpha-6
         with:
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
           buildName: A Cog in the Cosmic Machine-${{ matrix.targetPlatform }}
           versioning: None
+          customParameters: -CompressWithLz4HC
       - uses: actions/upload-artifact@v2.1.4
         with:
           name: Build
           path: build
+  deploy:
+    if: (github.ref == 'refs/heads/development' || github.ref == 'refs/heads/master')  && github.event_name == 'push'
+    needs: build
+    name: Deployment for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        projectPath:
+          - SpaceUber
+        unityVersion:
+          - 2019.4.8f1
+        targetPlatform:
+          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+          - StandaloneWindows64 # Build a Windows 64-bit standalone.
+          - StandaloneLinux64 # Build a Linux 64-bit standalone.
+          #- WebGL # WebGL.
+    steps:
+      - uses: actions/download-artifact@v2.0.8
+        with:
+          name: Build
+          path: build
+      - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
+        if: github.ref == 'refs/heads/development' && github.event_name == 'push'
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
+          CHANNEL: ${{ matrix.targetPlatform }}
+          ITCH_GAME: a-cog-in-the-cosmic-machine-dev
+          ITCH_USER: partyparrotpatrolparade
+          PACKAGE: build/${{ matrix.targetPlatform }}
+      - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
+          CHANNEL: ${{ matrix.targetPlatform }}
+          ITCH_GAME: a-cog-in-the-cosmic-machine
+          ITCH_USER: partyparrotpatrolparade
+          PACKAGE: build/${{ matrix.targetPlatform }}

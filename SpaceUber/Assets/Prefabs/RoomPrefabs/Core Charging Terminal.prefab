@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfec50bf890af17479ff38a5eee6322e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceType: Energy
-  resourceIcon: {fileID: 21300000, guid: 0d68944ad67f4054e9a9bbeaf51611ae, type: 3}
+  resourceType: {fileID: 11400000, guid: 55b417f89e336ee4ea9b06e0b724b013, type: 2}
   amount: 3
   activeAmount: 0
   minAmount: 0
@@ -41,9 +40,25 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 03aed1505e9bd5f42864d57e23d2c1e6, type: 2}
     - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
+      propertyPath: roomEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
       propertyPath: miniGame
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: hasEvents
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: roomEvents.Array.data[0]
+      value: 
+      objectReference: {fileID: 2397118123195013090, guid: b05c7d568e913c94db077561555d6b02,
+        type: 3}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: minCrew
@@ -62,7 +77,7 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: price
-      value: 55
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -140,6 +155,11 @@ PrefabInstance:
         type: 3}
       propertyPath: nextToRoomName
       value: Power Core
+      objectReference: {fileID: 0}
+    - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: roomSize
+      value: 1 x 1
       objectReference: {fileID: 0}
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}

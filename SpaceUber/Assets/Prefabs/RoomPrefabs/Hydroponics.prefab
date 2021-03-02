@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfec50bf890af17479ff38a5eee6322e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceType: Food Per Tick
-  resourceIcon: {fileID: 21300000, guid: 19fdf56f9832ad64bb59df8a09898f9e, type: 3}
-  amount: 8
+  resourceType: {fileID: 11400000, guid: 6179477e2084bca4baf5f41d925fe056, type: 2}
+  amount: 5
   activeAmount: 0
   minAmount: 0
 --- !u!1 &7287033629412176449
@@ -339,8 +338,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
+      propertyPath: roomEvents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
       propertyPath: miniGame
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: hasEvents
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -358,7 +367,7 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: price
-      value: 85
+      value: 95
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -591,6 +600,11 @@ PrefabInstance:
       propertyPath: mouseOverAudio.Array.data[15]
       value: Leaves 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: roomSize
+      value: 2 x 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5766507605158571097, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_RootOrder
@@ -735,7 +749,7 @@ PrefabInstance:
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: Placements.Array.size
-      value: 45
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -765,12 +779,12 @@ PrefabInstance:
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: Placements.Array.data[0]
-      value: Arp 1
+      value: Place Hydro 1
       objectReference: {fileID: 0}
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: Placements.Array.data[1]
-      value: Arp 2
+      value: Place Hydro 2
       objectReference: {fileID: 0}
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
