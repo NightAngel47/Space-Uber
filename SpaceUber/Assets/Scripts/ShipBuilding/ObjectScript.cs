@@ -60,16 +60,8 @@ public class ObjectScript : MonoBehaviour
         c = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
         c.a = 1;
         //parentObj = transform.parent.gameObject;
-
-        StartCoroutine(WaitForEditCrewButtonToLoad());
         
         ResetData();
-    }
-
-    private IEnumerator WaitForEditCrewButtonToLoad()
-    {
-        yield return new WaitWhile(() => FindObjectOfType<EditCrewButton>() == null);
-        FindObjectOfType<EditCrewButton>().CheckForRooms();
     }
 
     public void Update()
@@ -160,7 +152,7 @@ public class ObjectScript : MonoBehaviour
 
         if (GameManager.instance.currentGameState == InGameStates.CrewManagement
            || GameManager.instance.currentGameState == InGameStates.Events
-           && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn)
+           && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn && !PauseMenu.IsPaused)
         {
             roomTooltip.SetActive(true);
             roomIsHovered = true;

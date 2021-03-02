@@ -157,7 +157,8 @@ public class MoraleManager : MonoBehaviour
     
     public void ResetMorale()
     {
-        CrewMorale = SavingLoadingManager.instance.Load<int>("crewMorale");
+        crewMorale = SavingLoadingManager.instance.Load<int>("crewMorale");
+        shipStatsUI.UpdateCrewMoraleUI(crewMorale);
         mutinyCount = SavingLoadingManager.instance.Load<int>("mutinyCount");
     }
 }
