@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using ACTools.Saving;
+using UnityEngine.SceneManagement;
 
 public class SavingLoadingManager : MonoBehaviour
 {
     public static SavingLoadingManager instance;
     private static string projectName = "CogInTheCosmicMachine";
     private bool hasSave;
-    
+
     [SerializeField] private List<GameObject> roomPrefabs = new List<GameObject>();
     
     private void Awake()
@@ -32,6 +33,10 @@ public class SavingLoadingManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F8) && hasSave) // kill it with fire at your own convenience
         {
             SetHasSaveFalse();
+            if (SceneManager.GetSceneByName("Main_Menu").isLoaded)
+            {
+                SceneManager.LoadScene("Main_Menu");
+            }
         }
     }
 
@@ -79,7 +84,6 @@ public class SavingLoadingManager : MonoBehaviour
     public void LoadRooms()
     {
         RoomData[] data = Load<RoomData[]>("roomData");
-
         foreach (var roomData in data)
         {
             ConvertDataToRoom(roomData);
@@ -98,7 +102,8 @@ public class SavingLoadingManager : MonoBehaviour
         roomData.objectNum = os.objectNum;
         RoomStats roomStats = room.GetComponent<RoomStats>();
         roomData.crew = roomStats.currentCrew;
-        
+        roomData.usedRoom = roomStats.usedRoom;
+
         return roomData;
     }
     
@@ -110,17 +115,27 @@ public class SavingLoadingManager : MonoBehaviour
         foreach (GameObject roomPrefab in roomPrefabs.Where(roomPrefab => roomPrefab.GetComponent<ObjectScript>().objectNum == roomData.objectNum))
         {
             room = Instantiate(roomPrefab, new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
+            break;
         }
 
         ObjectMover om = room.GetComponent<ObjectMover>();
         ObjectScript os = room.GetComponent<ObjectScript>();
+        RoomStats roomStats = room.GetComponent<RoomStats>();
         
         os.ResetData();
         
         om.TurnOffBeingDragged();
         os.preplacedRoom = roomData.isPrePlaced;
-        room.GetComponent<RoomStats>().currentCrew = roomData.crew;
-        
+        roomStats.usedRoom = roomData.usedRoom;
+        if (roomStats.flatOutput)
+        {
+            roomStats.currentCrew = roomData.crew;
+        }
+        else
+        {
+            StartCoroutine(UpdateRoomActiveAmount(roomStats, roomData.crew));
+        }
+
         room.transform.GetChild(0).transform.Rotate(0, 0, -90 * (roomData.rotation - 1));
         
         if ((os.shapeType != 0 || os.shapeType != 1 || os.shapeType != 3) && (os.rotAdjust == 1 || os.rotAdjust == 3) && (roomData.rotation == 2 || roomData.rotation == 4))
@@ -146,14 +161,26 @@ public class SavingLoadingManager : MonoBehaviour
     
     private IEnumerator UpdateSpotChecker(GameObject room, bool isPrePlaced, int rotation)
     {
-        yield return new WaitWhile(() => FindObjectOfType<SpotChecker>() == null);
+        yield return new WaitUntil(() => FindObjectOfType<SpotChecker>());
         if(isPrePlaced)
         {
-            FindObjectOfType<SpotChecker>().FillPreplacedSpots(room);
+            SpotChecker.instance.FillPreplacedSpots(room);
         }
         else
         {
-            FindObjectOfType<SpotChecker>().FillSpots(room, rotation);
+            SpotChecker.instance.FillSpots(room, rotation);
+        }
+    }
+
+    private IEnumerator UpdateRoomActiveAmount(RoomStats roomStats, int crewCount)
+    {
+        print(roomStats.roomName);
+        yield return new WaitUntil(() => roomStats.GetComponent<Resource>() && FindObjectOfType<CrewManagement>());
+        CrewManagement crewManagement = FindObjectOfType<CrewManagement>();
+        crewManagement.UpdateRoom(roomStats.gameObject);
+        for (int i = 0; i < crewCount; ++i)
+        {
+            crewManagement.AddCrew(true);
         }
     }
     
@@ -166,5 +193,6 @@ public class SavingLoadingManager : MonoBehaviour
         public int crew;
         public bool isPrePlaced;
         public int objectNum;
+        public bool usedRoom;
     }
 }

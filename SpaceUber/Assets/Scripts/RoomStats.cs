@@ -13,23 +13,20 @@ using UnityEngine;
 
 public class RoomStats : MonoBehaviour
 {
-    public List<Resource> resources { get; private set; } = new List<Resource>();
+    [ReadOnly] public List<Resource> resources = new List<Resource>();
 
     public int minCrew;
     public int maxCrew;
     public int minPower;
     public int maxPower;
 
-    [Tooltip("Ex: .8 for 80% of the orginal price")]
-    public float priceReducationPercent;
+    [Tooltip("Ex: .8 for 80% of the orginal price")] public float priceReducationPercent;
 
-    [Tooltip("How many credits the room costs to place")]
-    public int price;
+    [Tooltip("How many credits the room costs to place")] public int price;
 
     public int currentCrew;
 
-    [ResizableTextArea]
-    public string roomDescription;
+    [ResizableTextArea] public string roomDescription;
 
     public string roomName;
 
@@ -60,11 +57,16 @@ public class RoomStats : MonoBehaviour
 
     public List<GameObject> CharacterEvents;
 
-    IEnumerator Start()
+    private void Awake()
     {
         cam = Camera.main;
         shipStats = FindObjectOfType<ShipStats>();
+    }
+
+    private IEnumerator Start()
+    {
         yield return new WaitUntil(() => TryGetComponent(out Resource resource));
+        
         GetStats();
     }
 
@@ -97,6 +99,7 @@ public class RoomStats : MonoBehaviour
 
         foreach (Resource resource in resources)
         {
+            print(resource.resourceType.resourceName);
             if (flatOutput)
             {
                 switch (resource.resourceType.Rt)
@@ -232,7 +235,7 @@ public class RoomStats : MonoBehaviour
         shipStats.roomBeingPlaced = gameObject;
         SubtractOneRoomStat(resourceData);
 
-        Resource resource = gameObject.GetComponent<Resource>();
+        Resource resource = resources[0];
         
         switch (resourceData.Rt)
         {
