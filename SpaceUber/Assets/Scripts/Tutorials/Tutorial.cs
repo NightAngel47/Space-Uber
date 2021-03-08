@@ -23,10 +23,13 @@ public class Tutorial : Singleton<Tutorial>
     [SerializeField] TutorialNode[] tutorials = new TutorialNode[10];
     [SerializeField] TextMeshProUGUI tutorialTextbox;
     [SerializeField] GameObject tutorialPanel;
+    [SerializeField] GameObject highlightPanel;
 
     private TutorialNode currentTutorial;
     private int index;
 
+
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return) && tutorialPanel.activeSelf == true)
@@ -62,6 +65,7 @@ public class Tutorial : Singleton<Tutorial>
     {
         if (tutorialPanel.activeSelf == true)
         {
+            highlightPanel.SetActive(false);
             tutorialPanel.SetActive(false);
             index = 0;
 
@@ -69,10 +73,13 @@ public class Tutorial : Singleton<Tutorial>
         }
     }
 
-    //top left corner x bottom right corner of highlight
-    public void highlight()
+    //X and Y of center of box, with (0,0) being screen center. Width and height of box
+    public void highlightScreenLocation(int xPos, int yPos, int width, int height)
     {
-
+        highlightPanel.SetActive(true);
+        RectTransform loc = highlightPanel.GetComponent<RectTransform>();
+        loc.sizeDelta = new Vector2(width, height);
+        loc.localPosition = new Vector3(xPos, yPos, 1);
     }
 
 }
