@@ -62,6 +62,7 @@ public class EventChoice
         public float probability;
     }
 
+    [HideInInspector] public bool isScalableEvent;
     /// <summary>
     /// Extra code to determine if a choice is actually available
     /// </summary>
@@ -72,11 +73,15 @@ public class EventChoice
         bool requirementMatch = true;
         driver = thisDriver;
 
+        //as long as it's not a story event, it's scalable
+        isScalableEvent = !driver.isStoryEvent;
+
         if (driver.isCharacterEvent)
         {
             foreach (ChoiceOutcomes outcome in this.outcomes)
             {
                 outcome.AssignCharacterDriver((CharacterEvent)driver);
+                outcome.isScalableEvent = isScalableEvent;
             }
         }
 
@@ -85,6 +90,7 @@ public class EventChoice
             //if anything in choiceRequirements does not match, this bool is automatically false
             for (int i = 0; i < choiceRequirements.Count; i++)
             {
+                choiceRequirements[i].isScalableEvent = isScalableEvent;
                 if (!choiceRequirements[i].MatchesRequirements(ship, driver.campMan))
                 {
                     requirementMatch = false;

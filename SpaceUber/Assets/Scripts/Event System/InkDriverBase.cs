@@ -63,6 +63,7 @@ public class InkDriverBase : MonoBehaviour
     [ShowIf("hasSubsequentChoices"), Tooltip("Sets of subsequent choices that can be accessed by index by an event choice.")]
     public List<SubsequentChoices> subsequentChoices = new List<SubsequentChoices>();
 
+
     /// <summary>
     /// The story itself being read
     /// </summary>
