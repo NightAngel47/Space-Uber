@@ -40,7 +40,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         needsCredits.text = "" + roomStats.price;
         needsPower.text = "" + roomStats.minPower;
         needsCrew.text = "" + roomStats.minCrew + "-" + roomStats.maxCrew.ToString();
-        roomSize.text = roomPrefab.GetComponent<ObjectScript>().roomSize;
+        roomSize.text = roomPrefab.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
 
         if(roomPrefab.TryGetComponent(out Resource resource))
         {
