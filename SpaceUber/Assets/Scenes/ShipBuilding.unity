@@ -6320,7 +6320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &985766748
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6399,23 +6399,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 985766747}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45fc566d142b78a4bb7dec4c65b5790a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hullRepairButton: {fileID: 1438678663}
-  repairToolTipText:
+  crewRefillButton: {fileID: 1438678663}
+  refillToolTipText:
   - {fileID: 1205025057}
   - {fileID: 1205025056}
-  hullDamage: 10
-  priceForHullRepair: 100
-  crewRefillButton: {fileID: 779398904}
-  refillToolTipText:
-  - {fileID: 1210997808}
-  - {fileID: 1210997807}
   crewLost: 1
   priceForCrewReplacement: 20
+  hullRepairButton: {fileID: 779398904}
+  repairToolTipText:
+  - {fileID: 1210997808}
+  - {fileID: 1210997807}
+  hullDamage: 10
+  priceForHullRepair: 100
 --- !u!1001 &992248575
 PrefabInstance:
   m_ObjectHideFlags: 0
