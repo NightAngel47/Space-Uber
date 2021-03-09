@@ -66,6 +66,9 @@ public class CrewManagement : MonoBehaviour
         room = FindObjectOfType<ObjectScript>().gameObject;
 
         CheckForMinCrew();
+
+
+        Tutorial.Instance.setCurrentTutorial(2, true);
     }
 
     private void Update()
@@ -297,6 +300,8 @@ public class CrewManagement : MonoBehaviour
         TurnOffPanel();
         //crewManagementText.SetActive(false);
         room.GetComponent<OverclockRoom>().PlayMiniGame();
+
+        Tutorial.Instance.setCurrentTutorial(3, true);
     }
 
     public void StartChat()
