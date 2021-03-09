@@ -1,5 +1,5 @@
 The former captain, Lexa approaches you. "We recently received a message asking for a donation. Some of the crew members want us to contribute. I recommend doing sending a few credits to boost our morale and Kellis's company image."
-+ [Donate Credits (-Credits +Morale)] -> Donate 
++ [Donate Credits] -> Donate 
 + [Don't Donate] -> Miser
 
 

@@ -81,6 +81,8 @@ public class CampaignManager : MonoBehaviour
                 Debug.LogError("Current Campaign " + currentCamp + " not setup.");
                 return;
         }
+
+        SaveCampaignData();
     }
     public void GoToNextJob()
     {
@@ -88,7 +90,7 @@ public class CampaignManager : MonoBehaviour
         {
             case Campaigns.CateringToTheRich:
                 cateringToTheRich.currentCampaignJobIndex++;
-                
+
                 if (cateringToTheRich.currentCampaignJobIndex >= cateringToTheRich.campaignJobs.Count)
                 {
                     GoToNextCampaign();
@@ -101,7 +103,7 @@ public class CampaignManager : MonoBehaviour
 
             case Campaigns.MysteriousEntity:
                 mysteriousEntity.currentCampaignJobIndex++;
-                
+
                 if (mysteriousEntity.currentCampaignJobIndex >= mysteriousEntity.campaignJobs.Count)
                 {
                     GoToNextCampaign();
@@ -114,7 +116,7 @@ public class CampaignManager : MonoBehaviour
 
             case Campaigns.FinalTest:
                 finalTest.currentCampaignJobIndex++;
-                
+
                 if(finalTest.currentCampaignJobIndex >= finalTest.campaignJobs.Count)
                 {
                     GoToNextCampaign();
@@ -128,10 +130,81 @@ public class CampaignManager : MonoBehaviour
                 Debug.LogError("Current Campaign Jobs for " + currentCamp + " not setup.");
                 return;
         }
+
+        SaveCampaignData();
     }
 
     public void AlterNarrativeVariable(MysteriousEntity.NarrativeVariables meMainOutcomes, string newText)
     {
+
+    }
+
+    private void Start()
+    {
+        if(SavingLoadingManager.instance.GetHasSave())
+        {
+            LoadCampaignData();
+        }
+        else
+        {
+            SaveCampaignData();
+        }
+    }
+
+    public void SaveCampaignData()
+    {
+        cateringToTheRich.SaveEventChoices();
+        mysteriousEntity.SaveEventChoices();
+        finalTest.SaveEventChoices();
+
+        SavingLoadingManager.instance.Save<Campaigns>("currentCamp", currentCamp);
+
+        int currentJob;
+        switch (currentCamp)
+        {
+            case Campaigns.CateringToTheRich:
+                currentJob = cateringToTheRich.currentCampaignJobIndex;
+                break;
+            case Campaigns.MysteriousEntity:
+                currentJob = mysteriousEntity.currentCampaignJobIndex;
+                break;
+            case Campaigns.FinalTest:
+                currentJob = finalTest.currentCampaignJobIndex;
+                break;
+            default:
+                Debug.LogError("Current Campaign Jobs for " + currentCamp + " not setup.");
+                currentJob = 0;
+                break;
+        }
+        SavingLoadingManager.instance.Save<int>("currentJob", currentJob);
+    }
+
+    private void LoadCampaignData()
+    {
+        cateringToTheRich.ResetEventChoicesToJobStart();
+        mysteriousEntity.ResetEventChoicesToJobStart();
+        finalTest.ResetEventChoicesToJobStart();
+
+        currentCamp = SavingLoadingManager.instance.Load<Campaigns>("currentCamp");
+
+        switch (currentCamp)
+        {
+            case Campaigns.CateringToTheRich:
+                cateringToTheRich.currentCampaignJobIndex = SavingLoadingManager.instance.Load<int>("currentJob");
+                EventSystem.instance.TakeStoryJobEvents(cateringToTheRich.campaignJobs[cateringToTheRich.currentCampaignJobIndex]);
+                break;
+            case Campaigns.MysteriousEntity:
+                mysteriousEntity.currentCampaignJobIndex = SavingLoadingManager.instance.Load<int>("currentJob");
+                EventSystem.instance.TakeStoryJobEvents(mysteriousEntity.campaignJobs[mysteriousEntity.currentCampaignJobIndex]);
+                break;
+            case Campaigns.FinalTest:
+                finalTest.currentCampaignJobIndex = SavingLoadingManager.instance.Load<int>("currentJob");
+                EventSystem.instance.TakeStoryJobEvents(finalTest.campaignJobs[finalTest.currentCampaignJobIndex]);
+                break;
+            default:
+                Debug.LogError("Current Campaign Jobs for " + currentCamp + " not setup.");
+                break;
+        }
 
     }
 
@@ -140,52 +213,36 @@ public class CampaignManager : MonoBehaviour
     {
         [ReadOnly] public int currentCampaignJobIndex = 0;
         public List<Job> campaignJobs = new List<Job>();
-        
-        public enum NarrativeOutcomes { NA, SideWithScientist, KillBeckett, LetBalePilot, KilledAtSafari, KilledOnce, TellVIPsAboutClones, VIPTrust, CloneTrust}
-        
-        public bool ctr_sideWithScientist;
-        public bool ctr_killBeckett;
-        public bool ctr_letBalePilot;
-        public bool ctr_killedAtSafari;
-        public bool ctr_tellVIPsAboutClones;
-        public bool ctr_killedOnce;
-        
+
+        public enum NarrativeOutcomes { NA = -1, SideWithScientist, KillBeckett, LetBalePilot, KilledAtSafari, KilledOnce, TellVIPsAboutClones, VIPTrust, CloneTrust}
+
+        private bool[] ctrNarrativeOutcomes = new bool[6];
+
         public int ctr_VIPTrust = 50;
         public int ctr_cloneTrust = 50;
-        
-        // temp saving for resesting
-        private bool saved_ctr_sideWithScientist;
-        private bool saved_ctr_killBeckett;
-        private bool saved_ctr_letBalePilot;
-        private bool saved_ctr_killedAtSafari;
-        private bool saved_ctr_tellVIPsAboutClones;
-        private bool saved_ctr_killedOnce;
-        
-        private int saved_ctr_VIPTrust = 50;
-        private int saved_ctr_cloneTrust = 50;
+
+        public bool GetCtrNarrativeOutcome(NarrativeOutcomes outcome)
+        {
+            return ctrNarrativeOutcomes[(int) outcome];
+        }
+
+        public void SetCtrNarrativeOutcome(NarrativeOutcomes outcome, bool state)
+        {
+            ctrNarrativeOutcomes[(int) outcome] = state;
+        }
 
         public void SaveEventChoices()
         {
-            saved_ctr_sideWithScientist = ctr_sideWithScientist;
-            saved_ctr_killBeckett = ctr_killBeckett;
-            saved_ctr_letBalePilot = ctr_letBalePilot;
-            saved_ctr_killedAtSafari = ctr_killedAtSafari;
-            saved_ctr_tellVIPsAboutClones = ctr_tellVIPsAboutClones;
-            saved_ctr_killedOnce = ctr_killedOnce;
-            saved_ctr_VIPTrust = ctr_VIPTrust;
-            saved_ctr_cloneTrust = ctr_cloneTrust;
+            SavingLoadingManager.instance.Save<bool[]>("ctrNarrativeOutcomes", ctrNarrativeOutcomes);
+            SavingLoadingManager.instance.Save<int>("ctr_VIPTrust", ctr_VIPTrust);
+            SavingLoadingManager.instance.Save<int>("ctr_cloneTrust", ctr_cloneTrust);
         }
-        
+
         public void ResetEventChoicesToJobStart()
         {
-            ctr_sideWithScientist = saved_ctr_sideWithScientist;
-            ctr_killBeckett = saved_ctr_killBeckett;
-            ctr_letBalePilot = saved_ctr_letBalePilot;
-            ctr_killedAtSafari = saved_ctr_killedAtSafari;
-            ctr_tellVIPsAboutClones = saved_ctr_tellVIPsAboutClones;
-            ctr_killedOnce = saved_ctr_killedOnce;
-            ctr_VIPTrust = saved_ctr_VIPTrust;
-            ctr_cloneTrust = saved_ctr_cloneTrust;
+            ctrNarrativeOutcomes = SavingLoadingManager.instance.Load<bool[]>("ctrNarrativeOutcomes");
+            ctr_VIPTrust = SavingLoadingManager.instance.Load<int>("ctr_VIPTrust");
+            ctr_cloneTrust = SavingLoadingManager.instance.Load<int>("ctr_cloneTrust");
         }
     }
 
@@ -197,22 +254,36 @@ public class CampaignManager : MonoBehaviour
 
         public enum NarrativeVariables
         {
-            NA,
+            NA = -1,
             //job 1, Event 2
             KuonInvestigates,
             Decline_Bribe,
             Decline_Fire,
             Accept,
             OpenedCargo
-
         }
-        public bool me_kuonInvestigates;
-        public bool me_openedCargo;
 
-        public bool me_declineBribe;
-        public bool me_declineFire;
-        public bool me_Accept;
+        private bool[] meNarrativeVariables = new bool[5];
 
+        public bool GetMeNarrativeVariable(NarrativeVariables variable)
+        {
+            return meNarrativeVariables[(int) variable];
+        }
+
+        public void SetMeNarrativeVariable(NarrativeVariables variable, bool state)
+        {
+            meNarrativeVariables[(int) variable] = state;
+        }
+
+        public void SaveEventChoices()
+        {
+            SavingLoadingManager.instance.Save<bool[]>("narrativeVariables", meNarrativeVariables);
+        }
+
+        public void ResetEventChoicesToJobStart()
+        {
+            meNarrativeVariables = SavingLoadingManager.instance.Load<bool[]>("narrativeVariables");
+        }
     }
 
     [Serializable]
@@ -224,18 +295,39 @@ public class CampaignManager : MonoBehaviour
         public int assetCount = 0;
         public enum NarrativeVariables
         {
-            NA,
+            NA = -1,
             LexaDoomed,
             LanriExperiment,
             TruthTold,
             ScienceSavior,
-            KellisLoyalty
+            KellisLoyalty,
+            LexaPlan,
+            MateoPlan,
+            LanriRipleyPlan,
+            KuonPlan,
+            ResearchShared
         }
 
-        public bool ft_lexaDoomed;
-        public bool ft_lanriExperiment;
-        public bool ft_truthTold;
-        public bool ft_scienceSavior;
-        public bool ft_kellisLoyalty;
+        private bool[] ftNarrativeVariables = new bool[10];
+
+        public bool GetFtNarrativeVariable(NarrativeVariables variable)
+        {
+            return ftNarrativeVariables[(int) variable];
+        }
+
+        public void SetFtNarrativeVariable(NarrativeVariables variable, bool state)
+        {
+            ftNarrativeVariables[(int) variable] = state;
+        }
+
+        public void SaveEventChoices()
+        {
+            SavingLoadingManager.instance.Save<bool[]>("ftNarrativeVariables", ftNarrativeVariables);
+        }
+
+        public void ResetEventChoicesToJobStart()
+        {
+            ftNarrativeVariables = SavingLoadingManager.instance.Load<bool[]>("ftNarrativeVariables");
+        }
     }
 }

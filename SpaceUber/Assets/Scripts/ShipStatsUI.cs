@@ -177,7 +177,7 @@ public class ShipStatsUI : MonoBehaviour
         }
         else
         {
-            SpawnStatChangeText(crewCurrentText, unassignedChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon, 1);
+            SpawnStatChangeText(crewCurrentText, unassignedChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon, 1, true);
             SpawnStatChangeText(crewMaxText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon, 2);
         }
 
@@ -301,7 +301,8 @@ public class ShipStatsUI : MonoBehaviour
     /// <param name="value"> How much the stat was changed</param>
     /// <param name="icon">The icon it should use when spawning</param>
     /// <param name="canvasNum">The canvas that stat ui should spawn at</param>
-    private void SpawnStatChangeText(TMP_Text statText, int value, Sprite icon, int canvasNum)
+    /// <param name="oppositeValueOnRoom">Default false. If true the resouce value will be opposite in -/+ compared to the ship stat bar</param>
+    private void SpawnStatChangeText(TMP_Text statText, int value, Sprite icon, int canvasNum, bool oppositeValueOnRoom = false)
     {
         if(value != 0)
         {
@@ -353,7 +354,14 @@ public class ShipStatsUI : MonoBehaviour
 
                 MoveAndFadeBehaviour moveAndFadeBehaviourRoom = instanceRoom.GetComponent<MoveAndFadeBehaviour>();
                 moveAndFadeBehaviourRoom.offset = new Vector2(0, -.5f);
-                moveAndFadeBehaviourRoom.SetValue(value, icon);
+                if (oppositeValueOnRoom) // add option to reverse value for stat change UI so that rooms can show removing crew and stat bar can show gaining crew
+                {
+                    moveAndFadeBehaviourRoom.SetValue(-value, icon);
+                }
+                else
+                {
+                    moveAndFadeBehaviourRoom.SetValue(value, icon);
+                }
             }
         }
     }

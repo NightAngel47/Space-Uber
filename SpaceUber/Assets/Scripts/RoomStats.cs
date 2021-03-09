@@ -13,23 +13,20 @@ using UnityEngine;
 
 public class RoomStats : MonoBehaviour
 {
-    public List<Resource> resources { get; private set; } = new List<Resource>();
+    [ReadOnly] public List<Resource> resources = new List<Resource>();
 
     public int minCrew;
     public int maxCrew;
     public int minPower;
     public int maxPower;
 
-    [Tooltip("Ex: .8 for 80% of the orginal price")]
-    public float priceReducationPercent;
+    [Tooltip("Ex: .8 for 80% of the orginal price")] public float priceReducationPercent;
 
-    [Tooltip("How many credits the room costs to place")]
-    public int price;
+    [Tooltip("How many credits the room costs to place")] public int price;
 
     public int currentCrew;
 
-    [ResizableTextArea]
-    public string roomDescription;
+    [ResizableTextArea] public string roomDescription;
 
     public string roomName;
 
@@ -60,18 +57,22 @@ public class RoomStats : MonoBehaviour
 
     public List<GameObject> CharacterEvents;
 
-    IEnumerator Start()
+    private void Awake()
     {
         cam = Camera.main;
         shipStats = FindObjectOfType<ShipStats>();
+    }
+
+    private IEnumerator Start()
+    {
         yield return new WaitUntil(() => TryGetComponent(out Resource resource));
+        
         GetStats();
     }
 
     public void UpdateUsedRoom()
     {
         usedRoom = true;
-        roomTooltipUI.RoomIsUsed();
     }
 
     public void UpdateCurrentCrew(int crew)
@@ -98,6 +99,7 @@ public class RoomStats : MonoBehaviour
 
         foreach (Resource resource in resources)
         {
+            print(resource.resourceType.resourceName);
             if (flatOutput)
             {
                 switch (resource.resourceType.Rt)
@@ -178,9 +180,54 @@ public class RoomStats : MonoBehaviour
                         break;
                 }
             }
-
-            SetActiveAmount(resource);
         }
+    }
+
+    /// <summary>
+    /// Used when setting value from save for rooms that don't cooperate :(
+    /// </summary>
+    /// <param name="resource"></param>
+    /// <param name="value"></param>
+    public void SetStatOnLoad(Resource resource, int value)
+    {
+        switch (resource.resourceType.Rt)
+        {
+            case ResourceDataTypes._Credits:
+                credits += value;
+                break;
+            case ResourceDataTypes._Energy:
+                energy += value;
+                break;
+            case ResourceDataTypes._Security:
+                security += value;
+                break;
+            case ResourceDataTypes._ShipWeapons:
+                shipWeapons += value;
+                break;
+            case ResourceDataTypes._Crew:
+                crew += value;
+                break;
+            case ResourceDataTypes._Food:
+                food += value;
+                break;
+            case ResourceDataTypes._FoodPerTick:
+                foodPerTick += value;
+                break;
+            case ResourceDataTypes._HullDurability:
+                shipHealth += value;
+                break;
+            case ResourceDataTypes._CrewMorale:
+                morale += value;
+                break;
+            case ResourceDataTypes._Payout:
+                credits += value;
+                break;
+            default:
+                Debug.LogError("Resource type: " + resource.resourceType.resourceName + " not setup in RoomStats");
+                break;
+        }
+        
+        SetActiveAmount(resource);
     }
 
     public void SetIsPowered()
@@ -233,7 +280,7 @@ public class RoomStats : MonoBehaviour
         shipStats.roomBeingPlaced = gameObject;
         SubtractOneRoomStat(resourceData);
 
-        Resource resource = gameObject.GetComponent<Resource>();
+        Resource resource = resources[0];
         
         switch (resourceData.Rt)
         {

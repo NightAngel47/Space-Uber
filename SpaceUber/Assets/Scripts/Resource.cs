@@ -5,8 +5,6 @@
  * Description:
  */
 
-using NaughtyAttributes;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Resource : MonoBehaviour

@@ -1,28 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
+using TMPro;
 using UnityEngine;
 
 public class RefillFunctionality : MonoBehaviour
 {
-    [SerializeField] private float costForCrew = 0;
-    [SerializeField] private float costForHullDurability = 0;
+    //[SerializeField] 
+    private float costForCrew = 0;
+    //[SerializeField] 
+    private float costForHullDurability = 0;
 
     /// <summary>
     /// How much of the Hull Damage is the player incrementing
     /// </summary>
-    [SerializeField] private int hullIncrement = 0;
+    //[SerializeField] 
+    private int hullIncrement = 0;
 
     private ShipStats shipStats;
 
-    private int hullDamage = 0;
-    private int priceForHullRepair = 0;
-
-    private int crewLost = 0;
-    private int priceForCrewReplacement = 0;
+    
+    [SerializeField, Foldout("Replace Crew")] private ButtonTwoBehaviour crewRefillButton;
+    [SerializeField, Foldout("Replace Crew")] private TMP_Text[] refillToolTipText = new TMP_Text[2];
+    [SerializeField, Foldout("Replace Crew")] private int crewLost = 0;
+    [SerializeField, Foldout("Replace Crew")] private int priceForCrewReplacement = 0;
+    
+    [SerializeField, Foldout("Repair Hull")] private ButtonTwoBehaviour hullRepairButton;
+    [SerializeField, Foldout("Repair Hull")] private TMP_Text[] repairToolTipText = new TMP_Text[2];
+    [SerializeField, Foldout("Repair Hull")] private int hullDamage = 0;
+    [SerializeField, Foldout("Repair Hull")] private int priceForHullRepair = 0;
 
     public void Start()
     {
         shipStats = FindObjectOfType<ShipStats>();
+        
+        // set refill tooltip costs/gains
+        refillToolTipText[0].text = "-" + priceForCrewReplacement;
+        refillToolTipText[1].text = crewLost.ToString();
+
+        // set repair tooltip costs/gains
+        repairToolTipText[0].text = "-" + priceForHullRepair;
+        repairToolTipText[1].text = hullDamage.ToString();
+
+        CheckCanRefillCrew();
+        CheckCanRepairShip();
+    }
+
+    public void RefillCrew()
+    {
+        if (shipStats.Credits >= priceForCrewReplacement)
+        {
+            shipStats.Credits += -priceForCrewReplacement;
+            shipStats.CrewCurrent += new Vector3(crewLost, 0, crewLost);
+        }
     }
 
     public void RefillHullDurability()
@@ -34,13 +64,35 @@ public class RefillFunctionality : MonoBehaviour
         }
     }
 
-    public void RefillCrew()
+    // if crew refill should deactivate
+    private void CheckCanRefillCrew()
     {
-        if (shipStats.Credits >= priceForCrewReplacement)
+        // has enough credits and crew current is less than capacity
+        hullRepairButton.SetButtonInteractable(shipStats.Credits >= priceForCrewReplacement && shipStats.CrewCurrent.x < shipStats.CrewCurrent.y);
+    }
+
+    // if hull repair should deactivate
+    private void CheckCanRepairShip()
+    {
+        // has enough credits and hull is less than max
+        hullRepairButton.SetButtonInteractable(shipStats.Credits < priceForHullRepair && shipStats.ShipHealthCurrent.x < shipStats.ShipHealthCurrent.y);
+    }
+
+    /// <summary>
+    /// How much of the crew is to be replace. Passes in bool: true for adding, false for subtracting
+    /// </summary>
+    public void CrewToReplace(bool addCrew)
+    {
+        if (addCrew == true && crewLost < shipStats.CrewCurrent.y - shipStats.CrewCurrent.x)
         {
-            shipStats.Credits += -priceForCrewReplacement;
-            shipStats.CrewCurrent += new Vector3(crewLost, 0, crewLost);
+            crewLost += 1;
         }
+        else if(addCrew == false && crewLost > 0)
+        {
+            crewLost -= 1;
+        }
+
+        priceForCrewReplacement = (int)(crewLost * costForCrew);
     }
 
     /// <summary>
@@ -66,22 +118,5 @@ public class RefillFunctionality : MonoBehaviour
         }
 
         priceForHullRepair = (int)(hullDamage * costForHullDurability);
-    }
-
-    /// <summary>
-    /// How much of the crew is to be replace. Passes in bool: true for adding, false for subtracting
-    /// </summary>
-    public void CrewToReplace(bool addCrew)
-    {
-        if (addCrew == true && crewLost < shipStats.CrewCurrent.y - shipStats.CrewCurrent.x)
-        {
-            crewLost += 1;
-        }
-        else if(addCrew == false && crewLost > 0)
-        {
-            crewLost -= 1;
-        }
-
-        priceForCrewReplacement = (int)(crewLost * costForCrew);
     }
 }
