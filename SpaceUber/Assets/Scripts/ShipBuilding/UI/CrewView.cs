@@ -43,18 +43,24 @@ public class CrewView : MonoBehaviour
                     //crewSlots[i].gameObject.SetActive(false);
                     crewSlots[i].GetComponent<Image>().sprite = vacantSprite;
                 }
+
+                updateCrewViewRotation();
             }
-            
-            
-            
         }
     }
 
-    public void updateCrewView()
+    //Rotates crew icons upright relative to how their room is rotated
+    public void updateCrewViewRotation()
     {
-        
+        for (int i = 0; i < gameObject.GetComponent<RoomStats>().maxCrew; i++)
+        {
+            Quaternion temp = crewSlots[i].GetComponentInParent<Transform>().transform.rotation;
+            temp.z = - gameObject.GetComponentInParent<Transform>().transform.rotation.z;
+            crewSlots[i].GetComponentInParent<Transform>().transform.rotation = temp;
+        }
     }
 
+    //called by AutoPopulator to populate list with icons
     public void activateCrewSlot(int index, GameObject crewViewSlotPrefab)
     {
         crewSlots[index] = crewViewSlotPrefab;
