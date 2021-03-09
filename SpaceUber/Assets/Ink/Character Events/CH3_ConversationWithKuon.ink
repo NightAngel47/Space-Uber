@@ -29,5 +29,5 @@ Kuon pauses, as if this is the first time he had ever taken his own thoughts int
 “Ah, I see.” Is all that he can manage to say. It seems that this conversation has reached a pitiful conclusion. “Well, if you think of anything please let me know. I’d be happy to help.” With that, he leaves.
 ->DONE
 == NegRes2 ==
-It seems that you’ve struck a nerve with this response. “My performance has been...unsatisfactory? Are you sure?” His eyes search the floor, attempting to find something that isn’t there. “Forgive my impudence, but I’d have to disagree. I won’t say that I’ve been doing my absolute best, and for that I apologize. However, and maybe this is just me, but I’d like to think that I do important work on this ship.” He glares at you while he speaks, a mixture of disappointment and frustration, “That’s all I had to discuss, I’ll be on my way.”
+“Forgive my impudence, but I’d have to disagree. I won’t say that I’ve been doing my absolute best, and for that I apologize. However, and maybe this is just me, but I’d like to think that I do important work on this ship.” He glares at you while he speaks, a mixture of disappointment and frustration, “That’s all I had to discuss, I’ll be on my way.”
 ->DONE
