@@ -40,6 +40,7 @@ public class ObjectMover : MonoBehaviour
         c.a = .5f;
         gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
         os = gameObject.GetComponent<ObjectScript>();
+        
     }
 
     public void UpdateMouseBounds(float ymin, float ymax, float xmin, float xmax)
@@ -198,6 +199,9 @@ public class ObjectMover : MonoBehaviour
                 AudioManager.instance.PlaySFX(Placements[Random.Range(0, Placements.Length)]);
                 gameObject.GetComponent<RoomStats>().AddRoomStats();
 
+                //makes sure the room is on the lower layer so that the new rooms can be on top without flickering
+                gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
+
                 hasPlaced = true;
 
                 if (os.needsSpecificLocation == true)
@@ -210,15 +214,19 @@ public class ObjectMover : MonoBehaviour
                     os.RoomHighlightSpotsOff();
                 }
 
-
-                StartCoroutine(os.WaitToClickRoom());
+                Cursor.visible = true;
+                //HOVER UI does not happen when mouse is hidden
+                //StartCoroutine(os.WaitToClickRoom());
 
                 gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = ObjectScript.c;
                 gameObject.GetComponent<ObjectMover>().enabled = false;
+                
+                FindObjectOfType<EditCrewButton>().CheckForRooms();
             }
 
             else //If something is placed allow player to keep moving room
             {
+                hasPlaced = false;
                 TurnOnBeingDragged();
             }
         }
@@ -244,12 +252,6 @@ public class ObjectMover : MonoBehaviour
     {
         yield return new WaitForSeconds(.1f);
         canPlace = true;
-    }
-
-    public IEnumerator WaitForText()
-    {
-        yield return new WaitForSeconds(3);
-        FindObjectOfType<ShipStats>().cantPlaceText.SetActive(false);
     }
 
     //public void LayoutPlacement() //for spawning from layout to make sure they act as if they were placed normallys

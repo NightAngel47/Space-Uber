@@ -15,6 +15,7 @@ public class Tick : MonoBehaviour
     
     // days since variables
     private int daysSince;
+    private int daysSinceChat;
     private TMP_Text daysSinceDisplay;
 
     public void Awake()
@@ -45,7 +46,7 @@ public class Tick : MonoBehaviour
 
     private IEnumerator TickUpdate()
     {
-        yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_EventTimer").isLoaded);
+        yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_Runtime").isLoaded);
         daysSinceDisplay = GameObject.FindGameObjectWithTag("DaysSince").GetComponent<TMP_Text>();
         
         while (GameManager.instance.currentGameState == InGameStates.Events)
@@ -71,6 +72,7 @@ public class Tick : MonoBehaviour
 
                 // increment days since events
                 DaysSince++;
+                daysSinceChat++;
 
                 MoraleManager.instance.CheckMutiny();
 
@@ -97,6 +99,15 @@ public class Tick : MonoBehaviour
         {
             daysSince = value;
             if(daysSinceDisplay != null) daysSinceDisplay.text = daysSince.ToString();
+        }
+    }
+
+    public int DaysSinceChat
+    {
+        get => daysSinceChat;
+        set
+        {
+            daysSince = value;
         }
     }
 }

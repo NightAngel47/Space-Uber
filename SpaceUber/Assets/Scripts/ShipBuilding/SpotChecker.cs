@@ -98,7 +98,7 @@ public class SpotChecker : MonoBehaviour
                 if (spots.rows[(int)Math.Round(gridPosBase.transform.position.y + gridSpots[i].y)]
                     .row[(int)Math.Round(gridPosBase.transform.position.x + gridSpots[i].x)] != 0 || (int)Math.Round(cube.transform.position.y + gridSpots[i].y) >= 6
                     || (int)Math.Round(cube.transform.position.x + gridSpots[i].x) >= 9)
-                    {
+                {
                     AudioManager.instance.PlaySFX(cannotPlacePosition[UnityEngine.Random.Range(0, cannotPlacePosition.Length)]);
                     cannotPlace = true; //lets user keep moving object
                     Debug.Log("Cannot place here");

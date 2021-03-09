@@ -14,11 +14,18 @@ public class HullRepairMiniGame : MiniGame
 	[SerializeField] Color coveredColor = Color.green;
 	[SerializeField] Color uncoveredColor = Color.red;
 
-	private void Update()
+    private void Update()
 	{
 		int gridCoveredCount = 0;
 		foreach (HullGridSquare gridSquare in gridSquares) { if (gridSquare.IsCovered()) { gridCoveredCount++; } }
-		if (!gameOver) { if (gridCoveredCount == gridSquares.Length) { EndMiniGameSuccess(); AudioManager.instance.PlaySFX("Fixed"); } }
+		if (!gameOver)
+        {
+            if (gridCoveredCount == gridSquares.Length)
+            {
+                EndMiniGameSuccess();
+                AudioManager.instance.PlaySFX("Fixed");
+            }
+        }
 	}
 
 	public Color CoveredColor() { return coveredColor; }
