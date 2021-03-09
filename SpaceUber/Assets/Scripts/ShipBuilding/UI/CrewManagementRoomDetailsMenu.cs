@@ -55,6 +55,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         }
         
         roomImage.sprite = selectedRoom.GetComponentInChildren<SpriteRenderer>().sprite;
+        //selectedRoom.GetComponent<CrewView>().updateCrewView();//
 
         RoomStats roomStats = selectedRoom.GetComponent<RoomStats>();
         roomName.text = roomStats.roomName;

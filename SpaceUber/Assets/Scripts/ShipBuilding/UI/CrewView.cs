@@ -1,12 +1,24 @@
+/* Frank Calabrese
+ * 3/9/21
+ * CrewView.cs
+ * handles adding/removing crew visual changes in crewView. Also assists CrewViewAutoPopulator.cs
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CrewView : MonoBehaviour
 {
-    [SerializeField] GameObject[] crewSlots;
-    [SerializeField] GameObject crewView;
+    [SerializeField] Sprite vacantSprite;
+    [SerializeField] Sprite occupiedSprite;
 
+    [SerializeField] GameObject[] crewSlots = new GameObject[10];
+    [SerializeField] GameObject crewView;
+    private bool finishedPopulating = false;
+
+    
     private void Update()
     {
         if (CrewViewManager.Instance.GetCrewViewStatus() == false)
@@ -17,16 +29,40 @@ public class CrewView : MonoBehaviour
         {
             crewView.SetActive(true);
 
-            for (int i = 0; i < gameObject.GetComponent<RoomStats>().currentCrew; i++)
+            if(finishedPopulating)
             {
-                crewSlots[i].gameObject.SetActive(true);
-            }
+                for (int i = 0; i < gameObject.GetComponent<RoomStats>().currentCrew; i++)
+                {
+                    //crewSlots[i].gameObject.SetActive(true);
+                    crewSlots[i].GetComponent<Image>().sprite = occupiedSprite;
+                }
 
-            for (int i = gameObject.GetComponent<RoomStats>().currentCrew; i < gameObject.GetComponent<RoomStats>().maxCrew; i++)
-            {
-                crewSlots[i].gameObject.SetActive(false);
+
+                for (int i = gameObject.GetComponent<RoomStats>().currentCrew; i < gameObject.GetComponent<RoomStats>().maxCrew; i++)
+                {
+                    //crewSlots[i].gameObject.SetActive(false);
+                    crewSlots[i].GetComponent<Image>().sprite = vacantSprite;
+                }
             }
+            
+            
+            
         }
+    }
+
+    public void updateCrewView()
+    {
+        
+    }
+
+    public void activateCrewSlot(int index, GameObject crewViewSlotPrefab)
+    {
+        crewSlots[index] = crewViewSlotPrefab;
+    }
+
+    public void finishPopulatingCrewSlots()
+    {
+        finishedPopulating = true;
     }
 
         

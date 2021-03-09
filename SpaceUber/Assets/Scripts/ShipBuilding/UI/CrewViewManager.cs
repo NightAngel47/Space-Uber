@@ -1,3 +1,9 @@
+/* Frank Calabrese
+ * 3/9/21
+ * CrewViewManager.cs
+ * allows player to toggle crewView on or off.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
