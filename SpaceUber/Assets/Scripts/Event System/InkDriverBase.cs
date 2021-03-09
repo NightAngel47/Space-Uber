@@ -25,7 +25,9 @@ public class InkDriverBase : MonoBehaviour
     public bool isMutinyEvent;
 
     [ShowIf("isStoryEvent")] public int storyIndex;
-    [SerializeField] private Sprite backgroundImage;
+    [SerializeField] private bool hasAnimatedBG = false;
+    [SerializeField, HideIf("hasAnimatedBG")] private Sprite backgroundImage;
+    [SerializeField, ShowIf("hasAnimatedBG")] private GameObject backgroundAnimation;
     public string EventName => eventName; 
 
     //A prefab of the button we will generate every time a choice is needed
@@ -82,6 +84,11 @@ public class InkDriverBase : MonoBehaviour
         Refresh(); //starts the dialogue
         titleBox.text = eventName;
         backgroundUI.sprite = backgroundImage;
+        if (hasAnimatedBG)
+        {
+            Instantiate(backgroundAnimation, backgroundUI.transform.parent);
+            backgroundUI.enabled = false;
+        }
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
     }
 
