@@ -63,6 +63,8 @@ public class CrewManagement : MonoBehaviour
         room = FindObjectOfType<ObjectScript>().gameObject;
 
         CheckForMinCrew();
+
+        CrewViewManager.Instance.EnableCrewView();//automatically enable crew view when you enter crew mgmt 
     }
 
     private void Update()
