@@ -197,7 +197,15 @@ public class ObjectMover : MonoBehaviour
             if (SpotChecker.cannotPlace == false) //Once spots are checked if cannotPlace = false/no room is placed there place room
             {
                 AudioManager.instance.PlaySFX(Placements[Random.Range(0, Placements.Length)]);
-                gameObject.GetComponent<RoomStats>().AddRoomStats();
+
+                if (os.isEdited == false)
+                {
+                    gameObject.GetComponent<RoomStats>().AddRoomStats();
+                }
+                else
+                {
+                    os.isEdited = false;
+                }
 
                 //makes sure the room is on the lower layer so that the new rooms can be on top without flickering
                 gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
