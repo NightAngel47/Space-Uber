@@ -23,6 +23,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     [SerializeField, Foldout("UI Elements")] TMP_Text producesResource;
     [SerializeField, Foldout("UI Elements")] TMP_Text producesAmount;
     [SerializeField, Foldout("UI Elements")] TMP_Text currentCrew;
+    [SerializeField, Foldout("UI Elements")] TMP_Text level;
 
     [SerializeField] private string noRoomSelectedMessage = "Select a room to view its details.";
     [SerializeField] private GameObject[] roomDetailSections = new GameObject[2];
@@ -41,6 +42,8 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
        producesAmount.text = "";
 
        currentCrew.text = "";
+
+       level.text = "";
 
        foreach (GameObject roomDetailSection in roomDetailSections)
        {
@@ -64,6 +67,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         needsCrew.text = roomStats.minCrew.ToString() + "-" + roomStats.maxCrew.ToString();
         currentCrew.text = roomStats.currentCrew.ToString();
         roomSize.text = selectedRoom.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
+        level.text = roomStats.GetRoomLevel().ToString();
 
         if (selectedRoom.TryGetComponent(out Resource resource))
         {

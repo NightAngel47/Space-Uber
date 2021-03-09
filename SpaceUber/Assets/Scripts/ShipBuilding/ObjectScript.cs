@@ -53,6 +53,9 @@ public class ObjectScript : MonoBehaviour
     private bool mouseReleased = false;
     public static bool roomIsHovered;
 
+    /// <summary>
+    /// When rooms are being edited, stats do not get added again when placed
+    /// </summary>
     public bool isEdited = false;
 
     private void Start()

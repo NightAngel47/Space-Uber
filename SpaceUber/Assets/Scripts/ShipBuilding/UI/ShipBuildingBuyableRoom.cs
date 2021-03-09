@@ -23,6 +23,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     [SerializeField] TextMeshProUGUI needsCrew;
     [SerializeField] TextMeshProUGUI producesResource;
     [SerializeField] TextMeshProUGUI producesAmount;
+    [SerializeField] TextMeshProUGUI level;
 
     private SpawnObject objectsToSpawn;
 
@@ -41,6 +42,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         needsPower.text = "" + roomStats.minPower;
         needsCrew.text = "" + roomStats.minCrew + "-" + roomStats.maxCrew.ToString();
         roomSize.text = roomPrefab.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
+        level.text = roomPrefab.GetComponent<RoomStats>().GetRoomLevel().ToString();
 
         if(roomPrefab.TryGetComponent(out Resource resource))
         {
