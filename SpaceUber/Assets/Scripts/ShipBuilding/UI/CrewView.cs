@@ -18,6 +18,7 @@ public class CrewView : MonoBehaviour
     [SerializeField] GameObject crewView;
     private bool finishedPopulating = false;
     [SerializeField] GameObject redOverlay;
+    [SerializeField] float vacantOpacity;
 
     
     private void Update()
@@ -35,14 +36,20 @@ public class CrewView : MonoBehaviour
                 for (int i = 0; i < gameObject.GetComponent<RoomStats>().currentCrew; i++)
                 {
                     //crewSlots[i].gameObject.SetActive(true);
-                    crewSlots[i].GetComponent<Image>().sprite = occupiedSprite;
+                    //crewSlots[i].GetComponent<Image>().sprite = occupiedSprite;
+                    var tempcolor = crewSlots[i].GetComponent<Image>().color;
+                    tempcolor.a = 1f;
+                    crewSlots[i].GetComponent<Image>().color = tempcolor;
                 }
 
 
                 for (int i = gameObject.GetComponent<RoomStats>().currentCrew; i < gameObject.GetComponent<RoomStats>().maxCrew; i++)
                 {
                     //crewSlots[i].gameObject.SetActive(false);
-                    crewSlots[i].GetComponent<Image>().sprite = vacantSprite;
+                    //crewSlots[i].GetComponent<Image>().sprite = vacantSprite;
+                    var tempcolor = crewSlots[i].GetComponent<Image>().color;
+                    tempcolor.a = vacantOpacity;
+                    crewSlots[i].GetComponent<Image>().color = tempcolor;
                 }
 
                 updateCrewViewRotation();
