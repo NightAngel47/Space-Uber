@@ -22,6 +22,7 @@ public class Tutorial : Singleton<Tutorial>
 {
     [SerializeField] TutorialNode[] tutorials = new TutorialNode[10];
     [SerializeField] TextMeshProUGUI tutorialTextbox;
+    [SerializeField] TextMeshProUGUI tutorialTitleTextbox;
     [SerializeField] GameObject tutorialPanel;
     [SerializeField] GameObject highlightPanel;
 
@@ -56,6 +57,7 @@ public class Tutorial : Singleton<Tutorial>
         {
             tutorialPanel.SetActive(true);
             tutorialTextbox.text = currentTutorial.tutorialMessages[0];
+            tutorialTitleTextbox.text = currentTutorial.tutorialName;
             index = 1;
         }
 

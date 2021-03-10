@@ -49,6 +49,8 @@ public class TransitionGameStates : MonoBehaviour
 
         GameManager.instance.ChangeInGameState(InGameStates.Events);
         AudioManager.instance.PlayMusicWithTransition("General Theme");
+
+        Tutorial.Instance.setCurrentTutorial(4, true);
     }
 
     public void ChangeToCrewManagement()

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -211,7 +211,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 5000
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &73931293
 RectTransform:
@@ -235,6 +235,142 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &164589656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 164589657}
+  - component: {fileID: 164589659}
+  - component: {fileID: 164589658}
+  m_Layer: 5
+  m_Name: TutorialTitle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &164589657
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164589656}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1898989066}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 19.8, y: -30.270016}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &164589658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164589656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'Tutorial Title
+
+'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 814f343da59605545b19571b87874865, type: 2}
+  m_sharedMaterial: {fileID: -6362999969210495281, guid: 814f343da59605545b19571b87874865,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 16
+  m_fontSizeBase: 16
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: -193.6485, y: -11.966284, z: -152.94798, w: -248.74792}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &164589659
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164589656}
+  m_CullTransparentMesh: 0
 --- !u!1 &194229036
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,13 +848,14 @@ RectTransform:
   m_Children:
   - {fileID: 865373334}
   - {fileID: 1110193774}
+  - {fileID: 1898989066}
   m_Father: {fileID: 73931293}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -13.839966, y: 2.7399902}
-  m_SizeDelta: {x: -390.42358, y: -99.5275}
+  m_AnchoredPosition: {x: 26.77, y: 143.4}
+  m_SizeDelta: {x: -356.14117, y: -359.46603}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &654673028
 MonoBehaviour:
@@ -733,7 +870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.13207549, g: 0.12397652, b: 0.12397652, a: 0.99215686}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1135,7 +1272,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25.8, y: 134.6}
+  m_AnchoredPosition: {x: 19.8, y: -17.3}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &865373335
@@ -1167,8 +1304,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1185,14 +1322,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1221,7 +1358,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -123.140915, y: -11.966284, z: -73.502754, w: -248.74792}
+  m_margin: {x: -138.36324, y: -13.633545, z: -96.81226, w: 2.161995}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1387,29 +1524,73 @@ MonoBehaviour:
     tutorialFinished: 0
   - tutorialName: 'Ship Building Tutorial '
     tutorialMessages:
-    - Message 1/3 of ship building tutorial.
-    - Message 2/3 of ship building tutorial.
-    - Message 3/3 of ship building tutorial.
+    - Welcome to Shipbuilding! Click the tabs on the left to open the shop. Click
+      and drag rooms onto the ship to place them there.
+    - Right click on a placed room to sell and remove it. The Sale price is reduced
+      if the room went on at least one trip.
+    - Left click a room you've placed to pick it back up. Don't worry, this will
+      retain any assigned crew. You may press Q/E to rotate a room you are holding.
+    - Notice that you cannot place rooms on top of each other.
+    - 'Rooms cost money and power to operate, but are essential to make it to your
+      destination. They provide your ship with stats. Hover over the icons directly
+      above this tutorial to see what the stats do. '
+    - 'Some rooms have restrictions on where they can be placed. These rooms will
+      highlight potential placement locations in blue when they''re dragged from
+      the left menu. '
+    - You may press the question mark on the bottom right of the shop to replay this
+      tutorial at any time. Good luck!
     tutorialFinished: 0
   - tutorialName: Crew Management Tutorial
     tutorialMessages:
-    - Message 1/3 of crew tutorial.
-    - Message 2/3 of crew tutorial.
-    - Message 3/3 of crew tutorial.
+    - Welcome to Crew Management! Most rooms need human crew to operate them.
+    - Click on a room to open the room details window and assign/unassign crew members
+      to that room. Notice you can only can assign crew members up to the number
+      of max crew of that room, or until your unassigned crew are depleted.
+    - You must be prepared to work with your crew effectively! Despite any negative
+      feelings you may have toward their ineffective, and frankly disposable fleshy
+      coils.
+    - 'Note that crew can be replaced at a port if something "unfortunate" happens
+      to them on a journey. You can also pay to have your ship repaired if something
+      truly unfortunate happens. '
+    - Assigning crew members to rooms increases room output. You can see how many
+      workers a room has by looking at the icons over the rooms. This view can be
+      enabled or disabled at any time by pressing Tab.
+    - 'You may press the shipbuilding button in the lower left of the screen to go
+      back to ship building if you realize you need to change your ship. '
+    - "You may also click the question mark on the top left of the crew management
+      screen to replay this tutorial at any time. When you\u2019re ready to go, click
+      the \u201Cbegin job\u201D button."
     tutorialFinished: 0
   - tutorialName: Morale/Overtime Tutorial
     tutorialMessages:
-    - Message 1/3 of overtime tutorial.
-    - Message 2/3 of overtime tutorial.
-    - Message 3/3 of overtime tutorial.
+    - Complete minigames to increase output of a room temporarily.
+    - 'Unfortunately we still have to listen to our crew and try to make them happy,
+      lest they stage a mutiny against you. Keeping them happy will at least make
+      them somewhat efficient. '
+    - "The lower the crew\u2019s morale, the more likely they are to stage a mutiny.
+      If they do mutinize, they\u2019ll ask for some money. Greedy bastards."
+    - "One way to keep them happy is to have a \u201Cconversation\u201D with them.
+      Clicking on a room with their respective resource will let you talk to that
+      crewmate about anything on their mind."
+    - "A good conversation will leave them happy and increase morale, but a bad one
+      could make them wish you didn\u2019t talk to them in the first place. Flex
+      those AI social algorithms! "
+    - "You might come across an event whilst forcing OT. You\u2019ll be alerted of
+      this so you can focus on the event. "
+    - 'You may replay this tutorial at any time by clicking the question mark at
+      the top right of the room details menu. '
     tutorialFinished: 0
   - tutorialName: Random Events Tutorial
     tutorialMessages:
-    - Message 1/3 of random events tutorial.
-    - Message 2/3 of random events tutorial.
-    - Message 3/3 of random events tutorial.
+    - "Space is vast, so the unexpected might happen. It\u2019s up to you to decide
+      what to do. After some time passes, an event such as this one will take place."
+    - "Always remember the bottom line. Make as much money as you can. Sometimes
+      you might have to sacrifice crew. Whatever. Like I said, they\u2019re disposable."
+    - But remember that people will remember the choices you make and it may affect
+      things down the line.
     tutorialFinished: 0
   tutorialTextbox: {fileID: 865373335}
+  tutorialTitleTextbox: {fileID: 164589658}
   tutorialPanel: {fileID: 654673026}
   highlightPanel: {fileID: 900737226}
 --- !u!4 &927739200
@@ -1673,7 +1854,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 45.3, y: -166.7}
+  m_AnchoredPosition: {x: 289.7, y: -56.4}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1110193775
@@ -1695,7 +1876,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter to continue
+  m_text: Enter
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 814f343da59605545b19571b87874865, type: 2}
   m_sharedMaterial: {fileID: -6362999969210495281, guid: 814f343da59605545b19571b87874865,
@@ -1705,8 +1886,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1723,8 +1904,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3848,6 +4029,81 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1858630695}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1898989065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1898989066}
+  - component: {fileID: 1898989068}
+  - component: {fileID: 1898989067}
+  m_Layer: 5
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1898989066
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898989065}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 164589657}
+  m_Father: {fileID: 654673027}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 34.57}
+  m_SizeDelta: {x: 0, y: -69.13135}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1898989067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898989065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1898989068
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898989065}
+  m_CullTransparentMesh: 0
 --- !u!1 &1937380107
 GameObject:
   m_ObjectHideFlags: 0
