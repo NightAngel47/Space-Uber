@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1563,7 +1563,9 @@ MonoBehaviour:
     tutorialFinished: 0
   - tutorialName: Morale/Overtime Tutorial
     tutorialMessages:
-    - Complete minigames to increase output of a room temporarily.
+    - Each room has an overtime button in the bottom of the room details panel. This
+      button will trigger a minigame. Complete minigames to increase output of a
+      room temporarily.
     - 'Unfortunately we still have to listen to our crew and try to make them happy,
       lest they stage a mutiny against you. Keeping them happy will at least make
       them somewhat efficient. '
@@ -1575,8 +1577,8 @@ MonoBehaviour:
     - "A good conversation will leave them happy and increase morale, but a bad one
       could make them wish you didn\u2019t talk to them in the first place. Flex
       those AI social algorithms! "
-    - "You might come across an event whilst forcing OT. You\u2019ll be alerted of
-      this so you can focus on the event. "
+    - "You might come across an event whilst forcing overtime. You\u2019ll be alerted
+      of this so you can focus on the event. "
     - 'You may replay this tutorial at any time by clicking the question mark at
       the top right of the room details menu. '
     tutorialFinished: 0

@@ -15,7 +15,7 @@ public class TutorialNode
 {
     public string tutorialName;
     public string[] tutorialMessages;
-    public bool tutorialFinished; //change to private later
+    public bool tutorialFinished; 
 }
 
 public class Tutorial : Singleton<Tutorial>
@@ -48,6 +48,8 @@ public class Tutorial : Singleton<Tutorial>
     //call this to display a tutorial. Tutorial IDs can be found in the inspector
     public void setCurrentTutorial(int tutorialID, bool forcedTutorial)
     {
+        //if you're already in a tutorial, stop.
+        if (tutorialPanel.activeSelf == true) return;
         //if the game tries to force a tutorial the player has already seen, stop.
         if (tutorials[tutorialID].tutorialFinished == true && forcedTutorial == true) return;
 
