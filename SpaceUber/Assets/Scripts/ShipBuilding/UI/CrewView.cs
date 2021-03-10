@@ -17,6 +17,7 @@ public class CrewView : MonoBehaviour
     [SerializeField] GameObject[] crewSlots = new GameObject[10];
     [SerializeField] GameObject crewView;
     private bool finishedPopulating = false;
+    [SerializeField] GameObject redOverlay;
 
     
     private void Update()
@@ -69,6 +70,16 @@ public class CrewView : MonoBehaviour
     public void finishPopulatingCrewSlots()
     {
         finishedPopulating = true;
+    }
+
+    public void toggleOverlay()
+    {
+        if (redOverlay.activeSelf == true) redOverlay.SetActive(false);
+        else redOverlay.SetActive(true);
+    }
+    public void turnOverlayOff()
+    {
+        redOverlay.SetActive(false);
     }
 
         

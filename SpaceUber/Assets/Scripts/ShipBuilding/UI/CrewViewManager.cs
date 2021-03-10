@@ -14,7 +14,7 @@ public class CrewViewManager : Singleton<CrewViewManager>
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if(Input.GetKeyDown(KeyCode.Tab))
         {
             if (crewViewEnabled == false) EnableCrewView();
             else DisableCrewView();

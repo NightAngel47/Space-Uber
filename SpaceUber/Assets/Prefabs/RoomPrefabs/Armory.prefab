@@ -43,6 +43,11 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 433577519983742417, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 724125383989439506, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_RootOrder
@@ -53,6 +58,22 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: ef8f67715c173a444b6312eade963690, type: 2}
+    - target: {fileID: 1215871102662997994, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1903612125139519356, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b58e2d8ea2bb81d42acf1e8071a2eb5d,
+        type: 3}
+    - target: {fileID: 1903612125139519356, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomEvents.Array.size
@@ -77,6 +98,17 @@ PrefabInstance:
     - target: {fileID: 3286901568247703781, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3793781089566335948, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e11196f05932b8b40bbdceee266129ff,
+        type: 3}
+    - target: {fileID: 3793781089566335948, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_Type
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
@@ -242,6 +274,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ChildAlignment
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6230375485423902897, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6635282969121139961, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -433,6 +470,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8519784862819030272, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0060007
+      objectReference: {fileID: 0}
+    - target: {fileID: 8519784862819030272, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 2.009644
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3817747607271389732, guid: d75062b47e0b75b4384d6d8e19141c62, type: 3}

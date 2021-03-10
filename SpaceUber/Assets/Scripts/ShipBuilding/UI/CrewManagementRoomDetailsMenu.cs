@@ -26,11 +26,14 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
 
     [SerializeField] private string noRoomSelectedMessage = "Select a room to view its details.";
     [SerializeField] private GameObject[] roomDetailSections = new GameObject[2];
+    private CrewView[] roomsInScene; 
 
 
     // Start is called before the first frame update
     void Start()
     {
+
+       roomsInScene = GameObject.FindObjectsOfType<CrewView>();
        roomName.text = noRoomSelectedMessage;
        roomDesc.text = "";
        roomSize.text = "";
@@ -46,6 +49,11 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
        {
            roomDetailSection.SetActive(false);
        }
+
+       foreach(CrewView crewView in roomsInScene)
+        {
+            crewView.gameObject.GetComponent<CrewView>().turnOverlayOff();
+        }
     }
     public void UpdatePanelInfo()
     {
@@ -91,6 +99,8 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
 
     public void ChangeCurrentRoom(GameObject room)
     {
+        if(selectedRoom != null) selectedRoom.GetComponent<CrewView>().toggleOverlay();
         selectedRoom = room;
+        room.GetComponent<CrewView>().toggleOverlay();
     }
 }
