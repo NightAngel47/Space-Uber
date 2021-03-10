@@ -72,15 +72,15 @@ public class CrewView : MonoBehaviour
         finishedPopulating = true;
     }
 
-    public void toggleOverlay()
-    {
-        if (redOverlay.activeSelf == true) redOverlay.SetActive(false);
-        else redOverlay.SetActive(true);
-    }
-    public void turnOverlayOff()
-    {
-        redOverlay.SetActive(false);
-    }
+    //public void toggleOverlay()
+    //{
+        //if (redOverlay.activeSelf == true) redOverlay.SetActive(false);
+        //else redOverlay.SetActive(true);
+    //}
+    //public void turnOverlayOff()
+    //{
+        //redOverlay.SetActive(false);
+    //}
 
         
 }

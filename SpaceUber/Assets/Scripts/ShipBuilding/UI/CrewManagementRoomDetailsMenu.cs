@@ -50,10 +50,10 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
            roomDetailSection.SetActive(false);
        }
 
-       foreach(CrewView crewView in roomsInScene)
-        {
-            crewView.gameObject.GetComponent<CrewView>().turnOverlayOff();
-        }
+       //foreach(CrewView crewView in roomsInScene)
+        //{
+            //crewView.gameObject.GetComponent<CrewView>().turnOverlayOff();
+        //}
     }
     public void UpdatePanelInfo()
     {
@@ -99,8 +99,8 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
 
     public void ChangeCurrentRoom(GameObject room)
     {
-        if(selectedRoom != null) selectedRoom.GetComponent<CrewView>().toggleOverlay();
+        //if(selectedRoom != null) selectedRoom.GetComponent<CrewView>().toggleOverlay();
         selectedRoom = room;
-        room.GetComponent<CrewView>().toggleOverlay();
+        //room.GetComponent<CrewView>().toggleOverlay();
     }
 }
