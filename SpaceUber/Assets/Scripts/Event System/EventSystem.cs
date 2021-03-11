@@ -176,8 +176,9 @@ public class EventSystem : MonoBehaviour
 				yield return new WaitForEndOfFrame();
 			}
 
-            asm.LoadSceneMerged("Event_Prompt");
+            asm.LoadSceneMerged("Event_Prompt"); //Give option to start next event
             yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
+
             eventPromptButton = FindObjectOfType<EventPromptButton>();
             eventPromptButton.eventButton.onClick.AddListener(SkipToEvent);
 
@@ -186,20 +187,21 @@ public class EventSystem : MonoBehaviour
             {
 				if(!mutiny) // don't increment timer during mutiny
 				{
-					// count up for every roll
-					eventRollCounter += Time.deltaTime;
-					// if reached next roll
-					if (eventRollCounter >= eventChanceFreq)
+					
+					eventRollCounter += Time.deltaTime; // count up for every roll
+					
+					if (eventRollCounter >= eventChanceFreq) // if reached next roll
 					{
 						if (WillRunEvent(chanceOfEvent))
 						{
 							nextEventLockedIn = true;
+
 							//Activate the warning for the next event now that one has been picked
 							if (eventWarning != null)
 							{
 								eventWarning.ActivateWarning();
 							}
-							break;
+							break; //break this while loop
 						}
 
 						chanceOfEvent += chanceIncreasePerFreq;
