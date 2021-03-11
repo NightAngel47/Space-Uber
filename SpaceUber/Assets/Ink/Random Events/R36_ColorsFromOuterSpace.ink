@@ -1,4 +1,4 @@
-As you press onward you find yourself in the midst of an asteroid field. However, your journey is interrupted by a blinding flash followed by the sudden emergence of lights dancing across the sky. A massive aurora stretches across the horizon, and it seems to be having adverse effects on any crew member that looks at it. How shall you proceed?
+The ship finds itself in the midst of an asteroid field. However, the journey is interrupted by a blinding flash followed by the sudden emergence of lights of all colors dancing across the sky. A massive aurora stretches into the horizon, and it seems to be having adverse effects on any crew member that looks at it. How shall you proceed?
 +[Fly Blind]->Blind
 +[Continue as Normal]
 {shuffle:
