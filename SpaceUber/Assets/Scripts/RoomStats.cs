@@ -46,7 +46,7 @@ public class RoomStats : MonoBehaviour
     public bool flatOutput;
     public bool ignoreMorale;
 
-    [SerializeField] private int roomLevel = 0;
+    [SerializeField, Min(1)] private int roomLevel = 1;
 
     public bool usedRoom = false;
     [SerializeField] private bool isPowered = false;
