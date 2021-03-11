@@ -62,8 +62,8 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         RoomStats roomStats = selectedRoom.GetComponent<RoomStats>();
         roomName.text = roomStats.roomName;
         roomDesc.text = roomStats.roomDescription;
-        needsCredits.text = roomStats.price.ToString();
-        needsPower.text = roomStats.minPower.ToString();
+        needsCredits.text = roomStats.price[roomStats.GetRoomLevel() - 1].ToString();
+        needsPower.text = roomStats.minPower[roomStats.GetRoomLevel() - 1].ToString();
         needsCrew.text = roomStats.minCrew.ToString() + "-" + roomStats.maxCrew.ToString();
         currentCrew.text = roomStats.currentCrew.ToString();
         roomSize.text = selectedRoom.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
@@ -84,11 +84,12 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     public void UpdateCrewAssignment(int currentCrewAmount)
     {
         currentCrew.text = currentCrewAmount.ToString();
-        
+        RoomStats roomStats = selectedRoom.GetComponent<RoomStats>();
+
         if (selectedRoom.TryGetComponent(out Resource resource))
         {
             producesResource.text = resource.resourceType.resourceName;
-            producesAmount.text = resource.activeAmount + "/" + resource.amount + " maximum";
+            producesAmount.text = resource.activeAmount + "/" + resource.amount[roomStats.GetRoomLevel() - 1] + " maximum";
         }
     }
 
