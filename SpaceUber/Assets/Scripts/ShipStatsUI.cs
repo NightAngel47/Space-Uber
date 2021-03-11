@@ -30,6 +30,7 @@ public class ShipStatsUI : MonoBehaviour
 
     [SerializeField, Foldout("Ship Food UI")] private TMP_Text foodCurrentText;
     [SerializeField, Foldout("Ship Food UI")] private TMP_Text foodTickText;
+    [SerializeField, Foldout("Ship Food UI")] private TMP_Text foodTickSignText;
 
     [SerializeField, Foldout("Ship Hull UI")] private TMP_Text hullCurrentText;
     [SerializeField, Foldout("Ship Hull UI")] private TMP_Text hullMaxText;
@@ -195,7 +196,17 @@ public class ShipStatsUI : MonoBehaviour
     public void UpdateFoodUI(int current, int tick, int crew)
     {
         foodCurrentText.text = current.ToString();
-        foodTickText.text = tick.ToString();
+        foodTickText.text = Mathf.Abs(tick - crew).ToString();
+        
+        if(tick - crew >= 0)
+        {
+            foodTickSignText.text = "+";
+        }
+        else
+        {
+            foodTickSignText.text = "-";
+        }
+        
         foodCurrentTooltipText.text = current.ToString();
         foodTickTooltipText.text = tick.ToString();
         foodNetTooltipText.text = (tick - crew).ToString();
