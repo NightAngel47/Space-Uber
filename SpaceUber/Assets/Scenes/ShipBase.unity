@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1074,13 +1074,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477764607}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3ad10ada1d7bdd408e95a056cf32746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myCanvas: {fileID: 210184276}
-  cheatTextBox: {fileID: 58884669}
+  cheatModeActiveText: {fileID: 0}
   randomEvents:
   - {fileID: 3466922025886888753, guid: 6ed251d640bce304f85ac1f176ad116b, type: 3}
   - {fileID: 3357718656805749863, guid: e78a2e6a79a274b4ba27355409436f3c, type: 3}

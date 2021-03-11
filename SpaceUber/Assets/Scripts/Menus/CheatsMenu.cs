@@ -10,88 +10,134 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using NaughtyAttributes;
+using UnityEngine.SceneManagement;
 
 public class CheatsMenu : MonoBehaviour
 {
+    public static CheatsMenu instance;
     private EventSystem es;
     private CampaignManager campMan;
     private ShipStats thisShip;
     private JobManager jm;
 
-    private bool cheatModeActive;
+    private AdditiveSceneManager asm;
+
     [SerializeField] private GameObject myCanvas;
-    [SerializeField] private TMP_Text cheatTextBox;
+
+    [SerializeField] private GameObject cheatModeActiveText;
+    private bool showingActiveText = true;
+
+    public GameObject helpMenu;
+    private bool showingHelpMenu = false;
+
     private TMP_InputField inputField;
 
     [SerializeField] private List<GameObject> randomEvents;
     [SerializeField] private List<GameObject> characterEvents;
 
+    private bool inMinigameTest = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Singleton pattern
+        if (instance)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+            asm = FindObjectOfType<AdditiveSceneManager>();
+        }
+
         es = gameObject.GetComponent<EventSystem>();
         campMan = gameObject.GetComponent<CampaignManager>();
         thisShip = GameObject.FindObjectOfType<ShipStats>();
         jm = GameObject.FindObjectOfType<JobManager>();
         
         myCanvas.SetActive(false);
+
+        cheatModeActiveText.SetActive(true);
+        showingActiveText = true;
+
+        helpMenu.SetActive(false);
+        showingHelpMenu = false;
+
+        inMinigameTest = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        ActivateCheatMode();
-        if(cheatModeActive && Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.Tilde))
         {
-            string inputText = inputField.text;
-            
-            if(inputText != null)
-                CheatCheck(inputText);
+            ToggleCheatText();
         }
-        
-        
+        if(Input.GetKeyDown(KeyCode.F2))
+        {
+            ToggleHelpMenu();
+        }
+        if(Input.GetKeyDown(KeyCode.F3))
+        {
+            MiniGameTest();
+        }
     }
 
-    void CheatCheck(string cheatText)
+    private void ToggleCheatText()
     {
-        print("Entered " + cheatText);
-    }
-    void ActivateCheatMode()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)
-        && Input.GetKeyDown(KeyCode.C))
+        print("Toggling thing");
+        if (showingActiveText)
         {
-            if (cheatModeActive)
-            {
-                cheatModeActive = false;
-                myCanvas.SetActive(false);
-                Time.timeScale = 1;
-            }
-            else
-            {
-                cheatModeActive = true;
-                myCanvas.SetActive(true);
-                Time.timeScale = 0;
-            }
+            cheatModeActiveText.SetActive(false);
+            showingActiveText = false;
+        }
+        else
+        {
+            cheatModeActiveText.SetActive(true);
+            showingActiveText = true;
+        }
+    }
+
+    private void ToggleHelpMenu()
+    {
+        if (showingHelpMenu)
+        {
+            helpMenu.SetActive(false);
+            showingHelpMenu = false;
+        }
+        else
+        {
+            helpMenu.SetActive(true);
+            showingHelpMenu = true;
+        }
+    }
+
+    private void MiniGameTest()
+    {
+        if (inMinigameTest)
+        {
+            inMinigameTest = false;
+            Debug.LogWarning("Loading ShipBase from MiniGames Testing Menu");
+            SceneManager.LoadScene("ShipBase");
+            GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
+        }
+        else
+        {
+            inMinigameTest = true;
+            Debug.LogWarning("Loading MiniGames Testing Menu");
+            SceneManager.LoadScene("MiniGames Testing Menu");
         }
     }
 
     public void JumpToCampaign(int campNum)
     {
-        if (cheatModeActive)
-        {
 
-        }
     }
 
     public void PlayRandomEvent(int eventNum)
     {
-        if (cheatModeActive)
-        {
-            GameObject thisEvent = randomEvents[eventNum];
-            StartCoroutine(es.CheatRandomEvent(thisEvent));
-        }
-        
+
     }    
 }
