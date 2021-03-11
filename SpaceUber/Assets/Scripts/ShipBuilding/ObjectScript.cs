@@ -19,7 +19,6 @@ public class ObjectScript : MonoBehaviour
     [Foldout("Data")] public int rotAdjust = 1;
     public static Color c;
 
-    public string roomSize;
     public int shapeType;
     public int objectNum;
 
@@ -36,7 +35,7 @@ public class ObjectScript : MonoBehaviour
     [SerializeField] private GameObject roomTooltip;
     [SerializeField] private GameObject toolTipOutputList;
 
-    [SerializeField] private ShapeType shapeDataTemplate = null;
+    public ShapeType shapeDataTemplate = null;
 
     [Foldout("Data")] public ShapeType shapeData = null;
     public ShapeTypes shapeTypes => shapeData.St;
