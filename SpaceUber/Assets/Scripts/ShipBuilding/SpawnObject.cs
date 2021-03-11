@@ -44,7 +44,7 @@ public class SpawnObject : MonoBehaviour
     public string[] cannotPlaceCredits;
     public string[] cannotPlaceEnergy;
 
-    public void Start()
+    public IEnumerator Start()
     {
         RectTransform rt = buttonPanel.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(rt.sizeDelta.x, 280 * availableRooms.Count);
@@ -53,6 +53,8 @@ public class SpawnObject : MonoBehaviour
         if (donePreplacedRoom == false)
         {
             donePreplacedRoom = true;
+            
+            yield return new WaitUntil(() => GameManager.instance.hasLoadedRooms);
 
             // Check if power core has already been placed
             if (!FindObjectsOfType<ObjectScript>().Any(objectScript => objectScript.preplacedRoom && objectScript.GetComponent<RoomStats>().roomName.Equals(powercore.GetComponent<RoomStats>().roomName)))
