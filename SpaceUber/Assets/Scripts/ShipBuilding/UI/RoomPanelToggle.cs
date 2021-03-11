@@ -57,7 +57,16 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
 
         if (isOpen) return;
+        try
+        {
+            gameObject.GetComponentInChildren<CrewManagementRoomDetailsMenu>().toggleHighlight();//
+        }
+        catch(System.NullReferenceException)
+        {
+            Debug.LogError("The room details menu doesn't exist. You're probably in ship building.");
+        }
         
+
         panelAnimator.SetBool(IsOpen, true);
         isOpen = true;
     }
@@ -65,7 +74,16 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void ClosePanel(int tabIndex = -1)
     {
         if (!isOpen) return;
-        
+
+        try
+        {
+            gameObject.GetComponentInChildren<CrewManagementRoomDetailsMenu>().toggleHighlight();//
+        }
+        catch (System.NullReferenceException)
+        {
+            Debug.LogError("The room details menu doesn't exist. You're probably in ship building.");
+        }
+
         panelAnimator.SetBool(IsOpen, false);
         isOpen = false;
         

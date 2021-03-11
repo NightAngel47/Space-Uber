@@ -255,7 +255,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &3859761888288072288
 MonoBehaviour:
@@ -458,7 +458,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &1034519901952445563
 MonoBehaviour:
@@ -710,6 +710,7 @@ GameObject:
   - component: {fileID: 5740368950282066039}
   - component: {fileID: 2641448655269380362}
   - component: {fileID: 1601469877460468189}
+  - component: {fileID: 3483486436075895061}
   m_Layer: 0
   m_Name: _RoomPrefabBase
   m_TagString: Untagged
@@ -861,6 +862,20 @@ MonoBehaviour:
   crewView: {fileID: 3502667792171202334}
   redOverlay: {fileID: 0}
   vacantOpacity: 0.33
+--- !u!114 &3483486436075895061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8354016038451866568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca0fd8b8a8811c42a573b9fb6ab5137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightSprite: {fileID: 8369805905638083979}
+  crewViewSprite: {fileID: 6230375485423902897}
 --- !u!1 &8369805905638083979
 GameObject:
   m_ObjectHideFlags: 0
