@@ -63,7 +63,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         needsPower.text = roomStats.minPower.ToString();
         needsCrew.text = roomStats.minCrew.ToString() + "-" + roomStats.maxCrew.ToString();
         currentCrew.text = roomStats.currentCrew.ToString();
-        roomSize.text = selectedRoom.GetComponent<ObjectScript>().roomSize;
+        roomSize.text = selectedRoom.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
 
         if (selectedRoom.TryGetComponent(out Resource resource))
         {
