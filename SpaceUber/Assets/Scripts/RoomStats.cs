@@ -17,12 +17,12 @@ public class RoomStats : MonoBehaviour
 
     public int minCrew;
     public int maxCrew;
-    public int minPower;
+    public List<int> minPower = new List<int>();
     public int maxPower;
 
     [Tooltip("Ex: .8 for 80% of the orginal price")] public float priceReducationPercent;
 
-    [Tooltip("How many credits the room costs to place")] public int price;
+    [Tooltip("How many credits the room costs to place")] public List<int> price = new List<int>();
 
     public int currentCrew;
 
@@ -45,6 +45,8 @@ public class RoomStats : MonoBehaviour
 
     public bool flatOutput;
     public bool ignoreMorale;
+
+    [SerializeField] private int roomLevel = 0;
 
     public bool usedRoom = false;
     [SerializeField] private bool isPowered = false;
@@ -105,34 +107,34 @@ public class RoomStats : MonoBehaviour
                 switch (resource.resourceType.Rt)
                 {
                     case ResourceDataTypes._Credits:
-                        credits += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        credits += (int)(resource.amount[roomLevel - 1] * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._Energy:
-                        energy += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        energy += (int)(resource.amount[roomLevel - 1] * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._Security:
-                        security += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        security += (int)(resource.amount[roomLevel - 1] * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._ShipWeapons:
-                        shipWeapons += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        shipWeapons += (int)(resource.amount[roomLevel - 1] * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._Crew:
-                        crew += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        crew += (int)(resource.amount[roomLevel - 1] * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._Food:
-                        food += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        food += (int)(resource.amount[roomLevel - 1] * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._FoodPerTick:
-                        foodPerTick += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        foodPerTick += (int)(resource.amount[roomLevel - 1] * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._HullDurability:
-                        shipHealth += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        shipHealth += (int)(resource.amount[roomLevel - 1] * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._CrewMorale:
-                        morale += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        morale += (int)(resource.amount[roomLevel - 1] * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._Payout:
-                        credits += (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        credits += (int)(resource.amount[roomLevel - 1] * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     default:
                         Debug.LogError("Resource type: " + resource.resourceType.resourceName + " not setup in RoomStats");
@@ -141,7 +143,7 @@ public class RoomStats : MonoBehaviour
             }
             else
             {
-                resource.minAmount = resource.amount - (int)(resource.amount * percent);
+                resource.minAmount = resource.amount[roomLevel - 1] - (int)(resource.amount[roomLevel - 1] * percent);
 
                 switch (resource.resourceType.Rt)
                 {
@@ -256,7 +258,7 @@ public class RoomStats : MonoBehaviour
             {
                 if (currentCrew == maxCrew)
                 {
-                    resource.activeAmount = (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                    resource.activeAmount = (int)(resource.amount[roomLevel - 1] * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                 }
                 else if (currentCrew == 0 || currentCrew < minCrew)
                 {
@@ -265,13 +267,13 @@ public class RoomStats : MonoBehaviour
                 else if (currentCrew == maxCrew - i)
                 {
                     float percent = (float)i / (float)crewRange;
-                    resource.activeAmount = (int)(((resource.amount - resource.minAmount) - (int)((resource.amount - resource.minAmount) * percent) + resource.minAmount) * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                    resource.activeAmount = (int)(((resource.amount[roomLevel - 1] - resource.minAmount) - (int)((resource.amount[roomLevel - 1] - resource.minAmount) * percent) + resource.minAmount) * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                 }
             }
         }
         else
         {
-            resource.activeAmount = (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+            resource.activeAmount = (int)(resource.amount[roomLevel - 1] * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
         }
     }
 
@@ -327,11 +329,11 @@ public class RoomStats : MonoBehaviour
         switch (resourceData.Rt)
         {
             case ResourceDataTypes._Credits:
-                shipStats.Credits += -price;
+                shipStats.Credits += -price[roomLevel - 1];
                 break;
             case ResourceDataTypes._Energy:
                 shipStats.EnergyRemaining += new Vector2(energy, energy);
-                shipStats.EnergyRemaining += new Vector2(-minPower, 0);
+                shipStats.EnergyRemaining += new Vector2(-minPower[roomLevel - 1], 0);
                 break;
             case ResourceDataTypes._Security:
                 shipStats.Security += security;
@@ -365,18 +367,18 @@ public class RoomStats : MonoBehaviour
         switch (resourceData.Rt)
         {
             case ResourceDataTypes._Credits:
-                shipStats.Credits += -price; if (usedRoom == true)
+                shipStats.Credits += -price[roomLevel - 1]; if (usedRoom == true)
                 {
-                    shipStats.Credits += (int)(price * priceReducationPercent);
+                    shipStats.Credits += (int)(price[roomLevel - 1] * priceReducationPercent);
                 }
                 else
                 {
-                    shipStats.Credits += price;
+                    shipStats.Credits += price[roomLevel - 1];
                 }
                 break;
             case ResourceDataTypes._Energy:
                 shipStats.EnergyRemaining += new Vector2(-energy, -energy);
-                shipStats.EnergyRemaining += new Vector2(minPower, 0);
+                shipStats.EnergyRemaining += new Vector2(minPower[roomLevel - 1], 0);
                 break;
             case ResourceDataTypes._Security:
                 shipStats.Security += -security;
@@ -411,10 +413,10 @@ public class RoomStats : MonoBehaviour
     public void AddRoomStats()
     {
         shipStats.roomBeingPlaced = gameObject;
-        shipStats.Credits += -price;
+        shipStats.Credits += -price[roomLevel - 1];
         shipStats.Payout += credits;
         shipStats.EnergyRemaining += new Vector2(energy, energy);
-        shipStats.EnergyRemaining += new Vector2(-minPower, 0);
+        shipStats.EnergyRemaining += new Vector2(-minPower[roomLevel - 1], 0);
         shipStats.Security += security;
         shipStats.ShipWeapons += shipWeapons;
         shipStats.CrewCurrent += new Vector3(crew, crew, crew);
@@ -433,16 +435,16 @@ public class RoomStats : MonoBehaviour
     {
         if(usedRoom == true)
         {
-            shipStats.Credits += (int)(price * priceReducationPercent);
+            shipStats.Credits += (int)(price[roomLevel - 1] * priceReducationPercent);
         }
         else
         {
-            shipStats.Credits += price;
+            shipStats.Credits += price[roomLevel - 1];
         }
 
         shipStats.Payout += -credits;
         shipStats.EnergyRemaining += new Vector2(-energy, -energy);
-        shipStats.EnergyRemaining += new Vector2(minPower, 0);
+        shipStats.EnergyRemaining += new Vector2(minPower[roomLevel - 1], 0);
         shipStats.Security += -security;
         shipStats.ShipWeapons += -shipWeapons;
         shipStats.CrewCurrent += new Vector3(-crew, -crew, -crew);
@@ -475,5 +477,10 @@ public class RoomStats : MonoBehaviour
     {
         // reset the ship's crew stats back to before room was placed
         shipStats.CrewCurrent += new Vector3(currentCrew, 0, currentCrew);
+    }
+
+    public int GetRoomLevel()
+    {
+        return roomLevel;
     }
 }
