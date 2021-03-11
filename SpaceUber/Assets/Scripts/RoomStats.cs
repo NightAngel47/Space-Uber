@@ -260,12 +260,12 @@ public class RoomStats : MonoBehaviour
                 }
                 else if (currentCrew == 0 || currentCrew < minCrew)
                 {
-                    resource.activeAmount = (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                    resource.activeAmount = 0;//(int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                 }
                 else if (currentCrew == maxCrew - i)
                 {
                     float percent = (float)i / (float)crewRange;
-                    resource.activeAmount = (int)(((resource.amount - resource.minAmount) - (int)((resource.amount - resource.minAmount) * percent) + resource.minAmount) * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                    resource.activeAmount = (int)((resource.amount * percent) * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                 }
             }
         }
