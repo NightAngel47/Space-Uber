@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceType: {fileID: 11400000, guid: 5410253900907ec42bf813317508ae9e, type: 2}
-  amount: 00000000
+  amount: 140000001d00000026000000
   activeAmount: 0
   minAmount: 0
 --- !u!114 &8914881331037085880
@@ -88,6 +88,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2397118123195013090, guid: b05c7d568e913c94db077561555d6b02,
         type: 3}
+    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: minPower.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: price.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: minCrew
