@@ -11,7 +11,7 @@ public class Resource : MonoBehaviour
 {
     public ResourceDataType resourceType;
 
-    public int amount;
+    public int[] amount;
     public int activeAmount = 0;
     public int minAmount;
 
