@@ -196,20 +196,14 @@ public class ShipStatsUI : MonoBehaviour
     public void UpdateFoodUI(int current, int tick, int crew)
     {
         foodCurrentText.text = current.ToString();
-        foodTickText.text = Mathf.Abs(tick - crew).ToString();
-        
-        if(tick - crew >= 0)
-        {
-            foodTickSignText.text = "+";
-        }
-        else
-        {
-            foodTickSignText.text = "-";
-        }
+
+        int netFood = tick - crew;
+        foodTickText.text = Mathf.Abs(netFood).ToString();
+        foodTickSignText.text = netFood >= 0 ? "+" : "-";
         
         foodCurrentTooltipText.text = current.ToString();
         foodTickTooltipText.text = tick.ToString();
-        foodNetTooltipText.text = (tick - crew).ToString();
+        foodNetTooltipText.text = netFood.ToString();
     }
 
     public void ShowFoodUIChange(int currentChange, int tickChange)
