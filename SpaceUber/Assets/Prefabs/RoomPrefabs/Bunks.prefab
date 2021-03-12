@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceType: {fileID: 11400000, guid: f1825cefb97527b43a72906c497df8a4, type: 2}
-  amount: 00000000
+  amount: 040000000600000008000000
   activeAmount: 0
   minAmount: 0
 --- !u!1001 &3664837688621549389
@@ -129,6 +129,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2248932978714231536, guid: ce20df4bfa330de4dbd87aeec1119512,
         type: 3}
+    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: minPower.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: price.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomName
