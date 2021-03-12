@@ -24,13 +24,24 @@ public class Tutorial : Singleton<Tutorial>
     [SerializeField] TextMeshProUGUI tutorialTextbox;
     [SerializeField] TextMeshProUGUI tutorialTitleTextbox;
     [SerializeField] GameObject tutorialPanel;
+
     [SerializeField] GameObject highlightPanel;
+    [SerializeField] GameObject ghostCursor;
+
+    private bool lerping = false;
+    //private bool goingToStart = false;
+    [SerializeField] float timeStartedLerping;
+    [SerializeField] float lerpTime;
+    private float percentageComplete;
 
     private TutorialNode currentTutorial;
     private int index;
 
+    private void Start()
+    {
+        BeginLerping();
+    }
 
-    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return) && tutorialPanel.activeSelf == true)
@@ -42,6 +53,16 @@ public class Tutorial : Singleton<Tutorial>
             }
             else closeCurrentTutorial();
         }
+
+        if(lerping)
+        {
+            ghostCursor.transform.position = LerpGhostCursor(tutorialPanel.transform.position, new Vector3(0, 0, 0), timeStartedLerping, lerpTime);
+        }
+
+
+
+
+
     }
 
 
@@ -84,6 +105,39 @@ public class Tutorial : Singleton<Tutorial>
         RectTransform loc = highlightPanel.GetComponent<RectTransform>();
         loc.sizeDelta = new Vector2(width, height);
         loc.localPosition = new Vector3(xPos, yPos, 1);
+    }
+
+    public void continueButton()
+    {
+        if (tutorialPanel.activeSelf == true)
+        {
+            if (index < currentTutorial.tutorialMessages.Length)
+            {
+                tutorialTextbox.text = currentTutorial.tutorialMessages[index];
+                index++;
+            }
+            else closeCurrentTutorial();
+        }
+    }
+
+    public void BeginLerping()
+    {
+        timeStartedLerping = Time.time;
+
+        lerping = true;
+    }
+
+    public Vector3 LerpGhostCursor(Vector3 start, Vector3 end, float timeStarted, float ltime = 1)
+    {
+
+        timeStarted = Time.time - timeStarted;
+        percentageComplete = timeStarted / ltime;
+
+        var result = Vector3.Lerp(start, end, percentageComplete);
+
+        return result;
+
+
     }
 
 }
