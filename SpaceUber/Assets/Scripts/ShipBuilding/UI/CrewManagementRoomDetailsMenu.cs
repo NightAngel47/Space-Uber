@@ -26,11 +26,14 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
 
     [SerializeField] private string noRoomSelectedMessage = "Select a room to view its details.";
     [SerializeField] private GameObject[] roomDetailSections = new GameObject[2];
+    private CrewView[] roomsInScene; 
 
 
     // Start is called before the first frame update
     void Start()
     {
+
+       roomsInScene = GameObject.FindObjectsOfType<CrewView>();
        roomName.text = noRoomSelectedMessage;
        roomDesc.text = "";
        roomSize.text = "";
@@ -46,6 +49,8 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
        {
            roomDetailSection.SetActive(false);
        }
+
+       
     }
     public void UpdatePanelInfo()
     {
@@ -55,6 +60,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         }
         
         roomImage.sprite = selectedRoom.GetComponentInChildren<SpriteRenderer>().sprite;
+        //selectedRoom.GetComponent<CrewView>().updateCrewView();//
 
         RoomStats roomStats = selectedRoom.GetComponent<RoomStats>();
         roomName.text = roomStats.roomName;
@@ -90,6 +96,18 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
 
     public void ChangeCurrentRoom(GameObject room)
     {
+        if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().unhighlight();
         selectedRoom = room;
+        room.GetComponent<RoomHighlight>().highlight();
+    }
+
+    private void OnDestroy()
+    {
+        if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().unhighlight();
+    }
+
+    public void toggleHighlight()
+    {
+        if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().toggleHighlight();
     }
 }

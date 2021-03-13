@@ -68,6 +68,9 @@ public class CrewManagement : MonoBehaviour
         CheckForMinCrew();
 
 
+        CrewViewManager.Instance.EnableCrewView();//automatically enable crew view when you enter crew mgmt 
+
+
         Tutorial.Instance.setCurrentTutorial(2, true);
     }
 
