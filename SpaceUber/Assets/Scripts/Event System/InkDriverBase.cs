@@ -24,6 +24,9 @@ public class InkDriverBase : MonoBehaviour
     [HideInInspector] public bool isCharacterEvent;
     public bool isMutinyEvent;
 
+    [Tooltip("Whether or not this event scales its stat outcomes with the campaign"),HideInInspector]
+    public bool isScalableEvent;
+
     [ShowIf("isStoryEvent")] public int storyIndex;
     [SerializeField] private Sprite backgroundImage;
     public string EventName => eventName; 
@@ -84,6 +87,8 @@ public class InkDriverBase : MonoBehaviour
         titleBox.text = eventName;
         backgroundUI.sprite = backgroundImage;
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
+
+        isScalableEvent = !isStoryEvent && !isMutinyEvent;
     }
 
     /// <summary>

@@ -15,6 +15,7 @@ using UnityEngine.Serialization;
 [Serializable]
 public class Requirements
 {
+    [HideInInspector]
     public bool isScalableEvent = false;
 
     #region Stat Requirement Stuff

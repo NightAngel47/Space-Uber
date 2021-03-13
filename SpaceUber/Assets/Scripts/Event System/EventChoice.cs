@@ -74,7 +74,7 @@ public class EventChoice
         driver = thisDriver;
 
         //as long as it's not a story event, it's scalable
-        isScalableEvent = !driver.isStoryEvent;
+        isScalableEvent = driver.isScalableEvent;
 
         if (driver.isCharacterEvent)
         {
