@@ -304,7 +304,6 @@ public class CrewManagement : MonoBehaviour
         //crewManagementText.SetActive(false);
         room.GetComponent<OverclockRoom>().PlayMiniGame();
 
-        Tutorial.Instance.setCurrentTutorial(3, true);
     }
 
     public void StartChat()
