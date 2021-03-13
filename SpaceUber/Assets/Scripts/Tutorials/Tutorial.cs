@@ -28,35 +28,70 @@ public class Tutorial : Singleton<Tutorial>
     [SerializeField] GameObject highlightPanel;
     [SerializeField] GameObject ghostCursor;
 
-    private bool lerping = false;
-    //private bool goingToStart = false;
+    
     [SerializeField] float timeStartedLerping;
     [SerializeField] float lerpTime;
+    private bool lerping = false;
     private float percentageComplete;
+    private Vector3 lerpStart;
+    private Vector3 lerpEnd;
+
+    //location index for ghostCursor
+    //private Vector3 vecInsideShip = new Vector3(500, 300, 0);
+    //private Vector3 vecShopPanel = new Vector3(200, 450, 0);
+    //private Vector3 vecStatsLeft = new Vector3(200, 600, 0);
+    //private Vector3 vecStatsRight = new Vector3(800, 600, 0);
+
+    [SerializeField] GameObject vecInsideShip;
+    [SerializeField] GameObject vecShopPanel;
+    [SerializeField] GameObject vecStatsLeft;
+    [SerializeField] GameObject vecStatsRight;
+
 
     private TutorialNode currentTutorial;
     private int index;
+    private bool tutorialPrerequisitesComplete = false;
 
     private void Start()
     {
-        BeginLerping();
+        
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && tutorialPanel.activeSelf == true)
+        if (Input.GetKeyDown(KeyCode.Return))// && tutorialPanel.activeSelf == true)
         {
-            if (index < currentTutorial.tutorialMessages.Length)
-            {
-                tutorialTextbox.text = currentTutorial.tutorialMessages[index];
-                index++;
-            }
-            else closeCurrentTutorial();
+            continueButton();
         }
 
-        if(lerping)
+        //dirty implementation of ghost cursor until I get it working good
+
+        //Shipbuilding Message 0
+        if (tutorialPanel.activeSelf == true && lerping == false && currentTutorial == tutorials[1] && currentTutorial.tutorialMessages[0] == currentTutorial.tutorialMessages[index - 1])
         {
-            ghostCursor.transform.position = LerpGhostCursor(tutorialPanel.transform.position, new Vector3(0, 0, 0), timeStartedLerping, lerpTime);
+            if(tutorialPrerequisitesComplete == false)
+            {
+                //FindObjectOfType<RoomPanelToggle>().OpenPanel();
+                FindObjectOfType<ShipBuildingShop>().ToResourceTab("Food");
+                tutorialPrerequisitesComplete = true;
+            }
+            
+
+            BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
+        }
+        //Shipbuilding Message 4
+        if (tutorialPanel.activeSelf == true && lerping == false && currentTutorial == tutorials[1] && currentTutorial.tutorialMessages[4] == currentTutorial.tutorialMessages[index - 1]) BeginLerping(vecStatsLeft.transform.position, vecStatsRight.transform.position);
+        //////////////////////////////////////////////////////////////////
+
+        if (lerping)
+        {
+            ghostCursor.transform.position = LerpGhostCursor(lerpStart, lerpEnd, timeStartedLerping, lerpTime);
+
+            if (ghostCursor.transform.position == lerpEnd)
+            {
+                lerping = false;
+                BeginLerping(lerpStart, lerpEnd);
+            }
         }
 
 
@@ -111,6 +146,9 @@ public class Tutorial : Singleton<Tutorial>
     {
         if (tutorialPanel.activeSelf == true)
         {
+            StopLerping();
+            tutorialPrerequisitesComplete = false;
+
             if (index < currentTutorial.tutorialMessages.Length)
             {
                 tutorialTextbox.text = currentTutorial.tutorialMessages[index];
@@ -120,11 +158,21 @@ public class Tutorial : Singleton<Tutorial>
         }
     }
 
-    public void BeginLerping()
+    public void BeginLerping(Vector3 start, Vector3 end)
     {
-        timeStartedLerping = Time.time;
+        ghostCursor.SetActive(true);
 
+        lerpStart = start;
+        lerpEnd = end;
+
+        timeStartedLerping = Time.time;
         lerping = true;
+    }
+    public void StopLerping()
+    {
+        lerping = false;
+
+        ghostCursor.SetActive(false);
     }
 
     public Vector3 LerpGhostCursor(Vector3 start, Vector3 end, float timeStarted, float ltime = 1)
