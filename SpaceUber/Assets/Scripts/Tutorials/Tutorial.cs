@@ -46,6 +46,7 @@ public class Tutorial : Singleton<Tutorial>
     [SerializeField] GameObject vecShopPanel;
     [SerializeField] GameObject vecStatsLeft;
     [SerializeField] GameObject vecStatsRight;
+    [SerializeField] GameObject vecRoomDetails;
 
 
     private TutorialNode currentTutorial;
@@ -66,22 +67,42 @@ public class Tutorial : Singleton<Tutorial>
 
         //dirty implementation of ghost cursor until I get it working good
 
-        //Shipbuilding Message 0
+        //Shipbuilding Message 1
         if (tutorialPanel.activeSelf == true && lerping == false && currentTutorial == tutorials[1] && currentTutorial.tutorialMessages[0] == currentTutorial.tutorialMessages[index - 1])
         {
             if(tutorialPrerequisitesComplete == false)
             {
-                //FindObjectOfType<RoomPanelToggle>().OpenPanel();
                 FindObjectOfType<ShipBuildingShop>().ToResourceTab("Food");
                 tutorialPrerequisitesComplete = true;
             }
-            
-
             BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
         }
-        //Shipbuilding Message 4
-        if (tutorialPanel.activeSelf == true && lerping == false && currentTutorial == tutorials[1] && currentTutorial.tutorialMessages[4] == currentTutorial.tutorialMessages[index - 1]) BeginLerping(vecStatsLeft.transform.position, vecStatsRight.transform.position);
-        //////////////////////////////////////////////////////////////////
+        //Shipbuilding Message 5
+        else if (tutorialPanel.activeSelf == true && lerping == false && currentTutorial == tutorials[1] && currentTutorial.tutorialMessages[4] == currentTutorial.tutorialMessages[index - 1])
+        {
+            if (tutorialPrerequisitesComplete == false)
+            {
+                tutorialPrerequisitesComplete = true;
+            }
+            BeginLerping(vecStatsLeft.transform.position, vecStatsRight.transform.position);
+        }
+        //Crew Management Message 2
+        else if (tutorialPanel.activeSelf == true && lerping == false && currentTutorial == tutorials[2] && currentTutorial.tutorialMessages[1] == currentTutorial.tutorialMessages[index - 1])
+        {
+            if (tutorialPrerequisitesComplete == false)
+            {
+                FindObjectOfType<RoomPanelToggle>().OpenPanel(0);
+                FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
+                FindObjectOfType<CrewManagement>().UpdateRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
+                FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
+                
+                //FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
+                tutorialPrerequisitesComplete = true;
+            }
+
+            highlightScreenLocation(325, -50, 268, 71);
+        }
+            //////////////////////////////////////////////////////////////////
 
         if (lerping)
         {
@@ -126,6 +147,8 @@ public class Tutorial : Singleton<Tutorial>
         if (tutorialPanel.activeSelf == true)
         {
             highlightPanel.SetActive(false);
+            lerping = false;
+            ghostCursor.SetActive(false);
             tutorialPanel.SetActive(false);
             index = 0;
 
@@ -141,12 +164,18 @@ public class Tutorial : Singleton<Tutorial>
         loc.sizeDelta = new Vector2(width, height);
         loc.localPosition = new Vector3(xPos, yPos, 1);
     }
+    public void UnHighlightScreenLocation()
+    {
+        highlightPanel.SetActive(false);
+    }
 
     public void continueButton()
     {
         if (tutorialPanel.activeSelf == true)
         {
             StopLerping();
+            UnHighlightScreenLocation();
+
             tutorialPrerequisitesComplete = false;
 
             if (index < currentTutorial.tutorialMessages.Length)

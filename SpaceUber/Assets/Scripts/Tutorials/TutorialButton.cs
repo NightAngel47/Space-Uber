@@ -18,5 +18,10 @@ public class TutorialButton : MonoBehaviour
     public void beginTutorial()
     {
         Tutorial.Instance.setCurrentTutorial(relevantTutorial, false);
-     }
+    }
+
+    public void EndCurrentTutorial()
+    {
+        Tutorial.Instance.closeCurrentTutorial();
+    }
 }
