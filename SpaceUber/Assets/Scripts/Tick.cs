@@ -25,6 +25,8 @@ public class Tick : MonoBehaviour
 
     public void StartTickUpdate()
     {
+        Tutorial.Instance.SetCurrentTutorial(3, true);
+
         secondsPassed = 0;
         if (tickCoroutine == null)
         {

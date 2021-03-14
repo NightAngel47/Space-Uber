@@ -71,7 +71,7 @@ public class CrewManagement : MonoBehaviour
         CrewViewManager.Instance.EnableCrewView();//automatically enable crew view when you enter crew mgmt 
 
 
-        Tutorial.Instance.setCurrentTutorial(2, true);
+        Tutorial.Instance.SetCurrentTutorial(2, true);
     }
 
     private void Update()
@@ -304,7 +304,8 @@ public class CrewManagement : MonoBehaviour
         //crewManagementText.SetActive(false);
         room.GetComponent<OverclockRoom>().PlayMiniGame();
 
-        Tutorial.Instance.setCurrentTutorial(3, true);
+        
+        
     }
 
     public void StartChat()

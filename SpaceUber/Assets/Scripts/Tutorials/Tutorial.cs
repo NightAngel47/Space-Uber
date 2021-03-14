@@ -36,12 +36,6 @@ public class Tutorial : Singleton<Tutorial>
     private Vector3 lerpStart;
     private Vector3 lerpEnd;
 
-    //location index for ghostCursor
-    //private Vector3 vecInsideShip = new Vector3(500, 300, 0);
-    //private Vector3 vecShopPanel = new Vector3(200, 450, 0);
-    //private Vector3 vecStatsLeft = new Vector3(200, 600, 0);
-    //private Vector3 vecStatsRight = new Vector3(800, 600, 0);
-
     [SerializeField] GameObject vecInsideShip;
     [SerializeField] GameObject vecShopPanel;
     [SerializeField] GameObject vecStatsLeft;
@@ -53,26 +47,21 @@ public class Tutorial : Singleton<Tutorial>
     private int index;
     private bool tutorialPrerequisitesComplete = false;
 
-    private void Start()
-    {
-        
-    }
-
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))// && tutorialPanel.activeSelf == true)
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            continueButton();
+            ContinueButton();
         }
 
-        //dirty implementation of ghost cursor until I get it working good
-
+        //dirty implementation of ghost cursor/highlight activation until I get it working good
+        ///////////////////////////////////////////////////////////////////////////////////////
         //Shipbuilding Message 1
         if (tutorialPanel.activeSelf == true && lerping == false && currentTutorial == tutorials[1] && currentTutorial.tutorialMessages[0] == currentTutorial.tutorialMessages[index - 1])
         {
             if(tutorialPrerequisitesComplete == false)
             {
-                FindObjectOfType<ShipBuildingShop>().ToResourceTab("Food");
+                if(FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "Food") FindObjectOfType<ShipBuildingShop>().ToResourceTab("Food");
                 tutorialPrerequisitesComplete = true;
             }
             BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
@@ -86,6 +75,17 @@ public class Tutorial : Singleton<Tutorial>
             }
             BeginLerping(vecStatsLeft.transform.position, vecStatsRight.transform.position);
         }
+        //ShipBuilding Message 6
+        else if (tutorialPanel.activeSelf == true && lerping == false && currentTutorial == tutorials[1] && currentTutorial.tutorialMessages[5] == currentTutorial.tutorialMessages[index - 1])
+        {
+            if (tutorialPrerequisitesComplete == false)
+            {
+                if (FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "Energy") FindObjectOfType<ShipBuildingShop>().ToResourceTab("Energy");
+                tutorialPrerequisitesComplete = true;
+            }
+            BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
+        }
+
         //Crew Management Message 2
         else if (tutorialPanel.activeSelf == true && lerping == false && currentTutorial == tutorials[2] && currentTutorial.tutorialMessages[1] == currentTutorial.tutorialMessages[index - 1])
         {
@@ -95,14 +95,27 @@ public class Tutorial : Singleton<Tutorial>
                 FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
                 FindObjectOfType<CrewManagement>().UpdateRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
                 FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
-                
-                //FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
                 tutorialPrerequisitesComplete = true;
             }
-
-            highlightScreenLocation(325, -50, 268, 71);
+            HighlightScreenLocation(325, -50, 268, 71);
         }
-            //////////////////////////////////////////////////////////////////
+
+        //Overtime Tutorial Message 1
+        else if (tutorialPanel.activeSelf == true && lerping == false && currentTutorial == tutorials[3] && currentTutorial.tutorialMessages[0] == currentTutorial.tutorialMessages[index - 1])
+        {
+            if (tutorialPrerequisitesComplete == false)
+            {
+                FindObjectOfType<RoomPanelToggle>().OpenPanel(0);
+                FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
+                FindObjectOfType<CrewManagement>().UpdateRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
+                FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
+                tutorialPrerequisitesComplete = true;
+            }
+            
+        }
+
+
+        /////////////////////////////////////////////////////////////////////////////////
 
         if (lerping)
         {
@@ -115,15 +128,11 @@ public class Tutorial : Singleton<Tutorial>
             }
         }
 
-
-
-
-
     }
 
 
     //call this to display a tutorial. Tutorial IDs can be found in the inspector
-    public void setCurrentTutorial(int tutorialID, bool forcedTutorial)
+    public void SetCurrentTutorial(int tutorialID, bool forcedTutorial)
     {
         //if you're already in a tutorial, stop.
         if (tutorialPanel.activeSelf == true) return;
@@ -142,7 +151,7 @@ public class Tutorial : Singleton<Tutorial>
 
     }
     
-    public void closeCurrentTutorial()
+    public void CloseCurrentTutorial()
     {
         if (tutorialPanel.activeSelf == true)
         {
@@ -157,7 +166,7 @@ public class Tutorial : Singleton<Tutorial>
     }
 
     //X and Y of center of box, with (0,0) being screen center. Width and height of box
-    public void highlightScreenLocation(int xPos, int yPos, int width, int height)
+    public void HighlightScreenLocation(int xPos, int yPos, int width, int height)
     {
         highlightPanel.SetActive(true);
         RectTransform loc = highlightPanel.GetComponent<RectTransform>();
@@ -169,7 +178,7 @@ public class Tutorial : Singleton<Tutorial>
         highlightPanel.SetActive(false);
     }
 
-    public void continueButton()
+    public void ContinueButton()
     {
         if (tutorialPanel.activeSelf == true)
         {
@@ -183,7 +192,7 @@ public class Tutorial : Singleton<Tutorial>
                 tutorialTextbox.text = currentTutorial.tutorialMessages[index];
                 index++;
             }
-            else closeCurrentTutorial();
+            else CloseCurrentTutorial();
         }
     }
 
