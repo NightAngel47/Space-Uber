@@ -22,9 +22,9 @@ public class CheatsMenu : MonoBehaviour
 
     private AdditiveSceneManager asm;
 
-    [SerializeField] private GameObject myCanvas;
+    public GameObject myCanvas;
 
-    [SerializeField] private GameObject cheatModeActiveText;
+    public GameObject cheatModeActiveText;
     private bool showingActiveText = true;
 
     public GameObject helpMenu;
@@ -46,6 +46,14 @@ public class CheatsMenu : MonoBehaviour
         //Singleton pattern
         if (instance)
         {
+            instance.myCanvas = myCanvas;
+            instance.cheatModeActiveText = cheatModeActiveText;
+            instance.helpMenu = helpMenu;
+            
+            instance.myCanvas.SetActive(false);
+            instance.cheatModeActiveText.SetActive(instance.showingActiveText);
+            instance.helpMenu.SetActive(instance.showingHelpMenu);
+            
             Destroy(gameObject);
         }
         else
