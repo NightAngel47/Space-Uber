@@ -4368,6 +4368,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 727756690}
+    - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5, type: 3}
 --- !u!224 &727756687 stripped
@@ -6376,7 +6381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &985766748
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10256,6 +10261,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Replace Crew
       objectReference: {fileID: 0}
+    - target: {fileID: 8963481259364165006, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
         type: 3}
       propertyPath: m_Interactable
@@ -10270,6 +10280,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: RefillCrew
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+        type: 3}
+      propertyPath: m_Colors.m_ColorMultiplier
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5, type: 3}
