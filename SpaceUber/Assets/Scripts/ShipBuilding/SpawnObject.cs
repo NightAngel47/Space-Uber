@@ -68,6 +68,7 @@ public class SpawnObject : MonoBehaviour
             }
         }
 
+
         if (FindObjectOfType<CampaignManager>().GetCurrentCampaign() == 0)
         {
             switch (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
@@ -107,6 +108,7 @@ public class SpawnObject : MonoBehaviour
         }
 
         CreateRoomSpawnButtons(); 
+
     }
 
     IEnumerator PreplacedRoom()
