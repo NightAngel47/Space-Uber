@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &64548763
 AudioListener:
   m_ObjectHideFlags: 0
@@ -624,3 +624,5 @@ MonoBehaviour:
   - {fileID: 8768145030122043720, guid: b2216876e081d454ea362348988323be, type: 3}
   - {fileID: 7272458766203768250, guid: 268f29224e6f6a44792e29eb7275c082, type: 3}
   characterEvents: []
+  deathDisabled: 0
+  mutinyDisabled: 0

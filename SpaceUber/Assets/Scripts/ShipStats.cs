@@ -392,7 +392,16 @@ public class ShipStats : MonoBehaviour
     {
         if (shipHealthCurrent <= 0)
         {
-            GameManager.instance.ChangeInGameState(InGameStates.Death);
+            if(DevelopmentAccess.instance.cheatModeActive && CheatsMenu.instance != null && CheatsMenu.instance.deathDisabled)
+            {
+                Debug.Log("Cheated Death");
+            }
+            else
+            {
+                GameManager.instance.ChangeInGameState(InGameStates.Death);
+                AudioManager.instance.PlaySFX("Hull Death");
+                AudioManager.instance.PlayMusicWithTransition("Death Theme");
+            }
         }
     }
 

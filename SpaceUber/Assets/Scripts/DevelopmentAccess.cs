@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 public class DevelopmentAccess : MonoBehaviour
 {
     public static DevelopmentAccess instance;
-    private bool cheatModeActive;
+    [HideInInspector] public bool cheatModeActive;
 
     private bool inTest = false;
     private AdditiveSceneManager asm;

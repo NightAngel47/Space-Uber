@@ -36,6 +36,9 @@ public class CheatsMenu : MonoBehaviour
     [SerializeField] private List<GameObject> characterEvents;
 
     private bool inMinigameTest = false;
+    
+    [HideInInspector] public bool deathDisabled = false;
+    [HideInInspector] public bool mutinyDisabled = false;
 
     // Start is called before the first frame update
     void Start()
@@ -83,6 +86,14 @@ public class CheatsMenu : MonoBehaviour
         {
             MiniGameTest();
         }
+        if(Input.GetKeyDown(KeyCode.F5))
+        {
+            ToggleDeath();
+        }
+        if(Input.GetKeyDown(KeyCode.F6))
+        {
+            ToggleMutiny();
+        }
     }
 
     private void ToggleCheatText()
@@ -111,6 +122,34 @@ public class CheatsMenu : MonoBehaviour
         {
             helpMenu.SetActive(true);
             showingHelpMenu = true;
+        }
+    }
+    
+    private void ToggleDeath()
+    {
+        deathDisabled = !deathDisabled;
+        
+        if(deathDisabled)
+        {
+            Debug.Log("Death Disabled");
+        }
+        else
+        {
+            Debug.Log("Death Enabled");
+        }
+    }
+    
+    private void ToggleMutiny()
+    {
+        mutinyDisabled = !mutinyDisabled;
+        
+        if(mutinyDisabled)
+        {
+            Debug.Log("Mutiny Disabled");
+        }
+        else
+        {
+            Debug.Log("Mutiny Enabled");
         }
     }
 
