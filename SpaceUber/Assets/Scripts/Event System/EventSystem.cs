@@ -307,16 +307,13 @@ public class EventSystem : MonoBehaviour
 	/// <returns></returns>
 	public IEnumerator StartNewCharacterEvent(List<GameObject> possibleEvents)
     {
-	    //TODO: Change Character Events to not pause Tick
 		chatting = true;
-		tick.StopTickUpdate();
 		FindObjectOfType<CrewManagement>().TurnOffPanel();
 		GameObject newEvent = FindNextCharacterEvent(possibleEvents);
 
 		if (newEvent != null)
         {
 			asm.LoadSceneMerged("Event_CharacterFocused");
-			print("Starting a new character event");
 			yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
 			CreateEvent(newEvent);
         }
@@ -365,8 +362,8 @@ public class EventSystem : MonoBehaviour
 		}
 
         eventActive = true;
-        //Does not increment overall event index because intro event does not increment it
-
+		//Does not increment overall event index because intro event does not increment it
+		tick.StopTickUpdate();
         AnalyticsManager.OnEventStarted(inkDriver, nextEventLockedIn);
 	}
 
@@ -416,6 +413,8 @@ public class EventSystem : MonoBehaviour
 			nextEventLockedIn = false;
 			eventRollCounter = 0;
 			timeBeforeEventCounter = 0;
+
+			
 		}
 
 		if (overallEventIndex >= maxEvents) //Potentially end the job entirely if this is meant to be the final event
