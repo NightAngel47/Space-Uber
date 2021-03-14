@@ -24,12 +24,42 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     [SerializeField] TextMeshProUGUI producesResource;
     [SerializeField] TextMeshProUGUI producesAmount;
     [SerializeField] TextMeshProUGUI level;
+    [SerializeField] GameObject newLevelText;
 
     private SpawnObject objectsToSpawn;
+
+    /// <summary>
+    /// Group 1: hydroponics, Bunks, VIP Lounge, Armor plating
+    /// </summary>
+    private int currentMaxLvlGroup1 = 1;
+
+    /// <summary>
+    /// Group 2: Shield generator, photon torpedoes, armory, pantry
+    /// </summary>
+    private int currentMaxLvlGroup2 = 1;
+
+    /// <summary>
+    /// Group 3: Storage Container, energy cannon, core charging terminal, brig
+    /// </summary>
+    private int currentMaxLvlGroup3 = 1;
 
     private void Start()
     {
         objectsToSpawn = FindObjectOfType<SpawnObject>();
+        Debug.Log(FindObjectOfType<CampaignManager>().GetCurrentCampaign());
+
+        switch(FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+        {
+            case 0:
+                currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
+                    break;
+            case 1:
+                currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
+                    break;
+            case 2:
+                currentMaxLvlGroup3 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
+                    break;
+        }
     }
 
     public void UpdateRoomInfo()
@@ -44,7 +74,41 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         roomSize.text = roomPrefab.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
         level.text = roomPrefab.GetComponent<RoomStats>().GetRoomLevel().ToString();
 
-        if(roomPrefab.TryGetComponent(out Resource resource))
+        switch (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+        {
+            case 0:
+                if(roomStats.GetRoomGroup() == 1)
+                {
+                    newLevelText.SetActive(true);
+                }
+                else
+                {
+                    newLevelText.SetActive(false);
+                }
+                break;
+            case 1:
+                if (roomStats.GetRoomGroup() == 2)
+                {
+                    newLevelText.SetActive(true);
+                }
+                else
+                {
+                    newLevelText.SetActive(false);
+                }
+                break;
+            case 2:
+                if (roomStats.GetRoomGroup() == 3)
+                {
+                    newLevelText.SetActive(true);
+                }
+                else
+                {
+                    newLevelText.SetActive(false);
+                }
+                break;
+        }
+
+        if (roomPrefab.TryGetComponent(out Resource resource))
         {
             resourceIcon.sprite = resource.resourceType.resourceIcon;
             producesResource.text = resource.resourceType.resourceName;
@@ -60,6 +124,63 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
 
     public void SpawnSelectedPrefab()
     {
-        objectsToSpawn.SpawnRoom(roomPrefab);
+        if (LevelChangeUI.isMouseOverLevel == false)
+        {
+            objectsToSpawn.SpawnRoom(roomPrefab);
+        }
+    }
+
+    /// <summary>
+    /// Calls the room stats level to be changed so that when placed its the correct stats
+    /// Will do other things for room level changing
+    /// </summary>
+    public void CallRoomLevelChange(int levelChange)
+    {
+        RoomStats roomStats = roomPrefab.GetComponent<RoomStats>();
+
+        switch(roomStats.GetRoomGroup())
+        {
+            case 1:
+                if ((levelChange < 0 && roomStats.GetRoomLevel() > 1) || (levelChange > 0 && roomStats.GetRoomLevel() < currentMaxLvlGroup1))
+                {
+                    roomStats.ChangeRoomLevel(levelChange);
+
+                    UpdateRoomInfo();
+                }
+                break;
+            case 2:
+                if ((levelChange < 0 && roomStats.GetRoomLevel() > 1) || (levelChange > 0 && roomStats.GetRoomLevel() < currentMaxLvlGroup2))
+                {
+                    roomStats.ChangeRoomLevel(levelChange);
+
+                    UpdateRoomInfo();
+                }
+                break;
+            case 3:
+                if ((levelChange < 0 && roomStats.GetRoomLevel() > 1) || (levelChange > 0 && roomStats.GetRoomLevel() < currentMaxLvlGroup3))
+                {
+                    roomStats.ChangeRoomLevel(levelChange);
+
+                    UpdateRoomInfo();
+                }
+                break;
+            default:
+                break;
+        }
+
+        
+
+        //sprite change TODO
+    }
+
+    /// <summary>
+    /// Takes in a vector 3 to update the currentMaxLvlGroup variables, x = group1, y = group 2, z = group 3
+    /// For no change in that group enter in a 0
+    /// </summary>
+    public void UpdateMaxLevelGroups(Vector3 groupChange)
+    {
+        currentMaxLvlGroup1 = (int)groupChange.x;
+        currentMaxLvlGroup2 = (int)groupChange.y;
+        currentMaxLvlGroup3 = (int)groupChange.z;
     }
 }
