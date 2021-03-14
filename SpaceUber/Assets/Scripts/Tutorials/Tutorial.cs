@@ -53,6 +53,10 @@ public class Tutorial : Singleton<Tutorial>
         {
             ContinueButton();
         }
+        if(Input.GetKeyDown(KeyCode.Backspace))
+        {
+            ContinueButton(true);
+        }
 
         //dirty implementation of ghost cursor/highlight activation until I get it working good
         ///////////////////////////////////////////////////////////////////////////////////////
@@ -178,21 +182,33 @@ public class Tutorial : Singleton<Tutorial>
         highlightPanel.SetActive(false);
     }
 
-    public void ContinueButton()
+    public void ContinueButton(bool back = false)
     {
         if (tutorialPanel.activeSelf == true)
-        {
-            StopLerping();
-            UnHighlightScreenLocation();
-
+        { 
             tutorialPrerequisitesComplete = false;
 
-            if (index < currentTutorial.tutorialMessages.Length)
+            //forward
+            if (index < currentTutorial.tutorialMessages.Length && back == false)
             {
                 tutorialTextbox.text = currentTutorial.tutorialMessages[index];
                 index++;
+                StopLerping();
+                UnHighlightScreenLocation();
             }
-            else CloseCurrentTutorial();
+            //backward
+            else if(index < currentTutorial.tutorialMessages.Length && index > 1 && back == true)
+            {
+                index -= 2;
+                tutorialTextbox.text = currentTutorial.tutorialMessages[index];
+                index++;
+                StopLerping();
+                UnHighlightScreenLocation();
+            }
+            else if(back == false)
+            {
+                CloseCurrentTutorial();
+            }
         }
     }
 
