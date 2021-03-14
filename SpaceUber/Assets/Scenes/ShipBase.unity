@@ -2884,11 +2884,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Overlock Controller
       objectReference: {fileID: 0}
-    - target: {fileID: 4785047525650801638, guid: 6ec16a407a9b4c240b0886c4a9a72a70,
-        type: 3}
-      propertyPath: cooldownTime
-      value: 2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4785047525650801639, guid: 6ec16a407a9b4c240b0886c4a9a72a70,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5487,16 +5482,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
-        type: 3}
-      propertyPath: eventChanceFreq
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
-        type: 3}
-      propertyPath: timeBeforeEventRoll
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe5d639606919114a9b48eb746a06bc6, type: 3}
 --- !u!114 &1350692055 stripped
@@ -6818,10 +6803,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1687556588, guid: bc69115c777117e41bd1cbb9557c8163, type: 3}
-      propertyPath: secondsPerTick
-      value: 4.25
-      objectReference: {fileID: 0}
     - target: {fileID: 4644283100350923746, guid: bc69115c777117e41bd1cbb9557c8163,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8017,16 +7998,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5841978202006887203, guid: 368c0234fb23944eeb47fd98a84f19ed,
-        type: 3}
-      propertyPath: maxMutinyMoraleMutinyChance
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 5841978202006887203, guid: 368c0234fb23944eeb47fd98a84f19ed,
-        type: 3}
-      propertyPath: crewLossMoraleMultiplier
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 368c0234fb23944eeb47fd98a84f19ed, type: 3}

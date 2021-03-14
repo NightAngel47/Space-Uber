@@ -16,7 +16,7 @@ using System.Linq;
 public class SpawnObject : MonoBehaviour
 {
     [SerializeField] private List<GameObject> allRoomList = new List<GameObject>();
-    public List<GameObject> availableRooms = new List<GameObject>();
+    public List<GameObject> availableRooms;
     [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private GameObject buttonPanel;
     [SerializeField] private Vector2 spawnLoc;
@@ -68,9 +68,47 @@ public class SpawnObject : MonoBehaviour
             }
         }
 
-        CreateRoomSpawnButtons();
 
-        
+        if (FindObjectOfType<CampaignManager>().GetCurrentCampaign() == 0)
+        {
+            switch (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+            {
+                case 0:
+                    foreach (GameObject room in allRoomList)
+                    {
+                        if (room.GetComponent<RoomStats>().GetRoomGroup() == 1)
+                        {
+                            availableRooms.Add(room);
+                        }
+                    }
+                    break;
+                case 1:
+                    foreach (GameObject room in allRoomList)
+                    {
+                        if (room.GetComponent<RoomStats>().GetRoomGroup() == 1 || room.GetComponent<RoomStats>().GetRoomGroup() == 2)
+                        {
+                            availableRooms.Add(room);
+                        }
+                    }
+                    break;
+                case 2:
+                    foreach (GameObject room in allRoomList)
+                    {
+                        availableRooms.Add(room);
+                    }
+                    break;
+            }
+        }
+        else
+        {
+            foreach (GameObject room in allRoomList)
+            {
+                availableRooms.Add(room);
+            }
+        }
+
+        CreateRoomSpawnButtons(); 
+
     }
 
     IEnumerator PreplacedRoom()
@@ -107,7 +145,8 @@ public class SpawnObject : MonoBehaviour
 
     public void SpawnRoom(GameObject ga)
     {
-        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price && FindObjectOfType<ShipStats>().EnergyRemaining.x >= ga.GetComponent<RoomStats>().minPower) //checks to see if the player has enough credits for the room
+        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price[ga.GetComponent<RoomStats>().GetRoomLevel() - 1] && 
+            FindObjectOfType<ShipStats>().EnergyRemaining.x >= ga.GetComponent<RoomStats>().minPower[ga.GetComponent<RoomStats>().GetRoomLevel() - 1]) //checks to see if the player has enough credits for the room
         {
             if (lastSpawned == null || lastSpawned.GetComponent<ObjectMover>().enabled == false) //makes sure that the prior room is placed before the next room can be added
             {
@@ -200,14 +239,14 @@ public class SpawnObject : MonoBehaviour
         }
         else
         {
-            if (FindObjectOfType<ShipStats>().Credits < ga.GetComponent<RoomStats>().price)
+            if (FindObjectOfType<ShipStats>().Credits < ga.GetComponent<RoomStats>().price[ga.GetComponent<RoomStats>().GetRoomLevel() - 1])
             {
                 AudioManager.instance.PlaySFX(cannotPlaceCredits[UnityEngine.Random.Range(0, cannotPlaceCredits.Length)]);
                 //Debug.Log("Cannot Afford");
                 FindObjectOfType<ShipBuildingAlertWindow>().OpenAlert(GameManager.instance.GetResourceData((int) ResourceDataTypes._Credits));
             }
 
-            if (FindObjectOfType<ShipStats>().EnergyRemaining.x < ga.GetComponent<RoomStats>().minPower)
+            if (FindObjectOfType<ShipStats>().EnergyRemaining.x < ga.GetComponent<RoomStats>().minPower[ga.GetComponent<RoomStats>().GetRoomLevel() - 1])
             {
                 AudioManager.instance.PlaySFX(cannotPlaceEnergy[UnityEngine.Random.Range(0, cannotPlaceEnergy.Length)]);
                 //Debug.Log("No Energy");

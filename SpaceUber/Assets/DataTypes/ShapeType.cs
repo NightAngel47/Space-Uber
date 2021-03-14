@@ -21,6 +21,9 @@ public class ShapeType : DataType
     public ShapeTypes St => shapeType;
 
 
+    [SerializeField] public string roomSizeName = "";
+    public string RoomSizeName => roomSizeName;
+
     [SerializeField] public float boundsUp = 0;
     public float BoundsUp => boundsUp;
 
