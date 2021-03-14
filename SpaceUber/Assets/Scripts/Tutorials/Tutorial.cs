@@ -9,13 +9,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using NaughtyAttributes;
 
 [System.Serializable]
 public class TutorialNode
 {
     public string tutorialName;
-    public string[] tutorialMessages;
+    public TutorialMessage[] tutorialMessages;
     public bool tutorialFinished; 
+}
+
+[System.Serializable]
+public class TutorialMessage
+{
+    public string message;
+    [Foldout("Ghost Cursor Effects")] public bool ghostCursorHydroponics;
+    [Foldout("Ghost Cursor Effects")] public bool ghostCursorChargingTerminal;
+    [Foldout("Ghost Cursor Effects")] public bool ghostCursorStatBar;
+
+    [Foldout("Other effects")] public bool selectRoom;
 }
 
 public class Tutorial : Singleton<Tutorial>
@@ -47,6 +59,11 @@ public class Tutorial : Singleton<Tutorial>
     private int index;
     private bool tutorialPrerequisitesComplete = false;
 
+    private void Start()
+    {
+        currentTutorial = tutorials[1];
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
@@ -58,67 +75,17 @@ public class Tutorial : Singleton<Tutorial>
             ContinueButton(true);
         }
 
-        //dirty implementation of ghost cursor/highlight activation until I get it working good
+        //Effects
         ///////////////////////////////////////////////////////////////////////////////////////
-        //Shipbuilding Message 1
-        if (tutorialPanel.activeSelf == true && lerping == false && currentTutorial == tutorials[1] && currentTutorial.tutorialMessages[0] == currentTutorial.tutorialMessages[index - 1])
+        if(tutorialPanel.activeSelf == true)
         {
-            if(tutorialPrerequisitesComplete == false)
-            {
-                if(FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "Food") FindObjectOfType<ShipBuildingShop>().ToResourceTab("Food");
-                tutorialPrerequisitesComplete = true;
-            }
-            BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
-        }
-        //Shipbuilding Message 5
-        else if (tutorialPanel.activeSelf == true && lerping == false && currentTutorial == tutorials[1] && currentTutorial.tutorialMessages[4] == currentTutorial.tutorialMessages[index - 1])
-        {
-            if (tutorialPrerequisitesComplete == false)
-            {
-                tutorialPrerequisitesComplete = true;
-            }
-            BeginLerping(vecStatsLeft.transform.position, vecStatsRight.transform.position);
-        }
-        //ShipBuilding Message 6
-        else if (tutorialPanel.activeSelf == true && lerping == false && currentTutorial == tutorials[1] && currentTutorial.tutorialMessages[5] == currentTutorial.tutorialMessages[index - 1])
-        {
-            if (tutorialPrerequisitesComplete == false)
-            {
-                if (FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "Energy") FindObjectOfType<ShipBuildingShop>().ToResourceTab("Energy");
-                tutorialPrerequisitesComplete = true;
-            }
-            BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
-        }
+            if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorHydroponics) GhostCursorHydroponics();
+            else if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorChargingTerminal) GhostCursorChargingTerminal();
+            else if (currentTutorial.tutorialMessages[index].ghostCursorStatBar) GhostCursorStatBar();
 
-        //Crew Management Message 2
-        else if (tutorialPanel.activeSelf == true && lerping == false && currentTutorial == tutorials[2] && currentTutorial.tutorialMessages[1] == currentTutorial.tutorialMessages[index - 1])
-        {
-            if (tutorialPrerequisitesComplete == false)
-            {
-                FindObjectOfType<RoomPanelToggle>().OpenPanel(0);
-                FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
-                FindObjectOfType<CrewManagement>().UpdateRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
-                FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
-                tutorialPrerequisitesComplete = true;
-            }
-            HighlightScreenLocation(325, -50, 268, 71);
+            if (FindObjectOfType<CrewManagementRoomDetailsMenu>() != null && currentTutorial.tutorialMessages[index].selectRoom) EffectSelectRoom();
         }
-
-        //Overtime Tutorial Message 1
-        else if (tutorialPanel.activeSelf == true && lerping == false && currentTutorial == tutorials[3] && currentTutorial.tutorialMessages[0] == currentTutorial.tutorialMessages[index - 1])
-        {
-            if (tutorialPrerequisitesComplete == false)
-            {
-                FindObjectOfType<RoomPanelToggle>().OpenPanel(0);
-                FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
-                FindObjectOfType<CrewManagement>().UpdateRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
-                FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
-                tutorialPrerequisitesComplete = true;
-            }
-            
-        }
-
-
+        
         /////////////////////////////////////////////////////////////////////////////////
 
         if (lerping)
@@ -148,9 +115,9 @@ public class Tutorial : Singleton<Tutorial>
         if (tutorialPanel.activeSelf == false)
         {
             tutorialPanel.SetActive(true);
-            tutorialTextbox.text = currentTutorial.tutorialMessages[0];
+            tutorialTextbox.text = currentTutorial.tutorialMessages[0].message;
             tutorialTitleTextbox.text = currentTutorial.tutorialName;
-            index = 1;
+            index = 0;
         }
 
     }
@@ -189,19 +156,19 @@ public class Tutorial : Singleton<Tutorial>
             tutorialPrerequisitesComplete = false;
 
             //forward
-            if (index < currentTutorial.tutorialMessages.Length && back == false)
+            if (index < currentTutorial.tutorialMessages.Length - 1 && back == false)
             {
-                tutorialTextbox.text = currentTutorial.tutorialMessages[index];
                 index++;
+                tutorialTextbox.text = currentTutorial.tutorialMessages[index].message;
+                
                 StopLerping();
                 UnHighlightScreenLocation();
             }
             //backward
-            else if(index < currentTutorial.tutorialMessages.Length && index > 1 && back == true)
+            else if(index < currentTutorial.tutorialMessages.Length && index > 0 && back == true)
             {
-                index -= 2;
-                tutorialTextbox.text = currentTutorial.tutorialMessages[index];
-                index++;
+                index --;
+                tutorialTextbox.text = currentTutorial.tutorialMessages[index].message;
                 StopLerping();
                 UnHighlightScreenLocation();
             }
@@ -240,6 +207,44 @@ public class Tutorial : Singleton<Tutorial>
         return result;
 
 
+    }
+
+    private void GhostCursorHydroponics()
+    {
+        if (tutorialPrerequisitesComplete == false)
+        {
+            if (FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "Food") FindObjectOfType<ShipBuildingShop>().ToResourceTab("Food");
+            tutorialPrerequisitesComplete = true;
+        }
+        if(lerping == false) BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
+    }
+    private void GhostCursorChargingTerminal()
+    {
+        if (tutorialPrerequisitesComplete == false)
+        {
+            if (FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "Energy") FindObjectOfType<ShipBuildingShop>().ToResourceTab("Energy");
+            tutorialPrerequisitesComplete = true;
+        }
+        if (lerping == false) BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
+    }
+    private void GhostCursorStatBar()
+    {
+        if (tutorialPrerequisitesComplete == false)
+        {
+            tutorialPrerequisitesComplete = true;
+        }
+        if (lerping == false) BeginLerping(vecStatsLeft.transform.position, vecStatsRight.transform.position);
+    }
+    private void EffectSelectRoom()
+    {
+        if (tutorialPrerequisitesComplete == false)
+        {
+            FindObjectOfType<RoomPanelToggle>().OpenPanel(0);
+            FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
+            FindObjectOfType<CrewManagement>().UpdateRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
+            FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
+            tutorialPrerequisitesComplete = true;
+        }
     }
 
 }

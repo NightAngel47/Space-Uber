@@ -1966,79 +1966,176 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorials:
   - tutorialName: Basic Tutorial
-    tutorialMessages:
-    - Message 1/3 of basic tutorial.
-    - Message 2/3 of basic tutorial.
-    - Message 3/3 of basic tutorial.
+    tutorialMessages: []
     tutorialFinished: 0
   - tutorialName: 'Ship Building Tutorial '
     tutorialMessages:
-    - Welcome to Shipbuilding! Click the tabs on the left to open the shop. Click
-      and drag rooms onto the ship to place them there.
-    - Right click on a placed room to sell and remove it. The Sale price is reduced
-      if the room went on at least one trip.
-    - Left click a room you've placed to pick it back up. Don't worry, this will
-      retain any assigned crew. You may press Q/E to rotate a room you are holding.
-    - Notice that you cannot place rooms on top of each other.
-    - 'Rooms cost money and power to operate, but are essential to make it to your
-      destination. They provide your ship with stats. Hover over the icons directly
-      above this tutorial to see what the stats do. '
-    - 'Some rooms have restrictions on where they can be placed. These rooms will
-      highlight potential placement locations in blue when they''re dragged from
-      the left menu. '
-    - You may press the question mark on the bottom right of the shop to replay this
-      tutorial at any time. Good luck!
+    - message: 'Welcome to Shipbuilding! Click the tabs on the left to open the shop.
+        Click and drag rooms onto the ship to place them there. '
+      ghostCursorHydroponics: 1
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: 'Right click on a placed room to sell and remove it. The Sale price
+        is reduced if the room went on at least one trip. '
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: 'Left click a room you''ve placed to pick it back up. Don''t worry,
+        this will retain any assigned crew. You may press Q/E to rotate a room you
+        are holding. '
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: 'Notice that you cannot place rooms on top of each other. '
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: 'Rooms cost money and power to operate, but are essential to make
+        it to your destination. They provide your ship with stats. Hover over the
+        icons directly above this tutorial to see what the stats do.  '
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 1
+      selectRoom: 0
+    - message: 'Some rooms have restrictions on where they can be placed. These rooms
+        will highlight potential placement locations in blue when they''re dragged
+        from the left menu.  '
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 1
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: 'You may press the question mark on the bottom right of the shop to
+        replay this tutorial at any time. Good luck! '
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
     tutorialFinished: 0
   - tutorialName: Crew Management Tutorial
     tutorialMessages:
-    - Welcome to Crew Management! Most rooms need human crew to operate them.
-    - Click on a room to open the room details window and assign/unassign crew members
-      to that room. Notice you can only can assign crew members up to the number
-      of max crew of that room, or until your unassigned crew are depleted.
-    - You must be prepared to work with your crew effectively! Despite any negative
-      feelings you may have toward their ineffective, and frankly disposable fleshy
-      coils.
-    - 'Note that crew can be replaced at a port if something "unfortunate" happens
-      to them on a journey. You can also pay to have your ship repaired if something
-      truly unfortunate happens. '
-    - Assigning crew members to rooms increases room output. You can see how many
-      workers a room has by looking at the icons over the rooms. This view can be
-      enabled or disabled at any time by pressing Tab.
-    - 'You may press the shipbuilding button in the lower left of the screen to go
-      back to ship building if you realize you need to change your ship. '
-    - "You may also click the question mark on the top left of the crew management
-      screen to replay this tutorial at any time. When you\u2019re ready to go, click
-      the \u201Cbegin job\u201D button."
+    - message: 'Welcome to Crew Management! Most rooms need human crew to operate
+        them. '
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: 'Click on a room to open the room details window and assign/unassign
+        crew members to that room. Notice you can only can assign crew members up
+        to the number of max crew of that room, or until your unassigned crew are
+        depleted. '
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 1
+    - message: 'You must be prepared to work with your crew effectively! Despite
+        any negative feelings you may have toward their ineffective, and frankly
+        disposable fleshy coils. '
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: 'Note that crew can be replaced at a port if something "unfortunate"
+        happens to them on a journey. You can also pay to have your ship repaired
+        if something truly unfortunate happens.  '
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: 'Assigning crew members to rooms increases room output. You can see
+        how many workers a room has by looking at the icons over the rooms. This
+        view can be enabled or disabled at any time by pressing Tab. '
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: 'You may press the shipbuilding button in the lower left of the screen
+        to go back to ship building if you realize you need to change your ship.  '
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "You may also click the question mark on the top left of the crew
+        management screen to replay this tutorial at any time. When you\u2019re ready
+        to go, click the \u201Cbegin job\u201D button. "
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
     tutorialFinished: 0
   - tutorialName: Morale/Overtime Tutorial
     tutorialMessages:
-    - Each room has an overtime button in the bottom of the room details panel. This
-      button will trigger a minigame. Complete minigames to increase output of a
-      room temporarily.
-    - 'Unfortunately we still have to listen to our crew and try to make them happy,
-      lest they stage a mutiny against you. Keeping them happy will at least make
-      them somewhat efficient. '
-    - "The lower the crew\u2019s morale, the more likely they are to stage a mutiny.
-      If they do mutinize, they\u2019ll ask for some money. Greedy bastards."
-    - "One way to keep them happy is to have a \u201Cconversation\u201D with them.
-      Clicking on a room with their respective resource will let you talk to that
-      crewmate about anything on their mind."
-    - "A good conversation will leave them happy and increase morale, but a bad one
-      could make them wish you didn\u2019t talk to them in the first place. Flex
-      those AI social algorithms! "
-    - "You might come across an event whilst forcing overtime. You\u2019ll be alerted
-      of this so you can focus on the event. "
-    - 'You may replay this tutorial at any time by clicking the question mark at
-      the top right of the room details menu. '
+    - message: 'Each room has an overtime button in the bottom of the room details
+        panel. This button will trigger a minigame. Complete minigames to increase
+        output of a room temporarily. '
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 1
+    - message: 'Unfortunately we still have to listen to our crew and try to make
+        them happy, lest they stage a mutiny against you. Keeping them happy will
+        at least make them somewhat efficient.  '
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "The lower the crew\u2019s morale, the more likely they are to stage
+        a mutiny. If they do mutinize, they\u2019ll ask for some money. Greedy bastards. "
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "One way to keep them happy is to have a \u201Cconversation\u201D
+        with them. Clicking on a room with their respective resource will let you
+        talk to that crewmate about anything on their mind. "
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "A good conversation will leave them happy and increase morale, but
+        a bad one could make them wish you didn\u2019t talk to them in the first
+        place. Flex those AI social algorithms!  "
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "You might come across an event whilst forcing overtime. You\u2019ll
+        be alerted of this so you can focus on the event.  "
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: 'You may replay this tutorial at any time by clicking the question
+        mark at the top right of the room details menu.  '
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
     tutorialFinished: 0
   - tutorialName: Random Events Tutorial
     tutorialMessages:
-    - "Space is vast, so the unexpected might happen. It\u2019s up to you to decide
-      what to do. After some time passes, an event such as this one will take place."
-    - "Always remember the bottom line. Make as much money as you can. Sometimes
-      you might have to sacrifice crew. Whatever. Like I said, they\u2019re disposable."
-    - But remember that people will remember the choices you make and it may affect
-      things down the line.
+    - message: "Space is vast, so the unexpected might happen. It\u2019s up to you
+        to decide what to do. After some time passes, an event such as this one will
+        take place. "
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "Always remember the bottom line. Make as much money as you can. Sometimes
+        you might have to sacrifice crew. Whatever. Like I said, they\u2019re disposable. "
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: But remember that people will remember the choices you make and it
+        may affect things down the line.
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
     tutorialFinished: 0
   tutorialTextbox: {fileID: 865373335}
   tutorialTitleTextbox: {fileID: 164589658}
