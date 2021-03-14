@@ -46,20 +46,27 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     private void Start()
     {
         objectsToSpawn = FindObjectOfType<SpawnObject>();
-        Debug.Log(FindObjectOfType<CampaignManager>().GetCurrentCampaign());
 
-        switch(FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+        if (FindObjectOfType<CampaignManager>().GetCurrentCampaign() > 0)
         {
-            case 0:
-                currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
+            switch (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+            {
+                case 0:
+                    currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
                     break;
-            case 1:
-                currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
+                case 1:
+                    currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
+                    currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
                     break;
-            case 2:
-                currentMaxLvlGroup3 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
+                case 2:
+                    currentMaxLvlGroup3 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
+                    currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
+                    currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
                     break;
+            }
         }
+
+        SavingLoadingManager.instance.SaveRoomLevels(currentMaxLvlGroup1, currentMaxLvlGroup2, currentMaxLvlGroup3);
     }
 
     public void UpdateRoomInfo()
@@ -74,38 +81,41 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         roomSize.text = roomPrefab.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
         level.text = roomPrefab.GetComponent<RoomStats>().GetRoomLevel().ToString();
 
-        switch (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+        if (FindObjectOfType<CampaignManager>().GetCurrentCampaign() > 0)
         {
-            case 0:
-                if(roomStats.GetRoomGroup() == 1)
-                {
-                    newLevelText.SetActive(true);
-                }
-                else
-                {
-                    newLevelText.SetActive(false);
-                }
-                break;
-            case 1:
-                if (roomStats.GetRoomGroup() == 2)
-                {
-                    newLevelText.SetActive(true);
-                }
-                else
-                {
-                    newLevelText.SetActive(false);
-                }
-                break;
-            case 2:
-                if (roomStats.GetRoomGroup() == 3)
-                {
-                    newLevelText.SetActive(true);
-                }
-                else
-                {
-                    newLevelText.SetActive(false);
-                }
-                break;
+            switch (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+            {
+                case 0:
+                    if (roomStats.GetRoomGroup() == 1)
+                    {
+                        newLevelText.SetActive(true);
+                    }
+                    else
+                    {
+                        newLevelText.SetActive(false);
+                    }
+                    break;
+                case 1:
+                    if (roomStats.GetRoomGroup() == 2)
+                    {
+                        newLevelText.SetActive(true);
+                    }
+                    else
+                    {
+                        newLevelText.SetActive(false);
+                    }
+                    break;
+                case 2:
+                    if (roomStats.GetRoomGroup() == 3)
+                    {
+                        newLevelText.SetActive(true);
+                    }
+                    else
+                    {
+                        newLevelText.SetActive(false);
+                    }
+                    break;
+            }
         }
 
         if (roomPrefab.TryGetComponent(out Resource resource))
@@ -177,10 +187,10 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     /// Takes in a vector 3 to update the currentMaxLvlGroup variables, x = group1, y = group 2, z = group 3
     /// For no change in that group enter in a 0
     /// </summary>
-    public void UpdateMaxLevelGroups(Vector3 groupChange)
+    public void UpdateMaxLevelGroups(int group1, int group2, int group3)
     {
-        currentMaxLvlGroup1 = (int)groupChange.x;
-        currentMaxLvlGroup2 = (int)groupChange.y;
-        currentMaxLvlGroup3 = (int)groupChange.z;
+        currentMaxLvlGroup1 = group1;
+        currentMaxLvlGroup2 = group2;
+        currentMaxLvlGroup3 = group3;
     }
 }

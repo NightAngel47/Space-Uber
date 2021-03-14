@@ -16,7 +16,7 @@ using System.Linq;
 public class SpawnObject : MonoBehaviour
 {
     [SerializeField] private List<GameObject> allRoomList = new List<GameObject>();
-    public List<GameObject> availableRooms = new List<GameObject>();
+    public List<GameObject> availableRooms;
     [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private GameObject buttonPanel;
     [SerializeField] private Vector2 spawnLoc;
@@ -65,6 +65,44 @@ public class SpawnObject : MonoBehaviour
                 ObjectMover.hasPlaced = true;
 
                 StartCoroutine(PreplacedRoom());
+            }
+        }
+
+        if (FindObjectOfType<CampaignManager>().GetCurrentCampaign() == 0)
+        {
+            switch (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+            {
+                case 0:
+                    foreach (GameObject room in allRoomList)
+                    {
+                        if (room.GetComponent<RoomStats>().GetRoomGroup() == 1)
+                        {
+                            availableRooms.Add(room);
+                        }
+                    }
+                    break;
+                case 1:
+                    foreach (GameObject room in allRoomList)
+                    {
+                        if (room.GetComponent<RoomStats>().GetRoomGroup() == 1 || room.GetComponent<RoomStats>().GetRoomGroup() == 2)
+                        {
+                            availableRooms.Add(room);
+                        }
+                    }
+                    break;
+                case 2:
+                    foreach (GameObject room in allRoomList)
+                    {
+                        availableRooms.Add(room);
+                    }
+                    break;
+            }
+        }
+        else
+        {
+            foreach (GameObject room in allRoomList)
+            {
+                availableRooms.Add(room);
             }
         }
 
