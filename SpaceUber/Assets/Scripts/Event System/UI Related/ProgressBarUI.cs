@@ -2,18 +2,15 @@
  * ProgressBarUI.cs
  * Author(s): Sam Ferstein
  * Created on: 3/9/2021 (en-US)
- * Description: 
+ * Description: Controls how the progress bar moves and changes based on what event the player is on.
  */
 
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
-[ExecuteInEditMode]
 public class ProgressBarUI : MonoBehaviour
 {
     public RectTransform line;
-    public GameObject currentPoint;
     public GameObject randEvent1;
     public GameObject jobEvent1;
     public GameObject randEvent2;
@@ -26,37 +23,30 @@ public class ProgressBarUI : MonoBehaviour
         switch (EventSystem.instance.overallEventIndex)
         {
             case 0:
-                currentPoint.transform.localPosition = new Vector2(67.5f, 15 + 15);
-                StartCoroutine(Scale(110));
+                StartCoroutine(Scale(123));
                 return;
             case 1:
                 randEvent1.SetActive(true);
-                currentPoint.transform.localPosition = new Vector2(67.5f, 135 + 15);
-                StartCoroutine(Scale(230));
+                StartCoroutine(Scale(243));
                 return;
             case 2:
                 jobEvent1.SetActive(true);
-                currentPoint.transform.localPosition = new Vector2(67.5f, 255 + 15);
-                StartCoroutine(Scale(350));
+                StartCoroutine(Scale(363));
                 return;
             case 3:
                 randEvent2.SetActive(true);
-                currentPoint.transform.localPosition = new Vector2(67.5f, 375 + 15);
-                StartCoroutine(Scale(470));
+                StartCoroutine(Scale(483));
                 return;
             case 4:
                 jobEvent2.SetActive(true);
-                currentPoint.transform.localPosition = new Vector2(67.5f, 495 + 15);
-                StartCoroutine(Scale(590));
+                StartCoroutine(Scale(603));
                 return;
             case 5:
                 randEvent3.SetActive(true);
-                currentPoint.transform.localPosition = new Vector2(67.5f, 615 + 15);
-                StartCoroutine(Scale(710));
+                StartCoroutine(Scale(723));
                 return;
             case 6:
                 jobEvent3.SetActive(true);
-                currentPoint.transform.localPosition = new Vector2(67.5f, 735 + 15);
                 return;
             default:
                 randEvent1.SetActive(false);
