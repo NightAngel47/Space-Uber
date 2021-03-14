@@ -507,4 +507,6 @@ public class ShipStats : MonoBehaviour
 
         return stats;
     }
+
+    
 }
