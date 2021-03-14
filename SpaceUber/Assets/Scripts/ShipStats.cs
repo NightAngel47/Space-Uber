@@ -168,6 +168,12 @@ public class ShipStats : MonoBehaviour
             {
                 energyRemaining = 0;
             }
+            
+            if (energyMax <= 0)
+            {
+                energyMax = 0;
+            }
+            
             if (energyRemaining >= energyMax)
             {
                 energyRemaining = energyMax;
@@ -255,7 +261,12 @@ public class ShipStats : MonoBehaviour
             crewCurrent = (int)value.x;
             crewCapacity = (int)value.y;
             crewUnassigned = (int)value.z;
-
+            
+            if (crewCurrent - prevValue.x != 0)
+            {
+                crewUnassigned = crewCurrent - (int)prevValue.x + (int)prevValue.z;
+            }
+            
             if (crewCurrent - prevValue.x < 0)
             {
                 if(crewUnassigned < 0)
@@ -284,8 +295,15 @@ public class ShipStats : MonoBehaviour
             {
                 crewCurrent = 0;
             }
+            
+            if (crewCapacity <= 0)
+            {
+                crewCapacity = 0;
+            }
+            
             if (crewCurrent >= crewCapacity)
             {
+                crewUnassigned += crewCapacity - crewCurrent;
                 crewCurrent = crewCapacity;
             }
 
@@ -339,6 +357,11 @@ public class ShipStats : MonoBehaviour
         {
             int prevValue = foodPerTick;
             foodPerTick = value;
+            
+            if(foodPerTick <= 0)
+            {
+                foodPerTick = 0;
+            }
 
             shipStatsUI.UpdateFoodUI(food, foodPerTick, crewCurrent);
             shipStatsUI.ShowFoodUIChange(0, value - prevValue);
@@ -356,7 +379,17 @@ public class ShipStats : MonoBehaviour
             Vector2 prevValue = new Vector2(shipHealthCurrent, shipHealthMax);
             shipHealthCurrent = (int)value.x;
             shipHealthMax = (int)value.y;
-
+            
+            if(shipHealthCurrent <= 0)
+            {
+                shipHealthCurrent = 0;
+            }
+            
+            if(shipHealthMax <= 0)
+            {
+                shipHealthMax = 0;
+            }
+            
             if (shipHealthCurrent >= shipHealthMax)
             {
                 shipHealthCurrent = shipHealthMax;
