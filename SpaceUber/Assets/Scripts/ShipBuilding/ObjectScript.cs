@@ -19,7 +19,6 @@ public class ObjectScript : MonoBehaviour
     [Foldout("Data")] public int rotAdjust = 1;
     public static Color c;
 
-    public string roomSize;
     public int shapeType;
     public int objectNum;
 
@@ -36,7 +35,7 @@ public class ObjectScript : MonoBehaviour
     [SerializeField] private GameObject roomTooltip;
     [SerializeField] private GameObject toolTipOutputList;
 
-    [SerializeField] private ShapeType shapeDataTemplate = null;
+    public ShapeType shapeDataTemplate = null;
 
     [Foldout("Data")] public ShapeType shapeData = null;
     public ShapeTypes shapeTypes => shapeData.St;
@@ -53,6 +52,11 @@ public class ObjectScript : MonoBehaviour
 
     private bool mouseReleased = false;
     public static bool roomIsHovered;
+
+    /// <summary>
+    /// When rooms are being edited, stats do not get added again when placed
+    /// </summary>
+    public bool isEdited = false;
 
     private void Start()
     {
@@ -131,7 +135,6 @@ public class ObjectScript : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && ObjectMover.hasPlaced == true && !gameObject.GetComponent<ObjectMover>().enabled && preplacedRoom == false)
             {
                 //buttons.SetActive(true);
-                gameObject.GetComponent<RoomStats>().SubtractRoomStats();
                 AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
                 Edit();
             }
@@ -198,6 +201,8 @@ public class ObjectScript : MonoBehaviour
 
     public void Edit()
     {
+        isEdited = true;
+
         Cursor.visible = false;
         clickAgain = false;
 

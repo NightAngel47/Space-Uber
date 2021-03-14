@@ -23,6 +23,7 @@ public class EndingRestartBehaviour : MonoBehaviour
     public void ResetJob()
     {
         if(FindObjectOfType<SpotChecker>()) Destroy(FindObjectOfType<SpotChecker>().gameObject);
+        GameManager.instance.ChangeInGameState(InGameStates.ShipBuilding);
         SceneManager.LoadScene("LoadingScreen");
         AudioManager.instance.PlayMusicWithTransition("General Theme");
     }

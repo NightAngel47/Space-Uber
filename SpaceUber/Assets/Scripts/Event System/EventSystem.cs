@@ -106,8 +106,8 @@ public class EventSystem : MonoBehaviour
         }
 
 		//check for an introduction "event"
-		GameObject intro = (from introEvent in currentJob.introEvents 
-			let requirements = introEvent.GetComponent<InkDriverBase>().requiredStats 
+		GameObject intro = (from introEvent in currentJob.introEvents
+			let requirements = introEvent.GetComponent<InkDriverBase>().requiredStats
 			where HasRequiredStats(requirements) select introEvent).FirstOrDefault();
 
 		if (intro != null)
@@ -156,8 +156,9 @@ public class EventSystem : MonoBehaviour
 				yield return new WaitForEndOfFrame();
 			}
 
-            asm.LoadSceneMerged("Event_Prompt");
+            asm.LoadSceneMerged("Event_Prompt"); //Give option to start next event
             yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
+
             eventPromptButton = FindObjectOfType<EventPromptButton>();
             eventPromptButton.eventButton.onClick.AddListener(SkipToEvent);
 
@@ -166,10 +167,10 @@ public class EventSystem : MonoBehaviour
             {
 				if(!mutiny) // don't increment timer during mutiny
 				{
-					// count up for every roll
-					eventRollCounter += Time.deltaTime;
-					// if reached next roll
-					if (eventRollCounter >= eventChanceFreq)
+
+					eventRollCounter += Time.deltaTime; // count up for every roll
+
+					if (eventRollCounter >= eventChanceFreq) // if reached next roll
 					{
 						if (WillRunEvent(chanceOfEvent))
 						{
@@ -181,7 +182,7 @@ public class EventSystem : MonoBehaviour
 						eventRollCounter = 0; // reset roll counter
 					}
 				}
-					
+
 				yield return new WaitForEndOfFrame();
             }
 
@@ -205,7 +206,7 @@ public class EventSystem : MonoBehaviour
             // wait for event to conclude
             yield return new WaitWhile((() => eventActive));
 		}
-        
+
         tick.StopTickUpdate();
 	}
 
