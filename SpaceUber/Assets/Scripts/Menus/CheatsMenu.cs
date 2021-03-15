@@ -14,7 +14,7 @@ public class CheatsMenu : MonoBehaviour
 {
     public static CheatsMenu instance;
     private EventSystem es;
-    [SerializeField] private CampaignManager campMan;
+    private CampaignManager campMan;
     private ShipStats thisShip;
     private JobManager jm;
 
@@ -155,7 +155,7 @@ public class CheatsMenu : MonoBehaviour
             #endregion
         }
 
-        if(Input.GetKey(KeyCode.F10))
+        if(Input.GetKeyDown(KeyCode.F10))
         {
             LevelUpRooms();
         }
@@ -408,5 +408,7 @@ public class CheatsMenu : MonoBehaviour
             ShipBuildingBuyableRoom.cheatCampaign += 1;
             ShipBuildingBuyableRoom.cheatJob = 0;
         }
+        
+        Debug.Log("Level " + (ShipBuildingBuyableRoom.cheatJob + 1) + " Unlocked");
     }
 }

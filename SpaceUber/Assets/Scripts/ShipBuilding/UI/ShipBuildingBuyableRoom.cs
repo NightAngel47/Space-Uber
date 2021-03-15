@@ -4,8 +4,6 @@
  * based off of instructions from ShipBuildingShop.cs
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -27,6 +25,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     [SerializeField] GameObject newLevelText;
 
     private SpawnObject objectsToSpawn;
+    private CampaignManager campaignManager;
 
     /// <summary>
     /// Group 1: hydroponics, Bunks, VIP Lounge, Armor plating
@@ -47,24 +46,28 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     public static int cheatCampaign = 0;
     public static int cheatJob = 0;
 
-    private void Start()
+    private void Awake()
     {
         objectsToSpawn = FindObjectOfType<SpawnObject>();
+        campaignManager = FindObjectOfType<CampaignManager>();
+    }
 
+    private void Start()
+    {
         if (cheatLevels == false)
         {
-            if (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() > 0)
+            if (campaignManager.GetCurrentCampaignIndex() > 0)
             {
                 RoomStats[] rooms = FindObjectsOfType<RoomStats>();
 
-                switch (FindObjectOfType<CampaignManager>().GetCurrentJobIndex())
+                switch (campaignManager.GetCurrentJobIndex())
                 {
                     case 0:
-                        currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
+                        currentMaxLvlGroup1 = (campaignManager.GetCurrentCampaignIndex() + 2);
                         break;
                     case 1:
-                        currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
-                        currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
+                        currentMaxLvlGroup2 = (campaignManager.GetCurrentCampaignIndex() + 2);
+                        currentMaxLvlGroup1 = (campaignManager.GetCurrentCampaignIndex() + 2);
 
                         foreach (RoomStats room in rooms)
                         {
@@ -75,9 +78,9 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
                         }
                         break;
                     case 2:
-                        currentMaxLvlGroup3 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
-                        currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
-                        currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
+                        currentMaxLvlGroup3 = (campaignManager.GetCurrentCampaignIndex() + 2);
+                        currentMaxLvlGroup1 = (campaignManager.GetCurrentCampaignIndex() + 2);
+                        currentMaxLvlGroup2 = (campaignManager.GetCurrentCampaignIndex() + 2);
 
 
                         foreach (RoomStats room in rooms)
@@ -147,39 +150,18 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         roomSize.text = roomPrefab.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
         level.text = roomPrefab.GetComponent<RoomStats>().GetRoomLevel().ToString();
 
-        if (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() > 0)
+        if (campaignManager.GetCurrentCampaignIndex() > 0)
         {
-            switch (FindObjectOfType<CampaignManager>().currentCamp)
+            switch (campaignManager.currentCamp)
             {
                 case CampaignManager.Campaigns.CateringToTheRich:
-                    if (roomStats.GetRoomGroup() == 1)
-                    {
-                        newLevelText.SetActive(true);
-                    }
-                    else
-                    {
-                        newLevelText.SetActive(false);
-                    }
+                    newLevelText.SetActive(roomStats.GetRoomGroup() == 1);
                     break;
                 case CampaignManager.Campaigns.MysteriousEntity:
-                    if (roomStats.GetRoomGroup() == 2)
-                    {
-                        newLevelText.SetActive(true);
-                    }
-                    else
-                    {
-                        newLevelText.SetActive(false);
-                    }
+                    newLevelText.SetActive(roomStats.GetRoomGroup() == 2);
                     break;
                 case CampaignManager.Campaigns.FinalTest:
-                    if (roomStats.GetRoomGroup() == 3)
-                    {
-                        newLevelText.SetActive(true);
-                    }
-                    else
-                    {
-                        newLevelText.SetActive(false);
-                    }
+                    newLevelText.SetActive(roomStats.GetRoomGroup() == 3);
                     break;
             }
         }
