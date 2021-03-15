@@ -12,8 +12,6 @@ public class DevelopmentAccess : MonoBehaviour
 {
     public static DevelopmentAccess instance;
     [HideInInspector] public bool cheatModeActive;
-
-    private bool inTest = false;
     private AdditiveSceneManager asm;
 
     private void Awake()
@@ -33,28 +31,12 @@ public class DevelopmentAccess : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.F2))
-        //{
-        //    if (inTest)
-        //    {
-        //        inTest = false;
-        //        Debug.LogWarning("Loading ShipBase from MiniGames Testing Menu");
-        //        SceneManager.LoadScene("ShipBase");
-        //        GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
-        //    }
-        //    else
-        //    {
-        //        inTest = true;
-        //        Debug.LogWarning("Loading MiniGames Testing Menu");
-        //        SceneManager.LoadScene("MiniGames Testing Menu");
-        //    }
-        //}
-
         if(Input.GetKeyDown(KeyCode.F1))
         {
             OpenCloseCheats();
         }
 
+        // TODO: add back speed up via cheats (later)
         //#if UNITY_EDITOR
         //if (Input.GetKeyDown(KeyCode.F1))
         //{
@@ -72,12 +54,11 @@ public class DevelopmentAccess : MonoBehaviour
 
     void OpenCloseCheats()
     {
-        //TODO: load cheat scene
         if (cheatModeActive)
         {
             cheatModeActive = false;
+            Destroy(FindObjectOfType<CheatsMenu>().gameObject);
             asm.UnloadScene("Cheats");
-
         }
         else
         {

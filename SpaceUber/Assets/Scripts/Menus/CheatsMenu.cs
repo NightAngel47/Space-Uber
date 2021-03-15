@@ -66,7 +66,7 @@ public class CheatsMenu : MonoBehaviour
         jm = FindObjectOfType<JobManager>();
         asm = FindObjectOfType<AdditiveSceneManager>();
 
-        myCanvas.SetActive(false);
+        //myCanvas.SetActive(false);
 
         cheatModeActiveText.SetActive(true);
         showingActiveText = true;
