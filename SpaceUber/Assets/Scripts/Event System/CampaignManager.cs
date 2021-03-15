@@ -86,6 +86,14 @@ public class CampaignManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns the current camp vairable for room level upgrades
+    /// </summary>
+    public int GetCurrentCampaign()
+    {
+        return (int)currentCamp;
+    }
+
     public float GetMultiplier(ResourceDataTypes resource)
     {
         float multiplier = 1;

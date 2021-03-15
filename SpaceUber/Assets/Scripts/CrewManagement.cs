@@ -68,7 +68,7 @@ public class CrewManagement : MonoBehaviour
         CheckForMinCrew();
 
 
-        CrewViewManager.Instance.EnableCrewView();//automatically enable crew view when you enter crew mgmt 
+        CrewViewManager.Instance.EnableCrewView();//automatically enable crew view when you enter crew mgmt
 
 
         Tutorial.Instance.SetCurrentTutorial(2, true);
@@ -235,7 +235,7 @@ public class CrewManagement : MonoBehaviour
             resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = resource.resourceType.resourceName; // resource name
 
             room.GetComponent<RoomStats>().SetActiveAmount(resource);
-            
+
             if (room.GetComponent<RoomStats>().flatOutput == false)
             {
                 resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = resource.activeAmount.ToString() + " / " + resource.amount.ToString();  // This part wasn't being called before, by uncommenting it'll fix it, but ruin the text placement in the UI + " / " + (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(room.GetComponent<RoomStats>().ignoreMorale)); // resource amount
@@ -304,8 +304,6 @@ public class CrewManagement : MonoBehaviour
         //crewManagementText.SetActive(false);
         room.GetComponent<OverclockRoom>().PlayMiniGame();
 
-        
-        
     }
 
     public void StartChat()
@@ -328,7 +326,7 @@ public class CrewManagement : MonoBehaviour
         {
             button.SetActive(false);
         }
-        
+
         crewAssignmentCanvas.SetActive(false);
 
         if(!overclockButton.interactable)
