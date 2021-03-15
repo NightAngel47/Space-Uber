@@ -13,8 +13,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.SceneManagement;
-using Ink.Parsed;
-using TMPro;
 
 public class EventSystem : MonoBehaviour
 {
@@ -48,6 +46,7 @@ public class EventSystem : MonoBehaviour
 
 	[Tooltip("How many seconds before the first event roll")]
 	[SerializeField] private float timeBeforeEventRoll = 40;
+	public float TimeBeforeEventRoll => timeBeforeEventRoll;
 
 	[Tooltip("How much the percentage chance of rolling an event will increase per failure")]
 	[SerializeField] private float chanceIncreasePerFreq = 20;

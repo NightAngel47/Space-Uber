@@ -5,6 +5,7 @@
  * Description: Controls how the progress bar moves and changes based on what event the player is on.
  */
 
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -18,36 +19,39 @@ public class ProgressBarUI : MonoBehaviour
     public GameObject randEvent3;
     public GameObject jobEvent3;
 
+    [SerializeField] private int[] scales;
+
+    private EventSystem eventSystem;
+
+    private void Awake()
+    {
+        eventSystem = FindObjectOfType<EventSystem>();
+    }
+
     public void StartProgress()
     {
         switch (EventSystem.instance.overallEventIndex)
         {
             case 0:
-                StartCoroutine(Scale(123));
-                return;
+                break;
             case 1:
                 randEvent1.SetActive(true);
-                StartCoroutine(Scale(243));
-                return;
+                break;
             case 2:
                 jobEvent1.SetActive(true);
-                StartCoroutine(Scale(363));
-                return;
+                break;
             case 3:
                 randEvent2.SetActive(true);
-                StartCoroutine(Scale(483));
-                return;
+                break;
             case 4:
                 jobEvent2.SetActive(true);
-                StartCoroutine(Scale(603));
-                return;
+                break;
             case 5:
                 randEvent3.SetActive(true);
-                StartCoroutine(Scale(723));
-                return;
+                break;
             case 6:
                 jobEvent3.SetActive(true);
-                return;
+                break;
             default:
                 randEvent1.SetActive(false);
                 jobEvent1.SetActive(false);
@@ -57,14 +61,26 @@ public class ProgressBarUI : MonoBehaviour
                 jobEvent3.SetActive(false);
                 return;
         }
+        
+        StartCoroutine(Scale(scales[EventSystem.instance.overallEventIndex]));
     }
 
     IEnumerator Scale(float maxSize)
     {
         while (maxSize > line.offsetMax.y)
         {
-            line.offsetMax += new Vector2(0, 1) * Time.deltaTime * 6;
-            yield return null;
+            float scale = 0;
+            if(EventSystem.instance.overallEventIndex > 0)
+            {                
+                scale = (maxSize - scales[EventSystem.instance.overallEventIndex - 1]) / (eventSystem.TimeBeforeEventRoll * (0.05f / (EventSystem.instance.overallEventIndex + 1) + 1)) * Time.deltaTime;
+            }
+            else
+            {
+                scale = maxSize / (eventSystem.TimeBeforeEventRoll * 1.135f) * Time.deltaTime;
+            }
+            
+            line.offsetMax += new Vector2(0, 1) * scale;
+            yield return new WaitForEndOfFrame();
         }
     }
 }
