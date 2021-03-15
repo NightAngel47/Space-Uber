@@ -245,7 +245,7 @@ public class EventSystem : MonoBehaviour
 	/// Called by the go to event button to spawn a random/story event
 	/// </summary>
 	/// <returns>Returns true when complete</returns>
-	private void SkipToEvent()
+	public void SkipToEvent()
 	{
 		if (skippedToEvent) return;
 

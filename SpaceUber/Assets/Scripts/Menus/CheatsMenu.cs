@@ -111,6 +111,12 @@ public class CheatsMenu : MonoBehaviour
         {
             ToggleMutiny();
         }
+        if(Input.GetKeyDown(KeyCode.F7) 
+            && GameManager.instance.currentGameState == InGameStates.Events)
+        {
+            es.SkipToEvent();
+            Debug.Log("Skipping to event");
+        }
 
         if(Input.GetKey(KeyCode.F9))
         {
