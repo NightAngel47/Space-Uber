@@ -34,9 +34,9 @@ public class ShipStats : MonoBehaviour
     private List<RoomStats> rooms;
 
     [HideInInspector] public GameObject roomBeingPlaced;
-    
+
     public enum Stats { NA = -1, Credits, Payout, EnergyMax, EnergyRemaining, Security, ShipWeapons, CrewCapacity, CrewCurrent, CrewUnassigned, Food, FoodPerTick, ShipHealthMax, ShipHealthCurrent}
-    
+
     private int[] stats = new int[13];
 
     /// <summary>
@@ -159,6 +159,12 @@ public class ShipStats : MonoBehaviour
             {
                 stats[(int) Stats.EnergyRemaining] = 0;
             }
+
+            if (stats[(int) Stats.EnergyMax] <= 0)
+            {
+                stats[(int) Stats.EnergyMax] = 0;
+            }
+
             if (stats[(int) Stats.EnergyRemaining] >= stats[(int) Stats.EnergyMax])
             {
                 stats[(int) Stats.EnergyRemaining] = stats[(int) Stats.EnergyMax];
@@ -247,6 +253,11 @@ public class ShipStats : MonoBehaviour
             stats[(int) Stats.CrewCapacity] = (int)value.y;
             stats[(int) Stats.CrewUnassigned] = (int)value.z;
 
+            if (stats[(int) Stats.CrewCurrent] - prevValue.x != 0)
+            {
+                stats[(int) Stats.CrewUnassigned] = stats[(int) Stats.CrewCurrent] - (int)prevValue.x + (int)prevValue.z;
+            }
+
             if (stats[(int) Stats.CrewCurrent] - prevValue.x < 0)
             {
                 if(stats[(int) Stats.CrewUnassigned] < 0)
@@ -277,6 +288,7 @@ public class ShipStats : MonoBehaviour
             }
             if (stats[(int) Stats.CrewCurrent] >= stats[(int) Stats.CrewCapacity])
             {
+                stats[(int) Stats.CrewUnassigned] += stats[(int) Stats.CrewCapacity] - stats[(int) Stats.CrewCurrent];
                 stats[(int) Stats.CrewCurrent] = stats[(int) Stats.CrewCapacity];
             }
 
@@ -331,6 +343,11 @@ public class ShipStats : MonoBehaviour
             int prevValue = stats[(int) Stats.FoodPerTick];
             stats[(int) Stats.FoodPerTick] = value;
 
+            if(stats[(int) Stats.FoodPerTick] <= 0)
+            {
+                stats[(int) Stats.FoodPerTick] = 0;
+            }
+
             shipStatsUI.UpdateFoodUI(stats[(int) Stats.Food], stats[(int) Stats.FoodPerTick], stats[(int) Stats.CrewCurrent]);
             shipStatsUI.ShowFoodUIChange(0, value - prevValue);
         }
@@ -347,6 +364,16 @@ public class ShipStats : MonoBehaviour
             Vector2 prevValue = new Vector2(stats[(int) Stats.ShipHealthCurrent], stats[(int) Stats.ShipHealthMax]);
             stats[(int) Stats.ShipHealthCurrent] = (int)value.x;
             stats[(int) Stats.ShipHealthMax] = (int)value.y;
+
+            if(stats[(int) Stats.ShipHealthCurrent] <= 0)
+            {
+                stats[(int) Stats.ShipHealthCurrent] = 0;
+            }
+
+            if(stats[(int) Stats.ShipHealthMax] <= 0)
+            {
+                stats[(int) Stats.ShipHealthMax] = 0;
+            }
 
             if (stats[(int) Stats.ShipHealthCurrent] >= stats[(int) Stats.ShipHealthMax])
             {
@@ -371,14 +398,14 @@ public class ShipStats : MonoBehaviour
             StartCoroutine(CheckDeathOnUnpause());
         }
     }
-    
+
     public int[] StatsArray
     {
         get => stats;
         set
         {
             stats = value;
-            
+
             shipStatsUI.UpdateCreditsUI(stats[(int) Stats.Credits], stats[(int) Stats.Payout]);
             shipStatsUI.UpdateEnergyUI(stats[(int) Stats.EnergyRemaining], stats[(int) Stats.EnergyMax]);
             shipStatsUI.UpdateSecurityUI(stats[(int) Stats.Security]);
@@ -400,7 +427,16 @@ public class ShipStats : MonoBehaviour
     {
         if (stats[(int) Stats.ShipHealthCurrent] <= 0)
         {
-            GameManager.instance.ChangeInGameState(InGameStates.Death);
+            if(DevelopmentAccess.instance.cheatModeActive && CheatsMenu.instance != null && CheatsMenu.instance.deathDisabled)
+            {
+                Debug.Log("Cheated Death");
+            }
+            else
+            {
+                GameManager.instance.ChangeInGameState(InGameStates.Death);
+                AudioManager.instance.PlaySFX("Hull Death");
+                AudioManager.instance.PlayMusicWithTransition("Death Theme");
+            }
         }
     }
 
@@ -496,5 +532,5 @@ public class ShipStats : MonoBehaviour
         return coreStats;
     }
 
-    
+
 }
