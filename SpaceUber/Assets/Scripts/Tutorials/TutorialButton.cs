@@ -15,8 +15,13 @@ public class TutorialButton : MonoBehaviour
     //check Tutorial object inspector to see what ints correspond to which tutorials
     [SerializeField] int relevantTutorial;
 
-    public void beginTutorial()
+    public void BeginTutorial()
     {
-        Tutorial.Instance.setCurrentTutorial(relevantTutorial, false);
-     }
+        Tutorial.Instance.SetCurrentTutorial(relevantTutorial, false);
+    }
+
+    public void EndCurrentTutorial()
+    {
+        Tutorial.Instance.CloseCurrentTutorial();
+    }
 }
