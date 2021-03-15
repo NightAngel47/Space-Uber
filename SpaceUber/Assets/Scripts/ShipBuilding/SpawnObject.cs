@@ -70,7 +70,10 @@ public class SpawnObject : MonoBehaviour
             }
         }
 
-        CreateRoomSpawnButtons(); 
+        CreateRoomSpawnButtons();
+
+        //display shipbuilding tutorial
+        Tutorial.Instance.SetCurrentTutorial(1, true);
     }
 
     IEnumerator PreplacedRoom()
