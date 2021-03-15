@@ -44,7 +44,7 @@ public class SpawnObject : MonoBehaviour
     public string[] cannotPlaceCredits;
     public string[] cannotPlaceEnergy;
 
-    public void Start()
+    public IEnumerator Start()
     {
         RectTransform rt = buttonPanel.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(rt.sizeDelta.x, 280 * availableRooms.Count);
@@ -53,6 +53,8 @@ public class SpawnObject : MonoBehaviour
         if (donePreplacedRoom == false)
         {
             donePreplacedRoom = true;
+
+            yield return new WaitUntil(() => GameManager.instance.hasLoadedRooms);
 
             // Check if power core has already been placed
             if (!FindObjectsOfType<ObjectScript>().Any(objectScript => objectScript.preplacedRoom && objectScript.GetComponent<RoomStats>().roomName.Equals(powercore.GetComponent<RoomStats>().roomName)))
@@ -107,8 +109,10 @@ public class SpawnObject : MonoBehaviour
             }
         }
 
-        CreateRoomSpawnButtons(); 
+        CreateRoomSpawnButtons();
 
+        //display shipbuilding tutorial
+        Tutorial.Instance.SetCurrentTutorial(1, true);
     }
 
     IEnumerator PreplacedRoom()
@@ -119,7 +123,7 @@ public class SpawnObject : MonoBehaviour
         lastSpawned.GetComponent<RoomStats>().AddRoomStats();
         lastSpawned.GetComponent<ObjectMover>().enabled = false;
         lastSpawned.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
-        
+
         FindObjectOfType<ShipStats>().SaveShipStats();
         SavingLoadingManager.instance.SaveRooms();
     }
@@ -145,7 +149,7 @@ public class SpawnObject : MonoBehaviour
 
     public void SpawnRoom(GameObject ga)
     {
-        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price[ga.GetComponent<RoomStats>().GetRoomLevel() - 1] && 
+        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price[ga.GetComponent<RoomStats>().GetRoomLevel() - 1] &&
             FindObjectOfType<ShipStats>().EnergyRemaining.x >= ga.GetComponent<RoomStats>().minPower[ga.GetComponent<RoomStats>().GetRoomLevel() - 1]) //checks to see if the player has enough credits for the room
         {
             if (lastSpawned == null || lastSpawned.GetComponent<ObjectMover>().enabled == false) //makes sure that the prior room is placed before the next room can be added
@@ -306,7 +310,7 @@ public class SpawnObject : MonoBehaviour
                 x = (int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].y - 1);
             }
 
-        
+
             if (y < 5) //# needs to change to dynamically update with different ship sizes
             {
                 spots.rows[y + 1].row[x].gameObject.SetActive(true);

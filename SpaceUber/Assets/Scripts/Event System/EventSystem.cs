@@ -13,8 +13,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.SceneManagement;
-using Ink.Parsed;
-using TMPro;
 
 public class EventSystem : MonoBehaviour
 {
@@ -24,14 +22,15 @@ public class EventSystem : MonoBehaviour
 	private AdditiveSceneManager asm;
 	private EventCanvas eventCanvas;
     private EventPromptButton eventPromptButton;
+    private ProgressBarUI progressBar;
 	private CampaignManager campMan;
 
 	private int maxEvents = 0;
 	private List<GameObject> storyEvents = new List<GameObject>();
 	private List<GameObject> randomEvents = new List<GameObject>();
 
-	//how many events (story and random) have occurred
-	private int overallEventIndex = 0;
+    //how many events (story and random) have occurred
+    [HideInInspector] public int overallEventIndex = 0;
 	// How many story events have occurred. Tells the code which story event to play
 	private int storyEventIndex = 0;
 	//how many random events have passed. Tells code how many events to ignore at the start of the list
@@ -47,6 +46,7 @@ public class EventSystem : MonoBehaviour
 
 	[Tooltip("How many seconds before the first event roll")]
 	[SerializeField] private float timeBeforeEventRoll = 40;
+	public float TimeBeforeEventRoll => timeBeforeEventRoll;
 
 	[Tooltip("How much the percentage chance of rolling an event will increase per failure")]
 	[SerializeField] private float chanceIncreasePerFreq = 20;
@@ -69,11 +69,6 @@ public class EventSystem : MonoBehaviour
 
 	public bool eventActive { get; private set; } = false;
 
-	// loaded in from Interface_EventTimer
-	private GameObject sonarObjects; // event timer UI
-	private EventWarning eventWarning; // warning
-	private EventSonar sonar; // sonar
-
 	private Job currentJob;
 
 	private string lastEventTitle;
@@ -95,29 +90,13 @@ public class EventSystem : MonoBehaviour
 		campMan = GetComponent<CampaignManager>();
 	}
 
-	private void SetUpEventTimer()
-	{
-		eventWarning = FindObjectOfType<EventWarning>();
-		sonar = FindObjectOfType<EventSonar>();
-		sonarObjects = sonar.transform.parent.gameObject; // event timer UI
-
-		//set sonar stuff
-		sonar.SetSpinRate( eventChanceFreq );
-		sonarObjects.SetActive(false);
-
-		if(eventWarning != null)
-		{
-			eventWarning.DeactivateWarning();
-		}
-	}
-
     /// <summary>
     /// Plays job intro
     /// </summary>
     public IEnumerator PlayIntro()
     {
 	    yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_Runtime").isLoaded);
-	    SetUpEventTimer();
+	    //SetUpEventTimer();
 
 		chatting = false;
 		while(currentJob == null)
@@ -126,8 +105,8 @@ public class EventSystem : MonoBehaviour
         }
 
 		//check for an introduction "event"
-		GameObject intro = (from introEvent in currentJob.introEvents 
-			let requirements = introEvent.GetComponent<InkDriverBase>().requiredStats 
+		GameObject intro = (from introEvent in currentJob.introEvents
+			let requirements = introEvent.GetComponent<InkDriverBase>().requiredStats
 			where HasRequiredStats(requirements) select introEvent).FirstOrDefault();
 
 		if (intro != null)
@@ -151,18 +130,18 @@ public class EventSystem : MonoBehaviour
 
 	private IEnumerator Travel()
 	{
-		tick.DaysSince = 0; // reset days since
+        progressBar = FindObjectOfType<ProgressBarUI>();
+        tick.DaysSince = 0; // reset days since
 		campMan.cateringToTheRich.SaveEventChoices();
 
-		// loops once per event
-		while (GameManager.instance.currentGameState == InGameStates.Events)
+        // loops once per event
+        while (GameManager.instance.currentGameState == InGameStates.Events)
 		{
 			// wait till any active event is cleared before starting event timer for next event
 			yield return new WaitWhile((() => eventActive));
 			tick.StartTickUpdate();
-			sonarObjects.SetActive(true);
-			sonar.ResetSonar();
-			chanceOfEvent = startingEventChance;
+            progressBar.StartProgress();
+            chanceOfEvent = startingEventChance;
 
 			//start with one big chunk of time
 			while (timeBeforeEventCounter <= timeBeforeEventRoll)
@@ -176,8 +155,9 @@ public class EventSystem : MonoBehaviour
 				yield return new WaitForEndOfFrame();
 			}
 
-            asm.LoadSceneMerged("Event_Prompt");
+            asm.LoadSceneMerged("Event_Prompt"); //Give option to start next event
             yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
+
             eventPromptButton = FindObjectOfType<EventPromptButton>();
             eventPromptButton.eventButton.onClick.AddListener(SkipToEvent);
 
@@ -186,19 +166,14 @@ public class EventSystem : MonoBehaviour
             {
 				if(!mutiny) // don't increment timer during mutiny
 				{
-					// count up for every roll
-					eventRollCounter += Time.deltaTime;
-					// if reached next roll
-					if (eventRollCounter >= eventChanceFreq)
+
+					eventRollCounter += Time.deltaTime; // count up for every roll
+
+					if (eventRollCounter >= eventChanceFreq) // if reached next roll
 					{
 						if (WillRunEvent(chanceOfEvent))
 						{
 							nextEventLockedIn = true;
-							//Activate the warning for the next event now that one has been picked
-							if (eventWarning != null)
-							{
-								eventWarning.ActivateWarning();
-							}
 							break;
 						}
 
@@ -206,7 +181,7 @@ public class EventSystem : MonoBehaviour
 						eventRollCounter = 0; // reset roll counter
 					}
 				}
-					
+
 				yield return new WaitForEndOfFrame();
             }
 
@@ -231,7 +206,6 @@ public class EventSystem : MonoBehaviour
             yield return new WaitWhile((() => eventActive));
 		}
 
-		sonarObjects.SetActive(false);
         tick.StopTickUpdate();
 	}
 
@@ -247,8 +221,8 @@ public class EventSystem : MonoBehaviour
 	    asm.UnloadScene("Event_Prompt");
 
 	    //get rid of and reset sonar objects
-	    eventWarning.DeactivateWarning();
-	    sonarObjects.SetActive(false);
+	    //eventWarning.DeactivateWarning();
+	    //sonarObjects.SetActive(false);
 
 	    //if it's an even-numbered event, do a story
 	    if (overallEventIndex % 2 == 1 && overallEventIndex != 0)
@@ -307,16 +281,13 @@ public class EventSystem : MonoBehaviour
 	/// <returns></returns>
 	public IEnumerator StartNewCharacterEvent(List<GameObject> possibleEvents)
     {
-	    //TODO: Change Character Events to not pause Tick
 		chatting = true;
-		tick.StopTickUpdate();
 		FindObjectOfType<CrewManagement>().TurnOffPanel();
 		GameObject newEvent = FindNextCharacterEvent(possibleEvents);
 
 		if (newEvent != null)
         {
 			asm.LoadSceneMerged("Event_CharacterFocused");
-			print("Starting a new character event");
 			yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
 			CreateEvent(newEvent);
         }
@@ -326,7 +297,6 @@ public class EventSystem : MonoBehaviour
 	{
 		mutiny = true;
 		tick.StopTickUpdate();
-		sonarObjects.SetActive(false);
 		FindObjectOfType<CrewManagement>().TurnOffPanel();
 
 		// set event variables
@@ -365,8 +335,8 @@ public class EventSystem : MonoBehaviour
 		}
 
         eventActive = true;
-        //Does not increment overall event index because intro event does not increment it
-
+		//Does not increment overall event index because intro event does not increment it
+		tick.StopTickUpdate();
         AnalyticsManager.OnEventStarted(inkDriver, nextEventLockedIn);
 	}
 
@@ -404,18 +374,18 @@ public class EventSystem : MonoBehaviour
 
 		//reset for next event
 		eventActive = false;
-		sonarObjects.SetActive(true);
 		tick.StartTickUpdate();
 
 		//set up for the next regular event
 		if (isRegularEvent)
 		{
-			sonar.ResetSonar();
 			tick.DaysSince = 0; // reset days since
 			skippedToEvent = false;
 			nextEventLockedIn = false;
 			eventRollCounter = 0;
 			timeBeforeEventCounter = 0;
+
+			
 		}
 
 		if (overallEventIndex >= maxEvents) //Potentially end the job entirely if this is meant to be the final event
@@ -474,10 +444,6 @@ public class EventSystem : MonoBehaviour
 	/// <returns></returns>
 	private bool WillRunEvent(float chances)
 	{
-        if(sonar.gameObject.activeSelf)
-        {
-            sonar.ShowNextDot();
-        }
 		float rng = Random.Range(0, 101);
 
 		return rng <= chances;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceType: {fileID: 11400000, guid: 160c3fbb104fdc44793d026b1f6cd7ef, type: 2}
-  amount: 00000000000000000000000000000000
+  amount: 1e0000002700000030000000
   activeAmount: 0
   minAmount: 0
 --- !u!1001 &6021959994680589200
@@ -183,6 +183,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
+      propertyPath: minPower.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: price.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
       propertyPath: roomName
       value: Brig
       objectReference: {fileID: 0}
@@ -261,11 +271,6 @@ PrefabInstance:
         type: 3}
       propertyPath: minPower.Array.data[3]
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
-        type: 3}
-      propertyPath: roomGroup
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4570362770752095651, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
