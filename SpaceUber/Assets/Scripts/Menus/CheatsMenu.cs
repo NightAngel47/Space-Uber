@@ -112,47 +112,51 @@ public class CheatsMenu : MonoBehaviour
             ToggleMutiny();
         }
 
-        #region StatMods
-        if (Input.GetKey("1"))
+        if(Input.GetKey(KeyCode.F9))
         {
-            ModifyResource(0);
+            ChangeNarrativeVariables();
         }
-        if (Input.GetKey("2"))
+        else //only allow these if not holding F9 to avoid conflicts
         {
-            ModifyResource(2);
+            #region StatMods
+            if (Input.GetKey("1"))
+            {
+                ModifyResource(0);
+            }
+            if (Input.GetKey("2"))
+            {
+                ModifyResource(2);
+            }
+            if (Input.GetKey("3"))
+            {
+                ModifyResource(3);
+            }
+            if (Input.GetKey("4"))
+            {
+                ModifyResource(4);
+            }
+            if (Input.GetKey("5"))
+            {
+                ModifyResource(5);
+            }
+            if (Input.GetKey("6"))
+            {
+                ModifyResource(7);
+            }
+            if (Input.GetKey("7"))
+            {
+                ModifyResource(9);
+            }
+            if (Input.GetKey("8"))
+            {
+                ModifyResource(11);
+            }
+            #endregion
         }
-        if (Input.GetKey("3"))
-        {
-            ModifyResource(3);
-        }
-        if (Input.GetKey("4"))
-        {
-            ModifyResource(4);
-        }
-        if (Input.GetKey("5"))
-        {
-            ModifyResource(5);
-        }
-        if (Input.GetKey("6"))
-        {
-            ModifyResource(7);
-        }
-        if (Input.GetKey("7"))
-        {
-            ModifyResource(9);
-        }
-        if (Input.GetKey("8"))
-        {
-            ModifyResource(11);
-        }
-        #endregion
-        
+
+
     }
 
-    public void ActivateCanvas()
-    {
-        myCanvas.SetActive(true);
-    }
     private void ToggleCheatText()
     {
         if (showingActiveText)
@@ -232,23 +236,23 @@ public class CheatsMenu : MonoBehaviour
         {            
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                campMan.CycleCampaigns(1);
+                campMan.CycleCampaignsCheat(1);
                 jm.RefreshJobList();
             }
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                campMan.CycleCampaigns(-1);
+                campMan.CycleCampaignsCheat(-1);
                 jm.RefreshJobList();
             }
 
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                campMan.CycleJobIndex(1);
+                campMan.CycleJobIndexCheat(1);
                 jm.RefreshJobList();
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                campMan.CycleJobIndex(-1);
+                campMan.CycleJobIndexCheat(-1);
                 jm.RefreshJobList();
             }
         }
@@ -267,6 +271,69 @@ public class CheatsMenu : MonoBehaviour
 
     }
     
+    private void ChangeNarrativeVariables()
+    {
+        #region Alter narrative booleans with number keys
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            campMan.AlterNarrativeBoolCheat(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            campMan.AlterNarrativeBoolCheat(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            campMan.AlterNarrativeBoolCheat(3);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            campMan.AlterNarrativeBoolCheat(4);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            campMan.AlterNarrativeBoolCheat(5);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6) || Input.GetKeyDown(KeyCode.Keypad6))
+        {
+            campMan.AlterNarrativeBoolCheat(6);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7) || Input.GetKeyDown(KeyCode.Keypad7))
+        {
+            campMan.AlterNarrativeBoolCheat(7);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha8) || Input.GetKeyDown(KeyCode.Keypad8))
+        {
+            campMan.AlterNarrativeBoolCheat(8);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha9) || Input.GetKeyDown(KeyCode.Keypad9))
+        {
+            campMan.AlterNarrativeBoolCheat(9);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            campMan.AlterNarrativeBoolCheat(0);
+        }
+        #endregion
+
+        if(Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            campMan.AlterNarrativeNumbersCheat(1, false);
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            campMan.AlterNarrativeNumbersCheat(-1, false);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            campMan.AlterNarrativeNumbersCheat(-1, true);
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            campMan.AlterNarrativeNumbersCheat(1, true);
+        }
+    }
+
     private void ModifyResource(int resourceID)
     {
         bool canUseSideWaysArrows = resourceID == 0 || resourceID == 5 || resourceID == 7 || resourceID == 9 || resourceID == 11;

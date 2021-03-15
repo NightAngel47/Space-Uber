@@ -19,7 +19,6 @@ public class CampaignManager : MonoBehaviour
         FinalTest
     }
 
-    private int currentCampaignNumber;
     [ReadOnly, SerializeField] private Campaigns currentCamp = Campaigns.CateringToTheRich;
 
     public CateringToTheRich cateringToTheRich = new CateringToTheRich();
@@ -47,27 +46,11 @@ public class CampaignManager : MonoBehaviour
         }
     }
 
-    public int GetCurrentCampaignIndex()
-    {
-        switch(currentCamp)
-        {
-            case Campaigns.CateringToTheRich:
-                return 0;
-            case Campaigns.MysteriousEntity:
-                return 1;
-            case Campaigns.FinalTest:
-                return 2;
-            default:
-                Debug.LogError("Current Campaign Index for " + currentCamp + " not setup.");
-                return 10;
-        }
-    }
-
     /// <summary>
     /// Sets currentCampaign to the specified index and resets its job index to 0
     /// </summary>
     /// <param name="direction"></param>
-    public void CycleCampaigns(int direction)
+    public void CycleCampaignsCheat(int direction)
     {
         if(direction > 0) //cycle upward
         {
@@ -112,7 +95,7 @@ public class CampaignManager : MonoBehaviour
         GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
     }
 
-    public void CycleJobIndex(int direction)
+    public void CycleJobIndexCheat(int direction)
     {
         switch (currentCamp)
         {
@@ -254,9 +237,87 @@ public class CampaignManager : MonoBehaviour
         SaveCampaignData();
     }
 
-    public void AlterNarrativeVariable(MysteriousEntity.NarrativeVariables meMainOutcomes, string newText)
+    public void AlterNarrativeBoolCheat(int variableIndex)
     {
+        switch(currentCamp)
+        {
+            case Campaigns.CateringToTheRich:
+            
+                if(variableIndex < 6)
+                {
+                    if (cateringToTheRich.GetCtrNarrativeOutcome(variableIndex) == true)
+                    {
+                        cateringToTheRich.SetCtrNarrativeOutcome(variableIndex, false);
+                        Debug.Log("Changed " + cateringToTheRich.GetOutcomeName(variableIndex) + " to false");
+                    }
+                    else
+                    {
+                        cateringToTheRich.SetCtrNarrativeOutcome(variableIndex, true);
+                        Debug.Log("Changed " + cateringToTheRich.GetOutcomeName(variableIndex) + " to true");
+                    }
+                }
+                
+                break;
 
+            case Campaigns.MysteriousEntity:
+                if(variableIndex < 5)
+                {
+                    if (mysteriousEntity.GetMeNarrativeVariable(variableIndex) == true)
+                    {
+                        mysteriousEntity.SetMeNarrativeVariable(variableIndex, false);
+                        Debug.Log("Changed " + mysteriousEntity.GetOutcomeName(variableIndex) + " to false");
+                    }
+                    else
+                    {
+                        mysteriousEntity.SetMeNarrativeVariable(variableIndex, true);
+                        Debug.Log("Changed " + mysteriousEntity.GetOutcomeName(variableIndex) + " to true");
+                    }
+                }
+                
+                break;
+
+            case Campaigns.FinalTest:
+                if (finalTest.GetFtNarrativeVariable(variableIndex) == true)
+                {
+                    finalTest.SetFtNarrativeVariable(variableIndex, false);
+                    Debug.Log("Changed " + finalTest.GetOutcomeName(variableIndex) + " to false");
+                }
+                else
+                {
+                    finalTest.SetFtNarrativeVariable(variableIndex, true);
+                    Debug.Log("Changed " + finalTest.GetOutcomeName(variableIndex) + " to true");
+                }
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Alters narrative variables based on the current campaign
+    /// </summary>
+    /// <param name="direction">Positive or negative 1</param>
+    /// <param name="alt">If using side arrows, this should be true. Changes which trust variable is altered</param>
+    public void AlterNarrativeNumbersCheat(int direction, bool alt)
+    {
+        switch(currentCamp)
+        {
+            case Campaigns.CateringToTheRich:
+                if(!alt)
+                {
+                    cateringToTheRich.ctr_VIPTrust += direction * 10;
+                    Debug.Log("VIP trust is now " + cateringToTheRich.ctr_VIPTrust);
+
+                }
+                else
+                {
+                    cateringToTheRich.ctr_cloneTrust += direction * 10;
+                    Debug.Log("Clone trust is now " + cateringToTheRich.ctr_cloneTrust);
+                }
+                break;
+            case Campaigns.FinalTest:
+                finalTest.assetCount += direction;
+                Debug.Log("Asset count is now " + finalTest.assetCount);
+                break;
+        }
     }
 
     private void Start()
@@ -336,19 +397,32 @@ public class CampaignManager : MonoBehaviour
 
         public enum NarrativeOutcomes { NA = -1, SideWithScientist, KillBeckett, LetBalePilot, KilledAtSafari, KilledOnce, TellVIPsAboutClones, VIPTrust, CloneTrust}
 
-        private bool[] ctrNarrativeOutcomes = new bool[6];
+        protected bool[] ctrNarrativeOutcomes = new bool[6];
 
         public int ctr_VIPTrust = 50;
         public int ctr_cloneTrust = 50;
 
+        public string GetOutcomeName(int index)
+        {
+            return Enum.GetName(typeof(NarrativeOutcomes), index);
+        }
         public bool GetCtrNarrativeOutcome(NarrativeOutcomes outcome)
         {
             return ctrNarrativeOutcomes[(int) outcome];
         }
 
+        public bool GetCtrNarrativeOutcome(int index)
+        {
+            return ctrNarrativeOutcomes[index];
+        }
+
         public void SetCtrNarrativeOutcome(NarrativeOutcomes outcome, bool state)
         {
             ctrNarrativeOutcomes[(int) outcome] = state;
+        }
+        public void SetCtrNarrativeOutcome(int index, bool state)
+        {
+            ctrNarrativeOutcomes[index] = state;
         }
 
         public void SaveEventChoices()
@@ -385,14 +459,28 @@ public class CampaignManager : MonoBehaviour
 
         private bool[] meNarrativeVariables = new bool[5];
 
+        public string GetOutcomeName(int index)
+        {
+            return Enum.GetName(typeof(NarrativeVariables), index);
+        }
+
         public bool GetMeNarrativeVariable(NarrativeVariables variable)
         {
             return meNarrativeVariables[(int) variable];
+        }
+        public bool GetMeNarrativeVariable(int index)
+        {
+            return meNarrativeVariables[index];
         }
 
         public void SetMeNarrativeVariable(NarrativeVariables variable, bool state)
         {
             meNarrativeVariables[(int) variable] = state;
+        }
+
+        public void SetMeNarrativeVariable(int index, bool state)
+        {
+            meNarrativeVariables[index] = state;
         }
 
         public void SaveEventChoices()
@@ -430,14 +518,27 @@ public class CampaignManager : MonoBehaviour
 
         private bool[] ftNarrativeVariables = new bool[10];
 
+        public string GetOutcomeName(int index)
+        {
+            return Enum.GetName(typeof(NarrativeVariables), index);
+        }
+
         public bool GetFtNarrativeVariable(NarrativeVariables variable)
         {
             return ftNarrativeVariables[(int) variable];
+        }
+        public bool GetFtNarrativeVariable(int index)
+        {
+            return ftNarrativeVariables[index];
         }
 
         public void SetFtNarrativeVariable(NarrativeVariables variable, bool state)
         {
             ftNarrativeVariables[(int) variable] = state;
+        }
+        public void SetFtNarrativeVariable(int index, bool state)
+        {
+            ftNarrativeVariables[index] = state;
         }
 
         public void SaveEventChoices()
