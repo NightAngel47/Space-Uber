@@ -20,18 +20,18 @@ public class OverclockController : MonoBehaviour
     private RoomStats roomStats;
     private AdditiveSceneManager additiveSceneManager;
 
-    [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame."), Foldout("Mini-Game Adjustments")] 
-    float foodBaseAdjustment = 1;
-    [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame."), Foldout("Mini-Game Adjustments")] 
-    float securityBaseAdjustment = 1;
-    [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame."), Foldout("Mini-Game Adjustments")] 
-    float shipWeaponsBaseAdjustment = 1;
-    [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame."), Foldout("Mini-Game Adjustments")] 
-    float energyBaseAdjustment = 1;
-    [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame."), Foldout("Mini-Game Adjustments")] 
-    float hullRepairBaseAdjustment = 5;
-    [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame."), Foldout("Mini-Game Adjustments")] 
-    float failHullDurabilityBaseAdjustment = -5;
+    [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame based on room level."), Foldout("Mini-Game Adjustments")] 
+    float[] foodBaseAdjustments = new float[3];
+    [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame based on room level."), Foldout("Mini-Game Adjustments")] 
+    float[] securityBaseAdjustments = new float[3];
+    [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame based on room level."), Foldout("Mini-Game Adjustments")] 
+    float[] shipWeaponsBaseAdjustments = new float[3];
+    [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame based on room level."), Foldout("Mini-Game Adjustments")] 
+    float[] energyBaseAdjustments = new float[3];
+    [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame based on room level."), Foldout("Mini-Game Adjustments")] 
+    float[] hullRepairBaseAdjustments = new float[3];
+    [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame based on room level."), Foldout("Mini-Game Adjustments")] 
+    float[] failHullDurabilityBaseAdjustments = new float[3];
     public float cooldownTime = 5;
 
     [SerializeField, Tooltip("Percent to increase the frequency of an event showing up after finishing a minigame."), Foldout("Mini-Game Event Spawn Increase Chances")] 
@@ -89,38 +89,38 @@ public class OverclockController : MonoBehaviour
 
             if(miniGame == MiniGameType.Security)
             {
-                shipStats.Security += Mathf.RoundToInt(securityBaseAdjustment * statModification * moraleModifier * RoomLevelMultiplier(MiniGameType.Security));
-                SpawnStatChangeText(Mathf.RoundToInt(securityBaseAdjustment * statModification * moraleModifier * RoomLevelMultiplier(MiniGameType.Security)), GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
+                shipStats.Security += Mathf.RoundToInt(securityBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier);
+                SpawnStatChangeText(Mathf.RoundToInt(securityBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
                 EventSystem.instance.chanceOfEvent += securityPercentIncrease;
             }
             if(miniGame == MiniGameType.Asteroids)
             {
-                shipStats.ShipWeapons += Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification * moraleModifier * RoomLevelMultiplier(MiniGameType.Asteroids));
-                SpawnStatChangeText(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification * moraleModifier * RoomLevelMultiplier(MiniGameType.Asteroids)), GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
+                shipStats.ShipWeapons += Mathf.RoundToInt(shipWeaponsBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier);
+                SpawnStatChangeText(Mathf.RoundToInt(shipWeaponsBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
                 EventSystem.instance.chanceOfEvent += asteroidPercentIncrease;
             }
             if(miniGame == MiniGameType.CropHarvest)
             {
-                shipStats.Food += Mathf.RoundToInt(foodBaseAdjustment * statModification * moraleModifier * RoomLevelMultiplier(MiniGameType.CropHarvest));
-                SpawnStatChangeText(Mathf.RoundToInt(foodBaseAdjustment * statModification * moraleModifier * RoomLevelMultiplier(MiniGameType.CropHarvest)), GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
+                shipStats.Food += Mathf.RoundToInt(foodBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier);
+                SpawnStatChangeText(Mathf.RoundToInt(foodBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
                 EventSystem.instance.chanceOfEvent += cropPercentIncrease;
             }
             if(miniGame == MiniGameType.StabilizeEnergyLevels)
             {
-                shipStats.EnergyRemaining += new Vector2(Mathf.RoundToInt(energyBaseAdjustment * statModification * moraleModifier * RoomLevelMultiplier(MiniGameType.StabilizeEnergyLevels)), 0);
-                SpawnStatChangeText(Mathf.RoundToInt(energyBaseAdjustment * statModification * moraleModifier * RoomLevelMultiplier(MiniGameType.StabilizeEnergyLevels)), GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
+                shipStats.EnergyRemaining += new Vector2(Mathf.RoundToInt(energyBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier), 0);
+                SpawnStatChangeText(Mathf.RoundToInt(energyBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
                 EventSystem.instance.chanceOfEvent += energyPercentIncrease;
             }
             if(miniGame == MiniGameType.SlotMachine)
             {
-                shipStats.Credits += Mathf.RoundToInt(statModification * moraleModifier * RoomLevelMultiplier(MiniGameType.SlotMachine));
-                SpawnStatChangeText(Mathf.RoundToInt(statModification * moraleModifier * RoomLevelMultiplier(MiniGameType.SlotMachine)), GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon);
+                shipStats.Credits += Mathf.RoundToInt(statModification * moraleModifier);
+                SpawnStatChangeText(Mathf.RoundToInt(statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon);
                 EventSystem.instance.chanceOfEvent += slotPercentIncrease;
             }
             if(miniGame == MiniGameType.HullRepair)
             {
-                shipStats.ShipHealthCurrent += new Vector2(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification * moraleModifier * RoomLevelMultiplier(MiniGameType.HullRepair)), 0);
-                SpawnStatChangeText(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification * moraleModifier * RoomLevelMultiplier(MiniGameType.HullRepair)), GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon);
+                shipStats.ShipHealthCurrent += new Vector2(Mathf.RoundToInt(hullRepairBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier), 0);
+                SpawnStatChangeText(Mathf.RoundToInt(hullRepairBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon);
                 EventSystem.instance.chanceOfEvent += hullRepairPercentIncrease;
             }
         }
@@ -128,8 +128,8 @@ public class OverclockController : MonoBehaviour
         {
             if(miniGame == MiniGameType.Asteroids)
             {
-                shipStats.ShipHealthCurrent += new Vector2(Mathf.RoundToInt(failHullDurabilityBaseAdjustment * statModification), 0);
-                SpawnStatChangeText(Mathf.RoundToInt(failHullDurabilityBaseAdjustment * statModification), GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon);
+                shipStats.ShipHealthCurrent += new Vector2(Mathf.RoundToInt(failHullDurabilityBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification), 0);
+                SpawnStatChangeText(Mathf.RoundToInt(failHullDurabilityBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification), GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon);
             }
         }
         if(success && activeRoom)
@@ -173,89 +173,5 @@ public class OverclockController : MonoBehaviour
     {
         overclocking = false;
         additiveSceneManager.UnloadScene(miniGame.ToString());
-    }
-
-    private float RoomLevelMultiplier(MiniGameType minigame)
-    {
-        float multiplier = 1;
-
-        if ((roomStats.GetRoomLevel() - 1) == 1)
-        {
-            multiplier = 1;
-        }
-        else if ((roomStats.GetRoomLevel() - 1) == 2)
-        {
-            switch (minigame)
-            {
-                case MiniGameType.Asteroids:
-                    multiplier = 2;
-                    break;
-                case MiniGameType.CropHarvest:
-                    multiplier = 2;
-                    break;
-                case MiniGameType.HullRepair:
-                    multiplier = 2;
-                    break;
-                case MiniGameType.Security:
-                    multiplier = 2;
-                    break;
-                case MiniGameType.SlotMachine:
-                    multiplier = 2;
-                    break;
-                case MiniGameType.StabilizeEnergyLevels:
-                    multiplier = 2;
-                    break;
-            }
-        }
-        else if ((roomStats.GetRoomLevel() - 1) == 3)
-        {
-            switch (minigame)
-            {
-                case MiniGameType.Asteroids:
-                    multiplier = 3;
-                    break;
-                case MiniGameType.CropHarvest:
-                    multiplier = 3;
-                    break;
-                case MiniGameType.HullRepair:
-                    multiplier = 3;
-                    break;
-                case MiniGameType.Security:
-                    multiplier = 3;
-                    break;
-                case MiniGameType.SlotMachine:
-                    multiplier = 3;
-                    break;
-                case MiniGameType.StabilizeEnergyLevels:
-                    multiplier = 3;
-                    break;
-            }
-        }
-        else if ((roomStats.GetRoomLevel() - 1) == 4)
-        {
-            switch (minigame)
-            {
-                case MiniGameType.Asteroids:
-                    multiplier = 4;
-                    break;
-                case MiniGameType.CropHarvest:
-                    multiplier = 4;
-                    break;
-                case MiniGameType.HullRepair:
-                    multiplier = 4;
-                    break;
-                case MiniGameType.Security:
-                    multiplier = 4;
-                    break;
-                case MiniGameType.SlotMachine:
-                    multiplier = 4;
-                    break;
-                case MiniGameType.StabilizeEnergyLevels:
-                    multiplier = 4;
-                    break;
-            }
-        }
-
-        return multiplier;
     }
 }
