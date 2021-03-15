@@ -85,7 +85,6 @@ public class Tutorial : Singleton<Tutorial>
 
             if (FindObjectOfType<CrewManagementRoomDetailsMenu>() != null && currentTutorial.tutorialMessages[index].selectRoom) EffectSelectRoom();
         }
-        
         /////////////////////////////////////////////////////////////////////////////////
 
         if (lerping)
@@ -137,7 +136,7 @@ public class Tutorial : Singleton<Tutorial>
     }
 
     //X and Y of center of box, with (0,0) being screen center. Width and height of box
-    public void HighlightScreenLocation(int xPos, int yPos, int width, int height)
+    private void HighlightScreenLocation(int xPos, int yPos, int width, int height)
     {
         highlightPanel.SetActive(true);
         RectTransform loc = highlightPanel.GetComponent<RectTransform>();
@@ -179,7 +178,7 @@ public class Tutorial : Singleton<Tutorial>
         }
     }
 
-    public void BeginLerping(Vector3 start, Vector3 end)
+    private void BeginLerping(Vector3 start, Vector3 end)
     {
         ghostCursor.SetActive(true);
 
@@ -189,14 +188,14 @@ public class Tutorial : Singleton<Tutorial>
         timeStartedLerping = Time.time;
         lerping = true;
     }
-    public void StopLerping()
+    private void StopLerping()
     {
         lerping = false;
 
         ghostCursor.SetActive(false);
     }
 
-    public Vector3 LerpGhostCursor(Vector3 start, Vector3 end, float timeStarted, float ltime = 1)
+    private Vector3 LerpGhostCursor(Vector3 start, Vector3 end, float timeStarted, float ltime = 1)
     {
 
         timeStarted = Time.time - timeStarted;
