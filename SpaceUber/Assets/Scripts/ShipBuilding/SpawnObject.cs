@@ -71,11 +71,11 @@ public class SpawnObject : MonoBehaviour
         }
 
 
-        if (FindObjectOfType<CampaignManager>().GetCurrentCampaign() == 0)
+        if (FindObjectOfType<CampaignManager>().currentCamp == CampaignManager.Campaigns.CateringToTheRich)
         {
-            switch (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+            switch (FindObjectOfType<CampaignManager>().currentCamp)
             {
-                case 0:
+                case CampaignManager.Campaigns.CateringToTheRich:
                     foreach (GameObject room in GameManager.instance.allRoomList)
                     {
                         if (room.GetComponent<RoomStats>().GetRoomGroup() == 1)
@@ -84,7 +84,7 @@ public class SpawnObject : MonoBehaviour
                         }
                     }
                     break;
-                case 1:
+                case CampaignManager.Campaigns.MysteriousEntity:
                     foreach (GameObject room in GameManager.instance.allRoomList)
                     {
                         if (room.GetComponent<RoomStats>().GetRoomGroup() == 1 || room.GetComponent<RoomStats>().GetRoomGroup() == 2)
@@ -93,7 +93,7 @@ public class SpawnObject : MonoBehaviour
                         }
                     }
                     break;
-                case 2:
+                case CampaignManager.Campaigns.FinalTest:
                     foreach (GameObject room in GameManager.instance.allRoomList)
                     {
                         availableRooms.Add(room);

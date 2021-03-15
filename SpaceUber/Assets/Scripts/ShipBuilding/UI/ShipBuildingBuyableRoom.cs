@@ -47,18 +47,18 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     {
         objectsToSpawn = FindObjectOfType<SpawnObject>();
 
-        if (FindObjectOfType<CampaignManager>().GetCurrentCampaign() > 0)
+        if (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() > 0)
         {
             RoomStats[] rooms = FindObjectsOfType<RoomStats>();
 
-            switch (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+            switch (FindObjectOfType<CampaignManager>().currentCamp)
             {
-                case 0:
-                    currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
+                case CampaignManager.Campaigns.CateringToTheRich:
+                    currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
                     break;
-                case 1:
-                    currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
-                    currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
+                case CampaignManager.Campaigns.MysteriousEntity:
+                    currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
+                    currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
 
                     foreach(RoomStats room in rooms)
                     {
@@ -68,10 +68,10 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
                         }
                     }
                     break;
-                case 2:
-                    currentMaxLvlGroup3 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
-                    currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
-                    currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
+                case CampaignManager.Campaigns.FinalTest:
+                    currentMaxLvlGroup3 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
+                    currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
+                    currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
 
                     
                     foreach (RoomStats room in rooms)
@@ -100,11 +100,11 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         roomSize.text = roomPrefab.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
         level.text = roomPrefab.GetComponent<RoomStats>().GetRoomLevel().ToString();
 
-        if (FindObjectOfType<CampaignManager>().GetCurrentCampaign() > 0)
+        if (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() > 0)
         {
-            switch (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+            switch (FindObjectOfType<CampaignManager>().currentCamp)
             {
-                case 0:
+                case CampaignManager.Campaigns.CateringToTheRich:
                     if (roomStats.GetRoomGroup() == 1)
                     {
                         newLevelText.SetActive(true);
@@ -114,7 +114,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
                         newLevelText.SetActive(false);
                     }
                     break;
-                case 1:
+                case CampaignManager.Campaigns.MysteriousEntity:
                     if (roomStats.GetRoomGroup() == 2)
                     {
                         newLevelText.SetActive(true);
@@ -124,7 +124,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
                         newLevelText.SetActive(false);
                     }
                     break;
-                case 2:
+                case CampaignManager.Campaigns.FinalTest:
                     if (roomStats.GetRoomGroup() == 3)
                     {
                         newLevelText.SetActive(true);

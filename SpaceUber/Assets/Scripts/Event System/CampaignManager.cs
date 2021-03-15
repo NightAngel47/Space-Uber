@@ -19,7 +19,7 @@ public class CampaignManager : MonoBehaviour
         FinalTest
     }
 
-    [ReadOnly, SerializeField] private Campaigns currentCamp = Campaigns.CateringToTheRich;
+    public Campaigns currentCamp {get; private set;} = Campaigns.CateringToTheRich;
 
     public CateringToTheRich cateringToTheRich = new CateringToTheRich();
     public MysteriousEntity mysteriousEntity = new MysteriousEntity();
@@ -166,11 +166,7 @@ public class CampaignManager : MonoBehaviour
                 }
                 Debug.Log("Now doing job " + finalTest.jobIndex + " in final test");
                 break;
-
-
-            
         }
-        
     }
 
     public int GetCurrentJobIndex()
@@ -192,7 +188,7 @@ public class CampaignManager : MonoBehaviour
     /// <summary>
     /// Returns the current camp vairable for room level upgrades
     /// </summary>
-    public int GetCurrentCampaign()
+    public int GetCurrentCampaignIndex()
     {
         return (int)currentCamp;
     }
@@ -201,69 +197,72 @@ public class CampaignManager : MonoBehaviour
     {
         float multiplier = 1;
 
-        if (GetCurrentCampaignIndex() == 1)
+        switch (currentCamp)
         {
-            multiplier = 1;
-        }
-        else if (GetCurrentCampaignIndex() == 2)
-        {
-            switch (resource)
-            {
-                case ResourceDataTypes._Credits:
-                    multiplier = creditsMult2;
-                    break;
-                case ResourceDataTypes._Crew:
-                    multiplier = crewMult2;
-                    break;
-                case ResourceDataTypes._Energy:
-                    multiplier = energyMult2;
-                    break;
-                case ResourceDataTypes._Food:
-                    multiplier = foodMult2;
-                    break;
-                case ResourceDataTypes._FoodPerTick:
-                    multiplier = foodPerTickMult2;
-                    break;
-                case ResourceDataTypes._HullDurability:
-                    multiplier = hullMult2;
-                    break;
-                case ResourceDataTypes._Security:
-                    multiplier = securityMult2;
-                    break;
-                case ResourceDataTypes._ShipWeapons:
-                    multiplier = weaponsMult2;
-                    break;
-            }
-        }
-        else if (GetCurrentCampaignIndex() == 3)
-        {
-            switch (resource)
-            {
-                case ResourceDataTypes._Credits:
-                    multiplier = creditsMult3;
-                    break;
-                case ResourceDataTypes._Crew:
-                    multiplier = crewMult3;
-                    break;
-                case ResourceDataTypes._Energy:
-                    multiplier = energyMult3;
-                    break;
-                case ResourceDataTypes._Food:
-                    multiplier = foodMult3;
-                    break;
-                case ResourceDataTypes._FoodPerTick:
-                    multiplier = foodPerTickMult3;
-                    break;
-                case ResourceDataTypes._HullDurability:
-                    multiplier = hullMult3;
-                    break;
-                case ResourceDataTypes._Security:
-                    multiplier = securityMult3;
-                    break;
-                case ResourceDataTypes._ShipWeapons:
-                    multiplier = weaponsMult3;
-                    break;
-            }
+            case Campaigns.CateringToTheRich:
+                multiplier = 1;
+                
+                break;
+            case Campaigns.MysteriousEntity:
+                switch (resource)
+                {
+                    case ResourceDataTypes._Credits:
+                        multiplier = creditsMult2;
+                        break;
+                    case ResourceDataTypes._Crew:
+                        multiplier = crewMult2;
+                        break;
+                    case ResourceDataTypes._Energy:
+                        multiplier = energyMult2;
+                        break;
+                    case ResourceDataTypes._Food:
+                        multiplier = foodMult2;
+                        break;
+                    case ResourceDataTypes._FoodPerTick:
+                        multiplier = foodPerTickMult2;
+                        break;
+                    case ResourceDataTypes._HullDurability:
+                        multiplier = hullMult2;
+                        break;
+                    case ResourceDataTypes._Security:
+                        multiplier = securityMult2;
+                        break;
+                    case ResourceDataTypes._ShipWeapons:
+                        multiplier = weaponsMult2;
+                        break;
+                }
+                
+                break;
+            case Campaigns.FinalTest:
+                switch (resource)
+                {
+                    case ResourceDataTypes._Credits:
+                        multiplier = creditsMult3;
+                        break;
+                    case ResourceDataTypes._Crew:
+                        multiplier = crewMult3;
+                        break;
+                    case ResourceDataTypes._Energy:
+                        multiplier = energyMult3;
+                        break;
+                    case ResourceDataTypes._Food:
+                        multiplier = foodMult3;
+                        break;
+                    case ResourceDataTypes._FoodPerTick:
+                        multiplier = foodPerTickMult3;
+                        break;
+                    case ResourceDataTypes._HullDurability:
+                        multiplier = hullMult3;
+                        break;
+                    case ResourceDataTypes._Security:
+                        multiplier = securityMult3;
+                        break;
+                    case ResourceDataTypes._ShipWeapons:
+                        multiplier = weaponsMult3;
+                        break;
+                }
+
+                break;
         }
 
         return multiplier;
