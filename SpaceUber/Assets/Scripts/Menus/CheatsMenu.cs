@@ -1,22 +1,20 @@
 /*
  * CheatsMenu.cs
- * Author(s): 
+ * Author(s): Scott, Lachlan
  * Created on: 3/8/2021 (en-US)
- * Description: 
+ * Description: Cheats
  */
 
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using NaughtyAttributes;
 using UnityEngine.SceneManagement;
 
 public class CheatsMenu : MonoBehaviour
 {
     public static CheatsMenu instance;
     private EventSystem es;
-    [SerializeField]private CampaignManager campMan;
+    [SerializeField] private CampaignManager campMan;
     private ShipStats thisShip;
     private JobManager jm;
 
@@ -53,22 +51,19 @@ public class CheatsMenu : MonoBehaviour
             instance.myCanvas.SetActive(false);
             instance.cheatModeActiveText.SetActive(instance.showingActiveText);
             instance.helpMenu.SetActive(instance.showingHelpMenu);
-
             
             Destroy(gameObject);
         }
         else
         {
-
             instance = this;
             DontDestroyOnLoad(gameObject);
-            
         }
 
-        es = GameObject.FindObjectOfType<EventSystem>();
-        campMan = GameObject.FindObjectOfType<CampaignManager>();
-        thisShip = GameObject.FindObjectOfType<ShipStats>();
-        jm = GameObject.FindObjectOfType<JobManager>();
+        es = FindObjectOfType<EventSystem>();
+        campMan = FindObjectOfType<CampaignManager>();
+        thisShip = FindObjectOfType<ShipStats>();
+        jm = FindObjectOfType<JobManager>();
         asm = FindObjectOfType<AdditiveSceneManager>();
 
         myCanvas.SetActive(false);
@@ -125,35 +120,35 @@ public class CheatsMenu : MonoBehaviour
         else //only allow these if not holding F9 to avoid conflicts
         {
             #region StatMods
-            if (Input.GetKey("1"))
+            if (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Keypad1))
             {
                 ModifyResource(0);
             }
-            if (Input.GetKey("2"))
+            if (Input.GetKey(KeyCode.Alpha2) || Input.GetKey(KeyCode.Keypad2))
             {
                 ModifyResource(2);
             }
-            if (Input.GetKey("3"))
+            if (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Keypad3))
             {
                 ModifyResource(3);
             }
-            if (Input.GetKey("4"))
+            if (Input.GetKey(KeyCode.Alpha4) || Input.GetKey(KeyCode.Keypad4))
             {
                 ModifyResource(4);
             }
-            if (Input.GetKey("5"))
+            if (Input.GetKey(KeyCode.Alpha5) || Input.GetKey(KeyCode.Keypad5))
             {
                 ModifyResource(5);
             }
-            if (Input.GetKey("6"))
+            if (Input.GetKey(KeyCode.Alpha6) || Input.GetKey(KeyCode.Keypad6))
             {
                 ModifyResource(7);
             }
-            if (Input.GetKey("7"))
+            if (Input.GetKey(KeyCode.Alpha7) || Input.GetKey(KeyCode.Keypad7))
             {
                 ModifyResource(9);
             }
-            if (Input.GetKey("8"))
+            if (Input.GetKey(KeyCode.Alpha8) || Input.GetKey(KeyCode.Keypad8))
             {
                 ModifyResource(11);
             }
@@ -194,29 +189,15 @@ public class CheatsMenu : MonoBehaviour
     private void ToggleDeath()
     {
         deathDisabled = !deathDisabled;
-        
-        if(deathDisabled)
-        {
-            Debug.Log("Death Disabled");
-        }
-        else
-        {
-            Debug.Log("Death Enabled");
-        }
+
+        Debug.Log(deathDisabled ? "Death Disabled" : "Death Enabled");
     }
     
     private void ToggleMutiny()
     {
         mutinyDisabled = !mutinyDisabled;
-        
-        if(mutinyDisabled)
-        {
-            Debug.Log("Mutiny Disabled");
-        }
-        else
-        {
-            Debug.Log("Mutiny Enabled");
-        }
+
+        Debug.Log(mutinyDisabled ? "Mutiny Disabled" : "Mutiny Enabled");
     }
 
     private void MiniGameTest()
@@ -236,7 +217,7 @@ public class CheatsMenu : MonoBehaviour
         }
     }
 
-    public void CycleCampaignJobs()
+    private void CycleCampaignJobs()
     {
         if (campMan)
         {            
@@ -266,10 +247,6 @@ public class CheatsMenu : MonoBehaviour
         {
             Debug.LogError("Campaign manager unassigned in cheats menu");
         }
-        
-
-
-        
     }
 
     public void PlayRandomEvent(int eventNum)
