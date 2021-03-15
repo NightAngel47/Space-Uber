@@ -42,10 +42,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 648b2c3348e353845b943affc2f53023, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChanceFreq: 10
-  timeBeforeEventRoll: 40
+  m_Name:
+  m_EditorClassIdentifier:
+  eventChanceFreq: 6
+  timeBeforeEventRoll: 30
   chanceIncreasePerFreq: 20
   startingEventChance: 5
   chanceOfEvent: 0
@@ -62,8 +62,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5768881bdd8e44a4885dc80638d40276, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   currentCamp: 0
   cateringToTheRich:
     currentCampaignJobIndex: 0
@@ -71,12 +71,6 @@ MonoBehaviour:
     - {fileID: 8540514368881411038, guid: 866e169925d796141a9c9a289f6ab14b, type: 3}
     - {fileID: 5220517419898165771, guid: c62f3617dc87b6b46a337fff6ecae31d, type: 3}
     - {fileID: 7978123787042214769, guid: 5e4ed31cb67c3d3419b551439c781aaf, type: 3}
-    ctr_sideWithScientist: 0
-    ctr_killBeckett: 0
-    ctr_letBalePilot: 0
-    ctr_killedAtSafari: 0
-    ctr_tellVIPsAboutClones: 0
-    ctr_killedOnce: 0
     ctr_VIPTrust: 50
     ctr_cloneTrust: 50
   mysteriousEntity:
@@ -85,11 +79,6 @@ MonoBehaviour:
     - {fileID: 5492173584735220108, guid: 1554ddf10ed237a4c850e304a5c005f8, type: 3}
     - {fileID: 2451135806014802952, guid: de4b10ca6bf8a854ea08e9a6f4c4e97d, type: 3}
     - {fileID: 2001707604801185952, guid: 30856cc443a4bcf4b961ad817e6a163d, type: 3}
-    me_kuonInvestigates: 0
-    me_openedCargo: 0
-    me_declineBribe: 0
-    me_declineFire: 0
-    me_Accept: 0
   finalTest:
     currentCampaignJobIndex: 0
     campaignJobs:
@@ -98,12 +87,17 @@ MonoBehaviour:
     - {fileID: 1344640265864245594, guid: 33b000953997f9249a05a815165c47b6, type: 3}
     - {fileID: 202342142667441818, guid: 746acd1cec905aa4a87fe615fd8b5cc1, type: 3}
     assetCount: 0
-    ft_lexaDoomed: 0
-    ft_lanriExperiment: 0
-    ft_truthTold: 0
-    ft_scienceSavior: 0
-    ft_kellisLoyalty: 0
-    ft_lexaPlan: 0
-    ft_mateoPlan: 0
-    ft_lanriRipleyPlan: 0
-    ft_kuonPlan: 0
+  creditsMult2: 1
+  securityMult2: 1
+  weaponsMult2: 1
+  foodMult2: 1
+  crewMult2: 1
+  energyMult2: 1
+  hullMult2: 1
+  creditsMult3: 1
+  securityMult3: 1
+  weaponsMult3: 1
+  foodMult3: 1
+  crewMult3: 1
+  energyMult3: 1
+  hullMult3: 1

@@ -25,6 +25,30 @@ public class CampaignManager : MonoBehaviour
     public MysteriousEntity mysteriousEntity = new MysteriousEntity();
     public FinalTest finalTest = new FinalTest();
 
+    #region
+    [Header("Campaign 2 multipliers")]
+
+    [Tooltip("How credits should be multiplied for second campaign"), SerializeField] private float creditsMult2 = 1;
+    [Tooltip("How security should be multiplied for second campaign"), SerializeField] private float securityMult2 = 1;
+    [Tooltip("How weapons should be multiplied for second campaign"), SerializeField] private float weaponsMult2 = 1;
+    [Tooltip("How food should be multiplied for second campaign"), SerializeField] private float foodMult2 = 1;
+    [Tooltip("How foodPerTick should be multiplied for second campaign"), SerializeField] private float foodPerTickMult2 = 1;
+    [Tooltip("How crew should be multiplied for second campaign"), SerializeField] private float crewMult2 = 1;
+    [Tooltip("How energy should be multiplied for second campaign"), SerializeField] private float energyMult2 = 1;
+    [Tooltip("How hull should be multiplied for second campaign"), SerializeField] private float hullMult2 = 1;
+
+    [Header("Campaign 3 multipliers")]
+    [Tooltip("How credits should be multiplied for third campaign"), SerializeField] private float creditsMult3 = 1;
+    [Tooltip("How security should be multiplied for third campaign"), SerializeField] private float securityMult3 = 1;
+    [Tooltip("How weapons should be multiplied for third campaign"), SerializeField] private float weaponsMult3 = 1;
+    [Tooltip("How food should be multiplied for third campaign"), SerializeField] private float foodMult3 = 1;
+    [Tooltip("How food per tick should be multiplied for third campaign"), SerializeField] private float foodPerTickMult3 = 1;
+    [Tooltip("How crew should be multiplied for third campaign"), SerializeField] private float crewMult3 = 1;
+    [Tooltip("How energy should be multiplied for third campaign"), SerializeField] private float energyMult3 = 1;
+    [Tooltip("How hull should be multiplied for third campaign"), SerializeField] private float hullMult3 = 1;
+
+    #endregion
+
     /// <summary>
     /// Returns a list of all jobs that are available for the current campaign.
     /// To be used in JobManager
@@ -165,6 +189,85 @@ public class CampaignManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns the current camp vairable for room level upgrades
+    /// </summary>
+    public int GetCurrentCampaign()
+    {
+        return (int)currentCamp;
+    }
+
+    public float GetMultiplier(ResourceDataTypes resource)
+    {
+        float multiplier = 1;
+
+        if (GetCurrentCampaignIndex() == 1)
+        {
+            multiplier = 1;
+        }
+        else if (GetCurrentCampaignIndex() == 2)
+        {
+            switch (resource)
+            {
+                case ResourceDataTypes._Credits:
+                    multiplier = creditsMult2;
+                    break;
+                case ResourceDataTypes._Crew:
+                    multiplier = crewMult2;
+                    break;
+                case ResourceDataTypes._Energy:
+                    multiplier = energyMult2;
+                    break;
+                case ResourceDataTypes._Food:
+                    multiplier = foodMult2;
+                    break;
+                case ResourceDataTypes._FoodPerTick:
+                    multiplier = foodPerTickMult2;
+                    break;
+                case ResourceDataTypes._HullDurability:
+                    multiplier = hullMult2;
+                    break;
+                case ResourceDataTypes._Security:
+                    multiplier = securityMult2;
+                    break;
+                case ResourceDataTypes._ShipWeapons:
+                    multiplier = weaponsMult2;
+                    break;
+            }
+        }
+        else if (GetCurrentCampaignIndex() == 3)
+        {
+            switch (resource)
+            {
+                case ResourceDataTypes._Credits:
+                    multiplier = creditsMult3;
+                    break;
+                case ResourceDataTypes._Crew:
+                    multiplier = crewMult3;
+                    break;
+                case ResourceDataTypes._Energy:
+                    multiplier = energyMult3;
+                    break;
+                case ResourceDataTypes._Food:
+                    multiplier = foodMult3;
+                    break;
+                case ResourceDataTypes._FoodPerTick:
+                    multiplier = foodPerTickMult3;
+                    break;
+                case ResourceDataTypes._HullDurability:
+                    multiplier = hullMult3;
+                    break;
+                case ResourceDataTypes._Security:
+                    multiplier = securityMult3;
+                    break;
+                case ResourceDataTypes._ShipWeapons:
+                    multiplier = weaponsMult3;
+                    break;
+            }
+        }
+
+        return multiplier;
+    }
     private void GoToNextCampaign()
     {
         switch(currentCamp)

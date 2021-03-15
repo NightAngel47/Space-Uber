@@ -89,5 +89,6 @@ public class JobManager : MonoBehaviour
         es.TakeStoryJobEvents(selectedMainJob);
         es.TakeSideJobEvents(selectedSideJobs);
         campaignManager.SaveCampaignData();
+        ship.SaveShipStats();
     }
 }

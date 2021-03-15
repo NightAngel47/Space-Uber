@@ -63,6 +63,11 @@ public class ShipBuildingShop : MonoBehaviour
         SetShopSlots(resourceDataTypesArray);
     }
 
+    public string GetCurrentTab()
+    {
+        return tab.ToString();
+    }
+
     void SetShopSlots(ResourceDataTypes[] resourceDataTypesArray)
     {
         // reset shop slots
