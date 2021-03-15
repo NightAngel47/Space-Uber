@@ -31,25 +31,10 @@ public class DevelopmentAccess : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             OpenCloseCheats();
         }
-
-        // TODO: add back speed up via cheats (later)
-        //#if UNITY_EDITOR
-        //if (Input.GetKeyDown(KeyCode.F1))
-        //{
-        //    Debug.LogWarning("Time scale double speed");
-        //    Time.timeScale = 2;
-        //}
-        
-        //if (Input.GetKeyUp(KeyCode.F1))
-        //{
-        //    Debug.LogWarning("Time scale normal speed");
-        //    Time.timeScale = 1;
-        //}
-        //#endif
     }
 
     void OpenCloseCheats()

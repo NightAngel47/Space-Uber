@@ -8,6 +8,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor;
 using UnityEngine.SceneManagement;
 
 public class CheatsMenu : MonoBehaviour
@@ -37,6 +38,8 @@ public class CheatsMenu : MonoBehaviour
     
     [HideInInspector] public bool deathDisabled = false;
     [HideInInspector] public bool mutinyDisabled = false;
+    
+    private bool isDoubleSpeed;
 
     // Start is called before the first frame update
     void Awake()
@@ -80,7 +83,7 @@ public class CheatsMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tilde))
+        if (Input.GetKeyDown(KeyCode.BackQuote))
         {
             ToggleCheatText();
         }
@@ -159,21 +162,21 @@ public class CheatsMenu : MonoBehaviour
         {
             LevelUpRooms();
         }
-
+        
+        if (Input.GetKeyDown(KeyCode.F11))
+        {
+            DeleteSaveAndQuit();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.F12))
+        {
+            ToggleDoubleSpeed();
+        }
     }
 
     private void ToggleCheatText()
     {
-        if (showingActiveText)
-        {
-            cheatModeActiveText.SetActive(false);
-            showingActiveText = false;
-        }
-        else
-        {
-            cheatModeActiveText.SetActive(true);
-            showingActiveText = true;
-        }
+        cheatModeActiveText.SetActive(!cheatModeActiveText.activeSelf);
     }
 
     private void ToggleHelpMenu()
@@ -410,5 +413,33 @@ public class CheatsMenu : MonoBehaviour
         }
         
         Debug.Log("Level " + (ShipBuildingBuyableRoom.cheatJob + 1) + " Unlocked");
+    }
+
+    private void DeleteSaveAndQuit()
+    {
+        if (!SavingLoadingManager.instance.GetHasSave()) return;
+        SavingLoadingManager.instance.SetHasSaveFalse();
+            
+        Application.Quit();
+
+        #if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+        #endif
+    }
+
+    private void ToggleDoubleSpeed()
+    {
+        if (isDoubleSpeed)
+        {
+            isDoubleSpeed = false;
+            Time.timeScale = 1;
+            Debug.LogWarning("Time scale normal speed");
+        }
+        else
+        {
+            isDoubleSpeed = true;
+            Time.timeScale = 1;
+            Debug.LogWarning("Time scale double speed");
+        }
     }
 }

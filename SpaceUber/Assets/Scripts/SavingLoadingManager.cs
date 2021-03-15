@@ -28,18 +28,6 @@ public class SavingLoadingManager : MonoBehaviour
         hasSave = LoadData.FromBinaryFile<bool>(projectName, "hasSave");
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F8) && hasSave) // kill it with fire at your own convenience
-        {
-            SetHasSaveFalse();
-            if (SceneManager.GetSceneByName("Main_Menu").isLoaded)
-            {
-                SceneManager.LoadScene("Main_Menu");
-            }
-        }
-    }
-
     public void NewSave()
     {
         if(!hasSave)
