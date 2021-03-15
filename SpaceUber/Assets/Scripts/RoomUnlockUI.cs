@@ -35,21 +35,21 @@ public class RoomUnlockUI : MonoBehaviour
     {
         foreach (GameObject room in GameManager.instance.allRoomList)
         {
-            switch (FindObjectOfType<CampaignManager>().currentCamp)
+            switch (FindObjectOfType<CampaignManager>().GetCurrentJobIndex())
             {
-                case CampaignManager.Campaigns.CateringToTheRich:
+                case 0:
                     if (room.GetComponent<RoomStats>().GetRoomGroup() == 2)
                     {
                         newRooms.Add(room);
                     }
                     break;
-                case CampaignManager.Campaigns.MysteriousEntity:
+                case 1:
                     if (room.GetComponent<RoomStats>().GetRoomGroup() == 3)
                     {
                         newRooms.Add(room);
                     }
                     break;
-                case CampaignManager.Campaigns.FinalTest:
+                case 2:
                     if (room.GetComponent<RoomStats>().GetRoomGroup() == 1)
                     {
                         newRooms.Add(room);

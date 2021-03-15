@@ -71,42 +71,85 @@ public class SpawnObject : MonoBehaviour
         }
 
 
-        if (FindObjectOfType<CampaignManager>().currentCamp == CampaignManager.Campaigns.CateringToTheRich)
+        if (ShipBuildingBuyableRoom.cheatLevels == false)
         {
-            switch (FindObjectOfType<CampaignManager>().currentCamp)
+            if (FindObjectOfType<CampaignManager>().currentCamp == CampaignManager.Campaigns.CateringToTheRich)
             {
-                case CampaignManager.Campaigns.CateringToTheRich:
-                    foreach (GameObject room in GameManager.instance.allRoomList)
-                    {
-                        if (room.GetComponent<RoomStats>().GetRoomGroup() == 1)
+                switch (FindObjectOfType<CampaignManager>().GetCurrentJobIndex())
+                {
+                    case 0:
+                        foreach (GameObject room in GameManager.instance.allRoomList)
+                        {
+                            if (room.GetComponent<RoomStats>().GetRoomGroup() == 1)
+                            {
+                                availableRooms.Add(room);
+                            }
+                        }
+                        break;
+                    case 1:
+                        foreach (GameObject room in GameManager.instance.allRoomList)
+                        {
+                            if (room.GetComponent<RoomStats>().GetRoomGroup() == 1 || room.GetComponent<RoomStats>().GetRoomGroup() == 2)
+                            {
+                                availableRooms.Add(room);
+                            }
+                        }
+                        break;
+                    case 2:
+                        foreach (GameObject room in GameManager.instance.allRoomList)
                         {
                             availableRooms.Add(room);
                         }
-                    }
-                    break;
-                case CampaignManager.Campaigns.MysteriousEntity:
-                    foreach (GameObject room in GameManager.instance.allRoomList)
-                    {
-                        if (room.GetComponent<RoomStats>().GetRoomGroup() == 1 || room.GetComponent<RoomStats>().GetRoomGroup() == 2)
-                        {
-                            availableRooms.Add(room);
-                        }
-                    }
-                    break;
-                case CampaignManager.Campaigns.FinalTest:
-                    foreach (GameObject room in GameManager.instance.allRoomList)
-                    {
-                        availableRooms.Add(room);
-                    }
-                    break;
+                        break;
+                }
+            }
+            else
+            {
+                foreach (GameObject room in GameManager.instance.allRoomList)
+                {
+                    availableRooms.Add(room);
+                }
             }
         }
         else
         {
-            //foreach (GameObject room in allRoomList)
-            //{
-            //    availableRooms.Add(room);
-            //}
+            if (ShipBuildingBuyableRoom.cheatCampaign == 0)
+            {
+                switch (ShipBuildingBuyableRoom.cheatJob)
+                {
+                    case 0:
+                        foreach (GameObject room in GameManager.instance.allRoomList)
+                        {
+                            if (room.GetComponent<RoomStats>().GetRoomGroup() == 1)
+                            {
+                                availableRooms.Add(room);
+                            }
+                        }
+                        break;
+                    case 1:
+                        foreach (GameObject room in GameManager.instance.allRoomList)
+                        {
+                            if (room.GetComponent<RoomStats>().GetRoomGroup() == 1 || room.GetComponent<RoomStats>().GetRoomGroup() == 2)
+                            {
+                                availableRooms.Add(room);
+                            }
+                        }
+                        break;
+                    case 2:
+                        foreach (GameObject room in GameManager.instance.allRoomList)
+                        {
+                            availableRooms.Add(room);
+                        }
+                        break;
+                }
+            }
+            else
+            {
+                foreach (GameObject room in GameManager.instance.allRoomList)
+                {
+                    availableRooms.Add(room);
+                }
+            }
         }
 
         CreateRoomSpawnButtons();

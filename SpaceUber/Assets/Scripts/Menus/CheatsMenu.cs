@@ -155,6 +155,10 @@ public class CheatsMenu : MonoBehaviour
             #endregion
         }
 
+        if(Input.GetKey(KeyCode.F10))
+        {
+            LevelUpRooms();
+        }
 
     }
 
@@ -390,6 +394,19 @@ public class CheatsMenu : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    private void LevelUpRooms()
+    {
+        ShipBuildingBuyableRoom.cheatLevels = true;
+        
+        ShipBuildingBuyableRoom.cheatJob += 1;
+
+        if(ShipBuildingBuyableRoom.cheatJob == 3)
+        {
+            ShipBuildingBuyableRoom.cheatCampaign += 1;
+            ShipBuildingBuyableRoom.cheatJob = 0;
         }
     }
 }

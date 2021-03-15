@@ -43,45 +43,92 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     /// </summary>
     private int currentMaxLvlGroup3 = 1;
 
+    public static bool cheatLevels = false;
+    public static int cheatCampaign = 0;
+    public static int cheatJob = 0;
+
     private void Start()
     {
         objectsToSpawn = FindObjectOfType<SpawnObject>();
 
-        if (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() > 0)
+        if (cheatLevels == false)
         {
-            RoomStats[] rooms = FindObjectsOfType<RoomStats>();
-
-            switch (FindObjectOfType<CampaignManager>().currentCamp)
+            if (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() > 0)
             {
-                case CampaignManager.Campaigns.CateringToTheRich:
-                    currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
-                    break;
-                case CampaignManager.Campaigns.MysteriousEntity:
-                    currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
-                    currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
+                RoomStats[] rooms = FindObjectsOfType<RoomStats>();
 
-                    foreach(RoomStats room in rooms)
-                    {
-                        if(room.roomName == "Power Core")
-                        {
-                            room.ChangeRoomLevel(1);
-                        }
-                    }
-                    break;
-                case CampaignManager.Campaigns.FinalTest:
-                    currentMaxLvlGroup3 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
-                    currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
-                    currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
+                switch (FindObjectOfType<CampaignManager>().GetCurrentJobIndex())
+                {
+                    case 0:
+                        currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
+                        break;
+                    case 1:
+                        currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
+                        currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
 
-                    
-                    foreach (RoomStats room in rooms)
-                    {
-                        if (room.roomName == "Power Core")
+                        foreach (RoomStats room in rooms)
                         {
-                            room.ChangeRoomLevel(1);
+                            if (room.roomName == "Power Core")
+                            {
+                                room.ChangeRoomLevel(1);
+                            }
                         }
-                    }
-                    break;
+                        break;
+                    case 2:
+                        currentMaxLvlGroup3 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
+                        currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
+                        currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() + 2);
+
+
+                        foreach (RoomStats room in rooms)
+                        {
+                            if (room.roomName == "Power Core")
+                            {
+                                room.ChangeRoomLevel(1);
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+        else
+        {
+            if (cheatCampaign > 0)
+            {
+                RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+
+                switch (cheatJob)
+                {
+                    case 0:
+                        currentMaxLvlGroup1 = (cheatJob + 2);
+                        break;
+                    case 1:
+                        currentMaxLvlGroup2 = (cheatJob + 2);
+                        currentMaxLvlGroup1 = (cheatJob + 2);
+
+                        foreach (RoomStats room in rooms)
+                        {
+                            if (room.roomName == "Power Core")
+                            {
+                                room.ChangeRoomLevel(1);
+                            }
+                        }
+                        break;
+                    case 2:
+                        currentMaxLvlGroup3 = (cheatJob + 2);
+                        currentMaxLvlGroup1 = (cheatJob + 2);
+                        currentMaxLvlGroup2 = (cheatJob + 2);
+
+
+                        foreach (RoomStats room in rooms)
+                        {
+                            if (room.roomName == "Power Core")
+                            {
+                                room.ChangeRoomLevel(1);
+                            }
+                        }
+                        break;
+                }
             }
         }
 
