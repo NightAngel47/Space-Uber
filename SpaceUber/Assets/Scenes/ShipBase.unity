@@ -2700,6 +2700,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1002784688}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1002784703 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6526746767563554172, guid: 2881fb45785837144aa48e81ba17090b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1002784688}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1010393623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2883,11 +2895,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Overlock Controller
-      objectReference: {fileID: 0}
-    - target: {fileID: 4785047525650801638, guid: 6ec16a407a9b4c240b0886c4a9a72a70,
-        type: 3}
-      propertyPath: cooldownTime
-      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 4785047525650801639, guid: 6ec16a407a9b4c240b0886c4a9a72a70,
         type: 3}
@@ -5487,16 +5494,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
-        type: 3}
-      propertyPath: eventChanceFreq
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483520058602272395, guid: fe5d639606919114a9b48eb746a06bc6,
-        type: 3}
-      propertyPath: timeBeforeEventRoll
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe5d639606919114a9b48eb746a06bc6, type: 3}
 --- !u!114 &1350692055 stripped
@@ -6818,10 +6815,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1687556588, guid: bc69115c777117e41bd1cbb9557c8163, type: 3}
-      propertyPath: secondsPerTick
-      value: 4.25
-      objectReference: {fileID: 0}
     - target: {fileID: 4644283100350923746, guid: bc69115c777117e41bd1cbb9557c8163,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8018,16 +8011,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5841978202006887203, guid: 368c0234fb23944eeb47fd98a84f19ed,
-        type: 3}
-      propertyPath: maxMutinyMoraleMutinyChance
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 5841978202006887203, guid: 368c0234fb23944eeb47fd98a84f19ed,
-        type: 3}
-      propertyPath: crewLossMoraleMultiplier
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 368c0234fb23944eeb47fd98a84f19ed, type: 3}
 --- !u!1001 &6273300031087700528
@@ -8217,6 +8200,11 @@ PrefabInstance:
       propertyPath: creditsPayoutTooltipText
       value: 
       objectReference: {fileID: 229698417}
+    - target: {fileID: 6273300031087700530, guid: 17581060db283ed4a8d97970348901ea,
+        type: 3}
+      propertyPath: foodTickSignText
+      value: 
+      objectReference: {fileID: 1002784703}
     - target: {fileID: 6273300031087700531, guid: 17581060db283ed4a8d97970348901ea,
         type: 3}
       propertyPath: highlights.rows.Array.data[0].row.Array.data[0]

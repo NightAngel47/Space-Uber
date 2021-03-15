@@ -23,6 +23,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     [SerializeField, Foldout("UI Elements")] TMP_Text producesResource;
     [SerializeField, Foldout("UI Elements")] TMP_Text producesAmount;
     [SerializeField, Foldout("UI Elements")] TMP_Text currentCrew;
+    [SerializeField, Foldout("UI Elements")] TMP_Text level;
 
     [SerializeField] private string noRoomSelectedMessage = "Select a room to view its details.";
     [SerializeField] private GameObject[] roomDetailSections = new GameObject[2];
@@ -45,6 +46,8 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
 
        currentCrew.text = "";
 
+       level.text = "";
+
        foreach (GameObject roomDetailSection in roomDetailSections)
        {
            roomDetailSection.SetActive(false);
@@ -65,11 +68,12 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         RoomStats roomStats = selectedRoom.GetComponent<RoomStats>();
         roomName.text = roomStats.roomName;
         roomDesc.text = roomStats.roomDescription;
-        needsCredits.text = roomStats.price.ToString();
-        needsPower.text = roomStats.minPower.ToString();
+        needsCredits.text = roomStats.price[roomStats.GetRoomLevel() - 1].ToString();
+        needsPower.text = roomStats.minPower[roomStats.GetRoomLevel() - 1].ToString();
         needsCrew.text = roomStats.minCrew.ToString() + "-" + roomStats.maxCrew.ToString();
         currentCrew.text = roomStats.currentCrew.ToString();
-        roomSize.text = selectedRoom.GetComponent<ObjectScript>().roomSize;
+        roomSize.text = selectedRoom.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
+        level.text = roomStats.GetRoomLevel().ToString();
 
         if (selectedRoom.TryGetComponent(out Resource resource))
         {
@@ -86,11 +90,12 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     public void UpdateCrewAssignment(int currentCrewAmount)
     {
         currentCrew.text = currentCrewAmount.ToString();
-        
+        RoomStats roomStats = selectedRoom.GetComponent<RoomStats>();
+
         if (selectedRoom.TryGetComponent(out Resource resource))
         {
             producesResource.text = resource.resourceType.resourceName;
-            producesAmount.text = resource.activeAmount + "/" + resource.amount + " maximum";
+            producesAmount.text = resource.activeAmount + "/" + resource.amount[roomStats.GetRoomLevel() - 1] + " maximum";
         }
     }
 

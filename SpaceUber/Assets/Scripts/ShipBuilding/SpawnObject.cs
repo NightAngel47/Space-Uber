@@ -44,7 +44,7 @@ public class SpawnObject : MonoBehaviour
     public string[] cannotPlaceCredits;
     public string[] cannotPlaceEnergy;
 
-    public void Start()
+    public IEnumerator Start()
     {
         RectTransform rt = buttonPanel.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(rt.sizeDelta.x, 280 * availableRooms.Count);
@@ -53,6 +53,8 @@ public class SpawnObject : MonoBehaviour
         if (donePreplacedRoom == false)
         {
             donePreplacedRoom = true;
+            
+            yield return new WaitUntil(() => GameManager.instance.hasLoadedRooms);
 
             // Check if power core has already been placed
             if (!FindObjectsOfType<ObjectScript>().Any(objectScript => objectScript.preplacedRoom && objectScript.GetComponent<RoomStats>().roomName.Equals(powercore.GetComponent<RoomStats>().roomName)))
@@ -108,7 +110,8 @@ public class SpawnObject : MonoBehaviour
 
     public void SpawnRoom(GameObject ga)
     {
-        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price && FindObjectOfType<ShipStats>().EnergyRemaining.x >= ga.GetComponent<RoomStats>().minPower) //checks to see if the player has enough credits for the room
+        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price[ga.GetComponent<RoomStats>().GetRoomLevel() - 1] && 
+            FindObjectOfType<ShipStats>().EnergyRemaining.x >= ga.GetComponent<RoomStats>().minPower[ga.GetComponent<RoomStats>().GetRoomLevel() - 1]) //checks to see if the player has enough credits for the room
         {
             if (lastSpawned == null || lastSpawned.GetComponent<ObjectMover>().enabled == false) //makes sure that the prior room is placed before the next room can be added
             {
@@ -201,14 +204,14 @@ public class SpawnObject : MonoBehaviour
         }
         else
         {
-            if (FindObjectOfType<ShipStats>().Credits < ga.GetComponent<RoomStats>().price)
+            if (FindObjectOfType<ShipStats>().Credits < ga.GetComponent<RoomStats>().price[ga.GetComponent<RoomStats>().GetRoomLevel() - 1])
             {
                 AudioManager.instance.PlaySFX(cannotPlaceCredits[UnityEngine.Random.Range(0, cannotPlaceCredits.Length)]);
                 //Debug.Log("Cannot Afford");
                 FindObjectOfType<ShipBuildingAlertWindow>().OpenAlert(GameManager.instance.GetResourceData((int) ResourceDataTypes._Credits));
             }
 
-            if (FindObjectOfType<ShipStats>().EnergyRemaining.x < ga.GetComponent<RoomStats>().minPower)
+            if (FindObjectOfType<ShipStats>().EnergyRemaining.x < ga.GetComponent<RoomStats>().minPower[ga.GetComponent<RoomStats>().GetRoomLevel() - 1])
             {
                 AudioManager.instance.PlaySFX(cannotPlaceEnergy[UnityEngine.Random.Range(0, cannotPlaceEnergy.Length)]);
                 //Debug.Log("No Energy");

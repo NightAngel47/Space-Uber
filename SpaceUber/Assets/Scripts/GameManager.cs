@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
     private ShipStats ship;
 
     [SerializeField] private List<ResourceDataType> resourceDataRef = new List<ResourceDataType>();
+    
+    [HideInInspector] public bool hasLoadedRooms = false;
 
     /// <summary>
     /// Sets the instance of the GameManager using the Singleton pattern.
@@ -103,11 +105,13 @@ public class GameManager : MonoBehaviour
                     break;
             }
             SavingLoadingManager.instance.LoadRooms();
+            hasLoadedRooms = true;
         }
         else
         {
             ChangeInGameState(InGameStates.JobSelect);
             SavingLoadingManager.instance.NewSave(); // start new save here
+            hasLoadedRooms = true;
         }
     }
 

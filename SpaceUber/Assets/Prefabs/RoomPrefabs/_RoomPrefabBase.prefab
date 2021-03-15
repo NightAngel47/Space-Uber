@@ -767,15 +767,16 @@ MonoBehaviour:
   resources: []
   minCrew: 0
   maxCrew: 0
-  minPower: 0
+  minPower: 00000000000000000000000000000000
   maxPower: 0
   priceReducationPercent: 0
-  price: 0
+  price: 00000000000000000000000000000000
   currentCrew: 0
   roomDescription: 
   roomName: 
   flatOutput: 0
   ignoreMorale: 0
+  roomLevel: 1
   usedRoom: 0
   isPowered: 0
   roomTooltipUI: {fileID: 2405372060552023348}
@@ -798,7 +799,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotAdjust: 1
-  roomSize: 
   shapeType: 0
   objectNum: 0
   canRotate: 1
@@ -820,6 +820,7 @@ MonoBehaviour:
   rotBoundsUp: 0
   rotAdjustVal: {x: 0, y: 0, z: 0}
   clickAgain: 1
+  isEdited: 0
 --- !u!114 &2641448655269380362
 MonoBehaviour:
   m_ObjectHideFlags: 0
