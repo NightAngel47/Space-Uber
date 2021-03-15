@@ -223,8 +223,6 @@ public class ShipStatsUI : MonoBehaviour
 
     public void UpdateHullUI(int current, int max)
     {
-        if (current <= 0 && max <= 0) return;
-        
         hullCurrentText.text = current.ToString();
         hullMaxText.text = max.ToString();
         hullCurrentTooltipText.text = current.ToString();

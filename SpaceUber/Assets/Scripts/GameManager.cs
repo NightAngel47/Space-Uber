@@ -18,7 +18,7 @@ using UnityEngine.SceneManagement;
 ///     Events          player can run into story and random events.
 ///     Ending          player has reached a narrative ending.
 /// </summary>
-public enum InGameStates { None, JobSelect, ShipBuilding, CrewManagement, Events, MoneyEnding, MoraleEnding, Mutiny, Death ,CrewPayment }
+public enum InGameStates { None, JobSelect, ShipBuilding, CrewManagement, Events, MoneyEnding, MoraleEnding, Mutiny, Death ,CrewPayment, RoomUnlock }
 
 /// <summary>
 /// Manages the state of the game while the player is playing.
@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<ResourceDataType> resourceDataRef = new List<ResourceDataType>();
     
     [HideInInspector] public bool hasLoadedRooms = false;
+
+    public List<GameObject> allRoomList = new List<GameObject>();
 
     /// <summary>
     /// Sets the instance of the GameManager using the Singleton pattern.
@@ -136,6 +138,7 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("PromptScreen_Death");
                 additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
                 additiveSceneManager.UnloadScene("CrewPayment");
+                additiveSceneManager.UnloadScene("Interface_RoomUnlockScreen");
 
                 additiveSceneManager.LoadSceneSeperate("Interface_JobList");
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
@@ -154,6 +157,11 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("ShipBuilding");
 
                 additiveSceneManager.LoadSceneSeperate("CrewManagement");
+                break;
+            case InGameStates.RoomUnlock:
+                additiveSceneManager.UnloadScene("CrewPayment");
+
+                additiveSceneManager.LoadSceneSeperate("Interface_RoomUnlockScreen");  
                 break;
             case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
                 additiveSceneManager.UnloadScene("PromptScreen_End");

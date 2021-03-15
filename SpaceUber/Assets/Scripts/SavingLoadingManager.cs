@@ -28,18 +28,6 @@ public class SavingLoadingManager : MonoBehaviour
         hasSave = LoadData.FromBinaryFile<bool>(projectName, "hasSave");
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F8) && hasSave) // kill it with fire at your own convenience
-        {
-            SetHasSaveFalse();
-            if (SceneManager.GetSceneByName("Main_Menu").isLoaded)
-            {
-                SceneManager.LoadScene("Main_Menu");
-            }
-        }
-    }
-
     public void NewSave()
     {
         if(!hasSave)
@@ -88,6 +76,23 @@ public class SavingLoadingManager : MonoBehaviour
         {
             ConvertDataToRoom(roomData);
         }
+    }
+
+    public void SaveRoomLevels(int group1, int group2, int group3)
+    {
+        RoomLevelData[] levelData = new RoomLevelData[1];
+
+        levelData[0].currentMaxLvlGroup1 = group1;
+        levelData[0].currentMaxLvlGroup2 = group2;
+        levelData[0].currentMaxLvlGroup3 = group3;
+
+        Save<RoomLevelData[]>("roomLevelData", levelData);
+    }
+
+    public void LoadRoomLevels()
+    {
+        RoomLevelData[] levelData = Load<RoomLevelData[]>("roomLevelData");
+        UpdateRoomLevels(levelData[0]);
     }
     
     private RoomData ConvertRoomToData(GameObject room)
@@ -183,6 +188,13 @@ public class SavingLoadingManager : MonoBehaviour
             roomStats.SetStatOnLoad(resource, roomData.resourceActiveAmounts[i]);
         }
     }
+
+    private IEnumerator UpdateRoomLevels(RoomLevelData roomLevelData)
+    {
+        yield return new WaitUntil(() => FindObjectOfType<ShipBuildingBuyableRoom>());
+
+        FindObjectOfType<ShipBuildingBuyableRoom>().UpdateMaxLevelGroups(roomLevelData.currentMaxLvlGroup1, roomLevelData.currentMaxLvlGroup2, roomLevelData.currentMaxLvlGroup3);
+    }
     
     [Serializable]
     public struct RoomData
@@ -195,5 +207,13 @@ public class SavingLoadingManager : MonoBehaviour
         public int objectNum;
         public bool usedRoom;
         public int[] resourceActiveAmounts;
+    }
+
+    [Serializable]
+    public struct RoomLevelData
+    {
+        public int currentMaxLvlGroup1;
+        public int currentMaxLvlGroup2;
+        public int currentMaxLvlGroup3;
     }
 }
