@@ -47,12 +47,6 @@ public class RefillFunctionality : MonoBehaviour
         CheckCanRepairShip();
     }
 
-    private void Update()
-    {
-        CheckCanRefillCrew();
-        CheckCanRepairShip();
-    }
-
     public void RefillCrew()
     {
         if (shipStats.Credits >= priceForCrewReplacement)
@@ -60,6 +54,7 @@ public class RefillFunctionality : MonoBehaviour
             shipStats.Credits += -priceForCrewReplacement;
             shipStats.CrewCurrent += new Vector3(crewLost, 0, crewLost);
         }
+        CheckCanRefillCrew();
     }
 
     public void RefillHullDurability()
@@ -69,6 +64,7 @@ public class RefillFunctionality : MonoBehaviour
             shipStats.Credits += -priceForHullRepair;
             shipStats.ShipHealthCurrent += new Vector2(hullDamage, 0);
         }
+        CheckCanRepairShip();
     }
 
     // if crew refill should deactivate
