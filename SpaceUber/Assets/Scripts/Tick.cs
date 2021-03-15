@@ -47,7 +47,6 @@ public class Tick : MonoBehaviour
     private IEnumerator TickUpdate()
     {
         yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_Runtime").isLoaded);
-        daysSinceDisplay = GameObject.FindGameObjectWithTag("DaysSince").GetComponent<TMP_Text>();
         
         while (GameManager.instance.currentGameState == InGameStates.Events)
         {
