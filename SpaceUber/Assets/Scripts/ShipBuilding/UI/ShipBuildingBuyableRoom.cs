@@ -49,6 +49,8 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
 
         if (FindObjectOfType<CampaignManager>().GetCurrentCampaign() > 0)
         {
+            RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+
             switch (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
             {
                 case 0:
@@ -57,11 +59,28 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
                 case 1:
                     currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
                     currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
+
+                    foreach(RoomStats room in rooms)
+                    {
+                        if(room.roomName == "Power Core")
+                        {
+                            room.ChangeRoomLevel(1);
+                        }
+                    }
                     break;
                 case 2:
                     currentMaxLvlGroup3 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
                     currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
                     currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
+
+                    
+                    foreach (RoomStats room in rooms)
+                    {
+                        if (room.roomName == "Power Core")
+                        {
+                            room.ChangeRoomLevel(1);
+                        }
+                    }
                     break;
             }
         }
