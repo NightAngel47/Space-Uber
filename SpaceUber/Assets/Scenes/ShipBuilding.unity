@@ -3289,7 +3289,7 @@ MonoBehaviour:
   producesResource: {fileID: 585324098}
   producesAmount: {fileID: 585324097}
   level: {fileID: 585324110}
-  newLevelText: {fileID: 585324111}
+  newLevelText: {fileID: 0}
 --- !u!1 &585324105 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6340220374552841940, guid: 0ca6278b293d74e49bd5bf668515c491,
@@ -3394,12 +3394,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &585324111 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6241036181789747474, guid: 0ca6278b293d74e49bd5bf668515c491,
-    type: 3}
-  m_PrefabInstance: {fileID: 585324095}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &595358770
 GameObject:
   m_ObjectHideFlags: 0
@@ -6362,7 +6356,7 @@ PrefabInstance:
     - target: {fileID: 4666240182852512127, guid: 0ca6278b293d74e49bd5bf668515c491,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6241036181789747474, guid: 0ca6278b293d74e49bd5bf668515c491,
         type: 3}
@@ -6689,7 +6683,7 @@ MonoBehaviour:
   producesResource: {fileID: 992248579}
   producesAmount: {fileID: 992248578}
   level: {fileID: 992248590}
-  newLevelText: {fileID: 992248591}
+  newLevelText: {fileID: 0}
 --- !u!212 &992248586
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6788,12 +6782,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &992248591 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6241036181789747474, guid: 0ca6278b293d74e49bd5bf668515c491,
-    type: 3}
-  m_PrefabInstance: {fileID: 992248575}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1049167127
 GameObject:
   m_ObjectHideFlags: 0
@@ -14630,7 +14618,7 @@ PrefabInstance:
     - target: {fileID: 4666240182852512127, guid: 0ca6278b293d74e49bd5bf668515c491,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6241036181789747474, guid: 0ca6278b293d74e49bd5bf668515c491,
         type: 3}
@@ -14957,7 +14945,7 @@ MonoBehaviour:
   producesResource: {fileID: 2097103390}
   producesAmount: {fileID: 2097103389}
   level: {fileID: 2097103401}
-  newLevelText: {fileID: 2097103402}
+  newLevelText: {fileID: 0}
 --- !u!212 &2097103397
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15056,12 +15044,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2097103402 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6241036181789747474, guid: 0ca6278b293d74e49bd5bf668515c491,
-    type: 3}
-  m_PrefabInstance: {fileID: 2097103386}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2102953864
 GameObject:
   m_ObjectHideFlags: 0
@@ -15436,7 +15418,7 @@ PrefabInstance:
     - target: {fileID: 1040641097312660086, guid: 9dc64659265c1f14d8a2854107d48461,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1040641097312660086, guid: 9dc64659265c1f14d8a2854107d48461,
         type: 3}
@@ -15452,19 +15434,38 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1040641096115260038}
     - target: {fileID: 1040641097312660086, guid: 9dc64659265c1f14d8a2854107d48461,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: BeginTutorial
       objectReference: {fileID: 0}
     - target: {fileID: 1040641097312660086, guid: 9dc64659265c1f14d8a2854107d48461,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: 
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dc64659265c1f14d8a2854107d48461, type: 3}
+--- !u!1 &1040641096115260037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1040641097312660084, guid: 9dc64659265c1f14d8a2854107d48461,
+    type: 3}
+  m_PrefabInstance: {fileID: 1040641096115260036}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1040641096115260038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040641096115260037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c2e7d30c9b916249a4aa0dea8c6cb2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  relevantTutorial: 1
 --- !u!224 &8963481257942309642 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8963481259364165004, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
