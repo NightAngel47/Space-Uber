@@ -47,35 +47,31 @@ public class RefillFunctionality : MonoBehaviour
         CheckCanRepairShip();
     }
 
-    private void Update()
-    {
-        CheckCanRefillCrew();
-        CheckCanRepairShip();
-    }
-
     public void RefillCrew()
     {
-        if (FindObjectOfType<ShipStats>().Credits >= priceForCrewReplacement)
+        if (shipStats.Credits >= priceForCrewReplacement)
         {
-            FindObjectOfType<ShipStats>().Credits += -priceForCrewReplacement;
-            FindObjectOfType<ShipStats>().CrewCurrent += new Vector3(crewLost, 0, crewLost);
+            shipStats.Credits += -priceForCrewReplacement;
+            shipStats.CrewCurrent += new Vector3(crewLost, 0, crewLost);
         }
+        CheckCanRefillCrew();
     }
 
     public void RefillHullDurability()
     {
-        if(FindObjectOfType<ShipStats>().Credits >= priceForHullRepair)
+        if(shipStats.Credits >= priceForHullRepair)
         {
-            FindObjectOfType<ShipStats>().Credits += -priceForHullRepair;
-            FindObjectOfType<ShipStats>().ShipHealthCurrent += new Vector2(hullDamage, 0);
+            shipStats.Credits += -priceForHullRepair;
+            shipStats.ShipHealthCurrent += new Vector2(hullDamage, 0);
         }
+        CheckCanRepairShip();
     }
 
     // if crew refill should deactivate
     private void CheckCanRefillCrew()
     {
         // has enough credits and crew current is less than capacity
-        crewRefillButton.SetButtonInteractable(FindObjectOfType<ShipStats>().Credits >= priceForCrewReplacement && FindObjectOfType<ShipStats>().CrewCurrent.x < FindObjectOfType<ShipStats>().CrewCurrent.y);
+        crewRefillButton.SetButtonInteractable(shipStats.Credits >= priceForCrewReplacement && shipStats.CrewCurrent.x < shipStats.CrewCurrent.y);
     }
 
     // if hull repair should deactivate

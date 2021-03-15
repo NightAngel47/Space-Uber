@@ -4,24 +4,27 @@
  * adds amount of crewView slots to room's layout group based off the room's maxCrew. 
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CriewViewAutoPopulator : MonoBehaviour
 {
     [SerializeField] GameObject crewViewSlotPrefab;
+
+    private CrewView crewView;
+
+    private void Awake()
+    {
+        crewView = GetComponentInParent<CrewView>();
+    }
+
     void Start()
     {
-        
         for(int i = 0; i < gameObject.GetComponentInParent<RoomStats>().maxCrew; i++)
         {
-            var newSlot = Instantiate(crewViewSlotPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-            newSlot.transform.parent = gameObject.transform;
-
-            gameObject.GetComponentInParent<CrewView>().activateCrewSlot(i, newSlot.gameObject);
+            GameObject newSlot = Instantiate(crewViewSlotPrefab, transform.position, Quaternion.identity, transform);
+            crewView.ActivateCrewSlot(newSlot.gameObject);
         }
 
-        gameObject.GetComponentInParent<CrewView>().finishPopulatingCrewSlots();
+        crewView.FinishPopulatingCrewSlots();
     }
 }

@@ -34,20 +34,10 @@ public class ShipStats : MonoBehaviour
     private List<RoomStats> rooms;
 
     [HideInInspector] public GameObject roomBeingPlaced;
-
-    private int credits;
-    private int payout;
-    private int energyMax;
-    private int energyRemaining;
-    private int security;
-    private int shipWeapons;
-    private int crewCapacity;
-    private int crewCurrent;
-    private int crewUnassigned;
-    private int food;
-    private int foodPerTick;
-    private int shipHealthMax;
-    private int shipHealthCurrent;
+    
+    public enum Stats { NA = -1, Credits, Payout, EnergyMax, EnergyRemaining, Security, ShipWeapons, CrewCapacity, CrewCurrent, CrewUnassigned, Food, FoodPerTick, ShipHealthMax, ShipHealthCurrent}
+    
+    private int[] stats = new int[13];
 
     /// <summary>
     /// Reference to the ship stats UI class.
@@ -75,6 +65,7 @@ public class ShipStats : MonoBehaviour
         else
         {
             SetStartingStats();
+            SaveShipStats();
         }
     }
 
@@ -96,12 +87,12 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     public int Credits
     {
-        get => credits;
+        get => stats[(int) Stats.Credits];
         set
         {
-            int prevValue = credits;
+            int prevValue = stats[(int) Stats.Credits];
             SetObjectBeingPlaced();
-            credits = value;
+            stats[(int) Stats.Credits] = value;
             /*
             if (creditAddition >= 0)
             {
@@ -112,12 +103,12 @@ public class ShipStats : MonoBehaviour
                 AudioManager.instance.PlaySFX("Lose Credits");
             }
             */
-            if (credits <= 0)
+            if (stats[(int) Stats.Credits] <= 0)
             {
-                credits = 0;
+                stats[(int) Stats.Credits] = 0;
             }
 
-            shipStatsUI.UpdateCreditsUI(credits, payout);
+            shipStatsUI.UpdateCreditsUI(stats[(int) Stats.Credits], stats[(int) Stats.Payout]);
             shipStatsUI.ShowCreditsUIChange(value - prevValue);
         }
     }
@@ -127,19 +118,19 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     public int Payout
     {
-        get => payout;
+        get => stats[(int) Stats.Payout];
         set
         {
-            int initialPayout = payout;
-            payout = value;
+            int initialPayout = stats[(int) Stats.Payout];
+            stats[(int) Stats.Payout] = value;
 
-            if (payout <= 0)
+            if (stats[(int) Stats.Payout] <= 0)
             {
-                payout = 0;
+                stats[(int) Stats.Payout] = 0;
             }
 
-            shipStatsUI.UpdateCreditsUI(credits, payout);
-            shipStatsUI.ShowCreditsUIChange(0, payout - initialPayout);
+            shipStatsUI.UpdateCreditsUI(stats[(int) Stats.Credits], stats[(int) Stats.Payout]);
+            shipStatsUI.ShowCreditsUIChange(0, stats[(int) Stats.Payout] - initialPayout);
         }
     }
 
@@ -148,12 +139,12 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     public Vector2 EnergyRemaining // x = energyRemaining y = energyMax
     {
-        get => new Vector2(energyRemaining, energyMax);
+        get => new Vector2(stats[(int) Stats.EnergyRemaining], stats[(int) Stats.EnergyMax]);
         set
         {
-            Vector2 prevValue = new Vector2(energyRemaining, energyMax);
-            energyMax = (int)value.y;
-            energyRemaining = (int)value.x;
+            Vector2 prevValue = new Vector2(stats[(int) Stats.EnergyRemaining], stats[(int) Stats.EnergyMax]);
+            stats[(int) Stats.EnergyMax] = (int)value.y;
+            stats[(int) Stats.EnergyRemaining] = (int)value.x;
             /*
             if (energyRemainingAddition >= 0)
             {
@@ -164,16 +155,16 @@ public class ShipStats : MonoBehaviour
                 AudioManager.instance.PlaySFX("Lose Energy");
             }
             */
-            if (energyRemaining <= 0)
+            if (stats[(int) Stats.EnergyRemaining] <= 0)
             {
-                energyRemaining = 0;
+                stats[(int) Stats.EnergyRemaining] = 0;
             }
-            if (energyRemaining >= energyMax)
+            if (stats[(int) Stats.EnergyRemaining] >= stats[(int) Stats.EnergyMax])
             {
-                energyRemaining = energyMax;
+                stats[(int) Stats.EnergyRemaining] = stats[(int) Stats.EnergyMax];
             }
 
-            shipStatsUI.UpdateEnergyUI(energyRemaining, energyMax);
+            shipStatsUI.UpdateEnergyUI(stats[(int) Stats.EnergyRemaining], stats[(int) Stats.EnergyMax]);
             shipStatsUI.ShowEnergyUIChange((int)(value.x - prevValue.x), (int)(value.y - prevValue.y));
         }
     }
@@ -183,11 +174,11 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     public int Security
     {
-        get => security;
+        get => stats[(int) Stats.Security];
         set
         {
-            int prevValue = security;
-            security = value;
+            int prevValue = stats[(int) Stats.Security];
+            stats[(int) Stats.Security] = value;
             /*
             if (securityAmount >= 0)
             {
@@ -198,12 +189,12 @@ public class ShipStats : MonoBehaviour
                 AudioManager.instance.PlaySFX("Lose Security");
             }
             */
-            if (security <= 0)
+            if (stats[(int) Stats.Security] <= 0)
             {
-                security = 0;
+                stats[(int) Stats.Security] = 0;
             }
 
-            shipStatsUI.UpdateSecurityUI(security);
+            shipStatsUI.UpdateSecurityUI(stats[(int) Stats.Security]);
             shipStatsUI.ShowSecurityUIChange(value - prevValue);
         }
     }
@@ -213,11 +204,11 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     public int ShipWeapons
     {
-        get => shipWeapons;
+        get => stats[(int) Stats.ShipWeapons];
         set
         {
-            int prevValue = shipWeapons;
-            shipWeapons = value;
+            int prevValue = stats[(int) Stats.ShipWeapons];
+            stats[(int) Stats.ShipWeapons] = value;
             /*
             if (shipWeaponsAmount >= 0)
             {
@@ -228,12 +219,12 @@ public class ShipStats : MonoBehaviour
                 AudioManager.instance.PlaySFX("Lose Weapons");
             }
             */
-            if (shipWeapons <= 0)
+            if (stats[(int) Stats.ShipWeapons] <= 0)
             {
-                shipWeapons = 0;
+                stats[(int) Stats.ShipWeapons] = 0;
             }
 
-            shipStatsUI.UpdateShipWeaponsUI(shipWeapons);
+            shipStatsUI.UpdateShipWeaponsUI(stats[(int) Stats.ShipWeapons]);
             shipStatsUI.ShowShipWeaponsUIChange(value - prevValue);
         }
     }
@@ -243,7 +234,7 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     public Vector3 CrewCurrent //x = crewCurrent y = crewCapacity z = crewUnnassigned
     {
-        get => new Vector3(crewCurrent, crewCapacity, crewUnassigned);
+        get => new Vector3(stats[(int) Stats.CrewCurrent], stats[(int) Stats.CrewCapacity], stats[(int) Stats.CrewUnassigned]);
         set
         {
             if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
@@ -251,21 +242,21 @@ public class ShipStats : MonoBehaviour
                 SetObjectBeingPlaced();
             }
 
-            Vector3 prevValue = new Vector3(crewCurrent, crewCapacity, crewUnassigned);
-            crewCurrent = (int)value.x;
-            crewCapacity = (int)value.y;
-            crewUnassigned = (int)value.z;
+            Vector3 prevValue = new Vector3(stats[(int) Stats.CrewCurrent], stats[(int) Stats.CrewCapacity], stats[(int) Stats.CrewUnassigned]);
+            stats[(int) Stats.CrewCurrent] = (int)value.x;
+            stats[(int) Stats.CrewCapacity] = (int)value.y;
+            stats[(int) Stats.CrewUnassigned] = (int)value.z;
 
-            if (crewCurrent - prevValue.x < 0)
+            if (stats[(int) Stats.CrewCurrent] - prevValue.x < 0)
             {
-                if(crewUnassigned < 0)
+                if(stats[(int) Stats.CrewUnassigned] < 0)
                 {
-                    RemoveRandomCrew(Mathf.Abs(crewUnassigned));
+                    RemoveRandomCrew(Mathf.Abs(stats[(int) Stats.CrewUnassigned]));
                 }
 
-                if(crewCurrent - prevValue.x < crewCapacity - prevValue.y)
+                if(stats[(int) Stats.CrewCurrent] - prevValue.x < stats[(int) Stats.CrewCapacity] - prevValue.y)
                 {
-                    MoraleManager.instance.CrewLoss((int)(crewCurrent - prevValue.x));
+                    MoraleManager.instance.CrewLoss((int)(stats[(int) Stats.CrewCurrent] - prevValue.x));
                 }
             }
 
@@ -280,21 +271,21 @@ public class ShipStats : MonoBehaviour
             }
             */
 
-            if (crewCurrent <= 0)
+            if (stats[(int) Stats.CrewCurrent] <= 0)
             {
-                crewCurrent = 0;
+                stats[(int) Stats.CrewCurrent] = 0;
             }
-            if (crewCurrent >= crewCapacity)
+            if (stats[(int) Stats.CrewCurrent] >= stats[(int) Stats.CrewCapacity])
             {
-                crewCurrent = crewCapacity;
-            }
-
-            if (crewUnassigned <= 0)
-            {
-                crewUnassigned = 0;
+                stats[(int) Stats.CrewCurrent] = stats[(int) Stats.CrewCapacity];
             }
 
-            shipStatsUI.UpdateCrewUI(crewUnassigned, crewCurrent, crewCapacity);
+            if (stats[(int) Stats.CrewUnassigned] <= 0)
+            {
+                stats[(int) Stats.CrewUnassigned] = 0;
+            }
+
+            shipStatsUI.UpdateCrewUI(stats[(int) Stats.CrewUnassigned], stats[(int) Stats.CrewCurrent], stats[(int) Stats.CrewCapacity]);
             shipStatsUI.ShowCrewUIChange((int)(value.z - prevValue.z), (int)(value.x - prevValue.x), (int)(value.y - prevValue.y));
         }
     }
@@ -304,11 +295,11 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     public int Food
     {
-        get => food;
+        get => stats[(int) Stats.Food];
         set
         {
-            int prevValue = food;
-            food = value;
+            int prevValue = stats[(int) Stats.Food];
+            stats[(int) Stats.Food] = value;
             /*
             if (foodAmount >= 0)
             {
@@ -319,12 +310,12 @@ public class ShipStats : MonoBehaviour
                 AudioManager.instance.PlaySFX("Lose Food");
             }
             */
-            if (food <= 0)
+            if (stats[(int) Stats.Food] <= 0)
             {
-                food = 0;
+                stats[(int) Stats.Food] = 0;
             }
 
-            shipStatsUI.UpdateFoodUI(food, foodPerTick, crewCurrent);
+            shipStatsUI.UpdateFoodUI(stats[(int) Stats.Food], stats[(int) Stats.FoodPerTick], stats[(int) Stats.CrewCurrent]);
             shipStatsUI.ShowFoodUIChange(value - prevValue, 0);
         }
     }
@@ -334,13 +325,13 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     public int FoodPerTick
     {
-        get => foodPerTick;
+        get => stats[(int) Stats.FoodPerTick];
         set
         {
-            int prevValue = foodPerTick;
-            foodPerTick = value;
+            int prevValue = stats[(int) Stats.FoodPerTick];
+            stats[(int) Stats.FoodPerTick] = value;
 
-            shipStatsUI.UpdateFoodUI(food, foodPerTick, crewCurrent);
+            shipStatsUI.UpdateFoodUI(stats[(int) Stats.Food], stats[(int) Stats.FoodPerTick], stats[(int) Stats.CrewCurrent]);
             shipStatsUI.ShowFoodUIChange(0, value - prevValue);
         }
     }
@@ -350,16 +341,16 @@ public class ShipStats : MonoBehaviour
     /// </summary>
     public Vector2 ShipHealthCurrent //x = shipHealthCurrent y = shipHealthMax
     {
-        get => new Vector2(shipHealthCurrent, shipHealthMax);
+        get => new Vector2(stats[(int) Stats.ShipHealthCurrent], stats[(int) Stats.ShipHealthMax]);
         set
         {
-            Vector2 prevValue = new Vector2(shipHealthCurrent, shipHealthMax);
-            shipHealthCurrent = (int)value.x;
-            shipHealthMax = (int)value.y;
+            Vector2 prevValue = new Vector2(stats[(int) Stats.ShipHealthCurrent], stats[(int) Stats.ShipHealthMax]);
+            stats[(int) Stats.ShipHealthCurrent] = (int)value.x;
+            stats[(int) Stats.ShipHealthMax] = (int)value.y;
 
-            if (shipHealthCurrent >= shipHealthMax)
+            if (stats[(int) Stats.ShipHealthCurrent] >= stats[(int) Stats.ShipHealthMax])
             {
-                shipHealthCurrent = shipHealthMax;
+                stats[(int) Stats.ShipHealthCurrent] = stats[(int) Stats.ShipHealthMax];
             }
 
             /*
@@ -373,11 +364,28 @@ public class ShipStats : MonoBehaviour
             }
             */
 
-            shipStatsUI.UpdateHullUI(shipHealthCurrent, shipHealthMax);
+            shipStatsUI.UpdateHullUI(stats[(int) Stats.ShipHealthCurrent], stats[(int) Stats.ShipHealthMax]);
             shipStatsUI.ShowHullUIChange((int)(value.x - prevValue.x), (int)(value.y - prevValue.y));
 
             // check for death
             StartCoroutine(CheckDeathOnUnpause());
+        }
+    }
+    
+    public int[] StatsArray
+    {
+        get => stats;
+        set
+        {
+            stats = value;
+            
+            shipStatsUI.UpdateCreditsUI(stats[(int) Stats.Credits], stats[(int) Stats.Payout]);
+            shipStatsUI.UpdateEnergyUI(stats[(int) Stats.EnergyRemaining], stats[(int) Stats.EnergyMax]);
+            shipStatsUI.UpdateSecurityUI(stats[(int) Stats.Security]);
+            shipStatsUI.UpdateShipWeaponsUI(stats[(int) Stats.ShipWeapons]);
+            shipStatsUI.UpdateCrewUI(stats[(int) Stats.CrewUnassigned], stats[(int) Stats.CrewCurrent], stats[(int) Stats.CrewCapacity]);
+            shipStatsUI.UpdateFoodUI(stats[(int) Stats.Food], stats[(int) Stats.FoodPerTick], stats[(int) Stats.CrewCurrent]);
+            shipStatsUI.UpdateHullUI(stats[(int) Stats.ShipHealthCurrent], stats[(int) Stats.ShipHealthMax]);
         }
     }
 
@@ -390,7 +398,7 @@ public class ShipStats : MonoBehaviour
 
     public void CheckForDeath()
     {
-        if (shipHealthCurrent <= 0)
+        if (stats[(int) Stats.ShipHealthCurrent] <= 0)
         {
             GameManager.instance.ChangeInGameState(InGameStates.Death);
         }
@@ -403,7 +411,7 @@ public class ShipStats : MonoBehaviour
 
     public void CashPayout()
     {
-        Credits += payout;
+        Credits += stats[(int) Stats.Payout];
         Payout = 0;
     }
 
@@ -427,7 +435,7 @@ public class ShipStats : MonoBehaviour
 
     public void PayCrew(int amount)
     {
-        Credits -= (amount * crewCurrent);
+        Credits -= (amount * stats[(int) Stats.CrewCurrent]);
         MoraleManager.instance.CrewPayment(amount);
     }
 
@@ -435,7 +443,7 @@ public class ShipStats : MonoBehaviour
     {
         RoomStats[] rooms = FindObjectsOfType<RoomStats>();
         int[] crewLost = new int[rooms.Length];
-        int crewAssigned = crewCurrent - crewUnassigned;
+        int crewAssigned = stats[(int) Stats.CrewCurrent] - stats[(int) Stats.CrewUnassigned];
 
         for(int i = 0; i < amount; i++)
         {
@@ -473,39 +481,19 @@ public class ShipStats : MonoBehaviour
 
     public void SaveShipStats()
     {
-        SavingLoadingManager.instance.Save<int>("credits", credits);
-        SavingLoadingManager.instance.Save<int>("payout", payout);
-        SavingLoadingManager.instance.Save<int>("energyMax", energyMax);
-        SavingLoadingManager.instance.Save<int>("energyRemaining", energyRemaining);
-        SavingLoadingManager.instance.Save<int>("security", security);
-        SavingLoadingManager.instance.Save<int>("shipWeapons", shipWeapons);
-        SavingLoadingManager.instance.Save<int>("crewCapacity", crewCapacity);
-        SavingLoadingManager.instance.Save<int>("crewCurrent", crewCurrent);
-        SavingLoadingManager.instance.Save<int>("crewUnassigned", crewUnassigned);
-        SavingLoadingManager.instance.Save<int>("food", food);
-        SavingLoadingManager.instance.Save<int>("foodPerTick", foodPerTick);
-        SavingLoadingManager.instance.Save<int>("shipHealthMax", shipHealthMax);
-        SavingLoadingManager.instance.Save<int>("shipHealthCurrent", shipHealthCurrent);
+        SavingLoadingManager.instance.Save<int[]>("stats", stats);
     }
 
     public void LoadShipStats()
     {
-        Credits = SavingLoadingManager.instance.Load<int>("credits");
-        Payout = SavingLoadingManager.instance.Load<int>("payout");
-        EnergyRemaining = new Vector2(SavingLoadingManager.instance.Load<int>("energyRemaining"), SavingLoadingManager.instance.Load<int>("energyMax"));
-        Security = SavingLoadingManager.instance.Load<int>("security");
-        ShipWeapons = SavingLoadingManager.instance.Load<int>("shipWeapons");
-        CrewCurrent = new Vector3(SavingLoadingManager.instance.Load<int>("crewCurrent"), SavingLoadingManager.instance.Load<int>("crewCapacity"), SavingLoadingManager.instance.Load<int>("crewUnassigned"));
-        Food = SavingLoadingManager.instance.Load<int>("food");
-        FoodPerTick = SavingLoadingManager.instance.Load<int>("foodPerTick");
-        ShipHealthCurrent = new Vector2(SavingLoadingManager.instance.Load<int>("shipHealthCurrent"), SavingLoadingManager.instance.Load<int>("shipHealthMax"));
+        StatsArray = SavingLoadingManager.instance.Load<int[]>("stats");
     }
 
     public int[] GetCoreStats()
     {
-        int[] stats = { crewUnassigned, (shipHealthMax - shipHealthCurrent), food, foodPerTick, security, shipWeapons };
+        int[] coreStats = { stats[(int) Stats.CrewUnassigned], (stats[(int) Stats.ShipHealthMax] - stats[(int) Stats.ShipHealthCurrent]), stats[(int) Stats.Food], stats[(int) Stats.FoodPerTick], stats[(int) Stats.Security], stats[(int) Stats.ShipWeapons] };
 
-        return stats;
+        return coreStats;
     }
 
     

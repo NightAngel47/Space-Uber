@@ -33,6 +33,8 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             ClosePanel();
         }
+
+        if (!isOpen) Tutorial.Instance.UnHighlightScreenLocation();
     }
 
     public void TogglePanelVis(int tabIndex = -1)

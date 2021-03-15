@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
     private ShipStats ship;
 
     [SerializeField] private List<ResourceDataType> resourceDataRef = new List<ResourceDataType>();
+    
+    [HideInInspector] public bool hasLoadedRooms = false;
 
     public List<GameObject> allRoomList = new List<GameObject>();
 
@@ -105,11 +107,13 @@ public class GameManager : MonoBehaviour
                     break;
             }
             SavingLoadingManager.instance.LoadRooms();
+            hasLoadedRooms = true;
         }
         else
         {
             ChangeInGameState(InGameStates.JobSelect);
             SavingLoadingManager.instance.NewSave(); // start new save here
+            hasLoadedRooms = true;
         }
     }
 
