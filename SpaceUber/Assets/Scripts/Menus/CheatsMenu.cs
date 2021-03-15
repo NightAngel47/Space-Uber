@@ -16,7 +16,7 @@ public class CheatsMenu : MonoBehaviour
 {
     public static CheatsMenu instance;
     private EventSystem es;
-    private CampaignManager campMan;
+    [SerializeField]private CampaignManager campMan;
     private ShipStats thisShip;
     private JobManager jm;
 
@@ -41,7 +41,7 @@ public class CheatsMenu : MonoBehaviour
     [HideInInspector] public bool mutinyDisabled = false;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //Singleton pattern
         if (instance)
@@ -53,21 +53,24 @@ public class CheatsMenu : MonoBehaviour
             instance.myCanvas.SetActive(false);
             instance.cheatModeActiveText.SetActive(instance.showingActiveText);
             instance.helpMenu.SetActive(instance.showingHelpMenu);
+
             
             Destroy(gameObject);
         }
         else
         {
+
             instance = this;
             DontDestroyOnLoad(gameObject);
-            asm = FindObjectOfType<AdditiveSceneManager>();
+            
         }
 
-        es = gameObject.GetComponent<EventSystem>();
-        campMan = gameObject.GetComponent<CampaignManager>();
+        es = GameObject.FindObjectOfType<EventSystem>();
+        campMan = GameObject.FindObjectOfType<CampaignManager>();
         thisShip = GameObject.FindObjectOfType<ShipStats>();
         jm = GameObject.FindObjectOfType<JobManager>();
-        
+        asm = FindObjectOfType<AdditiveSceneManager>();
+
         myCanvas.SetActive(false);
 
         cheatModeActiveText.SetActive(true);
@@ -82,63 +85,76 @@ public class CheatsMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Tilde))
+        if (Input.GetKeyDown(KeyCode.Tilde))
         {
             ToggleCheatText();
         }
-        if(Input.GetKeyDown(KeyCode.F2))
+        if (Input.GetKeyDown(KeyCode.F2))
         {
             ToggleHelpMenu();
         }
-        if(Input.GetKeyDown(KeyCode.F3))
+        if (Input.GetKeyDown(KeyCode.F3))
         {
             MiniGameTest();
         }
-        if(Input.GetKeyDown(KeyCode.F5))
+
+        if (Input.GetKey(KeyCode.F4)
+            && GameManager.instance.currentGameState == InGameStates.JobSelect)
+        {
+            CycleCampaignJobs();
+        }
+        if (Input.GetKeyDown(KeyCode.F5))
         {
             ToggleDeath();
         }
-        if(Input.GetKeyDown(KeyCode.F6))
+        if (Input.GetKeyDown(KeyCode.F6))
         {
             ToggleMutiny();
         }
-        if(Input.GetKey("1"))
+
+        #region StatMods
+        if (Input.GetKey("1"))
         {
             ModifyResource(0);
         }
-        if(Input.GetKey("2"))
+        if (Input.GetKey("2"))
         {
             ModifyResource(2);
         }
-        if(Input.GetKey("3"))
+        if (Input.GetKey("3"))
         {
             ModifyResource(3);
         }
-        if(Input.GetKey("4"))
+        if (Input.GetKey("4"))
         {
             ModifyResource(4);
         }
-        if(Input.GetKey("5"))
+        if (Input.GetKey("5"))
         {
             ModifyResource(5);
         }
-        if(Input.GetKey("6"))
+        if (Input.GetKey("6"))
         {
             ModifyResource(7);
         }
-        if(Input.GetKey("7"))
+        if (Input.GetKey("7"))
         {
             ModifyResource(9);
         }
-        if(Input.GetKey("8"))
+        if (Input.GetKey("8"))
         {
             ModifyResource(11);
         }
+        #endregion
+        
     }
 
+    public void ActivateCanvas()
+    {
+        myCanvas.SetActive(true);
+    }
     private void ToggleCheatText()
     {
-        print("Toggling thing");
         if (showingActiveText)
         {
             cheatModeActiveText.SetActive(false);
@@ -198,21 +214,52 @@ public class CheatsMenu : MonoBehaviour
         if (inMinigameTest)
         {
             inMinigameTest = false;
-            Debug.LogWarning("Loading ShipBase from MiniGames Testing Menu");
+            Debug.Log("Loading ShipBase from MiniGames Testing Menu");
             SceneManager.LoadScene("ShipBase");
             GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
         }
         else
         {
             inMinigameTest = true;
-            Debug.LogWarning("Loading MiniGames Testing Menu");
+            Debug.Log("Loading MiniGames Testing Menu");
             SceneManager.LoadScene("MiniGames Testing Menu");
         }
     }
 
-    public void JumpToCampaign(int campNum)
+    public void CycleCampaignJobs()
     {
+        if (campMan)
+        {            
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                campMan.CycleCampaigns(1);
+                jm.RefreshJobList();
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                campMan.CycleCampaigns(-1);
+                jm.RefreshJobList();
+            }
 
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                campMan.CycleJobIndex(1);
+                jm.RefreshJobList();
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                campMan.CycleJobIndex(-1);
+                jm.RefreshJobList();
+            }
+        }
+        else
+        {
+            Debug.LogError("Campaign manager unassigned in cheats menu");
+        }
+        
+
+
+        
     }
 
     public void PlayRandomEvent(int eventNum)
