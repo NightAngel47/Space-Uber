@@ -16,6 +16,7 @@ public class OverclockController : MonoBehaviour
 {
     public static OverclockController instance;
     private ShipStats shipStats;
+    private CampaignManager campManager;
     private AdditiveSceneManager additiveSceneManager;
 
     [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame."), Foldout("Mini-Game Adjustments")] 
@@ -61,13 +62,12 @@ public class OverclockController : MonoBehaviour
     {
         cam = Camera.main;
         shipStats = FindObjectOfType<ShipStats>();
+        campManager = FindObjectOfType<CampaignManager>();
         additiveSceneManager = FindObjectOfType<AdditiveSceneManager>();
         winSound = false;
     }
 
     public ShipStats ShipStats() { return shipStats; }
-
-
 
     public void StartMiniGame(MiniGameType miniGame, OverclockRoom room)
     {
@@ -88,38 +88,38 @@ public class OverclockController : MonoBehaviour
 
             if(miniGame == MiniGameType.Security)
             {
-                shipStats.Security += Mathf.RoundToInt(securityBaseAdjustment * statModification * moraleModifier);
-                SpawnStatChangeText(Mathf.RoundToInt(securityBaseAdjustment * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
+                shipStats.Security += Mathf.RoundToInt(securityBaseAdjustment * statModification * moraleModifier * campManager.GetMultiplier(ResourceDataTypes._Security));
+                SpawnStatChangeText(Mathf.RoundToInt(securityBaseAdjustment * statModification * moraleModifier * campManager.GetMultiplier(ResourceDataTypes._Security)), GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
                 EventSystem.instance.chanceOfEvent += securityPercentIncrease;
             }
             if(miniGame == MiniGameType.Asteroids)
             {
-                shipStats.ShipWeapons += Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification * moraleModifier);
-                SpawnStatChangeText(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
+                shipStats.ShipWeapons += Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification * moraleModifier * campManager.GetMultiplier(ResourceDataTypes._ShipWeapons));
+                SpawnStatChangeText(Mathf.RoundToInt(shipWeaponsBaseAdjustment * statModification * moraleModifier * campManager.GetMultiplier(ResourceDataTypes._ShipWeapons)), GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
                 EventSystem.instance.chanceOfEvent += asteroidPercentIncrease;
             }
             if(miniGame == MiniGameType.CropHarvest)
             {
-                shipStats.Food += Mathf.RoundToInt(foodBaseAdjustment * statModification * moraleModifier);
-                SpawnStatChangeText(Mathf.RoundToInt(foodBaseAdjustment * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
+                shipStats.Food += Mathf.RoundToInt(foodBaseAdjustment * statModification * moraleModifier * campManager.GetMultiplier(ResourceDataTypes._Food));
+                SpawnStatChangeText(Mathf.RoundToInt(foodBaseAdjustment * statModification * moraleModifier * campManager.GetMultiplier(ResourceDataTypes._Food)), GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
                 EventSystem.instance.chanceOfEvent += cropPercentIncrease;
             }
             if(miniGame == MiniGameType.StabilizeEnergyLevels)
             {
-                shipStats.EnergyRemaining += new Vector2(Mathf.RoundToInt(energyBaseAdjustment * statModification * moraleModifier), 0);
-                SpawnStatChangeText(Mathf.RoundToInt(energyBaseAdjustment * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
+                shipStats.EnergyRemaining += new Vector2(Mathf.RoundToInt(energyBaseAdjustment * statModification * moraleModifier * campManager.GetMultiplier(ResourceDataTypes._Energy)), 0);
+                SpawnStatChangeText(Mathf.RoundToInt(energyBaseAdjustment * statModification * moraleModifier * campManager.GetMultiplier(ResourceDataTypes._Energy)), GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
                 EventSystem.instance.chanceOfEvent += energyPercentIncrease;
             }
             if(miniGame == MiniGameType.SlotMachine)
             {
-                shipStats.Credits += Mathf.RoundToInt(statModification * moraleModifier);
-                SpawnStatChangeText(Mathf.RoundToInt(statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon);
+                shipStats.Credits += Mathf.RoundToInt(statModification * moraleModifier * campManager.GetMultiplier(ResourceDataTypes._Credits));
+                SpawnStatChangeText(Mathf.RoundToInt(statModification * moraleModifier * campManager.GetMultiplier(ResourceDataTypes._Credits)), GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon);
                 EventSystem.instance.chanceOfEvent += slotPercentIncrease;
             }
             if(miniGame == MiniGameType.HullRepair)
             {
-                shipStats.ShipHealthCurrent += new Vector2(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification * moraleModifier), 0);
-                SpawnStatChangeText(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon);
+                shipStats.ShipHealthCurrent += new Vector2(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification * moraleModifier * campManager.GetMultiplier(ResourceDataTypes._HullDurability)), 0);
+                SpawnStatChangeText(Mathf.RoundToInt(hullRepairBaseAdjustment * statModification * moraleModifier * campManager.GetMultiplier(ResourceDataTypes._HullDurability)), GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon);
                 EventSystem.instance.chanceOfEvent += hullRepairPercentIncrease;
             }
         }
