@@ -15,7 +15,7 @@ using System.Linq;
 
 public class SpawnObject : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> allRoomList = new List<GameObject>();
+    
     public List<GameObject> availableRooms;
     [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private GameObject buttonPanel;
@@ -74,7 +74,7 @@ public class SpawnObject : MonoBehaviour
             switch (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
             {
                 case 0:
-                    foreach (GameObject room in allRoomList)
+                    foreach (GameObject room in GameManager.instance.allRoomList)
                     {
                         if (room.GetComponent<RoomStats>().GetRoomGroup() == 1)
                         {
@@ -83,7 +83,7 @@ public class SpawnObject : MonoBehaviour
                     }
                     break;
                 case 1:
-                    foreach (GameObject room in allRoomList)
+                    foreach (GameObject room in GameManager.instance.allRoomList)
                     {
                         if (room.GetComponent<RoomStats>().GetRoomGroup() == 1 || room.GetComponent<RoomStats>().GetRoomGroup() == 2)
                         {
@@ -92,7 +92,7 @@ public class SpawnObject : MonoBehaviour
                     }
                     break;
                 case 2:
-                    foreach (GameObject room in allRoomList)
+                    foreach (GameObject room in GameManager.instance.allRoomList)
                     {
                         availableRooms.Add(room);
                     }
@@ -101,10 +101,10 @@ public class SpawnObject : MonoBehaviour
         }
         else
         {
-            foreach (GameObject room in allRoomList)
-            {
-                availableRooms.Add(room);
-            }
+            //foreach (GameObject room in allRoomList)
+            //{
+            //    availableRooms.Add(room);
+            //}
         }
 
         CreateRoomSpawnButtons(); 
