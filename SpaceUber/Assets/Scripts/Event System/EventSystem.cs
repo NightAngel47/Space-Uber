@@ -73,8 +73,9 @@ public class EventSystem : MonoBehaviour
 
 	private string lastEventTitle;
 
-	private bool inCheatMenu;
-	private bool cheatEvent;
+
+	private int cheatIndex = 0;
+	public bool isCheatEvent = false;
 	[HideInInspector] public bool chatting = false; //Whether or not the player is talking to a character
 	[HideInInspector] public bool mutiny;
 
@@ -141,7 +142,6 @@ public class EventSystem : MonoBehaviour
 		{
 			// wait till any active event is cleared before starting event timer for next event
 			yield return new WaitWhile((() => eventActive));
-			yield return new WaitWhile(() => inCheatMenu); //do nothing while in cheat menu
 
 			tick.StartTickUpdate();
             progressBar.StartProgress();
@@ -278,19 +278,28 @@ public class EventSystem : MonoBehaviour
 		overallEventIndex++;
 	}
 
-	public IEnumerator CheatRandomEvent(GameObject newEvent)
+	/// <summary>
+	/// Starts a new random event based on the cheat index, separate from normal index
+	/// indexDirection should be 1 or -1 depending on which direction you wish to cycle
+	/// </summary>
+	/// <param name="indexDirection"></param>
+	/// <returns></returns>
+	public IEnumerator CheatRandomEvent(int indexDirection)
     {
 		//deactivate currentEvent
-		if(eventActive)
-        {
+		if (eventActive)
+		{
 			ConcludeEvent();
-        }
+		}
 
-		// Load Event_CharacterFocused Scene for upcoming event
+		cheatIndex += indexDirection;
+		isCheatEvent = true;
+
 		asm.LoadSceneMerged("Event_CharacterFocused");
 		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
 
-		CreateEvent(newEvent);
+		print("About to play '" + randomEvents[cheatIndex] + "'");
+		CreateEvent(randomEvents[cheatIndex]);
 	}
 
 	/// <summary>
@@ -369,6 +378,10 @@ public class EventSystem : MonoBehaviour
 		concludedEvent.ClearUI();
 		bool isRegularEvent = true;
 
+		if(isCheatEvent)
+        {
+			isRegularEvent = false;
+		}
 		if (concludedEvent.isCharacterEvent)
 		{
 			isRegularEvent = false;
@@ -406,16 +419,12 @@ public class EventSystem : MonoBehaviour
 
 		}
 
-		if (!cheatEvent)
-        {
-			if (overallEventIndex >= maxEvents) //Potentially end the job entirely if this is meant to be the final event
-			{
-				ClearEventSystemAtEndOfJob();
-				ship.CashPayout();
-				GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);
-			}
+		if (overallEventIndex >= maxEvents) //Potentially end the job entirely if this is meant to be the final event
+		{
+			ClearEventSystemAtEndOfJob();
+			ship.CashPayout();
+			GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);
 		}
-
 	}
 
 	private void ClearEventSystemAtEndOfJob()

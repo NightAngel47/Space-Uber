@@ -115,6 +115,11 @@ public class CheatsMenu : MonoBehaviour
             es.SkipToEvent();
             Debug.Log("Skipping to event");
         }
+        if(Input.GetKey(KeyCode.F8)
+            && GameManager.instance.currentGameState == InGameStates.Events)
+        {
+            PlayRandomEvents();
+        }
 
         if(Input.GetKey(KeyCode.F9))
         {
@@ -256,9 +261,16 @@ public class CheatsMenu : MonoBehaviour
         }
     }
 
-    public void PlayRandomEvent(int eventNum)
+    public void PlayRandomEvents()
     {
-
+        if(Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            StartCoroutine(es.CheatRandomEvent(1));
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            StartCoroutine(es.CheatRandomEvent(-1));
+        }
     }
     
     private void ChangeNarrativeVariables()
