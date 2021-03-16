@@ -6,6 +6,12 @@ env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
+  linux:
+    name: Linux commands
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: apt-get clean
   build:
     name: Build for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
     runs-on: ubuntu-latest
@@ -22,7 +28,6 @@ jobs:
           - StandaloneLinux64 # Build a Linux 64-bit standalone.
           #- WebGL # WebGL.
     steps:
-      - run: $ df -h
       - uses: actions/checkout@v2
         with:
           lfs: true
