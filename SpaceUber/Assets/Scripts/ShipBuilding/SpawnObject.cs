@@ -78,21 +78,15 @@ public class SpawnObject : MonoBehaviour
                 switch (FindObjectOfType<CampaignManager>().GetCurrentJobIndex())
                 {
                     case 0:
-                        foreach (GameObject room in GameManager.instance.allRoomList)
+                        foreach (var room in GameManager.instance.allRoomList.Where(room => room.GetComponent<RoomStats>().GetRoomGroup() == 1))
                         {
-                            if (room.GetComponent<RoomStats>().GetRoomGroup() == 1)
-                            {
-                                availableRooms.Add(room);
-                            }
+                            availableRooms.Add(room);
                         }
                         break;
                     case 1:
-                        foreach (GameObject room in GameManager.instance.allRoomList)
+                        foreach (var room in GameManager.instance.allRoomList.Where(room => room.GetComponent<RoomStats>().GetRoomGroup() != 3))
                         {
-                            if (room.GetComponent<RoomStats>().GetRoomGroup() == 1 || room.GetComponent<RoomStats>().GetRoomGroup() == 2)
-                            {
-                                availableRooms.Add(room);
-                            }
+                            availableRooms.Add(room);
                         }
                         break;
                     case 2:
@@ -113,46 +107,13 @@ public class SpawnObject : MonoBehaviour
         }
         else
         {
-            if (ShipBuildingBuyableRoom.cheatCampaign == 0)
+            foreach (GameObject room in GameManager.instance.allRoomList)
             {
-                switch (ShipBuildingBuyableRoom.cheatJob)
-                {
-                    case 0:
-                        foreach (GameObject room in GameManager.instance.allRoomList)
-                        {
-                            if (room.GetComponent<RoomStats>().GetRoomGroup() == 1)
-                            {
-                                availableRooms.Add(room);
-                            }
-                        }
-                        break;
-                    case 1:
-                        foreach (GameObject room in GameManager.instance.allRoomList)
-                        {
-                            if (room.GetComponent<RoomStats>().GetRoomGroup() == 1 || room.GetComponent<RoomStats>().GetRoomGroup() == 2)
-                            {
-                                availableRooms.Add(room);
-                            }
-                        }
-                        break;
-                    case 2:
-                        foreach (GameObject room in GameManager.instance.allRoomList)
-                        {
-                            availableRooms.Add(room);
-                        }
-                        break;
-                }
-            }
-            else
-            {
-                foreach (GameObject room in GameManager.instance.allRoomList)
-                {
-                    availableRooms.Add(room);
-                }
+                availableRooms.Add(room);
             }
         }
 
-        CreateRoomSpawnButtons();
+        //CreateRoomSpawnButtons();
 
         //display shipbuilding tutorial
         Tutorial.Instance.SetCurrentTutorial(1, true);

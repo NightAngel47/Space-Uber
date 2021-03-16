@@ -43,7 +43,6 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     private int currentMaxLvlGroup3 = 1;
 
     public static bool cheatLevels = false;
-    public static int cheatCampaign = 0;
     public static int cheatJob = 0;
 
     private void Awake()
@@ -74,6 +73,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
                             if (room.roomName == "Power Core")
                             {
                                 room.ChangeRoomLevel(1);
+                                break;
                             }
                         }
                         break;
@@ -88,6 +88,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
                             if (room.roomName == "Power Core")
                             {
                                 room.ChangeRoomLevel(1);
+                                break;
                             }
                         }
                         break;
@@ -96,41 +97,25 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         }
         else
         {
-            if (cheatCampaign > 0)
+            RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+
+            currentMaxLvlGroup3 = (cheatJob + 2);
+            currentMaxLvlGroup1 = (cheatJob + 2);
+            currentMaxLvlGroup2 = (cheatJob + 2);
+            
+            foreach (RoomStats room in rooms)
             {
-                RoomStats[] rooms = FindObjectsOfType<RoomStats>();
-
-                switch (cheatJob)
+                if (room.roomName == "Power Core")
                 {
-                    case 0:
-                        currentMaxLvlGroup1 = (cheatJob + 2);
-                        break;
-                    case 1:
-                        currentMaxLvlGroup2 = (cheatJob + 2);
-                        currentMaxLvlGroup1 = (cheatJob + 2);
-
-                        foreach (RoomStats room in rooms)
-                        {
-                            if (room.roomName == "Power Core")
-                            {
-                                room.ChangeRoomLevel(1);
-                            }
-                        }
-                        break;
-                    case 2:
-                        currentMaxLvlGroup3 = (cheatJob + 2);
-                        currentMaxLvlGroup1 = (cheatJob + 2);
-                        currentMaxLvlGroup2 = (cheatJob + 2);
-
-
-                        foreach (RoomStats room in rooms)
-                        {
-                            if (room.roomName == "Power Core")
-                            {
-                                room.ChangeRoomLevel(1);
-                            }
-                        }
-                        break;
+                    if (cheatJob == 0 && room.GetRoomLevel() == 3)
+                    {
+                        room.ChangeRoomLevel(-2);
+                    }
+                    else
+                    {
+                        room.ChangeRoomLevel(1);
+                    }
+                    break;
                 }
             }
         }

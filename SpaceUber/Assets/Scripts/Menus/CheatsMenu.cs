@@ -414,14 +414,18 @@ public class CheatsMenu : MonoBehaviour
 
     private void LevelUpRooms()
     {
-        ShipBuildingBuyableRoom.cheatLevels = true;
-        
-        ShipBuildingBuyableRoom.cheatJob += 1;
-
-        if(ShipBuildingBuyableRoom.cheatJob == 3)
+        if (!ShipBuildingBuyableRoom.cheatLevels)
         {
-            ShipBuildingBuyableRoom.cheatCampaign += 1;
-            ShipBuildingBuyableRoom.cheatJob = 0;
+            ShipBuildingBuyableRoom.cheatLevels = true;
+        }
+        else
+        {
+            ShipBuildingBuyableRoom.cheatJob += 1;
+            
+            if(ShipBuildingBuyableRoom.cheatJob == 3)
+            {
+                ShipBuildingBuyableRoom.cheatJob = 0;
+            }
         }
         
         Debug.Log("Level " + (ShipBuildingBuyableRoom.cheatJob + 1) + " Unlocked");

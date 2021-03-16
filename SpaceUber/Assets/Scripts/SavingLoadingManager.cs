@@ -80,19 +80,18 @@ public class SavingLoadingManager : MonoBehaviour
 
     public void SaveRoomLevels(int group1, int group2, int group3)
     {
-        RoomLevelData[] levelData = new RoomLevelData[1];
-
-        levelData[0].currentMaxLvlGroup1 = group1;
-        levelData[0].currentMaxLvlGroup2 = group2;
-        levelData[0].currentMaxLvlGroup3 = group3;
-
-        Save<RoomLevelData[]>("roomLevelData", levelData);
+        RoomLevelData levelData = new RoomLevelData
+        {
+            currentMaxLvlGroup1 = group1, currentMaxLvlGroup2 = group2, currentMaxLvlGroup3 = group3
+        };
+        
+        Save<RoomLevelData>("roomLevelData", levelData);
     }
 
     public void LoadRoomLevels()
     {
-        RoomLevelData[] levelData = Load<RoomLevelData[]>("roomLevelData");
-        UpdateRoomLevels(levelData[0]);
+        RoomLevelData levelData = Load<RoomLevelData>("roomLevelData");
+        StartCoroutine(UpdateRoomLevels(levelData));
     }
     
     private RoomData ConvertRoomToData(GameObject room)
@@ -108,6 +107,7 @@ public class SavingLoadingManager : MonoBehaviour
         RoomStats roomStats = room.GetComponent<RoomStats>();
         roomData.crew = roomStats.currentCrew;
         roomData.usedRoom = roomStats.usedRoom;
+        roomData.roomLevel = roomStats.GetRoomLevel();
         roomData.resourceActiveAmounts = new int[roomStats.resources.Count];
         for (var i = 0; i < roomStats.resources.Count; i++)
         {
@@ -121,12 +121,9 @@ public class SavingLoadingManager : MonoBehaviour
     {
         ObjectMover.hasPlaced = false;
 
-        GameObject room = null;
-        foreach (GameObject roomPrefab in roomPrefabs.Where(roomPrefab => roomPrefab.GetComponent<ObjectScript>().objectNum == roomData.objectNum))
-        {
-            room = Instantiate(roomPrefab, new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
-            break;
-        }
+        GameObject room = roomPrefabs.Where(roomPrefab => 
+            roomPrefab.GetComponent<ObjectScript>().objectNum == roomData.objectNum).Select(roomPrefab => 
+            Instantiate(roomPrefab, new Vector3(roomData.x, roomData.y, 0), Quaternion.identity)).FirstOrDefault();
 
         ObjectMover om = room.GetComponent<ObjectMover>();
         ObjectScript os = room.GetComponent<ObjectScript>();
@@ -137,6 +134,7 @@ public class SavingLoadingManager : MonoBehaviour
         om.TurnOffBeingDragged();
         os.preplacedRoom = roomData.isPrePlaced;
         roomStats.usedRoom = roomData.usedRoom;
+        if(roomData.roomLevel > 1) roomStats.ChangeRoomLevel(roomData.roomLevel - 1); // starts at 1 so only change if greater than 1
         roomStats.currentCrew = roomData.crew;
         if (!roomStats.flatOutput)
         {
@@ -207,6 +205,7 @@ public class SavingLoadingManager : MonoBehaviour
         public int objectNum;
         public bool usedRoom;
         public int[] resourceActiveAmounts;
+        public int roomLevel;
     }
 
     [Serializable]
