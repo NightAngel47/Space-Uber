@@ -79,11 +79,17 @@ public class Tutorial : Singleton<Tutorial>
         ///////////////////////////////////////////////////////////////////////////////////////
         if(tutorialPanel.activeSelf == true)
         {
-            if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorHydroponics) GhostCursorHydroponics();
-            else if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorChargingTerminal) GhostCursorChargingTerminal();
-            else if (currentTutorial.tutorialMessages[index].ghostCursorStatBar) GhostCursorStatBar();
+            if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
+            {
+                if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorHydroponics) GhostCursorHydroponics();
+                else if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorChargingTerminal) GhostCursorChargingTerminal();
+                else if (currentTutorial.tutorialMessages[index].ghostCursorStatBar) GhostCursorStatBar();
+            }
 
-            if (FindObjectOfType<CrewManagementRoomDetailsMenu>() != null && currentTutorial.tutorialMessages[index].selectRoom) EffectSelectRoom();
+            if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
+            {
+                if (FindObjectOfType<CrewManagementRoomDetailsMenu>() != null && currentTutorial.tutorialMessages[index].selectRoom) EffectSelectRoom();
+            }
         }
         /////////////////////////////////////////////////////////////////////////////////
 
