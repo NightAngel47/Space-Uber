@@ -134,7 +134,7 @@ public class SavingLoadingManager : MonoBehaviour
         om.TurnOffBeingDragged();
         os.preplacedRoom = roomData.isPrePlaced;
         roomStats.usedRoom = roomData.usedRoom;
-        if(roomData.roomLevel > 1) roomStats.ChangeRoomLevel(roomData.roomLevel - 1); // starts at 1 so only change if greater than 1
+        roomStats.ChangeRoomLevel(roomData.roomLevel); // starts at 1 so only change if greater than 1
         roomStats.currentCrew = roomData.crew;
         if (!roomStats.flatOutput)
         {

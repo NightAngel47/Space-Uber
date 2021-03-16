@@ -33,6 +33,7 @@ public class RoomUnlockUI : MonoBehaviour
 
     public void Start()
     {
+        count = 0;
         foreach (GameObject room in GameManager.instance.allRoomList)
         {
             switch (FindObjectOfType<CampaignManager>().GetCurrentJobIndex())

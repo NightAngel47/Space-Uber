@@ -45,6 +45,8 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     public static bool cheatLevels = false;
     public static int cheatJob = 0;
 
+    private int levelTemp = 0;
+
     private void Awake()
     {
         objectsToSpawn = FindObjectOfType<SpawnObject>();
@@ -169,7 +171,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     {
         if (LevelChangeUI.isMouseOverLevel == false)
         {
-            objectsToSpawn.SpawnRoom(roomPrefab);
+            objectsToSpawn.SpawnRoom(roomPrefab, levelTemp);
         }
     }
 
@@ -184,25 +186,25 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         switch(roomStats.GetRoomGroup())
         {
             case 1:
-                if ((levelChange < 0 && roomStats.GetRoomLevel() > 1) || (levelChange > 0 && roomStats.GetRoomLevel() < currentMaxLvlGroup1))
+                if ((levelChange < 0 && levelTemp > 1) || (levelChange > 0 && levelTemp < currentMaxLvlGroup1))
                 {
-                    roomStats.ChangeRoomLevel(levelChange);
+                    levelTemp += levelChange;
 
                     UpdateRoomInfo();
                 }
                 break;
             case 2:
-                if ((levelChange < 0 && roomStats.GetRoomLevel() > 1) || (levelChange > 0 && roomStats.GetRoomLevel() < currentMaxLvlGroup2))
+                if ((levelChange < 0 && levelTemp > 1) || (levelChange > 0 && levelTemp < currentMaxLvlGroup2))
                 {
-                    roomStats.ChangeRoomLevel(levelChange);
+                    levelTemp += levelChange;
 
                     UpdateRoomInfo();
                 }
                 break;
             case 3:
-                if ((levelChange < 0 && roomStats.GetRoomLevel() > 1) || (levelChange > 0 && roomStats.GetRoomLevel() < currentMaxLvlGroup3))
+                if ((levelChange < 0 && levelTemp > 1) || (levelChange > 0 && levelTemp < currentMaxLvlGroup3))
                 {
-                    roomStats.ChangeRoomLevel(levelChange);
+                    levelTemp += levelChange;
 
                     UpdateRoomInfo();
                 }

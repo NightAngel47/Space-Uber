@@ -144,14 +144,14 @@ public class SpawnObject : MonoBehaviour
             //g is the button that is created
             GameObject roomButton = Instantiate(buttonPrefab, buttonPanel.transform);
             //g.transform.SetParent(buttonPanel.transform);
-            roomButton.GetComponent<Button>().onClick.AddListener(() => SpawnRoom(room)); //spawn a room upon clicking the button
+            roomButton.GetComponent<Button>().onClick.AddListener(() => SpawnRoom(room, 1)); //spawn a room upon clicking the button
             roomButton.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.name; //Set G's title to the room's name
             roomButton.transform.GetChild(3).gameObject.GetComponent<Image>().sprite = room.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
             roomButton.GetComponentInChildren<ShopTooltipUI>().SetRoomInfo(room.GetComponent<RoomStats>());
         }
     }
 
-    public void SpawnRoom(GameObject ga)
+    public void SpawnRoom(GameObject ga, int level)
     {
         if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price[ga.GetComponent<RoomStats>().GetRoomLevel() - 1] &&
             FindObjectOfType<ShipStats>().EnergyRemaining.x >= ga.GetComponent<RoomStats>().minPower[ga.GetComponent<RoomStats>().GetRoomLevel() - 1]) //checks to see if the player has enough credits for the room
@@ -163,6 +163,8 @@ public class SpawnObject : MonoBehaviour
                 Cursor.visible = false;
                 //HOVER UI does not happen when mouse is hidden
                 lastSpawned.GetComponent<ObjectMover>().TurnOnBeingDragged();
+
+                lastSpawned.GetComponent<RoomStats>().ChangeRoomLevel(level);
 
                 //rooms being placed will appear on top of other rooms that are already placed
                 lastSpawned.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;

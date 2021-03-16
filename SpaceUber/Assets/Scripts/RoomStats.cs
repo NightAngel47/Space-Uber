@@ -491,7 +491,7 @@ public class RoomStats : MonoBehaviour
     /// </summary>
     public void ChangeRoomLevel(int levelChange)
     {
-        roomLevel += levelChange;
+        roomLevel = levelChange;
         
         if (roomLevel > 3)
         {
