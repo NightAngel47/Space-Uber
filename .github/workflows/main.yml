@@ -17,6 +17,7 @@ jobs:
       - name: disk space after
         run: sudo df -h
   build:
+    needs: linux
     name: Build for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
     runs-on: ubuntu-latest
     strategy:
