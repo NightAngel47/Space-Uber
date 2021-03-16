@@ -12,8 +12,8 @@ jobs:
     steps:
       - name: disk space before
         run: sudo df -h
-      - name: clean
-        run: sudo apt-get clean
+      - name: migrate
+        run: sudo rm -rf /opt || true
       - name: disk space after
         run: sudo df -h
   build:
