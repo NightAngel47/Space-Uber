@@ -70,27 +70,27 @@ public class RoomUnlockUI : MonoBehaviour
     {
         rname.text = roomStats.roomName;
 
-        if (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() > 0) //room is getting a new level
+        if (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() > 0 || (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() == 0 && FindObjectOfType<CampaignManager>().GetCurrentJobIndex() == 2)) //room is getting a new level
         {
-            needsCreditsOld.text = roomStats.price[roomStats.GetRoomLevel() - 2].ToString(); //-2 to get old level
-            needsPowerOld.text = roomStats.minPower[roomStats.GetRoomLevel() - 2].ToString();
+            needsCreditsOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString(); //-2 to get old level
+            needsPowerOld.text = roomStats.minPower[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
             needsCrewOld.text = roomStats.minCrew.ToString() + "-" + roomStats.maxCrew.ToString();
-            producesAmountOld.text = roomStats.price[roomStats.GetRoomLevel() - 2].ToString();
+            producesAmountOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
 
-            needsCreditsNew.text = roomStats.price[roomStats.GetRoomLevel() - 1].ToString(); //-1 to get current level
-            needsPowerNew.text = roomStats.minPower[roomStats.GetRoomLevel() - 1].ToString();
+            needsCreditsNew.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())].ToString(); //-1 to get current level
+            needsPowerNew.text = roomStats.minPower[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())].ToString();
             needsCrewNew.text = roomStats.minCrew.ToString() + "-" + roomStats.maxCrew.ToString();
-            producesAmountNew.text = roomStats.price[roomStats.GetRoomLevel() - 1].ToString();
+            producesAmountNew.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())].ToString();
 
             newRoomText.SetActive(false);
             rightSideData.SetActive(true);
         }
         else //Getting a entire new room, just getting one the new rooms stats
         {
-            needsCreditsOld.text = roomStats.price[roomStats.GetRoomLevel() - 1].ToString(); 
-            needsPowerOld.text = roomStats.minPower[roomStats.GetRoomLevel() - 1].ToString();
+            needsCreditsOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString(); 
+            needsPowerOld.text = roomStats.minPower[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
             needsCrewOld.text = roomStats.minCrew.ToString() + "-" + roomStats.maxCrew.ToString();
-            producesAmountOld.text = roomStats.price[roomStats.GetRoomLevel() - 1].ToString();
+            producesAmountOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
 
             newRoomText.SetActive(true);
             rightSideData.SetActive(false);
@@ -106,14 +106,14 @@ public class RoomUnlockUI : MonoBehaviour
 
             if (roomStats.GetRoomLevel() > 1)
             {
-                producesAmountOld.text = "" + resource.amount[roomStats.GetRoomLevel() - 2];
+                producesAmountOld.text = "" + resource.amount[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 2];
             }
             else
             {
-                producesAmountOld.text = "" + resource.amount[roomStats.GetRoomLevel() - 1];
+                producesAmountOld.text = "" + resource.amount[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1];
             }
             
-            producesAmountNew.text = "" + resource.amount[roomStats.GetRoomLevel() - 1];
+            producesAmountNew.text = "" + resource.amount[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1];
         }
         else
         {
@@ -128,13 +128,15 @@ public class RoomUnlockUI : MonoBehaviour
         if (newRooms.Count - 1 >= count)
         {
             UpdateRoomUnlockUI(newRooms[count].GetComponent<RoomStats>());
-            count++;
+            
 
             if(count == newRooms.Count - 1)
             {
                 nextButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Continue to the Next Job";
                 nextButton.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "Continue to the Next Job";
             }
+
+            count++;
         }
         else
         {

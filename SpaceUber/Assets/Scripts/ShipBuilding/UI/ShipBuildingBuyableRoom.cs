@@ -27,20 +27,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     private SpawnObject objectsToSpawn;
     private CampaignManager campaignManager;
 
-    /// <summary>
-    /// Group 1: hydroponics, Bunks, VIP Lounge, Armor plating
-    /// </summary>
-    private int currentMaxLvlGroup1 = 1;
-
-    /// <summary>
-    /// Group 2: Shield generator, photon torpedoes, armory, pantry
-    /// </summary>
-    private int currentMaxLvlGroup2 = 1;
-
-    /// <summary>
-    /// Group 3: Storage Container, energy cannon, core charging terminal, brig
-    /// </summary>
-    private int currentMaxLvlGroup3 = 1;
+    
 
     public static bool cheatLevels = false;
     public static int cheatJob = 0;
@@ -64,11 +51,11 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
                 switch (campaignManager.GetCurrentJobIndex())
                 {
                     case 0:
-                        currentMaxLvlGroup1 = (campaignManager.GetCurrentCampaignIndex() + 1);
+                        GameManager.instance.SetUnlockLevel(1, campaignManager.GetCurrentCampaignIndex() + 1);
                         break;
                     case 1:
-                        currentMaxLvlGroup2 = (campaignManager.GetCurrentCampaignIndex() + 1);
-                        currentMaxLvlGroup1 = (campaignManager.GetCurrentCampaignIndex() + 1);
+                        GameManager.instance.SetUnlockLevel(1, campaignManager.GetCurrentCampaignIndex() + 1);
+                        GameManager.instance.SetUnlockLevel(2, campaignManager.GetCurrentCampaignIndex() + 1);
 
                         foreach (RoomStats room in rooms)
                         {
@@ -80,9 +67,9 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
                         }
                         break;
                     case 2:
-                        currentMaxLvlGroup3 = (campaignManager.GetCurrentCampaignIndex() + 1);
-                        currentMaxLvlGroup1 = (campaignManager.GetCurrentCampaignIndex() + 1);
-                        currentMaxLvlGroup2 = (campaignManager.GetCurrentCampaignIndex() + 1);
+                        GameManager.instance.SetUnlockLevel(1, campaignManager.GetCurrentCampaignIndex() + 1);
+                        GameManager.instance.SetUnlockLevel(2, campaignManager.GetCurrentCampaignIndex() + 1);
+                        GameManager.instance.SetUnlockLevel(3, campaignManager.GetCurrentCampaignIndex() + 1);
 
 
                         foreach (RoomStats room in rooms)
@@ -101,9 +88,9 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         {
             RoomStats[] rooms = FindObjectsOfType<RoomStats>();
 
-            currentMaxLvlGroup3 = (cheatJob + 1);
-            currentMaxLvlGroup1 = (cheatJob + 1);
-            currentMaxLvlGroup2 = (cheatJob + 1);
+            GameManager.instance.SetUnlockLevel(1, cheatJob + 1);
+            GameManager.instance.SetUnlockLevel(2, cheatJob + 1);
+            GameManager.instance.SetUnlockLevel(3, cheatJob + 1);
             
             foreach (RoomStats room in rooms)
             {
@@ -122,7 +109,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
             }
         }
 
-        SavingLoadingManager.instance.SaveRoomLevels(currentMaxLvlGroup1, currentMaxLvlGroup2, currentMaxLvlGroup3);
+        SavingLoadingManager.instance.SaveRoomLevels(GameManager.instance.GetUnlockLevel(1), GameManager.instance.GetUnlockLevel(2), GameManager.instance.GetUnlockLevel(3));
     }
 
     public void UpdateRoomInfo()
@@ -186,7 +173,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         switch(roomStats.GetRoomGroup())
         {
             case 1:
-                if ((levelChange < 0 && levelTemp > 1) || (levelChange > 0 && levelTemp < currentMaxLvlGroup1))
+                if ((levelChange < 0 && levelTemp > 1) || (levelChange > 0 && levelTemp < GameManager.instance.GetUnlockLevel(1)))
                 {
                     levelTemp += levelChange;
 
@@ -194,7 +181,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
                 }
                 break;
             case 2:
-                if ((levelChange < 0 && levelTemp > 1) || (levelChange > 0 && levelTemp < currentMaxLvlGroup2))
+                if ((levelChange < 0 && levelTemp > 1) || (levelChange > 0 && levelTemp < GameManager.instance.GetUnlockLevel(2)))
                 {
                     levelTemp += levelChange;
 
@@ -202,7 +189,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
                 }
                 break;
             case 3:
-                if ((levelChange < 0 && levelTemp > 1) || (levelChange > 0 && levelTemp < currentMaxLvlGroup3))
+                if ((levelChange < 0 && levelTemp > 1) || (levelChange > 0 && levelTemp < GameManager.instance.GetUnlockLevel(3)))
                 {
                     levelTemp += levelChange;
 
@@ -224,8 +211,8 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     /// </summary>
     public void UpdateMaxLevelGroups(int group1, int group2, int group3)
     {
-        currentMaxLvlGroup1 = group1;
-        currentMaxLvlGroup2 = group2;
-        currentMaxLvlGroup3 = group3;
+        GameManager.instance.SetUnlockLevel(1, group1);
+        GameManager.instance.SetUnlockLevel(2, group2);
+        GameManager.instance.SetUnlockLevel(3, group3);
     }
 }
