@@ -25,6 +25,7 @@ public class TutorialMessage
     public string message;
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorHydroponics;
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorChargingTerminal;
+    [Foldout("Ghost Cursor Effects")] public bool ghostCursorArmorPlating;
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorStatBar;
 
     [Foldout("Other effects")] public bool selectRoom;
@@ -81,6 +82,7 @@ public class Tutorial : Singleton<Tutorial>
         {
             if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorHydroponics) GhostCursorHydroponics();
             else if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorChargingTerminal) GhostCursorChargingTerminal();
+            else if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorArmorPlating) GhostArmorPlating();
             else if (currentTutorial.tutorialMessages[index].ghostCursorStatBar) GhostCursorStatBar();
 
             if (FindObjectOfType<CrewManagementRoomDetailsMenu>() != null && currentTutorial.tutorialMessages[index].selectRoom) EffectSelectRoom();
@@ -216,6 +218,15 @@ public class Tutorial : Singleton<Tutorial>
             tutorialPrerequisitesComplete = true;
         }
         if(lerping == false) BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
+    }
+    private void GhostArmorPlating()
+    {
+        if (tutorialPrerequisitesComplete == false)
+        {
+            if (FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "HullDurability") FindObjectOfType<ShipBuildingShop>().ToResourceTab("HullDurability");
+            tutorialPrerequisitesComplete = true;
+        }
+        if (lerping == false) BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
     }
     private void GhostCursorChargingTerminal()
     {

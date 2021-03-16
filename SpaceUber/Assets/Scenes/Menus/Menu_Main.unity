@@ -1974,12 +1974,14 @@ MonoBehaviour:
         Click and drag rooms onto the ship to place them there. '
       ghostCursorHydroponics: 1
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: 'Right click on a placed room to sell and remove it. The Sale price
         is reduced if the room went on at least one trip. '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: 'Left click a room you''ve placed to pick it back up. Don''t worry,
@@ -1987,11 +1989,13 @@ MonoBehaviour:
         are holding. '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: 'Notice that you cannot place rooms on top of each other. '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: 'Rooms cost money and power to operate, but are essential to make
@@ -1999,19 +2003,22 @@ MonoBehaviour:
         icons directly above this tutorial to see what the stats do.  '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 1
       selectRoom: 0
     - message: 'Some rooms have restrictions on where they can be placed. These rooms
         will highlight potential placement locations in blue when they''re dragged
         from the left menu.  '
       ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 1
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 1
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: 'You may press the question mark on the bottom right of the shop to
         replay this tutorial at any time. Good luck! '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     tutorialFinished: 0
@@ -2021,6 +2028,7 @@ MonoBehaviour:
         them. '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: 'Click on a room to open the room details window and assign/unassign
@@ -2029,6 +2037,7 @@ MonoBehaviour:
         depleted. '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 1
     - message: 'You must be prepared to work with your crew effectively! Despite
@@ -2036,6 +2045,7 @@ MonoBehaviour:
         disposable fleshy coils. '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: 'Note that crew can be replaced at a port if something "unfortunate"
@@ -2043,6 +2053,7 @@ MonoBehaviour:
         if something truly unfortunate happens.  '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: 'Assigning crew members to rooms increases room output. You can see
@@ -2050,12 +2061,14 @@ MonoBehaviour:
         view can be enabled or disabled at any time by pressing Tab. '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: 'You may press the shipbuilding button in the lower left of the screen
         to go back to ship building if you realize you need to change your ship.  '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: "You may also click the question mark on the top left of the crew
@@ -2063,6 +2076,7 @@ MonoBehaviour:
         to go, click the \u201Cbegin job\u201D button. "
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     tutorialFinished: 0
@@ -2073,6 +2087,7 @@ MonoBehaviour:
         output of a room temporarily. '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 1
     - message: 'Unfortunately we still have to listen to our crew and try to make
@@ -2080,12 +2095,14 @@ MonoBehaviour:
         at least make them somewhat efficient.  '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: "The lower the crew\u2019s morale, the more likely they are to stage
         a mutiny. If they do mutinize, they\u2019ll ask for some money. Greedy bastards. "
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: "One way to keep them happy is to have a \u201Cconversation\u201D
@@ -2093,6 +2110,7 @@ MonoBehaviour:
         talk to that crewmate about anything on their mind. "
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: "A good conversation will leave them happy and increase morale, but
@@ -2100,18 +2118,21 @@ MonoBehaviour:
         place. Flex those AI social algorithms!  "
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: "You might come across an event whilst forcing overtime. You\u2019ll
         be alerted of this so you can focus on the event.  "
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: 'You may replay this tutorial at any time by clicking the question
         mark at the top right of the room details menu.  '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     tutorialFinished: 0
@@ -2122,18 +2143,21 @@ MonoBehaviour:
         take place. "
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: "Always remember the bottom line. Make as much money as you can. Sometimes
         you might have to sacrifice crew. Whatever. Like I said, they\u2019re disposable. "
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: But remember that people will remember the choices you make and it
         may affect things down the line.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     tutorialFinished: 0
