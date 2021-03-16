@@ -22,6 +22,7 @@ jobs:
           - StandaloneLinux64 # Build a Linux 64-bit standalone.
           #- WebGL # WebGL.
     steps:
+      - run: $ df -h
       - uses: actions/checkout@v2
         with:
           lfs: true
