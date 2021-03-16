@@ -153,8 +153,8 @@ public class SpawnObject : MonoBehaviour
 
     public void SpawnRoom(GameObject ga, int level)
     {
-        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price[ga.GetComponent<RoomStats>().GetRoomLevel() - 1] &&
-            FindObjectOfType<ShipStats>().EnergyRemaining.x >= ga.GetComponent<RoomStats>().minPower[ga.GetComponent<RoomStats>().GetRoomLevel() - 1]) //checks to see if the player has enough credits for the room
+        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price[level - 1] &&
+            FindObjectOfType<ShipStats>().EnergyRemaining.x >= ga.GetComponent<RoomStats>().minPower[level - 1]) //checks to see if the player has enough credits for the room
         {
             if (lastSpawned == null || lastSpawned.GetComponent<ObjectMover>().enabled == false) //makes sure that the prior room is placed before the next room can be added
             {
