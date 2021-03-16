@@ -45,7 +45,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     public static bool cheatLevels = false;
     public static int cheatJob = 0;
 
-    private int levelTemp = 0;
+    private int levelTemp = 1;
 
     private void Awake()
     {
@@ -131,11 +131,11 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
 
         RoomStats roomStats = roomPrefab.GetComponent<RoomStats>();
         rname.text = roomStats.roomName;
-        needsCredits.text = "" + roomStats.price[roomStats.GetRoomLevel() - 1];
-        needsPower.text = "" + roomStats.minPower[roomStats.GetRoomLevel() - 1];
+        needsCredits.text = "" + roomStats.price[levelTemp - 1];
+        needsPower.text = "" + roomStats.minPower[levelTemp - 1];
         needsCrew.text = "" + roomStats.minCrew + "-" + roomStats.maxCrew.ToString();
         roomSize.text = roomPrefab.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
-        level.text = roomPrefab.GetComponent<RoomStats>().GetRoomLevel().ToString();
+        level.text = levelTemp.ToString();
 
         if (campaignManager.GetCurrentCampaignIndex() > 0)
         {
@@ -157,7 +157,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         {
             resourceIcon.sprite = resource.resourceType.resourceIcon;
             producesResource.text = resource.resourceType.resourceName;
-            producesAmount.text = "" + resource.amount[roomStats.GetRoomLevel() - 1];
+            producesAmount.text = "" + resource.amount[levelTemp - 1];
         }
         else
         {

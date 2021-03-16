@@ -70,7 +70,7 @@ public class RoomUnlockUI : MonoBehaviour
     {
         rname.text = roomStats.roomName;
 
-        if (roomStats.GetRoomLevel() > 1) //room is getting a new level
+        if (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() > 0) //room is getting a new level
         {
             needsCreditsOld.text = roomStats.price[roomStats.GetRoomLevel() - 2].ToString(); //-2 to get old level
             needsPowerOld.text = roomStats.minPower[roomStats.GetRoomLevel() - 2].ToString();
