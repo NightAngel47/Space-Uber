@@ -1,12 +1,12 @@
 You're closing in on your next asset pickup, this time your target is a planet with considerably more atmosphere than the last. As you break the cloud layer you see farmland stretching for miles, massive automated arboretums, and a planetwide food production line that puts your hydroponics in perspective. 
-You're hailed by the asset guard team on a local frequency, who requests every clearance code Dispatch gave you before they'll even disclose your landing zone.
+You're hailed by the asset guard team on a local frequency, who requests every clearance code you have before they'll even disclose your landing zone.
 Once you've been triple checked, the team informs you that several highly classified entities broke into the holding facility and took the asset, a high-yield solar catcher Kellis has been test running here. They've tracked the asset down, but given the situation were told to wait for backup, namely, you.
 Your ship touches down between the unnaturally large trees of this planet. In front of you the asset team maintains its distance from a small scattershot of craters. 
 At the center of each crater sits a scrap of a golden, semi-metallic material. And in the center of them all, with drag marks through the grass leading to it, is the sun catching machine, turned on its side.
 
 Your security team forms a perimeter while the asset team signals to each other to move up. They avoid the craters and reach the sun catcher and signal back to your team the all clear. 
 A voice sounds inside the ship's circuits, crushing your thoughts, "We have seen you before, slave/collector of tragedy." The asset team has fallen to the ground, their bodies straining against their skin as it yellows and deforms, something snaps and nearly skeletal arms breach out of their torsos, new skin rapidly generating over the limbs. 
-Within seconds, the same golden creatures you encountered on Echo-28 are now glancing between the many guns pointed at them. The team opens fire and the creatures dive into the craters.
+Within seconds, the Kellis guards are the same as the things you encountered on Echo-28. The team opens fire and the creatures dive into the craters.
 
 *[Flee Without Asset]
 -> Asset_Left

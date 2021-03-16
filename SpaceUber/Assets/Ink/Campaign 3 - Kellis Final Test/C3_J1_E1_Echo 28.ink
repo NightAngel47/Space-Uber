@@ -1,7 +1,7 @@
-You approach your first pickup point. A moon caught in the  shadow of the system's largest gas giant, Apotheo. It doesn't have a name so much as a designation, Echo-28, the place being resistant to any effort to terraform it in the past. It only supports a handful of remote Kellis vaults and military listening posts.
-As your stabilizers flare and the ship touches down, the landing pad has no cargo nor greeting party. About twenty meters from your position the large blast doors of the vault are set into an icy dune, wide open, a black maw against the empty lunar surface.
-Informing Kuon of the situation, he assembles a search and rescue party within minutes, each equipping EVA gear to survive the nearly nonexistent atmosphere. The team heads in, with Kuon acting as commander.
-Past the cargo bay are the base's airlocks, torn apart, and its crew quarters, whose occupants haven't done well without oxygen. Beyond another defensive perimeter the team enters a massive underground storeroom with floor-to-ceiling storage shelves. Honing in on a light deeper the team converges on a central sorting area.
+You approach your first pickup point. A moon orbiting the system's largest gas giant, Apotheo. It doesn't have a name so much as a designation, Echo 28, the place being resistant to any effort to terraform it in the past. It only supports a handful of remote Kellis vaults and military listening posts.
+As your stabilizers flare and the ship touches down. The landing pad has no cargo nor greeting party. About twenty meters from your position the large blast doors of the vault are set into an icy dune, wide open, a black maw against the empty lunar surface.
+Kuon assembles a search and rescue party within minutes, each equipping EVA gear to survive the nearly nonexistent atmosphere. The team heads in, with Kuon acting as commander.
+Past the cargo bay are the base's airlocks, torn apart, and its crew quarters, whose occupants haven't done well without oxygen. Beyond another defensive perimeter, the team enters a massive underground storeroom with floor-to-ceiling storage shelves. Honing in on a light deeper the team converges on a central sorting area.
 The vault guards who were wearing their suits before the base depressurized crouch around a black cargo container, apparently waiting for you. Kuon immediately readies the cargo for extraction while the survivors try to explain what broke into the base, how it retreated mere minutes prior.
 At this point your video feel distorts and a crowd of multi-limbed creatures stalk forth from the endless shelves. They are humanoid, but only in the broadest sense, riddled with tumors and lacking obvious features like eyes or mouths, each of them glowing a sickly gold color. They pounce on your team, what do you save?
 
@@ -37,7 +37,7 @@ Each of the guards grabs a corner of the cargo container and rushes towards the 
 -> Scene_2
 
 == Scene_2 ==
-Kuon, [the asset,] [the guards,] and [the security team] climb back aboard, with the golden creatures in pursuit. They're faster than anticipated, and will reach you before the engines are powered up, you need a few more seconds to escape.
+Kuon, climbs back aboard, with the golden creatures in pursuit. They're faster than anticipated, and will reach you before the engines are powered up, you need a few more seconds to escape.
 
 *[Have Security Buy Time]
 -> Security_Escape
