@@ -238,7 +238,7 @@ public class CrewManagement : MonoBehaviour
 
             if (room.GetComponent<RoomStats>().flatOutput == false)
             {
-                resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = resource.activeAmount.ToString() + " / " + resource.amount.ToString();  // This part wasn't being called before, by uncommenting it'll fix it, but ruin the text placement in the UI + " / " + (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(room.GetComponent<RoomStats>().ignoreMorale)); // resource amount
+                resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = resource.activeAmount.ToString() + " / " + resource.amount[roomStats.GetRoomLevel()].ToString();  // This part wasn't being called before, by uncommenting it'll fix it, but ruin the text placement in the UI + " / " + (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(room.GetComponent<RoomStats>().ignoreMorale)); // resource amount
             }
             else
             {
