@@ -2378,6 +2378,14 @@ MonoBehaviour:
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0
+  - name: Kuon Stellar
+    clip: {fileID: 8300000, guid: e21816eed4b4c7b469b2e2320e8a816b, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 1
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
   - name: Kuon Void Music
     clip: {fileID: 8300000, guid: 1fd34f857cb168f44ba2eb1492d5a990, type: 3}
     mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
@@ -2638,13 +2646,29 @@ MonoBehaviour:
       pitch: 1
       volumeVarience: 0
       pitchVarience: 0
-  - name: SMTH
+    - name: Pastel
+      clip: {fileID: 8300000, guid: 18accae8cc29a8048986755e152985b7, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.85
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
+  - name: JAZZ
     tracks:
     - name: SMTH_demo
       clip: {fileID: 8300000, guid: 48d187f626ad92247b9b0c91b25fbe20, type: 3}
       mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
         type: 2}
       volume: 0.9
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
+    - name: SMTH_demo
+      clip: {fileID: 8300000, guid: 124f3a177d725944a8e2ee21fdeb19e9, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.75
       pitch: 1
       volumeVarience: 0
       pitchVarience: 0
