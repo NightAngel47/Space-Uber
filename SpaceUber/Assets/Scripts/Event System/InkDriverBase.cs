@@ -46,6 +46,8 @@ public class InkDriverBase : MonoBehaviour
     [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
     private float textPrintSpeed = 0.1f;
 
+    public string eventIntroSFX;
+
     [Dropdown("eventMusicTracks")]
     public string eventBGM;
 
@@ -87,6 +89,7 @@ public class InkDriverBase : MonoBehaviour
         titleBox.text = eventName;
         backgroundUI.sprite = backgroundImage;
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
+        AudioManager.instance.PlaySFX(eventIntroSFX);
 
         isScalableEvent = !isStoryEvent && !isMutinyEvent;
     }
