@@ -349,17 +349,35 @@ public class CheatsMenu : MonoBehaviour
         }
         
         int amount = 0;
-        if(Input.GetKey(KeyCode.UpArrow) || (canUseSideWaysArrows && Input.GetKey(KeyCode.RightArrow)))
+        if(Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift))
         {
-            amount = 1;
-        }
-        else if(Input.GetKey(KeyCode.DownArrow) || (canUseSideWaysArrows && Input.GetKey(KeyCode.LeftArrow)))
-        {
-            amount = -1;
+            if(Input.GetKeyDown(KeyCode.UpArrow) || (canUseSideWaysArrows && Input.GetKeyDown(KeyCode.RightArrow)))
+            {
+                amount = 1;
+            }
+            else if(Input.GetKeyDown(KeyCode.DownArrow) || (canUseSideWaysArrows && Input.GetKeyDown(KeyCode.LeftArrow)))
+            {
+                amount = -1;
+            }
+            else
+            {
+                return;
+            }
         }
         else
         {
-            return;
+            if(Input.GetKey(KeyCode.UpArrow) || (canUseSideWaysArrows && Input.GetKey(KeyCode.RightArrow)))
+            {
+                amount = 1;
+            }
+            else if(Input.GetKey(KeyCode.DownArrow) || (canUseSideWaysArrows && Input.GetKey(KeyCode.LeftArrow)))
+            {
+                amount = -1;
+            }
+            else
+            {
+                return;
+            }
         }
         
         int morale = MoraleManager.instance.CrewMorale;
