@@ -45,7 +45,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     public static bool cheatLevels = false;
     public static int cheatJob = 0;
 
-    private int levelTemp = 1;
+    [HideInInspector] public int levelTemp = 1;
 
     private void Awake()
     {

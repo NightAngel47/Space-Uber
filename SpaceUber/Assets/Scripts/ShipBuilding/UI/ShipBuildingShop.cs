@@ -74,6 +74,7 @@ public class ShipBuildingShop : MonoBehaviour
         foreach (var slot in shopSlots)
         {
             slot.gameObject.SetActive(true);
+            slot.levelTemp = 1;
         }
         
         // find matching resource rooms
