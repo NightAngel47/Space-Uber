@@ -10,8 +10,12 @@ jobs:
     name: Linux commands
     runs-on: ubuntu-latest
     steps:
-      - name: test
+      - name: disk space before
+        run: sudo df -h
+      - name: clean
         run: sudo apt-get clean
+      - name: disk space after
+        run: sudo df -h
   build:
     name: Build for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
     runs-on: ubuntu-latest
