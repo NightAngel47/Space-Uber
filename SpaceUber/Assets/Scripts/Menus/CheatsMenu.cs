@@ -438,7 +438,7 @@ public class CheatsMenu : MonoBehaviour
         if (!SavingLoadingManager.instance.GetHasSave()) return;
         SavingLoadingManager.instance.SetHasSaveFalse();
 
-        SceneManager.LoadScene("Main_Menu");
+        SceneManager.LoadScene("Menu_Main");
     }
 
     private void ToggleDoubleSpeed()
