@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
       propertyPath: randomEvents.Array.size
-      value: 40
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
@@ -317,6 +317,12 @@ PrefabInstance:
       propertyPath: payout
       value: 2000
       objectReference: {fileID: 0}
+    - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
+        type: 3}
+      propertyPath: randomEvents.Array.data[40]
+      value: 
+      objectReference: {fileID: 1019154069162726610, guid: 66f8efaec15a25f45a361248558cfb35,
+        type: 3}
     - target: {fileID: 6620000524830208261, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
       propertyPath: m_LocalPosition.x
