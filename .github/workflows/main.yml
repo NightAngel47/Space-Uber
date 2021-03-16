@@ -13,7 +13,7 @@ jobs:
       - name: disk space before
         run: sudo df -h
       - name: clean
-        run: apt-get clean
+        run: sudo apt-get clean
       - name: disk space after
         run: sudo df -h
   build:
