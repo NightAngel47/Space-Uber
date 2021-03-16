@@ -48,7 +48,7 @@ public class OverclockController : MonoBehaviour
 
     //If a room is already being overclocked
     public bool overclocking = false;
-    OverclockRoom activeRoom;
+    [HideInInspector] public OverclockRoom activeRoom;
     bool winSound = false;
     private Camera cam;
 
