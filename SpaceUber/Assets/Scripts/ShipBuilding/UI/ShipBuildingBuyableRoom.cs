@@ -62,11 +62,11 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
                 switch (campaignManager.GetCurrentJobIndex())
                 {
                     case 0:
-                        currentMaxLvlGroup1 = (campaignManager.GetCurrentCampaignIndex() + 2);
+                        currentMaxLvlGroup1 = (campaignManager.GetCurrentCampaignIndex() + 1);
                         break;
                     case 1:
-                        currentMaxLvlGroup2 = (campaignManager.GetCurrentCampaignIndex() + 2);
-                        currentMaxLvlGroup1 = (campaignManager.GetCurrentCampaignIndex() + 2);
+                        currentMaxLvlGroup2 = (campaignManager.GetCurrentCampaignIndex() + 1);
+                        currentMaxLvlGroup1 = (campaignManager.GetCurrentCampaignIndex() + 1);
 
                         foreach (RoomStats room in rooms)
                         {
@@ -78,9 +78,9 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
                         }
                         break;
                     case 2:
-                        currentMaxLvlGroup3 = (campaignManager.GetCurrentCampaignIndex() + 2);
-                        currentMaxLvlGroup1 = (campaignManager.GetCurrentCampaignIndex() + 2);
-                        currentMaxLvlGroup2 = (campaignManager.GetCurrentCampaignIndex() + 2);
+                        currentMaxLvlGroup3 = (campaignManager.GetCurrentCampaignIndex() + 1);
+                        currentMaxLvlGroup1 = (campaignManager.GetCurrentCampaignIndex() + 1);
+                        currentMaxLvlGroup2 = (campaignManager.GetCurrentCampaignIndex() + 1);
 
 
                         foreach (RoomStats room in rooms)
@@ -99,9 +99,9 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         {
             RoomStats[] rooms = FindObjectsOfType<RoomStats>();
 
-            currentMaxLvlGroup3 = (cheatJob + 2);
-            currentMaxLvlGroup1 = (cheatJob + 2);
-            currentMaxLvlGroup2 = (cheatJob + 2);
+            currentMaxLvlGroup3 = (cheatJob + 1);
+            currentMaxLvlGroup1 = (cheatJob + 1);
+            currentMaxLvlGroup2 = (cheatJob + 1);
             
             foreach (RoomStats room in rooms)
             {

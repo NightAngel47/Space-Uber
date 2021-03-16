@@ -170,7 +170,7 @@ public class CheatsMenu : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.F11))
         {
-            DeleteSaveAndQuit();
+            DeleteSaveAndReturnToMenu();
         }
         
         if (Input.GetKeyDown(KeyCode.F12))
@@ -433,16 +433,12 @@ public class CheatsMenu : MonoBehaviour
         asm.LoadSceneSeperate("ShipBuilding");
     }
 
-    private void DeleteSaveAndQuit()
+    private void DeleteSaveAndReturnToMenu()
     {
         if (!SavingLoadingManager.instance.GetHasSave()) return;
         SavingLoadingManager.instance.SetHasSaveFalse();
-            
-        Application.Quit();
 
-        #if UNITY_EDITOR
-        EditorApplication.isPlaying = false;
-        #endif
+        SceneManager.LoadScene("Main_Menu");
     }
 
     private void ToggleDoubleSpeed()
@@ -456,7 +452,7 @@ public class CheatsMenu : MonoBehaviour
         else
         {
             isDoubleSpeed = true;
-            Time.timeScale = 1;
+            Time.timeScale = 2;
             Debug.LogWarning("Time scale double speed");
         }
     }

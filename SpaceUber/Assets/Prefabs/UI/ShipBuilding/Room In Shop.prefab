@@ -3069,6 +3069,7 @@ GameObject:
   - component: {fileID: 6340220375589150004}
   - component: {fileID: 6340220375589150006}
   - component: {fileID: 6340220375589150005}
+  - component: {fileID: 967338017214629664}
   m_Layer: 5
   m_Name: Room In Shop
   m_TagString: Untagged
@@ -3135,6 +3136,30 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &967338017214629664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6340220375589150003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2d5d1f256e7f194bab8ff9d413d5d29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomPrefab: {fileID: 0}
+  resourceIcon: {fileID: 6340220373993870781}
+  roomImage: {fileID: 6340220374552841942}
+  rname: {fileID: 6340220374685831827}
+  roomSize: {fileID: 6340220374804403510}
+  needsCredits: {fileID: 6340220373747286144}
+  needsPower: {fileID: 6340220375178361964}
+  needsCrew: {fileID: 6340220374880565374}
+  producesResource: {fileID: 6340220374248561779}
+  producesAmount: {fileID: 6340220374275640189}
+  level: {fileID: 6340220374824516038}
+  newLevelText: {fileID: 6241036181789747474}
 --- !u!1 &6340220375592135276
 GameObject:
   m_ObjectHideFlags: 0
