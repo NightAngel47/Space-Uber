@@ -477,7 +477,7 @@ public class RoomStats : MonoBehaviour
     public void ReturnCrewOnRemove()
     {
         // reset the ship's crew stats back to before room was placed
-        shipStats.CrewCurrent += new Vector3(currentCrew, 0, currentCrew);
+        shipStats.CrewCurrent += new Vector3(0, 0, currentCrew);
     }
 
     public int GetRoomLevel()
