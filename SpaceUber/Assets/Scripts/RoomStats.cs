@@ -491,7 +491,17 @@ public class RoomStats : MonoBehaviour
     /// </summary>
     public void ChangeRoomLevel(int levelChange)
     {
-        roomLevel += levelChange;
+        roomLevel = levelChange;
+        
+        if (roomLevel > 3)
+        {
+            roomLevel = 3;
+        }
+        
+        if (roomLevel < 1)
+        {
+            roomLevel = 1;
+        }
     }
 
     public int GetRoomGroup()
