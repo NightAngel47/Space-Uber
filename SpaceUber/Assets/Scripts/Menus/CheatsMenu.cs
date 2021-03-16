@@ -170,7 +170,7 @@ public class CheatsMenu : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.F11))
         {
-            DeleteSaveAndQuit();
+            DeleteSaveAndReturnToMenu();
         }
         
         if (Input.GetKeyDown(KeyCode.F12))
@@ -414,29 +414,34 @@ public class CheatsMenu : MonoBehaviour
 
     private void LevelUpRooms()
     {
-        ShipBuildingBuyableRoom.cheatLevels = true;
-        
-        ShipBuildingBuyableRoom.cheatJob += 1;
-
-        if(ShipBuildingBuyableRoom.cheatJob == 3)
+        asm.UnloadScene("ShipBuilding");
+        if (!ShipBuildingBuyableRoom.cheatLevels)
         {
-            ShipBuildingBuyableRoom.cheatCampaign += 1;
-            ShipBuildingBuyableRoom.cheatJob = 0;
+            ShipBuildingBuyableRoom.cheatLevels = true;
+        }
+        else
+        {
+            ShipBuildingBuyableRoom.cheatJob += 1;
+            
+            if(ShipBuildingBuyableRoom.cheatJob == 3)
+            {
+                ShipBuildingBuyableRoom.cheatJob = 0;
+            }
         }
         
         Debug.Log("Level " + (ShipBuildingBuyableRoom.cheatJob + 1) + " Unlocked");
+        asm.LoadSceneSeperate("ShipBuilding");
     }
 
-    private void DeleteSaveAndQuit()
+    private void DeleteSaveAndReturnToMenu()
     {
         if (!SavingLoadingManager.instance.GetHasSave()) return;
         SavingLoadingManager.instance.SetHasSaveFalse();
-            
-        Application.Quit();
-
-        #if UNITY_EDITOR
-        EditorApplication.isPlaying = false;
-        #endif
+        
+        SceneManager.LoadScene("Menu_Main");
+        DevelopmentAccess developmentAccess = FindObjectOfType<DevelopmentAccess>();
+        developmentAccess.OpenCloseCheats();
+        Destroy(developmentAccess.gameObject);
     }
 
     private void ToggleDoubleSpeed()
@@ -450,7 +455,7 @@ public class CheatsMenu : MonoBehaviour
         else
         {
             isDoubleSpeed = true;
-            Time.timeScale = 1;
+            Time.timeScale = 2;
             Debug.LogWarning("Time scale double speed");
         }
     }
