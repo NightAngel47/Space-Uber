@@ -94,17 +94,21 @@ public class SlotMachine : MiniGame
     List<int> slotValues = new List<int>();
     bool sound = false;
 
-    private void Awake()
-    {
-        roomLevel = FindObjectOfType<OverclockController>().activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1;
-    }
-
-    void Start() 
+    IEnumerator Start() 
     {
         sound = false;
         shipStats = OverclockController.instance.ShipStats();
         foreach (SlotReel reel in reels) { reel.SetSpeed(reelSpeed); }
         foreach (SlotReel reel in reels) { reel.SetSpinAfterStopTime(spinAfterStopTime); }
+
+        yield return new WaitUntil(() => FindObjectOfType<OverclockController>());
+        
+        roomLevel = FindObjectOfType<OverclockController>().activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1;
+
+        smallBetButton.transform.GetChild(0).GetComponent<TMP_Text>().text = smallBet[roomLevel].ToString();
+        mediumBetButton.transform.GetChild(0).GetComponent<TMP_Text>().text = mediumBet[roomLevel].ToString();
+        largeBetButton.transform.GetChild(0).GetComponent<TMP_Text>().text = largeBet[roomLevel].ToString();
+        EnableDisableButtons();
     }
 
     void Update()
@@ -112,7 +116,6 @@ public class SlotMachine : MiniGame
         if (!bettingPanel.activeInHierarchy) { DetectCrank(); }
         AdjustReelSpeed();
         DetectEndOfGame();
-        EnableDisableButtons();
     }
 
     void EnableDisableButtons()
