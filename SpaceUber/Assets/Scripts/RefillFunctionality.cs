@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RefillFunctionality : MonoBehaviour
 {
@@ -23,12 +24,12 @@ public class RefillFunctionality : MonoBehaviour
     [SerializeField, Foldout("Replace Crew")] private ButtonTwoBehaviour crewRefillButton;
     [SerializeField, Foldout("Replace Crew")] private TMP_Text[] refillToolTipText = new TMP_Text[2];
     [SerializeField, Foldout("Replace Crew")] private int crewLost = 0;
-    [SerializeField, Foldout("Replace Crew")] private int priceForCrewReplacement = 0;
+    [SerializeField, Foldout("Replace Crew")] private int priceForCrewReplacement;
     
     [SerializeField, Foldout("Repair Hull")] private ButtonTwoBehaviour hullRepairButton;
     [SerializeField, Foldout("Repair Hull")] private TMP_Text[] repairToolTipText = new TMP_Text[2];
     [SerializeField, Foldout("Repair Hull")] private int hullDamage = 0;
-    [SerializeField, Foldout("Repair Hull")] private int priceForHullRepair = 0;
+    [SerializeField, Foldout("Repair Hull")] private int priceForHullRepair;
 
     public void Start()
     {
@@ -53,6 +54,7 @@ public class RefillFunctionality : MonoBehaviour
             shipStats.Credits += -priceForCrewReplacement;
             shipStats.CrewCurrent += new Vector3(crewLost, 0, crewLost);
         }
+        CheckCanRefillCrew();
     }
 
     public void RefillHullDurability()
@@ -62,20 +64,21 @@ public class RefillFunctionality : MonoBehaviour
             shipStats.Credits += -priceForHullRepair;
             shipStats.ShipHealthCurrent += new Vector2(hullDamage, 0);
         }
+        CheckCanRepairShip();
     }
 
     // if crew refill should deactivate
     private void CheckCanRefillCrew()
     {
         // has enough credits and crew current is less than capacity
-        hullRepairButton.SetButtonInteractable(shipStats.Credits >= priceForCrewReplacement && shipStats.CrewCurrent.x < shipStats.CrewCurrent.y);
+        crewRefillButton.SetButtonInteractable(shipStats.Credits >= priceForCrewReplacement && shipStats.CrewCurrent.x < shipStats.CrewCurrent.y);
     }
 
     // if hull repair should deactivate
     private void CheckCanRepairShip()
     {
         // has enough credits and hull is less than max
-        hullRepairButton.SetButtonInteractable(shipStats.Credits < priceForHullRepair && shipStats.ShipHealthCurrent.x < shipStats.ShipHealthCurrent.y);
+        hullRepairButton.SetButtonInteractable(shipStats.Credits >= priceForHullRepair && shipStats.ShipHealthCurrent.x < shipStats.ShipHealthCurrent.y);
     }
 
     /// <summary>
