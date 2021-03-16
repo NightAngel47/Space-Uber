@@ -123,7 +123,7 @@ public class Tutorial : Singleton<Tutorial>
 
     }
     
-    public void CloseCurrentTutorial()
+    public void CloseCurrentTutorial(bool finished = true)
     {
         if (tutorialPanel.activeSelf == true)
         {
@@ -133,7 +133,7 @@ public class Tutorial : Singleton<Tutorial>
             tutorialPanel.SetActive(false);
             index = 0;
 
-            currentTutorial.tutorialFinished = true;
+            currentTutorial.tutorialFinished = finished;
         }
     }
 
