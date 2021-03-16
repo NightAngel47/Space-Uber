@@ -11,9 +11,9 @@ using UnityEngine.SceneManagement;
 public class DevelopmentAccess : MonoBehaviour
 {
     public static DevelopmentAccess instance;
+    [HideInInspector] public bool cheatModeActive;
+    private AdditiveSceneManager asm;
 
-    private bool inTest = false;
-    
     private void Awake()
     {
         //Singleton pattern
@@ -25,40 +25,30 @@ public class DevelopmentAccess : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            asm = FindObjectOfType<AdditiveSceneManager>();
         }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            if (inTest)
-            {
-                inTest = false;
-                Debug.LogWarning("Loading ShipBase from MiniGames Testing Menu");
-                SceneManager.LoadScene("ShipBase");
-                GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
-            }
-            else
-            {
-                inTest = true;
-                Debug.LogWarning("Loading MiniGames Testing Menu");
-                SceneManager.LoadScene("MiniGames Testing Menu");
-            }
-        }
-
-        #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            Debug.LogWarning("Time scale double speed");
-            Time.timeScale = 2;
+            OpenCloseCheats();
         }
-        
-        if (Input.GetKeyUp(KeyCode.F1))
+    }
+
+    void OpenCloseCheats()
+    {
+        if (cheatModeActive)
         {
-            Debug.LogWarning("Time scale normal speed");
-            Time.timeScale = 1;
+            cheatModeActive = false;
+            Destroy(FindObjectOfType<CheatsMenu>().gameObject);
+            asm.UnloadScene("Cheats");
         }
-        #endif
+        else
+        {
+            cheatModeActive = true;
+            asm.LoadSceneMerged("Cheats");
+        }
     }
 }

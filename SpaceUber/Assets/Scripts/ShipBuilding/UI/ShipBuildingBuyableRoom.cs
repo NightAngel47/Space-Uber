@@ -4,8 +4,6 @@
  * based off of instructions from ShipBuildingShop.cs
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -27,6 +25,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     [SerializeField] GameObject newLevelText;
 
     private SpawnObject objectsToSpawn;
+    private CampaignManager campaignManager;
 
     /// <summary>
     /// Group 1: hydroponics, Bunks, VIP Lounge, Armor plating
@@ -43,45 +42,96 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     /// </summary>
     private int currentMaxLvlGroup3 = 1;
 
-    private void Start()
+    public static bool cheatLevels = false;
+    public static int cheatCampaign = 0;
+    public static int cheatJob = 0;
+
+    private void Awake()
     {
         objectsToSpawn = FindObjectOfType<SpawnObject>();
+        campaignManager = FindObjectOfType<CampaignManager>();
+    }
 
-        if (FindObjectOfType<CampaignManager>().GetCurrentCampaign() > 0)
+    private void Start()
+    {
+        if (cheatLevels == false)
         {
-            RoomStats[] rooms = FindObjectsOfType<RoomStats>();
-
-            switch (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+            if (campaignManager.GetCurrentCampaignIndex() > 0)
             {
-                case 0:
-                    currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
-                    break;
-                case 1:
-                    currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
-                    currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
+                RoomStats[] rooms = FindObjectsOfType<RoomStats>();
 
-                    foreach(RoomStats room in rooms)
-                    {
-                        if(room.roomName == "Power Core")
-                        {
-                            room.ChangeRoomLevel(1);
-                        }
-                    }
-                    break;
-                case 2:
-                    currentMaxLvlGroup3 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
-                    currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
-                    currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
+                switch (campaignManager.GetCurrentJobIndex())
+                {
+                    case 0:
+                        currentMaxLvlGroup1 = (campaignManager.GetCurrentCampaignIndex() + 2);
+                        break;
+                    case 1:
+                        currentMaxLvlGroup2 = (campaignManager.GetCurrentCampaignIndex() + 2);
+                        currentMaxLvlGroup1 = (campaignManager.GetCurrentCampaignIndex() + 2);
 
-                    
-                    foreach (RoomStats room in rooms)
-                    {
-                        if (room.roomName == "Power Core")
+                        foreach (RoomStats room in rooms)
                         {
-                            room.ChangeRoomLevel(1);
+                            if (room.roomName == "Power Core")
+                            {
+                                room.ChangeRoomLevel(1);
+                            }
                         }
-                    }
-                    break;
+                        break;
+                    case 2:
+                        currentMaxLvlGroup3 = (campaignManager.GetCurrentCampaignIndex() + 2);
+                        currentMaxLvlGroup1 = (campaignManager.GetCurrentCampaignIndex() + 2);
+                        currentMaxLvlGroup2 = (campaignManager.GetCurrentCampaignIndex() + 2);
+
+
+                        foreach (RoomStats room in rooms)
+                        {
+                            if (room.roomName == "Power Core")
+                            {
+                                room.ChangeRoomLevel(1);
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+        else
+        {
+            if (cheatCampaign > 0)
+            {
+                RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+
+                switch (cheatJob)
+                {
+                    case 0:
+                        currentMaxLvlGroup1 = (cheatJob + 2);
+                        break;
+                    case 1:
+                        currentMaxLvlGroup2 = (cheatJob + 2);
+                        currentMaxLvlGroup1 = (cheatJob + 2);
+
+                        foreach (RoomStats room in rooms)
+                        {
+                            if (room.roomName == "Power Core")
+                            {
+                                room.ChangeRoomLevel(1);
+                            }
+                        }
+                        break;
+                    case 2:
+                        currentMaxLvlGroup3 = (cheatJob + 2);
+                        currentMaxLvlGroup1 = (cheatJob + 2);
+                        currentMaxLvlGroup2 = (cheatJob + 2);
+
+
+                        foreach (RoomStats room in rooms)
+                        {
+                            if (room.roomName == "Power Core")
+                            {
+                                room.ChangeRoomLevel(1);
+                            }
+                        }
+                        break;
+                }
             }
         }
 
@@ -100,39 +150,18 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         roomSize.text = roomPrefab.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
         level.text = roomPrefab.GetComponent<RoomStats>().GetRoomLevel().ToString();
 
-        if (FindObjectOfType<CampaignManager>().GetCurrentCampaign() > 0)
+        if (campaignManager.GetCurrentCampaignIndex() > 0)
         {
-            switch (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+            switch (campaignManager.currentCamp)
             {
-                case 0:
-                    if (roomStats.GetRoomGroup() == 1)
-                    {
-                        newLevelText.SetActive(true);
-                    }
-                    else
-                    {
-                        newLevelText.SetActive(false);
-                    }
+                case CampaignManager.Campaigns.CateringToTheRich:
+                    newLevelText.SetActive(roomStats.GetRoomGroup() == 1);
                     break;
-                case 1:
-                    if (roomStats.GetRoomGroup() == 2)
-                    {
-                        newLevelText.SetActive(true);
-                    }
-                    else
-                    {
-                        newLevelText.SetActive(false);
-                    }
+                case CampaignManager.Campaigns.MysteriousEntity:
+                    newLevelText.SetActive(roomStats.GetRoomGroup() == 2);
                     break;
-                case 2:
-                    if (roomStats.GetRoomGroup() == 3)
-                    {
-                        newLevelText.SetActive(true);
-                    }
-                    else
-                    {
-                        newLevelText.SetActive(false);
-                    }
+                case CampaignManager.Campaigns.FinalTest:
+                    newLevelText.SetActive(roomStats.GetRoomGroup() == 3);
                     break;
             }
         }

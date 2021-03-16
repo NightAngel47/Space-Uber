@@ -35,7 +35,7 @@ public class RoomUnlockUI : MonoBehaviour
     {
         foreach (GameObject room in GameManager.instance.allRoomList)
         {
-            switch (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+            switch (FindObjectOfType<CampaignManager>().GetCurrentJobIndex())
             {
                 case 0:
                     if (room.GetComponent<RoomStats>().GetRoomGroup() == 2)

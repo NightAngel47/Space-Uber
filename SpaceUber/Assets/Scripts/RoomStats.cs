@@ -102,7 +102,7 @@ public class RoomStats : MonoBehaviour
 
         foreach (Resource resource in resources)
         {
-            print(resource.resourceType.resourceName);
+            //print(resource.resourceType.resourceName);
             if (flatOutput)
             {
                 switch (resource.resourceType.Rt)

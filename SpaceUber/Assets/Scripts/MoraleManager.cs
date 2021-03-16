@@ -129,11 +129,18 @@ public class MoraleManager : MonoBehaviour
         float mutinyChance = (maxMutinyMorale - crewMorale) * zeroMoraleMutinyChance * (1 - maxMutinyMoraleMutinyChance) / maxMutinyMorale + maxMutinyMoraleMutinyChance;
         if(mutinyChance > UnityEngine.Random.value)
         {
-            mutinyCount++;
-            int mutinyCost = Mathf.RoundToInt((baseMutinyCost * ((100 - crewMorale) / 100.0f)) * mutinyCount);
-            mutinyEvent.GetComponent<InkDriverBase>().nextChoices[0].choiceRequirements[0].requiredAmount = mutinyCost;
-            mutinyEvent.GetComponent<InkDriverBase>().nextChoices[0].outcomes[0].amount = -mutinyCost;
-            EventSystem.instance.CreateMutinyEvent(mutinyEvent);
+            if(DevelopmentAccess.instance.cheatModeActive && CheatsMenu.instance != null && CheatsMenu.instance.mutinyDisabled)
+            {
+                Debug.Log("Cheated Mutiny");
+            }
+            else
+            {
+                mutinyCount++;
+                int mutinyCost = Mathf.RoundToInt((baseMutinyCost * ((100 - crewMorale) / 100.0f)) * mutinyCount);
+                mutinyEvent.GetComponent<InkDriverBase>().nextChoices[0].choiceRequirements[0].requiredAmount = mutinyCost;
+                mutinyEvent.GetComponent<InkDriverBase>().nextChoices[0].outcomes[0].amount = -mutinyCost;
+                EventSystem.instance.CreateMutinyEvent(mutinyEvent);
+            }
         }
     }
     
