@@ -17,7 +17,6 @@ public class OverclockController : MonoBehaviour
 {
     public static OverclockController instance;
     private ShipStats shipStats;
-    private RoomStats roomStats;
     private AdditiveSceneManager additiveSceneManager;
 
     [SerializeField, Tooltip("Adjustment value multiplied by minigame output after finishing a minigame based on room level."), Foldout("Mini-Game Adjustments")] 
@@ -63,7 +62,6 @@ public class OverclockController : MonoBehaviour
     {
         cam = Camera.main;
         shipStats = FindObjectOfType<ShipStats>();
-        roomStats = FindObjectOfType<RoomStats>();
         additiveSceneManager = FindObjectOfType<AdditiveSceneManager>();
         winSound = false;
     }
@@ -82,54 +80,53 @@ public class OverclockController : MonoBehaviour
     }
 
     public void EndMiniGame(MiniGameType miniGame, bool success, float statModification = 0)
-	{
+    {
+        int roomLevel = activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1;
+        
         if(success)
 		{
             float moraleModifier = MoraleManager.instance.GetMoraleModifier();
 
-            if(miniGame == MiniGameType.Security)
+            switch (miniGame)
             {
-                shipStats.Security += Mathf.RoundToInt(securityBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier);
-                SpawnStatChangeText(Mathf.RoundToInt(securityBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
-                EventSystem.instance.chanceOfEvent += securityPercentIncrease;
-            }
-            if(miniGame == MiniGameType.Asteroids)
-            {
-                shipStats.ShipWeapons += Mathf.RoundToInt(shipWeaponsBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier);
-                SpawnStatChangeText(Mathf.RoundToInt(shipWeaponsBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
-                EventSystem.instance.chanceOfEvent += asteroidPercentIncrease;
-            }
-            if(miniGame == MiniGameType.CropHarvest)
-            {
-                shipStats.Food += Mathf.RoundToInt(foodBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier);
-                SpawnStatChangeText(Mathf.RoundToInt(foodBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
-                EventSystem.instance.chanceOfEvent += cropPercentIncrease;
-            }
-            if(miniGame == MiniGameType.StabilizeEnergyLevels)
-            {
-                shipStats.EnergyRemaining += new Vector2(Mathf.RoundToInt(energyBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier), 0);
-                SpawnStatChangeText(Mathf.RoundToInt(energyBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
-                EventSystem.instance.chanceOfEvent += energyPercentIncrease;
-            }
-            if(miniGame == MiniGameType.SlotMachine)
-            {
-                shipStats.Credits += Mathf.RoundToInt(statModification * moraleModifier);
-                SpawnStatChangeText(Mathf.RoundToInt(statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon);
-                EventSystem.instance.chanceOfEvent += slotPercentIncrease;
-            }
-            if(miniGame == MiniGameType.HullRepair)
-            {
-                shipStats.ShipHealthCurrent += new Vector2(Mathf.RoundToInt(hullRepairBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier), 0);
-                SpawnStatChangeText(Mathf.RoundToInt(hullRepairBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon);
-                EventSystem.instance.chanceOfEvent += hullRepairPercentIncrease;
+                case MiniGameType.Security:
+                    shipStats.Security += Mathf.RoundToInt(securityBaseAdjustments[roomLevel] * statModification * moraleModifier);
+                    SpawnStatChangeText(Mathf.RoundToInt(securityBaseAdjustments[roomLevel] * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
+                    EventSystem.instance.chanceOfEvent += securityPercentIncrease;
+                    break;
+                case MiniGameType.Asteroids:
+                    shipStats.ShipWeapons += Mathf.RoundToInt(shipWeaponsBaseAdjustments[roomLevel] * statModification * moraleModifier);
+                    SpawnStatChangeText(Mathf.RoundToInt(shipWeaponsBaseAdjustments[roomLevel] * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
+                    EventSystem.instance.chanceOfEvent += asteroidPercentIncrease;
+                    break;
+                case MiniGameType.CropHarvest:
+                    shipStats.Food += Mathf.RoundToInt(foodBaseAdjustments[roomLevel] * statModification * moraleModifier);
+                    SpawnStatChangeText(Mathf.RoundToInt(foodBaseAdjustments[roomLevel] * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
+                    EventSystem.instance.chanceOfEvent += cropPercentIncrease;
+                    break;
+                case MiniGameType.StabilizeEnergyLevels:
+                    shipStats.EnergyRemaining += new Vector2(Mathf.RoundToInt(energyBaseAdjustments[roomLevel] * statModification * moraleModifier), 0);
+                    SpawnStatChangeText(Mathf.RoundToInt(energyBaseAdjustments[roomLevel] * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
+                    EventSystem.instance.chanceOfEvent += energyPercentIncrease;
+                    break;
+                case MiniGameType.SlotMachine:
+                    shipStats.Credits += Mathf.RoundToInt(statModification * moraleModifier); // slots doesn't have a room level scaler?
+                    SpawnStatChangeText(Mathf.RoundToInt(statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Credits).resourceIcon);
+                    EventSystem.instance.chanceOfEvent += slotPercentIncrease;
+                    break;
+                case MiniGameType.HullRepair:
+                    shipStats.ShipHealthCurrent += new Vector2(Mathf.RoundToInt(hullRepairBaseAdjustments[roomLevel] * statModification * moraleModifier), 0);
+                    SpawnStatChangeText(Mathf.RoundToInt(hullRepairBaseAdjustments[roomLevel] * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon);
+                    EventSystem.instance.chanceOfEvent += hullRepairPercentIncrease;
+                    break;
             }
         }
         else
         {
             if(miniGame == MiniGameType.Asteroids)
             {
-                shipStats.ShipHealthCurrent += new Vector2(Mathf.RoundToInt(failHullDurabilityBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification), 0);
-                SpawnStatChangeText(Mathf.RoundToInt(failHullDurabilityBaseAdjustments[activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1] * statModification), GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon);
+                shipStats.ShipHealthCurrent += new Vector2(Mathf.RoundToInt(failHullDurabilityBaseAdjustments[roomLevel] * statModification), 0);
+                SpawnStatChangeText(Mathf.RoundToInt(failHullDurabilityBaseAdjustments[roomLevel] * statModification), GameManager.instance.GetResourceData((int)ResourceDataTypes._HullDurability).resourceIcon);
             }
         }
         if(success && activeRoom)
