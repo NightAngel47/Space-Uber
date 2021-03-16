@@ -414,6 +414,7 @@ public class CheatsMenu : MonoBehaviour
 
     private void LevelUpRooms()
     {
+        asm.UnloadScene("ShipBuilding");
         if (!ShipBuildingBuyableRoom.cheatLevels)
         {
             ShipBuildingBuyableRoom.cheatLevels = true;
@@ -429,6 +430,7 @@ public class CheatsMenu : MonoBehaviour
         }
         
         Debug.Log("Level " + (ShipBuildingBuyableRoom.cheatJob + 1) + " Unlocked");
+        asm.LoadSceneSeperate("ShipBuilding");
     }
 
     private void DeleteSaveAndQuit()
