@@ -75,14 +75,7 @@ public class ObjectMover : MonoBehaviour
 
                 if(Input.GetMouseButtonDown(1))
                 {
-                    if (os.isEdited)
-                    {
-                        gameObject.GetComponent<RoomStats>().SubtractRoomStats();
-                        gameObject.GetComponent<RoomStats>().ReturnCrewOnRemove();
-                        AudioManager.instance.PlaySFX("Sell");
-                    }
-                    
-                    os.Delete();
+                    StartCoroutine(os.Delete(os.isEdited));
                 }
             }
         }

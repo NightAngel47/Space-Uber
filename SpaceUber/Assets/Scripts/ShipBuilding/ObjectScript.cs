@@ -56,7 +56,9 @@ public class ObjectScript : MonoBehaviour
     /// <summary>
     /// When rooms are being edited, stats do not get added again when placed
     /// </summary>
-    public bool isEdited = false;
+    [HideInInspector] public bool isEdited = false;
+
+    [HideInInspector] public bool isDeleting;
 
     private void Start()
     {
@@ -139,17 +141,9 @@ public class ObjectScript : MonoBehaviour
                 Edit();
             }
 
-            if (Input.GetMouseButton(1) && preplacedRoom == false && isEdited == false)
+            if (Input.GetMouseButton(1) && !preplacedRoom && ObjectMover.hasPlaced && !isDeleting)
             {
-                //buttons.SetActive(true);
-                if (ObjectMover.hasPlaced == true)
-                {
-                    gameObject.GetComponent<RoomStats>().SubtractRoomStats();
-                    gameObject.GetComponent<RoomStats>().ReturnCrewOnRemove();
-                    AudioManager.instance.PlaySFX("Sell");
-                }
-
-                Delete();
+                StartCoroutine(Delete());
             }
         }
 
@@ -237,8 +231,20 @@ public class ObjectScript : MonoBehaviour
         }
     }
 
-    public void Delete()
+    public IEnumerator Delete(bool removeStats = true)
     {
+        if (isDeleting) yield break;
+        isDeleting = true;
+        
+        yield return new WaitForSeconds(0.25f); // delay for not deleting 2 rooms at once
+
+        if (removeStats)
+        {
+            gameObject.GetComponent<RoomStats>().SubtractRoomStats();
+            gameObject.GetComponent<RoomStats>().ReturnCrewOnRemove();
+            AudioManager.instance.PlaySFX("Sell");
+        }
+        
         Cursor.visible = true;
         clickAgain = false;
 
