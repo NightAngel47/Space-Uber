@@ -24,7 +24,6 @@ public class ObjectMover : MonoBehaviour
     private bool isBeingDragged = false;
     private bool mousedOver = false;
     private bool canPlace = true;
-
     private float minX;
     private float maxX;
     private float minY;
@@ -76,6 +75,13 @@ public class ObjectMover : MonoBehaviour
 
                 if(Input.GetMouseButtonDown(1))
                 {
+                    if (os.isEdited)
+                    {
+                        gameObject.GetComponent<RoomStats>().SubtractRoomStats();
+                        gameObject.GetComponent<RoomStats>().ReturnCrewOnRemove();
+                        AudioManager.instance.PlaySFX("Sell");
+                    }
+                    
                     os.Delete();
                 }
             }

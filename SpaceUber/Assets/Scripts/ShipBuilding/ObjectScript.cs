@@ -139,7 +139,7 @@ public class ObjectScript : MonoBehaviour
                 Edit();
             }
 
-            if (Input.GetMouseButton(1) && preplacedRoom == false)
+            if (Input.GetMouseButton(1) && preplacedRoom == false && isEdited == false)
             {
                 //buttons.SetActive(true);
                 if (ObjectMover.hasPlaced == true)
