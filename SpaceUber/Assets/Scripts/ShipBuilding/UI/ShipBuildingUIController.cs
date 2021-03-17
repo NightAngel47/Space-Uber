@@ -61,7 +61,7 @@ public class ShipBuildingUIController : MonoBehaviour
 
     public void SpawnSelectedPrefab()
     {
-        objectsToSpawn.GetComponent<SpawnObject>().SpawnRoom(roomPrefab);
+        objectsToSpawn.GetComponent<SpawnObject>().SpawnRoom(roomPrefab , 1);
     }
 
     private void UpdateRoomInfo()

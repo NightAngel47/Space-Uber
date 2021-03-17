@@ -115,6 +115,11 @@ public class CheatsMenu : MonoBehaviour
             es.SkipToEvent();
             Debug.Log("Skipping to event");
         }
+        if(Input.GetKey(KeyCode.F8)
+            && GameManager.instance.currentGameState == InGameStates.Events)
+        {
+            PlayRandomEvents();
+        }
 
         if(Input.GetKey(KeyCode.F9))
         {
@@ -165,7 +170,7 @@ public class CheatsMenu : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.F11))
         {
-            DeleteSaveAndQuit();
+            DeleteSaveAndReturnToMenu();
         }
         
         if (Input.GetKeyDown(KeyCode.F12))
@@ -256,9 +261,16 @@ public class CheatsMenu : MonoBehaviour
         }
     }
 
-    public void PlayRandomEvent(int eventNum)
+    public void PlayRandomEvents()
     {
-
+        if(Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            StartCoroutine(es.CheatRandomEvent(1));
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            StartCoroutine(es.CheatRandomEvent(-1));
+        }
     }
     
     private void ChangeNarrativeVariables()
@@ -337,17 +349,35 @@ public class CheatsMenu : MonoBehaviour
         }
         
         int amount = 0;
-        if(Input.GetKey(KeyCode.UpArrow) || (canUseSideWaysArrows && Input.GetKey(KeyCode.RightArrow)))
+        if(Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift))
         {
-            amount = 1;
-        }
-        else if(Input.GetKey(KeyCode.DownArrow) || (canUseSideWaysArrows && Input.GetKey(KeyCode.LeftArrow)))
-        {
-            amount = -1;
+            if(Input.GetKeyDown(KeyCode.UpArrow) || (canUseSideWaysArrows && Input.GetKeyDown(KeyCode.RightArrow)))
+            {
+                amount = 1;
+            }
+            else if(Input.GetKeyDown(KeyCode.DownArrow) || (canUseSideWaysArrows && Input.GetKeyDown(KeyCode.LeftArrow)))
+            {
+                amount = -1;
+            }
+            else
+            {
+                return;
+            }
         }
         else
         {
-            return;
+            if(Input.GetKey(KeyCode.UpArrow) || (canUseSideWaysArrows && Input.GetKey(KeyCode.RightArrow)))
+            {
+                amount = 1;
+            }
+            else if(Input.GetKey(KeyCode.DownArrow) || (canUseSideWaysArrows && Input.GetKey(KeyCode.LeftArrow)))
+            {
+                amount = -1;
+            }
+            else
+            {
+                return;
+            }
         }
         
         int morale = MoraleManager.instance.CrewMorale;
@@ -402,29 +432,34 @@ public class CheatsMenu : MonoBehaviour
 
     private void LevelUpRooms()
     {
-        ShipBuildingBuyableRoom.cheatLevels = true;
-        
-        ShipBuildingBuyableRoom.cheatJob += 1;
-
-        if(ShipBuildingBuyableRoom.cheatJob == 3)
+        asm.UnloadScene("ShipBuilding");
+        if (!ShipBuildingBuyableRoom.cheatLevels)
         {
-            ShipBuildingBuyableRoom.cheatCampaign += 1;
-            ShipBuildingBuyableRoom.cheatJob = 0;
+            ShipBuildingBuyableRoom.cheatLevels = true;
+        }
+        else
+        {
+            ShipBuildingBuyableRoom.cheatJob += 1;
+            
+            if(ShipBuildingBuyableRoom.cheatJob == 3)
+            {
+                ShipBuildingBuyableRoom.cheatJob = 0;
+            }
         }
         
         Debug.Log("Level " + (ShipBuildingBuyableRoom.cheatJob + 1) + " Unlocked");
+        asm.LoadSceneSeperate("ShipBuilding");
     }
 
-    private void DeleteSaveAndQuit()
+    private void DeleteSaveAndReturnToMenu()
     {
         if (!SavingLoadingManager.instance.GetHasSave()) return;
         SavingLoadingManager.instance.SetHasSaveFalse();
-            
-        Application.Quit();
-
-        #if UNITY_EDITOR
-        EditorApplication.isPlaying = false;
-        #endif
+        
+        SceneManager.LoadScene("Menu_Main");
+        DevelopmentAccess developmentAccess = FindObjectOfType<DevelopmentAccess>();
+        developmentAccess.OpenCloseCheats();
+        Destroy(developmentAccess.gameObject);
     }
 
     private void ToggleDoubleSpeed()
@@ -438,7 +473,7 @@ public class CheatsMenu : MonoBehaviour
         else
         {
             isDoubleSpeed = true;
-            Time.timeScale = 1;
+            Time.timeScale = 2;
             Debug.LogWarning("Time scale double speed");
         }
     }

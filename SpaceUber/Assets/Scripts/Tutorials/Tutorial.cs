@@ -32,6 +32,7 @@ public class TutorialMessage
 
 public class Tutorial : Singleton<Tutorial>
 {
+    [SerializeField, Tooltip("Ability to disable all tutorial elements")] private bool disableTutorial;
     [SerializeField] TutorialNode[] tutorials = new TutorialNode[10];
     [SerializeField] TextMeshProUGUI tutorialTextbox;
     [SerializeField] TextMeshProUGUI tutorialTitleTextbox;
@@ -79,11 +80,17 @@ public class Tutorial : Singleton<Tutorial>
         ///////////////////////////////////////////////////////////////////////////////////////
         if(tutorialPanel.activeSelf == true)
         {
-            if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorHydroponics) GhostCursorHydroponics();
-            else if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorChargingTerminal) GhostCursorChargingTerminal();
-            else if (currentTutorial.tutorialMessages[index].ghostCursorStatBar) GhostCursorStatBar();
+            if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
+            {
+                if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorHydroponics) GhostCursorHydroponics();
+                else if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorChargingTerminal) GhostCursorChargingTerminal();
+                else if (currentTutorial.tutorialMessages[index].ghostCursorStatBar) GhostCursorStatBar();
+            }
 
-            if (FindObjectOfType<CrewManagementRoomDetailsMenu>() != null && currentTutorial.tutorialMessages[index].selectRoom) EffectSelectRoom();
+            if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
+            {
+                if (FindObjectOfType<CrewManagementRoomDetailsMenu>() != null && currentTutorial.tutorialMessages[index].selectRoom) EffectSelectRoom();
+            }
         }
         /////////////////////////////////////////////////////////////////////////////////
 
@@ -104,6 +111,8 @@ public class Tutorial : Singleton<Tutorial>
     //call this to display a tutorial. Tutorial IDs can be found in the inspector
     public void SetCurrentTutorial(int tutorialID, bool forcedTutorial)
     {
+        if(disableTutorial) return;
+        
         //if you're already in a tutorial, stop.
         if (tutorialPanel.activeSelf == true) return;
         //if the game tries to force a tutorial the player has already seen, stop.
@@ -123,6 +132,8 @@ public class Tutorial : Singleton<Tutorial>
     
     public void CloseCurrentTutorial()
     {
+        if(disableTutorial) return;
+        
         if (tutorialPanel.activeSelf == true)
         {
             highlightPanel.SetActive(false);
@@ -145,11 +156,15 @@ public class Tutorial : Singleton<Tutorial>
     }
     public void UnHighlightScreenLocation()
     {
+        if(disableTutorial) return;
+        
         highlightPanel.SetActive(false);
     }
 
     public void ContinueButton(bool back = false)
     {
+        if(disableTutorial) return;
+        
         if (tutorialPanel.activeSelf == true)
         { 
             tutorialPrerequisitesComplete = false;
