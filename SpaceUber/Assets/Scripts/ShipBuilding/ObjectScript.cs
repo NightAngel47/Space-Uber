@@ -201,11 +201,19 @@ public class ObjectScript : MonoBehaviour
         clickAgain = false;
 
         //rooms being placed will appear on top of other rooms that are already placed
-        gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        foreach (SpriteRenderer spriteRenderer in  gameObject.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>())
+        {
+            spriteRenderer.sortingOrder += 5;
+        }
 
+        // change transparency while moving room
         c.a = .5f;
-        gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
+        foreach (SpriteRenderer spriteRenderer in  gameObject.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>())
+        {
+            spriteRenderer.color = c;
+        }
         c.a = 1;
+        
         SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
         gameObject.GetComponent<ObjectMover>().enabled = true;
         gameObject.GetComponent<ObjectMover>().TurnOnBeingDragged();
