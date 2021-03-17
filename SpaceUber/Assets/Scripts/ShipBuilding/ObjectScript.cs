@@ -56,7 +56,9 @@ public class ObjectScript : MonoBehaviour
     /// <summary>
     /// When rooms are being edited, stats do not get added again when placed
     /// </summary>
-    public bool isEdited = false;
+    [HideInInspector] public bool isEdited = false;
+
+    [HideInInspector] public bool isDeleting;
 
     private void Start()
     {
@@ -139,17 +141,9 @@ public class ObjectScript : MonoBehaviour
                 Edit();
             }
 
-            if (Input.GetMouseButton(1) && preplacedRoom == false)
+            if (Input.GetMouseButton(1) && !preplacedRoom && ObjectMover.hasPlaced && !isDeleting)
             {
-                //buttons.SetActive(true);
-                if (ObjectMover.hasPlaced == true)
-                {
-                    gameObject.GetComponent<RoomStats>().SubtractRoomStats();
-                    gameObject.GetComponent<RoomStats>().ReturnCrewOnRemove();
-                    AudioManager.instance.PlaySFX("Sell");
-                }
-
-                Delete();
+                StartCoroutine(Delete());
             }
         }
 
@@ -207,11 +201,19 @@ public class ObjectScript : MonoBehaviour
         clickAgain = false;
 
         //rooms being placed will appear on top of other rooms that are already placed
-        gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        foreach (SpriteRenderer spriteRenderer in  gameObject.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>())
+        {
+            spriteRenderer.sortingOrder += 5;
+        }
 
+        // change transparency while moving room
         c.a = .5f;
-        gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
+        foreach (SpriteRenderer spriteRenderer in  gameObject.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>())
+        {
+            spriteRenderer.color = c;
+        }
         c.a = 1;
+        
         SpotChecker.instance.RemoveSpots(gameObject, rotAdjust);
         gameObject.GetComponent<ObjectMover>().enabled = true;
         gameObject.GetComponent<ObjectMover>().TurnOnBeingDragged();
@@ -237,8 +239,20 @@ public class ObjectScript : MonoBehaviour
         }
     }
 
-    public void Delete()
+    public IEnumerator Delete(bool removeStats = true)
     {
+        if (isDeleting) yield break;
+        isDeleting = true;
+        
+        yield return new WaitForSeconds(0.25f); // delay for not deleting 2 rooms at once
+
+        if (removeStats)
+        {
+            gameObject.GetComponent<RoomStats>().SubtractRoomStats();
+            gameObject.GetComponent<RoomStats>().ReturnCrewOnRemove();
+            AudioManager.instance.PlaySFX("Sell");
+        }
+        
         Cursor.visible = true;
         clickAgain = false;
 
