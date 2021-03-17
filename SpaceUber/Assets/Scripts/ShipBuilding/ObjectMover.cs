@@ -24,7 +24,6 @@ public class ObjectMover : MonoBehaviour
     private bool isBeingDragged = false;
     private bool mousedOver = false;
     private bool canPlace = true;
-
     private float minX;
     private float maxX;
     private float minY;
@@ -40,6 +39,7 @@ public class ObjectMover : MonoBehaviour
         c.a = .5f;
         gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
         os = gameObject.GetComponent<ObjectScript>();
+        
     }
 
     public void UpdateMouseBounds(float ymin, float ymax, float xmin, float xmax)
@@ -75,7 +75,7 @@ public class ObjectMover : MonoBehaviour
 
                 if(Input.GetMouseButtonDown(1))
                 {
-                    os.Delete();
+                    StartCoroutine(os.Delete(os.isEdited));
                 }
             }
         }
@@ -182,7 +182,8 @@ public class ObjectMover : MonoBehaviour
     {
         if (GameManager.instance.currentGameState != InGameStates.ShipBuilding) return;
         //Checks to see if we have enough credits or energy to place the room
-        if (FindObjectOfType<ShipStats>().Credits >= gameObject.GetComponent<RoomStats>().price && FindObjectOfType<ShipStats>().EnergyRemaining.x >= gameObject.GetComponent<RoomStats>().minPower) 
+        if (FindObjectOfType<ShipStats>().Credits >= gameObject.GetComponent<RoomStats>().price[gameObject.GetComponent<RoomStats>().GetRoomLevel() - 1] && 
+            FindObjectOfType<ShipStats>().EnergyRemaining.x >= gameObject.GetComponent<RoomStats>().minPower[gameObject.GetComponent<RoomStats>().GetRoomLevel() - 1]) 
         {
             if (os.needsSpecificLocation == false) //Check spots normally
             {
@@ -196,7 +197,18 @@ public class ObjectMover : MonoBehaviour
             if (SpotChecker.cannotPlace == false) //Once spots are checked if cannotPlace = false/no room is placed there place room
             {
                 AudioManager.instance.PlaySFX(Placements[Random.Range(0, Placements.Length)]);
-                gameObject.GetComponent<RoomStats>().AddRoomStats();
+
+                if (os.isEdited == false)
+                {
+                    gameObject.GetComponent<RoomStats>().AddRoomStats();
+                }
+                else
+                {
+                    os.isEdited = false;
+                }
+
+                //makes sure the room is on the lower layer so that the new rooms can be on top without flickering
+                gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
 
                 hasPlaced = true;
 
@@ -210,15 +222,19 @@ public class ObjectMover : MonoBehaviour
                     os.RoomHighlightSpotsOff();
                 }
 
-
-                StartCoroutine(os.WaitToClickRoom());
+                Cursor.visible = true;
+                //HOVER UI does not happen when mouse is hidden
+                //StartCoroutine(os.WaitToClickRoom());
 
                 gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = ObjectScript.c;
                 gameObject.GetComponent<ObjectMover>().enabled = false;
+                
+                FindObjectOfType<EditCrewButton>().CheckForRooms();
             }
 
             else //If something is placed allow player to keep moving room
             {
+                hasPlaced = false;
                 TurnOnBeingDragged();
             }
         }
@@ -244,12 +260,6 @@ public class ObjectMover : MonoBehaviour
     {
         yield return new WaitForSeconds(.1f);
         canPlace = true;
-    }
-
-    public IEnumerator WaitForText()
-    {
-        yield return new WaitForSeconds(3);
-        FindObjectOfType<ShipStats>().cantPlaceText.SetActive(false);
     }
 
     //public void LayoutPlacement() //for spawning from layout to make sure they act as if they were placed normallys

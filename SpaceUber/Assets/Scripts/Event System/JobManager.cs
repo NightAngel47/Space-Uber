@@ -44,7 +44,7 @@ public class JobManager : MonoBehaviour
             // might need to change when side jobs are added
 
             if (thisJob.campaignIndexAvailable ==
-                campaignManager.GetCurrentCampaignIndex() ||
+                campaignManager.GetCurrentJobIndex() ||
                 thisJob.isSideJob)
             {
                 jobListUI.ShowAvailableJob(thisJob, i);
@@ -86,8 +86,9 @@ public class JobManager : MonoBehaviour
     private void FinalizeJobSelection()
     {
         ship.Payout += selectedMainJob.payout;
-        //ship.gameObject.GetComponent<ShipStatsUI>().UpdateCreditsUI(ship.Credits, ship.Payout);
         es.TakeStoryJobEvents(selectedMainJob);
         es.TakeSideJobEvents(selectedSideJobs);
+        campaignManager.SaveCampaignData();
+        ship.SaveShipStats();
     }
 }

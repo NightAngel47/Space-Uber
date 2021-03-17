@@ -15,6 +15,9 @@ using UnityEngine.Serialization;
 [Serializable]
 public class Requirements
 {
+    [HideInInspector]
+    public bool isScalableEvent = false;
+
     #region Stat Requirement Stuff
 
     [Tooltip("If the requirement is stat-based")]
@@ -45,17 +48,17 @@ public class Requirements
     private CharacterStats.Characters character = CharacterStats.Characters.None;
 
     [Tooltip("The required approval rating for this event to pass")]
-    [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
+    [SerializeField, ShowIf("isApprovalRequirement"), AllowNesting]
     private int requiredApproval;
 
     [Tooltip("Whether or not the approval must be LESS than the number supplied")]
-    [SerializeField, ShowIf("isStatRequirement"), AllowNesting]
+    [SerializeField, ShowIf("isApprovalRequirement"), AllowNesting]
     private bool lessThanApproval = false;
 
     #endregion
 
     #region Narrative Requirement Variables
-    
+
     [Tooltip("If the requirement is narrative-based")]
     [SerializeField, AllowNesting]
     private bool isNarrativeRequirement = false;
@@ -171,32 +174,76 @@ public class Requirements
         if (isStatRequirement)
         {
             int shipStat = 0;
-            switch (selectedResource)
+
+            if(isScalableEvent) //random events get scaled by campaign number
             {
-                case ResourceDataTypes._HullDurability:
-                    shipStat = (int)thisShip.ShipHealthCurrent.x;
-                    break;
-                case ResourceDataTypes._Energy:
-                    shipStat = (int)thisShip.EnergyRemaining.x;
-                    break;
-                case ResourceDataTypes._Crew:
-                    shipStat = (int)thisShip.CrewCurrent.x;
-                    break;
-                case ResourceDataTypes._Food:
-                    shipStat = thisShip.Food;
-                    break;
-                case ResourceDataTypes._ShipWeapons:
-                    shipStat = thisShip.ShipWeapons;
-                    break;
-                case ResourceDataTypes._Security:
-                    shipStat = thisShip.Security;
-                    break;
-                case ResourceDataTypes._CrewMorale:
-                    shipStat = MoraleManager.instance.CrewMorale;
-                    break;
-                case ResourceDataTypes._Credits:
-                    shipStat = thisShip.Credits;
-                    break;
+                requiredAmount = Mathf.RoundToInt(requiredAmount * campMan.GetMultiplier(selectedResource));
+                
+                switch (selectedResource)
+                {
+                    case ResourceDataTypes._HullDurability:
+                        shipStat = (int)thisShip.ShipHealthCurrent.x;
+                        break;
+
+                    case ResourceDataTypes._Energy:
+                        shipStat = (int)thisShip.EnergyRemaining.x;
+                        break;
+
+                    case ResourceDataTypes._Crew:
+                        shipStat = (int)thisShip.CrewCurrent.x;
+                        break;
+
+                    case ResourceDataTypes._Food:
+                        shipStat = thisShip.Food;
+                        break;
+
+                    case ResourceDataTypes._ShipWeapons:
+                        shipStat = thisShip.ShipWeapons;
+                        break;
+
+                    case ResourceDataTypes._Security:
+                        shipStat = thisShip.Security;
+                        break;
+
+                    case ResourceDataTypes._CrewMorale:
+                        shipStat = MoraleManager.instance.CrewMorale;
+                        break;
+
+                    case ResourceDataTypes._Credits:
+                        shipStat = thisShip.Credits;
+                        break;
+                }
+            }
+            else
+            {
+                switch (selectedResource)
+                {
+
+                    case ResourceDataTypes._HullDurability:
+                        shipStat = (int)thisShip.ShipHealthCurrent.x;
+                        break;
+                    case ResourceDataTypes._Energy:
+                        shipStat = (int)thisShip.EnergyRemaining.x;
+                        break;
+                    case ResourceDataTypes._Crew:
+                        shipStat = (int)thisShip.CrewCurrent.x;
+                        break;
+                    case ResourceDataTypes._Food:
+                        shipStat = thisShip.Food;
+                        break;
+                    case ResourceDataTypes._ShipWeapons:
+                        shipStat = thisShip.ShipWeapons;
+                        break;
+                    case ResourceDataTypes._Security:
+                        shipStat = thisShip.Security;
+                        break;
+                    case ResourceDataTypes._CrewMorale:
+                        shipStat = MoraleManager.instance.CrewMorale;
+                        break;
+                    case ResourceDataTypes._Credits:
+                        shipStat = thisShip.Credits;
+                        break;
+                }
             }
 
             if (lessThan)
@@ -205,16 +252,17 @@ public class Requirements
             }
             else
             {
-                result = shipStat > requiredAmount;
+                result = shipStat >= requiredAmount;
             }
         }
+
         else if (isNarrativeRequirement)
         {
             switch(thisCampaign)
             {
                 case CampaignManager.Campaigns.CateringToTheRich:
                     //check if the selected bool is true or not
-                    
+
                     if (ctrTrustRequirements)
                     {
 
@@ -232,49 +280,12 @@ public class Requirements
                     }
                     else
                     {
-                        switch (ctrNarrativeOutcomes)
-                        {
-                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.SideWithScientist:
-                                result = campMan.cateringToTheRich.ctr_sideWithScientist;
-                                break;
-                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.KillBeckett:
-                                result = campMan.cateringToTheRich.ctr_killBeckett;
-                                break;
-                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.LetBalePilot:
-                                result = campMan.cateringToTheRich.ctr_letBalePilot;
-                                break;
-                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledAtSafari:
-                                result = campMan.cateringToTheRich.ctr_killedAtSafari;
-                                break;
-                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.TellVIPsAboutClones:
-                                result = campMan.cateringToTheRich.ctr_tellVIPsAboutClones;
-                                break;
-                            default:
-                                break;
-                        }
+                        result = campMan.cateringToTheRich.GetCtrNarrativeOutcome(ctrNarrativeOutcomes);
                     }
                     break;
 
                 case CampaignManager.Campaigns.MysteriousEntity:
-                    switch (meNarrativeRequirements)
-                    {
-                        case CampaignManager.MysteriousEntity.NarrativeVariables.OpenedCargo:
-                            result = campMan.mysteriousEntity.me_openedCargo;
-                            break;
-                        case CampaignManager.MysteriousEntity.NarrativeVariables.KuonInvestigates:
-                            result = campMan.mysteriousEntity.me_kuonInvestigates;
-                            break;
-                        case CampaignManager.MysteriousEntity.NarrativeVariables.Accept:
-                            result = campMan.mysteriousEntity.me_Accept;
-                            break;
-                        case CampaignManager.MysteriousEntity.NarrativeVariables.Decline_Bribe:
-                            result = campMan.mysteriousEntity.me_declineBribe;
-                            break;
-                        case CampaignManager.MysteriousEntity.NarrativeVariables.Decline_Fire:
-                            result = campMan.mysteriousEntity.me_declineFire;
-                            break;
-                    }
-                 
+                    result = campMan.mysteriousEntity.GetMeNarrativeVariable(meNarrativeRequirements);
                     break;
 
                 case CampaignManager.Campaigns.FinalTest:
@@ -291,28 +302,11 @@ public class Requirements
                     }
                     else
                     {
-                        switch (ftOutcomes)
-                        {
-                            case CampaignManager.FinalTest.NarrativeVariables.KellisLoyalty:
-                                result = campMan.finalTest.ft_kellisLoyalty;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.LanriExperiment:
-                                result = campMan.finalTest.ft_lanriExperiment;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.LexaDoomed:
-                                result = campMan.finalTest.ft_lexaDoomed;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.ScienceSavior:
-                                result = campMan.finalTest.ft_scienceSavior;
-                                break;
-                            case CampaignManager.FinalTest.NarrativeVariables.TruthTold:
-                                result = campMan.finalTest.ft_truthTold;
-                                break;
-                        }
+                        result = campMan.finalTest.GetFtNarrativeVariable(ftOutcomes);
                     }
                     break;
             }
-            
+
         }
         else if (isRoomRequirement)
         {
@@ -382,30 +376,7 @@ public class Requirements
         }
         else if(isApprovalRequirement)
         {
-            int approvalRating = 0;
-
-            switch (character)
-            {
-                case CharacterStats.Characters.KUON:
-                    approvalRating = thisShip.cStats.KuonApproval;
-                    break;
-                case CharacterStats.Characters.MATEO:
-                    approvalRating = thisShip.cStats.MateoApproval;
-                    break;
-                case CharacterStats.Characters.LANRI:
-                    approvalRating = thisShip.cStats.LanriApproval;
-                    break;
-                case CharacterStats.Characters.LEXA:
-                    approvalRating = thisShip.cStats.LexaApproval;
-                    break;
-                case CharacterStats.Characters.RIPLEY:
-                    approvalRating = thisShip.cStats.RipleyApproval;
-                    break;
-                default:
-                    Debug.Log("The character whose approval you wanted does not exist");
-                    approvalRating = 0;
-                    break;
-            }
+            int approvalRating = thisShip.cStats.GetCharacterApproval(character);
 
             if (lessThanApproval && approvalRating < requiredApproval) //Match
             {

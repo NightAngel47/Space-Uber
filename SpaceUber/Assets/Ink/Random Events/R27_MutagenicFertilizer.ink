@@ -1,9 +1,7 @@
+VAR randomEnd = -> Good
+
 Lanri messages you, saying that she “Has something incredibly to show you!” in Hydroponics. You arrive to find that some of the plants have grown considerably bigger than they should be. Lanri excitedly explains that she’s been experimenting with a growth formula in an effort to help produce more food. “I’ve finally cracked it! The plants don’t wither and die when the formula is applied. Now we need only see how the plant grows. Well...what do you think?” On one hand, having more food for your organic crew members is good. On the other, this feels like it might have the potential to backfire considering past experiments.
-+[Let it Grow]
-{shuffle:
--->Good
--->Bad
-}
++[Let it Grow] -->randomEnd
 +[Dispose of It]->Dispose
 
 == Good ==
@@ -15,3 +13,11 @@ You decide to let Lanri see this project to the end and you are surprised when t
 == Dispose ==
 Seeing as it’s not currently known what would happen if these plants grew to maturity you explain that you want Lanri to stop the experiment and dispose of the plants already affected. She seems disheartened and doesn’t really speak much as she gets rid of her notes. She thanks you for your input and says she’ll keep you updated on future prospects.
 ->DONE
+
+===function RandomizeEnding(rng)===
+{ 
+    - rng == 0: 
+        ~randomEnd = -> Good
+    - else:
+        ~randomEnd = -> Bad
+}
