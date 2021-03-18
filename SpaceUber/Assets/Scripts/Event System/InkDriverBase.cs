@@ -151,8 +151,8 @@ public class InkDriverBase : MonoBehaviour
         int runningIndex = 0;
 
         while (tempString.Length < text.Length)
-        {
-            tempString += text[runningIndex];
+        {      
+            tempString += CheckChar(text[runningIndex]);
             runningIndex++;
 
             //click to instantly finish text,
@@ -166,6 +166,19 @@ public class InkDriverBase : MonoBehaviour
         }
 
         donePrinting = true;
+    }
+
+    private char CheckChar(char nextChar)
+    {
+        if (nextChar == '’')
+        {
+            nextChar = '\'';
+        }
+        if(nextChar == '“' || nextChar == '”')
+        {
+            nextChar = '\"';
+        }
+        return nextChar;
     }
 
     /// <summary>
