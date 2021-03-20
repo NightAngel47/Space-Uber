@@ -272,4 +272,9 @@ public class Tutorial : Singleton<Tutorial>
         }
     }
 
+    public bool GetTutorialActive()
+    {
+        return tutorialPanel.activeSelf;
+    }
+
 }

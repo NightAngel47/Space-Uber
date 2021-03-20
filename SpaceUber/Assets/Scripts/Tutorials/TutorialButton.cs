@@ -24,4 +24,9 @@ public class TutorialButton : MonoBehaviour
     {
         Tutorial.Instance.CloseCurrentTutorial();
     }
+
+    public void ChangePage(bool back = false)
+    {
+        Tutorial.Instance.ContinueButton(back);
+    }
 }
