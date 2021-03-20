@@ -63,6 +63,19 @@ public class Tutorial : Singleton<Tutorial>
 
     private void Start()
     {
+        //if (SavingLoadingManager.instance.GetHasSave())
+        //{
+           // LoadTutorialStatus();
+        //}
+        //else
+        //{
+            //for(int i = 0; i < tutorials.Length; i++)
+            //{
+                //tutorials[i].tutorialFinished = false;
+            //}
+            //SaveTutorialStatus();
+        //}
+
         currentTutorial = tutorials[1];
     }
 
@@ -132,7 +145,7 @@ public class Tutorial : Singleton<Tutorial>
 
     }
     
-    public void CloseCurrentTutorial()
+    public void CloseCurrentTutorial(bool finished = true)
     {
         if(disableTutorial) return;
         
@@ -144,7 +157,7 @@ public class Tutorial : Singleton<Tutorial>
             tutorialPanel.SetActive(false);
             index = 0;
 
-            currentTutorial.tutorialFinished = true;
+            currentTutorial.tutorialFinished = finished;
         }
     }
 
@@ -275,6 +288,15 @@ public class Tutorial : Singleton<Tutorial>
     public bool GetTutorialActive()
     {
         return tutorialPanel.activeSelf;
+    }
+
+    public void SaveTutorialStatus()
+    {
+        SavingLoadingManager.instance.Save<TutorialNode[]>("tutorials", tutorials);
+    }
+    public void LoadTutorialStatus()
+    {
+        tutorials = SavingLoadingManager.instance.Load<TutorialNode[]>("tutorials");
     }
 
 }
