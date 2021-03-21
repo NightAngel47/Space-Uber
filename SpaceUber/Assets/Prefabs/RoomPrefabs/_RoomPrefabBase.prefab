@@ -57,7 +57,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_TargetDisplay: 0
 --- !u!114 &5063715007886190277
 MonoBehaviour:
@@ -155,7 +155,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_TargetDisplay: 0
 --- !u!114 &5238020498261942479
 MonoBehaviour:
@@ -255,7 +255,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 40
   m_TargetDisplay: 0
 --- !u!114 &3859761888288072288
 MonoBehaviour:
@@ -458,7 +458,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!114 &1034519901952445563
 MonoBehaviour:
@@ -557,7 +557,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_TargetDisplay: 0
 --- !u!114 &7518302582888939362
 MonoBehaviour:
@@ -655,7 +655,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_TargetDisplay: 0
 --- !u!114 &1077025683423396463
 MonoBehaviour:
@@ -822,6 +822,7 @@ MonoBehaviour:
   rotAdjustVal: {x: 0, y: 0, z: 0}
   clickAgain: 1
   isEdited: 0
+  isDeleting: 0
 --- !u!114 &2641448655269380362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1306,6 +1307,11 @@ PrefabInstance:
       propertyPath: roomStats
       value: 
       objectReference: {fileID: 4360159919716397346}
+    - target: {fileID: 7278592215046452676, guid: ba3df1af6a7a95d4b9b5691ad38f4bbe,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7287917992562578642, guid: ba3df1af6a7a95d4b9b5691ad38f4bbe,
         type: 3}
       propertyPath: m_IsActive
@@ -1320,6 +1326,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248996569970702929, guid: ba3df1af6a7a95d4b9b5691ad38f4bbe,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8336208683231013642, guid: ba3df1af6a7a95d4b9b5691ad38f4bbe,
         type: 3}

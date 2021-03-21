@@ -4,8 +4,6 @@
  * based off of instructions from ShipBuildingShop.cs
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -27,46 +25,91 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     [SerializeField] GameObject newLevelText;
 
     private SpawnObject objectsToSpawn;
+    private CampaignManager campaignManager;
 
-    /// <summary>
-    /// Group 1: hydroponics, Bunks, VIP Lounge, Armor plating
-    /// </summary>
-    private int currentMaxLvlGroup1 = 1;
+    
 
-    /// <summary>
-    /// Group 2: Shield generator, photon torpedoes, armory, pantry
-    /// </summary>
-    private int currentMaxLvlGroup2 = 1;
+    public static bool cheatLevels = false;
+    public static int cheatJob = 0;
 
-    /// <summary>
-    /// Group 3: Storage Container, energy cannon, core charging terminal, brig
-    /// </summary>
-    private int currentMaxLvlGroup3 = 1;
+    [HideInInspector] public int levelTemp = 1;
+
+    private void Awake()
+    {
+        objectsToSpawn = FindObjectOfType<SpawnObject>();
+        campaignManager = FindObjectOfType<CampaignManager>();
+    }
 
     private void Start()
     {
-        objectsToSpawn = FindObjectOfType<SpawnObject>();
-
-        if (FindObjectOfType<CampaignManager>().GetCurrentCampaign() > 0)
+        if (cheatLevels == false)
         {
-            switch (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+            if (campaignManager.GetCurrentCampaignIndex() > 0)
             {
-                case 0:
-                    currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
+                RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+
+                switch (campaignManager.GetCurrentJobIndex())
+                {
+                    case 0:
+                        GameManager.instance.SetUnlockLevel(1, campaignManager.GetCurrentCampaignIndex() + 1);
+                        break;
+                    case 1:
+                        GameManager.instance.SetUnlockLevel(1, campaignManager.GetCurrentCampaignIndex() + 1);
+                        GameManager.instance.SetUnlockLevel(2, campaignManager.GetCurrentCampaignIndex() + 1);
+
+                        foreach (RoomStats room in rooms)
+                        {
+                            if (room.roomName == "Power Core")
+                            {
+                                room.ChangeRoomLevel(1);
+                                break;
+                            }
+                        }
+                        break;
+                    case 2:
+                        GameManager.instance.SetUnlockLevel(1, campaignManager.GetCurrentCampaignIndex() + 1);
+                        GameManager.instance.SetUnlockLevel(2, campaignManager.GetCurrentCampaignIndex() + 1);
+                        GameManager.instance.SetUnlockLevel(3, campaignManager.GetCurrentCampaignIndex() + 1);
+
+
+                        foreach (RoomStats room in rooms)
+                        {
+                            if (room.roomName == "Power Core")
+                            {
+                                room.ChangeRoomLevel(1);
+                                break;
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+        else
+        {
+            RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+
+            GameManager.instance.SetUnlockLevel(1, cheatJob + 1);
+            GameManager.instance.SetUnlockLevel(2, cheatJob + 1);
+            GameManager.instance.SetUnlockLevel(3, cheatJob + 1);
+            
+            foreach (RoomStats room in rooms)
+            {
+                if (room.roomName == "Power Core")
+                {
+                    if (cheatJob == 0 && room.GetRoomLevel() == 3)
+                    {
+                        room.ChangeRoomLevel(-2);
+                    }
+                    else
+                    {
+                        room.ChangeRoomLevel(1);
+                    }
                     break;
-                case 1:
-                    currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
-                    currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
-                    break;
-                case 2:
-                    currentMaxLvlGroup3 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
-                    currentMaxLvlGroup1 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
-                    currentMaxLvlGroup2 = (FindObjectOfType<CampaignManager>().GetCurrentCampaign() + 2);
-                    break;
+                }
             }
         }
 
-        SavingLoadingManager.instance.SaveRoomLevels(currentMaxLvlGroup1, currentMaxLvlGroup2, currentMaxLvlGroup3);
+        SavingLoadingManager.instance.SaveRoomLevels(GameManager.instance.GetUnlockLevel(1), GameManager.instance.GetUnlockLevel(2), GameManager.instance.GetUnlockLevel(3));
     }
 
     public void UpdateRoomInfo()
@@ -75,45 +118,24 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
 
         RoomStats roomStats = roomPrefab.GetComponent<RoomStats>();
         rname.text = roomStats.roomName;
-        needsCredits.text = "" + roomStats.price[roomStats.GetRoomLevel() - 1];
-        needsPower.text = "" + roomStats.minPower[roomStats.GetRoomLevel() - 1];
+        needsCredits.text = "" + roomStats.price[levelTemp - 1];
+        needsPower.text = "" + roomStats.minPower[levelTemp - 1];
         needsCrew.text = "" + roomStats.minCrew + "-" + roomStats.maxCrew.ToString();
         roomSize.text = roomPrefab.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
-        level.text = roomPrefab.GetComponent<RoomStats>().GetRoomLevel().ToString();
+        level.text = levelTemp.ToString();
 
-        if (FindObjectOfType<CampaignManager>().GetCurrentCampaign() > 0)
+        if (campaignManager.GetCurrentCampaignIndex() > 0)
         {
-            switch (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+            switch (campaignManager.currentCamp)
             {
-                case 0:
-                    if (roomStats.GetRoomGroup() == 1)
-                    {
-                        newLevelText.SetActive(true);
-                    }
-                    else
-                    {
-                        newLevelText.SetActive(false);
-                    }
+                case CampaignManager.Campaigns.CateringToTheRich:
+                    newLevelText.SetActive(roomStats.GetRoomGroup() == 1);
                     break;
-                case 1:
-                    if (roomStats.GetRoomGroup() == 2)
-                    {
-                        newLevelText.SetActive(true);
-                    }
-                    else
-                    {
-                        newLevelText.SetActive(false);
-                    }
+                case CampaignManager.Campaigns.MysteriousEntity:
+                    newLevelText.SetActive(roomStats.GetRoomGroup() == 2);
                     break;
-                case 2:
-                    if (roomStats.GetRoomGroup() == 3)
-                    {
-                        newLevelText.SetActive(true);
-                    }
-                    else
-                    {
-                        newLevelText.SetActive(false);
-                    }
+                case CampaignManager.Campaigns.FinalTest:
+                    newLevelText.SetActive(roomStats.GetRoomGroup() == 3);
                     break;
             }
         }
@@ -122,7 +144,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         {
             resourceIcon.sprite = resource.resourceType.resourceIcon;
             producesResource.text = resource.resourceType.resourceName;
-            producesAmount.text = "" + resource.amount[roomStats.GetRoomLevel() - 1];
+            producesAmount.text = "" + resource.amount[levelTemp - 1];
         }
         else
         {
@@ -136,7 +158,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     {
         if (LevelChangeUI.isMouseOverLevel == false)
         {
-            objectsToSpawn.SpawnRoom(roomPrefab);
+            objectsToSpawn.SpawnRoom(roomPrefab, levelTemp);
         }
     }
 
@@ -151,25 +173,25 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         switch(roomStats.GetRoomGroup())
         {
             case 1:
-                if ((levelChange < 0 && roomStats.GetRoomLevel() > 1) || (levelChange > 0 && roomStats.GetRoomLevel() < currentMaxLvlGroup1))
+                if ((levelChange < 0 && levelTemp > 1) || (levelChange > 0 && levelTemp < GameManager.instance.GetUnlockLevel(1)))
                 {
-                    roomStats.ChangeRoomLevel(levelChange);
+                    levelTemp += levelChange;
 
                     UpdateRoomInfo();
                 }
                 break;
             case 2:
-                if ((levelChange < 0 && roomStats.GetRoomLevel() > 1) || (levelChange > 0 && roomStats.GetRoomLevel() < currentMaxLvlGroup2))
+                if ((levelChange < 0 && levelTemp > 1) || (levelChange > 0 && levelTemp < GameManager.instance.GetUnlockLevel(2)))
                 {
-                    roomStats.ChangeRoomLevel(levelChange);
+                    levelTemp += levelChange;
 
                     UpdateRoomInfo();
                 }
                 break;
             case 3:
-                if ((levelChange < 0 && roomStats.GetRoomLevel() > 1) || (levelChange > 0 && roomStats.GetRoomLevel() < currentMaxLvlGroup3))
+                if ((levelChange < 0 && levelTemp > 1) || (levelChange > 0 && levelTemp < GameManager.instance.GetUnlockLevel(3)))
                 {
-                    roomStats.ChangeRoomLevel(levelChange);
+                    levelTemp += levelChange;
 
                     UpdateRoomInfo();
                 }
@@ -189,8 +211,8 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     /// </summary>
     public void UpdateMaxLevelGroups(int group1, int group2, int group3)
     {
-        currentMaxLvlGroup1 = group1;
-        currentMaxLvlGroup2 = group2;
-        currentMaxLvlGroup3 = group3;
+        GameManager.instance.SetUnlockLevel(1, group1);
+        GameManager.instance.SetUnlockLevel(2, group2);
+        GameManager.instance.SetUnlockLevel(3, group3);
     }
 }

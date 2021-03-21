@@ -57,7 +57,7 @@ public class Tick : MonoBehaviour
             {
                 // reset seconds passsed
                 secondsPassed = 0;
-
+                
                 // calculate net food produced per tick
                 int netFood = shipStats.FoodPerTick - (int) shipStats.CrewCurrent.x;
                 // calculate possible missing food
@@ -70,19 +70,14 @@ public class Tick : MonoBehaviour
                 }
                 // add net food to food stat
                 shipStats.Food += netFood;
-
+                
                 // increment days since events
                 DaysSince++;
                 daysSinceChat++;
-
+                
                 MoraleManager.instance.CheckMutiny();
-
-                if (shipStats.ShipHealthCurrent.x <= 0)
-                {
-                    GameManager.instance.ChangeInGameState(InGameStates.Death);
-                    AudioManager.instance.PlaySFX("Hull Death");
-                    AudioManager.instance.PlayMusicWithTransition("Death Theme");
-                }
+                
+                shipStats.CheckForDeath();
             }
 
             yield return new WaitForEndOfFrame();

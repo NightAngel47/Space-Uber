@@ -6129,19 +6129,43 @@ MonoBehaviour:
   mediumBetButton: {fileID: 311832278}
   largeBetButton: {fileID: 173550457}
   crankReturnSpeed: 5
-  smallBet: 10
-  mediumBet: 15
-  largeBet: 20
+  smallBet: 0a0000000a0000000a000000
+  mediumBet: 0f0000000f0000000f000000
+  largeBet: 140000001400000014000000
   payouts:
-    basePayout111: 80
+  - basePayout111: 80
     basePayout222: 40
     basePayout333: 20
     basePayout444: 10
     basePayout555: 10
     basePayout666: 10
     basePayout11: 24
-    basePayout22: 18
-    basePayout33: 12
+    basePayout22: 12
+    basePayout33: 18
+    basePayout44: 6
+    basePayout55: 6
+    basePayout66: 6
+  - basePayout111: 80
+    basePayout222: 40
+    basePayout333: 20
+    basePayout444: 10
+    basePayout555: 10
+    basePayout666: 10
+    basePayout11: 24
+    basePayout22: 12
+    basePayout33: 18
+    basePayout44: 6
+    basePayout55: 6
+    basePayout66: 6
+  - basePayout111: 80
+    basePayout222: 40
+    basePayout333: 20
+    basePayout444: 10
+    basePayout555: 10
+    basePayout666: 10
+    basePayout11: 24
+    basePayout22: 12
+    basePayout33: 18
     basePayout44: 6
     basePayout55: 6
     basePayout66: 6
@@ -8992,7 +9016,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -13.599976, y: 4.600006}
+  m_AnchoredPosition: {x: -13.599976, y: 4.6000366}
   m_SizeDelta: {x: 18.721802, y: -22.427979}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1001686354
@@ -12429,7 +12453,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 50
   m_TargetDisplay: 0
 --- !u!224 &1338579866
 RectTransform:

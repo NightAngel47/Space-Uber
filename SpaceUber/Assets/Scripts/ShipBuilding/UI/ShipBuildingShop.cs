@@ -74,6 +74,7 @@ public class ShipBuildingShop : MonoBehaviour
         foreach (var slot in shopSlots)
         {
             slot.gameObject.SetActive(true);
+            slot.levelTemp = 1;
         }
         
         // find matching resource rooms
@@ -84,8 +85,7 @@ public class ShipBuildingShop : MonoBehaviour
             if (resourceDataTypesArray.All(resourceDataType => resource.resourceType.Rt != resourceDataType)) continue;
             shopSlots[i].roomPrefab = roomPrefab;
             shopSlots[i].UpdateRoomInfo();
-            ++i;
-            if(i > shopSlots.Length) break;
+            if(++i > shopSlots.Length) break;
         }
 
         // special exception case for medbay
@@ -96,6 +96,7 @@ public class ShipBuildingShop : MonoBehaviour
                 shopSlots[i].roomPrefab = roomPrefab;
                 shopSlots[i].UpdateRoomInfo();
                 ++i;
+                break;
             }
         }
 

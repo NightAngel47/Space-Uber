@@ -18,7 +18,7 @@ using UnityEngine.SceneManagement;
 ///     Events          player can run into story and random events.
 ///     Ending          player has reached a narrative ending.
 /// </summary>
-public enum InGameStates { None, JobSelect, ShipBuilding, CrewManagement, Events, MoneyEnding, MoraleEnding, Mutiny, Death ,CrewPayment }
+public enum InGameStates { None, JobSelect, ShipBuilding, CrewManagement, Events, MoneyEnding, MoraleEnding, Mutiny, Death ,CrewPayment, RoomUnlock }
 
 /// <summary>
 /// Manages the state of the game while the player is playing.
@@ -52,6 +52,23 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<ResourceDataType> resourceDataRef = new List<ResourceDataType>();
     
     [HideInInspector] public bool hasLoadedRooms = false;
+
+    public List<GameObject> allRoomList = new List<GameObject>();
+
+    /// <summary>
+    /// Group 1: hydroponics, Bunks, VIP Lounge, Armor plating
+    /// </summary>
+    private int currentMaxLvlGroup1 = 1;
+
+    /// <summary>
+    /// Group 2: Shield generator, photon torpedoes, armory, pantry
+    /// </summary>
+    private int currentMaxLvlGroup2 = 1;
+
+    /// <summary>
+    /// Group 3: Storage Container, energy cannon, core charging terminal, brig
+    /// </summary>
+    private int currentMaxLvlGroup3 = 1;
 
     /// <summary>
     /// Sets the instance of the GameManager using the Singleton pattern.
@@ -92,6 +109,7 @@ public class GameManager : MonoBehaviour
             switch (currentGameState)
             {
                 case InGameStates.ShipBuilding:
+                    SavingLoadingManager.instance.LoadRoomLevels();
                     yield return new WaitUntil(() => FindObjectOfType<SpotChecker>());
                     break;
                 case InGameStates.CrewManagement:
@@ -136,6 +154,7 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("PromptScreen_Death");
                 additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
                 additiveSceneManager.UnloadScene("CrewPayment");
+                additiveSceneManager.UnloadScene("Interface_RoomUnlockScreen");
 
                 additiveSceneManager.LoadSceneSeperate("Interface_JobList");
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
@@ -154,6 +173,11 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("ShipBuilding");
 
                 additiveSceneManager.LoadSceneSeperate("CrewManagement");
+                break;
+            case InGameStates.RoomUnlock:
+                additiveSceneManager.UnloadScene("CrewPayment");
+
+                additiveSceneManager.LoadSceneSeperate("Interface_RoomUnlockScreen");  
                 break;
             case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
                 additiveSceneManager.UnloadScene("PromptScreen_End");
@@ -249,5 +273,42 @@ public class GameManager : MonoBehaviour
     private void LoadGameState()
     {
         ChangeInGameState(SavingLoadingManager.instance.Load<InGameStates>("currentGameState"));
+    }
+
+    public int GetUnlockLevel(int roomGroup)
+    {
+        switch(roomGroup)
+        {
+            case 1:
+                return currentMaxLvlGroup1;
+                break;
+            case 2:
+                return currentMaxLvlGroup2;
+                break;
+            case 3:
+                return currentMaxLvlGroup3;
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
+
+    public void SetUnlockLevel(int roomGroup, int newValue)
+    {
+        switch (roomGroup)
+        {
+            case 1:
+                currentMaxLvlGroup1 = newValue;
+                break;
+            case 2:
+                currentMaxLvlGroup2 = newValue;
+                break;
+            case 3:
+                currentMaxLvlGroup3 = newValue;
+                break;
+            default:
+                break;
+        }
     }
 }

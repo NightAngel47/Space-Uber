@@ -15,7 +15,7 @@ using System.Linq;
 
 public class SpawnObject : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> allRoomList = new List<GameObject>();
+    
     public List<GameObject> availableRooms;
     [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private GameObject buttonPanel;
@@ -71,45 +71,49 @@ public class SpawnObject : MonoBehaviour
         }
 
 
-        if (FindObjectOfType<CampaignManager>().GetCurrentCampaign() == 0)
+        if (ShipBuildingBuyableRoom.cheatLevels == false)
         {
-            switch (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+            if (FindObjectOfType<CampaignManager>().currentCamp == CampaignManager.Campaigns.CateringToTheRich)
             {
-                case 0:
-                    foreach (GameObject room in allRoomList)
-                    {
-                        if (room.GetComponent<RoomStats>().GetRoomGroup() == 1)
+                switch (FindObjectOfType<CampaignManager>().GetCurrentJobIndex())
+                {
+                    case 0:
+                        foreach (var room in GameManager.instance.allRoomList.Where(room => room.GetComponent<RoomStats>().GetRoomGroup() == 1))
                         {
                             availableRooms.Add(room);
                         }
-                    }
-                    break;
-                case 1:
-                    foreach (GameObject room in allRoomList)
-                    {
-                        if (room.GetComponent<RoomStats>().GetRoomGroup() == 1 || room.GetComponent<RoomStats>().GetRoomGroup() == 2)
+                        break;
+                    case 1:
+                        foreach (var room in GameManager.instance.allRoomList.Where(room => room.GetComponent<RoomStats>().GetRoomGroup() != 3))
                         {
                             availableRooms.Add(room);
                         }
-                    }
-                    break;
-                case 2:
-                    foreach (GameObject room in allRoomList)
-                    {
-                        availableRooms.Add(room);
-                    }
-                    break;
+                        break;
+                    case 2:
+                        foreach (GameObject room in GameManager.instance.allRoomList)
+                        {
+                            availableRooms.Add(room);
+                        }
+                        break;
+                }
+            }
+            else
+            {
+                foreach (GameObject room in GameManager.instance.allRoomList)
+                {
+                    availableRooms.Add(room);
+                }
             }
         }
         else
         {
-            foreach (GameObject room in allRoomList)
+            foreach (GameObject room in GameManager.instance.allRoomList)
             {
                 availableRooms.Add(room);
             }
         }
 
-        CreateRoomSpawnButtons();
+        //CreateRoomSpawnButtons();
 
         //display shipbuilding tutorial
         Tutorial.Instance.SetCurrentTutorial(1, true);
@@ -140,17 +144,17 @@ public class SpawnObject : MonoBehaviour
             //g is the button that is created
             GameObject roomButton = Instantiate(buttonPrefab, buttonPanel.transform);
             //g.transform.SetParent(buttonPanel.transform);
-            roomButton.GetComponent<Button>().onClick.AddListener(() => SpawnRoom(room)); //spawn a room upon clicking the button
+            roomButton.GetComponent<Button>().onClick.AddListener(() => SpawnRoom(room, 1)); //spawn a room upon clicking the button
             roomButton.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.name; //Set G's title to the room's name
             roomButton.transform.GetChild(3).gameObject.GetComponent<Image>().sprite = room.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
             roomButton.GetComponentInChildren<ShopTooltipUI>().SetRoomInfo(room.GetComponent<RoomStats>());
         }
     }
 
-    public void SpawnRoom(GameObject ga)
+    public void SpawnRoom(GameObject ga, int level)
     {
-        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price[ga.GetComponent<RoomStats>().GetRoomLevel() - 1] &&
-            FindObjectOfType<ShipStats>().EnergyRemaining.x >= ga.GetComponent<RoomStats>().minPower[ga.GetComponent<RoomStats>().GetRoomLevel() - 1]) //checks to see if the player has enough credits for the room
+        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price[level - 1] &&
+            FindObjectOfType<ShipStats>().EnergyRemaining.x >= ga.GetComponent<RoomStats>().minPower[level - 1]) //checks to see if the player has enough credits for the room
         {
             if (lastSpawned == null || lastSpawned.GetComponent<ObjectMover>().enabled == false) //makes sure that the prior room is placed before the next room can be added
             {
@@ -159,6 +163,8 @@ public class SpawnObject : MonoBehaviour
                 Cursor.visible = false;
                 //HOVER UI does not happen when mouse is hidden
                 lastSpawned.GetComponent<ObjectMover>().TurnOnBeingDragged();
+
+                lastSpawned.GetComponent<RoomStats>().ChangeRoomLevel(level);
 
                 //rooms being placed will appear on top of other rooms that are already placed
                 lastSpawned.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;

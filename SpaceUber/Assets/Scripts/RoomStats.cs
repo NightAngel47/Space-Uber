@@ -102,7 +102,7 @@ public class RoomStats : MonoBehaviour
 
         foreach (Resource resource in resources)
         {
-            print(resource.resourceType.resourceName);
+            //print(resource.resourceType.resourceName);
             if (flatOutput)
             {
                 switch (resource.resourceType.Rt)
@@ -477,7 +477,7 @@ public class RoomStats : MonoBehaviour
     public void ReturnCrewOnRemove()
     {
         // reset the ship's crew stats back to before room was placed
-        shipStats.CrewCurrent += new Vector3(currentCrew, 0, currentCrew);
+        shipStats.CrewCurrent += new Vector3(0, 0, currentCrew);
     }
 
     public int GetRoomLevel()
@@ -491,7 +491,17 @@ public class RoomStats : MonoBehaviour
     /// </summary>
     public void ChangeRoomLevel(int levelChange)
     {
-        roomLevel += levelChange;
+        roomLevel = levelChange;
+        
+        if (roomLevel > 3)
+        {
+            roomLevel = 3;
+        }
+        
+        if (roomLevel < 1)
+        {
+            roomLevel = 1;
+        }
     }
 
     public int GetRoomGroup()
