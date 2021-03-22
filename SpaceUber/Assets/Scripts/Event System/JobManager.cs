@@ -44,7 +44,7 @@ public class JobManager : MonoBehaviour
             // might need to change when side jobs are added
 
             if (thisJob.campaignIndexAvailable ==
-                campaignManager.GetCurrentCampaignIndex() ||
+                campaignManager.GetCurrentJobIndex() ||
                 thisJob.isSideJob)
             {
                 jobListUI.ShowAvailableJob(thisJob, i);
@@ -89,5 +89,6 @@ public class JobManager : MonoBehaviour
         es.TakeStoryJobEvents(selectedMainJob);
         es.TakeSideJobEvents(selectedSideJobs);
         campaignManager.SaveCampaignData();
+        ship.SaveShipStats();
     }
 }

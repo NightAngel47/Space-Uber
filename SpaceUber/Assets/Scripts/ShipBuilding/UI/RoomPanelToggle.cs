@@ -29,10 +29,12 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         if (Input.GetMouseButtonDown(0) && 
             GameManager.instance.currentGameState != InGameStates.ShipBuilding && 
-            !ObjectScript.roomIsHovered && !isMouseOverObject)
+            !ObjectScript.roomIsHovered && !isMouseOverObject && !Tutorial.Instance.GetTutorialActive())
         {
             ClosePanel();
         }
+
+        if (!isOpen) Tutorial.Instance.UnHighlightScreenLocation();
     }
 
     public void TogglePanelVis(int tabIndex = -1)
@@ -57,7 +59,16 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
 
         if (isOpen) return;
+        try
+        {
+            gameObject.GetComponentInChildren<CrewManagementRoomDetailsMenu>().toggleHighlight();//
+        }
+        catch(System.NullReferenceException)
+        {
+            Debug.LogError("The room details menu doesn't exist. You're probably in ship building.");
+        }
         
+
         panelAnimator.SetBool(IsOpen, true);
         isOpen = true;
     }
@@ -65,7 +76,16 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void ClosePanel(int tabIndex = -1)
     {
         if (!isOpen) return;
-        
+
+        try
+        {
+            gameObject.GetComponentInChildren<CrewManagementRoomDetailsMenu>().toggleHighlight();//
+        }
+        catch (System.NullReferenceException)
+        {
+            Debug.LogError("The room details menu doesn't exist. You're probably in ship building.");
+        }
+
         panelAnimator.SetBool(IsOpen, false);
         isOpen = false;
         
