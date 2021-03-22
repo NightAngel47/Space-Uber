@@ -506,7 +506,7 @@ public class ChoiceOutcomes
                                 resultText += "\nYou left Lexa to face her doom alone";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.ScienceSavior:
-                                resultText += "\nYou have become a savior through the power of science";
+                                resultText += "\nYou told Lanri to fix the cataclysm ";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.TruthTold:
                                 resultText += "\nYou told everyone the truth";
@@ -525,6 +525,21 @@ public class ChoiceOutcomes
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.ResearchShared:
                                 resultText += "\nYou shared your research";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.AncientHackingDevice:
+                                resultText += "\n ";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.ExoSuits:
+                                resultText += "\n ";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.WarpShields:
+                                resultText += "\n ";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.RealityBomb:
+                                resultText += "\n ";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.DisintegrationRay:
+                                resultText += "\n ";
                                 break;
                         }
                         break;
