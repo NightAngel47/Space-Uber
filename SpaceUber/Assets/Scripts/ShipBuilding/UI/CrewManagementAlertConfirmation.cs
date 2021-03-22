@@ -1,6 +1,6 @@
 /*
  * CrewManagementAlertConfirmation.cs
- * Author(s): Steven Drovie []
+ * Author(s): Frank Calabrese
  * Created on: 3/1/2021 (en-US)
  * Description: 
  */

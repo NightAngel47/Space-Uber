@@ -24,8 +24,13 @@ public class InkDriverBase : MonoBehaviour
     [HideInInspector] public bool isCharacterEvent;
     public bool isMutinyEvent;
 
+    [Tooltip("Whether or not this event scales its stat outcomes with the campaign"),HideInInspector]
+    public bool isScalableEvent;
+
     [ShowIf("isStoryEvent")] public int storyIndex;
-    [SerializeField] private Sprite backgroundImage;
+    [SerializeField] private bool hasAnimatedBG = false;
+    [SerializeField, HideIf("hasAnimatedBG")] private Sprite backgroundImage;
+    [SerializeField, ShowIf("hasAnimatedBG")] private GameObject backgroundAnimation;
     public string EventName => eventName; 
 
     //A prefab of the button we will generate every time a choice is needed
@@ -42,6 +47,8 @@ public class InkDriverBase : MonoBehaviour
 
     [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
     private float textPrintSpeed = 0.1f;
+
+    public string eventIntroSFX;
 
     [Dropdown("eventMusicTracks")]
     public string eventBGM;
@@ -63,6 +70,7 @@ public class InkDriverBase : MonoBehaviour
     [ShowIf("hasSubsequentChoices"), Tooltip("Sets of subsequent choices that can be accessed by index by an event choice.")]
     public List<SubsequentChoices> subsequentChoices = new List<SubsequentChoices>();
 
+
     /// <summary>
     /// The story itself being read
     /// </summary>
@@ -82,7 +90,15 @@ public class InkDriverBase : MonoBehaviour
         Refresh(); //starts the dialogue
         titleBox.text = eventName;
         backgroundUI.sprite = backgroundImage;
+        if (hasAnimatedBG)
+        {
+            Instantiate(backgroundAnimation, backgroundUI.transform.parent);
+            backgroundUI.enabled = false;
+        }
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
+        AudioManager.instance.PlaySFX(eventIntroSFX);
+
+        isScalableEvent = !isStoryEvent && !isMutinyEvent;
     }
 
     /// <summary>
@@ -135,8 +151,8 @@ public class InkDriverBase : MonoBehaviour
         int runningIndex = 0;
 
         while (tempString.Length < text.Length)
-        {
-            tempString += text[runningIndex];
+        {      
+            tempString += CheckChar(text[runningIndex]);
             runningIndex++;
 
             //click to instantly finish text,
@@ -150,6 +166,19 @@ public class InkDriverBase : MonoBehaviour
         }
 
         donePrinting = true;
+    }
+
+    private char CheckChar(char nextChar)
+    {
+        if (nextChar == '’')
+        {
+            nextChar = '\'';
+        }
+        if(nextChar == '“' || nextChar == '”')
+        {
+            nextChar = '\"';
+        }
+        return nextChar;
     }
 
     /// <summary>
