@@ -25,6 +25,7 @@ public class TutorialMessage
     public string message;
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorHydroponics;
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorChargingTerminal;
+    [Foldout("Ghost Cursor Effects")] public bool ghostCursorArmorPlating;
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorStatBar;
 
     [Foldout("Other effects")] public bool selectRoom;
@@ -62,6 +63,19 @@ public class Tutorial : Singleton<Tutorial>
 
     private void Start()
     {
+        //if (SavingLoadingManager.instance.GetHasSave())
+        //{
+           // LoadTutorialStatus();
+        //}
+        //else
+        //{
+            //for(int i = 0; i < tutorials.Length; i++)
+            //{
+                //tutorials[i].tutorialFinished = false;
+            //}
+            //SaveTutorialStatus();
+        //}
+
         currentTutorial = tutorials[1];
     }
 
@@ -84,6 +98,7 @@ public class Tutorial : Singleton<Tutorial>
             {
                 if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorHydroponics) GhostCursorHydroponics();
                 else if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorChargingTerminal) GhostCursorChargingTerminal();
+                else if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorArmorPlating) GhostCursorArmorPlating();
                 else if (currentTutorial.tutorialMessages[index].ghostCursorStatBar) GhostCursorStatBar();
             }
 
@@ -130,7 +145,7 @@ public class Tutorial : Singleton<Tutorial>
 
     }
     
-    public void CloseCurrentTutorial()
+    public void CloseCurrentTutorial(bool finished = true)
     {
         if(disableTutorial) return;
         
@@ -142,7 +157,7 @@ public class Tutorial : Singleton<Tutorial>
             tutorialPanel.SetActive(false);
             index = 0;
 
-            currentTutorial.tutorialFinished = true;
+            currentTutorial.tutorialFinished = finished;
         }
     }
 
@@ -241,6 +256,15 @@ public class Tutorial : Singleton<Tutorial>
         }
         if (lerping == false) BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
     }
+    private void GhostCursorArmorPlating()
+    {
+        if (tutorialPrerequisitesComplete == false)
+        {
+            if (FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "HullDurability") FindObjectOfType<ShipBuildingShop>().ToResourceTab("HullDurability");
+            tutorialPrerequisitesComplete = true;
+        }
+        if (lerping == false) BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
+    }
     private void GhostCursorStatBar()
     {
         if (tutorialPrerequisitesComplete == false)
@@ -259,6 +283,20 @@ public class Tutorial : Singleton<Tutorial>
             FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
             tutorialPrerequisitesComplete = true;
         }
+    }
+
+    public bool GetTutorialActive()
+    {
+        return tutorialPanel.activeSelf;
+    }
+
+    public void SaveTutorialStatus()
+    {
+        SavingLoadingManager.instance.Save<TutorialNode[]>("tutorials", tutorials);
+    }
+    public void LoadTutorialStatus()
+    {
+        tutorials = SavingLoadingManager.instance.Load<TutorialNode[]>("tutorials");
     }
 
 }
