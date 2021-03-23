@@ -57,7 +57,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_TargetDisplay: 0
 --- !u!114 &5063715007886190277
 MonoBehaviour:
@@ -155,7 +155,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_TargetDisplay: 0
 --- !u!114 &5238020498261942479
 MonoBehaviour:
@@ -234,7 +234,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2.946881, y: 2.957578}
+  m_SizeDelta: {x: 3, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5958939564760580793
 Canvas:
@@ -255,7 +255,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 40
   m_TargetDisplay: 0
 --- !u!114 &3859761888288072288
 MonoBehaviour:
@@ -437,7 +437,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2.946881, y: 2.957578}
+  m_SizeDelta: {x: 3, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1518205524486483437
 Canvas:
@@ -458,7 +458,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!114 &1034519901952445563
 MonoBehaviour:
@@ -557,7 +557,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_TargetDisplay: 0
 --- !u!114 &7518302582888939362
 MonoBehaviour:
@@ -655,7 +655,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_TargetDisplay: 0
 --- !u!114 &1077025683423396463
 MonoBehaviour:
@@ -777,6 +777,7 @@ MonoBehaviour:
   flatOutput: 0
   ignoreMorale: 0
   roomLevel: 1
+  roomGroup: 0
   usedRoom: 0
   isPowered: 0
   roomTooltipUI: {fileID: 2405372060552023348}
@@ -821,6 +822,7 @@ MonoBehaviour:
   rotAdjustVal: {x: 0, y: 0, z: 0}
   clickAgain: 1
   isEdited: 0
+  isDeleting: 0
 --- !u!114 &2641448655269380362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -850,17 +852,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vacantSprite: {fileID: 21300000, guid: b815516ef91466b469d502f28472b194, type: 3}
   occupiedSprite: {fileID: 21300000, guid: 352189942c42fee4190dae78d75c8db9, type: 3}
-  crewSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   crewView: {fileID: 3502667792171202334}
   redOverlay: {fileID: 0}
   vacantOpacity: 0.33
@@ -1316,6 +1307,11 @@ PrefabInstance:
       propertyPath: roomStats
       value: 
       objectReference: {fileID: 4360159919716397346}
+    - target: {fileID: 7278592215046452676, guid: ba3df1af6a7a95d4b9b5691ad38f4bbe,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7287917992562578642, guid: ba3df1af6a7a95d4b9b5691ad38f4bbe,
         type: 3}
       propertyPath: m_IsActive
@@ -1330,6 +1326,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248996569970702929, guid: ba3df1af6a7a95d4b9b5691ad38f4bbe,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8336208683231013642, guid: ba3df1af6a7a95d4b9b5691ad38f4bbe,
         type: 3}

@@ -15,8 +15,8 @@ using System.Linq;
 
 public class SpawnObject : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> allRoomList = new List<GameObject>();
-    public List<GameObject> availableRooms = new List<GameObject>();
+    
+    public List<GameObject> availableRooms;
     [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private GameObject buttonPanel;
     [SerializeField] private Vector2 spawnLoc;
@@ -53,7 +53,7 @@ public class SpawnObject : MonoBehaviour
         if (donePreplacedRoom == false)
         {
             donePreplacedRoom = true;
-            
+
             yield return new WaitUntil(() => GameManager.instance.hasLoadedRooms);
 
             // Check if power core has already been placed
@@ -70,7 +70,50 @@ public class SpawnObject : MonoBehaviour
             }
         }
 
-        CreateRoomSpawnButtons();
+
+        if (ShipBuildingBuyableRoom.cheatLevels == false)
+        {
+            if (FindObjectOfType<CampaignManager>().currentCamp == CampaignManager.Campaigns.CateringToTheRich)
+            {
+                switch (FindObjectOfType<CampaignManager>().GetCurrentJobIndex())
+                {
+                    case 0:
+                        foreach (var room in GameManager.instance.allRoomList.Where(room => room.GetComponent<RoomStats>().GetRoomGroup() == 1))
+                        {
+                            availableRooms.Add(room);
+                        }
+                        break;
+                    case 1:
+                        foreach (var room in GameManager.instance.allRoomList.Where(room => room.GetComponent<RoomStats>().GetRoomGroup() != 3))
+                        {
+                            availableRooms.Add(room);
+                        }
+                        break;
+                    case 2:
+                        foreach (GameObject room in GameManager.instance.allRoomList)
+                        {
+                            availableRooms.Add(room);
+                        }
+                        break;
+                }
+            }
+            else
+            {
+                foreach (GameObject room in GameManager.instance.allRoomList)
+                {
+                    availableRooms.Add(room);
+                }
+            }
+        }
+        else
+        {
+            foreach (GameObject room in GameManager.instance.allRoomList)
+            {
+                availableRooms.Add(room);
+            }
+        }
+
+        //CreateRoomSpawnButtons();
 
         //display shipbuilding tutorial
         Tutorial.Instance.SetCurrentTutorial(1, true);
@@ -84,7 +127,7 @@ public class SpawnObject : MonoBehaviour
         lastSpawned.GetComponent<RoomStats>().AddRoomStats();
         lastSpawned.GetComponent<ObjectMover>().enabled = false;
         lastSpawned.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
-        
+
         FindObjectOfType<ShipStats>().SaveShipStats();
         SavingLoadingManager.instance.SaveRooms();
     }
@@ -101,17 +144,17 @@ public class SpawnObject : MonoBehaviour
             //g is the button that is created
             GameObject roomButton = Instantiate(buttonPrefab, buttonPanel.transform);
             //g.transform.SetParent(buttonPanel.transform);
-            roomButton.GetComponent<Button>().onClick.AddListener(() => SpawnRoom(room)); //spawn a room upon clicking the button
+            roomButton.GetComponent<Button>().onClick.AddListener(() => SpawnRoom(room, 1)); //spawn a room upon clicking the button
             roomButton.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.name; //Set G's title to the room's name
             roomButton.transform.GetChild(3).gameObject.GetComponent<Image>().sprite = room.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
             roomButton.GetComponentInChildren<ShopTooltipUI>().SetRoomInfo(room.GetComponent<RoomStats>());
         }
     }
 
-    public void SpawnRoom(GameObject ga)
+    public void SpawnRoom(GameObject ga, int level)
     {
-        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price[ga.GetComponent<RoomStats>().GetRoomLevel() - 1] && 
-            FindObjectOfType<ShipStats>().EnergyRemaining.x >= ga.GetComponent<RoomStats>().minPower[ga.GetComponent<RoomStats>().GetRoomLevel() - 1]) //checks to see if the player has enough credits for the room
+        if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price[level - 1] &&
+            FindObjectOfType<ShipStats>().EnergyRemaining.x >= ga.GetComponent<RoomStats>().minPower[level - 1]) //checks to see if the player has enough credits for the room
         {
             if (lastSpawned == null || lastSpawned.GetComponent<ObjectMover>().enabled == false) //makes sure that the prior room is placed before the next room can be added
             {
@@ -120,6 +163,8 @@ public class SpawnObject : MonoBehaviour
                 Cursor.visible = false;
                 //HOVER UI does not happen when mouse is hidden
                 lastSpawned.GetComponent<ObjectMover>().TurnOnBeingDragged();
+
+                lastSpawned.GetComponent<RoomStats>().ChangeRoomLevel(level);
 
                 //rooms being placed will appear on top of other rooms that are already placed
                 lastSpawned.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
@@ -271,7 +316,7 @@ public class SpawnObject : MonoBehaviour
                 x = (int)Math.Round(gridPosBase.transform.position.x - gridSpots[i].y - 1);
             }
 
-        
+
             if (y < 5) //# needs to change to dynamically update with different ship sizes
             {
                 spots.rows[y + 1].row[x].gameObject.SetActive(true);

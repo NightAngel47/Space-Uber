@@ -47,6 +47,7 @@ public class RoomStats : MonoBehaviour
     public bool ignoreMorale;
 
     [SerializeField, Min(1)] private int roomLevel = 1;
+    [SerializeField] private int roomGroup;
 
     public bool usedRoom = false;
     [SerializeField] private bool isPowered = false;
@@ -101,7 +102,7 @@ public class RoomStats : MonoBehaviour
 
         foreach (Resource resource in resources)
         {
-            print(resource.resourceType.resourceName);
+            //print(resource.resourceType.resourceName);
             if (flatOutput)
             {
                 switch (resource.resourceType.Rt)
@@ -476,11 +477,35 @@ public class RoomStats : MonoBehaviour
     public void ReturnCrewOnRemove()
     {
         // reset the ship's crew stats back to before room was placed
-        shipStats.CrewCurrent += new Vector3(currentCrew, 0, currentCrew);
+        shipStats.CrewCurrent += new Vector3(0, 0, currentCrew);
     }
 
     public int GetRoomLevel()
     {
         return roomLevel;
+    }
+
+    /// <summary>
+    /// Subtracts or adds to the room level based on whether the up or down arrow was pressed
+    /// levelChange will be positive if adding or negative when subtracting
+    /// </summary>
+    public void ChangeRoomLevel(int levelChange)
+    {
+        roomLevel = levelChange;
+        
+        if (roomLevel > 3)
+        {
+            roomLevel = 3;
+        }
+        
+        if (roomLevel < 1)
+        {
+            roomLevel = 1;
+        }
+    }
+
+    public int GetRoomGroup()
+    {
+        return roomGroup;
     }
 }

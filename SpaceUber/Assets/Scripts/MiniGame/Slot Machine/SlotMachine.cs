@@ -5,6 +5,7 @@
  * Description: Manages slot machine mini game
  */
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -74,10 +75,10 @@ public class SlotMachine : MiniGame
     [SerializeField] Button mediumBetButton;
     [SerializeField] Button largeBetButton;
     [SerializeField] float crankReturnSpeed = 1;
-    [SerializeField] int smallBet = 1;
-    [SerializeField] int mediumBet = 5;
-    [SerializeField] int largeBet = 10;
-    [SerializeField] Payouts payouts;
+    [SerializeField] int[] smallBet = new int[3];
+    [SerializeField] int[] mediumBet = new int[3];
+    [SerializeField] int[] largeBet = new int[3];
+    [SerializeField] Payouts[] payouts = new Payouts[3];
     [SerializeField] PayoutTexts payoutTexts;
     [SerializeField] PayoutMultipliers payoutMultipliers;
     [SerializeField] float winDelay = 1;
@@ -87,17 +88,27 @@ public class SlotMachine : MiniGame
     bool gameStarted = false;
     bool gameFinished = false;
     ShipStats shipStats;
+    private int roomLevel;
     int payout = 0;
     BetAmount betAmount = BetAmount.Free;
     List<int> slotValues = new List<int>();
     bool sound = false;
 
-    void Start() 
+    IEnumerator Start() 
     {
         sound = false;
         shipStats = OverclockController.instance.ShipStats();
         foreach (SlotReel reel in reels) { reel.SetSpeed(reelSpeed); }
         foreach (SlotReel reel in reels) { reel.SetSpinAfterStopTime(spinAfterStopTime); }
+
+        yield return new WaitUntil(() => FindObjectOfType<OverclockController>());
+        
+        roomLevel = FindObjectOfType<OverclockController>().activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1;
+
+        smallBetButton.transform.GetChild(0).GetComponent<TMP_Text>().text = smallBet[roomLevel].ToString();
+        mediumBetButton.transform.GetChild(0).GetComponent<TMP_Text>().text = mediumBet[roomLevel].ToString();
+        largeBetButton.transform.GetChild(0).GetComponent<TMP_Text>().text = largeBet[roomLevel].ToString();
+        EnableDisableButtons();
     }
 
     void Update()
@@ -105,14 +116,13 @@ public class SlotMachine : MiniGame
         if (!bettingPanel.activeInHierarchy) { DetectCrank(); }
         AdjustReelSpeed();
         DetectEndOfGame();
-        EnableDisableButtons();
     }
 
     void EnableDisableButtons()
 	{
-        smallBetButton.enabled = (shipStats.Credits >= smallBet);
-        mediumBetButton.enabled = (shipStats.Credits >= mediumBet);
-        largeBetButton.enabled = (shipStats.Credits >= largeBet);
+        smallBetButton.enabled = (shipStats.Credits >= smallBet[roomLevel]);
+        mediumBetButton.enabled = (shipStats.Credits >= mediumBet[roomLevel]);
+        largeBetButton.enabled = (shipStats.Credits >= largeBet[roomLevel]);
     }
 
     void DetectCrank()
@@ -130,9 +140,9 @@ public class SlotMachine : MiniGame
             gameStarted = true;
             switch(betAmount)
 			{
-                case BetAmount.Small: shipStats.Credits += -smallBet;  break;
-                case BetAmount.Medium: shipStats.Credits += -mediumBet;  break;
-                case BetAmount.Large: shipStats.Credits += -largeBet;  break;
+                case BetAmount.Small: shipStats.Credits += -smallBet[roomLevel];  break;
+                case BetAmount.Medium: shipStats.Credits += -mediumBet[roomLevel];  break;
+                case BetAmount.Large: shipStats.Credits += -largeBet[roomLevel];  break;
 			}
             StartCoroutine(Spin()); 
         }
@@ -195,18 +205,18 @@ public class SlotMachine : MiniGame
 	{
         float multiplier = 0;
         GetMultiplier(ref multiplier);
-        payoutTexts.basePayout11.text = (payouts.basePayout11 * multiplier).ToString();
-        payoutTexts.basePayout111.text = (payouts.basePayout111 * multiplier).ToString();
-        payoutTexts.basePayout22.text = (payouts.basePayout22 * multiplier).ToString();
-        payoutTexts.basePayout222.text = (payouts.basePayout222 * multiplier).ToString();
-        payoutTexts.basePayout33.text = (payouts.basePayout33 * multiplier).ToString();
-        payoutTexts.basePayout333.text = (payouts.basePayout333 * multiplier).ToString();
-        payoutTexts.basePayout44.text = (payouts.basePayout44 * multiplier).ToString();
-        payoutTexts.basePayout444.text = (payouts.basePayout444 * multiplier).ToString();
-        payoutTexts.basePayout55.text = (payouts.basePayout55 * multiplier).ToString();
-        payoutTexts.basePayout555.text = (payouts.basePayout555 * multiplier).ToString();
-        payoutTexts.basePayout66.text = (payouts.basePayout66 * multiplier).ToString();
-        payoutTexts.basePayout666.text = (payouts.basePayout666 * multiplier).ToString();
+        payoutTexts.basePayout11.text = (payouts[roomLevel].basePayout11 * multiplier).ToString();
+        payoutTexts.basePayout111.text = (payouts[roomLevel].basePayout111 * multiplier).ToString();
+        payoutTexts.basePayout22.text = (payouts[roomLevel].basePayout22 * multiplier).ToString();
+        payoutTexts.basePayout222.text = (payouts[roomLevel].basePayout222 * multiplier).ToString();
+        payoutTexts.basePayout33.text = (payouts[roomLevel].basePayout33 * multiplier).ToString();
+        payoutTexts.basePayout333.text = (payouts[roomLevel].basePayout333 * multiplier).ToString();
+        payoutTexts.basePayout44.text = (payouts[roomLevel].basePayout44 * multiplier).ToString();
+        payoutTexts.basePayout444.text = (payouts[roomLevel].basePayout444 * multiplier).ToString();
+        payoutTexts.basePayout55.text = (payouts[roomLevel].basePayout55 * multiplier).ToString();
+        payoutTexts.basePayout555.text = (payouts[roomLevel].basePayout555 * multiplier).ToString();
+        payoutTexts.basePayout66.text = (payouts[roomLevel].basePayout66 * multiplier).ToString();
+        payoutTexts.basePayout666.text = (payouts[roomLevel].basePayout666 * multiplier).ToString();
     }
 
     void CountResults(ref int oneCount, ref int twoCount, ref int threeCount, ref int fourCount, ref int fiveCount, ref int sixCount)
@@ -227,12 +237,12 @@ public class SlotMachine : MiniGame
     
     int GetBasePayout(ref int oneCount, ref int twoCount, ref int threeCount, ref int fourCount, ref int fiveCount, ref int sixCount)
 	{
-        if (oneCount > 1) { if (oneCount > 2) { AudioManager.instance.PlaySFX("Pay111"); return payouts.basePayout111; } else { AudioManager.instance.PlaySFX("Pay11"); return payouts.basePayout11; } }
-        if (twoCount > 1) { if (twoCount > 2) { AudioManager.instance.PlaySFX("Pay222"); return payouts.basePayout222; } else { AudioManager.instance.PlaySFX("Pay22"); return payouts.basePayout22; } }
-        if (threeCount > 1) { if (threeCount > 2) { AudioManager.instance.PlaySFX("Pay333"); return payouts.basePayout333; } else { AudioManager.instance.PlaySFX("Pay33"); return payouts.basePayout33; } }
-        if (fourCount > 1) { if (fourCount > 2) { AudioManager.instance.PlaySFX("Pay444"); return payouts.basePayout444; } else { AudioManager.instance.PlaySFX("Pay44"); return payouts.basePayout22; } }
-        if (fiveCount > 1) { if (fiveCount > 2) { AudioManager.instance.PlaySFX("Pay555"); return payouts.basePayout555; } else { AudioManager.instance.PlaySFX("Pay55"); return payouts.basePayout55; } }
-        if (sixCount > 1) { if (sixCount > 2) { AudioManager.instance.PlaySFX("Pay666"); return payouts.basePayout666; } else { AudioManager.instance.PlaySFX("Pay66"); return payouts.basePayout66; } }
+        if (oneCount > 1) { if (oneCount > 2) { AudioManager.instance.PlaySFX("Pay111"); return payouts[roomLevel].basePayout111; } else { AudioManager.instance.PlaySFX("Pay11"); return payouts[roomLevel].basePayout11; } }
+        if (twoCount > 1) { if (twoCount > 2) { AudioManager.instance.PlaySFX("Pay222"); return payouts[roomLevel].basePayout222; } else { AudioManager.instance.PlaySFX("Pay22"); return payouts[roomLevel].basePayout22; } }
+        if (threeCount > 1) { if (threeCount > 2) { AudioManager.instance.PlaySFX("Pay333"); return payouts[roomLevel].basePayout333; } else { AudioManager.instance.PlaySFX("Pay33"); return payouts[roomLevel].basePayout33; } }
+        if (fourCount > 1) { if (fourCount > 2) { AudioManager.instance.PlaySFX("Pay444"); return payouts[roomLevel].basePayout444; } else { AudioManager.instance.PlaySFX("Pay44"); return payouts[roomLevel].basePayout22; } }
+        if (fiveCount > 1) { if (fiveCount > 2) { AudioManager.instance.PlaySFX("Pay555"); return payouts[roomLevel].basePayout555; } else { AudioManager.instance.PlaySFX("Pay55"); return payouts[roomLevel].basePayout55; } }
+        if (sixCount > 1) { if (sixCount > 2) { AudioManager.instance.PlaySFX("Pay666"); return payouts[roomLevel].basePayout666; } else { AudioManager.instance.PlaySFX("Pay66"); return payouts[roomLevel].basePayout66; } }
         AudioManager.instance.PlaySFX("Pay0"); return 0;
 	}
 

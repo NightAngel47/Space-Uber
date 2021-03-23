@@ -29,7 +29,7 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         if (Input.GetMouseButtonDown(0) && 
             GameManager.instance.currentGameState != InGameStates.ShipBuilding && 
-            !ObjectScript.roomIsHovered && !isMouseOverObject)
+            !ObjectScript.roomIsHovered && !isMouseOverObject && !Tutorial.Instance.GetTutorialActive())
         {
             ClosePanel();
         }

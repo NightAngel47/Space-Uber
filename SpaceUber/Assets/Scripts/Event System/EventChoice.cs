@@ -19,6 +19,8 @@ public class EventChoice
     private InkDriverBase driver;    
     private Story story;
     [SerializeField] private string choiceName;
+
+    [Tooltip("The description that will appear in the tool tip for this choice")]
     [SerializeField] public string description;
 
     public string ChoiceName => choiceName;
