@@ -171,7 +171,7 @@ public class ShipStats : MonoBehaviour
                 stats[(int) Stats.EnergyRemaining] = stats[(int) Stats.EnergyMax];
             }
 
-            shipStatsUI.UpdateEnergyUI(stats[(int) Stats.EnergyRemaining], stats[(int) Stats.EnergyUnassigned]);
+            shipStatsUI.UpdateEnergyUI(stats[(int) Stats.EnergyRemaining], stats[(int) Stats.EnergyUnassigned], stats[(int)Stats.EnergyMax]);
             shipStatsUI.ShowEnergyUIChange((int)(value.x - prevValue.x), (int)(value.z - prevValue.z));
         }
     }
@@ -408,7 +408,7 @@ public class ShipStats : MonoBehaviour
             stats = value;
 
             shipStatsUI.UpdateCreditsUI(stats[(int) Stats.Credits], stats[(int) Stats.Payout]);
-            shipStatsUI.UpdateEnergyUI(stats[(int) Stats.EnergyRemaining], stats[(int) Stats.EnergyMax]);
+            shipStatsUI.UpdateEnergyUI(stats[(int)Stats.EnergyRemaining], stats[(int)Stats.EnergyUnassigned], stats[(int)Stats.EnergyMax]);
             shipStatsUI.UpdateSecurityUI(stats[(int) Stats.Security]);
             shipStatsUI.UpdateShipWeaponsUI(stats[(int) Stats.ShipWeapons]);
             shipStatsUI.UpdateCrewUI(stats[(int) Stats.CrewUnassigned], stats[(int) Stats.CrewCurrent], stats[(int) Stats.CrewCapacity]);
