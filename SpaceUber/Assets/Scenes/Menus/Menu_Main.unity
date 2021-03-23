@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1978,8 +1978,8 @@ MonoBehaviour:
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
-    - message: Left click a room you've placed to pick it back up. You can rotate
-        a room you're holding with Q/E.
+    - message: Left click a room you've placed to pick it back up and click again
+        to place it down. You can rotate a room you're holding with Q/E.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
@@ -2049,14 +2049,6 @@ MonoBehaviour:
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
-    - message: 'You must be prepared to work with your crew effectively! Despite
-        any negative feelings you may have toward their ineffective, and frankly
-        disposable fleshy coils. '
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorArmorPlating: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
     - message: 'You may press the shipbuilding button in the lower left of the screen
         to go back to ship building if you realize you need to change your ship.  '
       ghostCursorHydroponics: 0
@@ -2075,32 +2067,32 @@ MonoBehaviour:
     tutorialFinished: 0
   - tutorialName: Morale/Overtime Tutorial
     tutorialMessages:
-    - message: 'Most rooms have an overtime button in the bottom of the room details
+    - message: Most rooms have an overtime button in the bottom of the room details
         panel. This button will trigger a minigame. Complete minigames to increase
-        output of a room temporarily. '
+        one of your ship's stats.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 1
-    - message: 'Unfortunately we still have to listen to our crew and try to make
-        them happy, lest they stage a mutiny against you. Keeping them happy will
-        at least make them somewhat efficient.  '
+    - message: Unfortunately we still have to listen to our crew and try to make
+        them happy. If not, they might unionize against you.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
-    - message: "The lower the crew\u2019s morale, the more likely they are to stage
-        a mutiny. If they do mutinize, they\u2019ll ask for some money. Greedy bastards. "
-      ghostCursorHydroponics: 0
+    - message: "The lower the crew\u2019s morale, the less efficently they work and
+        the more likely they are to stage a mutiny. If they do mutinize, they\u2019ll
+        ask for money. Greedy bastards. "
+      ghostCursorHydroponics: 1
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: "One way to keep them happy is to have a \u201Cconversation\u201D
-        with them. Clicking on a room with their respective resource will let you
-        talk to that crewmate about anything on their mind. "
+        with a leader. Click on a room to chat with a particular leader about anything
+        on their mind."
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
@@ -2138,8 +2130,8 @@ MonoBehaviour:
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
-    - message: "Always remember the bottom line. Make as much money as you can. Sometimes
-        you might have to sacrifice crew. Whatever. Like I said, they\u2019re disposable. "
+    - message: Always remember the bottom line. Make as much money as you can. Sometimes
+        you might have to sacrifice other things. Whatever.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
