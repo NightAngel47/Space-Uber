@@ -236,7 +236,7 @@ public class ObjectMover : MonoBehaviour
                 
                 gameObject.GetComponent<ObjectMover>().enabled = false;
                 
-                FindObjectOfType<EditCrewButton>().CheckForRooms();
+                FindObjectOfType<EditCrewButton>().CheckForRoomsCall();
             }
 
             else //If something is placed allow player to keep moving room

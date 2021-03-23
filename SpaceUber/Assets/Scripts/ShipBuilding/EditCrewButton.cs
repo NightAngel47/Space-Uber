@@ -23,12 +23,19 @@ public class EditCrewButton : MonoBehaviour
 
     private void Start()
     {
-        CheckForRooms();
+        CheckForRoomsCall();
     }
 
-    public void CheckForRooms()
+    public void CheckForRoomsCall()
     {
-        //Debug.Log(FindObjectsOfType<RoomStats>().Length);
+        StartCoroutine(CheckForRooms());
+    }
+
+    public IEnumerator CheckForRooms()
+    {
+        
+        yield return new WaitUntil(() => FindObjectOfType<SpotChecker>());
+        Debug.Log(FindObjectsOfType<RoomStats>().Length);
         editCrewButton.SetButtonInteractable(FindObjectsOfType<RoomStats>().Length > minRoomPlacedToContinue);
     }
 }
