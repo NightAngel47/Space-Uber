@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => additiveSceneManager && ship && jobManager);
-        if (SavingLoadingManager.instance.GetHasSave())
+        if (SavingLoadingManager.instance.GetHasSave() && SavingLoadingManager.instance.Load<bool>("hasRooms"))
         {
             LoadGameState();
             yield return new WaitForEndOfFrame();
