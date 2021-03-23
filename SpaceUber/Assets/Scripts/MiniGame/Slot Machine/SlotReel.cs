@@ -25,6 +25,7 @@ public class SlotReel : MonoBehaviour
     [Tooltip("Distance slot must be from focus before snaping in place.")]
     [SerializeField] float snapDistanceThreshold = 0.75f;
     Transform selectedSlot;
+    
     Slot slot;
     float reelSpeed;
     float spinAfterStopTime;
@@ -39,7 +40,11 @@ public class SlotReel : MonoBehaviour
     }
     void Update()
     {
-        if(spin)Spin();
+        if (spin)
+        {
+            Spin();
+        }
+        RandomizePosition();
         AdjustPosition();
     }
 
@@ -65,6 +70,27 @@ public class SlotReel : MonoBehaviour
         Vector2 lowerPos = new Vector2(x, lowerY - (direction * speedAdjustment * reelSpeed * Time.deltaTime));
         upperHalfReel.anchoredPosition = upperPos;
         lowerHalfReel.anchoredPosition = lowerPos;
+    }
+
+    private void RandomizePosition()
+    {
+        Transform[] newSlots = new Transform[slots.Length];
+
+        for(int i = 0; i < slots.Length; i++)
+        {
+            int randNum = Random.Range(0, newSlots.Length);
+
+            while (newSlots[randNum] != null)
+            {
+                randNum = Random.Range(0, newSlots.Length);
+            }
+            newSlots[randNum] = slots[i];
+            newSlots[randNum].parent = slots[i].parent;
+            newSlots[randNum].position = slots[i].position;
+            
+        }
+
+        slots = newSlots;
     }
 
     void AdjustPosition()
