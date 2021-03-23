@@ -28,6 +28,7 @@ public class EditCrewButton : MonoBehaviour
 
     public void CheckForRooms()
     {
+        //Debug.Log(FindObjectsOfType<RoomStats>().Length);
         editCrewButton.SetButtonInteractable(FindObjectsOfType<RoomStats>().Length > minRoomPlacedToContinue);
     }
 }
