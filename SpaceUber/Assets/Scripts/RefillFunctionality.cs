@@ -31,10 +31,10 @@ public class RefillFunctionality : MonoBehaviour
     [SerializeField, Foldout("Repair Hull")] private int hullDamage = 0;
     [SerializeField, Foldout("Repair Hull")] private int priceForHullRepair;
 
-    [SerializeField, Foldout("Repair Hull")] private ButtonTwoBehaviour energyRefillButton;
-    [SerializeField, Foldout("Repair Hull")] private TMP_Text[] energyToolTipText = new TMP_Text[2];
-    [SerializeField, Foldout("Repair Hull")] private int energyLost = 0;
-    [SerializeField, Foldout("Repair Hull")] private int priceForEnergyRefill;
+    [SerializeField, Foldout("Recharge Energy")] private ButtonTwoBehaviour energyRefillButton;
+    [SerializeField, Foldout("Recharge Energy")] private TMP_Text[] energyToolTipText = new TMP_Text[2];
+    [SerializeField, Foldout("Recharge Energy")] private int energyLost = 0;
+    [SerializeField, Foldout("Recharge Energy")] private int priceForEnergyRefill;
 
     public void Start()
     {

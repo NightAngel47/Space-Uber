@@ -2384,6 +2384,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltip: {fileID: 322320111}
+--- !u!114 &372032538 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8963481258049871963, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 372032534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &372032539 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8963481259285435665, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 372032534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &372032540 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3722645125476746485, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 372032534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372032536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a338377f2281a0141bc68ae71085168a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &390422864
 GameObject:
   m_ObjectHideFlags: 0
@@ -6726,10 +6762,10 @@ MonoBehaviour:
   - {fileID: 1210997807}
   hullDamage: 10
   priceForHullRepair: 100
-  energyRefillButton: {fileID: 0}
+  energyRefillButton: {fileID: 372032540}
   energyToolTipText:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 372032539}
+  - {fileID: 372032538}
   energyLost: 0
   priceForEnergyRefill: 0
 --- !u!1001 &992248575
