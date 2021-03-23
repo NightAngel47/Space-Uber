@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1970,29 +1970,23 @@ MonoBehaviour:
     tutorialFinished: 0
   - tutorialName: 'Ship Building Tutorial '
     tutorialMessages:
-    - message: 'Welcome to Shipbuilding! Click the tabs on the left to open the shop.
-        Click and drag rooms onto the ship to place them there. '
+    - message: 'Click the tabs on the left to open the shop. Click to select a room,
+        and click on the ship where you want to place the room. Notice that you cannot
+        place rooms on top of each other. '
       ghostCursorHydroponics: 1
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: Left click a room you've placed to pick it back up. You can rotate
+        a room you're holding with Q/E.
+      ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: 'Right click on a placed room to sell and remove it. The Sale price
         is reduced if the room went on at least one trip. '
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorArmorPlating: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: 'Left click a room you''ve placed to pick it back up. Don''t worry,
-        this will retain any assigned crew. You may press Q/E to rotate a room you
-        are holding. '
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorArmorPlating: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: 'Notice that you cannot place rooms on top of each other. '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
@@ -2024,8 +2018,7 @@ MonoBehaviour:
     tutorialFinished: 0
   - tutorialName: Crew Management Tutorial
     tutorialMessages:
-    - message: 'Welcome to Crew Management! Most rooms need human crew to operate
-        them. '
+    - message: 'Most rooms need human crew to operate them. '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
@@ -2040,9 +2033,9 @@ MonoBehaviour:
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 1
-    - message: 'You must be prepared to work with your crew effectively! Despite
-        any negative feelings you may have toward their ineffective, and frankly
-        disposable fleshy coils. '
+    - message: 'Assigning crew members to rooms increases room output. You can see
+        how many workers a room has by looking at the icons over the rooms. This
+        view can be enabled or disabled at any time by pressing Tab. '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
@@ -2050,15 +2043,15 @@ MonoBehaviour:
       selectRoom: 0
     - message: 'Note that crew can be replaced at a port if something "unfortunate"
         happens to them on a journey. You can also pay to have your ship repaired
-        if something truly unfortunate happens.  '
+        if it takes any damage between trips.  '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
-    - message: 'Assigning crew members to rooms increases room output. You can see
-        how many workers a room has by looking at the icons over the rooms. This
-        view can be enabled or disabled at any time by pressing Tab. '
+    - message: 'You must be prepared to work with your crew effectively! Despite
+        any negative feelings you may have toward their ineffective, and frankly
+        disposable fleshy coils. '
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
@@ -2082,7 +2075,7 @@ MonoBehaviour:
     tutorialFinished: 0
   - tutorialName: Morale/Overtime Tutorial
     tutorialMessages:
-    - message: 'Each room has an overtime button in the bottom of the room details
+    - message: 'Most rooms have an overtime button in the bottom of the room details
         panel. This button will trigger a minigame. Complete minigames to increase
         output of a room temporarily. '
       ghostCursorHydroponics: 0
@@ -2121,8 +2114,8 @@ MonoBehaviour:
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
-    - message: "You might come across an event whilst forcing overtime. You\u2019ll
-        be alerted of this so you can focus on the event.  "
+    - message: A problem might arise while forcing overtime. You'll be alerted of
+        this so you can focus on overtime.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
@@ -2139,8 +2132,7 @@ MonoBehaviour:
   - tutorialName: Random Events Tutorial
     tutorialMessages:
     - message: "Space is vast, so the unexpected might happen. It\u2019s up to you
-        to decide what to do. After some time passes, an event such as this one will
-        take place. "
+        to decide what to do if a problem arises."
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
