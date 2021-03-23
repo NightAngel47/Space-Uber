@@ -38,6 +38,8 @@ public class Tutorial : Singleton<Tutorial>
     [SerializeField] TextMeshProUGUI tutorialTextbox;
     [SerializeField] TextMeshProUGUI tutorialTitleTextbox;
     [SerializeField] GameObject tutorialPanel;
+    private Tick ticker;
+    private ProgressBarUI progressBar;
 
     [SerializeField] GameObject highlightPanel;
     [SerializeField] GameObject ghostCursor;
@@ -65,16 +67,17 @@ public class Tutorial : Singleton<Tutorial>
     {
         //if (SavingLoadingManager.instance.GetHasSave())
         //{
-           // LoadTutorialStatus();
+        // LoadTutorialStatus();
         //}
         //else
         //{
-            //for(int i = 0; i < tutorials.Length; i++)
-            //{
-                //tutorials[i].tutorialFinished = false;
-            //}
-            //SaveTutorialStatus();
+        //for(int i = 0; i < tutorials.Length; i++)
+        //{
+        //tutorials[i].tutorialFinished = false;
         //}
+        //SaveTutorialStatus();
+        //}
+        ticker = FindObjectOfType<Tick>();
 
         currentTutorial = tutorials[1];
     }
@@ -88,6 +91,12 @@ public class Tutorial : Singleton<Tutorial>
         if(Input.GetKeyDown(KeyCode.Backspace))
         {
             ContinueButton(true);
+        }
+
+        if(tutorialPanel.activeSelf == true && GameManager.instance.currentGameState == InGameStates.Events && !ticker.IsTickStopped())
+        {
+            Debug.LogError("stopping tick");
+            ticker.StopTickUpdate();
         }
 
         //Effects
@@ -148,9 +157,17 @@ public class Tutorial : Singleton<Tutorial>
     public void CloseCurrentTutorial(bool finished = true)
     {
         if(disableTutorial) return;
+
+        
         
         if (tutorialPanel.activeSelf == true)
         {
+            if (GameManager.instance.currentGameState == InGameStates.Events && ticker.IsTickStopped())
+            {
+                Debug.LogError("resuming tick");
+                ticker.StartTickUpdate();
+            }
+
             highlightPanel.SetActive(false);
             lerping = false;
             ghostCursor.SetActive(false);

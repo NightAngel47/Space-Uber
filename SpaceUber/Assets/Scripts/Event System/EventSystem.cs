@@ -150,7 +150,7 @@ public class EventSystem : MonoBehaviour
 			//start with one big chunk of time
 			while (timeBeforeEventCounter <= timeBeforeEventRoll)
 			{
-				if (!mutiny) // don't increment timer during mutiny
+				if (!mutiny && !Tutorial.Instance.GetTutorialActive()) // don't increment timer during mutiny
 				{
 					// count up during the grace period
 					timeBeforeEventCounter += Time.deltaTime;
@@ -235,7 +235,8 @@ public class EventSystem : MonoBehaviour
 	    }
 	    else
 	    {
-		    StartCoroutine(StartRandomEvent());
+			Tutorial.Instance.SetCurrentTutorial(4, true);
+			StartCoroutine(StartRandomEvent());
 	    }
     }
 
