@@ -22,7 +22,7 @@ public class TutorialNode
 [System.Serializable]
 public class TutorialMessage
 {
-    public string message;
+    [TextArea] public string message;
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorHydroponics;
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorChargingTerminal;
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorArmorPlating;
