@@ -161,14 +161,14 @@ public class ShipStats : MonoBehaviour
                 stats[(int) Stats.EnergyRemaining] = 0;
             }
 
-            if (stats[(int) Stats.EnergyMax] <= 0)
+            if (stats[(int) Stats.EnergyUnassigned] <= 0)
             {
-                stats[(int) Stats.EnergyMax] = 0;
+                stats[(int) Stats.EnergyUnassigned] = 0;
             }
 
-            if (stats[(int) Stats.EnergyRemaining] >= stats[(int) Stats.EnergyMax])
+            if (stats[(int) Stats.EnergyRemaining] >= stats[(int) Stats.EnergyUnassigned])
             {
-                stats[(int) Stats.EnergyRemaining] = stats[(int) Stats.EnergyMax];
+                stats[(int) Stats.EnergyRemaining] = stats[(int) Stats.EnergyUnassigned];
             }
 
             shipStatsUI.UpdateEnergyUI(stats[(int) Stats.EnergyRemaining], stats[(int) Stats.EnergyUnassigned], stats[(int)Stats.EnergyMax]);

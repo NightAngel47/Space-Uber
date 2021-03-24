@@ -1859,7 +1859,7 @@ PrefabInstance:
     - target: {fileID: 7495498588994081768, guid: 3af27a4637282454f90a3146e9714728,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7683995668862469559, guid: 3af27a4637282454f90a3146e9714728,
         type: 3}
@@ -2947,27 +2947,27 @@ PrefabInstance:
     - target: {fileID: 5715124202162254183, guid: fed0114e6e3c841bd801e8bfadf35223,
         type: 3}
       propertyPath: m_text
-      value: 'Hull Gained:'
+      value: 'Energy Gained:'
       objectReference: {fileID: 0}
     - target: {fileID: 5715124202478636945, guid: fed0114e6e3c841bd801e8bfadf35223,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5715124202478636945, guid: fed0114e6e3c841bd801e8bfadf35223,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5715124202478636945, guid: fed0114e6e3c841bd801e8bfadf35223,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 3.375
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5715124202478636945, guid: fed0114e6e3c841bd801e8bfadf35223,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.77847636
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5715124202478636950, guid: fed0114e6e3c841bd801e8bfadf35223,
         type: 3}
@@ -3092,17 +3092,17 @@ PrefabInstance:
     - target: {fileID: 5715124203488642176, guid: fed0114e6e3c841bd801e8bfadf35223,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5715124203488642176, guid: fed0114e6e3c841bd801e8bfadf35223,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5715124203488642176, guid: fed0114e6e3c841bd801e8bfadf35223,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 3.375
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5715124203488642177, guid: fed0114e6e3c841bd801e8bfadf35223,
         type: 3}
@@ -3122,7 +3122,7 @@ PrefabInstance:
     - target: {fileID: 5715124204032653351, guid: fed0114e6e3c841bd801e8bfadf35223,
         type: 3}
       propertyPath: m_text
-      value: Repair Ship
+      value: REcharge Energy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fed0114e6e3c841bd801e8bfadf35223, type: 3}
@@ -6766,8 +6766,8 @@ MonoBehaviour:
   energyToolTipText:
   - {fileID: 512125016}
   - {fileID: 512125015}
-  energyLost: 0
-  priceForEnergyRefill: 0
+  energyLost: 5
+  priceForEnergyRefill: 50
 --- !u!1001 &992248575
 PrefabInstance:
   m_ObjectHideFlags: 0
