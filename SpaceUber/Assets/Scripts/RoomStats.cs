@@ -331,8 +331,8 @@ public class RoomStats : MonoBehaviour
                 shipStats.Credits += -price[roomLevel - 1];
                 break;
             case ResourceDataTypes._Energy:
-                shipStats.EnergyRemaining += new Vector2(energy, energy);
-                shipStats.EnergyRemaining += new Vector2(-minPower[roomLevel - 1], 0);
+                shipStats.Energy += new Vector3(energy, energy, energy);
+                shipStats.Energy += new Vector3(-minPower[roomLevel - 1], 0, -minPower[roomLevel - 1]);
                 break;
             case ResourceDataTypes._Security:
                 shipStats.Security += security;
@@ -376,8 +376,8 @@ public class RoomStats : MonoBehaviour
                 }
                 break;
             case ResourceDataTypes._Energy:
-                shipStats.EnergyRemaining += new Vector2(-energy, -energy);
-                shipStats.EnergyRemaining += new Vector2(minPower[roomLevel - 1], 0);
+                shipStats.Energy += new Vector3(-energy, -energy, -energy);
+                shipStats.Energy += new Vector3(minPower[roomLevel - 1], 0, minPower[roomLevel - 1]);
                 break;
             case ResourceDataTypes._Security:
                 shipStats.Security += -security;
@@ -414,8 +414,8 @@ public class RoomStats : MonoBehaviour
         shipStats.roomBeingPlaced = gameObject;
         shipStats.Credits += -price[roomLevel - 1];
         shipStats.Payout += credits;
-        shipStats.EnergyRemaining += new Vector2(energy, energy);
-        shipStats.EnergyRemaining += new Vector2(-minPower[roomLevel - 1], 0);
+        shipStats.Energy += new Vector3(energy, energy, energy);
+        shipStats.Energy += new Vector3(-minPower[roomLevel - 1], 0, -minPower[roomLevel - 1]);
         shipStats.Security += security;
         shipStats.ShipWeapons += shipWeapons;
         shipStats.CrewCurrent += new Vector3(crew, crew, crew);
@@ -442,8 +442,8 @@ public class RoomStats : MonoBehaviour
         }
 
         shipStats.Payout += -credits;
-        shipStats.EnergyRemaining += new Vector2(-energy, -energy);
-        shipStats.EnergyRemaining += new Vector2(minPower[roomLevel - 1], 0);
+        shipStats.Energy += new Vector3(-energy, -energy, -energy);
+        shipStats.Energy += new Vector3(minPower[roomLevel - 1], 0, minPower[roomLevel - 1]);
         shipStats.Security += -security;
         shipStats.ShipWeapons += -shipWeapons;
         shipStats.CrewCurrent += new Vector3(-crew, -crew, -crew);
