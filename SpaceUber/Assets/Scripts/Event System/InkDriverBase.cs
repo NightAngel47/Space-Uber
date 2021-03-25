@@ -175,11 +175,11 @@ public class InkDriverBase : MonoBehaviour
     /// <returns>Nextchar, but replaced if necessary</returns>
     private char CheckChar(char nextChar)
     {
-        if (nextChar == '’')
+        if (nextChar == '’' || nextChar == '’' || nextChar == '‘' || nextChar == '’')
         {
             nextChar = '\'';
         }
-        if(nextChar == '“' || nextChar == '”')
+        if(nextChar == '“' || nextChar == '”' || nextChar == '“' || nextChar == '”')
         {
             nextChar = '\"';
         }
