@@ -88,7 +88,6 @@ public class SlotReel : MonoBehaviour
             instantiated[i] = false;
         }
 
-        Debug.Log(slotTypes.Length + " slots available");
         //instantiate upper slots
         for (int i = 0; i < slotTypes.Length; i++)
         {
@@ -101,7 +100,6 @@ public class SlotReel : MonoBehaviour
             Transform newSlot = GameObject.Instantiate(slotTypes[randNum], upperLayoutGroup).transform;
             slots[overallIndex] = newSlot;
             overallIndex++;
-            print("Overall index is " + overallIndex + " for " + gameObject.name);
         }
 
         //reset instantiated bool
