@@ -133,6 +133,68 @@ public class VideoSettingsManager : MonoBehaviour
         return 1;
     }
     
+    public void UpdateSettingsEarly()
+    {
+        for(int i = 0; i < dropdownMenus.Length; i++)
+        {
+            switch(i)
+            {
+                case (int) DropdownSettings.Resolution:
+                    int lastWidth = 0;
+                    for (int j = 0; j < Screen.resolutions.Length; j++)
+                    {
+                        if(Screen.resolutions[j].width != lastWidth)
+                        {
+                            lastWidth = Screen.resolutions[j].width;
+                            resolutions.Add(Screen.resolutions[j].width);
+                        }
+                    }
+                    break;
+                case (int) DropdownSettings.AspectRatio:
+                    for (int j = 0; j < Screen.resolutions.Length; j++)
+                    {
+                        bool exists = false;
+                        foreach(float ratio in ratios)
+                        {
+                            if(Screen.resolutions[j].width / (float) Screen.resolutions[j].height == ratio)
+                            {
+                                exists = true;
+                                break;
+                            }
+                        }
+                        
+                        if(!exists)
+                        {
+                            ratios.Add(Screen.resolutions[j].width / (float) Screen.resolutions[j].height);
+                        }
+                    }
+                    break;
+                case (int) DropdownSettings.TargetFrameRate:
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+        if(SavingLoadingManager.instance.GetHasSettingsSaved())
+        {
+            int[] dropdownSelections = SavingLoadingManager.instance.Load<int[]>("videoSettingsDropdowns");
+            bool[] checkboxSelections = SavingLoadingManager.instance.Load<bool[]>("videoSettingsCheckboxes");
+            
+            Screen.fullScreen = checkboxSelections[(int) CheckboxSettings.FullScreen];
+            Screen.SetResolution(resolutions[dropdownSelections[(int) DropdownSettings.Resolution]], (int) (resolutions[dropdownSelections[(int) DropdownSettings.Resolution]] / ratios[dropdownSelections[(int) DropdownSettings.AspectRatio]]), Screen.fullScreen);
+            QualitySettings.vSyncCount = checkboxSelections[(int) CheckboxSettings.VSync] ? 1 : 0;
+            Application.targetFrameRate = frameRateOptions[dropdownSelections[(int) DropdownSettings.TargetFrameRate]];
+        }
+        else
+        {
+            Screen.fullScreen = checkboxDefaults[(int) CheckboxSettings.FullScreen];
+            Screen.SetResolution(resolutions[dropdownDefaults[(int) DropdownSettings.Resolution]], (int) (resolutions[dropdownDefaults[(int) DropdownSettings.Resolution]] / ratios[dropdownDefaults[(int) DropdownSettings.AspectRatio]]), Screen.fullScreen);
+            QualitySettings.vSyncCount = checkboxDefaults[(int) CheckboxSettings.VSync] ? 1 : 0;
+            Application.targetFrameRate = frameRateOptions[dropdownDefaults[(int) DropdownSettings.TargetFrameRate]];
+        }
+    }
+    
     public void UpdateFullScreen()
     {
         checkboxValues[(int) CheckboxSettings.FullScreen] = checkboxes[(int) CheckboxSettings.FullScreen].isOn;
