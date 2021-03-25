@@ -554,7 +554,7 @@ public class ShipStats : MonoBehaviour
     }
 
     /// <summary>
-    /// Provides the number of rooms at each level. Supply a saved variable for each level
+    /// Provides the number of staffed rooms at each level. Supply a saved variable for each level
     /// </summary>
     /// <param name="roomName">The room you would like to search for</param>
     /// <param name="level1">How many level 1 rooms there will be</param>
@@ -569,7 +569,7 @@ public class ShipStats : MonoBehaviour
 
         foreach (RoomStats room in rooms)
         {
-            if (room.roomName == roomName)
+            if (room.roomName == roomName && room.currentCrew >= room.minCrew)
             {
                 switch(room.GetRoomLevel())
                 {
@@ -587,6 +587,5 @@ public class ShipStats : MonoBehaviour
             }
             
         }
-        print(level1 + " lv1 rooms, " + level2 + " lv2 rooms, and " + level3 + " lv3 rooms");
     }
 }

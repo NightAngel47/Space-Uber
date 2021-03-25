@@ -261,7 +261,8 @@ public class CrewManagement : MonoBehaviour
             }
             FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(roomStats.currentCrew);
             UpdateOutput();
-            room.GetComponent<RoomStats>().UpdateRoomStats(room.GetComponent<Resource>().resourceType);
+            if(room.GetComponent<RoomStats>().resources.Count > 0)
+                room.GetComponent<RoomStats>().UpdateRoomStats(room.GetComponent<Resource>().resourceType);
 
             CheckForMinCrew();
         }
