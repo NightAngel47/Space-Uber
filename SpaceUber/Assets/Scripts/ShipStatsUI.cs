@@ -67,6 +67,7 @@ public class ShipStatsUI : MonoBehaviour
 
     [SerializeField, Foldout("Ship Energy Tooltip")] private TMP_Text energyCurrentTooltipText;
     [SerializeField, Foldout("Ship Energy Tooltip")] private TMP_Text energyMaxTooltipText;
+    [SerializeField, Foldout("Ship Energy Tooltip")] private TMP_Text energyMaxTotalTooltipText;
 
     [SerializeField, Foldout("Ship Security Tooltip")] private TMP_Text securityCurrentTooltipText;
     [SerializeField, Foldout("Ship Weapons Tooltip")] private TMP_Text shipWeaponsCurrentTooltipText;
@@ -107,12 +108,13 @@ public class ShipStatsUI : MonoBehaviour
         }
     }
 
-    public void UpdateEnergyUI(int current, int max)
+    public void UpdateEnergyUI(int current, int unassigned, int max)
     {
         energyCurrentText.text = current.ToString();
-        energyMaxText.text = max.ToString();
+        energyMaxText.text = unassigned.ToString();
         energyCurrentTooltipText.text = current.ToString();
-        energyMaxTooltipText.text = max.ToString();
+        energyMaxTooltipText.text = unassigned.ToString();
+        energyMaxTotalTooltipText.text = max.ToString();
     }
 
     public void ShowEnergyUIChange(int currentChange, int maxChange)

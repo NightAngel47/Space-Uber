@@ -60,6 +60,10 @@ public class CrewManagement : MonoBehaviour
         {
             sceneButtons[0].GetComponent<Button>().interactable = false;
         }
+        //else
+        //{
+        //    sceneButtons[0].GetComponent<Button>().interactable = true;
+        //}
 
         // wait for object script to load if loading savefile
         yield return new WaitUntil((() => FindObjectOfType<ObjectScript>()));
