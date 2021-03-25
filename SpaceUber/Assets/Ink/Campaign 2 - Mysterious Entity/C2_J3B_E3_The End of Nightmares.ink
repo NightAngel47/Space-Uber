@@ -31,10 +31,9 @@ As you deliver your cargo, Kellis is pleased, not caring about what has happened
 You agree with Kuon that something should be done about this item, whatever it is. You remotely unlock its crate, and as it opens, the sound of whispering and murmuring fills the air. An obelisk stands high, various carved symbols and alien writings covering its surface, one of which is glowing an eerie red light.
 Kuon stares at the odd glow for a second, before speaking again. "This is it. I know it. This is what's causing all of this." He starts drawing his sidearm before you order him to stop, telling him that we need to think this through before acting.
 You could have him blast it. If he's right, it might be worth angering Kellis slightly to be able to deliver the relics safely. Even if he's wrong, you can simply feign ignorance as to what happened to the artifact.
-You could also drop the obelisk off somewhere for safe keeping. There are likely several abandoned space stations, as it's cheaper to just let an obsolete facility become a piece of space junk floating in the void than properly disposing of it. There might be something else you can do with the artifact...
+You could also drop the obelisk off somewhere for safe keeping. There are likely several abandoned space stations, as it's cheaper to just let an obsolete facility become a piece of space junk floating in the void than properly disposing of it.
 + [Blast the Obelisk] -> Blast
 + [Hide Obelisk] -> Hide
-+ [Sell Obelisk] -> Sell
 
 === Blast ===
 You give Kuon the go ahead to fire upon the glowing symbol on the side of the obelisk. The blast hits and a loud, inhuman scream fills the air. As a chunk of the obelisk crumbles onto the floor, the whispers stop, and the hold falls silent. Kuon sinks to the ground and passes out from exhaustion.
@@ -49,14 +48,4 @@ You decide to hide the obelisk on a nearby abandoned space station. Kuon and a f
 During the final hours of your journey, the members of your crew act like a weight has been lifted off their shoulders. No more wandering the halls in a fugue state. No more creepy visions or voices. No more nightmares.
 As you reach your destination and deliver your cargo, you decide to head off your bosses' questions about the obelisk. At first, some of them are furious at you having left the crown jewel of the collection on some abandoned space station. Cooler heads prevail though, especially once you explain what had been happening on the ship and reminding them that the container has a built-in tracking device.
 It's agreed that you thought quickly, and that you will face no significant punishment, although you won't receive the full amount of credits that was promised you.
--> END
-
-=== Sell ===
-You hit upon an idea. Loudon is still on board, and you bet he would still be able to contact Equinox. You have Kuon rouse him and bring him back to the hold. You tell him to send your rivals a message that you have reconsidered their offer.
-He seems hesitant to do so, likely having friends on the ship that he was working with during his hoax a while ago. You make it clear he has no choice in the matter: he will contact Equinox's ship or else he better learn to breathe in space really fast.
-As you prepare to meet up with their ship, you have Kuon put the obelisk back in its container. After checking that the tracking device on the crate is working and adding complex encryptions to prevent them from actually opening it, you meet up with them. The deal goes through without a hitch. Some extra credits in hand, you continue on your way.
-During the final hours of your journey, the members of your crew act like a weight has been lifted off their shoulders. No more wandering the halls in a fugue state. No more creepy visions or voices. No more nightmares.
-As you reach your destination and deliver your cargo, you decide to head off your bosses' questions about the obelisk. At first, some of them are furious at you having sold the crown jewel of the collection to a rival company. Cooler heads prevail though, especially once you explain what had been happening on your ship and reminding them that the container has a built-in tracking device. The fact that you made sure your rivals won't actually be able to open the crate also gives benefit.
-As they start planning how best to "secure" the artifact, a distress call from the rival ship is intercepted, the crew having damaged the engines and left the ship adrift. Sending out a "rescue mission," Kellis is able to reacquire the obelisk... as well as the bodies of the ship's crew.
-Pleased at this turn of events, your bosses promise to pay you in full, with the addition of a special tip for your crafty thinking and the setback you've caused your rivals.
 -> END

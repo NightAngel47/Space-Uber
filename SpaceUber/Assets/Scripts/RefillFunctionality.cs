@@ -31,6 +31,11 @@ public class RefillFunctionality : MonoBehaviour
     [SerializeField, Foldout("Repair Hull")] private int hullDamage = 0;
     [SerializeField, Foldout("Repair Hull")] private int priceForHullRepair;
 
+    [SerializeField, Foldout("Recharge Energy")] private ButtonTwoBehaviour energyRefillButton;
+    [SerializeField, Foldout("Recharge Energy")] private TMP_Text[] energyToolTipText = new TMP_Text[2];
+    [SerializeField, Foldout("Recharge Energy")] private int energyLost = 0;
+    [SerializeField, Foldout("Recharge Energy")] private int priceForEnergyRefill;
+
     public void Start()
     {
         shipStats = FindObjectOfType<ShipStats>();
@@ -43,8 +48,13 @@ public class RefillFunctionality : MonoBehaviour
         repairToolTipText[0].text = "-" + priceForHullRepair;
         repairToolTipText[1].text = hullDamage.ToString();
 
+        // set repair tooltip costs/gains
+        energyToolTipText[0].text = "-" + priceForEnergyRefill;
+        energyToolTipText[1].text = energyLost.ToString();
+
         CheckCanRefillCrew();
         CheckCanRepairShip();
+        CheckCanRefillEnergy();
     }
 
     public void RefillCrew()
@@ -67,6 +77,16 @@ public class RefillFunctionality : MonoBehaviour
         CheckCanRepairShip();
     }
 
+    public void RefillEnergy()
+    {
+        if (shipStats.Credits >= priceForEnergyRefill)
+        {
+            shipStats.Credits += -priceForEnergyRefill;
+            shipStats.Energy += new Vector3(energyLost, 0, 0);
+        }
+        CheckCanRefillEnergy();
+    }
+
     // if crew refill should deactivate
     private void CheckCanRefillCrew()
     {
@@ -79,6 +99,13 @@ public class RefillFunctionality : MonoBehaviour
     {
         // has enough credits and hull is less than max
         hullRepairButton.SetButtonInteractable(shipStats.Credits >= priceForHullRepair && shipStats.ShipHealthCurrent.x < shipStats.ShipHealthCurrent.y);
+    }
+
+    // if energy refill should deactivate
+    private void CheckCanRefillEnergy()
+    {
+        // has enough credits and energy is less than max
+        energyRefillButton.SetButtonInteractable(shipStats.Credits >= priceForEnergyRefill && shipStats.Energy.x < shipStats.Energy.z);
     }
 
     /// <summary>

@@ -5705,7 +5705,148 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240497702}
+  m_GameObject: {fileID: 660907013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c5a54d562c61047b4ff314dc2bd1a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miniGameSceneName: 5
+  statModification: 1
+  gameWinScreen: {fileID: 1489027047}
+  winText: {fileID: 1489027046}
+  winMessage: 
+  failMessage: You lose
+  Successes:
+  - Arp 1
+  - Arp 2
+  - Arp 3
+  - Arp 4
+  - Arp 5
+  - Arp 6
+  - Arp 7
+  - Arp 8
+  - Arp 9
+  - Arp 10
+  - Arp 11
+  - Arp 12
+  - Arp 13
+  - Arp 14
+  - Arp 15
+  - Arp 16
+  - Arp 17
+  - Arp 18
+  - Arp 19
+  - Arp 20
+  - Arp 21
+  - Arp 22
+  - Arp 23
+  - Arp 24
+  - Arp 25
+  - Arp 26
+  - Arp 27
+  - Arp 28
+  - Arp 29
+  - Arp 30
+  - Arp 31
+  - Arp 32
+  - Arp 33
+  - Arp 34
+  - Arp 35
+  - Arp 36
+  - Arp 37
+  - Arp 38
+  - Arp 39
+  - Arp 40
+  - Arp 41
+  - Arp 42
+  - Arp 43
+  - Arp 44
+  - Arp 45
+  reels:
+  - {fileID: 77465756}
+  - {fileID: 257534692}
+  - {fileID: 253908604}
+  spinAfterStopTime: 0
+  reelSpeed: 600
+  firstStopSpeedMultiplier: 1.1
+  secondStopSpeedMultiplier: 1.2
+  bettingPanel: {fileID: 380129770}
+  crank: {fileID: 149218397}
+  smallBetButton: {fileID: 25075573}
+  mediumBetButton: {fileID: 311832278}
+  largeBetButton: {fileID: 173550457}
+  crankReturnSpeed: 5
+  smallBet: 0a0000000f00000014000000
+  mediumBet: 0f000000170000001e000000
+  largeBet: 140000001e00000028000000
+  payouts:
+  - basePayout111: 80
+    basePayout222: 40
+    basePayout333: 20
+    basePayout444: 10
+    basePayout555: 10
+    basePayout666: 10
+    basePayout11: 24
+    basePayout22: 18
+    basePayout33: 12
+    basePayout44: 6
+    basePayout55: 6
+    basePayout66: 6
+  - basePayout111: 120
+    basePayout222: 60
+    basePayout333: 30
+    basePayout444: 15
+    basePayout555: 15
+    basePayout666: 15
+    basePayout11: 36
+    basePayout22: 27
+    basePayout33: 18
+    basePayout44: 9
+    basePayout55: 9
+    basePayout66: 9
+  - basePayout111: 160
+    basePayout222: 80
+    basePayout333: 40
+    basePayout444: 20
+    basePayout555: 20
+    basePayout666: 20
+    basePayout11: 48
+    basePayout22: 36
+    basePayout33: 24
+    basePayout44: 12
+    basePayout55: 12
+    basePayout66: 12
+  payoutTexts:
+    basePayout111: {fileID: 1240497704}
+    basePayout222: {fileID: 1905803524}
+    basePayout333: {fileID: 1530562814}
+    basePayout444: {fileID: 855378854}
+    basePayout555: {fileID: 494759119}
+    basePayout666: {fileID: 2110644198}
+    basePayout11: {fileID: 1319854871}
+    basePayout22: {fileID: 1196716275}
+    basePayout33: {fileID: 2104880514}
+    basePayout44: {fileID: 1410987502}
+    basePayout55: {fileID: 1550882397}
+    basePayout66: {fileID: 1806003284}
+  payoutMultipliers:
+    freePayoutMultiplier: 0.5
+    smallPayoutMultiplier: 1
+    mediumPayoutMultiplier: 1.5
+    largePayoutMultiplier: 2
+  winDelay: 1
+  buttons:
+  - {fileID: 802578574}
+  - {fileID: 1113949356}
+  - {fileID: 270400184}
+--- !u!4 &660907015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660907013}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}

@@ -117,6 +117,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1640593747910936885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6016304904928124888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfec50bf890af17479ff38a5eee6322e, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  resourceType: {fileID: 11400000, guid: 55b417f89e336ee4ea9b06e0b724b013, type: 2}
+  amount: 140000002300000032000000
+  activeAmount: 0
+  minAmount: 0
 --- !u!1 &8646312440052709566
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,6 +648,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 724125383989439506, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1215871102662997994, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_IsActive
@@ -679,6 +700,11 @@ PrefabInstance:
       value:
       objectReference: {fileID: 2397118123195013090, guid: b05c7d568e913c94db077561555d6b02,
         type: 3}
+    - target: {fileID: 3754232717758567594, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3793781089566335948, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_Sprite
@@ -690,6 +716,16 @@ PrefabInstance:
       propertyPath: m_Type
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3902402536555532295, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902402536555532295, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: price.Array.size
@@ -699,6 +735,11 @@ PrefabInstance:
         type: 3}
       propertyPath: minPower.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: CharacterEvents.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -740,6 +781,12 @@ PrefabInstance:
       propertyPath: flatOutput
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: CharacterEvents.Array.data[0]
+      value:
+      objectReference: {fileID: 2397118123195013090, guid: b05c7d568e913c94db077561555d6b02,
+        type: 3}
     - target: {fileID: 4570362770752095651, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -849,7 +896,7 @@ PrefabInstance:
     - target: {fileID: 5766507605158571097, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5881200089251463111, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -2562,7 +2609,7 @@ PrefabInstance:
     - target: {fileID: 8858348380208273083, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d75062b47e0b75b4384d6d8e19141c62, type: 3}
