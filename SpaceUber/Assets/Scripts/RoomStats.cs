@@ -58,8 +58,6 @@ public class RoomStats : MonoBehaviour
 
     private Camera cam;
 
-    public List<GameObject> CharacterEvents;
-
     private void Awake()
     {
         cam = Camera.main;
