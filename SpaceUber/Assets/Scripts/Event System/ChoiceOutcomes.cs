@@ -97,7 +97,7 @@ public class ChoiceOutcomes
                             break;
                         case ResourceDataTypes._Energy:
                             
-                            ship.EnergyRemaining += new Vector2(amount, 0);
+                            ship.Energy += new Vector3(amount, 0, 0);
                             SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
 
                             if (amount < 0)
@@ -261,7 +261,7 @@ public class ChoiceOutcomes
 
                             break;
                         case ResourceDataTypes._Energy:
-                            ship.EnergyRemaining += new Vector2(amount, 0);
+                            ship.Energy += new Vector3(amount, 0, 0);
                             SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
 
                             if (amount < 0)

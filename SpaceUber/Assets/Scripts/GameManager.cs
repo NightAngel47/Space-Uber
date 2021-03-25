@@ -109,8 +109,9 @@ public class GameManager : MonoBehaviour
             switch (currentGameState)
             {
                 case InGameStates.ShipBuilding:
-                    SavingLoadingManager.instance.LoadRoomLevels();
+                    
                     yield return new WaitUntil(() => FindObjectOfType<SpotChecker>());
+                    SavingLoadingManager.instance.LoadRoomLevels();
                     break;
                 case InGameStates.CrewManagement:
                     yield return new WaitUntil(() => FindObjectOfType<CrewManagement>());
