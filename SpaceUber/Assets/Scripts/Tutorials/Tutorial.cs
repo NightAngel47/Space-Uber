@@ -65,18 +65,18 @@ public class Tutorial : Singleton<Tutorial>
 
     private void Start()
     {
-        //if (SavingLoadingManager.instance.GetHasSave())
-        //{
-        // LoadTutorialStatus();
-        //}
-        //else
-        //{
-        //for(int i = 0; i < tutorials.Length; i++)
-        //{
-        //tutorials[i].tutorialFinished = false;
-        //}
-        //SaveTutorialStatus();
-        //}
+        if (SavingLoadingManager.instance.GetHasSave())
+        {
+            LoadTutorialStatus();
+        }
+        else
+        {
+            for(int i = 0; i < tutorials.Length; i++)
+            {
+                tutorials[i].tutorialFinished = false;
+            }
+            SaveTutorialStatus();
+        }
         ticker = FindObjectOfType<Tick>();
 
         currentTutorial = tutorials[1];
@@ -175,6 +175,7 @@ public class Tutorial : Singleton<Tutorial>
             index = 0;
 
             currentTutorial.tutorialFinished = finished;
+            SaveTutorialStatus();
         }
     }
 
