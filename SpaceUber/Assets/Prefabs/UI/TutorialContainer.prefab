@@ -1,5 +1,291 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &647003245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 647003246}
+  - component: {fileID: 647003250}
+  - component: {fileID: 647003249}
+  - component: {fileID: 647003248}
+  - component: {fileID: 647003247}
+  m_Layer: 5
+  m_Name: Button (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &647003246
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647003245}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 825559284872539234}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -203.00002, y: -38.910015}
+  m_SizeDelta: {x: 43.807556, y: 22.01424}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &647003250
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647003245}
+  m_CullTransparentMesh: 0
+--- !u!114 &647003249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647003245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &647003248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647003245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 647003249}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 647003247}
+        m_MethodName: ChangePage
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &647003247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647003245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c2e7d30c9b916249a4aa0dea8c6cb2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  relevantTutorial: -1
+--- !u!1 &1028466855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1028466856}
+  - component: {fileID: 1028466860}
+  - component: {fileID: 1028466859}
+  - component: {fileID: 1028466858}
+  - component: {fileID: 1028466857}
+  m_Layer: 5
+  m_Name: Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1028466856
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028466855}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 825559284872539234}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 203.6, y: -38.910015}
+  m_SizeDelta: {x: 43.807556, y: 22.01424}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1028466860
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028466855}
+  m_CullTransparentMesh: 0
+--- !u!114 &1028466859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028466855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1028466858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028466855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1028466859}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1028466857}
+        m_MethodName: ChangePage
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1028466857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028466855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c2e7d30c9b916249a4aa0dea8c6cb2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  relevantTutorial: -1
 --- !u!1 &825559284221778105
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,7 +715,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 825559285136344543}
+      - m_Target: {fileID: 0}
         m_MethodName: ContinueButton
         m_Mode: 6
         m_Arguments:
@@ -450,6 +736,7 @@ GameObject:
   m_Component:
   - component: {fileID: 825559284524304697}
   - component: {fileID: 825559284524304694}
+  - component: {fileID: 1320066754}
   m_Layer: 0
   m_Name: TutorialContainer
   m_TagString: Untagged
@@ -485,6 +772,213 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea66d0fbe97a49d42befd9a057740141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1320066754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825559284524304695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb4557eecc7c024a88e49fae4209860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableTutorial: 0
+  tutorials:
+  - tutorialName: Basic Tutorial
+    tutorialMessages: []
+    tutorialFinished: 0
+  - tutorialName: 'Ship Building Tutorial '
+    tutorialMessages:
+    - message: Click the tabs on the left to open the shop. Click to select a room,
+        and click on the ship where you want to place the room. Notice that you cannot
+        place rooms on top of each other.
+      ghostCursorHydroponics: 1
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "Left click a room you've placed to pick it back up and click again\r
+        to place it down. You can rotate a room you're holding with Q/E."
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "Right click on a placed room to sell and remove it. The Sale price\r
+        is reduced if the room went on at least one trip."
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "Rooms cost money and power to operate, but are essential to make\r
+        it to your destination. They provide your ship with stats. Hover over the\r
+        icons directly above this tutorial to see what the stats do."
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 1
+      selectRoom: 0
+    - message: "Some rooms have restrictions on where they can be placed. These rooms\r
+        will highlight potential placement locations in blue when they''re dragged\r
+        from the left menu."
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 1
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "You may press the question mark on the bottom right of the shop to\r
+        replay this tutorial at any time. Good luck!"
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    tutorialFinished: 0
+  - tutorialName: Crew Management Tutorial
+    tutorialMessages:
+    - message: Welcome to Crew Management! Most rooms need human crew to operate
+        them.
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "Click on a room to open the room details window and assign/unassign\r
+        crew members to that room. Notice you can only can assign crew members up\r
+        to the number of max crew of that room, or until your unassigned crew are\r
+        depleted."
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 1
+    - message: "Assigning crew members to rooms increases room output. You can see\r
+        how many workers a room has by looking at the icons over the rooms. This\r
+        view can be enabled or disabled at any time by pressing Tab."
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "Note that crew can be replaced at a port if something \"unfortunate\"\r
+        happens to them on a journey. You can also pay to have your ship repaired\r
+        if it takes any damage between trips."
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "You may press the shipbuilding button in the lower left of the screen\r
+        to go back to ship building if you realize you need to change your ship."
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "You may also click the question mark on the top left of the crew\r
+        management screen to replay this tutorial at any time. When you're ready\r
+        to go, click the \"begin job\" button."
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    tutorialFinished: 0
+  - tutorialName: Morale/Overtime Tutorial
+    tutorialMessages:
+    - message: "Most rooms have an overtime button in the bottom of the room details\r
+        panel. This button will trigger a minigame. Complete minigames to increase\r
+        one of your ship's stats."
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 1
+    - message: "Unfortunately we still have to listen to our crew and try to make\r
+        them happy. If not, they might unionize against you."
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "The lower the crew's morale, the less efficently they work and\r
+        the more likely they are to stage a mutiny. If they do mutinize, they'll\r
+        ask for money. Greedy bastards."
+      ghostCursorHydroponics: 1
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "One way to keep them happy is to have a \"Cconversation\"\r with
+        a leader. Click on a room to chat with a particular leader about anything\r
+        on their mind."
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "A good conversation will leave them happy and increase morale, but\r
+        a bad one could make them wish you didn't talk to them in the first\r place.
+        Flex those AI social algorithms!"
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "A problem might arise while forcing overtime. You'll be alerted of\r
+        this so you can focus on overtime."
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "You may replay this tutorial at any time by clicking the question\r
+        mark at the top right of the room details menu."
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    tutorialFinished: 0
+  - tutorialName: Random Events Tutorial
+    tutorialMessages:
+    - message: "Space is vast, so the unexpected might happen. It's up to you\r to
+        decide what to do if a problem arises."
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "Always remember the bottom line. Make as much money as you can. Sometimes\r
+        you might have to sacrifice other things. Whatever."
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    - message: "But remember that people will remember the choices you make and it\r
+        may affect things down the line."
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    tutorialFinished: 0
+  tutorialTextbox: {fileID: 825559285198709878}
+  tutorialTitleTextbox: {fileID: 825559284221778107}
+  tutorialPanel: {fileID: 825559284872539235}
+  highlightPanel: {fileID: 825559285100429355}
+  ghostCursor: {fileID: 825559285510343568}
+  timeStartedLerping: 0
+  lerpTime: 2
+  vecInsideShip: {fileID: 825559285791779253}
+  vecShopPanel: {fileID: 825559285932546392}
+  vecStatsLeft: {fileID: 825559285236420873}
+  vecStatsRight: {fileID: 825559285072042065}
+  vecRoomDetails: {fileID: 825559284364677880}
 --- !u!1 &825559284872539235
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +1014,8 @@ RectTransform:
   - {fileID: 825559286249664235}
   - {fileID: 825559285105215909}
   - {fileID: 825559284995381535}
+  - {fileID: 1028466856}
+  - {fileID: 647003246}
   m_Father: {fileID: 825559284283077372}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -550,7 +1046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.13207549, g: 0.12397652, b: 0.12397652, a: 0.99215686}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -577,7 +1073,7 @@ GameObject:
   - component: {fileID: 825559284995381985}
   - component: {fileID: 825559284995381534}
   m_Layer: 5
-  m_Name: Panel (2)
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -600,7 +1096,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -203.5, y: -39.31}
+  m_AnchoredPosition: {x: -203.5, y: -39.31006}
   m_SizeDelta: {x: -406.63882, y: -78.00531}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &825559284995381985
@@ -625,7 +1121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -800,7 +1296,7 @@ GameObject:
   - component: {fileID: 825559285105215911}
   - component: {fileID: 825559285105215908}
   m_Layer: 5
-  m_Name: Panel (1)
+  m_Name: Enter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -823,7 +1319,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 203.8, y: -39.31}
+  m_AnchoredPosition: {x: 203.80005, y: -39.31006}
   m_SizeDelta: {x: -406.63882, y: -78.00531}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &825559285105215911
@@ -848,7 +1344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -872,7 +1368,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 825559285136344481}
-  - component: {fileID: 825559285136344543}
   m_Layer: 0
   m_Name: Tutorial
   m_TagString: Untagged
@@ -894,203 +1389,6 @@ Transform:
   m_Father: {fileID: 825559284283077372}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &825559285136344543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 825559285136344540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbb4557eecc7c024a88e49fae4209860, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tutorials:
-  - tutorialName: Basic Tutorial
-    tutorialMessages: []
-    tutorialFinished: 0
-  - tutorialName: 'Ship Building Tutorial '
-    tutorialMessages:
-    - message: 'Welcome to Shipbuilding! Click the tabs on the left to open the shop.
-        Click and drag rooms onto the ship to place them there. '
-      ghostCursorHydroponics: 1
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: 'Right click on a placed room to sell and remove it. The Sale price
-        is reduced if the room went on at least one trip. '
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: 'Left click a room you''ve placed to pick it back up. Don''t worry,
-        this will retain any assigned crew. You may press Q/E to rotate a room you
-        are holding. '
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: 'Notice that you cannot place rooms on top of each other. '
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: 'Rooms cost money and power to operate, but are essential to make
-        it to your destination. They provide your ship with stats. Hover over the
-        icons directly above this tutorial to see what the stats do.  '
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 1
-      selectRoom: 0
-    - message: 'Some rooms have restrictions on where they can be placed. These rooms
-        will highlight potential placement locations in blue when they''re dragged
-        from the left menu.  '
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 1
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: 'You may press the question mark on the bottom right of the shop to
-        replay this tutorial at any time. Good luck! '
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    tutorialFinished: 0
-  - tutorialName: Crew Management Tutorial
-    tutorialMessages:
-    - message: 'Welcome to Crew Management! Most rooms need human crew to operate
-        them. '
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: 'Click on a room to open the room details window and assign/unassign
-        crew members to that room. Notice you can only can assign crew members up
-        to the number of max crew of that room, or until your unassigned crew are
-        depleted. '
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 1
-    - message: 'You must be prepared to work with your crew effectively! Despite
-        any negative feelings you may have toward their ineffective, and frankly
-        disposable fleshy coils. '
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: 'Note that crew can be replaced at a port if something "unfortunate"
-        happens to them on a journey. You can also pay to have your ship repaired
-        if something truly unfortunate happens.  '
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: 'Assigning crew members to rooms increases room output. You can see
-        how many workers a room has by looking at the icons over the rooms. This
-        view can be enabled or disabled at any time by pressing Tab. '
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: 'You may press the shipbuilding button in the lower left of the screen
-        to go back to ship building if you realize you need to change your ship.  '
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: "You may also click the question mark on the top left of the crew
-        management screen to replay this tutorial at any time. When you\u2019re ready
-        to go, click the \u201Cbegin job\u201D button. "
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    tutorialFinished: 0
-  - tutorialName: Morale/Overtime Tutorial
-    tutorialMessages:
-    - message: 'Each room has an overtime button in the bottom of the room details
-        panel. This button will trigger a minigame. Complete minigames to increase
-        output of a room temporarily. '
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 1
-    - message: 'Unfortunately we still have to listen to our crew and try to make
-        them happy, lest they stage a mutiny against you. Keeping them happy will
-        at least make them somewhat efficient.  '
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: "The lower the crew\u2019s morale, the more likely they are to stage
-        a mutiny. If they do mutinize, they\u2019ll ask for some money. Greedy bastards. "
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: "One way to keep them happy is to have a \u201Cconversation\u201D
-        with them. Clicking on a room with their respective resource will let you
-        talk to that crewmate about anything on their mind. "
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: "A good conversation will leave them happy and increase morale, but
-        a bad one could make them wish you didn\u2019t talk to them in the first
-        place. Flex those AI social algorithms!  "
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: "You might come across an event whilst forcing overtime. You\u2019ll
-        be alerted of this so you can focus on the event.  "
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: 'You may replay this tutorial at any time by clicking the question
-        mark at the top right of the room details menu.  '
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    tutorialFinished: 0
-  - tutorialName: Random Events Tutorial
-    tutorialMessages:
-    - message: "Space is vast, so the unexpected might happen. It\u2019s up to you
-        to decide what to do. After some time passes, an event such as this one will
-        take place. "
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: "Always remember the bottom line. Make as much money as you can. Sometimes
-        you might have to sacrifice crew. Whatever. Like I said, they\u2019re disposable. "
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    - message: But remember that people will remember the choices you make and it
-        may affect things down the line.
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorStatBar: 0
-      selectRoom: 0
-    tutorialFinished: 0
-  tutorialTextbox: {fileID: 825559285198709878}
-  tutorialTitleTextbox: {fileID: 825559284221778107}
-  tutorialPanel: {fileID: 825559284872539235}
-  highlightPanel: {fileID: 825559285100429355}
-  ghostCursor: {fileID: 825559285510343568}
-  timeStartedLerping: 0
-  lerpTime: 2
-  vecInsideShip: {fileID: 825559285791779253}
-  vecShopPanel: {fileID: 825559285932546392}
-  vecStatsLeft: {fileID: 825559285236420873}
-  vecStatsRight: {fileID: 825559285072042065}
-  vecRoomDetails: {fileID: 825559284364677880}
 --- !u!1 &825559285193365320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1983,7 +2281,7 @@ GameObject:
   - component: {fileID: 825559286249664237}
   - component: {fileID: 825559286249664234}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2031,7 +2329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

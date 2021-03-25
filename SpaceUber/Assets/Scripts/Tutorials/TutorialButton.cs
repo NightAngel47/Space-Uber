@@ -20,8 +20,13 @@ public class TutorialButton : MonoBehaviour
         Tutorial.Instance.SetCurrentTutorial(relevantTutorial, false);
     }
 
-    public void EndCurrentTutorial()
+    public void EndCurrentTutorial(bool finished = true)
     {
-        Tutorial.Instance.CloseCurrentTutorial();
+        Tutorial.Instance.CloseCurrentTutorial(finished);
+    }
+
+    public void ChangePage(bool back = false)
+    {
+        Tutorial.Instance.ContinueButton(back);
     }
 }

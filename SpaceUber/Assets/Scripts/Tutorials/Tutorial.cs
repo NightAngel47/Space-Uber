@@ -1,7 +1,7 @@
 /* Frank Calabrese
  * 3/6/21
  * Tutorial.cs
- * Singleton class responsible for holding and tracking all tutorials. 
+ * Singleton class responsible for holding and tracking all tutorials.
  * Will display specified tutorial when setCurrentTutorial(tutorial ID) is called
  */
 using System.Collections;
@@ -16,13 +16,13 @@ public class TutorialNode
 {
     public string tutorialName;
     public TutorialMessage[] tutorialMessages;
-    public bool tutorialFinished; 
+    public bool tutorialFinished;
 }
 
 [System.Serializable]
 public class TutorialMessage
 {
-    public string message;
+    [TextArea] public string message;
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorHydroponics;
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorChargingTerminal;
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorArmorPlating;
@@ -38,11 +38,13 @@ public class Tutorial : Singleton<Tutorial>
     [SerializeField] TextMeshProUGUI tutorialTextbox;
     [SerializeField] TextMeshProUGUI tutorialTitleTextbox;
     [SerializeField] GameObject tutorialPanel;
+    private Tick ticker;
+    private ProgressBarUI progressBar;
 
     [SerializeField] GameObject highlightPanel;
     [SerializeField] GameObject ghostCursor;
 
-    
+
     [SerializeField] float timeStartedLerping;
     [SerializeField] float lerpTime;
     private bool lerping = false;
@@ -63,6 +65,20 @@ public class Tutorial : Singleton<Tutorial>
 
     private void Start()
     {
+        //if (SavingLoadingManager.instance.GetHasSave())
+        //{
+        // LoadTutorialStatus();
+        //}
+        //else
+        //{
+        //for(int i = 0; i < tutorials.Length; i++)
+        //{
+        //tutorials[i].tutorialFinished = false;
+        //}
+        //SaveTutorialStatus();
+        //}
+        ticker = FindObjectOfType<Tick>();
+
         currentTutorial = tutorials[1];
     }
 
@@ -75,6 +91,12 @@ public class Tutorial : Singleton<Tutorial>
         if(Input.GetKeyDown(KeyCode.Backspace))
         {
             ContinueButton(true);
+        }
+
+        if(tutorialPanel.activeSelf == true && GameManager.instance.currentGameState == InGameStates.Events && !ticker.IsTickStopped())
+        {
+            Debug.LogError("stopping tick");
+            ticker.StopTickUpdate();
         }
 
         //Effects
@@ -114,7 +136,7 @@ public class Tutorial : Singleton<Tutorial>
     public void SetCurrentTutorial(int tutorialID, bool forcedTutorial)
     {
         if(disableTutorial) return;
-        
+
         //if you're already in a tutorial, stop.
         if (tutorialPanel.activeSelf == true) return;
         //if the game tries to force a tutorial the player has already seen, stop.
@@ -131,20 +153,28 @@ public class Tutorial : Singleton<Tutorial>
         }
 
     }
-    
-    public void CloseCurrentTutorial()
+
+    public void CloseCurrentTutorial(bool finished = true)
     {
         if(disableTutorial) return;
-        
+
+
+
         if (tutorialPanel.activeSelf == true)
         {
+            if (GameManager.instance.currentGameState == InGameStates.Events && ticker.IsTickStopped())
+            {
+                Debug.LogError("resuming tick");
+                ticker.StartTickUpdate();
+            }
+
             highlightPanel.SetActive(false);
             lerping = false;
             ghostCursor.SetActive(false);
             tutorialPanel.SetActive(false);
             index = 0;
 
-            currentTutorial.tutorialFinished = true;
+            currentTutorial.tutorialFinished = finished;
         }
     }
 
@@ -159,16 +189,16 @@ public class Tutorial : Singleton<Tutorial>
     public void UnHighlightScreenLocation()
     {
         if(disableTutorial) return;
-        
+
         highlightPanel.SetActive(false);
     }
 
     public void ContinueButton(bool back = false)
     {
         if(disableTutorial) return;
-        
+
         if (tutorialPanel.activeSelf == true)
-        { 
+        {
             tutorialPrerequisitesComplete = false;
 
             //forward
@@ -176,7 +206,7 @@ public class Tutorial : Singleton<Tutorial>
             {
                 index++;
                 tutorialTextbox.text = currentTutorial.tutorialMessages[index].message;
-                
+
                 StopLerping();
                 UnHighlightScreenLocation();
             }
@@ -234,6 +264,15 @@ public class Tutorial : Singleton<Tutorial>
         }
         if(lerping == false) BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
     }
+    private void GhostArmorPlating()
+    {
+        if (tutorialPrerequisitesComplete == false)
+        {
+            if (FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "HullDurability") FindObjectOfType<ShipBuildingShop>().ToResourceTab("HullDurability");
+            tutorialPrerequisitesComplete = true;
+        }
+        if (lerping == false) BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
+    }
     private void GhostCursorChargingTerminal()
     {
         if (tutorialPrerequisitesComplete == false)
@@ -270,6 +309,20 @@ public class Tutorial : Singleton<Tutorial>
             FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
             tutorialPrerequisitesComplete = true;
         }
+    }
+
+    public bool GetTutorialActive()
+    {
+        return tutorialPanel.activeSelf;
+    }
+
+    public void SaveTutorialStatus()
+    {
+        SavingLoadingManager.instance.Save<TutorialNode[]>("tutorials", tutorials);
+    }
+    public void LoadTutorialStatus()
+    {
+        tutorials = SavingLoadingManager.instance.Load<TutorialNode[]>("tutorials");
     }
 
 }
