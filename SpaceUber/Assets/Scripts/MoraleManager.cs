@@ -83,7 +83,11 @@ public class MoraleManager : MonoBehaviour
             int medCount3 = 0;
 
             ship.RoomsOfTypeLevel("Medbay", medCount1, medCount2, medCount3);
-            int modifier = medCount1 * MedBayBoost1 + medCount2 * MedBayBoost2;
+            int modifier = 0;
+            if (value > 0)
+            {
+                modifier = medCount1 * MedBayBoost1 + medCount2 * MedBayBoost2;
+            }
 
             crewMorale = value + modifier;
 
