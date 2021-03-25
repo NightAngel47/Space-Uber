@@ -414,10 +414,10 @@ public class CheatsMenu : MonoBehaviour
                 MoraleManager.instance.CrewMorale = morale;
                 break;
             case 9:
-                thisShip.EnergyRemaining += new Vector2(amount, 0);
+                thisShip.Energy += new Vector3(amount, 0, 0);
                 break;
             case 10:
-                thisShip.EnergyRemaining += new Vector2(0, amount);
+                thisShip.Energy += new Vector3(0, amount, amount);
                 break;
             case 11:
                 thisShip.ShipHealthCurrent += new Vector2(amount, 0);

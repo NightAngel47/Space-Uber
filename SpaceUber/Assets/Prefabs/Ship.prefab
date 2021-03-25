@@ -97,27 +97,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34392dd657a58b644a069c7ba801d184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingCredits: 700
+  startingCredits: 500
   startingEnergy: 0
   startingSecurity: 0
   startingShipWeapons: 0
   startingCrew: 5
   startingFood: 0
   startingShipHealth: 100
-  startingMorale: 100
   cStats: {fileID: 0}
-  cantPlaceText: {fileID: 0}
-  statIcons:
-  - {fileID: 21300000, guid: 2bbae6bacf5f9da4697f3b6af192e12a, type: 3}
-  - {fileID: 21300000, guid: 302a744cd487b454f929803a063a0e46, type: 3}
-  - {fileID: 21300000, guid: 4285b6f4aa4fdd64c9d571a6e596b4cd, type: 3}
-  - {fileID: 21300000, guid: 19fdf56f9832ad64bb59df8a09898f9e, type: 3}
-  - {fileID: 21300000, guid: eb3218bd599b7834da6e92588a3f5200, type: 3}
-  - {fileID: 21300000, guid: 0d68944ad67f4054e9a9bbeaf51611ae, type: 3}
-  - {fileID: 21300000, guid: 0debb1fcbafb17643af5888234dd7323, type: 3}
   roomBeingPlaced: {fileID: 0}
-  daysSince: 0
-  daysSinceDisplay: {fileID: 0}
 --- !u!114 &6273300031087700530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creditsCurrentText: {fileID: 0}
-  creditsTickText: {fileID: 0}
+  creditsPayoutText: {fileID: 0}
   energyCurrentText: {fileID: 0}
   energyMaxText: {fileID: 0}
   securityCurrentText: {fileID: 0}
@@ -140,8 +128,15 @@ MonoBehaviour:
   crewMaxText: {fileID: 0}
   foodCurrentText: {fileID: 0}
   foodTickText: {fileID: 0}
+  foodTickSignText: {fileID: 0}
   hullCurrentText: {fileID: 0}
   hullMaxText: {fileID: 0}
+  crewMoraleImage: {fileID: 0}
+  crewMoraleIcon1: {fileID: 0}
+  crewMoraleIcon2: {fileID: 0}
+  crewMoraleIcon3: {fileID: 0}
+  crewMoraleIcon4: {fileID: 0}
+  crewMoraleIcon5: {fileID: 0}
   statChangeText: {fileID: 6562358761702154872, guid: d79e5343c58215647b7544fa825da881,
     type: 3}
   statChangeTextRoom: {fileID: 4251841664551629733, guid: 2e1ecebb32c11984db0d6a1ebc26b2ad,
@@ -157,7 +152,7 @@ MonoBehaviour:
   hullTextRed: {r: 1, g: 0, b: 0, a: 1}
   hullWarningAmount: 25
   creditsCurrentTooltipText: {fileID: 0}
-  creditsTickTooltipText: {fileID: 0}
+  creditsPayoutTooltipText: {fileID: 0}
   energyCurrentTooltipText: {fileID: 0}
   energyMaxTooltipText: {fileID: 0}
   securityCurrentTooltipText: {fileID: 0}
@@ -306,3 +301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27743803be26794e959492babbcafcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kuonApprovalInit: 0
+  lanriApprovalInit: 0
+  lexaApprovalInit: 0
+  mateoApprovalInit: 0
+  ripleyApprovalInit: 0
