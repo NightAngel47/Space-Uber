@@ -42,4 +42,9 @@ public class ButtonTwoBehaviour : MonoBehaviour
             }
         }
     }
+
+    public void GoToEvent()
+    {
+        button.onClick.AddListener(EventSystem.instance.SkipToEvent);
+    }
 }
