@@ -47,6 +47,11 @@ public class ButtonTwoBehaviour : MonoBehaviour
         }
     }
     
+    public void GoToEvent()
+    {
+        button.onClick.AddListener(EventSystem.instance.SkipToEvent);
+    }
+    
     public void ToggleInteractable()
     {
         SetButtonInteractable(!button.interactable);
