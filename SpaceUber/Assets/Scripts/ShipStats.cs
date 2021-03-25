@@ -528,7 +528,8 @@ public class ShipStats : MonoBehaviour
 
     public int[] GetCoreStats()
     {
-        int[] coreStats = { stats[(int) Stats.CrewUnassigned], (stats[(int) Stats.ShipHealthMax] - stats[(int) Stats.ShipHealthCurrent]), stats[(int) Stats.Food], stats[(int) Stats.FoodPerTick], stats[(int) Stats.Security], stats[(int) Stats.ShipWeapons] };
+        int[] coreStats = { stats[(int) Stats.CrewCapacity] - stats[(int) Stats.CrewCurrent], (stats[(int) Stats.ShipHealthMax] - stats[(int) Stats.ShipHealthCurrent]), stats[(int) Stats.Food], stats[(int) Stats.FoodPerTick],
+            stats[(int) Stats.Security], stats[(int) Stats.ShipWeapons], stats[(int) Stats.Credits], stats[(int) Stats.EnergyRemaining] - stats[(int) Stats.EnergyUnassigned], stats[(int) Stats.CrewCurrent] };
 
         return coreStats;
     }

@@ -54,7 +54,7 @@ public class RefillFunctionality : MonoBehaviour
 
         CheckCanRefillCrew();
         CheckCanRepairShip();
-        CheckCanRefillEnergy
+        CheckCanRefillEnergy();
     }
 
     public void RefillCrew()

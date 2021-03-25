@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class RoomUnlockUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI rname;
-    [SerializeField] Image resourceIcon;
+    [SerializeField] Image resourceIconLeft;
+    [SerializeField] Image resourceIconRight;
     [SerializeField] Image roomSprite;
     [SerializeField] TextMeshProUGUI description;
     [SerializeField] TextMeshProUGUI needsCreditsOld;
@@ -72,11 +73,13 @@ public class RoomUnlockUI : MonoBehaviour
 
         if (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() > 0 || (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() == 0 && FindObjectOfType<CampaignManager>().GetCurrentJobIndex() == 2)) //room is getting a new level
         {
+            levelOld.text = (GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1).ToString();
             needsCreditsOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString(); //-2 to get old level
             needsPowerOld.text = roomStats.minPower[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
             needsCrewOld.text = roomStats.minCrew.ToString() + "-" + roomStats.maxCrew.ToString();
             producesAmountOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
 
+            levelNew.text = (GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())).ToString();
             needsCreditsNew.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())].ToString(); //-1 to get current level
             needsPowerNew.text = roomStats.minPower[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())].ToString();
             needsCrewNew.text = roomStats.minCrew.ToString() + "-" + roomStats.maxCrew.ToString();
@@ -101,7 +104,8 @@ public class RoomUnlockUI : MonoBehaviour
 
         if (roomStats.gameObject.TryGetComponent(out Resource resource))
         {
-            resourceIcon.sprite = resource.resourceType.resourceIcon;
+            resourceIconLeft.sprite = resource.resourceType.resourceIcon;
+            resourceIconRight.sprite = resource.resourceType.resourceIcon;
             producesResourceOld.text = resource.resourceType.resourceName;
 
             if (roomStats.GetRoomLevel() > 1)
@@ -117,7 +121,8 @@ public class RoomUnlockUI : MonoBehaviour
         }
         else
         {
-            resourceIcon.gameObject.SetActive(false);
+            resourceIconLeft.gameObject.SetActive(false);
+            resourceIconRight.gameObject.SetActive(false);
             producesResourceOld.text = "No Production";
             producesAmountOld.text = "";
         }
