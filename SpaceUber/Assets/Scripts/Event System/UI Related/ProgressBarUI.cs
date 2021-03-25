@@ -28,6 +28,8 @@ public class ProgressBarUI : MonoBehaviour
         eventSystem = FindObjectOfType<EventSystem>();
     }
 
+
+
     public void StartProgress()
     {
         switch (EventSystem.instance.overallEventIndex)
@@ -69,6 +71,8 @@ public class ProgressBarUI : MonoBehaviour
     {
         while (maxSize > line.offsetMax.y)
         {
+            yield return new WaitWhile(()=>EventSystem.instance.mutiny || Tutorial.Instance.GetTutorialActive());
+
             float scale = 0;
             if(EventSystem.instance.overallEventIndex > 0)
             {                
