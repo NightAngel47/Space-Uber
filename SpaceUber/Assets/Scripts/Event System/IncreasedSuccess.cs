@@ -46,7 +46,7 @@ public class IncreasedSuccess
                 shipStat = (int)thisShip.ShipHealthCurrent.x;
                 break;
             case ResourceDataTypes._Energy:
-                shipStat = (int)thisShip.EnergyRemaining.x;
+                shipStat = (int)thisShip.Energy.x;
                 break;
             case ResourceDataTypes._Crew:
                 shipStat = (int)thisShip.CrewCurrent.x;

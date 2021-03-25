@@ -25,13 +25,15 @@ public class Tick : MonoBehaviour
 
     public void StartTickUpdate()
     {
-        Tutorial.Instance.SetCurrentTutorial(3, true);
+        
 
         secondsPassed = 0;
         if (tickCoroutine == null)
         {
             tickCoroutine = StartCoroutine(TickUpdate());
         }
+
+        Tutorial.Instance.SetCurrentTutorial(3, true);
     }
 
     public void StopTickUpdate()
