@@ -73,13 +73,13 @@ public class RoomUnlockUI : MonoBehaviour
 
         if (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() > 0 || (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() == 0 && FindObjectOfType<CampaignManager>().GetCurrentJobIndex() == 2)) //room is getting a new level
         {
-            levelOld.text = (GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1).ToString();
+            levelOld.text = "Level " + (GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())).ToString();
             needsCreditsOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString(); //-2 to get old level
             needsPowerOld.text = roomStats.minPower[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
             needsCrewOld.text = roomStats.minCrew.ToString() + "-" + roomStats.maxCrew.ToString();
             producesAmountOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
 
-            levelNew.text = (GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())).ToString();
+            levelNew.text = "Level " + (GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) + 1).ToString();
             needsCreditsNew.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())].ToString(); //-1 to get current level
             needsPowerNew.text = roomStats.minPower[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())].ToString();
             needsCrewNew.text = roomStats.minCrew.ToString() + "-" + roomStats.maxCrew.ToString();
@@ -90,7 +90,7 @@ public class RoomUnlockUI : MonoBehaviour
         }
         else //Getting a entire new room, just getting one the new rooms stats
         {
-            needsCreditsOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString(); 
+            needsCreditsOld.text = "Level " + roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString(); 
             needsPowerOld.text = roomStats.minPower[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
             needsCrewOld.text = roomStats.minCrew.ToString() + "-" + roomStats.maxCrew.ToString();
             producesAmountOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
