@@ -102,15 +102,16 @@ public class GameManager : MonoBehaviour
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => additiveSceneManager && ship && jobManager);
-        if (SavingLoadingManager.instance.GetHasSave())
+        if (SavingLoadingManager.instance.GetHasSave() && SavingLoadingManager.instance.Load<bool>("hasRooms"))
         {
             LoadGameState();
             yield return new WaitForEndOfFrame();
             switch (currentGameState)
             {
                 case InGameStates.ShipBuilding:
-                    SavingLoadingManager.instance.LoadRoomLevels();
+                    
                     yield return new WaitUntil(() => FindObjectOfType<SpotChecker>());
+                    SavingLoadingManager.instance.LoadRoomLevels();
                     break;
                 case InGameStates.CrewManagement:
                     yield return new WaitUntil(() => FindObjectOfType<CrewManagement>());

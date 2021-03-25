@@ -168,13 +168,18 @@ public class InkDriverBase : MonoBehaviour
         donePrinting = true;
     }
 
+    /// <summary>
+    /// If the character in Ink is an undisplay-able character, swap it out with its proper version
+    /// </summary>
+    /// <param name="nextChar">The next character to be checked</param>
+    /// <returns>Nextchar, but replaced if necessary</returns>
     private char CheckChar(char nextChar)
     {
-        if (nextChar == '’')
+        if (nextChar == '’' || nextChar == '’' || nextChar == '‘' || nextChar == '’')
         {
             nextChar = '\'';
         }
-        if(nextChar == '“' || nextChar == '”')
+        if(nextChar == '“' || nextChar == '”' || nextChar == '“' || nextChar == '”')
         {
             nextChar = '\"';
         }

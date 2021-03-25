@@ -35,6 +35,7 @@ public class SavingLoadingManager : MonoBehaviour
         if(!hasSave)
         {
             SaveData.ToBinaryFile<bool>(projectName, "hasSave", true);
+            Save<bool>("hasRooms", false);
         }
     }
     
@@ -82,6 +83,7 @@ public class SavingLoadingManager : MonoBehaviour
         }
         
         Save<RoomData[]>("roomData", data);
+        Save<bool>("hasRooms", true);
     }
     
     public void LoadRooms()
