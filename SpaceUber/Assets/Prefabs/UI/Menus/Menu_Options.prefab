@@ -878,6 +878,7 @@ GameObject:
   - component: {fileID: 1078961507}
   - component: {fileID: 1078961510}
   - component: {fileID: 1078961508}
+  - component: {fileID: 3221938208739239939}
   m_Layer: 5
   m_Name: Mini Game Dropdown
   m_TagString: Untagged
@@ -978,8 +979,39 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3221938208739239939}
+        m_MethodName: UpdateMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
+--- !u!114 &3221938208739239939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078961506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5443f2f82b5414aa8780cbf5099cf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miniGameControls:
+  - {fileID: 187400256}
+  - {fileID: 1292446226}
+  - {fileID: 242667117}
+  - {fileID: 1277998456}
+  - {fileID: 1657608278}
+  - {fileID: 1103775804}
+  defaultIndex: 0
 --- !u!1 &1103775804
 GameObject:
   m_ObjectHideFlags: 0
