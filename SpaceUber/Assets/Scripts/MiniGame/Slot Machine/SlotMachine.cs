@@ -103,7 +103,8 @@ public class SlotMachine : MiniGame
 
         yield return new WaitUntil(() => FindObjectOfType<OverclockController>());
         
-        roomLevel = FindObjectOfType<OverclockController>().activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1;
+        if(FindObjectOfType<OverclockController>().activeRoom)
+            roomLevel = FindObjectOfType<OverclockController>().activeRoom.GetComponent<RoomStats>().GetRoomLevel() - 1;
 
         smallBetButton.transform.GetChild(0).GetComponent<TMP_Text>().text = smallBet[roomLevel].ToString();
         mediumBetButton.transform.GetChild(0).GetComponent<TMP_Text>().text = mediumBet[roomLevel].ToString();
@@ -282,7 +283,7 @@ public class SlotMachine : MiniGame
 	{
         foreach (SlotReel reel in reels) 
         {
-            reel.StartSpining();
+            reel.StartSpinning();
             yield return new WaitForSeconds(0.3f);
         }
 	}
