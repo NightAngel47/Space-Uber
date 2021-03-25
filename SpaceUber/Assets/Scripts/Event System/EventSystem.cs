@@ -78,8 +78,9 @@ public class EventSystem : MonoBehaviour
 	public bool isCheatEvent = false;
 	[HideInInspector] public bool chatting = false; //Whether or not the player is talking to a character
 	[HideInInspector] public bool mutiny;
+    [HideInInspector] public bool eventButtonSpawn = false; //Makes it so that the Go To Event button checks for it it can be interactable
 
-	[SerializeField, Tooltip("The maximum cooldown for a character chat in ticks.")] public int chatCooldown = 3;
+    [SerializeField, Tooltip("The maximum cooldown for a character chat in ticks.")] public int chatCooldown = 3;
 
 	private void Awake()
 	{
@@ -91,7 +92,7 @@ public class EventSystem : MonoBehaviour
 		tick = FindObjectOfType<Tick>();
 		asm = FindObjectOfType<AdditiveSceneManager>();
 		campMan = GetComponent<CampaignManager>();
-	}
+    }
 
     /// <summary>
     /// Plays job intro
@@ -115,8 +116,8 @@ public class EventSystem : MonoBehaviour
 		if (intro != null)
         {
 			// Load Event_General Scene for upcoming event
-			asm.LoadSceneMerged("Event_General");
-			yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_General").isLoaded);
+			asm.LoadSceneMerged("Event_NoChoices");
+			yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_NoChoices").isLoaded);
 
 			eventCanvas = FindObjectOfType<EventCanvas>();
 
@@ -143,7 +144,11 @@ public class EventSystem : MonoBehaviour
 			// wait till any active event is cleared before starting event timer for next event
 			yield return new WaitWhile((() => eventActive));
 
-			tick.StartTickUpdate();
+            asm.LoadSceneMerged("Event_Prompt"); //Give option to start next event
+            yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
+            
+            eventPromptButton = FindObjectOfType<EventPromptButton>();
+            tick.StartTickUpdate();
             progressBar.StartProgress();
             chanceOfEvent = startingEventChance;
 
@@ -155,15 +160,12 @@ public class EventSystem : MonoBehaviour
 					// count up during the grace period
 					timeBeforeEventCounter += Time.deltaTime;
 				}
-
-				yield return new WaitForEndOfFrame();
+                
+                yield return new WaitForEndOfFrame();
 			}
 
-            asm.LoadSceneMerged("Event_Prompt"); //Give option to start next event
-            yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
-
-            eventPromptButton = FindObjectOfType<EventPromptButton>();
-            eventPromptButton.eventButton.onClick.AddListener(SkipToEvent);
+            eventButtonSpawn = true;
+            eventPromptButton.eventButton.GoToEvent();
 
             // roll for next event unless skipped to it
             while (!skippedToEvent && eventRollCounter <= eventChanceFreq)
@@ -194,8 +196,8 @@ public class EventSystem : MonoBehaviour
             tick.StopTickUpdate();
             FindObjectOfType<CrewManagement>().TurnOffPanel();
 
-			//wait until done with minigame and/or character event
-			yield return new WaitUntil(() => !OverclockController.instance.overclocking && !chatting);
+            //wait until done with minigame and/or character event
+            yield return new WaitUntil(() => !OverclockController.instance.overclocking && !chatting);
 
             //If event button was not clicked ahead of time
             if (nextEventLockedIn && SceneManager.GetSceneByName("Event_Prompt").isLoaded)
@@ -208,8 +210,9 @@ public class EventSystem : MonoBehaviour
 
             // wait for event to conclude
             yield return new WaitWhile((() => eventActive));
-		}
-
+            eventButtonSpawn = false;
+        }
+        
         tick.StopTickUpdate();
 	}
 
@@ -223,10 +226,6 @@ public class EventSystem : MonoBehaviour
 
 	    skippedToEvent = true;
 	    asm.UnloadScene("Event_Prompt");
-
-	    //get rid of and reset sonar objects
-	    //eventWarning.DeactivateWarning();
-	    //sonarObjects.SetActive(false);
 
 	    //if it's an even-numbered event, do a story
 	    if (overallEventIndex % 2 == 1 && overallEventIndex != 0)
@@ -399,8 +398,9 @@ public class EventSystem : MonoBehaviour
 		AnalyticsManager.OnEventComplete(concludedEvent);
 		Destroy(eventInstance);
 
-		//Go back to travel scene
-		asm.UnloadScene("Event_General");
+        //Go back to travel scene
+        asm.UnloadScene("Event_NoChoices");
+        asm.UnloadScene("Event_General");
 		asm.UnloadScene("Event_CharacterFocused");
 		AudioManager.instance.PlayMusicWithTransition("General Theme");
 
