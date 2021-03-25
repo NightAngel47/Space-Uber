@@ -263,9 +263,9 @@ public class CrewManagement : MonoBehaviour
                 shipStats.CrewCurrent += new Vector3(0, 0, -1);
                 minAssignableCrew--;
             }
-            FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(roomStats.currentCrew);
-            UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats(room.GetComponent<Resource>().resourceType);
+            UpdateOutput();
+            FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(roomStats.currentCrew);
 
             CheckForMinCrew();
         }
@@ -278,9 +278,10 @@ public class CrewManagement : MonoBehaviour
             roomStats.UpdateCurrentCrew(-1);
             shipStats.CrewCurrent += new Vector3(0, 0, 1);
             minAssignableCrew++;
-            FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(roomStats.currentCrew);
-            UpdateOutput();
+            
             room.GetComponent<RoomStats>().UpdateRoomStats(room.GetComponent<Resource>().resourceType);
+            UpdateOutput();
+            FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(roomStats.currentCrew);
 
             CheckForMinCrew();
         }
