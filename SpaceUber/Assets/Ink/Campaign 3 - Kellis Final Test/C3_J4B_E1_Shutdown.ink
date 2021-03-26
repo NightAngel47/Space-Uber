@@ -3,6 +3,7 @@
 *[Accept Your Fate]
 ->Accept_Death
 *[Refuse]
+->Refuse_1
 
 ==Accept_Death==
 -Player dies and the game ends
@@ -26,13 +27,19 @@
 -You escape from Kellis' clutches and are on the run
 -The critical characters talk about how they're going to be on the run for the rest of their lives
 -Lexa says that you all know Kellis' secrets, and that you need to strike back before your intel is outdated
-*[Fight Back]
-->Rebellion
-*[Fade Into Obscurity]
+*[Fight for the Sake of Survival]
+->Rebellion_1
+*[Fight for the Crew]
+->Rebellion_2
+*[Turn Yourself In]
 ->Cowardice
 
-==Rebellion==
+==Rebellion_1==
 -You decide to rebel against Kellis, lead into Event 2.
+->END
+
+==Rebellion_2==
+-You decide to rebel against Kellis, but with <i>this</i> flavor text, lead into Event 2.
 ->END
 
 ==Cowardice==
