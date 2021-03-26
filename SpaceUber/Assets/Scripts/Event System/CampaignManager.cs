@@ -615,7 +615,12 @@ public class CampaignManager : MonoBehaviour
             MateoPlan,
             LanriRipleyPlan,
             KuonPlan,
-            ResearchShared
+            ResearchShared,
+            DisintegrationRay,
+            WarpShields,
+            ExoSuits,
+            RealityBomb,
+            AncientHackingDevice
         }
 
         private bool[] ftNarrativeVariables = new bool[10];

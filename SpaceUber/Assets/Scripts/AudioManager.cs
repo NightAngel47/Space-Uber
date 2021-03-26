@@ -91,11 +91,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] Sound[] ambientTracks = null;
     [SerializeField] RadioStationTrackList[] radioTracks = null;
     [SerializeField] List<Sound> currentlyPlayingAmbience = new List<Sound>();
-    [Range(0f, 1f)] public float masterVolume = 1;
-    [Range(0f, 1f)] public float sfxVolume = 1;
-    [Range(0f, 1f)] public float musicVolume = 1;
-    [Range(0f, 1f)] public float ambienceVolume = 1;
-    [Range(0f, 1f)] public float radioVolume = 0;
     [Tooltip("Time it takes for current track to fade out")]
     [SerializeField] float fadeOutTime = 1;
     [Tooltip("Time window of overlap of current track fade out and next track fade in")]
@@ -105,8 +100,73 @@ public class AudioManager : MonoBehaviour
 
     Sound currentlyPlayingMusic = null;
     Sound currentlyPlayingStation = null;
+    
+    private float masterVolume = 1;
+    private float sfxVolume = 1;
+    private float musicVolume = 1;
+    private float ambienceVolume = 1;
+    private float radioVolume = 0;
 
-    public bool isMuted = false;
+    private bool isMuted = false;
+
+    public float MasterVolume
+    {
+        get => masterVolume;
+        set
+        {
+            masterVolume = value;
+            UpdateCurrentVolumes();
+        }
+    }
+    public float SfxVolume
+    {
+        get => sfxVolume;
+        set
+        {
+            sfxVolume = value;
+            UpdateCurrentVolumes();
+        }
+    }
+    
+    public float MusicVolume
+    {
+        get => musicVolume;
+        set
+        {
+            musicVolume = value;
+            UpdateCurrentVolumes();
+        }
+    }
+    
+    public float AmbienceVolume
+    {
+        get => ambienceVolume;
+        set
+        {
+            ambienceVolume = value;
+            UpdateCurrentVolumes();
+        }
+    }
+    
+    public float RadioVolume
+    {
+        get => radioVolume;
+        set
+        {
+            radioVolume = value;
+            UpdateCurrentVolumes();
+        }
+    }
+    
+    public bool IsMuted
+    {
+        get => isMuted;
+        set
+        {
+            isMuted = value;
+            UpdateCurrentVolumes();
+        }
+    }
 
 	private void Awake()
 	{
@@ -131,31 +191,9 @@ public class AudioManager : MonoBehaviour
         PlayMusicWithTransition("General Theme");
     }
 
-    private void Update()
+    //Ensures the volume can be adjusted by player dynamically. 
+    void UpdateCurrentVolumes()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            masterVolume += 1f * Time.deltaTime;
-            if (masterVolume < 0)
-                masterVolume = 0;
-        }
-
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            masterVolume -= 1f * Time.deltaTime;
-            if (masterVolume > 1)
-                masterVolume = 1;
-        }
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            isMuted = !isMuted;
-        }
-    }
-
-    private void FixedUpdate()
-	{
-        //Ensures the volume can be adjusted by player dynamically. 
         if (currentlyPlayingMusic != null)
         {
             if (isMuted) 
