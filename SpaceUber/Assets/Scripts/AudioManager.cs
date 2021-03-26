@@ -191,28 +191,6 @@ public class AudioManager : MonoBehaviour
         PlayMusicWithTransition("General Theme");
     }
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            masterVolume += 1f * Time.deltaTime;
-            if (masterVolume < 0)
-                masterVolume = 0;
-        }
-
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            masterVolume -= 1f * Time.deltaTime;
-            if (masterVolume > 1)
-                masterVolume = 1;
-        }
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            isMuted = !isMuted;
-        }
-    }
-    
     //Ensures the volume can be adjusted by player dynamically. 
     void UpdateCurrentVolumes()
     {
