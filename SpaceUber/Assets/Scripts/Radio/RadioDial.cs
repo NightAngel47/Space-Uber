@@ -32,7 +32,6 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         if (stationDial) slider.value = (Mathf.Abs(rotator.rotation.z) / 360f) * 100f * 20f;
         else slider.value = 1 - (rotator.rotation.eulerAngles.z / 360);
-        //else slider.value = (Mathf.Abs(rotator.rotation.z)/360f) * 100f * 4f;
 
         if (!stationDial)myImage.fillAmount = slider.value;
         
