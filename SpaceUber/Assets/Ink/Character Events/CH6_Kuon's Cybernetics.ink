@@ -1,4 +1,4 @@
-Kuon walks into the server room, tinkering with him robotic arm as he does so. He seems to finish the recalibrations as he reaches the main termina, readyl for a private chat. "So, you wanted to see me?" 
+Kuon walks into the server room, tinkering with him robotic arm as he does so. He seems to finish the recalibrations as he reaches the main termina, ready for a private chat. "So, you wanted to see me?" 
 "Yes. I just wanted some info on your cybernetic parts. Can you give me an overview of how you got them?" You don't know much more than that he received most of his mechanical limbs during Lexa's tenure as captain, so you hope he will fill you in on the specifics.
 "I lost my legs when the 'mighty' Lexa and I mutinied against the captain before her. One of his loyal goons knocked a heavy piece of equipment on me, crushing my leg and pelvis. The rest I lost over the course of various missions."
 You notice him grimace when he mentions Lexa. A slight grudge perhaps? You decide to bring it up in a future conversation. He asks if there is anything else you want to know.
