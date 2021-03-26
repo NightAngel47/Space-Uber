@@ -44,12 +44,12 @@ public class VideoSettingsManager : MonoBehaviour
                     }
                     break;
                 case (int) DropdownSettings.AspectRatio:
-                    for (int j = 0; j < Screen.resolutions.Length; j++)
+                    foreach (var t in Screen.resolutions)
                     {
                         bool exists = false;
                         foreach(float ratio in ratios)
                         {
-                            if(Screen.resolutions[j].width / (float) Screen.resolutions[j].height == ratio)
+                            if(t.width / (float) t.height == ratio)
                             {
                                 exists = true;
                                 break;
@@ -58,16 +58,19 @@ public class VideoSettingsManager : MonoBehaviour
                         
                         if(!exists)
                         {
-                            int gcd = GCD(Screen.resolutions[j].width, Screen.resolutions[j].height);
-                            options.Add(Screen.resolutions[j].width/gcd + ":" + Screen.resolutions[j].height/gcd);
-                            ratios.Add(Screen.resolutions[j].width / (float) Screen.resolutions[j].height);
+                            int gcd = GCD(t.width, t.height);
+                            options.Add(t.width/gcd + ":" + t.height/gcd);
+                            ratios.Add(t.width / (float) t.height);
                         }
                     }
                     break;
                 case (int) DropdownSettings.TargetFrameRate:
                     for (int j = 0; j < frameRateOptions.Length; j++)
                     {
-                        options.Add(frameRateOptions[j] + " fps");
+                        if(frameRateOptions[j] == -1)
+                            options.Add("Unlimited");
+                        else
+                            options.Add(frameRateOptions[j] + " fps");
                     }
                     break;
                 default:

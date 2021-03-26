@@ -2694,7 +2694,7 @@ MonoBehaviour:
   - {fileID: 1304888595393129425}
   dropdownDefaults: 000000000000000000000000
   checkboxDefaults: 0000
-  frameRateOptions: 1e0000003c000000
+  frameRateOptions: ffffffff1e0000003c0000007800000090000000af000000f00000002c01000068010000
 --- !u!1 &2657526211953791969
 GameObject:
   m_ObjectHideFlags: 0
@@ -11708,6 +11708,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1394832171144745911 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2570528837112810557, guid: 7c42ccf0395b64f4aaeaa0e7ddf03f4c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3528335165554122634}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1394832170580396199 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2570528836624324397, guid: 7c42ccf0395b64f4aaeaa0e7ddf03f4c,
@@ -11726,12 +11732,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &1394832171144745911 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2570528837112810557, guid: 7c42ccf0395b64f4aaeaa0e7ddf03f4c,
-    type: 3}
-  m_PrefabInstance: {fileID: 3528335165554122634}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5347635583710048110
 PrefabInstance:
   m_ObjectHideFlags: 0
