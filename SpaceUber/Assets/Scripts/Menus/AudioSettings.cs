@@ -21,6 +21,22 @@ public class AudioSettings : MonoBehaviour
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => AudioManager.instance != null);
+
+        if (SavingLoadingManager.instance.GetHasSave())
+        {
+            LoadAudioSettings();
+        }
+        else //
+        {
+            //masterVol = 1;
+            //sfxVol = 1;
+            //bgmVol = 1;
+            //radioVol = 0;
+            //ambientVol = 1;
+
+            //SaveAudioSettings();
+        }
+
         masterSlider.value = masterVol;
         sfxSlider.value = sfxVol;
         bgmSlider.value = bgmVol;
@@ -47,25 +63,47 @@ public class AudioSettings : MonoBehaviour
     {
         AudioManager.instance.masterVolume = volume;
         masterVol = volume;
+        SaveAudioSettings();
     }
     public void RadioVolSlider(float volume)
     {
         AudioManager.instance.radioVolume = volume;
         radioVol = volume;
+        SaveAudioSettings();
     }
     public void BGMVolSlider(float volume)
     {
         AudioManager.instance.musicVolume = volume;
         bgmVol = volume;
+        SaveAudioSettings();
     }
     public void SFXVolSlider(float volume)
     {
         AudioManager.instance.sfxVolume = volume;
         sfxVol = volume;
+        SaveAudioSettings();
     }
     public void AmbientVolSlider(float volume)
     {
         AudioManager.instance.ambienceVolume = volume;
         ambientVol = volume;
+        SaveAudioSettings();
+    }
+
+    public void SaveAudioSettings()
+    {
+        SavingLoadingManager.instance.Save<float>("masterVol", masterVol);
+        SavingLoadingManager.instance.Save<float>("sfxVol", sfxVol);
+        SavingLoadingManager.instance.Save<float>("bgmVol", bgmVol);
+        SavingLoadingManager.instance.Save<float>("radioVol", radioVol);
+        SavingLoadingManager.instance.Save<float>("ambientVol", ambientVol);
+    }
+    public void LoadAudioSettings()
+    {
+        masterVol = SavingLoadingManager.instance.Load<float>("masterVol");
+        sfxVol = SavingLoadingManager.instance.Load<float>("sfxVol");
+        bgmVol = SavingLoadingManager.instance.Load<float>("bgmVol");
+        radioVol = SavingLoadingManager.instance.Load<float>("radioVol");
+        ambientVol = SavingLoadingManager.instance.Load<float>("ambientVol");
     }
 }
