@@ -61,31 +61,31 @@ public class AudioSettings : MonoBehaviour
 
     public void MasterVolSlider(float volume)
     {
-        AudioManager.instance.masterVolume = volume;
+        AudioManager.instance.MasterVolume = volume;
         masterVol = volume;
         SaveAudioSettings();
     }
     public void RadioVolSlider(float volume)
     {
-        AudioManager.instance.radioVolume = volume;
+        AudioManager.instance.RadioVolume = volume;
         radioVol = volume;
         SaveAudioSettings();
     }
     public void BGMVolSlider(float volume)
     {
-        AudioManager.instance.musicVolume = volume;
+        AudioManager.instance.MusicVolume = volume;
         bgmVol = volume;
         SaveAudioSettings();
     }
     public void SFXVolSlider(float volume)
     {
-        AudioManager.instance.sfxVolume = volume;
+        AudioManager.instance.SfxVolume = volume;
         sfxVol = volume;
         SaveAudioSettings();
     }
     public void AmbientVolSlider(float volume)
     {
-        AudioManager.instance.ambienceVolume = volume;
+        AudioManager.instance.AmbienceVolume = volume;
         ambientVol = volume;
         SaveAudioSettings();
     }
