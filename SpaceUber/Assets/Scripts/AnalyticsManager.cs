@@ -117,7 +117,7 @@ public static class AnalyticsManager
         Dictionary<string, object> data = new Dictionary<string, object>
         {
             {"credits", ship.Credits},              // tracks starting credits
-            {"power", (int)ship.EnergyRemaining.x}, // tracks starting power
+            {"power", (int)ship.Energy.x}, // tracks starting power
             {"roomCounts", RoomCountsToString()}    // tracks room counts on ship
         };
 
@@ -137,7 +137,7 @@ public static class AnalyticsManager
         Dictionary<string, object> data = new Dictionary<string, object>
         {
             {"credits", ship.Credits},              // tracks remaining credits
-            {"power", (int)ship.EnergyRemaining.x}, // tracks remaining power
+            {"power", (int)ship.Energy.x}, // tracks remaining power
             {"roomCounts", RoomCountsToString()}    // tracks room counts on ship
         };
 

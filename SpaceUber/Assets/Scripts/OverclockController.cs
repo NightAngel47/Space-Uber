@@ -105,7 +105,7 @@ public class OverclockController : MonoBehaviour
                     EventSystem.instance.chanceOfEvent += cropPercentIncrease;
                     break;
                 case MiniGameType.StabilizeEnergyLevels:
-                    shipStats.EnergyRemaining += new Vector2(Mathf.RoundToInt(energyBaseAdjustments[roomLevel] * statModification * moraleModifier), 0);
+                    shipStats.Energy += new Vector3(Mathf.RoundToInt(energyBaseAdjustments[roomLevel] * statModification * moraleModifier), 0, 0);
                     SpawnStatChangeText(Mathf.RoundToInt(energyBaseAdjustments[roomLevel] * statModification * moraleModifier), GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
                     EventSystem.instance.chanceOfEvent += energyPercentIncrease;
                     break;

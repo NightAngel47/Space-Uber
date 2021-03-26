@@ -69,4 +69,8 @@ public class PauseMenu : Singleton<PauseMenu>
         while (!asyncLoad.isDone) yield return null;
     }
 
+    public void CloseOutstandingTutorial()
+    {
+        Tutorial.Instance.CloseCurrentTutorial(false);
+    }
 }
