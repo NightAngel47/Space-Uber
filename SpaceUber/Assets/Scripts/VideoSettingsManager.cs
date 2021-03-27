@@ -13,14 +13,13 @@ public class VideoSettingsManager : MonoBehaviour
     
     [SerializeField] private int[] frameRateOptions;
     
-    public enum DropdownSettings { NA = -1, Resolution, AspectRatio, TargetFrameRate}
+    public enum DropdownSettings { NA = -1, Resolution, TargetFrameRate}
     public enum CheckboxSettings { NA = -1, FullScreen, VSync}
     
-    private int[] dropdownValues = new int[3];
+    private int[] dropdownValues = new int[2];
     private bool[] checkboxValues = new bool[2];
     
-    private List<int> resolutions = new List<int>();
-    private List<float> ratios = new List<float>();
+    private List<Vector2> resolutions = new List<Vector2>();
     
     private void Start()
     {
@@ -32,36 +31,10 @@ public class VideoSettingsManager : MonoBehaviour
             switch(i)
             {
                 case (int) DropdownSettings.Resolution:
-                    int lastWidth = 0;
                     for (int j = 0; j < Screen.resolutions.Length; j++)
                     {
-                        if(Screen.resolutions[j].width != lastWidth)
-                        {
-                            options.Add(Screen.resolutions[j].width + "p");
-                            lastWidth = Screen.resolutions[j].width;
-                            resolutions.Add(Screen.resolutions[j].width);
-                        }
-                    }
-                    break;
-                case (int) DropdownSettings.AspectRatio:
-                    foreach (var t in Screen.resolutions)
-                    {
-                        bool exists = false;
-                        foreach(float ratio in ratios)
-                        {
-                            if(t.width / (float) t.height == ratio)
-                            {
-                                exists = true;
-                                break;
-                            }
-                        }
-                        
-                        if(!exists)
-                        {
-                            int gcd = GCD(t.width, t.height);
-                            options.Add(t.width/gcd + ":" + t.height/gcd);
-                            ratios.Add(t.width / (float) t.height);
-                        }
+                        options.Add(Screen.resolutions[j].width + "x" + Screen.resolutions[j].height);
+                        resolutions.Add(new Vector2(Screen.resolutions[j].width, Screen.resolutions[j].height));
                     }
                     break;
                 case (int) DropdownSettings.TargetFrameRate:
@@ -118,7 +91,7 @@ public class VideoSettingsManager : MonoBehaviour
         }
         
         Screen.fullScreen = checkboxValues[(int) CheckboxSettings.FullScreen];
-        Screen.SetResolution(resolutions[dropdownValues[(int) DropdownSettings.Resolution]], (int) (resolutions[dropdownValues[(int) DropdownSettings.Resolution]] / ratios[dropdownValues[(int) DropdownSettings.AspectRatio]]), Screen.fullScreen);
+        Screen.SetResolution((int) resolutions[dropdownValues[(int) DropdownSettings.Resolution]].x, (int) resolutions[dropdownValues[(int) DropdownSettings.Resolution]].y, Screen.fullScreen);
         QualitySettings.vSyncCount = checkboxValues[(int) CheckboxSettings.VSync] ? 1 : 0;
         Application.targetFrameRate = frameRateOptions[dropdownValues[(int) DropdownSettings.TargetFrameRate]];
     }
@@ -143,33 +116,9 @@ public class VideoSettingsManager : MonoBehaviour
             switch(i)
             {
                 case (int) DropdownSettings.Resolution:
-                    int lastWidth = 0;
                     for (int j = 0; j < Screen.resolutions.Length; j++)
                     {
-                        if(Screen.resolutions[j].width != lastWidth)
-                        {
-                            lastWidth = Screen.resolutions[j].width;
-                            resolutions.Add(Screen.resolutions[j].width);
-                        }
-                    }
-                    break;
-                case (int) DropdownSettings.AspectRatio:
-                    for (int j = 0; j < Screen.resolutions.Length; j++)
-                    {
-                        bool exists = false;
-                        foreach(float ratio in ratios)
-                        {
-                            if(Screen.resolutions[j].width / (float) Screen.resolutions[j].height == ratio)
-                            {
-                                exists = true;
-                                break;
-                            }
-                        }
-                        
-                        if(!exists)
-                        {
-                            ratios.Add(Screen.resolutions[j].width / (float) Screen.resolutions[j].height);
-                        }
+                        resolutions.Add(new Vector2(Screen.resolutions[j].width, Screen.resolutions[j].height));
                     }
                     break;
                 case (int) DropdownSettings.TargetFrameRate:
@@ -185,14 +134,14 @@ public class VideoSettingsManager : MonoBehaviour
             bool[] checkboxSelections = SavingLoadingManager.instance.Load<bool[]>("videoSettingsCheckboxes");
             
             Screen.fullScreen = checkboxSelections[(int) CheckboxSettings.FullScreen];
-            Screen.SetResolution(resolutions[dropdownSelections[(int) DropdownSettings.Resolution]], (int) (resolutions[dropdownSelections[(int) DropdownSettings.Resolution]] / ratios[dropdownSelections[(int) DropdownSettings.AspectRatio]]), Screen.fullScreen);
+            Screen.SetResolution((int) resolutions[dropdownSelections[(int) DropdownSettings.Resolution]].x, (int) resolutions[dropdownSelections[(int) DropdownSettings.Resolution]].y, Screen.fullScreen);
             QualitySettings.vSyncCount = checkboxSelections[(int) CheckboxSettings.VSync] ? 1 : 0;
             Application.targetFrameRate = frameRateOptions[dropdownSelections[(int) DropdownSettings.TargetFrameRate]];
         }
         else
         {
             Screen.fullScreen = checkboxDefaults[(int) CheckboxSettings.FullScreen];
-            Screen.SetResolution(resolutions[dropdownDefaults[(int) DropdownSettings.Resolution]], (int) (resolutions[dropdownDefaults[(int) DropdownSettings.Resolution]] / ratios[dropdownDefaults[(int) DropdownSettings.AspectRatio]]), Screen.fullScreen);
+            Screen.SetResolution((int) resolutions[dropdownDefaults[(int) DropdownSettings.Resolution]].x, (int) resolutions[dropdownDefaults[(int) DropdownSettings.Resolution]].y, Screen.fullScreen);
             QualitySettings.vSyncCount = checkboxDefaults[(int) CheckboxSettings.VSync] ? 1 : 0;
             Application.targetFrameRate = frameRateOptions[dropdownDefaults[(int) DropdownSettings.TargetFrameRate]];
         }
@@ -209,14 +158,7 @@ public class VideoSettingsManager : MonoBehaviour
     {
         dropdownValues[(int) DropdownSettings.Resolution] = dropdownMenus[(int) DropdownSettings.Resolution].value;
         SavingLoadingManager.instance.Save<int[]>("videoSettingsDropdowns", dropdownValues);
-        Screen.SetResolution(resolutions[dropdownValues[(int) DropdownSettings.Resolution]], (int) (resolutions[dropdownValues[(int) DropdownSettings.Resolution]] / ratios[dropdownValues[(int) DropdownSettings.AspectRatio]]), Screen.fullScreen);
-    }
-    
-    public void UpdateAspectRatio()
-    {
-        dropdownValues[(int) DropdownSettings.AspectRatio] = dropdownMenus[(int) DropdownSettings.AspectRatio].value;
-        SavingLoadingManager.instance.Save<int[]>("videoSettingsDropdowns", dropdownValues);
-        Screen.SetResolution(resolutions[dropdownValues[(int) DropdownSettings.Resolution]], (int) (resolutions[dropdownValues[(int) DropdownSettings.Resolution]] / ratios[dropdownValues[(int) DropdownSettings.AspectRatio]]), Screen.fullScreen);
+        Screen.SetResolution((int) resolutions[dropdownValues[(int) DropdownSettings.Resolution]].x, (int) resolutions[dropdownValues[(int) DropdownSettings.Resolution]].y, Screen.fullScreen);
     }
     
     public void UpdateVSync()
