@@ -69,9 +69,6 @@ public class ChoiceOutcomes
     }
     #endregion
 
-    void Awake()
-    {
-    }
     public void StatChange(ShipStats ship, CampaignManager campMan, bool hasSubsequentChoices)
     {
         if (ship != null)
