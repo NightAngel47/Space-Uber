@@ -34,6 +34,7 @@ public class ChoiceOutcomes
     //[SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character = CharacterStats.Characters.None;
     [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterEvent.AnswerState answerType;
     [HideInInspector] public CharacterEvent characterDriver;
+    CampaignManager campMan;
 
     #region Initialized Narrative Variables
     [SerializeField, ShowIf("isNarrativeOutcome"),AllowNesting] private CampaignManager.Campaigns thisCampaign = CampaignManager.Campaigns.CateringToTheRich;
@@ -68,6 +69,9 @@ public class ChoiceOutcomes
     }
     #endregion
 
+    void Awake()
+    {
+    }
     public void StatChange(ShipStats ship, CampaignManager campMan, bool hasSubsequentChoices)
     {
         if (ship != null)
@@ -77,6 +81,7 @@ public class ChoiceOutcomes
                 if(isScalableEvent) //scalable events get a multiplier to amount
                 {
                     amount = Mathf.RoundToInt(amount * campMan.GetMultiplier(resource));
+
                     switch (resource)
                     {
 
