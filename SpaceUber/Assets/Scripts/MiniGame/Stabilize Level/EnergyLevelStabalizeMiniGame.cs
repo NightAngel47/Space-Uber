@@ -23,7 +23,7 @@ public class EnergyLevelStabalizeMiniGame : MiniGame
 	float[] sliderTargets = null;
 	int[] buttonSwitchTargets = null;
 
-	[SerializeField] private GameObject finishButton;
+	[SerializeField] private Button finishButton;
 
     private void Start()
 	{
@@ -59,12 +59,12 @@ public class EnergyLevelStabalizeMiniGame : MiniGame
 	}
 	public void ShowFinishButton()
     {
-		finishButton.SetActive(true);
+		finishButton.interactable = true;
     }
 
 	public void HideFinishButton()
     {
-		finishButton.SetActive(false);
+		finishButton.interactable = false;
     }
 
 	/// <summary>
