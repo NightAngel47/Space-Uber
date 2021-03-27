@@ -17,7 +17,14 @@ public class HullRepairMiniGame : MiniGame
     private void Update()
 	{
 		int gridCoveredCount = 0;
-		foreach (HullGridSquare gridSquare in gridSquares) { if (gridSquare.IsCovered()) { gridCoveredCount++; } }
+		foreach (HullGridSquare gridSquare in gridSquares) 
+		{ 
+			if (gridSquare.IsCovered())
+			{ 
+				gridCoveredCount++; 
+			} 
+		}
+
 		if (!gameOver)
         {
             if (gridCoveredCount == gridSquares.Length)

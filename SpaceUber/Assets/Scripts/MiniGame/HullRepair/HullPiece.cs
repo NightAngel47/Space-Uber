@@ -39,15 +39,20 @@ public class HullPiece : MonoBehaviour
 	private void OnMouseDown()
     {
         Collider2D[] colliders = new Collider2D[1];
+
+        //Selecting a hull piece
         if (this != HullRepairMiniGame.selectedHullPiece) 
         { 
             HullRepairMiniGame.selectedHullPiece = this; 
             AudioManager.instance.PlaySFX(PickupSFX[Random.Range(0, PickupSFX.Length)]);
         }
+        //Dropping a hull piece
         else
         {
+            //Figure out everything that is overlapping this piece
             collide.OverlapCollider(new ContactFilter2D(), colliders);
             bool collidedWithHullPiece = false;
+            bool outOfBounds = false;
             
             foreach(Collider2D collider in colliders)
             {
@@ -58,9 +63,14 @@ public class HullPiece : MonoBehaviour
                         collidedWithHullPiece = true; 
                         AudioManager.instance.PlaySFX(BumpSFX[Random.Range(0, BumpSFX.Length)]); 
                     } 
+                    if(collider.CompareTag("OutOfBounds"))
+                    {
+                        AudioManager.instance.PlaySFX(BumpSFX[Random.Range(0, BumpSFX.Length)]);
+                        outOfBounds = true;
+                    }
                 }
             }
-			if (!collidedWithHullPiece) 
+			if (!collidedWithHullPiece && !outOfBounds) 
             { 
                 HullRepairMiniGame.selectedHullPiece = null; 
                 AudioManager.instance.PlaySFX(PutdownSFX[Random.Range(0, PutdownSFX.Length)]);
