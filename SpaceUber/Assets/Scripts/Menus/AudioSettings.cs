@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class AudioSettings : MonoBehaviour
 {
-    static float masterVol = 1;
-    static float sfxVol = 1;
-    static float bgmVol = 1;
-    static float radioVol = 0;
-    static float ambientVol = 1;
+    public static float masterVol = 1;
+    public static float sfxVol = 1;
+    public static float bgmVol = 1;
+    public static float radioVol = 0;
+    public static float ambientVol = 1;
 
     [SerializeField] Slider masterSlider;
     [SerializeField] Slider sfxSlider;
@@ -64,24 +64,28 @@ public class AudioSettings : MonoBehaviour
         AudioManager.instance.MasterVolume = volume;
         masterVol = volume;
         SaveAudioSettings();
+        ApplyRadioChanges();
     }
     public void RadioVolSlider(float volume)
     {
         AudioManager.instance.RadioVolume = volume;
         radioVol = volume;
         SaveAudioSettings();
+        ApplyRadioChanges();
     }
     public void BGMVolSlider(float volume)
     {
         AudioManager.instance.MusicVolume = volume;
         bgmVol = volume;
         SaveAudioSettings();
+        ApplyRadioChanges();
     }
     public void SFXVolSlider(float volume)
     {
         AudioManager.instance.SfxVolume = volume;
         sfxVol = volume;
         SaveAudioSettings();
+        ApplyRadioChanges();
     }
     public void AmbientVolSlider(float volume)
     {
@@ -105,5 +109,17 @@ public class AudioSettings : MonoBehaviour
         bgmVol = SavingLoadingManager.instance.Load<float>("bgmVol");
         radioVol = SavingLoadingManager.instance.Load<float>("radioVol");
         ambientVol = SavingLoadingManager.instance.Load<float>("ambientVol");
+    }
+
+    private void ApplyRadioChanges()
+    {
+        if(FindObjectOfType<RadioDial>() != null)
+        {
+            RadioDial[] dials = FindObjectsOfType<RadioDial>();
+            for (int i = 0; i < FindObjectsOfType<RadioDial>().Length; i++)
+            {
+                dials[i].SetAudioSettingsValues();
+            }
+        }
     }
 }
