@@ -9,20 +9,20 @@ You've noticed Kuon and Lexa exchanging barbs every now and then. You call in Ku
 "She became the new captain... and I got... this." He gestures to his mechanical limbs. "Over the years it has become clear to me that she is ungrateful to Kellis. After the mutiny, they gave us training for our current positions, and they also gave me my new limbs.
 "Despite this, she always disagreed with her orders if they might make the crew unhappy. I understand not wanting to be like that old tyrant, but she took it too far in the other direction. That's why you're in charge now.
 "Nowadays she seems to be dead weight, turning any murmur of discontent into a scream of anger."
-+ ["Just bear with her. She won't be aboard too much longer."] -> PosRes2
 + ["Please try to get along with her, okay?"] -> NeuRes2
++ ["Just bear with her. She won't be aboard too much longer."] -> PosRes2
 + ["You're just jealous that she was captain and has all her limbs."] -> NegRes2
 
 === NeuRes1 ===
 "You can stop beating around the bush. Lexa and I don't get along. Ever since losing her position as captain she just seems to act as the crew's megaphone, amplifying any little complaint or nitpick they have. Meanwhile, Ripley, Lanri, and I are busy doing actual work around here."
-+ ["Just bear with her. She won't be aboard too much longer."] -> PosRes2
 + ["Please try to get along with her, okay?"] -> NeuRes2
++ ["Just bear with her. She won't be aboard too much longer."] -> PosRes2
 + ["You're just jealous that she was captain and has all her limbs."] -> NegRes2
 
 === NegRes1 ===
 His lips pull back in a snarl. "Work? She's not doing any real work. All she does is complain. 'I'm the voice of the crew.' They have their own voices, and in addition, they do actual work around here. She's just 120 lbs of dead weight."
-+ ["Just bear with her. She won't be aboard too much longer."] -> PosRes2
 + ["Please try to get along with her, okay?"] -> NeuRes2
++ ["Just bear with her. She won't be aboard too much longer."] -> PosRes2
 + ["You're just jealous that she was captain and has all her limbs."] -> NegRes2
 
 === PosRes2 ===

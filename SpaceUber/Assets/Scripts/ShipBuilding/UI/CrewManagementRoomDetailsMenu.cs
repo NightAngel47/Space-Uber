@@ -111,6 +111,16 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().unhighlight();
     }
 
+    private void OnDisable()
+    {
+        if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().unhighlight();
+    }
+
+    private void OnEnable()
+    {
+        if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().highlight();
+    }
+
     public void toggleHighlight()
     {
         if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().toggleHighlight();
