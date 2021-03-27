@@ -1426,7 +1426,7 @@ PrefabInstance:
     - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomEvents.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -1436,8 +1436,20 @@ PrefabInstance:
     - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: hasEvents
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: roomEvents.Array.data[0]
+      value: 
+      objectReference: {fileID: 5234566933638593567, guid: fd5e1e995c1fcba4bbe137a13940c0e7,
+        type: 3}
+    - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: roomEvents.Array.data[1]
+      value: 
+      objectReference: {fileID: 5234566933638593567, guid: 73fb9f15a81ee5f4d9e590e77bfa9515,
+        type: 3}
     - target: {fileID: 3754232717758567594, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_RootOrder
