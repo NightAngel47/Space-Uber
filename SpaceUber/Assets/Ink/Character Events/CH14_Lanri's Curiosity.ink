@@ -1,9 +1,9 @@
 Lanri walks, almost skips, into your main terminal room. You can tell she has something she wants to ask, as you see both excitement and curiosity on her face. As you wait for her to make her inquiry, you notice hesitation creep onto her face.
 You goad her with a "go on" and she finally speaks. "I finally thought to ask. Well, no, I thought of asking before but I got distracted by other projects. And the other times I remembered, I wasn't able to..."
 Realizing she's rambling, she inhales deeply, and exhales. "I was wondering if you would be willing to let me look at your coding and operating systems. An AI at your level is a huge advancement, and Kellis has kept any information under lock and key. I promise if you let me look I won't tell another soul."
++ ["Absolutely not. I should fire you for even asking."] -> NegRes1
 + ["I'll let you look at what I have access to."] -> PosRes1
 + ["You shouldn't bother. Even I can't access most of it."] -> NeuRes1
-+ ["Absolutely not. I should fire you for even asking."] -> NegRes1
 
 === PosRes1 ===
 You explain that most of your data is locked away behind encryptions and firewalls that even you can't access them. That said, she's ecstatic to look at what is available.

@@ -1,7 +1,7 @@
 Lanri walks into your terminal room, in response to your summons, unusually calm and controlled. "You want to know why I asked you to make sure my various research notes quiet, right?"
 Confirming her astute guess, you ask her to continue. "I don't want it being misused. Sharing information is important to scientific progress, but, no offense, I don't trust Kellis to make it easily accessible. I expect them to keep it private and use it...maliciously."
-+ ["I will respect your privacy. You can do as you wish with your research?"] -> PosRes1
 + ["Kellis has misused your research before? Could you explain?"] -> NeuRes1
++ ["I will respect your privacy. You can do as you wish with your research?"] -> PosRes1
 + ["That research was done while employed by Kellis. It belongs to them."] -> NegRes1
 
 === PosRes1 ===

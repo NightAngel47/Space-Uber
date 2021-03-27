@@ -1,7 +1,7 @@
 Your camera's notice the ship's doctor is hard at work in the Medbay, hard at work on the autopsy of a recently deceased crew member. All of a sudden she stops, puts down her tools and removes her gloves. Sinking down into a nearby chair, she puts her head in her hands and starts sobbing.
 You wonder if you should try to comfort her. You need to say something, as you need to make sure she can function in case of an emergency.
-+ ["Are you okay? Is something wrong?"] -> PosRes1
 + ["Are you going to be able continue working?"] -> NeuRes1
++ ["Are you okay? Is something wrong?"] -> PosRes1
 + ["What's there to be upset about. I think you'd be used to it by now."] -> NegRes1
 
 
