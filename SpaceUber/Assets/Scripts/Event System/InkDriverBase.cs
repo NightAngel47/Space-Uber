@@ -46,7 +46,9 @@ public class InkDriverBase : MonoBehaviour
     protected ShipStats thisShip;
 
     [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
-    private float textPrintSpeed = 0.1f;
+    private float textPrintSpeed = 0.001f;
+    [HideInInspector] public int pageNumber;
+    [HideInInspector] public bool isWriting;
 
     public string eventIntroSFX;
 
@@ -85,6 +87,7 @@ public class InkDriverBase : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
+        isWriting = true;
         story = new Story(inkJSONAsset.text); //this draws text out of the JSON file
 
         Refresh(); //starts the dialogue
@@ -151,15 +154,26 @@ public class InkDriverBase : MonoBehaviour
         int runningIndex = 0;
 
         while (tempString.Length < text.Length)
-        {      
+        {
+            //Debug.Log("tempString is " + tempString.Length);
+            //Debug.Log("lasIndex is " + (textBox.textInfo.pageInfo[pageNumber].lastCharacterIndex + 1));
+            //Debug.Log("characterCount = " + textBox.textInfo.characterCount);
+            isWriting = true;
             tempString += CheckChar(text[runningIndex]);
             runningIndex++;
 
-            //click to instantly finish text,
-            if(Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
+            //while (tempString.Length <= (textBox.textInfo.pageInfo[pageNumber].lastCharacterIndex + 1))
+            if (textBox.textInfo.pageInfo[pageNumber].lastCharacterIndex >= 1)
             {
-                tempString = text;
+                isWriting = false;
             }
+
+            //click to instantly finish text,
+            //if ((Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.RightArrow)))
+            //{
+            //    tempString = text;
+            //    isWriting = false;
+            //}
             textBox.text = tempString;
 
             yield return new WaitForSeconds(textPrintSpeed);
@@ -186,7 +200,7 @@ public class InkDriverBase : MonoBehaviour
     /// </summary>
     public bool ShowChoices()
     {
-        if(!showingChoices && donePrinting && story.currentChoices.Count > 0)
+        if (!showingChoices && donePrinting && story.currentChoices.Count > 0)
         {
             showingChoices = true;
             foreach (Choice choice in story.currentChoices)
@@ -290,5 +304,41 @@ public class InkDriverBase : MonoBehaviour
             Destroy(text.gameObject);
         }
         FindObjectOfType<PageController>().ResetPages();
+    }
+
+    IEnumerator Test(string text)
+    {
+        //textBox.text = text;
+        PageController pageController = FindObjectOfType<PageController>();
+        // Force and update of the mesh to get valid information.
+        textBox.ForceMeshUpdate();
+
+        var totalVisibleCharacters = textBox.textInfo.characterCount; // Get # of Visible Character in text object
+        var counter = 0;
+        var visibleCount = 0;
+
+        while (true)
+        {
+            visibleCount = counter % (totalVisibleCharacters + 1);
+
+            textBox.maxVisibleCharacters = visibleCount; // How many characters should TextMeshPro display?
+            
+            //if ((Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.RightArrow)))
+            //{
+            //    textBox.textInfo.pageInfo[pageNumber].lastCharacterIndex = textBox.maxVisibleCharacters;
+            //}
+
+            if (textBox.textInfo.pageInfo[pageNumber].lastCharacterIndex >= visibleCount)
+            {
+                isWriting = true;
+                counter += 1;
+            }
+            else
+            {
+                isWriting = false;
+            }
+            
+            yield return new WaitForSeconds(0.01f);
+        }
     }
 }

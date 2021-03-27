@@ -10,7 +10,7 @@ using TMPro;
 
 public class PageController : MonoBehaviour
 {
-    [SerializeField] private TMP_Text eventText;
+    public TMP_Text eventText;
     [SerializeField] private GameObject backButton;
     [SerializeField] private GameObject nextButton;
     [SerializeField] private string defaultNextMsg;
@@ -24,20 +24,36 @@ public class PageController : MonoBehaviour
         ResetPages();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            NextPage();
+        }
+        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            PreviousPage();
+        }
+    }
+
     public void NextPage()
     {
-        if(eventText.pageToDisplay < eventText.textInfo.pageCount)
+        InkDriverBase inkDriver = FindObjectOfType<InkDriverBase>();
+        if (eventText.pageToDisplay < eventText.textInfo.pageCount && !inkDriver.isWriting)
         {
             eventText.pageToDisplay += 1;
-            if(!backButton.activeSelf)
+            if (!backButton.activeSelf)
             {
                 backButton.SetActive(true);
+            }
+            if(!inkDriver.isWriting)
+            {
+                inkDriver.pageNumber++;
             }
         }
         else
         {
-            InkDriverBase inkDriver = FindObjectOfType<InkDriverBase>();
-            if(!inkDriver.ShowChoices())
+            if (!inkDriver.ShowChoices())
             {
                 inkDriver.ConcludeEvent();
             }
