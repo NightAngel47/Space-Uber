@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MoraleManager : MonoBehaviour
@@ -7,8 +8,6 @@ public class MoraleManager : MonoBehaviour
     [SerializeField, Tooltip("Starting amount of crewMorale")] private int startingMorale = 100;
     
     private int crewMorale;
-    
-    private int startCrewMorale;
     
     [SerializeField, Tooltip("Value of the \"normal\" payment that won't affect morale")] private int crewPaymentDefault = 5;
     [SerializeField, Tooltip("Amount crew morale is affected by different payments")] private float crewPaymentMoraleMultiplier = 2;
@@ -49,7 +48,15 @@ public class MoraleManager : MonoBehaviour
     
     private void Start()
     {
-        CrewMorale = startingMorale;
+        if(SavingLoadingManager.instance.GetHasSave())
+        {
+            ResetMorale();
+        }
+        else
+        {
+            CrewMorale = startingMorale;
+            SaveMorale();
+        }
     }
     
     public int CrewMorale
@@ -58,6 +65,8 @@ public class MoraleManager : MonoBehaviour
         set
         {
             int prevValue = crewMorale;
+            float prevMoraleModifier = GetMoraleModifier();
+            
             crewMorale = value;
 
             /*
@@ -72,13 +81,13 @@ public class MoraleManager : MonoBehaviour
             */
 
             // update room outputs if there is a change in morale
-            if (value - prevValue != 0) 
+            if (value - prevValue != 0 && prevMoraleModifier != GetMoraleModifier())
             {
                 RoomStats[] rooms = FindObjectsOfType<RoomStats>();
 
                 foreach (RoomStats room in rooms)
                 { 
-                    if (room.gameObject.GetComponent<ObjectScript>().preplacedRoom == false)
+                    if (!room.ignoreMorale && room.gameObject.GetComponent<ObjectScript>().preplacedRoom == false)
                     {
                         room.KeepRoomStatsUpToDateWithMorale();
                     }
@@ -120,39 +129,43 @@ public class MoraleManager : MonoBehaviour
         float mutinyChance = (maxMutinyMorale - crewMorale) * zeroMoraleMutinyChance * (1 - maxMutinyMoraleMutinyChance) / maxMutinyMorale + maxMutinyMoraleMutinyChance;
         if(mutinyChance > UnityEngine.Random.value)
         {
-            mutinyCount++;
-            int mutinyCost = Mathf.RoundToInt((baseMutinyCost * ((100 - crewMorale) / 100.0f)) * mutinyCount);
-            mutinyEvent.GetComponent<InkDriverBase>().nextChoices[0].choiceRequirements[0].requiredAmount = mutinyCost;
-            mutinyEvent.GetComponent<InkDriverBase>().nextChoices[0].outcomes[0].amount = -mutinyCost;
-            EventSystem.instance.CreateMutinyEvent(mutinyEvent);
+            if(DevelopmentAccess.instance.cheatModeActive && CheatsMenu.instance != null && CheatsMenu.instance.mutinyDisabled)
+            {
+                Debug.Log("Cheated Mutiny");
+            }
+            else
+            {
+                mutinyCount++;
+                int mutinyCost = Mathf.RoundToInt((baseMutinyCost * ((100 - crewMorale) / 100.0f)) * mutinyCount);
+                mutinyEvent.GetComponent<InkDriverBase>().nextChoices[0].choiceRequirements[0].requiredAmount = mutinyCost;
+                mutinyEvent.GetComponent<InkDriverBase>().nextChoices[0].outcomes[0].amount = -mutinyCost;
+                EventSystem.instance.CreateMutinyEvent(mutinyEvent);
+            }
         }
     }
     
     public float GetMoraleModifier(bool ignoreMorale = false)
     {
-        if(ignoreMorale)
-        {
-            return 1;
-        }
+        if (ignoreMorale) return 1;
         
-        foreach(Vector2 info in outputModifierInfo)
+        foreach (var info in outputModifierInfo.Where(info => crewMorale >= info.x))
         {
-            if(crewMorale >= info.x)
-            {
-                return info.y;
-            }
+            return info.y;
         }
-        
+
         return 1;
     }
     
     public void SaveMorale()
     {
-        startCrewMorale = crewMorale;
+        SavingLoadingManager.instance.Save<int>("crewMorale", crewMorale);
+        SavingLoadingManager.instance.Save<int>("mutinyCount", mutinyCount);
     }
     
     public void ResetMorale()
     {
-        CrewMorale = startCrewMorale;
+        crewMorale = SavingLoadingManager.instance.Load<int>("crewMorale");
+        shipStatsUI.UpdateCrewMoraleUI(crewMorale);
+        mutinyCount = SavingLoadingManager.instance.Load<int>("mutinyCount");
     }
 }

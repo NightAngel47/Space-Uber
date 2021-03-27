@@ -17,6 +17,14 @@ public class CrewPaymentScreenBehaviour : MonoBehaviour
     {
         // pay crew
         ship.PayCrew(amount);
-        campaignManager.GoToNextJob(); //tells campaign manager to activate the next available job
+        
+        ship.SaveShipStats();
+        MoraleManager.instance.SaveMorale();
+        ship.cStats.SaveCharacterStats();
+        SavingLoadingManager.instance.SaveRooms();
+
+        GameManager.instance.ChangeInGameState(InGameStates.RoomUnlock);
+        
+        //campaignManager.GoToNextJob(); //tells campaign manager to activate the next available job
     }
 }

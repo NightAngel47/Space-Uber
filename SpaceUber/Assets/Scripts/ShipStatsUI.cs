@@ -30,6 +30,7 @@ public class ShipStatsUI : MonoBehaviour
 
     [SerializeField, Foldout("Ship Food UI")] private TMP_Text foodCurrentText;
     [SerializeField, Foldout("Ship Food UI")] private TMP_Text foodTickText;
+    [SerializeField, Foldout("Ship Food UI")] private TMP_Text foodTickSignText;
 
     [SerializeField, Foldout("Ship Hull UI")] private TMP_Text hullCurrentText;
     [SerializeField, Foldout("Ship Hull UI")] private TMP_Text hullMaxText;
@@ -177,7 +178,7 @@ public class ShipStatsUI : MonoBehaviour
         }
         else
         {
-            SpawnStatChangeText(crewCurrentText, unassignedChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon, 1);
+            SpawnStatChangeText(crewCurrentText, unassignedChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon, 1, true);
             SpawnStatChangeText(crewMaxText, currentChange, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon, 2);
         }
 
@@ -195,10 +196,14 @@ public class ShipStatsUI : MonoBehaviour
     public void UpdateFoodUI(int current, int tick, int crew)
     {
         foodCurrentText.text = current.ToString();
-        foodTickText.text = tick.ToString();
+
+        int netFood = tick - crew;
+        foodTickText.text = Mathf.Abs(netFood).ToString();
+        foodTickSignText.text = netFood >= 0 ? "+" : "-";
+        
         foodCurrentTooltipText.text = current.ToString();
         foodTickTooltipText.text = tick.ToString();
-        foodNetTooltipText.text = (tick - crew).ToString();
+        foodNetTooltipText.text = netFood.ToString();
     }
 
     public void ShowFoodUIChange(int currentChange, int tickChange)
@@ -218,8 +223,6 @@ public class ShipStatsUI : MonoBehaviour
 
     public void UpdateHullUI(int current, int max)
     {
-        if (current <= 0 && max <= 0) return;
-        
         hullCurrentText.text = current.ToString();
         hullMaxText.text = max.ToString();
         hullCurrentTooltipText.text = current.ToString();
@@ -301,7 +304,8 @@ public class ShipStatsUI : MonoBehaviour
     /// <param name="value"> How much the stat was changed</param>
     /// <param name="icon">The icon it should use when spawning</param>
     /// <param name="canvasNum">The canvas that stat ui should spawn at</param>
-    private void SpawnStatChangeText(TMP_Text statText, int value, Sprite icon, int canvasNum)
+    /// <param name="oppositeValueOnRoom">Default false. If true the resouce value will be opposite in -/+ compared to the ship stat bar</param>
+    private void SpawnStatChangeText(TMP_Text statText, int value, Sprite icon, int canvasNum, bool oppositeValueOnRoom = false)
     {
         if(value != 0)
         {
@@ -353,7 +357,14 @@ public class ShipStatsUI : MonoBehaviour
 
                 MoveAndFadeBehaviour moveAndFadeBehaviourRoom = instanceRoom.GetComponent<MoveAndFadeBehaviour>();
                 moveAndFadeBehaviourRoom.offset = new Vector2(0, -.5f);
-                moveAndFadeBehaviourRoom.SetValue(value, icon);
+                if (oppositeValueOnRoom) // add option to reverse value for stat change UI so that rooms can show removing crew and stat bar can show gaining crew
+                {
+                    moveAndFadeBehaviourRoom.SetValue(-value, icon);
+                }
+                else
+                {
+                    moveAndFadeBehaviourRoom.SetValue(value, icon);
+                }
             }
         }
     }

@@ -302,7 +302,7 @@ public class AdditiveSceneManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Scene: {scene} was not loaded, thus could not be unloaded.");
+            //Debug.LogWarning($"Scene: {scene} was not loaded, thus could not be unloaded.");
         }
     }
 }

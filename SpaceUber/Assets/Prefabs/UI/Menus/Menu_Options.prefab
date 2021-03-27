@@ -191,7 +191,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7553289245908231813}
-  - {fileID: 7553289246293131942}
   m_Father: {fileID: 498532690}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -846,7 +845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1070006623
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1086,7 +1085,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7553289245713278949}
-  - {fileID: 7553289246416044605}
   m_Father: {fileID: 498532690}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1895,7 +1893,7 @@ PrefabInstance:
     - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
       propertyPath: m_text
-      value: Fire Right Cannon
+      value: Stop Reel
       objectReference: {fileID: 0}
     - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
@@ -1906,7 +1904,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: c69a90428f8ecca4883284ba0be8b45f,
+      objectReference: {fileID: 21300000, guid: 12ed57c8940da094f94210b6ed19b34c,
         type: 3}
     - target: {fileID: 8901889081687538285, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
@@ -2026,7 +2024,7 @@ PrefabInstance:
     - target: {fileID: 8901889082184475116, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
       propertyPath: m_Name
-      value: Fire Right Cannon
+      value: Stop Reel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff7aa4b11aea27642aafab11f87e362e, type: 3}
@@ -2046,7 +2044,7 @@ PrefabInstance:
     - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
       propertyPath: m_text
-      value: Fire Right Cannon
+      value: Adjust Sliders
       objectReference: {fileID: 0}
     - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
@@ -2057,7 +2055,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: c69a90428f8ecca4883284ba0be8b45f,
+      objectReference: {fileID: 21300000, guid: e34b6815c92dd1448b9987693555338a,
         type: 3}
     - target: {fileID: 8901889081687538285, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
@@ -2177,7 +2175,7 @@ PrefabInstance:
     - target: {fileID: 8901889082184475116, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
       propertyPath: m_Name
-      value: Fire Right Cannon
+      value: Adjust Sliders
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff7aa4b11aea27642aafab11f87e362e, type: 3}
@@ -2741,10 +2739,22 @@ PrefabInstance:
       propertyPath: m_text
       value: QA
       objectReference: {fileID: 0}
+    - target: {fileID: 7038199254577606789, guid: 26e3e215517c62d4baf10e9491dbbf5c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7038199254577606907, guid: 26e3e215517c62d4baf10e9491dbbf5c,
         type: 3}
       propertyPath: m_text
-      value: Keziah Yarnoff - Lead
+      value: 'Keziah Yarnoff - Lead
+
+        Grant Frey
+
+        Jake Hyland
+
+        Luke
+        Piazza'
       objectReference: {fileID: 0}
     - target: {fileID: 7038199256107735740, guid: 26e3e215517c62d4baf10e9491dbbf5c,
         type: 3}
@@ -3004,7 +3014,7 @@ PrefabInstance:
     - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
       propertyPath: m_text
-      value: Fire Right Cannon
+      value: Drop Tool
       objectReference: {fileID: 0}
     - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
@@ -3135,7 +3145,7 @@ PrefabInstance:
     - target: {fileID: 8901889082184475116, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
       propertyPath: m_Name
-      value: Fire Right Cannon
+      value: Drop Tool
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff7aa4b11aea27642aafab11f87e362e, type: 3}
@@ -4276,7 +4286,7 @@ PrefabInstance:
     - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
       propertyPath: m_text
-      value: Fire Left Cannon
+      value: Pull Lever
       objectReference: {fileID: 0}
     - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
@@ -4287,7 +4297,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 12ed57c8940da094f94210b6ed19b34c,
+      objectReference: {fileID: 21300000, guid: 3a46c64eecb82104399a5835f4d04ba5,
         type: 3}
     - target: {fileID: 8901889081687538285, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
@@ -4407,7 +4417,7 @@ PrefabInstance:
     - target: {fileID: 8901889082184475116, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
       propertyPath: m_Name
-      value: Fire Left Cannon
+      value: Pull Level
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff7aa4b11aea27642aafab11f87e362e, type: 3}
@@ -4416,308 +4426,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
     type: 3}
   m_PrefabInstance: {fileID: 1394832171418250956}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1394832171639808982
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1277998457}
-    m_Modifications:
-    - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_text
-      value: Fire Right Cannon
-      objectReference: {fileID: 0}
-    - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_fontSizeBase
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889081687538283, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: c69a90428f8ecca4883284ba0be8b45f,
-        type: 3}
-    - target: {fileID: 8901889081687538285, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889081725306671, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475116, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_Name
-      value: Fire Right Cannon
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ff7aa4b11aea27642aafab11f87e362e, type: 3}
---- !u!224 &7553289246416044605 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1394832171639808982}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1394832171752760141
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 242667118}
-    m_Modifications:
-    - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_text
-      value: Fire Right Cannon
-      objectReference: {fileID: 0}
-    - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_fontSizeBase
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889081687538283, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: c69a90428f8ecca4883284ba0be8b45f,
-        type: 3}
-    - target: {fileID: 8901889081687538285, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889081725306671, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901889082184475116, guid: ff7aa4b11aea27642aafab11f87e362e,
-        type: 3}
-      propertyPath: m_Name
-      value: Fire Right Cannon
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ff7aa4b11aea27642aafab11f87e362e, type: 3}
---- !u!224 &7553289246293131942 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8901889082184475115, guid: ff7aa4b11aea27642aafab11f87e362e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1394832171752760141}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1394832171831583503
 PrefabInstance:
@@ -4881,7 +4589,7 @@ PrefabInstance:
     - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
       propertyPath: m_text
-      value: Fire Left Cannon
+      value: Pick up/Use Tool
       objectReference: {fileID: 0}
     - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
@@ -5012,7 +4720,7 @@ PrefabInstance:
     - target: {fileID: 8901889082184475116, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
       propertyPath: m_Name
-      value: Fire Left Cannon
+      value: Pick / Use Tool
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff7aa4b11aea27642aafab11f87e362e, type: 3}
@@ -5329,7 +5037,7 @@ PrefabInstance:
     - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
       propertyPath: m_text
-      value: Fire Left Cannon
+      value: Pick up/Drop Hull
       objectReference: {fileID: 0}
     - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
@@ -5460,7 +5168,7 @@ PrefabInstance:
     - target: {fileID: 8901889082184475116, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
       propertyPath: m_Name
-      value: Fire Left Cannon
+      value: Pick up/Drop Hull
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff7aa4b11aea27642aafab11f87e362e, type: 3}
@@ -5636,7 +5344,17 @@ PrefabInstance:
     - target: {fileID: 7038199254577606907, guid: 26e3e215517c62d4baf10e9491dbbf5c,
         type: 3}
       propertyPath: m_text
-      value: Jimbo
+      value: 'Dr. Lormay - Keierra Moore
+
+        Lanri Alileo - Africa Hill
+
+        Captain
+        Lexa - Laurel Burrington
+
+        Kuon Tezuka - Sarah Dove
+
+        Mateo
+        Vieira - Grace Sergott'
       objectReference: {fileID: 0}
     - target: {fileID: 7038199256107735740, guid: 26e3e215517c62d4baf10e9491dbbf5c,
         type: 3}
@@ -6196,7 +5914,7 @@ PrefabInstance:
 
         Scott Acker
 
-        Jack Hyland
+        Jake Hyland
 
         Bobby
         Kohls
@@ -6333,7 +6051,7 @@ PrefabInstance:
     - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
       propertyPath: m_text
-      value: Fire Left Cannon
+      value: Select Button
       objectReference: {fileID: 0}
     - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
@@ -6464,7 +6182,7 @@ PrefabInstance:
     - target: {fileID: 8901889082184475116, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
       propertyPath: m_Name
-      value: Fire Left Cannon
+      value: Select Button
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff7aa4b11aea27642aafab11f87e362e, type: 3}
@@ -6484,7 +6202,7 @@ PrefabInstance:
     - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
       propertyPath: m_text
-      value: Fire Left Cannon
+      value: Press Buttons
       objectReference: {fileID: 0}
     - target: {fileID: 4988157174077623982, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
@@ -6615,7 +6333,7 @@ PrefabInstance:
     - target: {fileID: 8901889082184475116, guid: ff7aa4b11aea27642aafab11f87e362e,
         type: 3}
       propertyPath: m_Name
-      value: Fire Left Cannon
+      value: Press Buttons
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff7aa4b11aea27642aafab11f87e362e, type: 3}
@@ -7051,18 +6769,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8538071817583263596 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5083008407754875110, guid: 7c42ccf0395b64f4aaeaa0e7ddf03f4c,
-    type: 3}
-  m_PrefabInstance: {fileID: 3528335165554122634}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1394832171144745911 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2570528837112810557, guid: 7c42ccf0395b64f4aaeaa0e7ddf03f4c,
@@ -7075,6 +6781,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3528335165554122634}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8538071817583263596 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5083008407754875110, guid: 7c42ccf0395b64f4aaeaa0e7ddf03f4c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3528335165554122634}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6834982155968737989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7239,7 +6957,7 @@ PrefabInstance:
 
         Chloe Harte
 
-        Annebelle
+        Annabelle
         Pries
 
         Keziah Yarnoff'
