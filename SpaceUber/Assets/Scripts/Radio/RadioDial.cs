@@ -31,8 +31,20 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     
     void Start()
     {
+        if(SavingLoadingManager.instance.GetHasSave() && stationDial)
+        {
+            LoadRadioSettings();
+        }
+        else if(stationDial)
+        {
+            slider.value = 0;
+            SaveRadioSettings();
+        }
+
+
         audioSettings = FindObjectOfType<AudioSettings>();
         SetAudioSettingsValues();
+
 
         myImage = GetComponent<Image>();
     }
@@ -57,21 +69,21 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
 
             //if within 3 degrees of 0. Lock dial, set volume to min or max, return dial to unlocked position, return
-           // if (!stationDial && rotator.rotation.eulerAngles.z < 3)
+            //if (!stationDial && rotator.rotation.eulerAngles.z < 3)
             //{
-             //   locked = true;
-             //   rotator.transform.Rotate(0f, 0f, 3);
-             //   isMouseOverObject = false;
-             //   if (!stationDial) myImage.fillAmount = slider.value;
-              //  slider.value = 100; return;
-           // }
+                //locked = true;
+                //rotator.transform.Rotate(0f, 0f, 3);
+                //isMouseOverObject = false;
+                //if (!stationDial) myImage.fillAmount = slider.value;
+                //slider.value = 100; return;
+            //}
             //else if (!stationDial && rotator.rotation.eulerAngles.z > 357)
             //{
-              //  locked = true;
-              //  rotator.transform.Rotate(0f, 0f, -3);
-              //  isMouseOverObject = false;
-              //  if (!stationDial) myImage.fillAmount = slider.value;
-             //   slider.value = 0; return;
+                //locked = true;
+                //rotator.transform.Rotate(0f, 0f, -3);
+                //isMouseOverObject = false;
+                //if (!stationDial) myImage.fillAmount = slider.value;
+                //slider.value = 0; return;
             //}
 
             //set slider values based on rotation
@@ -116,7 +128,6 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void SetAudioSettingsValues()
     {
         if (masterDial) slider.value = AudioSettings.masterVol;
-        else if (masterDial) slider.value = AudioSettings.masterVol;
         else if (radioDial) slider.value = AudioSettings.radioVol;
         else if (bgmDial) slider.value = AudioSettings.bgmVol;
         else if (sfxDial) slider.value = AudioSettings.sfxVol;
@@ -127,7 +138,6 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void SendAudioSettingsValues()
     {
         if (masterDial) AudioSettings.masterVol = slider.value;
-        else if (masterDial) AudioSettings.masterVol = slider.value;
         else if (radioDial) AudioSettings.radioVol = slider.value;
         else if (bgmDial) AudioSettings.bgmVol = slider.value;
         else if (sfxDial) AudioSettings.sfxVol = slider.value;
