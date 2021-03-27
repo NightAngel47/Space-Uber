@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6811,6 +6811,46 @@ PrefabInstance:
       propertyPath: energyMaxTotalTooltipText
       value: 
       objectReference: {fileID: 1946290064}
+    - target: {fileID: 6273300031087700530, guid: 17581060db283ed4a8d97970348901ea,
+        type: 3}
+      propertyPath: textDefault.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6273300031087700530, guid: 17581060db283ed4a8d97970348901ea,
+        type: 3}
+      propertyPath: textDefault.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6273300031087700530, guid: 17581060db283ed4a8d97970348901ea,
+        type: 3}
+      propertyPath: textDefault.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6273300031087700530, guid: 17581060db283ed4a8d97970348901ea,
+        type: 3}
+      propertyPath: textDefault.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6273300031087700530, guid: 17581060db283ed4a8d97970348901ea,
+        type: 3}
+      propertyPath: textRed.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6273300031087700530, guid: 17581060db283ed4a8d97970348901ea,
+        type: 3}
+      propertyPath: textRed.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6273300031087700530, guid: 17581060db283ed4a8d97970348901ea,
+        type: 3}
+      propertyPath: textRed.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6273300031087700530, guid: 17581060db283ed4a8d97970348901ea,
+        type: 3}
+      propertyPath: textRed.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6273300031087700531, guid: 17581060db283ed4a8d97970348901ea,
         type: 3}
       propertyPath: highlights.rows.Array.data[0].row.Array.data[0]
