@@ -33,7 +33,7 @@ public class MiniGame : MonoBehaviour
 		OverclockController.instance.UnloadScene(miniGameSceneName);
 	}
 
-    public void EndMiniGameSuccess()
+    public virtual void EndMiniGameSuccess()
 	{
 		gameOver = true;
 		winText.text = winMessage;
