@@ -5,6 +5,7 @@
  * Description: This controls the page movement of the text boxes for events.
  */
 
+using System.Collections;
 using UnityEngine;
 using TMPro;
 
@@ -18,10 +19,16 @@ public class PageController : MonoBehaviour
     private bool madeChoice;
     private TMP_Text nextButtonText;
 
-    private void Start()
+    private InkDriverBase inkDriver;
+
+    private IEnumerator Start()
     {
         nextButtonText = nextButton.GetComponentInChildren<TMP_Text>();
         ResetPages();
+
+        // wait for ink driver to be loaded
+        yield return new WaitUntil(() => FindObjectOfType<InkDriverBase>());
+        inkDriver = FindObjectOfType<InkDriverBase>();
     }
 
     private void Update()
@@ -38,30 +45,23 @@ public class PageController : MonoBehaviour
 
     public void NextPage()
     {
-        InkDriverBase inkDriver = FindObjectOfType<InkDriverBase>();
-        if (eventText.pageToDisplay < eventText.textInfo.pageCount && !inkDriver.isWriting)
+        print("ere");
+        
+        // next page
+        if (inkDriver.isAtPageLimit)
         {
-            eventText.pageToDisplay += 1;
+            StartCoroutine(inkDriver.PrintText());
+            
             if (!backButton.activeSelf)
             {
                 backButton.SetActive(true);
             }
-            if(!inkDriver.isWriting)
-            {
-                inkDriver.pageNumber++;
-            }
         }
-        else
+        
+        // conclude event
+        if(madeChoice)
         {
-            if (!inkDriver.ShowChoices())
-            {
-                inkDriver.ConcludeEvent();
-            }
-        }
-
-        if (madeChoice && eventText.pageToDisplay == eventText.textInfo.pageCount)
-        {
-            nextButtonText.text = continueNextMsg;
+            inkDriver.ConcludeEvent();
         }
     }
 
@@ -69,6 +69,8 @@ public class PageController : MonoBehaviour
     {
         if(eventText.pageToDisplay > 1)
         {
+            StartCoroutine(inkDriver.PrintText(true));
+            
             eventText.pageToDisplay -= 1;
             nextButtonText.text = defaultNextMsg;
             if(eventText.pageToDisplay == 1)
@@ -89,12 +91,9 @@ public class PageController : MonoBehaviour
         nextButtonText.text = defaultNextMsg;
     }
 
-    public void UpdateNextPageText()
+    public void UpdateMadeChoice()
     {
         madeChoice = true;
-        if (madeChoice && eventText.pageToDisplay == eventText.textInfo.pageCount)
-        {
-            nextButtonText.text = continueNextMsg;
-        }
+        nextButtonText.text = continueNextMsg;
     }
 }

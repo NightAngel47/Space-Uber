@@ -6,6 +6,7 @@
  * Runs a simple path of choices by creating clickable UI buttons.
  */
 
+using System;
 using UnityEngine;
 using Ink.Runtime;
 using UnityEngine.UI;
@@ -47,8 +48,13 @@ public class InkDriverBase : MonoBehaviour
 
     [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
     private float textPrintSpeed = 0.001f;
-    [HideInInspector] public int pageNumber;
-    [HideInInspector] public bool isWriting;
+    public int pageNumber;
+    
+    public bool isAtPageLimit;
+    private string storyBlock;
+    private int prevCharIndex;
+    private int nextCharIndex;
+    private int textBoxLineHeight = 9;
 
     public string eventIntroSFX;
 
@@ -87,7 +93,7 @@ public class InkDriverBase : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        isWriting = true;
+        isAtPageLimit = true;
         story = new Story(inkJSONAsset.text); //this draws text out of the JSON file
 
         Refresh(); //starts the dialogue
@@ -143,38 +149,56 @@ public class InkDriverBase : MonoBehaviour
     /// <summary>
     /// Prints text into the textbox character by character
     /// </summary>
-    /// <param name="text"></param>
     /// <returns></returns>
-    private IEnumerator PrintText(string text)
+    public IEnumerator PrintText(bool previousPage = false)
     {
         donePrinting = false;
 
         string tempString = "";
         textBox.text = tempString;
-        int runningIndex = 0;
+        isAtPageLimit = false;
 
-        while (tempString.Length < text.Length)
+        // if going backwards to previous page
+        if (previousPage)
         {
-            //Debug.Log("tempString is " + tempString.Length);
-            //Debug.Log("lasIndex is " + (textBox.textInfo.pageInfo[pageNumber].lastCharacterIndex + 1));
-            //Debug.Log("characterCount = " + textBox.textInfo.characterCount);
-            isWriting = true;
-            tempString += CheckChar(text[runningIndex]);
-            runningIndex++;
+            nextCharIndex = prevCharIndex; // save char index
+        }
+        
+        prevCharIndex = nextCharIndex; // save char index
 
-            //while (tempString.Length <= (textBox.textInfo.pageInfo[pageNumber].lastCharacterIndex + 1))
-            if (textBox.textInfo.pageInfo[pageNumber].lastCharacterIndex >= 1)
-            {
-                isWriting = false;
-            }
-
-            //click to instantly finish text,
-            //if ((Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.RightArrow)))
-            //{
-            //    tempString = text;
-            //    isWriting = false;
-            //}
+        yield return new WaitForEndOfFrame();
+        
+        // print text until no more text or at page limit
+        while (nextCharIndex < storyBlock.Length && !isAtPageLimit)
+        {
+            // print next character
+            tempString += CheckChar(storyBlock[nextCharIndex]);
             textBox.text = tempString;
+            nextCharIndex++;
+
+            // check if go to choices / conclude
+            if (nextCharIndex >= storyBlock.Length)
+            {
+                isAtPageLimit = true;
+                ShowChoices();
+            }
+            
+            // check if go to next page
+            if (textBox.textInfo.lineCount >= textBoxLineHeight)
+            {
+                isAtPageLimit = true;
+            }
+            
+
+            //click to instantly finish text
+            // if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || 
+            //     Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow) ||
+            //     Input.GetMouseButtonDown(0))
+            // {
+            //     tempString = storyBlock;
+            //     isAtPageLimit = false;
+            //     // TODO: need to save nextCharIndex for end of page
+            // }
 
             yield return new WaitForSeconds(textPrintSpeed);
         }
@@ -184,11 +208,11 @@ public class InkDriverBase : MonoBehaviour
 
     private char CheckChar(char nextChar)
     {
-        if (nextChar == '’')
+        if (nextChar == 'ï¿½')
         {
             nextChar = '\'';
         }
-        if(nextChar == '“' || nextChar == '”')
+        if(nextChar == 'ï¿½' || nextChar == 'ï¿½')
         {
             nextChar = '\"';
         }
@@ -198,42 +222,39 @@ public class InkDriverBase : MonoBehaviour
     /// <summary>
     /// Instantiates each choice as a button and tells the game which one has been chosen when clicked
     /// </summary>
-    public bool ShowChoices()
+    public void ShowChoices()
     {
-        if (!showingChoices && donePrinting && story.currentChoices.Count > 0)
+        if (showingChoices || !donePrinting || story.currentChoices.Count <= 0) return;
+        
+        showingChoices = true;
+        foreach (Choice choice in story.currentChoices)
         {
-            showingChoices = true;
-            foreach (Choice choice in story.currentChoices)
+            //instantiate a button
+            Button choiceButton = Instantiate(buttonPrefab, buttonGroup);
+
+            // Gets the text from the button prefab
+            TMP_Text choiceText = choiceButton.GetComponentInChildren<TMP_Text>();
+            choiceText.text = " " + (choice.index + 1) + ". " + choice.text;
+
+            // Set listener for the sake of knowing when to refresh
+            choiceButton.onClick.AddListener(delegate {
+                OnClickChoiceButton(choice);
+            });
+
+            if (choice.index < nextChoices.Count)
             {
-                //instantiate a button
-                Button choiceButton = Instantiate(buttonPrefab, buttonGroup);
+                nextChoices[choice.index].CreateChoice(thisShip,choiceButton, story,this, choiceButton.transform.GetChild(1).GetComponent<OutcomeTooltipUI>());
 
-                // Gets the text from the button prefab
-                TMP_Text choiceText = choiceButton.GetComponentInChildren<TMP_Text>();
-                choiceText.text = " " + (choice.index + 1) + ". " + choice.text;
-
-                // Set listener for the sake of knowing when to refresh
+                // Have on click also call the outcome choice to update the ship stats
                 choiceButton.onClick.AddListener(delegate {
-                    OnClickChoiceButton(choice);
+                    nextChoices[choice.index].SelectChoice(thisShip);
                 });
-
-                if (choice.index < nextChoices.Count)
-                {
-                    nextChoices[choice.index].CreateChoice(thisShip,choiceButton, story,this, choiceButton.transform.GetChild(1).GetComponent<OutcomeTooltipUI>());
-
-                    // Have on click also call the outcome choice to update the ship stats
-                    choiceButton.onClick.AddListener(delegate {
-                        nextChoices[choice.index].SelectChoice(thisShip);
-                    });
-                }
-                else
-                {
-                    Debug.LogWarning($"There was not EventChoice available for choice index: {choice.index}");
-                }
             }
-            return true;
+            else
+            {
+                Debug.LogWarning($"There was not EventChoice available for choice index: {choice.index}");
+            }
         }
-        return false;
     }
 
     /// <summary>
@@ -246,8 +267,8 @@ public class InkDriverBase : MonoBehaviour
         ClearUI();
 
         // Set the text from new story block
-        string text = GetNextStoryBlock();
-        StartCoroutine(PrintText(text));
+        GetNextStoryBlock();
+        StartCoroutine(PrintText());
     }
 
     /// <summary>
@@ -259,7 +280,7 @@ public class InkDriverBase : MonoBehaviour
         story.ChooseChoiceIndex(choice.index);
         Refresh();
         showingChoices = false;
-        FindObjectOfType<PageController>().UpdateNextPageText();
+        FindObjectOfType<PageController>().UpdateMadeChoice();
     }
 
     /// <summary>
@@ -272,19 +293,17 @@ public class InkDriverBase : MonoBehaviour
     }
 
     /// <summary>
-    /// Returns a string of the next line of text, if there is story left
+    /// Sets the next block of the story
     /// </summary>
-    string GetNextStoryBlock()
+    void GetNextStoryBlock()
     {
-        string text = ""; //error check
+        storyBlock = String.Empty;
         
         //Allows the story to add different paragraphs up until the next choice
         while (story.canContinue)
         {
-            text += story.Continue() + "\n";
+            storyBlock += story.Continue() + "\n";
         }
-
-        return text;
     }
 
     // Clear out all of the UI, calling Destory() in reverse
@@ -330,12 +349,12 @@ public class InkDriverBase : MonoBehaviour
 
             if (textBox.textInfo.pageInfo[pageNumber].lastCharacterIndex >= visibleCount)
             {
-                isWriting = true;
+                isAtPageLimit = true;
                 counter += 1;
             }
             else
             {
-                isWriting = false;
+                isAtPageLimit = false;
             }
             
             yield return new WaitForSeconds(0.01f);
