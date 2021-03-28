@@ -31,15 +31,15 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     
     void Start()
     {
-        if(SavingLoadingManager.instance.GetHasSave() && stationDial)
+        if(stationDial)//SavingLoadingManager.instance.GetHasSave() 
         {
             LoadRadioSettings();
         }
-        else if(stationDial)
-        {
-            slider.value = 0;
-            SaveRadioSettings();
-        }
+        //else if(stationDial)
+        //{
+            //slider.value = 0;
+            //SaveRadioSettings();
+        //}
 
 
         audioSettings = FindObjectOfType<AudioSettings>();
@@ -50,9 +50,28 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
     private void OnEnable()
     {
+        if (stationDial)//SavingLoadingManager.instance.GetHasSave() 
+        {
+            LoadRadioSettings();
+        }
+        //else if(stationDial)
+        //{
+        //slider.value = 0;
+        //SaveRadioSettings();
+        //}
+
+
+        audioSettings = FindObjectOfType<AudioSettings>();
         SetAudioSettingsValues();
     }
-
+    private void OnDisable()
+    {
+        if (stationDial) SaveRadioSettings();
+    }
+    private void OnDestroy()
+    {
+        if (stationDial) SaveRadioSettings();
+    }
 
     void Update()
     {
@@ -89,7 +108,7 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             //set slider values based on rotation
             if (stationDial) slider.value = (Mathf.Abs(rotator.rotation.z) / 360f) * 100f * 20f;
             else slider.value = 1 - (rotator.rotation.eulerAngles.z / 360);
-            SaveRadioSettings();
+            if(stationDial)SaveRadioSettings();
             SendAudioSettingsValues();
 
         }
@@ -119,10 +138,12 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void SaveRadioSettings()
     {
         SavingLoadingManager.instance.Save<float>("sliderVal", slider.value);
+        SavingLoadingManager.instance.Save<Quaternion>("dialRotation", rotator.rotation);
     }
     public void LoadRadioSettings()
     {
         slider.value = SavingLoadingManager.instance.Load<float>("sliderVal");
+        rotator.rotation = SavingLoadingManager.instance.Load<Quaternion>("dialRotation");
     }
 
     public void SetAudioSettingsValues()

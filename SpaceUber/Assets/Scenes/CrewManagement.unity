@@ -5484,6 +5484,11 @@ PrefabInstance:
       propertyPath: bgmDial
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6590697562995575297, guid: 96edf331c4c9cb24ba990d7b2b9030c9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6590697562995575359, guid: 96edf331c4c9cb24ba990d7b2b9030c9,
         type: 3}
       propertyPath: defaultValue
@@ -5695,7 +5700,13 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8828453955768574339, guid: 96edf331c4c9cb24ba990d7b2b9030c9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6590697562995575297, guid: 96edf331c4c9cb24ba990d7b2b9030c9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 96edf331c4c9cb24ba990d7b2b9030c9, type: 3}
 --- !u!1 &954082572 stripped
 GameObject:
