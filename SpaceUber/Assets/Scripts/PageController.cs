@@ -53,40 +53,35 @@ public class PageController : MonoBehaviour
             {
                 inkDriver.ConcludeEvent();
             }
-            print("ere");
-            StartCoroutine(inkDriver.PrintText());
+
+            if (!inkDriver.donePrinting)
+            {
+                StartCoroutine(inkDriver.PrintText());
+            }
             
             if (!backButton.activeSelf)
             {
                 backButton.SetActive(true);
             }
         }
-
-        
     }
 
     public void PreviousPage()
     {
-        if(eventText.pageToDisplay > 1)
+        if(inkDriver.isAtPageLimit)
         {
             StartCoroutine(inkDriver.PrintText(true));
             
-            eventText.pageToDisplay -= 1;
             nextButtonText.text = defaultNextMsg;
-            if(eventText.pageToDisplay == 1)
+            if(inkDriver.PrevCharIndex == 0)
             {
                 backButton.SetActive(false);
             }
-        }
-        else
-        {
-            backButton.SetActive(false);
         }
     }
 
     public void ResetPages()
     {
-        eventText.pageToDisplay = 1;
         backButton.SetActive(false);
         nextButtonText.text = defaultNextMsg;
     }

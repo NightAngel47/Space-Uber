@@ -53,8 +53,11 @@ public class InkDriverBase : MonoBehaviour
     public bool isAtPageLimit;
     private string storyBlock;
     private int prevCharIndex;
+    private int currentCharCount;
     private int nextCharIndex;
-    private int textBoxLineHeight = 9;
+    private int textBoxLineHeight = 10;
+
+    public int PrevCharIndex => prevCharIndex;
 
     public string eventIntroSFX;
 
@@ -89,6 +92,7 @@ public class InkDriverBase : MonoBehaviour
     /// </summary>
     public bool donePrinting = true;
     private bool showingChoices = false;
+    public bool ShowingChoices => showingChoices;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -158,13 +162,15 @@ public class InkDriverBase : MonoBehaviour
         textBox.text = tempString;
         isAtPageLimit = false;
 
+
         // if going backwards to previous page
         if (previousPage)
         {
-            nextCharIndex = prevCharIndex; // save char index
+            nextCharIndex -= prevCharIndex + currentCharCount; // 0 = 1000 - 500
+            if (nextCharIndex < 0) nextCharIndex = 0;
         }
         
-        prevCharIndex = nextCharIndex; // save char index
+        prevCharIndex = nextCharIndex;
 
         yield return new WaitForEndOfFrame();
         
@@ -177,20 +183,28 @@ public class InkDriverBase : MonoBehaviour
             nextCharIndex++;
 
             // check if go to next page
-            if (textBox.textInfo.lineCount >= textBoxLineHeight)
+            if (textBox.textInfo.lineCount > textBoxLineHeight)
             {
                 isAtPageLimit = true;
+
+                while (textBox.textInfo.lineCount > textBoxLineHeight)
+                {
+                    nextCharIndex--;
+                    tempString.Remove(nextCharIndex);
+                    textBox.text = tempString;
+
+                    yield return new WaitForEndOfFrame();
+                }
+                
+                currentCharCount = nextCharIndex - prevCharIndex;
             }
 
             // check if go to choices / conclude
             if (nextCharIndex >= storyBlock.Length)
             {
                 isAtPageLimit = true;
+                donePrinting = true;
                 ShowChoices();
-                if(!showingChoices)
-                {
-                    donePrinting = true;
-                }
             }
 
             //click to instantly finish text
@@ -266,6 +280,9 @@ public class InkDriverBase : MonoBehaviour
     /// </summary>
     void Refresh()
     {
+        nextCharIndex = 0;
+        prevCharIndex = 0;
+        
         // Clear the UI
         ClearUI();
 
