@@ -26,43 +26,39 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private AudioSettings audioSettings;
     private Quaternion defaultPosition = new Quaternion(0f,0f,0f,0f);
 
-    
 
-    
-    void Start()
+    private void Awake()
     {
-        if(stationDial)//SavingLoadingManager.instance.GetHasSave() 
-        {
-            LoadRadioSettings();
-        }
-        //else if(stationDial)
-        //{
-            //slider.value = 0;
-            //SaveRadioSettings();
-        //}
-
-
         audioSettings = FindObjectOfType<AudioSettings>();
-        SetAudioSettingsValues();
 
-
-        myImage = GetComponent<Image>();
-    }
-    private void OnEnable()
-    {
         if (stationDial)//SavingLoadingManager.instance.GetHasSave() 
         {
             LoadRadioSettings();
         }
-        //else if(stationDial)
-        //{
-        //slider.value = 0;
-        //SaveRadioSettings();
-        //}
+        else SetAudioSettingsValues();
+    }
 
+    void Start()
+    {
+        
+        
 
+        myImage = GetComponent<Image>();
+    }
+
+    private void OnEnable()
+    {
         audioSettings = FindObjectOfType<AudioSettings>();
-        SetAudioSettingsValues();
+
+        if (stationDial)//SavingLoadingManager.instance.GetHasSave() 
+        {
+            LoadRadioSettings();
+        }
+        else SetAudioSettingsValues();
+
+
+
+
     }
     private void OnDisable()
     {
@@ -108,7 +104,7 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             //set slider values based on rotation
             if (stationDial) slider.value = (Mathf.Abs(rotator.rotation.z) / 360f) * 100f * 20f;
             else slider.value = 1 - (rotator.rotation.eulerAngles.z / 360);
-            SendAudioSettingsValues();
+            
 
         }
         //fill volume bar based on slider value
@@ -117,7 +113,7 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         //if player lets go outside of hitbox, let go
         if(Input.GetMouseButtonUp(0)) isMouseOverObject = false;
 
-
+        SendAudioSettingsValues();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -149,8 +145,12 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         else if (radioDial) slider.value = AudioSettings.radioVol;
         else if (bgmDial) slider.value = AudioSettings.bgmVol;
         else if (sfxDial) slider.value = AudioSettings.sfxVol;
-        rotator.transform.rotation = defaultPosition;
-        rotator.transform.Rotate(0f, 0f, -(slider.value * 360f));
+        if(!stationDial)
+        {
+            rotator.transform.rotation = defaultPosition;
+            rotator.transform.Rotate(0f, 0f, -(slider.value * 360f));
+        }
+        
     }
 
     public void SendAudioSettingsValues()
@@ -159,5 +159,6 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         else if (radioDial) AudioSettings.radioVol = slider.value;
         else if (bgmDial) AudioSettings.bgmVol = slider.value;
         else if (sfxDial) AudioSettings.sfxVol = slider.value;
+        FindObjectOfType<AudioSettings>().SaveAudioSettings();
     }
 }
