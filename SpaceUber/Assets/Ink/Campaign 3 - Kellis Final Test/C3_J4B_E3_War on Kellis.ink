@@ -35,7 +35,7 @@
 ->Fight_Hall
 
 ==Cut_Hall==
--Requires Disintegration Ray variable, burn through the walls to reach your objective--Power, -Weapons
+-Requires Disintegration Ray variable, burn through the walls to reach your objective--Power
 ->Final_Boss
 ==Secure_Hall==
 -Send security as a forward team to disable the guns and ensure safe passage, --Security, % chance of --Hull
@@ -69,7 +69,7 @@
 ->END
 *[Hack Kellis' System, Expose Crimes]
 ->END
-*[Take Control of Artifact, Rule]
+*[Take Control of Artifact]
 ->END
 *[Leave]
 ->END
