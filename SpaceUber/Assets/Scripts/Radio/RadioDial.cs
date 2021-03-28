@@ -113,7 +113,7 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         //if player lets go outside of hitbox, let go
         if(Input.GetMouseButtonUp(0)) isMouseOverObject = false;
 
-        SendAudioSettingsValues();
+        if(Input.GetKeyDown(KeyCode.Escape))SendAudioSettingsValues();
     }
 
     public void OnPointerDown(PointerEventData eventData)
