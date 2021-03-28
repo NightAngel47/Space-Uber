@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4655031035791176343
+--- !u!1001 &2550439865253159195
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,27 +10,7 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: nextChoices.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceRequirements.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -39,9 +19,54 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
+      propertyPath: nextChoices.Array.data[1].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
       propertyPath: inkJSONAsset
       value: 
-      objectReference: {fileID: 4900000, guid: 109a6fb9dd5c84f6189e1115751be2b5, type: 3}
+      objectReference: {fileID: 4900000, guid: 9d8c85782428a4a1f8004f8bec47c672, type: 3}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: eventName
+      value: Final Preparations
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: isStoryEvent
@@ -50,22 +75,67 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: storyIndex
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: eventBGM
-      value: Spatial Aurora
+      value: General Theme
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: nextChoices.Array.data[0].choiceName
-      value: Share your Research
+      value: Gatling Arsenal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].hasSubsequentChoices
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].outcomeName
+      value: +weapons
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].isResourceOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].resource
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].amount
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: nextChoices.Array.data[1].choiceName
-      value: Say Nothing
+      value: Security Vehicles and Anti-Tank Weapons
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[0].outcomeName
+      value: +security
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[0].isResourceOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[0].resource
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[0].amount
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -74,7 +144,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: nextChoices.Array.data[0].hasSubsequentChoices
+      propertyPath: nextChoices.Array.data[2].choiceName
+      value: Welded Armor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].outcomes.Array.data[0].outcomeName
+      value: +hull
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].outcomes.Array.data[0].isResourceOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].outcomes.Array.data[0].resource
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].outcomes.Array.data[0].amount
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].hasSubsequentChoices
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
@@ -89,128 +184,128 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceName
-      value: Help the Government Complex
+      propertyPath: subsequentChoices.Array.data[1].subsequentChoicesName
+      value: '#3'
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].choiceName
-      value: Escape with Asset
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceName
+      value: Disinegration Ray
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[0].outcomeName
-      value: -hull
+      value: +weapons
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[0].resource
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[0].isResourceOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].hasSubsequentChoices
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].subsequentChoiceIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].choiceName
+      value: Warp Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.data[0].outcomeName
+      value: +hull
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.data[0].isResourceOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].hasSubsequentChoices
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].subsequentChoiceIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.data[0].resource
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[1].outcomeName
-      value: -security
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.data[0].amount
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[1].resource
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].choiceName
+      value: Security Exo-Suits
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].outcomes.Array.data[0].outcomeName
+      value: +security
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].outcomes.Array.data[0].resource
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[1].amount
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceRequirements.Array.data[0].isStatRequirement
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].outcomes.Array.data[0].isResourceOutcome
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceRequirements.Array.data[0].selectedResource
-      value: 6
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].outcomes.Array.data[0].amount
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceRequirements.Array.data[0].requiredAmount
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[2].resource
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[2].outcomeName
-      value: +morale
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[2].amount
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[3].isNarrativeOutcome
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].hasSubsequentChoices
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[3].thisCampaign
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].isNarrativeOutcome
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].subsequentChoiceIndex
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].thisCampaign
-      value: 2
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].choiceName
+      value: Reality Bomb
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[3].outcomeName
-      value: +government trust/shared  research
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].choiceName
+      value: Hyper Hack Tool
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].finalTestNarrativeOutcomes
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[0].hasSecretOutcomes
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[1].hasSecretOutcomes
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: eventName
-      value: The Decision
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[0].amount
-      value: -40
-      objectReference: {fileID: 0}
-    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
-        type: 3}
-      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].outcomeName
-      value: research shared
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[2].choiceName
+      value: Don't Buy
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name
-      value: The DecisionA
+      value: Final Preparations
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
