@@ -25,7 +25,7 @@ public class JobListUI : MonoBehaviour
     [SerializeField] private TMP_Text selectedJobDescText;
     [SerializeField] private TMP_Text selectedJobPayText;
     [SerializeField] private Animator primaryJobCanvasAnimator;
-    [SerializeField] private List<JobUI> jobUIList = new List<JobUI>();
+    [SerializeField] public List<JobUI> jobUIList = new List<JobUI>();
 
     //[Header("Side Job UI")]
     //[SerializeField] private GameObject sideJob;

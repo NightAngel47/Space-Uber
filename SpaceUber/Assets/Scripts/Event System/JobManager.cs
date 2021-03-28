@@ -19,6 +19,7 @@ public class JobManager : MonoBehaviour
     [SerializeField] private EventSystem es;
 
     private JobListUI jobListUI;
+    private JobUI jobUI;
     private Job selectedMainJob;
     
     private List<Job> selectedSideJobs = new List<Job>();
@@ -36,19 +37,29 @@ public class JobManager : MonoBehaviour
     {
         yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_JobList").isLoaded);
         jobListUI = FindObjectOfType<JobListUI>();
+        jobUI = FindObjectOfType<JobUI>();
 
         for (var i = 0; i < campaignManager.GetAvailableJobs().Count; i++)
         {
             Job thisJob = campaignManager.GetAvailableJobs()[i];
             // Show available job currently handles both primary and side jobs,
             // might need to change when side jobs are added
+            jobListUI.ShowAvailableJob(thisJob, i);
 
-            if (thisJob.campaignIndexAvailable ==
-                campaignManager.GetCurrentJobIndex() ||
-                thisJob.isSideJob)
+            if (thisJob.campaignIndexAvailable == campaignManager.GetCurrentJobIndex() || thisJob.isSideJob)
             {
-                jobListUI.ShowAvailableJob(thisJob, i);
+                jobUI.JobSelected();
+                jobListUI.jobUIList[i].GetComponent<Button>().interactable = false;
             }
+            else if (thisJob.campaignIndexAvailable != campaignManager.GetCurrentJobIndex() || !thisJob.isSideJob)
+            {
+                jobUI.JobNotSelected();
+                jobListUI.jobUIList[i].GetComponent<Button>().interactable = false;
+            }
+            //if (thisJob.campaignIndexAvailable == campaignManager.GetCurrentJobIndex() || thisJob.isSideJob)
+            //{
+            //    jobListUI.ShowAvailableJob(thisJob, i);
+            //}
         }
 
         jobListUI.continueButton.onClick.AddListener(FinalizeJobSelection);

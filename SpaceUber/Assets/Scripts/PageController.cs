@@ -45,11 +45,15 @@ public class PageController : MonoBehaviour
 
     public void NextPage()
     {
-        print("ere");
-        
         // next page
         if (inkDriver.isAtPageLimit)
         {
+            // conclude event
+            if (inkDriver.donePrinting || madeChoice)
+            {
+                inkDriver.ConcludeEvent();
+            }
+            print("ere");
             StartCoroutine(inkDriver.PrintText());
             
             if (!backButton.activeSelf)
@@ -57,12 +61,8 @@ public class PageController : MonoBehaviour
                 backButton.SetActive(true);
             }
         }
+
         
-        // conclude event
-        if(madeChoice)
-        {
-            inkDriver.ConcludeEvent();
-        }
     }
 
     public void PreviousPage()

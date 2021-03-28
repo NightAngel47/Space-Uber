@@ -47,7 +47,7 @@ public class InkDriverBase : MonoBehaviour
     protected ShipStats thisShip;
 
     [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
-    private float textPrintSpeed = 0.001f;
+    private float textPrintSpeed = 0.0001f;
     public int pageNumber;
     
     public bool isAtPageLimit;
@@ -87,7 +87,7 @@ public class InkDriverBase : MonoBehaviour
     /// <summary>
     /// Whether the latest bit of text is done printing so it can show the choices
     /// </summary>
-    private bool donePrinting = true;
+    public bool donePrinting = true;
     private bool showingChoices = false;
 
     // Start is called before the first frame update
@@ -137,7 +137,7 @@ public class InkDriverBase : MonoBehaviour
 
     public void ConcludeEvent()
     {
-        if (!showingChoices && donePrinting && textBox.pageToDisplay == textBox.textInfo.pageCount)
+        if (!showingChoices && donePrinting)
         {
             if (!story.canContinue && story.currentChoices.Count == 0)
             {
@@ -176,19 +176,22 @@ public class InkDriverBase : MonoBehaviour
             textBox.text = tempString;
             nextCharIndex++;
 
-            // check if go to choices / conclude
-            if (nextCharIndex >= storyBlock.Length)
-            {
-                isAtPageLimit = true;
-                ShowChoices();
-            }
-            
             // check if go to next page
             if (textBox.textInfo.lineCount >= textBoxLineHeight)
             {
                 isAtPageLimit = true;
             }
-            
+
+            // check if go to choices / conclude
+            if (nextCharIndex >= storyBlock.Length)
+            {
+                isAtPageLimit = true;
+                ShowChoices();
+                if(!showingChoices)
+                {
+                    donePrinting = true;
+                }
+            }
 
             //click to instantly finish text
             // if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || 
@@ -203,7 +206,7 @@ public class InkDriverBase : MonoBehaviour
             yield return new WaitForSeconds(textPrintSpeed);
         }
 
-        donePrinting = true;
+        //donePrinting = true;
     }
 
     private char CheckChar(char nextChar)
@@ -224,8 +227,8 @@ public class InkDriverBase : MonoBehaviour
     /// </summary>
     public void ShowChoices()
     {
-        if (showingChoices || !donePrinting || story.currentChoices.Count <= 0) return;
-        
+        if (showingChoices || story.currentChoices.Count <= 0) return; // || !donePrinting
+
         showingChoices = true;
         foreach (Choice choice in story.currentChoices)
         {
