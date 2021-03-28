@@ -22,7 +22,7 @@ public class AudioSettings : MonoBehaviour
     {
         yield return new WaitUntil(() => AudioManager.instance != null);
 
-        if (SavingLoadingManager.instance.GetHasSave())
+        if (SavingLoadingManager.instance.GetHasSave())//change to gethassettingssave when merged?
         {
             LoadAudioSettings();
         }

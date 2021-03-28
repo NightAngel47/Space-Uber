@@ -383,7 +383,7 @@ public class AudioManager : MonoBehaviour
     /// <param name="fadeTime"></param>
     /// <param name="fadeIn">False to fade out</param>
     /// <returns></returns>
-    IEnumerator Fade(Sound sound, float fadeTime, bool fadeIn)
+    public IEnumerator Fade(Sound sound, float fadeTime, bool fadeIn)
     {
         //Sanitize Input
         fadeTime = Mathf.Abs(fadeTime);
@@ -437,5 +437,10 @@ public class AudioManager : MonoBehaviour
         fadeInTime = Mathf.Abs(fadeInTime);
         trackOverlapTime = Mathf.Abs(trackOverlapTime);
         if (trackOverlapTime > fadeOutTime) { trackOverlapTime = fadeOutTime; }
+    }
+
+    public Sound GetCurrentRadioSong()
+    {
+        return currentlyPlayingStation;
     }
 }

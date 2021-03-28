@@ -108,7 +108,6 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             //set slider values based on rotation
             if (stationDial) slider.value = (Mathf.Abs(rotator.rotation.z) / 360f) * 100f * 20f;
             else slider.value = 1 - (rotator.rotation.eulerAngles.z / 360);
-            if(stationDial)SaveRadioSettings();
             SendAudioSettingsValues();
 
         }
@@ -138,12 +137,10 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void SaveRadioSettings()
     {
         SavingLoadingManager.instance.Save<float>("sliderVal", slider.value);
-        SavingLoadingManager.instance.Save<Quaternion>("dialRotation", rotator.rotation);
     }
     public void LoadRadioSettings()
     {
         slider.value = SavingLoadingManager.instance.Load<float>("sliderVal");
-        rotator.rotation = SavingLoadingManager.instance.Load<Quaternion>("dialRotation");
     }
 
     public void SetAudioSettingsValues()
