@@ -40,7 +40,11 @@ public class AudioSettings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        masterSlider.value = masterVol;
+        sfxSlider.value = sfxVol;
+        bgmSlider.value = bgmVol;
+        radioSlider.value = radioVol;
+        ambientSlider.value = ambientVol;
     }
 
     public void MasterVolSlider(float volume)
