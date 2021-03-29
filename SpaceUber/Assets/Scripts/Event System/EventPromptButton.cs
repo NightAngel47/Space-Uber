@@ -11,26 +11,21 @@ using UnityEngine.UI;
 public class EventPromptButton : MonoBehaviour
 {
     public GameObject backDrop;
-    public Button eventButton;
+    public ButtonTwoBehaviour eventButton;
+    private float counter = 0;
 
-    private void Start()
+    private void Awake()
     {
+        eventButton = GetComponent<ButtonTwoBehaviour>();
         backDrop.SetActive(false);
-        if(OverclockController.instance.overclocking || EventSystem.instance.chatting || EventSystem.instance.mutiny)
-        {
-            eventButton.gameObject.SetActive(false);
-        }
+        eventButton.SetButtonInteractable(false);
     }
 
     private void Update()
     {
-        if(eventButton.gameObject.activeSelf && (OverclockController.instance.overclocking || EventSystem.instance.chatting || EventSystem.instance.mutiny))
+        if(EventSystem.instance.eventButtonSpawn == true)
         {
-            eventButton.gameObject.SetActive(false);
-        }
-        else if(!eventButton.gameObject.activeSelf && !(OverclockController.instance.overclocking || EventSystem.instance.chatting || EventSystem.instance.mutiny))
-        {
-            eventButton.gameObject.SetActive(true);
+            eventButton.SetButtonInteractable(!(OverclockController.instance.overclocking || EventSystem.instance.chatting || EventSystem.instance.mutiny));
         }
     }
 }
