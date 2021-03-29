@@ -18,5 +18,6 @@ public class HullPieceSlot : MonoBehaviour
     private void Start()
     {
         myPosition = transform.position;
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 }
