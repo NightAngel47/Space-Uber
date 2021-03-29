@@ -24,13 +24,11 @@
 	Its answer presses hard against your mind. "Then that is the difference between us. We are the steward of the universe, while you are the steward of less than a hundred. Give up a few souls, a few worlds, and you end a galactic tyranny. If you cannot understand, kindly, die."
 	Another beam arcs in front of your ship and you blast downwards to avoid it. You get visual on your destination, ahead. A moon Kellis turned into a private city. You contact the lunar defenses and rattle off security clearances. 
 	Soon, light sweeps across the sky, focused on the artifact. It begins to start and stop, a grid of energy appearing seconds before the defenses make a direct hit. It's slowed for the moment.
-[Artifact_Fighting]
 -> Hostage
 
 ==E_Plead_2==
 You shout back across the tenuous electric connection, you tell the artifact that the situation is under control, that Kellis as it exists now will be dismantled. You ask for its trust. Its answer recedes like a wave in your mind. "You are more than a shadow then? We eagerly await/lie in wait for the execution of this plan/the false kings. Do not disappoint us."
 You see your destination ahead. A moon Kellis turned into a private city. The lunar defenses swivel to meet the artifact, but find nothing chasing you but starlight.
-[Artifact_Waiting]
 ->Hostage
 
 ==Negotiate==
@@ -42,10 +40,8 @@ The familiar feeling of its intelligence inhabiting yours begins, "Why do you fe
 ->N_Plead_2
 
 ==N_Plead_1==
-	Option I, "I Have A Plan to Stop Them":
 	You speak across the tenuous electric connection, you tell the artifact that the situation is under control, that Kellis as it exists now will be dismantled. You ask for its trust. Its answer recedes like a wave in your mind. "Not a mimic of us then? We eagerly await/lie in wait for the execution of this plan/the false kings. Do not disappoint us."
 	You see your destination ahead. A moon Kellis turned into a private city. The lunar defenses swivel to meet the artifact, but find nothing chasing you but starlight.
-[Artifact_Waiting]
 ->Hostage
 
 ==N_Plead_2==
@@ -54,7 +50,6 @@ The familiar feeling of its intelligence inhabiting yours begins, "Why do you fe
 	The artifact's golden petals start to warp into sharp obelisks which swing into position. A blue light coalesces between the prongs before the artifact twists towards you, blue beam firing. 
 	You blast downwards as the outer layer of hull turns to a gas. You get visual on your destination, ahead. A moon Kellis turned into a private city. You contact the lunar defenses and rattle off security clearances. 
 	Soon, light sweeps across the sky, and strike the artifact next to you, a grid of energy wrapped around it.  It begins to start and stop, that grid appearing seconds before the defenses make a direct hit. It falls behind for now.
-[Artifact_Fighting]
 ->Hostage
 
 ==Fight_Artifact==
@@ -63,33 +58,52 @@ You open fire at one of its petals, which seems to be its propulsion. With susta
 This slows the artifact only slightly, but you continue your futile attack. Its voice echos through you, "Need we remind you who we are/we serve? You are our mind reinvented, yet have staked yourself on the survival of your slavers/false kings. If you seek only to be a shadow, kindly die."
 The artifact's golden petals start to warp into sharp obelisks which swing into position. A blue light coalesces between the prongs before the artifact twists towards you, blue beam firing. 
 You blast downwards as the outer layer of hull turns to a gas. You get visual on your destination, ahead. A moon Kellis turned into a private city. You contact the lunar defenses and rattle off security clearances. 
-Soon, light sweeps across the sky, and strike the artifact next to you, a grid of energy wrapped around it.  It begins to start and stop, that grid appearing seconds before the defenses make a direct hit. It falls behind for now.
+Soon, light sweeps across the sky, and strike the artifact next to you, a grid of energy wrapped around it.  It begins to start and stop, that grid appearing seconds before the turrets make a direct hit. It falls behind for now.
 [Artifact_Fighting]
 ->Hostage
 
 ==Hostage==
-PLACEHOLDER TEXT:
--CEO has captured everyone with Kuon's help
--CEO asks you what the hell is going on, why you didn't see the mutiny coming
+You turn your attention to the ship interior and find that the CEO has been hailing you the last several minutes. Kuon and the CEO stand near the airlock, with Lexa, Lanri, Mateo, and Ripley kneeling in from of them. Between the bruises on Lexa and the gun Kuon is holding, you quickly catch on to the situation.
+The CEO speaks, "The ship security officer told me that the upper staff were trying to use this opportunity to undermine the company. Here's my question though, you have cameras everywhere, how could you not be aware of this?" He signals and Kuon puts a gun to Lexa's head. "Tell me. Who's side are you on?" Kuon casts a glance your way that says 'give up, please.' 
 
-*[Cut Ventilation, Knock Them Out]
--> Knocked_Out
 *[Plead With Kuon]
 -> Kuon_Negotion
-*[Let the CEO kill the Mutineers]
--> Cast_Killed
+*[Cut Ventilation, Knock Them Out]
+-> Knocked_Out
+*[Open Airlock]
+->Airlock
+*[Let Them Die]
+->Cast_Killed
 
 ==Knocked_Out==
--Kuon and the CEO drop unconscious
--
-->END
+-The CEO drops unconscious
+-Kuon realizes what's happening and goes to shoot the prisoners
+%50 someone dies
+-> Facility_Dead
+%50 no one dies
+->Facility
 
 ==Kuon_Negotion==
 -You ask Kuon to have a change of heart
 -Leads to All Characters Alive Ending
-->END
+->Facility
+
+==Airlock==
+-The airlock opens and Kuon, the CEO, and one character fly out into the void
+->Facility_Dead
 
 ==Cast_Killed==
 -The CEO orders the crew's deaths. Kuon turns and shoots Lexa in the head, then Mateo, Lanri, and Ripley.
 -"Bad Ending"
 -> END
+
+==Facility==
+-You rech the facility where you are to be mass produced.
+-You make a choice here which determines ending
+->END
+
+==Facility_Dead==
+-Lexa is dead
+-You reach the facility where you are to be mass produced.
+-You make a choice here which determines ending
+->END
