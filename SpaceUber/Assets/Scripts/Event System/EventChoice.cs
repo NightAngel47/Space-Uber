@@ -19,6 +19,8 @@ public class EventChoice
     private InkDriverBase driver;    
     private Story story;
     [SerializeField] private string choiceName;
+
+    [Tooltip("The description that will appear in the tool tip for this choice")]
     [SerializeField] public string description;
 
     public string ChoiceName => choiceName;
@@ -76,12 +78,16 @@ public class EventChoice
         //as long as it's not a story event, it's scalable
         isScalableEvent = driver.isScalableEvent;
 
+        foreach (ChoiceOutcomes outcome in this.outcomes)
+        {
+            outcome.isScalableEvent = isScalableEvent;
+        }
+
         if (driver.isCharacterEvent)
         {
             foreach (ChoiceOutcomes outcome in this.outcomes)
             {
                 outcome.AssignCharacterDriver((CharacterEvent)driver);
-                outcome.isScalableEvent = isScalableEvent;
             }
         }
 

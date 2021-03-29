@@ -13,18 +13,19 @@ public class HullPiece : MonoBehaviour
     public string[] PutdownSFX;
     public string[] BumpSFX;
 
-    Collider2D collider;
+    Collider2D collide;
 
     void Start()
     {
-        collider = GetComponent<Collider2D>();
+        collide = GetComponent<Collider2D>();
     }
 
     void Update()
     {
         if (this == HullRepairMiniGame.selectedHullPiece)
         {
-            collider.isTrigger = true;
+            collide.isTrigger = true;
+
             //Follow cursor
             Vector3 mousePosition;
             mousePosition = Input.mousePosition;
@@ -32,22 +33,48 @@ public class HullPiece : MonoBehaviour
             mousePosition.z = -0.1f;
             transform.position = mousePosition;
         }
-		else { collider.isTrigger = false; }
+		else { collide.isTrigger = false; }
     }
 
 	private void OnMouseDown()
     {
         Collider2D[] colliders = new Collider2D[1];
-        if (this != HullRepairMiniGame.selectedHullPiece) { HullRepairMiniGame.selectedHullPiece = this; AudioManager.instance.PlaySFX(PickupSFX[Random.Range(0, PickupSFX.Length)]);}
+
+        //Selecting a hull piece
+        if (this != HullRepairMiniGame.selectedHullPiece) 
+        { 
+            HullRepairMiniGame.selectedHullPiece = this; 
+            AudioManager.instance.PlaySFX(PickupSFX[Random.Range(0, PickupSFX.Length)]);
+        }
+        //Dropping a hull piece
         else
         {
-            collider.OverlapCollider(new ContactFilter2D(), colliders);
+            //Figure out everything that is overlapping this piece
+            collide.OverlapCollider(new ContactFilter2D(), colliders);
             bool collidedWithHullPiece = false;
+            bool outOfBounds = false;
+            
             foreach(Collider2D collider in colliders)
             {
-				if (collider) { if (collider.CompareTag("Hull Piece")) { collidedWithHullPiece = true; AudioManager.instance.PlaySFX(BumpSFX[Random.Range(0, BumpSFX.Length)]); } }
+				if (collider) 
+                { 
+                    if (collider.CompareTag("Hull Piece")) 
+                    { 
+                        collidedWithHullPiece = true; 
+                        AudioManager.instance.PlaySFX(BumpSFX[Random.Range(0, BumpSFX.Length)]); 
+                    } 
+                    if(collider.CompareTag("OutOfBounds"))
+                    {
+                        AudioManager.instance.PlaySFX(BumpSFX[Random.Range(0, BumpSFX.Length)]);
+                        outOfBounds = true;
+                    }
+                }
             }
-			if (!collidedWithHullPiece) { HullRepairMiniGame.selectedHullPiece = null; AudioManager.instance.PlaySFX(PutdownSFX[Random.Range(0, PutdownSFX.Length)]); }
+			if (!collidedWithHullPiece && !outOfBounds) 
+            { 
+                HullRepairMiniGame.selectedHullPiece = null; 
+                AudioManager.instance.PlaySFX(PutdownSFX[Random.Range(0, PutdownSFX.Length)]);
+            }
         }
     }
 }

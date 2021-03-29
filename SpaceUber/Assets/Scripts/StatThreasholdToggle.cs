@@ -22,7 +22,7 @@ public class StatThreasholdToggle : MonoBehaviour
                 shipStat = (int)ship.ShipHealthCurrent.x;
                 break;
             case ResourceDataTypes._Energy:
-                shipStat = (int)ship.EnergyRemaining.x;
+                shipStat = (int)ship.Energy.x;
                 break;
             case ResourceDataTypes._Crew:
                 shipStat = (int)ship.CrewCurrent.x;

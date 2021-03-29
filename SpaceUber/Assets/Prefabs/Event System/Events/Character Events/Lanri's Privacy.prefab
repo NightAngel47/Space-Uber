@@ -1,0 +1,365 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &2567501940625030691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5234566933638593567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b98a561ec497ce46885981e958f4c4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkJSONAsset: {fileID: 4900000, guid: 6f2ee9d24b9269144bc2f21daa027caa, type: 3}
+  eventName: Lanri's Privacy
+  isStoryEvent: 0
+  isCharacterEvent: 0
+  isMutinyEvent: 0
+  isScalableEvent: 0
+  storyIndex: 0
+  hasAnimatedBG: 0
+  backgroundImage: {fileID: 21300000, guid: bf0a75fcf764c61489915894981f1b63, type: 3}
+  backgroundAnimation: {fileID: 0}
+  buttonPrefab: {fileID: 509883202669863463, guid: d0efe66bb43b67247b612caf7107f379,
+    type: 3}
+  campMan: {fileID: 0}
+  resultsBox: {fileID: 0}
+  textPrintSpeed: 0.01
+  eventIntroSFX: 
+  eventBGM: Septic Malfunction
+  requiredStats: []
+  nextChoices:
+  - choiceName: neu
+    description: 
+    changeMusic: 0
+    playSFX: 0
+    withoutTransition: 0
+    eventBGM: 
+    eventSFX: 
+    hasRequirements: 0
+    choiceRequirements: []
+    hasPercentChange: 0
+    percentIncrease: []
+    hasSecretOutcomes: 1
+    hasRandomEnding: 0
+    randomEndingOutcomes: []
+    outcomes:
+    - outcomeName: neu
+      isScalableEvent: 0
+      narrativeResultsBox: {fileID: 0}
+      hasSubsequentChoices: 0
+      isNarrativeOutcome: 0
+      isResourceOutcome: 0
+      isApprovalOutcome: 1
+      resource: 0
+      amount: 0
+      answerType: 1
+      characterDriver: {fileID: 0}
+      thisCampaign: 0
+      ctrBoolOutcomes: 0
+      cloneTrustChange: 0
+      VIPTrustChange: 0
+      meMainOutcomes: 0
+      finalTestNarrativeOutcomes: 0
+      assetCountChange: 0
+      changeGameState: 0
+      state: 0
+    hasSubsequentChoices: 1
+    subsequentChoiceIndex: 0
+    isScalableEvent: 0
+  - choiceName: pos
+    description: 
+    changeMusic: 0
+    playSFX: 0
+    withoutTransition: 0
+    eventBGM: 
+    eventSFX: 
+    hasRequirements: 0
+    choiceRequirements: []
+    hasPercentChange: 0
+    percentIncrease: []
+    hasSecretOutcomes: 1
+    hasRandomEnding: 0
+    randomEndingOutcomes: []
+    outcomes:
+    - outcomeName: pos
+      isScalableEvent: 0
+      narrativeResultsBox: {fileID: 0}
+      hasSubsequentChoices: 0
+      isNarrativeOutcome: 0
+      isResourceOutcome: 0
+      isApprovalOutcome: 1
+      resource: 0
+      amount: 0
+      answerType: 0
+      characterDriver: {fileID: 0}
+      thisCampaign: 0
+      ctrBoolOutcomes: 0
+      cloneTrustChange: 0
+      VIPTrustChange: 0
+      meMainOutcomes: 0
+      finalTestNarrativeOutcomes: 0
+      assetCountChange: 0
+      changeGameState: 0
+      state: 0
+    hasSubsequentChoices: 0
+    subsequentChoiceIndex: 0
+    isScalableEvent: 0
+  - choiceName: neg
+    description: 
+    changeMusic: 0
+    playSFX: 0
+    withoutTransition: 0
+    eventBGM: 
+    eventSFX: 
+    hasRequirements: 0
+    choiceRequirements: []
+    hasPercentChange: 0
+    percentIncrease: []
+    hasSecretOutcomes: 1
+    hasRandomEnding: 0
+    randomEndingOutcomes: []
+    outcomes:
+    - outcomeName: neg
+      isScalableEvent: 0
+      narrativeResultsBox: {fileID: 0}
+      hasSubsequentChoices: 0
+      isNarrativeOutcome: 0
+      isResourceOutcome: 0
+      isApprovalOutcome: 1
+      resource: 0
+      amount: 0
+      answerType: 2
+      characterDriver: {fileID: 0}
+      thisCampaign: 0
+      ctrBoolOutcomes: 0
+      cloneTrustChange: 0
+      VIPTrustChange: 0
+      meMainOutcomes: 0
+      finalTestNarrativeOutcomes: 0
+      assetCountChange: 0
+      changeGameState: 0
+      state: 0
+    hasSubsequentChoices: 0
+    subsequentChoiceIndex: 0
+    isScalableEvent: 0
+  hasSubsequentChoices: 1
+  subsequentChoices:
+  - subsequentChoicesName: '#2'
+    eventChoices:
+    - choiceName: pos
+      description: 
+      changeMusic: 0
+      playSFX: 0
+      withoutTransition: 0
+      eventBGM: 
+      eventSFX: 
+      hasRequirements: 0
+      choiceRequirements: []
+      hasPercentChange: 0
+      percentIncrease: []
+      hasSecretOutcomes: 1
+      hasRandomEnding: 0
+      randomEndingOutcomes: []
+      outcomes:
+      - outcomeName: pos
+        isScalableEvent: 0
+        narrativeResultsBox: {fileID: 0}
+        hasSubsequentChoices: 0
+        isNarrativeOutcome: 0
+        isResourceOutcome: 0
+        isApprovalOutcome: 1
+        resource: 0
+        amount: 0
+        answerType: 0
+        characterDriver: {fileID: 0}
+        thisCampaign: 0
+        ctrBoolOutcomes: 0
+        cloneTrustChange: 0
+        VIPTrustChange: 0
+        meMainOutcomes: 0
+        finalTestNarrativeOutcomes: 0
+        assetCountChange: 0
+        changeGameState: 0
+        state: 0
+      hasSubsequentChoices: 0
+      subsequentChoiceIndex: 0
+      isScalableEvent: 0
+    - choiceName: neg
+      description: 
+      changeMusic: 0
+      playSFX: 0
+      withoutTransition: 0
+      eventBGM: 
+      eventSFX: 
+      hasRequirements: 0
+      choiceRequirements: []
+      hasPercentChange: 0
+      percentIncrease: []
+      hasSecretOutcomes: 1
+      hasRandomEnding: 0
+      randomEndingOutcomes: []
+      outcomes:
+      - outcomeName: neg
+        isScalableEvent: 0
+        narrativeResultsBox: {fileID: 0}
+        hasSubsequentChoices: 0
+        isNarrativeOutcome: 0
+        isResourceOutcome: 0
+        isApprovalOutcome: 1
+        resource: 0
+        amount: 0
+        answerType: 2
+        characterDriver: {fileID: 0}
+        thisCampaign: 0
+        ctrBoolOutcomes: 0
+        cloneTrustChange: 0
+        VIPTrustChange: 0
+        meMainOutcomes: 0
+        finalTestNarrativeOutcomes: 0
+        assetCountChange: 0
+        changeGameState: 0
+        state: 0
+      hasSubsequentChoices: 0
+      subsequentChoiceIndex: 0
+      isScalableEvent: 0
+  thisCharacter: 1
+  securityBoost: 10
+  securityLoss: -10
+  weaponsBoost: 10
+  weaponsLoss: -10
+  energyBoost: 30
+  energyLoss: -20
+  foodBoost: 30
+  foodLoss: -10
+  positiveMoraleBoost: 10
+  neutralMoraleBoost: 5
+  moraleLoss: -10
+--- !u!1001 &593058587815589351
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_Name
+      value: Lanri's Privacy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 492e23da0c4f0a84188d48989e322a6d, type: 3}
+--- !u!1 &5234566933638593567 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
+    type: 3}
+  m_PrefabInstance: {fileID: 593058587815589351}
+  m_PrefabAsset: {fileID: 0}

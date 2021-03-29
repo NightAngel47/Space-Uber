@@ -91,12 +91,12 @@ PrefabInstance:
     - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomEvents.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: miniGame
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -109,6 +109,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2397118123195013090, guid: b05c7d568e913c94db077561555d6b02,
         type: 3}
+    - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: roomEvents.Array.data[1]
+      value: 
+      objectReference: {fileID: 6580942830547354849, guid: 31f409e21062ce346b56e35a2fa102c8,
+        type: 3}
+    - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: roomEvents.Array.data[2]
+      value: 
+      objectReference: {fileID: 1941303797431210799, guid: e3a950c5ebba5874488f86ca44b3f716,
+        type: 3}
     - target: {fileID: 3793781089566335948, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_Sprite
@@ -120,6 +132,11 @@ PrefabInstance:
       propertyPath: m_Type
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3902402536555532295, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: minPower.Array.size
@@ -129,6 +146,11 @@ PrefabInstance:
         type: 3}
       propertyPath: price.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: CharacterEvents.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -204,12 +226,12 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: price.Array.data[1]
-      value: 115
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: price.Array.data[2]
-      value: 145
+      value: 155
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -221,6 +243,12 @@ PrefabInstance:
       propertyPath: roomGroup
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: CharacterEvents.Array.data[0]
+      value: 
+      objectReference: {fileID: 2397118123195013090, guid: b05c7d568e913c94db077561555d6b02,
+        type: 3}
     - target: {fileID: 4570362770752095651, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_Offset.x
@@ -346,7 +374,7 @@ PrefabInstance:
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: Placements.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -381,7 +409,17 @@ PrefabInstance:
     - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: Placements.Array.data[1]
-      value: Alien Subdue 2
+      value: Energy Ready 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: Placements.Array.data[2]
+      value: Energy Ready 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490375106264231351, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: Placements.Array.data[3]
+      value: Energy Ready 3
       objectReference: {fileID: 0}
     - target: {fileID: 8263844349415334236, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}

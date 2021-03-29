@@ -115,7 +115,7 @@ public class CharacterEvent : InkDriverBase
                         break;
                     case CharacterStats.Characters.Mateo: //Boosts energy
                         int newEnergy = Mathf.RoundToInt(energyBoost * campMan.GetMultiplier(ResourceDataTypes._Energy));
-                        thisShip.EnergyRemaining += new Vector2(newEnergy, 0);
+                        thisShip.Energy += new Vector3(newEnergy, 0, 0);
                         SpawnStatChangeText(newEnergy, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
                         break;
                     case CharacterStats.Characters.Lanri: //boosts Food
@@ -142,7 +142,7 @@ public class CharacterEvent : InkDriverBase
                         break;
                     case CharacterStats.Characters.Mateo: //Loses energy
                         int newEnergy = Mathf.RoundToInt(energyLoss * campMan.GetMultiplier(ResourceDataTypes._Energy));
-                        thisShip.EnergyRemaining += new Vector2(newEnergy, 0);
+                        thisShip.Energy += new Vector3(newEnergy, 0, 0);
                         SpawnStatChangeText(newEnergy, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
                         break;
                     case CharacterStats.Characters.Lanri: //loses Food

@@ -250,6 +250,12 @@ public class ObjectScript : MonoBehaviour
         {
             gameObject.GetComponent<RoomStats>().SubtractRoomStats();
             gameObject.GetComponent<RoomStats>().ReturnCrewOnRemove();
+            
+            if(!gameObject.GetComponent<RoomStats>().usedRoom)
+            {
+                EndingStats.instance.AddToStat(-1, EndingStatTypes.RoomsBought);
+            }
+            
             AudioManager.instance.PlaySFX("Sell");
         }
         
@@ -432,6 +438,6 @@ public class ObjectScript : MonoBehaviour
 
     private void OnDestroy()
     {
-        FindObjectOfType<EditCrewButton>()?.CheckForRooms();
+        FindObjectOfType<EditCrewButton>()?.CheckForRoomsCall();
     }
 }

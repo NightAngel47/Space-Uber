@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ObjectMover.cs
  * Author(s): Sydney
  * Created on: #CREATIONDATE#
@@ -129,7 +129,7 @@ public class ObjectMover : MonoBehaviour
 
     public void RotateObject()
     {
-        if(Input.GetKeyDown(KeyCode.Q) && os.canRotate == true)
+        if(Input.GetButtonDown("RotateLeft") && os.canRotate == true)
         {
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, 90);
             AudioManager.instance.PlaySFX(SFXs[Random.Range(0, SFXs.Length)]);
@@ -153,7 +153,7 @@ public class ObjectMover : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.E) && os.canRotate == true)
+        if(Input.GetButtonDown("RotateRight") && os.canRotate == true)
         {
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, -90);
             AudioManager.instance.PlaySFX(SFXs[Random.Range(0, SFXs.Length)]);
@@ -183,7 +183,7 @@ public class ObjectMover : MonoBehaviour
         if (GameManager.instance.currentGameState != InGameStates.ShipBuilding) return;
         //Checks to see if we have enough credits or energy to place the room
         if (FindObjectOfType<ShipStats>().Credits >= gameObject.GetComponent<RoomStats>().price[gameObject.GetComponent<RoomStats>().GetRoomLevel() - 1] && 
-            FindObjectOfType<ShipStats>().EnergyRemaining.x >= gameObject.GetComponent<RoomStats>().minPower[gameObject.GetComponent<RoomStats>().GetRoomLevel() - 1]) 
+            FindObjectOfType<ShipStats>().Energy.z >= gameObject.GetComponent<RoomStats>().minPower[gameObject.GetComponent<RoomStats>().GetRoomLevel() - 1]) 
         {
             if (os.needsSpecificLocation == false) //Check spots normally
             {
@@ -236,7 +236,7 @@ public class ObjectMover : MonoBehaviour
                 
                 gameObject.GetComponent<ObjectMover>().enabled = false;
                 
-                FindObjectOfType<EditCrewButton>().CheckForRooms();
+                FindObjectOfType<EditCrewButton>().CheckForRoomsCall();
             }
 
             else //If something is placed allow player to keep moving room

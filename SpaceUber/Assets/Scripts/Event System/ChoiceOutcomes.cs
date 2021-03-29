@@ -34,6 +34,7 @@ public class ChoiceOutcomes
     //[SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character = CharacterStats.Characters.None;
     [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterEvent.AnswerState answerType;
     [HideInInspector] public CharacterEvent characterDriver;
+    CampaignManager campMan;
 
     #region Initialized Narrative Variables
     [SerializeField, ShowIf("isNarrativeOutcome"),AllowNesting] private CampaignManager.Campaigns thisCampaign = CampaignManager.Campaigns.CateringToTheRich;
@@ -77,6 +78,7 @@ public class ChoiceOutcomes
                 if(isScalableEvent) //scalable events get a multiplier to amount
                 {
                     amount = Mathf.RoundToInt(amount * campMan.GetMultiplier(resource));
+
                     switch (resource)
                     {
 
@@ -97,7 +99,7 @@ public class ChoiceOutcomes
                             break;
                         case ResourceDataTypes._Energy:
                             
-                            ship.EnergyRemaining += new Vector2(amount, 0);
+                            ship.Energy += new Vector3(amount, 0, 0);
                             SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
 
                             if (amount < 0)
@@ -261,7 +263,7 @@ public class ChoiceOutcomes
 
                             break;
                         case ResourceDataTypes._Energy:
-                            ship.EnergyRemaining += new Vector2(amount, 0);
+                            ship.Energy += new Vector3(amount, 0, 0);
                             SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
 
                             if (amount < 0)
@@ -506,7 +508,7 @@ public class ChoiceOutcomes
                                 resultText += "\nYou left Lexa to face her doom alone";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.ScienceSavior:
-                                resultText += "\nYou have become a savior through the power of science";
+                                resultText += "\nYou told Lanri to fix the cataclysm ";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.TruthTold:
                                 resultText += "\nYou told everyone the truth";
@@ -525,6 +527,21 @@ public class ChoiceOutcomes
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.ResearchShared:
                                 resultText += "\nYou shared your research";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.AncientHackingDevice:
+                                resultText += "\nYou bought the ancient hacking device ";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.ExoSuits:
+                                resultText += "\nYou bought the exosuits";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.WarpShields:
+                                resultText += "\nYou bought the warp shields";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.RealityBomb:
+                                resultText += "\nYou bought the reality bomb";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.DisintegrationRay:
+                                resultText += "\nYou bought the disintegration ray ";
                                 break;
                         }
                         break;

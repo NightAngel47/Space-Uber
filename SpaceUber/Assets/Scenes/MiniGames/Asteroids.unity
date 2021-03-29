@@ -2059,7 +2059,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 50
   m_TargetDisplay: 0
 --- !u!224 &1338579866
 RectTransform:
@@ -2973,6 +2973,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_UseCustomVertexStreams
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281810107172147124, guid: 6e0f4cf9ebfc2ec48bae9d45688d5796,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281810107172147124, guid: 6e0f4cf9ebfc2ec48bae9d45688d5796,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281810107172147124, guid: 6e0f4cf9ebfc2ec48bae9d45688d5796,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3281810107172147125, guid: 6e0f4cf9ebfc2ec48bae9d45688d5796,
         type: 3}

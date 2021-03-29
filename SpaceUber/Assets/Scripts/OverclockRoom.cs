@@ -1,4 +1,4 @@
-﻿/*
+/*
  * OverclockRoom.cs
  * Author(s): Grant Frey
  * Created on: 9/25/2020
@@ -35,8 +35,11 @@ public class OverclockRoom : MonoBehaviour
 
     private IEnumerator MinigameCooldown()
 	{
+        CrewManagement cm = FindObjectOfType<CrewManagement>();
+        cm.overclockButton.GetComponent<ButtonTwoBehaviour>().SetButtonInteractable(false);
         minigameCooledDown = false;
         yield return new WaitForSeconds(OverclockController.instance.cooldownTime);
+        cm.overclockButton.GetComponent<ButtonTwoBehaviour>().SetButtonInteractable(true);
         minigameCooledDown = true;
 	}
 

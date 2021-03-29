@@ -49,9 +49,9 @@ MonoBehaviour:
   crewLossMoraleMultiplier: 8
   foodMoraleDamageMultiplier: 1
   maxMutinyMorale: 39
-  maxMutinyMoraleMutinyChance: 0.025
+  maxMutinyMoraleMutinyChance: 0.05
   zeroMoraleMutinyChance: 0.8
-  baseMutinyCost: 100
+  baseMutinyCost: 200
   mutinyEvent: {fileID: 7272458766203768250, guid: 45037bba55b9c4916807a3a4e978b9a7,
     type: 3}
   outputModifierInfo:
@@ -60,3 +60,5 @@ MonoBehaviour:
   - {x: 40, y: 1}
   - {x: 20, y: 0.9}
   - {x: 0, y: 0.8}
+  MedBayBoost1: 2
+  MedBayBoost2: 3

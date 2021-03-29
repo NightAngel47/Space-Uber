@@ -49,23 +49,25 @@ public class RadioManager : MonoBehaviour
 
     public void MasterVolSlider(float volume)
     {
-        AudioManager.instance.masterVolume = volume;
+        AudioManager.instance.MasterVolume = volume;
     }
     public void RadioVolSlider(float volume)
     {
-        AudioManager.instance.radioVolume = volume;
+        AudioManager.instance.RadioVolume = volume;
     }
     public void BGMVolSlider(float volume)
     {
-        AudioManager.instance.musicVolume = volume;
+        AudioManager.instance.MusicVolume = volume;
     }
     public void SFXVolSlider(float volume)
     {
-        AudioManager.instance.sfxVolume = volume;
+        AudioManager.instance.SfxVolume = volume;
     }
 
     public void Mute()
     {
-        AudioManager.instance.isMuted = !AudioManager.instance.isMuted;
+        AudioManager.instance.IsMuted = !AudioManager.instance.IsMuted;
     }
+
+    
 }

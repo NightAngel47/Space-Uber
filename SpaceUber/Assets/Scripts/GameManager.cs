@@ -18,7 +18,7 @@ using UnityEngine.SceneManagement;
 ///     Events          player can run into story and random events.
 ///     Ending          player has reached a narrative ending.
 /// </summary>
-public enum InGameStates { None, JobSelect, ShipBuilding, CrewManagement, Events, MoneyEnding, MoraleEnding, Mutiny, Death ,CrewPayment, RoomUnlock }
+public enum InGameStates { None, JobSelect, ShipBuilding, CrewManagement, Events, MoneyEnding, MoraleEnding, Mutiny, Death ,CrewPayment, RoomUnlock, EndingStats, EndingCredits}
 
 /// <summary>
 /// Manages the state of the game while the player is playing.
@@ -102,15 +102,16 @@ public class GameManager : MonoBehaviour
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => additiveSceneManager && ship && jobManager);
-        if (SavingLoadingManager.instance.GetHasSave())
+        if (SavingLoadingManager.instance.GetHasSave() && SavingLoadingManager.instance.Load<bool>("hasRooms"))
         {
             LoadGameState();
             yield return new WaitForEndOfFrame();
             switch (currentGameState)
             {
                 case InGameStates.ShipBuilding:
-                    SavingLoadingManager.instance.LoadRoomLevels();
+                    
                     yield return new WaitUntil(() => FindObjectOfType<SpotChecker>());
+                    SavingLoadingManager.instance.LoadRoomLevels();
                     break;
                 case InGameStates.CrewManagement:
                     yield return new WaitUntil(() => FindObjectOfType<CrewManagement>());
@@ -224,6 +225,16 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("PromptScreen_Money_End");
 
                 additiveSceneManager.LoadSceneSeperate("PromptScreen_Morale_End");
+                break;
+            case InGameStates.EndingStats: // Loads the Interface_EndScreen_Stats after the PromptScreen_Morale_End.
+                additiveSceneManager.UnloadScene("PromptScreen_Morale_End");
+                
+                additiveSceneManager.LoadSceneSeperate("Interface_EndScreen_Stats");
+                break;
+            case InGameStates.EndingCredits: // Loads the Credits after the Interface_EndScreen_Stats.
+                additiveSceneManager.UnloadScene("Interface_EndScreen_Stats");
+                
+                additiveSceneManager.LoadSceneSeperate("Credits");
                 break;
             case InGameStates.Mutiny: // Loads the PromptScreen_Mutiny when the player reaches a mutiny.
                 additiveSceneManager.UnloadScene("Event_General");
