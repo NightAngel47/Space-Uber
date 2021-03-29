@@ -412,7 +412,7 @@ public class EventSystem : MonoBehaviour
 		//reset for next event
 		eventActive = false;
 		tick.StartTickUpdate();
-		StartCoroutine(AudioManager.instance.Fade(AudioManager.instance.GetCurrentRadioSong(), 1, true));
+		AudioManager.instance.PlayRadio(AudioManager.instance.currentStationId);
 
 		//set up for the next regular event
 		if (isRegularEvent)
