@@ -52,6 +52,7 @@ public class AudioSettings : MonoBehaviour
         AudioManager.instance.MasterVolume = volume;
         masterVol = volume;
         ApplyRadioChanges();
+        ApplyManagerChanges();
         SaveAudioSettings();
     }
     public void RadioVolSlider(float volume)
@@ -59,6 +60,7 @@ public class AudioSettings : MonoBehaviour
         AudioManager.instance.RadioVolume = volume;
         radioVol = volume;
         ApplyRadioChanges();
+        ApplyManagerChanges();
         SaveAudioSettings();
     }
     public void BGMVolSlider(float volume)
@@ -66,6 +68,7 @@ public class AudioSettings : MonoBehaviour
         AudioManager.instance.MusicVolume = volume;
         bgmVol = volume;
         ApplyRadioChanges();
+        ApplyManagerChanges();
         SaveAudioSettings();
     }
     public void SFXVolSlider(float volume)
@@ -73,6 +76,7 @@ public class AudioSettings : MonoBehaviour
         AudioManager.instance.SfxVolume = volume;
         sfxVol = volume;
         ApplyRadioChanges();
+        ApplyManagerChanges();
         SaveAudioSettings();
     }
     public void AmbientVolSlider(float volume)
@@ -105,6 +109,7 @@ public class AudioSettings : MonoBehaviour
         ambientSlider.value = ambientVol;
 
         ApplyRadioChanges();
+        ApplyManagerChanges();
     }
 
     private void ApplyRadioChanges()
@@ -118,4 +123,14 @@ public class AudioSettings : MonoBehaviour
             }
         }
     }
+    public void ApplyManagerChanges()
+    {
+        AudioManager.instance.MusicVolume = bgmVol;
+        AudioManager.instance.AmbienceVolume = ambientVol;
+        AudioManager.instance.SfxVolume = sfxVol;
+        AudioManager.instance.RadioVolume = radioVol;
+        AudioManager.instance.MasterVolume = masterVol;
+
+    }
+
 }
