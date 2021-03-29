@@ -13,7 +13,7 @@ using UnityEngine.UI;
 
 public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
-    private Image myImage;
+    [SerializeField] Image myImage;
     [SerializeField] RectTransform rotator;
     [SerializeField] Slider slider;
     [SerializeField] bool stationDial;
@@ -38,13 +38,7 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         else SetAudioSettingsValues();
     }
 
-    void Start()
-    {
-        
-        
-
-        myImage = GetComponent<Image>();
-    }
+    
 
     private void OnEnable()
     {
@@ -62,6 +56,7 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
     private void OnDisable()
     {
+        SendAudioSettingsValues();
         if (stationDial) SaveRadioSettings();
     }
     private void OnDestroy()
