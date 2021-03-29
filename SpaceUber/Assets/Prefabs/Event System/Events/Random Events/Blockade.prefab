@@ -265,14 +265,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].outcomeName
-      value: -cr
+      propertyPath: hasAnimatedBG
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
-      propertyPath: nextChoices.Array.data[1].hasRequirements
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: backgroundAnimation
+      value: 
+      objectReference: {fileID: 5778430976659782104, guid: 1838bd274304af64e921fc1db1e8f760,
+        type: 3}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name

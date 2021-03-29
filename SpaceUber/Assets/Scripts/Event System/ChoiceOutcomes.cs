@@ -34,6 +34,7 @@ public class ChoiceOutcomes
     //[SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character = CharacterStats.Characters.None;
     [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterEvent.AnswerState answerType;
     [HideInInspector] public CharacterEvent characterDriver;
+    CampaignManager campMan;
 
     #region Initialized Narrative Variables
     [SerializeField, ShowIf("isNarrativeOutcome"),AllowNesting] private CampaignManager.Campaigns thisCampaign = CampaignManager.Campaigns.CateringToTheRich;
@@ -77,6 +78,7 @@ public class ChoiceOutcomes
                 if(isScalableEvent) //scalable events get a multiplier to amount
                 {
                     amount = Mathf.RoundToInt(amount * campMan.GetMultiplier(resource));
+
                     switch (resource)
                     {
 
@@ -506,7 +508,7 @@ public class ChoiceOutcomes
                                 resultText += "\nYou left Lexa to face her doom alone";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.ScienceSavior:
-                                resultText += "\nYou told Lanri to fix the cataclysm ";
+                                resultText += "\nYou told Lanri to fix the cataclysm";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.TruthTold:
                                 resultText += "\nYou told everyone the truth";
@@ -540,6 +542,9 @@ public class ChoiceOutcomes
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.DisintegrationRay:
                                 resultText += "\n ";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.ArtifactAngry:
+                                resultText += "\nYou angered the alien artifact";
                                 break;
                         }
                         break;

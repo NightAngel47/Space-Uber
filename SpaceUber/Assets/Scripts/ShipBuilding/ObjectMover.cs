@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ObjectMover.cs
  * Author(s): Sydney
  * Created on: #CREATIONDATE#
@@ -129,7 +129,7 @@ public class ObjectMover : MonoBehaviour
 
     public void RotateObject()
     {
-        if(Input.GetKeyDown(KeyCode.Q) && os.canRotate == true)
+        if(Input.GetButtonDown("RotateLeft") && os.canRotate == true)
         {
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, 90);
             AudioManager.instance.PlaySFX(SFXs[Random.Range(0, SFXs.Length)]);
@@ -153,7 +153,7 @@ public class ObjectMover : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.E) && os.canRotate == true)
+        if(Input.GetButtonDown("RotateRight") && os.canRotate == true)
         {
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, -90);
             AudioManager.instance.PlaySFX(SFXs[Random.Range(0, SFXs.Length)]);
