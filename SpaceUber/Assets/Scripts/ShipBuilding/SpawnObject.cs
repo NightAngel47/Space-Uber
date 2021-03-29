@@ -191,6 +191,8 @@ public class SpawnObject : MonoBehaviour
                         }
                     }
                 }
+                
+                EndingStats.instance.AddToStat(1, EndingStatTypes.RoomsBought);
 
                 switch (ga.name) //plays sfx for each room
                 {
