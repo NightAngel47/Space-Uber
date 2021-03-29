@@ -623,7 +623,7 @@ public class CampaignManager : MonoBehaviour
             AncientHackingDevice
         }
 
-        private bool[] ftNarrativeVariables = new bool[10];
+        private bool[] ftNarrativeVariables = new bool[15];
 
         public string GetOutcomeName(int index)
         {
