@@ -1,3 +1,4 @@
+VAR randomEnd = -> Facility
 	You will arrive at a Kellis facility within the day and everyone is aware of that fact. Especially the members of your crew plotting against their corporate masters. It all ends today. You direct your attention towards surveillance, making sure you know where the key players are at all times. 
 	There's a ping on the radar, something large, moving faster than physically possible. You check external monitors. Its design is flower-like, sweeping waves of gold extruding from its central spoke, a blue spiral behind it, flinging it forwards. It is the size of a city. Across the front of this alien ship is a massive molten gash, which you recognize as the source of Avanshore's Midas scrap. The artifact that Kellis tried so hard to wake up. 
 	Your entire ship shakes as though the artifact is letting out a warcry. You have no doubt the two factions on your ship are about to collapse against each other, but the ship before you risks annihilation for everyone. You need to do something.
@@ -107,3 +108,12 @@ The CEO speaks, "The ship security officer told me that the upper staff were try
 -You reach the facility where you are to be mass produced.
 -You make a choice here which determines ending
 ->END
+===function RandomizeEnding(rng)===
+{ 
+    - rng == 0: 
+        ~randomEnd = -> Facility
+    - rng == 1:
+        ~randomEnd = -> Facility_Dead
+    - rng == 2:
+        ~randomEnd = -> Facility
+}
