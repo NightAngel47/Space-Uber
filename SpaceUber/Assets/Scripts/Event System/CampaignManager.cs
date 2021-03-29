@@ -620,10 +620,11 @@ public class CampaignManager : MonoBehaviour
             WarpShields,
             ExoSuits,
             RealityBomb,
-            AncientHackingDevice
+            AncientHackingDevice,
+            ArtifactAngry
         }
 
-        private bool[] ftNarrativeVariables = new bool[10];
+        private bool[] ftNarrativeVariables = new bool[16];
 
         public string GetOutcomeName(int index)
         {
