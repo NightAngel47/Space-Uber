@@ -78,12 +78,16 @@ public class EventChoice
         //as long as it's not a story event, it's scalable
         isScalableEvent = driver.isScalableEvent;
 
+        foreach (ChoiceOutcomes outcome in this.outcomes)
+        {
+            outcome.isScalableEvent = isScalableEvent;
+        }
+
         if (driver.isCharacterEvent)
         {
             foreach (ChoiceOutcomes outcome in this.outcomes)
             {
                 outcome.AssignCharacterDriver((CharacterEvent)driver);
-                outcome.isScalableEvent = isScalableEvent;
             }
         }
 

@@ -34,6 +34,7 @@ public class ChoiceOutcomes
     //[SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character = CharacterStats.Characters.None;
     [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterEvent.AnswerState answerType;
     [HideInInspector] public CharacterEvent characterDriver;
+    CampaignManager campMan;
 
     #region Initialized Narrative Variables
     [SerializeField, ShowIf("isNarrativeOutcome"),AllowNesting] private CampaignManager.Campaigns thisCampaign = CampaignManager.Campaigns.CateringToTheRich;
@@ -77,6 +78,7 @@ public class ChoiceOutcomes
                 if(isScalableEvent) //scalable events get a multiplier to amount
                 {
                     amount = Mathf.RoundToInt(amount * campMan.GetMultiplier(resource));
+
                     switch (resource)
                     {
 
@@ -527,19 +529,19 @@ public class ChoiceOutcomes
                                 resultText += "\nYou shared your research";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.AncientHackingDevice:
-                                resultText += "\n ";
+                                resultText += "\nYou bought the ancient hacking device ";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.ExoSuits:
-                                resultText += "\n ";
+                                resultText += "\nYou bought the exosuits";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.WarpShields:
-                                resultText += "\n ";
+                                resultText += "\nYou bought the warp shields";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.RealityBomb:
-                                resultText += "\n ";
+                                resultText += "\nYou bought the reality bomb";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.DisintegrationRay:
-                                resultText += "\n ";
+                                resultText += "\nYou bought the disintegration ray ";
                                 break;
                         }
                         break;
