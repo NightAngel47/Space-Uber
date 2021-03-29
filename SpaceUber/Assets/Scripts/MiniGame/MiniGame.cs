@@ -20,7 +20,7 @@ public class MiniGame : MonoBehaviour
     bool winSound = false;
 	protected bool gameOver = false;
 
-    private void Start()
+    protected virtual void Start()
 	{
 		gameWinScreen.SetActive(false);
         winSound = false;
@@ -33,7 +33,7 @@ public class MiniGame : MonoBehaviour
 		OverclockController.instance.UnloadScene(miniGameSceneName);
 	}
 
-    public void EndMiniGameSuccess()
+    public virtual void EndMiniGameSuccess()
 	{
 		gameOver = true;
 		winText.text = winMessage;

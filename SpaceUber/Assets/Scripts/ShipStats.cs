@@ -31,7 +31,7 @@ public class ShipStats : MonoBehaviour
 
     [HideInInspector] public CharacterStats cStats;
 
-    private List<RoomStats> rooms;
+    //private List<RoomStats> rooms;
 
     [HideInInspector] public GameObject roomBeingPlaced;
 
@@ -562,5 +562,60 @@ public class ShipStats : MonoBehaviour
         return coreStats;
     }
 
+    /// <summary>
+    /// returns the number of rooms on the ship that have the same name
+    /// </summary>
+    /// <param name="roomName"></param>
+    /// <returns></returns>
+    public int NumberOfRoomsOfType(string roomName)
+    {
+        RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+        int count = 0;
 
+        foreach (RoomStats room in rooms)
+        {
+            if(room.roomName == roomName)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    /// <summary>
+    /// Provides the number of staffed rooms at each level. Supply a saved variable for each level
+    /// </summary>
+    /// <param name="roomName">The room you would like to search for</param>
+    /// <param name="level1">How many level 1 rooms there will be</param>
+    /// <param name="level2">How many level 1 rooms there will be</param>
+    /// <param name="level3">How many level 1 rooms there will be</param>
+    public void RoomsOfTypeLevel(string roomName, int level1,int level2,int level3)
+    {
+        level1 = 0;
+        level2 = 0;
+        level3 = 0;
+        RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+
+        foreach (RoomStats room in rooms)
+        {
+            if (room.roomName == roomName && room.currentCrew >= room.minCrew)
+            {
+                switch(room.GetRoomLevel())
+                {
+                    case 1:
+                        level1++;
+                        break;
+                    case 2:
+                        level2++;
+                        break;
+                    case 3:
+                        level3++;
+                        break;
+
+                }
+            }
+            
+        }
+    }
 }

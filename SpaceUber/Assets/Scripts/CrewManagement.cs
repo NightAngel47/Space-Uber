@@ -224,7 +224,7 @@ public class CrewManagement : MonoBehaviour
     /// Updates the rooms output based on the crew assigned. So if any crew assigned it gives full amount,
     /// and gives percentage of full amount for when amount of crew matters.
     /// </summary>
-    private void UpdateOutput()
+    public void UpdateOutput()
     {
         foreach (var stat in outputStats)
         {
@@ -263,9 +263,13 @@ public class CrewManagement : MonoBehaviour
                 shipStats.CrewCurrent += new Vector3(0, 0, -1);
                 minAssignableCrew--;
             }
-            FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(roomStats.currentCrew);
             UpdateOutput();
-            room.GetComponent<RoomStats>().UpdateRoomStats(room.GetComponent<Resource>().resourceType);
+
+            if(room.GetComponent<RoomStats>().resources.Count > 0)
+              room.GetComponent<RoomStats>().UpdateRoomStats(room.GetComponent<Resource>().resourceType);
+            UpdateOutput();
+
+            FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(roomStats.currentCrew);
 
             CheckForMinCrew();
         }
@@ -278,9 +282,12 @@ public class CrewManagement : MonoBehaviour
             roomStats.UpdateCurrentCrew(-1);
             shipStats.CrewCurrent += new Vector3(0, 0, 1);
             minAssignableCrew++;
-            FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(roomStats.currentCrew);
+
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats(room.GetComponent<Resource>().resourceType);
+            UpdateOutput();
+
+            FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(roomStats.currentCrew);
 
             CheckForMinCrew();
         }
