@@ -23,11 +23,15 @@ public class OutcomeTooltipUI : MonoBehaviour
     [SerializeField] private string narrativeOutcomeText;
 
     [SerializeField] private RectTransform outcomeList;
+    private CampaignManager campMan;
 
     public void SetOutcomeData(string description, List<ChoiceOutcomes> outcomes, bool isSecret)
     {
+        if (!campMan)
+        { campMan = FindObjectOfType<CampaignManager>(); }
+
         //if there is no supplied description, deactivate the description field
-        if(description == "")
+        if (description == "")
         {
             outcomeDescUI.gameObject.SetActive(false);
         }
@@ -44,6 +48,7 @@ public class OutcomeTooltipUI : MonoBehaviour
         }
         else if (outcomes.Count > 0)
         {
+            
             foreach (var outcome in outcomes)
             {
                 if(outcome.isNarrativeOutcome)
@@ -56,7 +61,9 @@ public class OutcomeTooltipUI : MonoBehaviour
                     GameObject resourceGO = Instantiate(resourceUI, outcomeList.transform);
                     resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)outcome.resource).resourceIcon; // resource icon
                     resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = GameManager.instance.GetResourceData((int)outcome.resource).resourceName; // resource name
-                    resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = outcome.amount.ToString(); // resource amount
+                    
+                    int newAmount = Mathf.RoundToInt(outcome.amount * campMan.GetMultiplier(outcome.resource));
+                    resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = newAmount.ToString(); // resource amount
                     resourceGO.transform.GetChild(3).gameObject.SetActive(false); // outcome probability
                 }
             }
