@@ -1769,7 +1769,7 @@ RectTransform:
   - {fileID: 173550456}
   - {fileID: 1786913778}
   m_Father: {fileID: 1001686353}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3059,6 +3059,7 @@ GameObject:
   m_Component:
   - component: {fileID: 660907015}
   - component: {fileID: 660907014}
+  - component: {fileID: 1240497703}
   m_Layer: 0
   m_Name: Slot Machine
   m_TagString: MiniGameScoreManager
@@ -3135,7 +3136,7 @@ MonoBehaviour:
   - {fileID: 741396851}
   - {fileID: 1863937510}
   spinAfterStopTime: 0
-  reelSpeed: 600
+  reelSpeed: 450
   firstStopSpeedMultiplier: 1.1
   secondStopSpeedMultiplier: 1.2
   bettingPanel: {fileID: 380129770}
@@ -3215,11 +3216,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660907013}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5000248, y: 0.00002527237, z: -2.7665849}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1001686353}
-  m_RootOrder: 2
+  m_Father: {fileID: 982314069}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &662754890
 GameObject:
@@ -3253,7 +3254,7 @@ RectTransform:
   - {fileID: 1113949355}
   - {fileID: 270400183}
   m_Father: {fileID: 1001686353}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4555,7 +4556,7 @@ RectTransform:
   - {fileID: 719917099}
   - {fileID: 265115746}
   - {fileID: 848388129}
-  - {fileID: 1240497703}
+  - {fileID: 660907015}
   m_Father: {fileID: 1287808199}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4708,11 +4709,10 @@ RectTransform:
   m_Children:
   - {fileID: 1287808199}
   - {fileID: 149218396}
-  - {fileID: 660907015}
   - {fileID: 1354904247}
   - {fileID: 662754891}
-  - {fileID: 1545621046}
   - {fileID: 380129771}
+  - {fileID: 1545621046}
   - {fileID: 1489027045}
   m_Father: {fileID: 1573538645}
   m_RootOrder: 2
@@ -5689,7 +5689,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1240497703}
+  - component: {fileID: 1240497706}
   - component: {fileID: 1240497705}
   - component: {fileID: 1240497704}
   m_Layer: 5
@@ -5706,158 +5706,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660907013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6c5a54d562c61047b4ff314dc2bd1a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  miniGameSceneName: 5
-  statModification: 1
-  gameWinScreen: {fileID: 1489027047}
-  winText: {fileID: 1489027046}
-  winMessage: 
-  failMessage: You lose
-  Successes:
-  - Arp 1
-  - Arp 2
-  - Arp 3
-  - Arp 4
-  - Arp 5
-  - Arp 6
-  - Arp 7
-  - Arp 8
-  - Arp 9
-  - Arp 10
-  - Arp 11
-  - Arp 12
-  - Arp 13
-  - Arp 14
-  - Arp 15
-  - Arp 16
-  - Arp 17
-  - Arp 18
-  - Arp 19
-  - Arp 20
-  - Arp 21
-  - Arp 22
-  - Arp 23
-  - Arp 24
-  - Arp 25
-  - Arp 26
-  - Arp 27
-  - Arp 28
-  - Arp 29
-  - Arp 30
-  - Arp 31
-  - Arp 32
-  - Arp 33
-  - Arp 34
-  - Arp 35
-  - Arp 36
-  - Arp 37
-  - Arp 38
-  - Arp 39
-  - Arp 40
-  - Arp 41
-  - Arp 42
-  - Arp 43
-  - Arp 44
-  - Arp 45
-  reels:
-  - {fileID: 77465756}
-  - {fileID: 257534692}
-  - {fileID: 253908604}
-  spinAfterStopTime: 0
-  reelSpeed: 600
-  firstStopSpeedMultiplier: 1.1
-  secondStopSpeedMultiplier: 1.2
-  bettingPanel: {fileID: 380129770}
-  crank: {fileID: 149218397}
-  smallBetButton: {fileID: 25075573}
-  mediumBetButton: {fileID: 311832278}
-  largeBetButton: {fileID: 173550457}
-  crankReturnSpeed: 5
-  smallBet: 0a0000000f00000014000000
-  mediumBet: 0f000000170000001e000000
-  largeBet: 140000001e00000028000000
-  payouts:
-  - basePayout111: 80
-    basePayout222: 40
-    basePayout333: 20
-    basePayout444: 10
-    basePayout555: 10
-    basePayout666: 10
-    basePayout11: 24
-    basePayout22: 18
-    basePayout33: 12
-    basePayout44: 6
-    basePayout55: 6
-    basePayout66: 6
-  - basePayout111: 120
-    basePayout222: 60
-    basePayout333: 30
-    basePayout444: 15
-    basePayout555: 15
-    basePayout666: 15
-    basePayout11: 36
-    basePayout22: 27
-    basePayout33: 18
-    basePayout44: 9
-    basePayout55: 9
-    basePayout66: 9
-  - basePayout111: 160
-    basePayout222: 80
-    basePayout333: 40
-    basePayout444: 20
-    basePayout555: 20
-    basePayout666: 20
-    basePayout11: 48
-    basePayout22: 36
-    basePayout33: 24
-    basePayout44: 12
-    basePayout55: 12
-    basePayout66: 12
-  payoutTexts:
-    basePayout111: {fileID: 1240497704}
-    basePayout222: {fileID: 1905803524}
-    basePayout333: {fileID: 1530562814}
-    basePayout444: {fileID: 855378854}
-    basePayout555: {fileID: 494759119}
-    basePayout666: {fileID: 2110644198}
-    basePayout11: {fileID: 1319854871}
-    basePayout22: {fileID: 1196716275}
-    basePayout33: {fileID: 2104880514}
-    basePayout44: {fileID: 1410987502}
-    basePayout55: {fileID: 1550882397}
-    basePayout66: {fileID: 1806003284}
-  payoutMultipliers:
-    freePayoutMultiplier: 0.5
-    smallPayoutMultiplier: 1
-    mediumPayoutMultiplier: 1.5
-    largePayoutMultiplier: 2
-  winDelay: 1
-  buttons:
-  - {fileID: 802578574}
-  - {fileID: 1113949356}
-  - {fileID: 270400184}
---- !u!4 &660907015
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 660907013}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 982314069}
-  m_RootOrder: 3
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 162, y: -14}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1240497704
 MonoBehaviour:
@@ -5956,6 +5815,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1240497702}
   m_CullTransparentMesh: 0
+--- !u!224 &1240497706
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240497702}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1253869411
 GameObject:
   m_ObjectHideFlags: 0
@@ -6378,7 +6256,7 @@ RectTransform:
   m_Children:
   - {fileID: 1573538645}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6417,7 +6295,7 @@ RectTransform:
   - {fileID: 741396850}
   - {fileID: 1863937509}
   m_Father: {fileID: 1001686353}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7123,7 +7001,7 @@ PrefabInstance:
     - target: {fileID: 2170277775128868974, guid: c8f0af7ed33e85743b773114fe2a078c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2170277775128868974, guid: c8f0af7ed33e85743b773114fe2a078c,
         type: 3}
@@ -8378,7 +8256,7 @@ PrefabInstance:
     - target: {fileID: 2674224562321610189, guid: bec8c9ab8e60dc948bc77a54d65687c5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2674224562321610189, guid: bec8c9ab8e60dc948bc77a54d65687c5,
         type: 3}

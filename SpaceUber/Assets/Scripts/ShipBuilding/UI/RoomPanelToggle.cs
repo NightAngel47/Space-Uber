@@ -15,6 +15,7 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField] Sprite blackButton;
     [SerializeField] Sprite redButton;
     [SerializeField] private Image[] panelTabs = new Image[0];
+    [SerializeField] GameObject[] tabs;
     private int currentTabIndex = -1;
     private bool isMouseOverObject;
     
@@ -39,11 +40,11 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void TogglePanelVis(int tabIndex = -1)
     {
-        if (isOpen)
+        if (isOpen && currentTabIndex == tabIndex)
         {
             ClosePanel(tabIndex);
         }
-        else
+        else if(currentTabIndex != tabIndex)
         {
             OpenPanel(tabIndex);
         }
@@ -56,6 +57,17 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (!isRoomDetails || currentTabIndex != 0)
         {
             SetSelectedTab(tabIndex);
+
+            //swap between radio and room details
+            if(GameManager.instance.currentGameState != InGameStates.ShipBuilding)
+            {
+                for (int i = 0; i < tabs.Length; i++)
+                {
+                    if (i == tabIndex) tabs[i].gameObject.SetActive(true);
+                    else tabs[i].gameObject.SetActive(false);
+                }
+            }
+            
         }
 
         if (isOpen) return;

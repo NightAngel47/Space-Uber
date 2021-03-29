@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class AudioSettings : MonoBehaviour
 {
-    static float masterVol = 1;
-    static float sfxVol = 1;
-    static float bgmVol = 1;
-    static float radioVol = 0;
-    static float ambientVol = 1;
+    public static float masterVol = 1;
+    public static float sfxVol = 1;
+    public static float bgmVol = 1;
+    public static float radioVol = 0;
+    public static float ambientVol = 1;
 
     [SerializeField] Slider masterSlider;
     [SerializeField] Slider sfxSlider;
@@ -17,70 +17,62 @@ public class AudioSettings : MonoBehaviour
     [SerializeField] Slider radioSlider;
     [SerializeField] Slider ambientSlider;
 
+    
     // Start is called before the first frame update
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => AudioManager.instance != null);
 
-        if (SavingLoadingManager.instance.GetHasSave())
+        if (SavingLoadingManager.instance.GetHasSave())//change to gethassettingssave when merged?
         {
             LoadAudioSettings();
         }
-        else //
-        {
-            //masterVol = 1;
-            //sfxVol = 1;
-            //bgmVol = 1;
-            //radioVol = 0;
-            //ambientVol = 1;
-
-            //SaveAudioSettings();
-        }
-
-        masterSlider.value = masterVol;
-        sfxSlider.value = sfxVol;
-        bgmSlider.value = bgmVol;
-        radioSlider.value = radioVol;
-        ambientSlider.value = ambientVol;
     }
     private void OnEnable()
     {
-        masterSlider.value = masterVol;
-        sfxSlider.value = sfxVol;
-        bgmSlider.value = bgmVol;
-        radioSlider.value = radioVol;
-        ambientSlider.value = ambientVol;
+        if (SavingLoadingManager.instance.GetHasSave())//change to gethassettingssave when merged?
+        {
+            LoadAudioSettings();
+        }
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        
+        masterSlider.value = masterVol;
+        sfxSlider.value = sfxVol;
+        bgmSlider.value = bgmVol;
+        radioSlider.value = radioVol;
+        ambientSlider.value = ambientVol;
     }
 
     public void MasterVolSlider(float volume)
     {
         AudioManager.instance.MasterVolume = volume;
         masterVol = volume;
+        ApplyRadioChanges();
         SaveAudioSettings();
     }
     public void RadioVolSlider(float volume)
     {
         AudioManager.instance.RadioVolume = volume;
         radioVol = volume;
+        ApplyRadioChanges();
         SaveAudioSettings();
     }
     public void BGMVolSlider(float volume)
     {
         AudioManager.instance.MusicVolume = volume;
         bgmVol = volume;
+        ApplyRadioChanges();
         SaveAudioSettings();
     }
     public void SFXVolSlider(float volume)
     {
         AudioManager.instance.SfxVolume = volume;
         sfxVol = volume;
+        ApplyRadioChanges();
         SaveAudioSettings();
     }
     public void AmbientVolSlider(float volume)
@@ -105,5 +97,25 @@ public class AudioSettings : MonoBehaviour
         bgmVol = SavingLoadingManager.instance.Load<float>("bgmVol");
         radioVol = SavingLoadingManager.instance.Load<float>("radioVol");
         ambientVol = SavingLoadingManager.instance.Load<float>("ambientVol");
+
+        masterSlider.value = masterVol;
+        sfxSlider.value = sfxVol;
+        bgmSlider.value = bgmVol;
+        radioSlider.value = radioVol;
+        ambientSlider.value = ambientVol;
+
+        ApplyRadioChanges();
+    }
+
+    private void ApplyRadioChanges()
+    {
+        if(FindObjectOfType<RadioDial>() != null)
+        {
+            RadioDial[] dials = FindObjectsOfType<RadioDial>();
+            for (int i = 0; i < FindObjectsOfType<RadioDial>().Length; i++)
+            {
+                dials[i].SetAudioSettingsValues();
+            }
+        }
     }
 }
