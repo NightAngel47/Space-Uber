@@ -508,7 +508,7 @@ public class ChoiceOutcomes
                                 resultText += "\nYou left Lexa to face her doom alone";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.ScienceSavior:
-                                resultText += "\nYou told Lanri to fix the cataclysm ";
+                                resultText += "\nYou told Lanri to fix the cataclysm";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.TruthTold:
                                 resultText += "\nYou told everyone the truth";
@@ -529,19 +529,22 @@ public class ChoiceOutcomes
                                 resultText += "\nYou shared your research";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.AncientHackingDevice:
-                                resultText += "\nYou bought the ancient hacking device ";
+                                resultText += "\n ";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.ExoSuits:
-                                resultText += "\nYou bought the exosuits";
+                                resultText += "\n ";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.WarpShields:
-                                resultText += "\nYou bought the warp shields";
+                                resultText += "\n ";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.RealityBomb:
-                                resultText += "\nYou bought the reality bomb";
+                                resultText += "\n ";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.DisintegrationRay:
-                                resultText += "\nYou bought the disintegration ray ";
+                                resultText += "\n ";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.ArtifactAngry:
+                                resultText += "\nYou angered the alien artifact";
                                 break;
                         }
                         break;
