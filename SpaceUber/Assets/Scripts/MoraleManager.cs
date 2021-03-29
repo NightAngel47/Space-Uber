@@ -26,11 +26,15 @@ public class MoraleManager : MonoBehaviour
     private List<Vector2> outputModifierInfo;
     
     public List<Vector2> OutputModifierInfo => outputModifierInfo;
-    
+
+    private ShipStats ship;
     private ShipStatsUI shipStatsUI;
     
     public static MoraleManager instance;
-    
+   
+    [Tooltip("The morale modifier for each level 1 medbay"),SerializeField] private int MedBayBoost1;
+    [Tooltip("The morale modifier for each level 2 medbay"), SerializeField] private int MedBayBoost2;
+
     private void Awake()
     {
         // Singleton pattern that makes sure that there is only one MoraleManager
@@ -44,6 +48,11 @@ public class MoraleManager : MonoBehaviour
         }
         
         shipStatsUI = FindObjectOfType<ShipStatsUI>();
+        ship = GameObject.FindObjectOfType<ShipStats>();
+        if(!ship)
+        {
+            print("Could not find ship");
+        }
     }
     
     private void Start()
@@ -66,8 +75,19 @@ public class MoraleManager : MonoBehaviour
         {
             int prevValue = crewMorale;
             float prevMoraleModifier = GetMoraleModifier();
-            
-            crewMorale = value;
+
+            int medCount1 = 0;
+            int medCount2 = 0;
+            int medCount3 = 0;
+
+            ship.RoomsOfTypeLevel("Medbay", medCount1, medCount2, medCount3);
+            int modifier = 0;
+            if (value > 0)
+            {
+                modifier = medCount1 * MedBayBoost1 + medCount2 * MedBayBoost2;
+            }
+
+            crewMorale = value + modifier;
 
             /*
             if (crewMoraleAmount >= 0)
