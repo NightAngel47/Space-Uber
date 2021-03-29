@@ -154,6 +154,6 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         else if (radioDial) AudioSettings.radioVol = slider.value;
         else if (bgmDial) AudioSettings.bgmVol = slider.value;
         else if (sfxDial) AudioSettings.sfxVol = slider.value;
-        FindObjectOfType<AudioSettings>().SaveAudioSettings();
+        if(FindObjectOfType<AudioSettings>() != null) FindObjectOfType<AudioSettings>().SaveAudioSettings();
     }
 }
