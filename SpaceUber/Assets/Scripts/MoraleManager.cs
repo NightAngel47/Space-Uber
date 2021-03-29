@@ -32,10 +32,8 @@ public class MoraleManager : MonoBehaviour
     
     public static MoraleManager instance;
    
-    [Tooltip("The morale modifier for each level 1 medbay"),SerializeField]
-    private int MedBayBoost1;
-    [Tooltip("The morale modifier for each level 2 medbay"), SerializeField]
-    private int MedBayBoost2;
+    [Tooltip("The morale modifier for each level 1 medbay"),SerializeField] private int MedBayBoost1;
+    [Tooltip("The morale modifier for each level 2 medbay"), SerializeField] private int MedBayBoost2;
 
     private void Awake()
     {
