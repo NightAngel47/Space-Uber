@@ -49,7 +49,7 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
             //hullAlert.GetComponent<MeshRenderer>().material.color = tempcolor;
             hullAlert.SetActive(true);
         }
-        if (stats[2] <= thresholdAmounts[0])
+        if (stats[2] <= thresholdAmounts[0]) // less food than threshold
         {
             alertPanel.gameObject.SetActive(true);
             //foodAlert.GetComponent<MeshRenderer>().material.color = tempcolor;
@@ -61,13 +61,13 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
             //foodPerTickAlert.GetComponent<MeshRenderer>().material.color = tempcolor;
             foodPerTickAlert.SetActive(true);
         }
-        if (stats[4] <= thresholdAmounts[1])
+        if (stats[4] <= thresholdAmounts[1]) // less security than 
         {
             alertPanel.gameObject.SetActive(true);
             //securityAlert.GetComponent<MeshRenderer>().material.color = tempcolor;
             securityAlert.SetActive(true);
         }
-        if (stats[5] <= thresholdAmounts[2])
+        if (stats[5] <= thresholdAmounts[2]) // less weapons than 
         {
             alertPanel.gameObject.SetActive(true);
             //weaponsAlert.GetComponent<MeshRenderer>().material.color = tempcolor;
