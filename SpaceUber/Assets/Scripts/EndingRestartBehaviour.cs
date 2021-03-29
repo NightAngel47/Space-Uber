@@ -27,4 +27,15 @@ public class EndingRestartBehaviour : MonoBehaviour
         SceneManager.LoadScene("LoadingScreen");
         AudioManager.instance.PlayMusicWithTransition("General Theme");
     }
+    
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("Menu_Main");
+    }
+    
+    public void GoToCredits()
+    {
+        GameManager.instance.ChangeInGameState(InGameStates.ShipBuilding); // so if you continue after ending the game you will continue at the start of the last job
+        SceneManager.LoadScene("Credits");
+    }
 }
