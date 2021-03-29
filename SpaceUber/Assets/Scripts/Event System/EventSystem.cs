@@ -377,64 +377,58 @@ public class EventSystem : MonoBehaviour
     /// If the max number of events has been reached, go to the ending
     /// </summary>
     public void ConcludeEvent()
-	{
+    {
 
-		InkDriverBase concludedEvent = eventInstance.GetComponent<InkDriverBase>();
-		concludedEvent.ClearUI();
-		bool isRegularEvent = true;
+	    InkDriverBase concludedEvent = eventInstance.GetComponent<InkDriverBase>();
+	    concludedEvent.ClearUI();
+	    
+	    bool isRegularEvent = !isCheatEvent;
 
-		if(isCheatEvent)
-        {
-			isRegularEvent = false;
-		}
-		if (concludedEvent.isCharacterEvent)
-		{
-			isRegularEvent = false;
-			chatting = false;
-			tick.DaysSinceChat = 0;
-			eventInstance.GetComponent<CharacterEvent>().EndCharacterEvent();
-		}
-		else if (concludedEvent.isMutinyEvent)
-		{
-			isRegularEvent = false;
-			mutiny = false;
-		}
+	    if (concludedEvent.isCharacterEvent)
+	    {
+		    isRegularEvent = false;
+		    chatting = false;
+		    tick.DaysSinceChat = 0;
+		    eventInstance.GetComponent<CharacterEvent>().EndCharacterEvent();
+	    }
+	    else if (concludedEvent.isMutinyEvent)
+	    {
+		    isRegularEvent = false;
+		    mutiny = false;
+	    }
 
-		AnalyticsManager.OnEventComplete(concludedEvent);
-		Destroy(eventInstance);
+	    AnalyticsManager.OnEventComplete(concludedEvent);
+	    Destroy(eventInstance);
 
-        //Go back to travel scene
-        asm.UnloadScene("Event_NoChoices");
-        asm.UnloadScene("Event_General");
-		asm.UnloadScene("Event_CharacterFocused");
-		AudioManager.instance.PlayMusicWithTransition("General Theme");
+	    //Go back to travel scene
+	    asm.UnloadScene("Event_NoChoices");
+	    asm.UnloadScene("Event_General");
+	    asm.UnloadScene("Event_CharacterFocused");
+	    AudioManager.instance.PlayMusicWithTransition("General Theme");
 
-		//reset for next event
-		eventActive = false;
-		tick.StartTickUpdate();
-		AudioManager.instance.PlayRadio(AudioManager.instance.currentStationId);
+	    //reset for next event
+	    eventActive = false;
+	    tick.StartTickUpdate();
+	    AudioManager.instance.PlayRadio(AudioManager.instance.currentStationId);
 
-		//set up for the next regular event
-		if (isRegularEvent)
-		{
-			tick.DaysSince = 0; // reset days since
-			skippedToEvent = false;
-			nextEventLockedIn = false;
-			eventRollCounter = 0;
-			timeBeforeEventCounter = 0;
+	    //set up for the next regular event
+	    if (isRegularEvent)
+	    {
+		    tick.DaysSince = 0; // reset days since
+		    skippedToEvent = false;
+		    nextEventLockedIn = false;
+		    eventRollCounter = 0;
+		    timeBeforeEventCounter = 0;
+	    }
 
+	    if (overallEventIndex >= maxEvents) //Potentially end the job entirely if this is meant to be the final event
+	    {
+		    ClearEventSystemAtEndOfJob();
+		    GameManager.instance.ChangeInGameState(InGameStates.JobPayment);
+	    }
+    }
 
-		}
-
-		if (overallEventIndex >= maxEvents) //Potentially end the job entirely if this is meant to be the final event
-		{
-			ClearEventSystemAtEndOfJob();
-			ship.CashPayout();
-			GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);
-		}
-	}
-
-	private void ClearEventSystemAtEndOfJob()
+    private void ClearEventSystemAtEndOfJob()
 	{
 		storyEvents.Clear();
 		randomEvents.Clear();

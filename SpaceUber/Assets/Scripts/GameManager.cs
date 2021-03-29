@@ -18,7 +18,7 @@ using UnityEngine.SceneManagement;
 ///     Events          player can run into story and random events.
 ///     Ending          player has reached a narrative ending.
 /// </summary>
-public enum InGameStates { None, JobSelect, ShipBuilding, CrewManagement, Events, MoneyEnding, MoraleEnding, Mutiny, Death ,CrewPayment, RoomUnlock, EndingStats, EndingCredits}
+public enum InGameStates { None, JobSelect, ShipBuilding, CrewManagement, Events, MoneyEnding, MoraleEnding, Mutiny, Death, JobPayment, CrewPayment, RoomUnlock, EndingStats, EndingCredits}
 
 /// <summary>
 /// Manages the state of the game while the player is playing.
@@ -205,11 +205,16 @@ public class GameManager : MonoBehaviour
 
                 StartCoroutine(EventSystem.instance.PlayIntro());
                 break;
-            case InGameStates.CrewPayment:
+            case InGameStates.JobPayment:
                 additiveSceneManager.UnloadScene("Interface_Runtime");
                 additiveSceneManager.UnloadScene("Event_General");
                 additiveSceneManager.UnloadScene("Event_CharacterFocused");
                 additiveSceneManager.UnloadScene("CrewManagement");
+                
+                additiveSceneManager.LoadSceneSeperate("Interface_JobPaycheckScreen");
+                break;
+            case InGameStates.CrewPayment:
+                additiveSceneManager.LoadSceneSeperate("Interface_JobPaycheckScreen");
 
                 additiveSceneManager.LoadSceneSeperate("Interface_CrewPaymentScreen");
                 break;
