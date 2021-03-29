@@ -10,21 +10,21 @@ using UnityEngine.UI;
 
 public class HullGridSquare : MonoBehaviour
 {
-    Collider2D collider;
+    Collider2D collide;
     Image image;
     bool isCovered = false;
     HullRepairMiniGame miniGameManager;
 
 	private void Start()
 	{
-        collider = GetComponent<Collider2D>();
+        collide = GetComponent<Collider2D>();
         image = GetComponent<Image>();
         miniGameManager = FindObjectOfType<HullRepairMiniGame>();
 	}
 	private void Update()
 	{
         Collider2D[] colliders = new Collider2D[1];
-        collider.OverlapCollider(new ContactFilter2D(), colliders);
+        collide.OverlapCollider(new ContactFilter2D(), colliders);
         bool collidedWithHullPiece = false;
         foreach (Collider2D collider in colliders)
         {
