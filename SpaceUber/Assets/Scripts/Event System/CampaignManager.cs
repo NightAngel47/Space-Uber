@@ -287,6 +287,8 @@ public class CampaignManager : MonoBehaviour
                 return;
         }
 
+        GameObject.FindGameObjectWithTag("powercore").gameObject.GetComponent<RoomStats>().UpgradePower();
+        
         SaveCampaignData();
     }
     public void GoToNextJob()

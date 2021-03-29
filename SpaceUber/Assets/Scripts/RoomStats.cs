@@ -534,4 +534,29 @@ public class RoomStats : MonoBehaviour
     {
         return roomGroup;
     }
+
+    public void UpgradePower()
+    {
+        if(gameObject.GetComponent<ObjectScript>().objectNum == 3)
+        {
+            switch(FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+            {
+                case 0:
+                    roomLevel = 1;
+                    break;
+                case 1:
+                    roomLevel = 2;
+                    break;
+                case 2:
+                    roomLevel = 3;
+                    break;
+            }
+
+            foreach (Resource resource in resources)
+            {
+                resourceChange = resource.amount[roomLevel - 1] - resource.amount[roomLevel - 2];
+                UpdateRoomStats(resource.resourceType);
+            }
+        }
+    }
 }
