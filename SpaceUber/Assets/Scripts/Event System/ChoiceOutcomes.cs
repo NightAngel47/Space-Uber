@@ -529,19 +529,19 @@ public class ChoiceOutcomes
                                 resultText += "\nYou shared your research";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.AncientHackingDevice:
-                                resultText += "\n ";
+                                resultText += "\nYou bought the ancient hacking device ";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.ExoSuits:
-                                resultText += "\n ";
+                                resultText += "\nYou bought the exosuits";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.WarpShields:
-                                resultText += "\n ";
+                                resultText += "\nYou bought the warp shields";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.RealityBomb:
-                                resultText += "\n ";
+                                resultText += "\nYou bought the reality bomb";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.DisintegrationRay:
-                                resultText += "\n ";
+                                resultText += "\nYou bought the disintegration ray ";
                                 break;
                         }
                         break;
