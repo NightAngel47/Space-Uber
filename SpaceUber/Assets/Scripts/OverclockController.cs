@@ -142,6 +142,7 @@ public class OverclockController : MonoBehaviour
         //FindObjectOfType<CrewManagement>().crewManagementText.SetActive(true);
         
         AnalyticsManager.OnMiniGameFinished(miniGame, success, statModification);
+        EndingStats.instance.AddToStat(1, EndingStatTypes.MinigamesPlayed);
 	}
 
 
