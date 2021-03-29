@@ -79,10 +79,7 @@ The CEO speaks, "The ship security officer told me that the upper staff were try
 ==Knocked_Out==
 -The CEO drops unconscious
 -Kuon realizes what's happening and goes to shoot the prisoners
-%50 someone dies
--> Facility_Dead
-%50 no one dies
-->Facility
+->randomEnd
 
 ==Kuon_Negotion==
 -You ask Kuon to have a change of heart
