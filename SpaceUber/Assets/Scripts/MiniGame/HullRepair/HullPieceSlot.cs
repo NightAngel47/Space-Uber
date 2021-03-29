@@ -11,7 +11,12 @@ using UnityEngine;
 
 public class HullPieceSlot : MonoBehaviour
 {
-    public HullPiece myPiece;
-    public Vector3 myPosition;
-    public bool taken = false;
+    [HideInInspector] public HullPiece myPiece;
+    [HideInInspector] public Vector3 myPosition;
+    [HideInInspector] public bool taken = false;
+
+    private void Start()
+    {
+        myPosition = transform.position;
+    }
 }

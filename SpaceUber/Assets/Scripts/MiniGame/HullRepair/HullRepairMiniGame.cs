@@ -20,7 +20,7 @@ public class HullRepairMiniGame : MiniGame
 	protected override void Start()
     {
 		base.Start();
-		//RandomizePositions();
+		RandomizePositions();
     }
 
 	private void RandomizePositions()
