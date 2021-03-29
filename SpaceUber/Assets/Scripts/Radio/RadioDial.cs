@@ -61,6 +61,7 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
     private void OnDestroy()
     {
+        SendAudioSettingsValues();
         if (stationDial) SaveRadioSettings();
     }
 
