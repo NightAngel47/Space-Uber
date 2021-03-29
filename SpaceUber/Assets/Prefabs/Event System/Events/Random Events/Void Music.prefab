@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: nextChoices.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -30,6 +30,31 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: nextChoices.Array.data[2].choiceRequirements.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceRequirements.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
@@ -161,6 +186,122 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: b7c81fec460e76843a4076a18adf8cea,
         type: 3}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].hasSubsequentChoices
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].subsequentChoiceIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: hasSubsequentChoices
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].subsequentChoicesName
+      value: '#2'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceName
+      value: Take Singers to Brig
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].description
+      value: Anyone who begins singing shall be detained. Puts a strain on Security
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[0].outcomeName
+      value: -security
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[0].resource
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[0].amount
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].hasRequirements
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceRequirements.Array.data[0].isStatRequirement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceRequirements.Array.data[0].selectedResource
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].hasPercentChange
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].choiceRequirements.Array.data[0].requiredAmount
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].choiceName
+      value: Strip Hull for Soundproofing
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].description
+      value: Construct a soundproof room. Materials will need to be salvaged from
+        the Hull
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.data[0].outcomeName
+      value: -hull
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.data[0].resource
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.data[0].amount
+      value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].isResourceOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].outcomes.Array.data[0].isResourceOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].outcomes.Array.data[0].isResourceOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: eventIntroSFX
+      value: Kuon Void Music
+      objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name

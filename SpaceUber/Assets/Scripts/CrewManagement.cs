@@ -6,6 +6,7 @@
  */
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -36,7 +37,7 @@ public class CrewManagement : MonoBehaviour
     private List<GameObject> overtimeStats = new List<GameObject>();
     private List<GameObject> outputStats = new List<GameObject>();
 
-    public void Start()
+    public IEnumerator Start()
     {
         shipStats = FindObjectOfType<ShipStats>();
         //crewUnassignedText.text = "Unassigned Crew: " + (int)shipStats.CrewCurrent.z;
@@ -59,10 +60,22 @@ public class CrewManagement : MonoBehaviour
         {
             sceneButtons[0].GetComponent<Button>().interactable = false;
         }
+        //else
+        //{
+        //    sceneButtons[0].GetComponent<Button>().interactable = true;
+        //}
 
+        // wait for object script to load if loading savefile
+        yield return new WaitUntil((() => FindObjectOfType<ObjectScript>()));
         room = FindObjectOfType<ObjectScript>().gameObject;
 
         CheckForMinCrew();
+
+
+        CrewViewManager.Instance.EnableCrewView();//automatically enable crew view when you enter crew mgmt
+
+
+        Tutorial.Instance.SetCurrentTutorial(2, true);
     }
 
     private void Update()
@@ -226,11 +239,10 @@ public class CrewManagement : MonoBehaviour
             resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = resource.resourceType.resourceName; // resource name
 
             room.GetComponent<RoomStats>().SetActiveAmount(resource);
-            
+
             if (room.GetComponent<RoomStats>().flatOutput == false)
             {
-                resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text =
-                    resource.activeAmount.ToString() + " / " + resource.amount.ToString();  // This part wasn't being called before, by uncommenting it'll fix it, but ruin the text placement in the UI + " / " + (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(room.GetComponent<RoomStats>().ignoreMorale)); // resource amount
+                resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = resource.activeAmount + " / " + resource.amount[roomStats.GetRoomLevel() - 1];  // This part wasn't being called before, by uncommenting it'll fix it, but ruin the text placement in the UI + " / " + (int)(resource.amount * MoraleManager.instance.GetMoraleModifier(room.GetComponent<RoomStats>().ignoreMorale)); // resource amount
             }
             else
             {
@@ -241,13 +253,16 @@ public class CrewManagement : MonoBehaviour
         }
     }
 
-    public void AddCrew()
+    public void AddCrew(bool fromSave = false)
     {
         if (shipStats.CrewCurrent.z > 0 && roomStats.currentCrew < roomStats.maxCrew)
         {
             roomStats.UpdateCurrentCrew(1);
-            shipStats.CrewCurrent += new Vector3(0, 0, -1);
-            minAssignableCrew--;
+            if (!fromSave)
+            {
+                shipStats.CrewCurrent += new Vector3(0, 0, -1);
+                minAssignableCrew--;
+            }
             FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(roomStats.currentCrew);
             UpdateOutput();
             room.GetComponent<RoomStats>().UpdateRoomStats(room.GetComponent<Resource>().resourceType);
@@ -292,6 +307,7 @@ public class CrewManagement : MonoBehaviour
         TurnOffPanel();
         //crewManagementText.SetActive(false);
         room.GetComponent<OverclockRoom>().PlayMiniGame();
+
     }
 
     public void StartChat()
@@ -314,7 +330,7 @@ public class CrewManagement : MonoBehaviour
         {
             button.SetActive(false);
         }
-        
+
         crewAssignmentCanvas.SetActive(false);
 
         if(!overclockButton.interactable)

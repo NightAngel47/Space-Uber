@@ -1,0 +1,1248 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+OcclusionCullingSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_OcclusionBakeSettings:
+    smallestOccluder: 5
+    smallestHole: 0.25
+    backfaceThreshold: 100
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
+--- !u!104 &2
+RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 9
+  m_Fog: 0
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.01
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
+  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientIntensity: 1
+  m_AmbientMode: 3
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 0}
+  m_HaloStrength: 0.5
+  m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 1
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_UseRadianceAmbientProbe: 0
+--- !u!157 &3
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 11
+  m_GIWorkflowMode: 1
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 0
+    m_EnableRealtimeLightmaps: 0
+  m_LightmapEditorSettings:
+    serializedVersion: 12
+    m_Resolution: 2
+    m_BakeResolution: 40
+    m_AtlasSize: 1024
+    m_AO: 0
+    m_AOMaxDistance: 1
+    m_CompAOExponent: 1
+    m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
+    m_Padding: 2
+    m_LightmapParameters: {fileID: 0}
+    m_LightmapsBakeMode: 1
+    m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
+    m_ReflectionCompression: 2
+    m_MixedBakeMode: 2
+    m_BakeBackend: 1
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 512
+    m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 256
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 1
+    m_PVRDenoiserTypeDirect: 1
+    m_PVRDenoiserTypeIndirect: 1
+    m_PVRDenoiserTypeAO: 1
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVREnvironmentMIS: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
+  m_LightingDataAsset: {fileID: 0}
+  m_UseShadowmask: 0
+--- !u!196 &4
+NavMeshSettings:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    serializedVersion: 2
+    agentTypeID: 0
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.4
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    accuratePlacement: 0
+    debug:
+      m_Flags: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!1 &101005058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 101005059}
+  - component: {fileID: 101005061}
+  - component: {fileID: 101005060}
+  m_Layer: 5
+  m_Name: Cheat Controls Text 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &101005059
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101005058}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1897012596}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 490.86368, y: 781.5687}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &101005060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101005058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "<color=green>F1</color> - Enable / Disable Cheats\r \n<color=green>`</color>
+    Back Quote Key - Show / Hide Cheat Mode Active Text\r\n<color=green>F2</color>
+    - Show / Hide Help Menu for available cheats\r\n<color=green>F3</color> - Enter
+    / Leave Mini-Game Test Area\r\n<color=green>F4</color> - Change Campaign and
+    Job in Job Select Screen\n\t<color=green>Up Arrow</color> \t- Next Campaign\r\n\t<color=green>Down
+    Arrow</color> \t- Previous Campaign\r\n\t<color=green>Right Arrow</color> \t-
+    Next Job\r\n\t<color=green>Left Arrow</color> \t- Previous Job\r\n<color=green>F5</color>
+    - Enable / Disable Death by Hull Durability\r\n<color=green>F6</color> - Enable
+    / Disable Mutinies\r\n<color=green>F7</color> - Skip to Next Event Immediately\r\n<color=green>F8</color>
+    - Spawn Random Event\n\t<color=green>Up Arrow</color> \t- Next Random Event\r\n\t<color=green>Down
+    Arrow</color> - Previous Random Event\r\n<color=green>F9</color> - Toggle Narrative
+    Variables of Current Campaign\n\t<color=green>Number Keys</color> toggle narrative
+    variable at index # - 1\n\tIn Catering To The Rich\r\n\t\t<color=green>Up Arrow</color>
+    \t- Increase VIP trust\r\n\t\t<color=green>Down Arrow</color> \t- Decrease VIP
+    trust\r\n\t\t<color=green>Right Arrow</color>  \t- Increase Clone trust\r\n\t\t<color=green>Left
+    Arrow</color> \t- Decrease Clone trust\r\n\tMysterious Entity\r\n\t\tN/A\r\n\tFinal
+    Test\r\n\t\t<color=green>Up Arrow</color> \t- Increase Asset Count\r\n\t\t<color=green>Down
+    Arrow</color> \t- Decrease Asset Count\r\n<color=green>F10</color> - Unlock Room
+    Levels\n<color=green>F11</color> - Delete Save File and Go To Main Menu\n<color=green>F12</color>
+    - Toggle double time speed\r\n\nHolding <color=green>Number Key</color> related
+    to a Ship Stat and then Holding <color=green>Arrow Key</color> to Modify that
+    Resource. Holding <color=green>Shift</color> makes value only change by 1 per
+    Arrow Press.\n\t<color=green>1</color> - Modify Credits / Payout\r\n\t\t<color=green>Up
+    Arrow</color> \t- Increase Credits\r\n\t\t<color=green>Down Arrow</color> \t-
+    Decrease Credits\r\n\t\t<color=green>Right Arrow</color> \t- Increase Payout\r\n\t\t<color=green>Left
+    Arrow</color> \t- Decrease Payout\r\n\t<color=green>2</color> - Modify Crew Morale\r\n\t\t<color=green>Up
+    Arrow</color>\t- Increase Morale\r\n\t\t<color=green>Down Arrow</color> \t- Decrease
+    Morale\r\n\t<color=green>3</color> - Modify Security\r\n\t\t<color=green>Up Arrow</color>
+    \t- Increase Security\r\n\t\t<color=green>Down Arrow</color> \t- Decrease Security\r\n\t<color=green>4</color>
+    - Modify Ship Weapons\r\n\t\t<color=green>Up Arrow</color> \t- Increase Ship
+    Weapons\r\n\t\t<color=green>Down Arrow</color> \t- Decrease Ship Weapons\r\n\t<color=green>5</color>
+    - Modify Food / Food Per Tick\r\n\t\t<color=green>Up Arrow</color> \t- Increase
+    Food\r\n\t\t<color=green>Down Arrow</color> \t- Decrease Food\r\n\t\t<color=green>Right
+    Arrow</color> \t- Increase Food Per Tick\r\n\t\t<color=green>Left Arrow</color>
+    \t- Decrease Food Per Tick\r\n\t<color=green>6</color> - Modify Crew\r\n\t\t<color=green>Up
+    Arrow</color> \t- Increase Current Crew\r\n\t\t<color=green>Down Arrow</color>
+    \t- Decrease Current Crew\r\n\t\t<color=green>Right Arrow</color> \t- Increase
+    Crew Capacity\r\n\t\t<color=green>Left Arrow</color> \t- Decrease Crew Capacity\r\n\t<color=green>7</color>
+    - Modify Power\r\n\t\t<color=green>Up Arrow</color> \t- Increase Remaining Power\r\n\t\t<color=green>Down
+    Arrow</color> \t- Decrease Remaining Power\r\n\t\t<color=green>Right Arrow</color>
+    \t- Increase Max Power\r\n\t\t<color=green>Left Arrow</color> \t- Decrease Max
+    Power\r\n\t<color=green>8</color> - Modify Hull Durability\r\n\t\t<color=green>Up
+    Arrow</color> \t- Increase Current Health\r\n\t\t<color=green>Down Arrow</color>
+    \t- Decrease Current Health\r\n\t\t<color=green>Right Arrow</color> \t- Increase
+    Max Health \r\n\t\t<color=green>Left Arrow</color> \t- Decrease Max Health\r"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 9c0d64e0f2b37ff4585e042df16b3134, type: 2}
+  m_sharedMaterial: {fileID: -7231770992009637525, guid: 9c0d64e0f2b37ff4585e042df16b3134,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 22
+  m_fontSizeBase: 22
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 6
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 118873350}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &101005061
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101005058}
+  m_CullTransparentMesh: 0
+--- !u!1 &118873348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 118873349}
+  - component: {fileID: 118873351}
+  - component: {fileID: 118873350}
+  m_Layer: 5
+  m_Name: Cheat Controls Text 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &118873349
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118873348}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1897012596}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 470.7663, y: 781.5687}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &118873350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118873348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "<color=green>F1</color> - Enable / Disable Cheats\r \n<color=green>`</color>
+    Back Quote Key - Show / Hide Cheat Mode Active Text\r\n<color=green>F2</color>
+    - Show / Hide Help Menu for available cheats\r\n<color=green>F3</color> - Enter
+    / Leave Mini-Game Test Area\r\n<color=green>F4</color> - Change Campaign and
+    Job in Job Select Screen\n\t<color=green>Up Arrow</color> \t- Next Campaign\r\n\t<color=green>Down
+    Arrow</color> \t- Previous Campaign\r\n\t<color=green>Right Arrow</color> \t-
+    Next Job\r\n\t<color=green>Left Arrow</color> \t- Previous Job\r\n<color=green>F5</color>
+    - Enable / Disable Death by Hull Durability\r\n<color=green>F6</color> - Enable
+    / Disable Mutinies\r\n<color=green>F7</color> - Skip to Next Event Immediately\r\n<color=green>F8</color>
+    - Spawn Random Event\n\t<color=green>Up Arrow</color> \t- Next Random Event\r\n\t<color=green>Down
+    Arrow</color> - Previous Random Event\r\n<color=green>F9</color> - Toggle Narrative
+    Variables of Current Campaign\n\t<color=green>Number Keys</color> toggle narrative
+    variable at index # - 1\n\tIn Catering To The Rich\r\n\t\t<color=green>Up Arrow</color>
+    \t- Increase VIP trust\r\n\t\t<color=green>Down Arrow</color> \t- Decrease VIP
+    trust\r\n\t\t<color=green>Right Arrow</color>  \t- Increase Clone trust\r\n\t\t<color=green>Left
+    Arrow</color> \t- Decrease Clone trust\r\n\tMysterious Entity\r\n\t\tN/A\r\n\tFinal
+    Test\r\n\t\t<color=green>Up Arrow</color> \t- Increase Asset Count\r\n\t\t<color=green>Down
+    Arrow</color> \t- Decrease Asset Count\r\n<color=green>F10</color> - Unlock Room
+    Levels\n<color=green>F11</color> - Delete Save File and Go To Main Menu\n<color=green>F12</color>
+    - Toggle double time speed\r\n\nHolding <color=green>Number Key</color> related
+    to a Ship Stat and then Holding <color=green>Arrow Key</color> to Modify that
+    Resource. Holding <color=green>Shift</color> makes value only change by 1 per
+    Arrow Press.\n\t<color=green>1</color> - Modify Credits / Payout\r\n\t\t<color=green>Up
+    Arrow</color> \t- Increase Credits\r\n\t\t<color=green>Down Arrow</color> \t-
+    Decrease Credits\r\n\t\t<color=green>Right Arrow</color> \t- Increase Payout\r\n\t\t<color=green>Left
+    Arrow</color> \t- Decrease Payout\r\n\t<color=green>2</color> - Modify Crew Morale\r\n\t\t<color=green>Up
+    Arrow</color>\t- Increase Morale\r\n\t\t<color=green>Down Arrow</color> \t- Decrease
+    Morale\r\n\t<color=green>3</color> - Modify Security\r\n\t\t<color=green>Up Arrow</color>
+    \t- Increase Security\r\n\t\t<color=green>Down Arrow</color> \t- Decrease Security\r\n\t<color=green>4</color>
+    - Modify Ship Weapons\r\n\t\t<color=green>Up Arrow</color> \t- Increase Ship
+    Weapons\r\n\t\t<color=green>Down Arrow</color> \t- Decrease Ship Weapons\r\n\t<color=green>5</color>
+    - Modify Food / Food Per Tick\r\n\t\t<color=green>Up Arrow</color> \t- Increase
+    Food\r\n\t\t<color=green>Down Arrow</color> \t- Decrease Food\r\n\t\t<color=green>Right
+    Arrow</color> \t- Increase Food Per Tick\r\n\t\t<color=green>Left Arrow</color>
+    \t- Decrease Food Per Tick\r\n\t<color=green>6</color> - Modify Crew\r\n\t\t<color=green>Up
+    Arrow</color> \t- Increase Current Crew\r\n\t\t<color=green>Down Arrow</color>
+    \t- Decrease Current Crew\r\n\t\t<color=green>Right Arrow</color> \t- Increase
+    Crew Capacity\r\n\t\t<color=green>Left Arrow</color> \t- Decrease Crew Capacity\r\n\t<color=green>7</color>
+    - Modify Power\r\n\t\t<color=green>Up Arrow</color> \t- Increase Remaining Power\r\n\t\t<color=green>Down
+    Arrow</color> \t- Decrease Remaining Power\r\n\t\t<color=green>Right Arrow</color>
+    \t- Increase Max Power\r\n\t\t<color=green>Left Arrow</color> \t- Decrease Max
+    Power\r\n\t<color=green>8</color> - Modify Hull Durability\r\n\t\t<color=green>Up
+    Arrow</color> \t- Increase Current Health\r\n\t\t<color=green>Down Arrow</color>
+    \t- Decrease Current Health\r\n\t\t<color=green>Right Arrow</color> \t- Increase
+    Max Health \r\n\t\t<color=green>Left Arrow</color> \t- Decrease Max Health\r"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 9c0d64e0f2b37ff4585e042df16b3134, type: 2}
+  m_sharedMaterial: {fileID: -7231770992009637525, guid: 9c0d64e0f2b37ff4585e042df16b3134,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 22
+  m_fontSizeBase: 22
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 6
+  m_linkedTextComponent: {fileID: 101005060}
+  parentLinkedComponent: {fileID: 895981445}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &118873351
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118873348}
+  m_CullTransparentMesh: 0
+--- !u!1 &587045976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 587045977}
+  - component: {fileID: 587045979}
+  - component: {fileID: 587045978}
+  m_Layer: 5
+  m_Name: CheatModeActiveText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &587045977
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587045976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1379423858}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -150.23, y: 16.501953}
+  m_SizeDelta: {x: 284.96545, y: 33.00318}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &587045978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587045976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Cheat Mode Active
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 9c0d64e0f2b37ff4585e042df16b3134, type: 2}
+  m_sharedMaterial: {fileID: -7231770992009637525, guid: 9c0d64e0f2b37ff4585e042df16b3134,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 4
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &587045979
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587045976}
+  m_CullTransparentMesh: 0
+--- !u!1 &678591266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 678591267}
+  - component: {fileID: 678591269}
+  - component: {fileID: 678591268}
+  m_Layer: 5
+  m_Name: Title Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &678591267
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678591266}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 963828604}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 25, y: -15}
+  m_SizeDelta: {x: 415.52722, y: 33.514038}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &678591268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678591266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Cheats Help Menu
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 9c0d64e0f2b37ff4585e042df16b3134, type: 2}
+  m_sharedMaterial: {fileID: -7231770992009637525, guid: 9c0d64e0f2b37ff4585e042df16b3134,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &678591269
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678591266}
+  m_CullTransparentMesh: 0
+--- !u!1 &895981443
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 895981444}
+  - component: {fileID: 895981446}
+  - component: {fileID: 895981445}
+  m_Layer: 5
+  m_Name: Cheat Controls Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &895981444
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895981443}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1897012596}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 536.89984, y: 781.5687}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &895981445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895981443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "<color=green>F1</color> - Enable / Disable Cheats\r \n<color=green>`</color>
+    Back Quote Key - Show / Hide Cheat Mode Active Text\r\n<color=green>F2</color>
+    - Show / Hide Help Menu for available cheats\r\n<color=green>F3</color> - Enter
+    / Leave Mini-Game Test Area\r\n<color=green>F4</color> - Change Campaign and
+    Job in Job Select Screen\n\t<color=green>Up Arrow</color> \t- Next Campaign\r\n\t<color=green>Down
+    Arrow</color> \t- Previous Campaign\r\n\t<color=green>Right Arrow</color> \t-
+    Next Job\r\n\t<color=green>Left Arrow</color> \t- Previous Job\r\n<color=green>F5</color>
+    - Enable / Disable Death by Hull Durability\r\n<color=green>F6</color> - Enable
+    / Disable Mutinies\r\n<color=green>F7</color> - Skip to Next Event Immediately\r\n<color=green>F8</color>
+    - Spawn Random Event\n\t<color=green>Up Arrow</color> \t- Next Random Event\r\n\t<color=green>Down
+    Arrow</color> - Previous Random Event\r\n<color=green>F9</color> - Toggle Narrative
+    Variables of Current Campaign\n\t<color=green>Number Keys</color> toggle narrative
+    variable at index # - 1\n\tIn Catering To The Rich\r\n\t\t<color=green>Up Arrow</color>
+    \t- Increase VIP trust\r\n\t\t<color=green>Down Arrow</color> \t- Decrease VIP
+    trust\r\n\t\t<color=green>Right Arrow</color>  \t- Increase Clone trust\r\n\t\t<color=green>Left
+    Arrow</color> \t- Decrease Clone trust\r\n\tMysterious Entity\r\n\t\tN/A\r\n\tFinal
+    Test\r\n\t\t<color=green>Up Arrow</color> \t- Increase Asset Count\r\n\t\t<color=green>Down
+    Arrow</color> \t- Decrease Asset Count\r\n<color=green>F10</color> - Unlock Room
+    Levels\n<color=green>F11</color> - Delete Save File and Go To Main Menu\n<color=green>F12</color>
+    - Toggle double time speed\r\n\nHolding <color=green>Number Key</color> related
+    to a Ship Stat and then Holding <color=green>Arrow Key</color> to Modify that
+    Resource. Holding <color=green>Shift</color> makes value only change by 1 per
+    Arrow Press.\n\t<color=green>1</color> - Modify Credits / Payout\r\n\t\t<color=green>Up
+    Arrow</color> \t- Increase Credits\r\n\t\t<color=green>Down Arrow</color> \t-
+    Decrease Credits\r\n\t\t<color=green>Right Arrow</color> \t- Increase Payout\r\n\t\t<color=green>Left
+    Arrow</color> \t- Decrease Payout\r\n\t<color=green>2</color> - Modify Crew Morale\r\n\t\t<color=green>Up
+    Arrow</color>\t- Increase Morale\r\n\t\t<color=green>Down Arrow</color> \t- Decrease
+    Morale\r\n\t<color=green>3</color> - Modify Security\r\n\t\t<color=green>Up Arrow</color>
+    \t- Increase Security\r\n\t\t<color=green>Down Arrow</color> \t- Decrease Security\r\n\t<color=green>4</color>
+    - Modify Ship Weapons\r\n\t\t<color=green>Up Arrow</color> \t- Increase Ship
+    Weapons\r\n\t\t<color=green>Down Arrow</color> \t- Decrease Ship Weapons\r\n\t<color=green>5</color>
+    - Modify Food / Food Per Tick\r\n\t\t<color=green>Up Arrow</color> \t- Increase
+    Food\r\n\t\t<color=green>Down Arrow</color> \t- Decrease Food\r\n\t\t<color=green>Right
+    Arrow</color> \t- Increase Food Per Tick\r\n\t\t<color=green>Left Arrow</color>
+    \t- Decrease Food Per Tick\r\n\t<color=green>6</color> - Modify Crew\r\n\t\t<color=green>Up
+    Arrow</color> \t- Increase Current Crew\r\n\t\t<color=green>Down Arrow</color>
+    \t- Decrease Current Crew\r\n\t\t<color=green>Right Arrow</color> \t- Increase
+    Crew Capacity\r\n\t\t<color=green>Left Arrow</color> \t- Decrease Crew Capacity\r\n\t<color=green>7</color>
+    - Modify Power\r\n\t\t<color=green>Up Arrow</color> \t- Increase Remaining Power\r\n\t\t<color=green>Down
+    Arrow</color> \t- Decrease Remaining Power\r\n\t\t<color=green>Right Arrow</color>
+    \t- Increase Max Power\r\n\t\t<color=green>Left Arrow</color> \t- Decrease Max
+    Power\r\n\t<color=green>8</color> - Modify Hull Durability\r\n\t\t<color=green>Up
+    Arrow</color> \t- Increase Current Health\r\n\t\t<color=green>Down Arrow</color>
+    \t- Decrease Current Health\r\n\t\t<color=green>Right Arrow</color> \t- Increase
+    Max Health \r\n\t\t<color=green>Left Arrow</color> \t- Decrease Max Health\r"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 9c0d64e0f2b37ff4585e042df16b3134, type: 2}
+  m_sharedMaterial: {fileID: -7231770992009637525, guid: 9c0d64e0f2b37ff4585e042df16b3134,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 22
+  m_fontSizeBase: 22
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 6
+  m_linkedTextComponent: {fileID: 118873350}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &895981446
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895981443}
+  m_CullTransparentMesh: 0
+--- !u!1 &963828603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 963828604}
+  - component: {fileID: 963828606}
+  - component: {fileID: 963828605}
+  m_Layer: 5
+  m_Name: Help Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &963828604
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963828603}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 678591267}
+  - {fileID: 1897012596}
+  m_Father: {fileID: 1379423858}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -200, y: -200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &963828605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963828603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &963828606
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963828603}
+  m_CullTransparentMesh: 0
+--- !u!1 &1379423854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1379423858}
+  - component: {fileID: 1379423857}
+  - component: {fileID: 1379423856}
+  - component: {fileID: 1379423855}
+  m_Layer: 5
+  m_Name: Cheat Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1379423855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379423854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1379423856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379423854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 108
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!223 &1379423857
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379423854}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_SortingLayerID: 0
+  m_SortingOrder: 10000
+  m_TargetDisplay: 0
+--- !u!224 &1379423858
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379423854}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 587045977}
+  - {fileID: 963828604}
+  m_Father: {fileID: 1880847249}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!1 &1880847248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1880847249}
+  - component: {fileID: 1880847250}
+  m_Layer: 0
+  m_Name: Cheats Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1880847249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880847248}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 268.39322, y: 62.334587, z: -47.84375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1379423858}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1880847250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880847248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ad10ada1d7bdd408e95a056cf32746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCanvas: {fileID: 1379423854}
+  cheatModeActiveText: {fileID: 587045976}
+  helpMenu: {fileID: 963828603}
+  randomEvents:
+  - {fileID: 3466922025886888753, guid: 6ed251d640bce304f85ac1f176ad116b, type: 3}
+  - {fileID: 3357718656805749863, guid: e78a2e6a79a274b4ba27355409436f3c, type: 3}
+  - {fileID: 3357718656805749863, guid: 6609e1e98b156e84da8cb72bc65eca82, type: 3}
+  - {fileID: 3760127036658443676, guid: 14b8276ecc135e54ca9306a2f0b4439c, type: 3}
+  - {fileID: 7272458766203768250, guid: e3907cd05e63d00419977294d582a7ef, type: 3}
+  - {fileID: 1476389754963624365, guid: 4a4c3a40a75cd724495dffc718b28f3e, type: 3}
+  - {fileID: 8200609458585128144, guid: 9c662d4ba68aeef459f4730cd5985d36, type: 3}
+  - {fileID: 1294792575043363425, guid: 48fd16a5df56693469757992a15fca94, type: 3}
+  - {fileID: 3638897132847510526, guid: 537cec367f8e28b46b4d470edb914de0, type: 3}
+  - {fileID: 667944929246083556, guid: e8709304eb1372f40ac8c9f678c35c6f, type: 3}
+  - {fileID: 3357718656805749863, guid: 25ce126f577c2174e9ee66cf8ae340b2, type: 3}
+  - {fileID: 7272458766203768250, guid: 8fb7fbb1a5152c9459c5f4562b61a01b, type: 3}
+  - {fileID: 7281746092743587932, guid: 11239c8128bdab54c8ba36e94d03b4dd, type: 3}
+  - {fileID: 4913824124253169989, guid: 27a702cbe7b08e24092191d65767b4a7, type: 3}
+  - {fileID: 3357718656805749863, guid: 33dca4e91b698bf4a92270f3317b578e, type: 3}
+  - {fileID: 3619485565328007490, guid: 6bc69a093cad3a7428ab65147c0c0585, type: 3}
+  - {fileID: 6683104274163393890, guid: d3d43207ae3d55145a5b14860f4123f1, type: 3}
+  - {fileID: 3357718656805749863, guid: 7bfa75724c6832543a89a08845c8e30f, type: 3}
+  - {fileID: 3357718656805749863, guid: 98faed2fe992d0b4dbcd9e0ee9769b7f, type: 3}
+  - {fileID: 8377781306352822949, guid: 27f847869c787ff43a37b209f7bfe8bf, type: 3}
+  - {fileID: 3357718656805749863, guid: 8c8dc8211a7599a45b5008e1c18d192c, type: 3}
+  - {fileID: 3357718656805749863, guid: d0ab78126c4127f4faaadb6b24681b1f, type: 3}
+  - {fileID: 3357718656805749863, guid: a4da87dce15f6c6418d9fd25ffd681f5, type: 3}
+  - {fileID: 8019872930815064777, guid: a587d6cc69a8689449bbd2c6f62d2a09, type: 3}
+  - {fileID: 8019872930815064777, guid: a587d6cc69a8689449bbd2c6f62d2a09, type: 3}
+  - {fileID: 7797646064268702843, guid: 8b7d97dfc2a298441a0da42268596b93, type: 3}
+  - {fileID: 7797646064268702843, guid: 8b7d97dfc2a298441a0da42268596b93, type: 3}
+  - {fileID: 4720084595740928466, guid: 304f3f7c57053e246b7b689ae8b4b7d1, type: 3}
+  - {fileID: 5440712538747958311, guid: ea18b057f6d1a8d4e920348236061563, type: 3}
+  - {fileID: 3357718656805749863, guid: 4b2ab6dbcb0ca2c4d8b96e1a10262cee, type: 3}
+  - {fileID: 8768145030122043720, guid: b2216876e081d454ea362348988323be, type: 3}
+  - {fileID: 7272458766203768250, guid: 268f29224e6f6a44792e29eb7275c082, type: 3}
+  characterEvents: []
+  deathDisabled: 0
+  mutinyDisabled: 0
+--- !u!1 &1897012595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1897012596}
+  - component: {fileID: 1897012597}
+  m_Layer: 5
+  m_Name: Controls Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1897012596
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897012595}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 895981444}
+  - {fileID: 118873349}
+  - {fileID: 101005059}
+  m_Father: {fileID: 963828604}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -22}
+  m_SizeDelta: {x: -49.999756, y: -97.028076}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1897012597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897012595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 3
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0

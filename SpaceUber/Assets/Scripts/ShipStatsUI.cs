@@ -30,6 +30,7 @@ public class ShipStatsUI : MonoBehaviour
 
     [SerializeField, Foldout("Ship Food UI")] private TMP_Text foodCurrentText;
     [SerializeField, Foldout("Ship Food UI")] private TMP_Text foodTickText;
+    [SerializeField, Foldout("Ship Food UI")] private TMP_Text foodTickSignText;
 
     [SerializeField, Foldout("Ship Hull UI")] private TMP_Text hullCurrentText;
     [SerializeField, Foldout("Ship Hull UI")] private TMP_Text hullMaxText;
@@ -57,15 +58,17 @@ public class ShipStatsUI : MonoBehaviour
     [SerializeField, Foldout("Ship Hull UI")] private float blinkTime;
     [SerializeField, Foldout("Ship Hull UI")] private float blinkTransitionTime;
     [SerializeField, Foldout("Ship Hull UI")] private float beepTime;
-    [SerializeField, Foldout("Ship Hull UI")] private Color hullTextDefault;
-    [SerializeField, Foldout("Ship Hull UI")] private Color hullTextRed;
     [SerializeField, Foldout("Ship Hull UI")] private int hullWarningAmount = 25;
+    
+    [SerializeField, Foldout("Text Colors")] private Color textDefault;
+    [SerializeField, Foldout("Text Colors")] private Color textRed;
 
     [SerializeField, Foldout("Ship Credits Tooltip")] private TMP_Text creditsCurrentTooltipText;
     [FormerlySerializedAs("creditsTickTooltipText")] [SerializeField, Foldout("Ship Credits Tooltip")] private TMP_Text creditsPayoutTooltipText;
 
     [SerializeField, Foldout("Ship Energy Tooltip")] private TMP_Text energyCurrentTooltipText;
     [SerializeField, Foldout("Ship Energy Tooltip")] private TMP_Text energyMaxTooltipText;
+    [SerializeField, Foldout("Ship Energy Tooltip")] private TMP_Text energyMaxTotalTooltipText;
 
     [SerializeField, Foldout("Ship Security Tooltip")] private TMP_Text securityCurrentTooltipText;
     [SerializeField, Foldout("Ship Weapons Tooltip")] private TMP_Text shipWeaponsCurrentTooltipText;
@@ -106,12 +109,13 @@ public class ShipStatsUI : MonoBehaviour
         }
     }
 
-    public void UpdateEnergyUI(int current, int max)
+    public void UpdateEnergyUI(int current, int unassigned, int max)
     {
         energyCurrentText.text = current.ToString();
-        energyMaxText.text = max.ToString();
+        energyMaxText.text = unassigned.ToString();
         energyCurrentTooltipText.text = current.ToString();
-        energyMaxTooltipText.text = max.ToString();
+        energyMaxTooltipText.text = unassigned.ToString();
+        energyMaxTotalTooltipText.text = max.ToString();
     }
 
     public void ShowEnergyUIChange(int currentChange, int maxChange)
@@ -195,10 +199,16 @@ public class ShipStatsUI : MonoBehaviour
     public void UpdateFoodUI(int current, int tick, int crew)
     {
         foodCurrentText.text = current.ToString();
-        foodTickText.text = tick.ToString();
+
+        int netFood = tick - crew;
+        foodTickText.text = Mathf.Abs(netFood).ToString();
+        foodTickSignText.text = netFood >= 0 ? "+" : "-";
+        
+        foodTickSignText.color = foodTickText.color = netFood >= 0 ? textDefault : textRed;
+        
         foodCurrentTooltipText.text = current.ToString();
         foodTickTooltipText.text = tick.ToString();
-        foodNetTooltipText.text = (tick - crew).ToString();
+        foodNetTooltipText.text = netFood.ToString();
     }
 
     public void ShowFoodUIChange(int currentChange, int tickChange)
@@ -218,8 +228,6 @@ public class ShipStatsUI : MonoBehaviour
 
     public void UpdateHullUI(int current, int max)
     {
-        if (current <= 0 && max <= 0) return;
-        
         hullCurrentText.text = current.ToString();
         hullMaxText.text = max.ToString();
         hullCurrentTooltipText.text = current.ToString();
@@ -425,11 +433,11 @@ public class ShipStatsUI : MonoBehaviour
         {
             if(toRed)
             {
-                current = Color.Lerp(hullTextDefault, hullTextRed, timer / blinkTransitionTime);
+                current = Color.Lerp(textDefault, textRed, timer / blinkTransitionTime);
             }
             else
             {
-                current = Color.Lerp(hullTextRed, hullTextDefault, timer / blinkTransitionTime);
+                current = Color.Lerp(textRed, textDefault, timer / blinkTransitionTime);
             }
 
             hullCurrentText.color = current;
@@ -440,11 +448,11 @@ public class ShipStatsUI : MonoBehaviour
 
         if(toRed)
         {
-            hullCurrentText.color = hullTextRed;
+            hullCurrentText.color = textRed;
         }
         else
         {
-            hullCurrentText.color = hullTextDefault;
+            hullCurrentText.color = textDefault;
         }
     }
 

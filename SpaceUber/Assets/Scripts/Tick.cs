@@ -25,11 +25,15 @@ public class Tick : MonoBehaviour
 
     public void StartTickUpdate()
     {
+        
+
         secondsPassed = 0;
         if (tickCoroutine == null)
         {
             tickCoroutine = StartCoroutine(TickUpdate());
         }
+
+        Tutorial.Instance.SetCurrentTutorial(3, true);
     }
 
     public void StopTickUpdate()
@@ -47,7 +51,6 @@ public class Tick : MonoBehaviour
     private IEnumerator TickUpdate()
     {
         yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_Runtime").isLoaded);
-        daysSinceDisplay = GameObject.FindGameObjectWithTag("DaysSince").GetComponent<TMP_Text>();
         
         while (GameManager.instance.currentGameState == InGameStates.Events)
         {
@@ -56,7 +59,7 @@ public class Tick : MonoBehaviour
             {
                 // reset seconds passsed
                 secondsPassed = 0;
-
+                
                 // calculate net food produced per tick
                 int netFood = shipStats.FoodPerTick - (int) shipStats.CrewCurrent.x;
                 // calculate possible missing food
@@ -69,19 +72,14 @@ public class Tick : MonoBehaviour
                 }
                 // add net food to food stat
                 shipStats.Food += netFood;
-
+                
                 // increment days since events
                 DaysSince++;
                 daysSinceChat++;
-
+                
                 MoraleManager.instance.CheckMutiny();
-
-                if (shipStats.ShipHealthCurrent.x <= 0)
-                {
-                    GameManager.instance.ChangeInGameState(InGameStates.Death);
-                    AudioManager.instance.PlaySFX("Hull Death");
-                    AudioManager.instance.PlayMusicWithTransition("Death Theme");
-                }
+                
+                shipStats.CheckForDeath();
             }
 
             yield return new WaitForEndOfFrame();

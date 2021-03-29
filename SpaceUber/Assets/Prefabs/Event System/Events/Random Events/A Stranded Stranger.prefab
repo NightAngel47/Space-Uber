@@ -97,7 +97,7 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].amount
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -117,7 +117,7 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: nextChoices.Array.data[1].outcomes.Array.data[0].amount
-      value: -15
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -132,7 +132,7 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: requiredStats.Array.data[0].requiredAmount
-      value: 15
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -144,6 +144,26 @@ PrefabInstance:
         type: 3}
       propertyPath: eventBGM
       value: Asteroid Mining
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[0].isResourceOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].outcomes.Array.data[1].isResourceOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].outcomes.Array.data[0].isResourceOutcome
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: eventIntroSFX
+      value: Kuon Stranded Stranger
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}

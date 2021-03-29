@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using ACTools.Saving;
+using UnityEngine.SceneManagement;
 
 public class SavingLoadingManager : MonoBehaviour
 {
     public static SavingLoadingManager instance;
     private static string projectName = "CogInTheCosmicMachine";
     private bool hasSave;
-    
+
     [SerializeField] private List<GameObject> roomPrefabs = new List<GameObject>();
     
     private void Awake()
@@ -27,19 +28,12 @@ public class SavingLoadingManager : MonoBehaviour
         hasSave = LoadData.FromBinaryFile<bool>(projectName, "hasSave");
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F8) && hasSave) // kill it with fire at your own convenience
-        {
-            SetHasSaveFalse();
-        }
-    }
-
     public void NewSave()
     {
         if(!hasSave)
         {
             SaveData.ToBinaryFile<bool>(projectName, "hasSave", true);
+            Save<bool>("hasRooms", false);
         }
     }
 
@@ -74,16 +68,32 @@ public class SavingLoadingManager : MonoBehaviour
         }
         
         Save<RoomData[]>("roomData", data);
+        Save<bool>("hasRooms", true);
     }
     
     public void LoadRooms()
     {
         RoomData[] data = Load<RoomData[]>("roomData");
-
         foreach (var roomData in data)
         {
             ConvertDataToRoom(roomData);
         }
+    }
+
+    public void SaveRoomLevels(int group1, int group2, int group3)
+    {
+        RoomLevelData levelData = new RoomLevelData
+        {
+            currentMaxLvlGroup1 = group1, currentMaxLvlGroup2 = group2, currentMaxLvlGroup3 = group3
+        };
+        
+        Save<RoomLevelData>("roomLevelData", levelData);
+    }
+
+    public void LoadRoomLevels()
+    {
+        RoomLevelData levelData = Load<RoomLevelData>("roomLevelData");
+        StartCoroutine(UpdateRoomLevels(levelData));
     }
     
     private RoomData ConvertRoomToData(GameObject room)
@@ -98,7 +108,14 @@ public class SavingLoadingManager : MonoBehaviour
         roomData.objectNum = os.objectNum;
         RoomStats roomStats = room.GetComponent<RoomStats>();
         roomData.crew = roomStats.currentCrew;
-        
+        roomData.usedRoom = roomStats.usedRoom;
+        roomData.roomLevel = roomStats.GetRoomLevel();
+        roomData.resourceActiveAmounts = new int[roomStats.resources.Count];
+        for (var i = 0; i < roomStats.resources.Count; i++)
+        {
+            roomData.resourceActiveAmounts[i] = roomStats.resources[i].activeAmount;
+        }
+
         return roomData;
     }
     
@@ -106,21 +123,26 @@ public class SavingLoadingManager : MonoBehaviour
     {
         ObjectMover.hasPlaced = false;
 
-        GameObject room = null;
-        foreach (GameObject roomPrefab in roomPrefabs.Where(roomPrefab => roomPrefab.GetComponent<ObjectScript>().objectNum == roomData.objectNum))
-        {
-            room = Instantiate(roomPrefab, new Vector3(roomData.x, roomData.y, 0), Quaternion.identity);
-        }
+        GameObject room = roomPrefabs.Where(roomPrefab => 
+            roomPrefab.GetComponent<ObjectScript>().objectNum == roomData.objectNum).Select(roomPrefab => 
+            Instantiate(roomPrefab, new Vector3(roomData.x, roomData.y, 0), Quaternion.identity)).FirstOrDefault();
 
         ObjectMover om = room.GetComponent<ObjectMover>();
         ObjectScript os = room.GetComponent<ObjectScript>();
+        RoomStats roomStats = room.GetComponent<RoomStats>();
         
         os.ResetData();
         
         om.TurnOffBeingDragged();
         os.preplacedRoom = roomData.isPrePlaced;
-        room.GetComponent<RoomStats>().currentCrew = roomData.crew;
-        
+        roomStats.usedRoom = roomData.usedRoom;
+        roomStats.ChangeRoomLevel(roomData.roomLevel); // starts at 1 so only change if greater than 1
+        roomStats.currentCrew = roomData.crew;
+        if (!roomStats.flatOutput)
+        {
+            StartCoroutine(UpdateRoomStat(roomStats, roomData));
+        }
+
         room.transform.GetChild(0).transform.Rotate(0, 0, -90 * (roomData.rotation - 1));
         
         if ((os.shapeType != 0 || os.shapeType != 1 || os.shapeType != 3) && (os.rotAdjust == 1 || os.rotAdjust == 3) && (roomData.rotation == 2 || roomData.rotation == 4))
@@ -146,15 +168,32 @@ public class SavingLoadingManager : MonoBehaviour
     
     private IEnumerator UpdateSpotChecker(GameObject room, bool isPrePlaced, int rotation)
     {
-        yield return new WaitWhile(() => FindObjectOfType<SpotChecker>() == null);
+        yield return new WaitUntil(() => FindObjectOfType<SpotChecker>());
         if(isPrePlaced)
         {
-            FindObjectOfType<SpotChecker>().FillPreplacedSpots(room);
+            SpotChecker.instance.FillPreplacedSpots(room);
         }
         else
         {
-            FindObjectOfType<SpotChecker>().FillSpots(room, rotation);
+            SpotChecker.instance.FillSpots(room, rotation);
         }
+    }
+
+    private IEnumerator UpdateRoomStat(RoomStats roomStats, RoomData roomData)
+    {
+        yield return new WaitUntil((() => roomStats.GetComponent<Resource>()));
+        for (var i = 0; i < roomStats.resources.Count; i++)
+        {
+            Resource resource = roomStats.resources[i];
+            roomStats.SetStatOnLoad(resource, roomData.resourceActiveAmounts[i]);
+        }
+    }
+
+    private IEnumerator UpdateRoomLevels(RoomLevelData roomLevelData)
+    {
+        yield return new WaitUntil(() => FindObjectOfType<ShipBuildingBuyableRoom>());
+
+        FindObjectOfType<ShipBuildingBuyableRoom>().UpdateMaxLevelGroups(roomLevelData.currentMaxLvlGroup1, roomLevelData.currentMaxLvlGroup2, roomLevelData.currentMaxLvlGroup3);
     }
     
     [Serializable]
@@ -166,5 +205,16 @@ public class SavingLoadingManager : MonoBehaviour
         public int crew;
         public bool isPrePlaced;
         public int objectNum;
+        public bool usedRoom;
+        public int[] resourceActiveAmounts;
+        public int roomLevel;
+    }
+
+    [Serializable]
+    public struct RoomLevelData
+    {
+        public int currentMaxLvlGroup1;
+        public int currentMaxLvlGroup2;
+        public int currentMaxLvlGroup3;
     }
 }

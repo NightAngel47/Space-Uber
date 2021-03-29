@@ -43,15 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9509b99d1d443ceb65c3cb5ff01d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMorale: 50
+  startingMorale: 59
   crewPaymentDefault: 5
   crewPaymentMoraleMultiplier: 5
   crewLossMoraleMultiplier: 8
   foodMoraleDamageMultiplier: 1
   maxMutinyMorale: 39
   maxMutinyMoraleMutinyChance: 0.05
-  zeroMoraleMutinyChance: 1
-  baseMutinyCost: 100
+  zeroMoraleMutinyChance: 0.8
+  baseMutinyCost: 200
   mutinyEvent: {fileID: 7272458766203768250, guid: 45037bba55b9c4916807a3a4e978b9a7,
     type: 3}
   outputModifierInfo:

@@ -18,7 +18,7 @@ using UnityEngine.SceneManagement;
 ///     Events          player can run into story and random events.
 ///     Ending          player has reached a narrative ending.
 /// </summary>
-public enum InGameStates { None, JobSelect, ShipBuilding, CrewManagement, Events, MoneyEnding, MoraleEnding, Mutiny, Death ,CrewPayment }
+public enum InGameStates { None, JobSelect, ShipBuilding, CrewManagement, Events, MoneyEnding, MoraleEnding, Mutiny, Death ,CrewPayment, RoomUnlock }
 
 /// <summary>
 /// Manages the state of the game while the player is playing.
@@ -50,6 +50,25 @@ public class GameManager : MonoBehaviour
     private ShipStats ship;
 
     [SerializeField] private List<ResourceDataType> resourceDataRef = new List<ResourceDataType>();
+    
+    [HideInInspector] public bool hasLoadedRooms = false;
+
+    public List<GameObject> allRoomList = new List<GameObject>();
+
+    /// <summary>
+    /// Group 1: hydroponics, Bunks, VIP Lounge, Armor plating
+    /// </summary>
+    private int currentMaxLvlGroup1 = 1;
+
+    /// <summary>
+    /// Group 2: Shield generator, photon torpedoes, armory, pantry
+    /// </summary>
+    private int currentMaxLvlGroup2 = 1;
+
+    /// <summary>
+    /// Group 3: Storage Container, energy cannon, core charging terminal, brig
+    /// </summary>
+    private int currentMaxLvlGroup3 = 1;
 
     /// <summary>
     /// Sets the instance of the GameManager using the Singleton pattern.
@@ -83,15 +102,35 @@ public class GameManager : MonoBehaviour
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => additiveSceneManager && ship && jobManager);
-        if (SavingLoadingManager.instance.GetHasSave())
+        if (SavingLoadingManager.instance.GetHasSave() && SavingLoadingManager.instance.Load<bool>("hasRooms"))
         {
             LoadGameState();
+            yield return new WaitForEndOfFrame();
+            switch (currentGameState)
+            {
+                case InGameStates.ShipBuilding:
+                    
+                    yield return new WaitUntil(() => FindObjectOfType<SpotChecker>());
+                    SavingLoadingManager.instance.LoadRoomLevels();
+                    break;
+                case InGameStates.CrewManagement:
+                    yield return new WaitUntil(() => FindObjectOfType<CrewManagement>());
+                    break;
+                case InGameStates.Events:
+                    yield return new WaitUntil(() => FindObjectOfType<SpotChecker>() && FindObjectOfType<CrewManagement>());
+                    break;
+                default:
+                    Debug.LogWarning("In Game stat not setup for loading.");
+                    break;
+            }
             SavingLoadingManager.instance.LoadRooms();
+            hasLoadedRooms = true;
         }
         else
         {
             ChangeInGameState(InGameStates.JobSelect);
             SavingLoadingManager.instance.NewSave(); // start new save here
+            hasLoadedRooms = true;
         }
     }
 
@@ -116,6 +155,7 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("PromptScreen_Death");
                 additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
                 additiveSceneManager.UnloadScene("CrewPayment");
+                additiveSceneManager.UnloadScene("Interface_RoomUnlockScreen");
 
                 additiveSceneManager.LoadSceneSeperate("Interface_JobList");
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
@@ -135,6 +175,11 @@ public class GameManager : MonoBehaviour
 
                 additiveSceneManager.LoadSceneSeperate("CrewManagement");
                 break;
+            case InGameStates.RoomUnlock:
+                additiveSceneManager.UnloadScene("CrewPayment");
+
+                additiveSceneManager.LoadSceneSeperate("Interface_RoomUnlockScreen");  
+                break;
             case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
                 additiveSceneManager.UnloadScene("PromptScreen_End");
                 additiveSceneManager.UnloadScene("PromptScreen_Death");
@@ -142,30 +187,21 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("CrewPayment");
                 additiveSceneManager.UnloadScene("Starport BG");
 
-                // load in crew management if player loads into events first
-                if (!SceneManager.GetSceneByName("CrewManagement").isLoaded)
+                // if loading from continue
+                if (!FindObjectOfType<CrewManagement>() || !FindObjectOfType<SpotChecker>())
                 {
-                    additiveSceneManager.LoadSceneSeperate("CrewManagement");
-                    StartCoroutine(SetupCrewManagementIfLoadedIntoEvents());
+                    StartCoroutine(SetupNeededManagersIfLoadedIntoEvents());
                 }
+                else // if coming from crew management
+                {
+                    SaveGameState();
+                    MoraleManager.instance.SaveMorale();
+                    ship.cStats.SaveCharacterStats();
+                    ship.SaveShipStats();
+                    SavingLoadingManager.instance.SaveRooms();
+                }
+                
                 additiveSceneManager.LoadSceneMerged("Interface_Runtime");
-
-                SaveGameState();
-                MoraleManager.instance.SaveMorale();
-                ship.cStats.SaveCharacterStats();
-                ship.SaveShipStats();
-                SavingLoadingManager.instance.SaveRooms();
-
-                // Remove unplaced rooms from the ShipBuilding state
-                if (!ObjectMover.hasPlaced)
-                {
-                    ObjectMover.hasPlaced = true;
-                    Destroy(FindObjectOfType<ObjectMover>().gameObject);
-                }
-                foreach(RoomStats room in FindObjectsOfType<RoomStats>())
-                {
-                  room.UpdateUsedRoom();
-                }
 
                 StartCoroutine(EventSystem.instance.PlayIntro());
                 break;
@@ -217,10 +253,17 @@ public class GameManager : MonoBehaviour
         return resourceDataRef[i];
     }
 
-    private IEnumerator SetupCrewManagementIfLoadedIntoEvents()
+    private IEnumerator SetupNeededManagersIfLoadedIntoEvents()
     {
+        // load ship building for spot checker to load into don't destroy on load
+        additiveSceneManager.LoadSceneSeperate("ShipBuilding");
+        yield return new WaitUntil(() => SceneManager.GetSceneByName("ShipBuilding").isLoaded);
+        additiveSceneManager.UnloadScene("ShipBuilding"); // unload cause not needed anymore
+        
+        // load crew management for crew management to be loaded
+        additiveSceneManager.LoadSceneSeperate("CrewManagement");
         yield return new WaitUntil(() => SceneManager.GetSceneByName("CrewManagement").isLoaded);
-        FindObjectOfType<CrewManagement>().FinishWithCrewAssignment();
+        FindObjectOfType<CrewManagement>().FinishWithCrewAssignment(); // deactivate crew assignment elements
     }
 
     private void SaveGameState()
@@ -231,5 +274,42 @@ public class GameManager : MonoBehaviour
     private void LoadGameState()
     {
         ChangeInGameState(SavingLoadingManager.instance.Load<InGameStates>("currentGameState"));
+    }
+
+    public int GetUnlockLevel(int roomGroup)
+    {
+        switch(roomGroup)
+        {
+            case 1:
+                return currentMaxLvlGroup1;
+                break;
+            case 2:
+                return currentMaxLvlGroup2;
+                break;
+            case 3:
+                return currentMaxLvlGroup3;
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
+
+    public void SetUnlockLevel(int roomGroup, int newValue)
+    {
+        switch (roomGroup)
+        {
+            case 1:
+                currentMaxLvlGroup1 = newValue;
+                break;
+            case 2:
+                currentMaxLvlGroup2 = newValue;
+                break;
+            case 3:
+                currentMaxLvlGroup3 = newValue;
+                break;
+            default:
+                break;
+        }
     }
 }

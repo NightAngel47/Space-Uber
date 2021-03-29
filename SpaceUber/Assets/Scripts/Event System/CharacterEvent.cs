@@ -106,27 +106,23 @@ public class CharacterEvent : InkDriverBase
                 MoraleManager.instance.CrewMorale += positiveMoraleBoost;
                 switch (thisCharacter)
                 {
-                    case CharacterStats.Characters.Kuon: //Kuon boosts security and weapons by 10%
-                        thisShip.Security += securityBoost;
-                        thisShip.ShipWeapons += weaponsBoost;
+                    case CharacterStats.Characters.Kuon: //Kuon boosts security and weapons 
+                        thisShip.Security += Mathf.RoundToInt(securityBoost * campMan.GetMultiplier(ResourceDataTypes._Security));
+                        thisShip.ShipWeapons += Mathf.RoundToInt(weaponsBoost * campMan.GetMultiplier(ResourceDataTypes._ShipWeapons));
 
                         SpawnStatChangeText(securityBoost, GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
                         SpawnStatChangeText(weaponsBoost, GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
                         break;
                     case CharacterStats.Characters.Mateo: //Boosts energy
-                        thisShip.EnergyRemaining += new Vector2(energyBoost, 0);
-                        SpawnStatChangeText(energyBoost, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
+                        int newEnergy = Mathf.RoundToInt(energyBoost * campMan.GetMultiplier(ResourceDataTypes._Energy));
+                        thisShip.Energy += new Vector3(newEnergy, 0, 0);
+                        SpawnStatChangeText(newEnergy, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
                         break;
                     case CharacterStats.Characters.Lanri: //boosts Food
-                        thisShip.Food += foodBoost;
+
+                        thisShip.Food += Mathf.RoundToInt(foodBoost * campMan.GetMultiplier(ResourceDataTypes._Food));
                         SpawnStatChangeText(foodBoost, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
                         break;
-                    //case CharacterStats.Characters.LEXA: //gives +10 to morale
-                    //    MoraleManager.instance.CrewMorale += moraleBoost;
-                    //    break;
-                    //case CharacterStats.Characters.RIPLEY: //gives +10 morale
-                    //    MoraleManager.instance.CrewMorale += moraleBoost;
-                    //    break;
                 }
                 break;
             case AnswerState.NEUTRAL:
@@ -138,25 +134,21 @@ public class CharacterEvent : InkDriverBase
                 switch (thisCharacter)
                 {
                     case CharacterStats.Characters.Kuon: //loses security and weapons by 10
-                        thisShip.Security += securityLoss;
-                        thisShip.ShipWeapons += weaponsLoss;
+                        thisShip.Security += Mathf.RoundToInt(securityLoss * campMan.GetMultiplier(ResourceDataTypes._Security));
+                        thisShip.ShipWeapons += Mathf.RoundToInt(weaponsLoss * campMan.GetMultiplier(ResourceDataTypes._ShipWeapons));
 
                         SpawnStatChangeText(securityLoss, GameManager.instance.GetResourceData((int)ResourceDataTypes._Security).resourceIcon);
                         SpawnStatChangeText(weaponsLoss, GameManager.instance.GetResourceData((int)ResourceDataTypes._ShipWeapons).resourceIcon);
                         break;
                     case CharacterStats.Characters.Mateo: //Loses energy
-                        thisShip.EnergyRemaining += new Vector2(energyLoss, 0);
-                        SpawnStatChangeText(energyLoss, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
+                        int newEnergy = Mathf.RoundToInt(energyLoss * campMan.GetMultiplier(ResourceDataTypes._Energy));
+                        thisShip.Energy += new Vector3(newEnergy, 0, 0);
+                        SpawnStatChangeText(newEnergy, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
                         break;
                     case CharacterStats.Characters.Lanri: //loses Food
-                        thisShip.Food = foodLoss;
+                        thisShip.Food += Mathf.RoundToInt(foodLoss * campMan.GetMultiplier(ResourceDataTypes._Food));
                         SpawnStatChangeText(foodLoss, GameManager.instance.GetResourceData((int)ResourceDataTypes._Food).resourceIcon);
                         break;
-                    //case CharacterStats.Characters.LEXA: //gives -10 to morale
-                    //    MoraleManager.instance.CrewMorale -= moraleLoss;
-                    //    break;
-                    //case CharacterStats.Characters.RIPLEY: //gives -10 morale
-                    //    MoraleManager.instance.CrewMorale -= moraleLoss;
                 }
                 break;
 
