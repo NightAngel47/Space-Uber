@@ -22,6 +22,8 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
 
 
     [SerializeField, Tooltip("0 = food | 1 = security | 2 = weapons")] private List<int> thresholdAmounts = new List<int>();
+    [SerializeField] private int hullRepairPrice = 0;
+    [SerializeField] private int crewReplacePrice = 0;
 
     //Color tempcolor;
 
@@ -35,19 +37,19 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
 
         stats = FindObjectOfType<ShipStats>().GetCoreStats();
 
-        if (stats[0] != 0) //if the player does not have crew max and can replace them
+        if (stats[0] != 0 && stats[6] > crewReplacePrice) //if the player does not have crew max and can replace them
         {
             alertPanel.gameObject.SetActive(true);
             //crewAlert.GetComponent<MeshRenderer>().material.color = tempcolor;
             crewAlert.SetActive(true);
         }
-        if (stats[1] != 0) //is the ship not a full hull durablility
+        if (stats[1] != 0 && stats[6] > hullRepairPrice) //is the ship not a full hull durablility
         {
             alertPanel.gameObject.SetActive(true);
             //hullAlert.GetComponent<MeshRenderer>().material.color = tempcolor;
             hullAlert.SetActive(true);
         }
-        if (stats[2] <= thresholdAmounts[0])
+        if (stats[2] <= thresholdAmounts[0]) // less food than threshold
         {
             alertPanel.gameObject.SetActive(true);
             //foodAlert.GetComponent<MeshRenderer>().material.color = tempcolor;
@@ -59,13 +61,13 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
             //foodPerTickAlert.GetComponent<MeshRenderer>().material.color = tempcolor;
             foodPerTickAlert.SetActive(true);
         }
-        if (stats[4] <= thresholdAmounts[1])
+        if (stats[4] <= thresholdAmounts[1]) // less security than 
         {
             alertPanel.gameObject.SetActive(true);
             //securityAlert.GetComponent<MeshRenderer>().material.color = tempcolor;
             securityAlert.SetActive(true);
         }
-        if (stats[5] <= thresholdAmounts[2])
+        if (stats[5] <= thresholdAmounts[2]) // less weapons than 
         {
             alertPanel.gameObject.SetActive(true);
             //weaponsAlert.GetComponent<MeshRenderer>().material.color = tempcolor;
