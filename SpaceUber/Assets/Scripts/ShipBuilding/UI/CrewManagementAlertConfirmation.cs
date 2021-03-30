@@ -73,12 +73,12 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
             //weaponsAlert.GetComponent<MeshRenderer>().material.color = tempcolor;
             weaponsAlert.SetActive(true);
         }
-        if (stats[7] != 0) //ship has less remaining power than unassigned power
-        {
-            alertPanel.gameObject.SetActive(true);
-            //weaponsAlert.GetComponent<MeshRenderer>().material.color = tempcolor;
-            weaponsAlert.SetActive(true);
-        }
+        // if (stats[7] != 0) //ship has less remaining power than unassigned power
+        // {
+        //     alertPanel.gameObject.SetActive(true);
+        //     //weaponsAlert.GetComponent<MeshRenderer>().material.color = tempcolor;
+        //     weaponsAlert.SetActive(true);
+        // }
 
         if (alertPanel.activeSelf == false) continuePanel.SetActive(true);
     }
