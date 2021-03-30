@@ -508,7 +508,7 @@ public class ChoiceOutcomes
                                 resultText += "\nYou left Lexa to face her doom alone";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.ScienceSavior:
-                                resultText += "\nYou told Lanri to fix the cataclysm ";
+                                resultText += "\nYou told Lanri to fix the cataclysm";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.TruthTold:
                                 resultText += "\nYou told everyone the truth";
@@ -542,6 +542,9 @@ public class ChoiceOutcomes
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.DisintegrationRay:
                                 resultText += "\n ";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.ArtifactAngry:
+                                resultText += "\nYou angered the alien artifact";
                                 break;
                         }
                         break;
