@@ -28,6 +28,7 @@ public class EventSystem : MonoBehaviour
 	private int maxEvents = 0;
 	private List<GameObject> storyEvents = new List<GameObject>();
 	private List<GameObject> randomEvents = new List<GameObject>();
+	[SerializeField]private List<GameObject> characterEvents = new List<GameObject>();
 
     //how many events (story and random) have occurred
     [HideInInspector] public int overallEventIndex = 0;
@@ -74,7 +75,9 @@ public class EventSystem : MonoBehaviour
 
 	private string lastEventTitle;
 
-	private int cheatIndex = 0;
+
+	private int randCheatIndex = 0;
+	private int charCheatIndex = 0;
 	public bool isCheatEvent = false;
 	[HideInInspector] public bool chatting = false; //Whether or not the player is talking to a character
 	[HideInInspector] public bool mutiny;
@@ -294,14 +297,34 @@ public class EventSystem : MonoBehaviour
 			ConcludeEvent();
 		}
 
-		cheatIndex += indexDirection;
+		randCheatIndex += indexDirection;
 		isCheatEvent = true;
+		Mathf.Clamp(indexDirection, 0, randomEvents.Count);
 
 		asm.LoadSceneMerged("Event_CharacterFocused");
 		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
 
-		print("About to play '" + randomEvents[cheatIndex] + "'");
-		CreateEvent(randomEvents[cheatIndex]);
+		print("About to play '" + randomEvents[randCheatIndex] + "'");
+		CreateEvent(randomEvents[randCheatIndex]);
+	}
+
+	public IEnumerator CheatCharacterEvent(int indexDirection)
+    {
+		//deactivate currentEvent
+		if (eventActive)
+		{
+			ConcludeEvent();
+		}
+
+		charCheatIndex += indexDirection;
+		isCheatEvent = true;
+		Mathf.Clamp(indexDirection, 0, characterEvents.Count);
+
+		asm.LoadSceneMerged("Event_CharacterFocused");
+		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
+
+		print("About to play '" + characterEvents[charCheatIndex] + "'");
+		CreateEvent(characterEvents[charCheatIndex]);
 	}
 
 	/// <summary>
