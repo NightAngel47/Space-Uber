@@ -104,9 +104,6 @@ public class SlotReel : MonoBehaviour
             slots[overallIndex] = newSlot;
             overallIndex++;
             instantiated[randNum] = true;
-            
-            if(gameObject.name == "Reel 1")
-                print(gameObject.name + " Spawned " + newSlot.name);
         }
 
         //reset instantiated bool
