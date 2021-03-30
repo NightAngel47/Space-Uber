@@ -174,7 +174,7 @@ public class Tutorial : Singleton<Tutorial>
             tutorialPanel.SetActive(false);
             index = 0;
 
-            currentTutorial.tutorialFinished = finished;
+            if(!currentTutorial.tutorialFinished) currentTutorial.tutorialFinished = finished;
             SaveTutorialStatus();
         }
     }
