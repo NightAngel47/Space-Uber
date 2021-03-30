@@ -138,6 +138,7 @@ public class EventSystem : MonoBehaviour
 	private IEnumerator Travel()
 	{
         progressBar = FindObjectOfType<ProgressBarUI>();
+        eventButtonSpawn = false;
         tick.DaysSince = 0; // reset days since
 		campMan.cateringToTheRich.SaveEventChoices();
 
