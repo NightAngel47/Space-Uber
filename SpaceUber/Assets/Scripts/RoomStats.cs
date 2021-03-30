@@ -72,8 +72,14 @@ public class RoomStats : MonoBehaviour
 
     private IEnumerator Start()
     {
-        yield return new WaitUntil(() => TryGetComponent(out Resource resource));
+        UpdateRoomLevelIcon();
 
+        yield return new WaitUntil(() => TryGetComponent(out Resource resource));
+        GetStats();
+    }
+
+    private void UpdateRoomLevelIcon()
+    {
         switch (roomLevel)
         {
             case 1:
@@ -86,8 +92,6 @@ public class RoomStats : MonoBehaviour
                 levelIconObject.sprite = levelIcons[2];
                 break;
         }
-
-        GetStats();
     }
 
     public void UpdateUsedRoom()
@@ -566,6 +570,10 @@ public class RoomStats : MonoBehaviour
                     roomLevel = 3;
                     break;
             }
+
+            // update UI to match level
+            UpdateRoomLevelIcon();
+            roomTooltipUI.UpdateRoomLevel();
 
             foreach (Resource resource in resources)
             {
