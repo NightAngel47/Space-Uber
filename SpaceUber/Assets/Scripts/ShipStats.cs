@@ -625,16 +625,11 @@ public class ShipStats : MonoBehaviour
 
     public void ReAddPayoutFromRooms()
     {
-        RoomStats[] rooms = FindObjectsOfType<RoomStats>();
-
-        foreach (RoomStats room in rooms)
+        foreach (RoomStats room in FindObjectsOfType<RoomStats>())
         {
-            if (room.gameObject.TryGetComponent(out Resource resource))
+            if(room.resources[0].resourceType.Rt == ResourceDataTypes._Payout)
             {
-                if(resource.resourceType.resourceName == "Payout")
-                {
-                    Payout += resource.activeAmount;
-                }
+                Payout += room.resources[0].activeAmount;
             }
         }
     }
