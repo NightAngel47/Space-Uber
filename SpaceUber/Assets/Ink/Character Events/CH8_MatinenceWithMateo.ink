@@ -4,10 +4,10 @@ Mateo saunters over to the main terminal, not even trying to hide his yawn. He r
 
 == late ==
 A cheeky grin flashes across Mateo’s mouth, “What if I told you it was on purpose? What if I told you I wanted to impact Kellis’ performance?” You’d like to believe that he’s joking, but you surmise that this answer was more serious than Mateo is letting on.
-+[Proceed]->step2
+->step2
 == mati ==
 “Meh, same shit different day. I don’t mind it though. Good news for you, no abnormalities detected in the program. You’re looking fiiiine Sparky.”
-+[Proceed]->step2
+->step2
 
 == step2 ==
 Mateo takes a step back to admire his work. For what he lacks in motivation he more than makes up for with raw skill. In fact, it makes you wonder how someone who does so little work has managed to get themselves hired onto a crew.
@@ -16,10 +16,10 @@ Mateo takes a step back to admire his work. For what he lacks in motivation he m
 
 == how ==
 Mateo stares off into space, “Sometimes you gotta learn something new if you wanna survive to see tomorrow. For the sake of those you care about.” He quickly regains his composure, but the blood rushing to his cheeks betrays him.
-+[Proceed]->step3
+->step3
 == why ==
 Mateo gives a nonchalant shrug, “My family needed the money after Kellis ‘restructured’ our planet’s economy. I figured this ship was as good as any to earn some coin.”
-+[Proceed]->step3
+->step3
 
 == step3 ==
 The maintenance is finished, and Mateo gives the terminal camera a big thumbs-up. “I’m sure you’re not interested in hearing about my family, so I’ll be on my way. Toodle-Oo Sparky!”
