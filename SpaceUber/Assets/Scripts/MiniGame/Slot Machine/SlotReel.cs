@@ -82,6 +82,7 @@ public class SlotReel : MonoBehaviour
     {
         bool[] instantiated = new bool[slotTypes.Length];
         int overallIndex = 0;
+
         //auto assign all to false from the start
         for (int i = 0; i < instantiated.Length; i++)
         {
@@ -93,13 +94,19 @@ public class SlotReel : MonoBehaviour
         {
             //reroll until we find a slot type we haven't already spawned
             int randNum = Random.Range(0, slotTypes.Length);
+            
             while (instantiated[randNum] != false)
             {
                 randNum = Random.Range(0, slotTypes.Length);
             }
+
             Transform newSlot = GameObject.Instantiate(slotTypes[randNum], upperLayoutGroup).transform;
             slots[overallIndex] = newSlot;
             overallIndex++;
+            instantiated[randNum] = true;
+            
+            if(gameObject.name == "Reel 1")
+                print(gameObject.name + " Spawned " + newSlot.name);
         }
 
         //reset instantiated bool
@@ -117,6 +124,7 @@ public class SlotReel : MonoBehaviour
             {
                 randNum = Random.Range(0, slotTypes.Length);
             }
+            instantiated[randNum] = true;
             Transform newSlot = GameObject.Instantiate(slotTypes[randNum], lowerLayoutGroup).transform;
             slots[overallIndex] = newSlot;
             overallIndex++;
