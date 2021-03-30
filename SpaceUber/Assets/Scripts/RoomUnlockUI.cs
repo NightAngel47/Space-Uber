@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -32,39 +33,54 @@ public class RoomUnlockUI : MonoBehaviour
     private List<GameObject> newRooms = new List<GameObject>();
     private int count = 0;
 
+    private CampaignManager campaignManager;
+
+    private void Awake()
+    {
+        campaignManager = FindObjectOfType<CampaignManager>();
+    }
+
     public void Start()
     {
+        // see if there are any rooms to unlock
         count = 0;
         foreach (GameObject room in GameManager.instance.allRoomList)
         {
-            switch (FindObjectOfType<CampaignManager>().GetCurrentJobIndex())
+            switch (campaignManager.GetCurrentJobIndex())
             {
                 case 0:
-                    if (room.GetComponent<RoomStats>().GetRoomGroup() == 2)
+                    if (room.GetComponent<RoomStats>().GetRoomGroup() == 2 && GameManager.instance.GetUnlockLevel(2) < 3)
                     {
                         newRooms.Add(room);
                     }
                     break;
                 case 1:
-                    if (room.GetComponent<RoomStats>().GetRoomGroup() == 3)
+                    if (room.GetComponent<RoomStats>().GetRoomGroup() == 3 && GameManager.instance.GetUnlockLevel(3) < 3)
                     {
                         newRooms.Add(room);
                     }
                     break;
                 case 2:
-                    if (room.GetComponent<RoomStats>().GetRoomGroup() == 1)
+                    if (room.GetComponent<RoomStats>().GetRoomGroup() == 1 && GameManager.instance.GetUnlockLevel(1) < 3)
                     {
                         newRooms.Add(room);
                     }
                     break;
             }
         }
-
-        nextButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Next";
-        nextButton.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "Next";
-
-        if(newRooms.Count > 0) UpdateRoomUnlockUI(newRooms[count].GetComponent<RoomStats>()); // show upgrades if there are new rooms
-        count++;
+        
+        // display unlocked rooms or skip to job select if no new rooms
+        if(newRooms.Count > 0) // if there are new rooms do stuff
+        {
+            nextButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Next";
+            nextButton.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "Next";
+            UpdateRoomUnlockUI(newRooms[count].GetComponent<RoomStats>()); // show upgrades if there are new rooms
+            count++;
+        }
+        else  // otherwise skip to job select
+        {
+            GoToNextRoomOrJob();
+        }
     }
 
     public void UpdateRoomUnlockUI(RoomStats roomStats)
@@ -72,8 +88,8 @@ public class RoomUnlockUI : MonoBehaviour
         rname.text = roomStats.roomName;
         //Debug.Log(FindObjectOfType<CampaignManager>().GetCurrentJobIndex());
 
-        if ((FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() > 0 && FindObjectOfType<CampaignManager>().GetCurrentJobIndex() < 3) || (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() == 0 
-            && FindObjectOfType<CampaignManager>().GetCurrentJobIndex() == 2)) //room is getting a new level
+        if ((campaignManager.GetCurrentCampaignIndex() > 0 && campaignManager.GetCurrentJobIndex() < 3) || 
+            (campaignManager.GetCurrentCampaignIndex() == 0 && campaignManager.GetCurrentJobIndex() == 2)) //room is getting a new level
         {
             levelOld.text = "Level " + (GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())).ToString();
             needsCreditsOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString(); //-2 to get old level
@@ -149,7 +165,7 @@ public class RoomUnlockUI : MonoBehaviour
         else
         {
             FindObjectOfType<ShipStats>().ReAddPayoutFromRooms();
-            FindObjectOfType<CampaignManager>().GoToNextJob(); //tells campaign manager to activate the next available job
+            campaignManager.GoToNextJob(); //tells campaign manager to activate the next available job
         }
     }
 }
