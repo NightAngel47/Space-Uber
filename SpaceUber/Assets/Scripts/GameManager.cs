@@ -155,10 +155,6 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("Interface_GameOver");
                 additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
                 additiveSceneManager.UnloadScene("Interface_RoomUnlockScreen");
-
-                additiveSceneManager.LoadSceneSeperate("Interface_JobList");
-                additiveSceneManager.LoadSceneSeperate("Starport BG");
-                jobManager.RefreshJobList();
                 
                 // save game stuffs (moved from crew payment)
                 SaveGameState();
@@ -167,6 +163,9 @@ public class GameManager : MonoBehaviour
                 ship.cStats.SaveCharacterStats();
                 SavingLoadingManager.instance.SaveRooms();
                 
+                additiveSceneManager.LoadSceneSeperate("Interface_JobList");
+                additiveSceneManager.LoadSceneSeperate("Starport BG");
+                jobManager.RefreshJobList();
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
                 additiveSceneManager.UnloadScene("Interface_JobList");

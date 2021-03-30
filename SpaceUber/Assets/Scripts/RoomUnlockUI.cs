@@ -83,7 +83,7 @@ public class RoomUnlockUI : MonoBehaviour
         }
     }
 
-    public void UpdateRoomUnlockUI(RoomStats roomStats)
+    private void UpdateRoomUnlockUI(RoomStats roomStats)
     {
         rname.text = roomStats.roomName;
         //Debug.Log(FindObjectOfType<CampaignManager>().GetCurrentJobIndex());
@@ -91,28 +91,27 @@ public class RoomUnlockUI : MonoBehaviour
         if ((campaignManager.GetCurrentCampaignIndex() > 0 && campaignManager.GetCurrentJobIndex() < 3) || 
             (campaignManager.GetCurrentCampaignIndex() == 0 && campaignManager.GetCurrentJobIndex() == 2)) //room is getting a new level
         {
-            levelOld.text = "Level " + (GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())).ToString();
+            // old level
+            levelOld.text = "Level " + GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup());
             needsCreditsOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString(); //-2 to get old level
             needsPowerOld.text = roomStats.minPower[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
-            needsCrewOld.text = roomStats.minCrew.ToString() + "-" + roomStats.maxCrew.ToString();
-            producesAmountOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
+            needsCrewOld.text = roomStats.minCrew + "-" + roomStats.maxCrew;
 
-            levelNew.text = "Level " + (GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) + 1).ToString();
+            // new level
+            levelNew.text = "Level " + (GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) + 1);
             needsCreditsNew.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())].ToString(); //-1 to get current level
             needsPowerNew.text = roomStats.minPower[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())].ToString();
-            needsCrewNew.text = roomStats.minCrew.ToString() + "-" + roomStats.maxCrew.ToString();
-            producesAmountNew.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())].ToString();
+            needsCrewNew.text = roomStats.minCrew + "-" + roomStats.maxCrew;
 
             newRoomText.SetActive(false);
             rightSideData.SetActive(true);
         }
         else //Getting a entire new room, just getting one the new rooms stats
         {
-            levelOld.text = "Level " + (GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())).ToString();
+            levelOld.text = "Level " + GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup());
             needsCreditsOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString(); 
             needsPowerOld.text = roomStats.minPower[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
-            needsCrewOld.text = roomStats.minCrew.ToString() + "-" + roomStats.maxCrew.ToString();
-            producesAmountOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
+            needsCrewOld.text = roomStats.minCrew + "-" + roomStats.maxCrew;
 
             newRoomText.SetActive(true);
             rightSideData.SetActive(false);
@@ -121,22 +120,18 @@ public class RoomUnlockUI : MonoBehaviour
         roomSprite.sprite = roomStats.gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite;
         description.text = roomStats.roomDescription;
 
-        if (roomStats.gameObject.TryGetComponent(out Resource resource))
+        // update produces stats
+        if (roomStats.TryGetComponent(out Resource resource))
         {
+            // old produces
             resourceIconLeft.sprite = resource.resourceType.resourceIcon;
-            resourceIconRight.sprite = resource.resourceType.resourceIcon;
             producesResourceOld.text = resource.resourceType.resourceName;
-
-            if (roomStats.GetRoomLevel() > 1)
-            {
-                producesAmountOld.text = "" + resource.amount[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 2];
-            }
-            else
-            {
-                producesAmountOld.text = "" + resource.amount[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1];
-            }
+            producesAmountOld.text = resource.amount[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
             
-            producesAmountNew.text = "" + resource.amount[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1];
+            // new produces
+            resourceIconRight.sprite = resource.resourceType.resourceIcon;
+            producesResourceNew.text = resource.resourceType.resourceName;
+            producesAmountNew.text = resource.amount[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())].ToString();
         }
         else
         {
