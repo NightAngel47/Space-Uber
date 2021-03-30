@@ -10,6 +10,7 @@ using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoomStats : MonoBehaviour
 {
@@ -60,6 +61,9 @@ public class RoomStats : MonoBehaviour
 
     private int resourceChange = 0;
 
+    public Image levelIconObject;
+    public List<Sprite> levelIcons = new List<Sprite>();
+
     private void Awake()
     {
         cam = Camera.main;
@@ -69,6 +73,19 @@ public class RoomStats : MonoBehaviour
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => TryGetComponent(out Resource resource));
+
+        switch (roomLevel)
+        {
+            case 1:
+                levelIconObject.sprite = levelIcons[0];
+                break;
+            case 2:
+                levelIconObject.sprite = levelIcons[1];
+                break;
+            case 3:
+                levelIconObject.sprite = levelIcons[2];
+                break;
+        }
 
         GetStats();
     }

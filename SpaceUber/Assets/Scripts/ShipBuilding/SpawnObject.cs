@@ -251,14 +251,14 @@ public class SpawnObject : MonoBehaviour
         }
         else
         {
-            if (FindObjectOfType<ShipStats>().Credits < ga.GetComponent<RoomStats>().price[ga.GetComponent<RoomStats>().GetRoomLevel() - 1])
+            if (FindObjectOfType<ShipStats>().Credits < ga.GetComponent<RoomStats>().price[level - 1])
             {
                 AudioManager.instance.PlaySFX(cannotPlaceCredits[UnityEngine.Random.Range(0, cannotPlaceCredits.Length)]);
                 //Debug.Log("Cannot Afford");
                 FindObjectOfType<ShipBuildingAlertWindow>().OpenAlert(GameManager.instance.GetResourceData((int) ResourceDataTypes._Credits));
             }
-
-            if (FindObjectOfType<ShipStats>().Energy.z < ga.GetComponent<RoomStats>().minPower[ga.GetComponent<RoomStats>().GetRoomLevel() - 1])
+            Debug.Log(FindObjectOfType<ShipStats>().Energy.z);
+            if (FindObjectOfType<ShipStats>().Energy.z < ga.GetComponent<RoomStats>().minPower[level - 1])
             {
                 AudioManager.instance.PlaySFX(cannotPlaceEnergy[UnityEngine.Random.Range(0, cannotPlaceEnergy.Length)]);
                 //Debug.Log("No Energy");
