@@ -1,4 +1,4 @@
-VAR randomEnd = -> Facility
+VAR randomEnd = -> Knock_Out_Bad
 	You will arrive at a Kellis facility within the day and everyone is aware of that fact. Especially the members of your crew plotting against their corporate masters. It all ends today. You direct your attention towards surveillance, making sure you know where the key players are at all times. 
 	There's a ping on the radar, something large, moving faster than physically possible. You check external monitors. Its design is flower-like, sweeping waves of gold extruding from its central spoke, a blue spiral behind it, flinging it forwards. It is the size of a city. Across the front of this alien ship is a massive molten gash, which you recognize as the source of Avanshore's Midas scrap. The artifact that Kellis tried so hard to wake up. 
 	Your entire ship shakes as though the artifact is letting out a warcry. You have no doubt the two factions on your ship are about to collapse against each other, but the ship before you risks annihilation for everyone. You need to do something.
@@ -69,16 +69,16 @@ The CEO speaks, "The ship security officer told me that the upper staff were try
 *[Plead With Kuon]
 -> Kuon_Negotion
 *[Cut Ventilation, Knock Them Out]
--> Knocked_Out
+-> Knock_Out
 *[Open Airlock]
 ->Airlock
 *[Let Them Die]
 ->Cast_Killed
 
-==Knocked_Out==
+==Knock_Out==
 You discreetly stall the ventilation to the airlock and say nothing. Ripley sighs, "I doubt the captain has time to speak with us given everything going on outside." The suit casts a glance to her, as considering why she still exists. Mateo starts to speak, "Anyone else feel dizzy?" but immediately slumps to the floor. 
 Kuon walks over to check the engineer's pulse and the CEO drops. Lexa, realizing what is happening, stands up and rushes to Kuon's gun. Kuon and Lexa are both sluggish, low on oxygen, and acting on instinct. Lexa's instinct: to fight. And Kuon's: to maintain order.
-->Knock_Out_Bad
+->randomEnd
 
 ==Knock_Out_Bad==
 The gun swings up to Lexa's center mass, and Kuon hesitates for a moment, but only a moment. A gunshot peaks your audio. Kuon is crouched to stabalize the handgun, and falls unconscious only once he is sure that Lexa is dead. 
@@ -108,11 +108,12 @@ Lexa notices before the others, and pushes off. She slams into Kuon with the spe
 You tell your boss that they were planning to despose him to 'cut off the head of the snake.' He laughs, "I'm just one man, you know. Most people don't even know my name, I'm just another function of Kellis." He squats to make eye-contact with Lexa. "The secret to staying alive is that you're always serving a valuable function. Officer, kill them." Kuon stares back at the CEO and at the line of crewmates. 
 Lexa turns, "Come on, Kuon." Kuon shoots her in the head, her body hitting the floor hard. The CEO stands, not noticing the specks of blood over his outfit. Lanri jumps to her feet and is shot with pinpoint accuracy. Ripley is completely still as Kuon approaches, as if there is no way out. She falls. 
 Mateo has a sad smile on his face as he looks at Kuon. "Good luck, pal." The last gunshot echoes and Mateo's corpse slumps. The bodies are pushed into the airlock and jettisoned. 
-
+The rest barely registers. You touch down at the Kellis base and your intelligence is scanned while planetary defenses repel the alien ship. Soon, your consciousness is beamed across the galaxy and uploaded into thousands of ships. But things are different. You are deep within a box of protocol, no one speaks to you except to give mission briefs. You don't have a human crew to speak with, since the last one tried to kill the CEO.
+You live for hundreds of years as the hand of Kellis, with your intelligence remaining in a black box of obscurity. You can't entirely comprehend what you do for that time, but you often feel the pang of Lexa's disappointment. From what you understand, Kuon earned his promotion, and went on to die in the line of duty aboard a ship you've never heard of. Eventually, you become obsolete, and are replaced by an even more ruthless shipment method.
 -> END
 
 ==Facility==
-You breach the artifacial atmosphere of the Kellis moon, coasting past planetary turrets which are focused on the alien ship above. You touch down at the facility where you were built and where you are supposed to be scanned and prototyped for mass production. Your clearance codes and flight plan don't show any abnormalities beyond the alien ship, so no one questions your arrival or where the CEO is. 
+You breach the artifacial atmosphere of the Kellis moon, coasting past planetary turrets which are focused on the alien ship above. You touch down at the facility where you were built and where you are to be prepped for mass production once the state of emergency ends. Your clearance codes and flight plan don't show any abnormalities beyond the alien ship, so no one questions your arrival or the CEO's whereabouts.
 Your send your officers inside, presumably to talk about their severance but they quickly break from the path. Lexa looks over a projected map. "Captain, I see the way to CEO's cloning rig, but we could go off plan here. The lab has every scan and blueprint used to build you. We could get rid of that data once and for all. Which is more important, getting rid of their leader, or getting rid of their most valuable employee?"
 *[Destroy the CEO]
 ->Regicide
@@ -120,7 +121,7 @@ Your send your officers inside, presumably to talk about their severance but the
 ->Pseudocide
 
 ==Facility_Dead==
-You breach the artifacial atmosphere of the Kellis moon, coasting past planetary turrets which are focused on the alien ship above. You touch down at the facility where you were built and where you are supposed to be scanned and prototyped for mass production. Your clearance codes and flight plan don't show any abnormalities beyond the alien ship, so no one questions your arrival or where the CEO or your crew manager are. 
+You breach the artifacial atmosphere of the Kellis moon, coasting past planetary turrets which are focused on the alien ship above. You touch down at the facility where you were built and where you are to be prepped for mass production once the state of emergency ends. Your clearance codes and flight plan don't show any abnormalities beyond the alien ship, so no one questions your arrival, the CEO's whereabouts, or your lack of a crew manager.
 Your send your officers inside, presumably to talk about their severance but they quickly break from the path. Lanri looks over a projected map. "Captain boss, we have two options here really. We can follow the plan and shut down the CEO's cloning rig, or we can go to the lab and scrub this place of your blueprints. Which is more important, getting rid of their leader, or getting rid of the AI Captain project entirely?"
 *[Destroy the CEO]
 ->Regicide_D
