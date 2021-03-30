@@ -145,6 +145,8 @@ public class ChoiceOutcomes
                             {
                                 int amountFromAssigned;
                                 int amountFromUnassigned;
+
+                                //if total crew - unassigned crew is greater than amount to lose
                                 if (ship.CrewCurrent.x - ship.CrewCurrent.z >= -amount)
                                 {
                                     amountFromAssigned = -amount;
@@ -156,13 +158,13 @@ public class ChoiceOutcomes
                                     amountFromUnassigned = -amount - amountFromAssigned;
                                 }
                                 ship.RemoveRandomCrew(amountFromAssigned);
-                                ship.CrewCurrent += new Vector3(amount, -amountFromUnassigned, 0);
+                                ship.CrewCurrent += new Vector3(amount, 0, -amountFromUnassigned);
                                 SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou lost " + Math.Abs(amount) + " crew";
                             }
                             else
                             {
-                                ship.CrewCurrent += new Vector3(amount, amount, 0);
+                                ship.CrewCurrent += new Vector3(amount, 0, amount);
                                 SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou gained " + Math.Abs(amount) + " crew";
                             }

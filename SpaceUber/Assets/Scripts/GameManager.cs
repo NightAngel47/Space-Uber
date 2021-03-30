@@ -18,7 +18,7 @@ using UnityEngine.SceneManagement;
 ///     Events          player can run into story and random events.
 ///     Ending          player has reached a narrative ending.
 /// </summary>
-public enum InGameStates { None, JobSelect, ShipBuilding, CrewManagement, Events, MoneyEnding, MoraleEnding, Mutiny, Death ,CrewPayment, RoomUnlock, EndingStats, EndingCredits}
+public enum InGameStates { None, JobSelect, ShipBuilding, CrewManagement, Events, MoneyEnding, MoraleEnding, Mutiny, Death, JobPayment, CrewPayment, RoomUnlock, EndingStats, EndingCredits}
 
 /// <summary>
 /// Manages the state of the game while the player is playing.
@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("PromptScreen_End");
                 additiveSceneManager.UnloadScene("PromptScreen_Death");
                 additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
-                additiveSceneManager.UnloadScene("CrewPayment");
+                additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
                 additiveSceneManager.UnloadScene("Interface_RoomUnlockScreen");
 
                 additiveSceneManager.LoadSceneSeperate("Interface_JobList");
@@ -164,6 +164,7 @@ public class GameManager : MonoBehaviour
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
                 additiveSceneManager.UnloadScene("Interface_JobList");
+                additiveSceneManager.UnloadScene("Interface_Runtime");
                 additiveSceneManager.UnloadScene("CrewManagement");
 
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
@@ -176,7 +177,9 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.LoadSceneSeperate("CrewManagement");
                 break;
             case InGameStates.RoomUnlock:
-                additiveSceneManager.UnloadScene("CrewPayment");
+                additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
+                additiveSceneManager.UnloadScene("Interface_JobPaycheckScreen");
+                additiveSceneManager.UnloadScene("Interface_Runtime");
 
                 additiveSceneManager.LoadSceneSeperate("Interface_RoomUnlockScreen");  
                 break;
@@ -184,7 +187,7 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("PromptScreen_End");
                 additiveSceneManager.UnloadScene("PromptScreen_Death");
                 additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
-                additiveSceneManager.UnloadScene("CrewPayment");
+                additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
                 additiveSceneManager.UnloadScene("Starport BG");
 
                 // if loading from continue
@@ -205,19 +208,24 @@ public class GameManager : MonoBehaviour
 
                 StartCoroutine(EventSystem.instance.PlayIntro());
                 break;
-            case InGameStates.CrewPayment:
+            case InGameStates.JobPayment:
                 additiveSceneManager.UnloadScene("Interface_Runtime");
                 additiveSceneManager.UnloadScene("Event_General");
                 additiveSceneManager.UnloadScene("Event_CharacterFocused");
                 additiveSceneManager.UnloadScene("CrewManagement");
+                
+                additiveSceneManager.LoadSceneSeperate("Interface_JobPaycheckScreen");
+                break;
+            case InGameStates.CrewPayment:
+                additiveSceneManager.UnloadScene("Interface_JobPaycheckScreen");
 
-                additiveSceneManager.LoadSceneSeperate("CrewPayment");
+                additiveSceneManager.LoadSceneSeperate("Interface_CrewPaymentScreen");
                 break;
             case InGameStates.MoneyEnding: // Loads the PromptScreen_Money_End when the player reaches a narrative ending.
                 additiveSceneManager.UnloadScene("Interface_JobList");
                 additiveSceneManager.UnloadScene("Interface_Runtime");
                 additiveSceneManager.UnloadScene("Interface_Radio");
-                additiveSceneManager.UnloadScene("CrewPayment");
+                additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
 
                 additiveSceneManager.LoadSceneSeperate("PromptScreen_Money_End");
                 break;
