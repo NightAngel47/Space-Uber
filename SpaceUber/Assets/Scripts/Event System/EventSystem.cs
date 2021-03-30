@@ -70,9 +70,9 @@ public class EventSystem : MonoBehaviour
 	public bool eventActive { get; private set; } = false;
 
 	private Job currentJob;
+	public Job CurrentJob => currentJob;
 
 	private string lastEventTitle;
-
 
 	private int cheatIndex = 0;
 	public bool isCheatEvent = false;
@@ -378,7 +378,6 @@ public class EventSystem : MonoBehaviour
     /// </summary>
     public void ConcludeEvent()
     {
-
 	    InkDriverBase concludedEvent = eventInstance.GetComponent<InkDriverBase>();
 	    concludedEvent.ClearUI();
 	    
@@ -423,12 +422,11 @@ public class EventSystem : MonoBehaviour
 
 	    if (overallEventIndex >= maxEvents) //Potentially end the job entirely if this is meant to be the final event
 	    {
-		    ClearEventSystemAtEndOfJob();
 		    GameManager.instance.ChangeInGameState(InGameStates.JobPayment);
 	    }
     }
 
-    private void ClearEventSystemAtEndOfJob()
+    public void ClearEventSystemAtEndOfJob()
 	{
 		storyEvents.Clear();
 		randomEvents.Clear();

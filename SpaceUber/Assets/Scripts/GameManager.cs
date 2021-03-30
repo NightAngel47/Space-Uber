@@ -164,6 +164,7 @@ public class GameManager : MonoBehaviour
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
                 additiveSceneManager.UnloadScene("Interface_JobList");
+                additiveSceneManager.UnloadScene("Interface_Runtime");
                 additiveSceneManager.UnloadScene("CrewManagement");
 
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
@@ -177,6 +178,8 @@ public class GameManager : MonoBehaviour
                 break;
             case InGameStates.RoomUnlock:
                 additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
+                additiveSceneManager.UnloadScene("Interface_JobPaycheckScreen");
+                additiveSceneManager.UnloadScene("Interface_Runtime");
 
                 additiveSceneManager.LoadSceneSeperate("Interface_RoomUnlockScreen");  
                 break;
@@ -214,7 +217,7 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.LoadSceneSeperate("Interface_JobPaycheckScreen");
                 break;
             case InGameStates.CrewPayment:
-                additiveSceneManager.LoadSceneSeperate("Interface_JobPaycheckScreen");
+                additiveSceneManager.UnloadScene("Interface_JobPaycheckScreen");
 
                 additiveSceneManager.LoadSceneSeperate("Interface_CrewPaymentScreen");
                 break;

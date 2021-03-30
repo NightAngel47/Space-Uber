@@ -10,20 +10,34 @@ using UnityEngine;
 
 public class JobPaymentScreen : MonoBehaviour
 {
-    private TMP_Text jobPayText;
-    private TMP_Text roomPayText;
+    [SerializeField] private TMP_Text jobPayText;
+    [SerializeField] private TMP_Text roomPayText;
+    [SerializeField] private TMP_Text totalPayText;
 
     private ShipStats ship;
 
     void Start()
     {
         ship = FindObjectOfType<ShipStats>();
+
+        int jobPayout = ship.Payout - EventSystem.instance.CurrentJob.payout;
+
+        int roomPayout;
+        foreach (RoomStats room in FindObjectsOfType<RoomStats>())
+        {
+            if(room)
+        }
         
-        int payment = FindObjectOfType<JobManager>().
+        EventSystem.instance.ClearEventSystemAtEndOfJob();
+        
+        jobPayText.text = ship.Payout.ToString();
+        roomPayText.text = (ship.Payout - jobPayout).ToString();
+        totalPayText.text = ship.Payout.ToString();
     }
 
     public void GetPaid()
     {
         ship.CashPayout();
+        GameManager.instance.ChangeInGameState(InGameStates.CrewPayment);
     }
 }
