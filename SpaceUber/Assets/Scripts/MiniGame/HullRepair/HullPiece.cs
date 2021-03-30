@@ -14,6 +14,7 @@ public class HullPiece : MonoBehaviour
     public string[] BumpSFX;
 
     Collider2D collide;
+    public HullPieceSlot mySlot;
 
     void Start()
     {
