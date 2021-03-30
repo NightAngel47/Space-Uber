@@ -618,4 +618,20 @@ public class ShipStats : MonoBehaviour
             
         }
     }
+
+    public void ReAddPayoutFromRooms()
+    {
+        RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+
+        foreach (RoomStats room in rooms)
+        {
+            if (room.gameObject.TryGetComponent(out Resource resource))
+            {
+                if(resource.resourceType.resourceName == "Payout")
+                {
+                    Payout += resource.activeAmount;
+                }
+            }
+        }
+    }
 }
