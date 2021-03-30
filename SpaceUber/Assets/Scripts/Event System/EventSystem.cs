@@ -230,10 +230,12 @@ public class EventSystem : MonoBehaviour
 	    //if it's an even-numbered event, do a story
 	    if (overallEventIndex % 2 == 1 && overallEventIndex != 0)
 	    {
+			
 		    StartCoroutine(StartStoryEvent());
 	    }
 	    else
 	    {
+			
 			Tutorial.Instance.SetCurrentTutorial(4, true);
 			StartCoroutine(StartRandomEvent());
 	    }
@@ -353,6 +355,8 @@ public class EventSystem : MonoBehaviour
 	/// <param name="newEvent"></param>
 	private void CreateEvent(GameObject newEvent)
 	{
+		StartCoroutine(AudioManager.instance.Fade(AudioManager.instance.GetCurrentRadioSong(), 1, false));
+
 		eventCanvas = FindObjectOfType<EventCanvas>();
 		eventInstance = Instantiate(newEvent, eventCanvas.canvas.transform);
 
@@ -374,6 +378,7 @@ public class EventSystem : MonoBehaviour
     /// </summary>
     public void ConcludeEvent()
 	{
+
 		InkDriverBase concludedEvent = eventInstance.GetComponent<InkDriverBase>();
 		concludedEvent.ClearUI();
 		bool isRegularEvent = true;
@@ -407,6 +412,7 @@ public class EventSystem : MonoBehaviour
 		//reset for next event
 		eventActive = false;
 		tick.StartTickUpdate();
+		AudioManager.instance.PlayRadio(AudioManager.instance.currentStationId);
 
 		//set up for the next regular event
 		if (isRegularEvent)

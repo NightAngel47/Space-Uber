@@ -11,6 +11,7 @@ public class SavingLoadingManager : MonoBehaviour
     public static SavingLoadingManager instance;
     private static string projectName = "CogInTheCosmicMachine";
     private bool hasSave;
+    private bool hasSettingsSaved;
 
     [SerializeField] private List<GameObject> roomPrefabs = new List<GameObject>();
     
@@ -26,6 +27,7 @@ public class SavingLoadingManager : MonoBehaviour
         }
         
         hasSave = LoadData.FromBinaryFile<bool>(projectName, "hasSave");
+        hasSettingsSaved = LoadData.FromBinaryFile<bool>(projectName, "hasSettingsSaved");
     }
 
     public void NewSave()
@@ -34,6 +36,14 @@ public class SavingLoadingManager : MonoBehaviour
         {
             SaveData.ToBinaryFile<bool>(projectName, "hasSave", true);
             Save<bool>("hasRooms", false);
+        }
+    }
+    
+    public void NewSettingsSave()
+    {
+        if(!hasSettingsSaved)
+        {
+            SaveData.ToBinaryFile<bool>(projectName, "hasSettingsSaved", true);
         }
     }
 
@@ -50,6 +60,11 @@ public class SavingLoadingManager : MonoBehaviour
     public bool GetHasSave()
     {
         return hasSave;
+    }
+    
+    public bool GetHasSettingsSaved()
+    {
+        return hasSettingsSaved;
     }
 
     public void SetHasSaveFalse()

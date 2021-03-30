@@ -100,6 +100,7 @@ public class AudioManager : MonoBehaviour
 
     Sound currentlyPlayingMusic = null;
     Sound currentlyPlayingStation = null;
+    public int currentStationId;
     
     private float masterVolume = 1;
     private float sfxVolume = 1;
@@ -281,7 +282,8 @@ public class AudioManager : MonoBehaviour
     {
         try
         {
-            if (currentlyPlayingStation != null && currentlyPlayingStation.name == radioTracks[station].tracks[0].name) { return; }
+            //if (currentlyPlayingStation != null && currentlyPlayingStation.name == radioTracks[station].tracks[0].name) { return; }
+            currentStationId = station;
             //Search stations to match up the name of the first track
             for (int i = 0; i < radioTracks.Length; i++)
             {
@@ -320,6 +322,7 @@ public class AudioManager : MonoBehaviour
         {
             if (ambientTracks[i].name == soundName && currentlyPlayingAmbience.Contains(ambientTracks[i]))
             {
+             
                 ambientTracks[i].ScaleVolume(ambienceVolume * masterVolume);
                 if (isMuted) ambientTracks[i].ScaleVolume(0);
                 ambientTracks[i].PlayLoop();
@@ -383,7 +386,7 @@ public class AudioManager : MonoBehaviour
     /// <param name="fadeTime"></param>
     /// <param name="fadeIn">False to fade out</param>
     /// <returns></returns>
-    IEnumerator Fade(Sound sound, float fadeTime, bool fadeIn)
+    public IEnumerator Fade(Sound sound, float fadeTime, bool fadeIn)
     {
         //Sanitize Input
         fadeTime = Mathf.Abs(fadeTime);
@@ -437,5 +440,10 @@ public class AudioManager : MonoBehaviour
         fadeInTime = Mathf.Abs(fadeInTime);
         trackOverlapTime = Mathf.Abs(trackOverlapTime);
         if (trackOverlapTime > fadeOutTime) { trackOverlapTime = fadeOutTime; }
+    }
+
+    public Sound GetCurrentRadioSong()
+    {
+        return currentlyPlayingStation;
     }
 }
