@@ -160,7 +160,14 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.LoadSceneSeperate("Interface_JobList");
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
                 jobManager.RefreshJobList();
+                
+                // save game stuffs (moved from crew payment)
                 SaveGameState();
+                ship.SaveShipStats();
+                MoraleManager.instance.SaveMorale();
+                ship.cStats.SaveCharacterStats();
+                SavingLoadingManager.instance.SaveRooms();
+                
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
                 additiveSceneManager.UnloadScene("Interface_JobList");

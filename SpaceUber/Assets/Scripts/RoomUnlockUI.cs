@@ -63,14 +63,14 @@ public class RoomUnlockUI : MonoBehaviour
         nextButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Next";
         nextButton.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "Next";
 
-        UpdateRoomUnlockUI(newRooms[count].GetComponent<RoomStats>());
+        if(newRooms.Count > 0) UpdateRoomUnlockUI(newRooms[count].GetComponent<RoomStats>()); // show upgrades if there are new rooms
         count++;
     }
 
     public void UpdateRoomUnlockUI(RoomStats roomStats)
     {
         rname.text = roomStats.roomName;
-        Debug.Log(FindObjectOfType<CampaignManager>().GetCurrentJobIndex());
+        //Debug.Log(FindObjectOfType<CampaignManager>().GetCurrentJobIndex());
 
         if ((FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() > 0 && FindObjectOfType<CampaignManager>().GetCurrentJobIndex() < 3) || (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() == 0 
             && FindObjectOfType<CampaignManager>().GetCurrentJobIndex() == 2)) //room is getting a new level
@@ -92,7 +92,8 @@ public class RoomUnlockUI : MonoBehaviour
         }
         else //Getting a entire new room, just getting one the new rooms stats
         {
-            needsCreditsOld.text = "Level " + roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString(); 
+            levelOld.text = "Level " + (GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())).ToString();
+            needsCreditsOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString(); 
             needsPowerOld.text = roomStats.minPower[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
             needsCrewOld.text = roomStats.minCrew.ToString() + "-" + roomStats.maxCrew.ToString();
             producesAmountOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
