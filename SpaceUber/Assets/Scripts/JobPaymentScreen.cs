@@ -5,6 +5,7 @@
  * Description: 
  */
 
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -19,19 +20,15 @@ public class JobPaymentScreen : MonoBehaviour
     void Start()
     {
         ship = FindObjectOfType<ShipStats>();
+        
+        int roomPayout = FindObjectsOfType<RoomStats>().Where(room => room.resources[0].resourceType.Rt == ResourceDataTypes._Payout).Sum(room => room.resources[0].activeAmount);
 
-        int jobPayout = ship.Payout - EventSystem.instance.CurrentJob.payout;
-
-        int roomPayout;
-        foreach (RoomStats room in FindObjectsOfType<RoomStats>())
-        {
-            if(room)
-        }
+        int jobPayout = ship.Payout - roomPayout;
         
         EventSystem.instance.ClearEventSystemAtEndOfJob();
         
-        jobPayText.text = ship.Payout.ToString();
-        roomPayText.text = (ship.Payout - jobPayout).ToString();
+        jobPayText.text = jobPayout.ToString();
+        roomPayText.text = roomPayout.ToString();
         totalPayText.text = ship.Payout.ToString();
     }
 
