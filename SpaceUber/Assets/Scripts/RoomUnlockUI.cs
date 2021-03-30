@@ -70,8 +70,10 @@ public class RoomUnlockUI : MonoBehaviour
     public void UpdateRoomUnlockUI(RoomStats roomStats)
     {
         rname.text = roomStats.roomName;
+        Debug.Log(FindObjectOfType<CampaignManager>().GetCurrentJobIndex());
 
-        if (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() > 0 || (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() == 0 && FindObjectOfType<CampaignManager>().GetCurrentJobIndex() == 2)) //room is getting a new level
+        if ((FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() > 0 && FindObjectOfType<CampaignManager>().GetCurrentJobIndex() < 3) || (FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() == 0 
+            && FindObjectOfType<CampaignManager>().GetCurrentJobIndex() == 2)) //room is getting a new level
         {
             levelOld.text = "Level " + (GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())).ToString();
             needsCreditsOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString(); //-2 to get old level

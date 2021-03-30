@@ -62,8 +62,14 @@ public class OutcomeTooltipUI : MonoBehaviour
                     resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)outcome.resource).resourceIcon; // resource icon
                     resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = GameManager.instance.GetResourceData((int)outcome.resource).resourceName; // resource name
                     
-                    int newAmount = Mathf.RoundToInt(outcome.amount * campMan.GetMultiplier(outcome.resource));
-                    resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = newAmount.ToString(); // resource amount
+                    if(outcome.isScalableEvent)
+                    {
+                        int newAmount = Mathf.RoundToInt(outcome.amount * campMan.GetMultiplier(outcome.resource));
+                        resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = newAmount.ToString(); // resource amount
+
+                    }
+                    resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = outcome.amount.ToString(); // resource amount
+
                     resourceGO.transform.GetChild(3).gameObject.SetActive(false); // outcome probability
                 }
             }
@@ -101,34 +107,6 @@ public class OutcomeTooltipUI : MonoBehaviour
         {
             GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
             outcomeTextGO.GetComponent<TMP_Text>().text = randomOutcomeText;
-
-            //foreach (var randomOutcome in randomOutcomes)
-            //{
-            //    for (int i = 0; i < randomOutcome.outcomes.Count; i++)
-            //    {
-            //        if (randomOutcome.outcomes[i].isNarrativeOutcome)
-            //        {
-            //            GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
-            //            outcomeTextGO.GetComponent<TMP_Text>().text = narrativeOutcomeText;
-            //        }
-            //        else
-            //        {
-            //            GameObject resourceGO = Instantiate(resourceUI, outcomeList.transform);
-            //            resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)randomOutcome.outcomes[i].resource).resourceIcon; // resource icon
-            //            resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = randomOutcome.outcomes[i].resource.ToString(); // resource name
-            //            resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = randomOutcome.outcomes[i].amount.ToString(); // resource amount
-
-            //            if (i == 0)
-            //            {
-            //                resourceGO.transform.GetChild(3).GetComponent<TMP_Text>().text = randomOutcome.probability + "%"; // outcome probability
-            //            }
-            //            else
-            //            {
-            //                resourceGO.transform.GetChild(3).gameObject.SetActive(false); // outcome probability
-            //            }
-            //        }
-            //    }
-            //}
         }
         else //this does not does effect any sort of stats
         {
