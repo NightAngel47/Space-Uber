@@ -93,16 +93,7 @@ public class ShipStats : MonoBehaviour
             int prevValue = stats[(int) Stats.Credits];
             SetObjectBeingPlaced();
             stats[(int) Stats.Credits] = value;
-            /*
-            if (creditAddition >= 0)
-            {
-                AudioManager.instance.PlaySFX("Gain Credits");
-            }
-            else
-            {
-                AudioManager.instance.PlaySFX("Lose Credits");
-            }
-            */
+
             if (stats[(int) Stats.Credits] <= 0)
             {
                 stats[(int) Stats.Credits] = 0;
@@ -146,16 +137,7 @@ public class ShipStats : MonoBehaviour
             stats[(int) Stats.EnergyMax] = (int)value.y;
             stats[(int) Stats.EnergyRemaining] = (int)value.x;
             stats[(int)Stats.EnergyUnassigned] = (int)value.z;
-            /*
-            if (energyRemainingAddition >= 0)
-            {
-                AudioManager.instance.PlaySFX("Gain Energy");
-            }
-            else
-            {
-                AudioManager.instance.PlaySFX("Lose Energy");
-            }
-            */
+
             if (stats[(int) Stats.EnergyRemaining] <= 0)
             {
                 stats[(int) Stats.EnergyRemaining] = 0;
@@ -186,16 +168,7 @@ public class ShipStats : MonoBehaviour
         {
             int prevValue = stats[(int) Stats.Security];
             stats[(int) Stats.Security] = value;
-            /*
-            if (securityAmount >= 0)
-            {
-                AudioManager.instance.PlaySFX("Gain Security");
-            }
-            else
-            {
-                AudioManager.instance.PlaySFX("Lose Security");
-            }
-            */
+
             if (stats[(int) Stats.Security] <= 0)
             {
                 stats[(int) Stats.Security] = 0;
@@ -216,16 +189,7 @@ public class ShipStats : MonoBehaviour
         {
             int prevValue = stats[(int) Stats.ShipWeapons];
             stats[(int) Stats.ShipWeapons] = value;
-            /*
-            if (shipWeaponsAmount >= 0)
-            {
-                AudioManager.instance.PlaySFX("Gain Weapons");
-            }
-            else
-            {
-                AudioManager.instance.PlaySFX("Lose Weapons");
-            }
-            */
+
             if (stats[(int) Stats.ShipWeapons] <= 0)
             {
                 stats[(int) Stats.ShipWeapons] = 0;
@@ -272,17 +236,6 @@ public class ShipStats : MonoBehaviour
                 }
             }
 
-            /*
-            if (crewRemainingAmount >= 0)
-            {
-                AudioManager.instance.PlaySFX("Gain Crew");
-            }
-            else
-            {
-                AudioManager.instance.PlaySFX("Lose Crew");
-            }
-            */
-
             if (stats[(int) Stats.CrewCurrent] <= 0)
             {
                 stats[(int) Stats.CrewCurrent] = 0;
@@ -313,16 +266,7 @@ public class ShipStats : MonoBehaviour
         {
             int prevValue = stats[(int) Stats.Food];
             stats[(int) Stats.Food] = value;
-            /*
-            if (foodAmount >= 0)
-            {
-                AudioManager.instance.PlaySFX("Gain Food");
-            }
-            else
-            {
-                AudioManager.instance.PlaySFX("Lose Food");
-            }
-            */
+
             if (stats[(int) Stats.Food] <= 0)
             {
                 stats[(int) Stats.Food] = 0;
@@ -380,17 +324,6 @@ public class ShipStats : MonoBehaviour
             {
                 stats[(int) Stats.ShipHealthCurrent] = stats[(int) Stats.ShipHealthMax];
             }
-
-            /*
-            if (hullDurabilityRemainingAmount >= 0)
-            {
-                AudioManager.instance.PlaySFX("Gain Hull");
-            }
-            else
-            {
-                AudioManager.instance.PlaySFX("Lose Hull");
-            }
-            */
 
             shipStatsUI.UpdateHullUI(stats[(int) Stats.ShipHealthCurrent], stats[(int) Stats.ShipHealthMax]);
             shipStatsUI.ShowHullUIChange((int)(value.x - prevValue.x), (int)(value.y - prevValue.y));

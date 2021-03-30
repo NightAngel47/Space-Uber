@@ -188,7 +188,7 @@ public class AudioManager : MonoBehaviour
             InitializeTracks(station.tracks);
         }
         
-        PlayMusicWithTransition("General Theme");
+        //PlayMusicWithTransition("General Theme");
     }
 
     //Ensures the volume can be adjusted by player dynamically. 
