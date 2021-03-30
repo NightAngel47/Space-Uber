@@ -252,7 +252,7 @@ While there is no one left to pay you, you did still manage to get away with the
 ===function RandomizeEnding(rng)===
 { 
     - rng == 0: 
-        ~securityEnd = SecuritySuccess
+        ~securityEnd = -> SecuritySuccess
         ~blastEnd = -> BlastGunSuccess
         ~ramGunEnd = -> RamGunSuccess
         ~fleeEnd = -> FleeSafely
@@ -260,7 +260,7 @@ While there is no one left to pay you, you did still manage to get away with the
         ~threatenEnd = -> ThreatenSuccess
 
     - rng == 1:
-        ~securityEnd = SecuritySuccess
+        ~securityEnd = -> SecuritySuccess
         ~blastEnd = -> BlastGunFailure
         ~ramGunEnd = -> RamGunFailure
         ~fleeEnd = -> FleeBadly
@@ -268,7 +268,7 @@ While there is no one left to pay you, you did still manage to get away with the
         ~threatenEnd = -> ThreatenSuccess
         
     - else:
-        ~securityEnd = SecuritySuccess
+        ~securityEnd = -> SecuritySuccess
         ~blastEnd = -> BlastGunFailure
         ~ramGunEnd = -> RamGunFailure
         ~fleeEnd = -> FleeBadly
