@@ -152,8 +152,7 @@ public class GameManager : MonoBehaviour
                 // unload ending screen if replaying
                 additiveSceneManager.UnloadScene("Interface_Runtime");
                 additiveSceneManager.UnloadScene("PromptScreen_End");
-                additiveSceneManager.UnloadScene("PromptScreen_Death");
-                additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
+                additiveSceneManager.UnloadScene("Interface_GameOver");
                 additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
                 additiveSceneManager.UnloadScene("Interface_RoomUnlockScreen");
 
@@ -165,6 +164,7 @@ public class GameManager : MonoBehaviour
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
                 additiveSceneManager.UnloadScene("Interface_JobList");
                 additiveSceneManager.UnloadScene("Interface_Runtime");
+                additiveSceneManager.UnloadScene("Interface_GameOver");
                 additiveSceneManager.UnloadScene("CrewManagement");
 
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
@@ -185,8 +185,7 @@ public class GameManager : MonoBehaviour
                 break;
             case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
                 additiveSceneManager.UnloadScene("PromptScreen_End");
-                additiveSceneManager.UnloadScene("PromptScreen_Death");
-                additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
+                additiveSceneManager.UnloadScene("Interface_GameOver");
                 additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
                 additiveSceneManager.UnloadScene("Starport BG");
 
