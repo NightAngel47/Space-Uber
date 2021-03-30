@@ -58,8 +58,6 @@ public class RoomStats : MonoBehaviour
 
     private Camera cam;
 
-    public List<GameObject> CharacterEvents;
-
     private int resourceChange = 0;
 
     private void Awake()
@@ -71,7 +69,7 @@ public class RoomStats : MonoBehaviour
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => TryGetComponent(out Resource resource));
-        
+
         GetStats();
     }
 
@@ -231,7 +229,7 @@ public class RoomStats : MonoBehaviour
                 Debug.LogError("Resource type: " + resource.resourceType.resourceName + " not setup in RoomStats");
                 break;
         }
-        
+
         SetActiveAmount(resource);
     }
 
@@ -290,7 +288,7 @@ public class RoomStats : MonoBehaviour
         //SubtractOneRoomStat(resourceData);
 
         Resource resource = resources[0];
-        
+
         switch (resourceData.Rt)
         {
             case ResourceDataTypes._Credits:
@@ -451,7 +449,7 @@ public class RoomStats : MonoBehaviour
         shipStats.FoodPerTick += foodPerTick;
         shipStats.ShipHealthCurrent += new Vector2(shipHealth, shipHealth);
         MoraleManager.instance.CrewMorale += morale;
-        
+
         AnalyticsManager.AddRoomForAnalytics(this);
     }
 
@@ -479,7 +477,7 @@ public class RoomStats : MonoBehaviour
         shipStats.FoodPerTick += -foodPerTick;
         shipStats.ShipHealthCurrent += new Vector2(-shipHealth, -shipHealth);
         MoraleManager.instance.CrewMorale -= morale;
-        
+
         AnalyticsManager.SubtractRoomForAnalytics(this);
     }
 
@@ -518,12 +516,12 @@ public class RoomStats : MonoBehaviour
     public void ChangeRoomLevel(int levelChange)
     {
         roomLevel = levelChange;
-        
+
         if (roomLevel > 3)
         {
             roomLevel = 3;
         }
-        
+
         if (roomLevel < 1)
         {
             roomLevel = 1;

@@ -115,7 +115,7 @@ public class CampaignManager : MonoBehaviour
             }
         }
 
-        
+
         GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
     }
 
@@ -201,7 +201,7 @@ public class CampaignManager : MonoBehaviour
         {
             case Campaigns.CateringToTheRich:
                 multiplier = 1;
-                
+
                 break;
             case Campaigns.MysteriousEntity:
                 switch (resource)
@@ -231,7 +231,7 @@ public class CampaignManager : MonoBehaviour
                         multiplier = weaponsMult2;
                         break;
                 }
-                
+
                 break;
             case Campaigns.FinalTest:
                 switch (resource)
@@ -344,7 +344,7 @@ public class CampaignManager : MonoBehaviour
         switch(currentCamp)
         {
             case Campaigns.CateringToTheRich:
-            
+
                 if(variableIndex < 6)
                 {
                     if (cateringToTheRich.GetCtrNarrativeOutcome(variableIndex) == true)
@@ -358,7 +358,7 @@ public class CampaignManager : MonoBehaviour
                         Debug.Log("Changed " + cateringToTheRich.GetOutcomeName(variableIndex) + " to true");
                     }
                 }
-                
+
                 break;
 
             case Campaigns.MysteriousEntity:
@@ -375,7 +375,7 @@ public class CampaignManager : MonoBehaviour
                         Debug.Log("Changed " + mysteriousEntity.GetOutcomeName(variableIndex) + " to true");
                     }
                 }
-                
+
                 break;
 
             case Campaigns.FinalTest:
@@ -620,10 +620,11 @@ public class CampaignManager : MonoBehaviour
             WarpShields,
             ExoSuits,
             RealityBomb,
-            AncientHackingDevice
+            AncientHackingDevice,
+            ArtifactAngry
         }
 
-        private bool[] ftNarrativeVariables = new bool[10];
+        private bool[] ftNarrativeVariables = new bool[16];
 
         public string GetOutcomeName(int index)
         {
