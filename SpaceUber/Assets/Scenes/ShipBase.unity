@@ -3204,7 +3204,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: 1d3e7d67d73b1db0d5a0731300000000
+  m_ApplyToSortingLayers: 1d3e7d67d73b1db0d5a073130000000041b05632
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -3950,7 +3950,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1320066754, guid: bc69c8e122dd87e4787c158acaba7e67, type: 3}
       propertyPath: disableTutorial
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 825559284283077372, guid: bc69c8e122dd87e4787c158acaba7e67,
         type: 3}
@@ -4021,6 +4021,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825559285486300195, guid: bc69c8e122dd87e4787c158acaba7e67,
+        type: 3}
+      propertyPath: m_text
+      value: Next
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 825559284524304694, guid: bc69c8e122dd87e4787c158acaba7e67, type: 3}

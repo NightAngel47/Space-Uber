@@ -118,4 +118,14 @@ public class AudioSettings : MonoBehaviour
             }
         }
     }
+    //public void ApplyManagerChanges()
+    //{
+       // AudioManager.instance.MusicVolume = bgmVol;
+       // AudioManager.instance.AmbienceVolume = ambientVol;
+       // AudioManager.instance.SfxVolume = sfxVol;
+       // AudioManager.instance.RadioVolume = radioVol;
+       // AudioManager.instance.MasterVolume = masterVol;
+
+    //}
+
 }
