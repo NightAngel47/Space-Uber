@@ -17,7 +17,7 @@ using TMPro;
 public class ChoiceOutcomes
 {
     [SerializeField] private string outcomeName;
-    [HideInInspector] public bool isScalableEvent;
+    [HideInInspector] public bool isScaledOutcome;
 
     [HideInInspector] public GameObject narrativeResultsBox;
     string resultText = "";
@@ -75,7 +75,7 @@ public class ChoiceOutcomes
         {
             if (isResourceOutcome || (!isNarrativeOutcome && !isApprovalOutcome)) //Will change to "isResourceOutcome" when designers have the chance to check the box in all old events
             {
-                if(isScalableEvent) //scalable events get a multiplier to amount
+                if(isScaledOutcome) //scalable events get a multiplier to amount
                 {
                     int newAmount = Mathf.RoundToInt(amount * campMan.GetMultiplier(resource));
 

@@ -300,13 +300,21 @@ public class EventSystem : MonoBehaviour
 
 		randCheatIndex += indexDirection;
 		isCheatEvent = true;
-		Mathf.Clamp(randCheatIndex, 0, randomEvents.Count);
+		if (randCheatIndex < 0)
+		{
+			randCheatIndex = randomEvents.Count - 1;
+		}
+		else if (randCheatIndex > randomEvents.Count - 1)
+		{
+			randCheatIndex = 0;
+		}
 
 		asm.LoadSceneMerged("Event_CharacterFocused");
 		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
 
 		print("About to play '" + randomEvents[randCheatIndex] + "'");
 		CreateEvent(randomEvents[randCheatIndex]);
+		tick.StopTickUpdate();
 	}
 
 	public IEnumerator CheatCharacterEvent(int indexDirection)
@@ -319,13 +327,22 @@ public class EventSystem : MonoBehaviour
 
 		charCheatIndex += indexDirection;
 		isCheatEvent = true;
-		Mathf.Clamp(charCheatIndex, 0, characterEvents.Count);
+
+		if(charCheatIndex < 0)
+        {
+			charCheatIndex = characterEvents.Count - 1;
+		}
+		else if(charCheatIndex > characterEvents.Count - 1)
+        {
+			charCheatIndex = 0;
+		}
 
 		asm.LoadSceneMerged("Event_CharacterFocused");
 		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
 
 		print("About to play '" + characterEvents[charCheatIndex] + "'");
 		CreateEvent(characterEvents[charCheatIndex]);
+		tick.StopTickUpdate();
 	}
 
 	/// <summary>

@@ -63,13 +63,16 @@ public class OutcomeTooltipUI : MonoBehaviour
                     resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = 
                         GameManager.instance.GetResourceData((int)outcome.resource).resourceName; // resource name
                     
-                    if(outcome.isScalableEvent)
+                    if(outcome.isScaledOutcome)
                     {
                         int newAmount = Mathf.RoundToInt(outcome.amount * campMan.GetMultiplier(outcome.resource));
                         resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = newAmount.ToString(); // resource amount
 
                     }
-                    resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = outcome.amount.ToString(); // resource amount
+                    else
+                    {
+                        resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = outcome.amount.ToString(); // resource amount
+                    }
 
                     resourceGO.transform.GetChild(3).gameObject.SetActive(false); // outcome probability
                 }
