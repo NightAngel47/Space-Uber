@@ -622,4 +622,15 @@ public class ShipStats : MonoBehaviour
             
         }
     }
+
+    public void ReAddPayoutFromRooms()
+    {
+        foreach (RoomStats room in FindObjectsOfType<RoomStats>())
+        {
+            if(room.resources[0].resourceType.Rt == ResourceDataTypes._Payout)
+            {
+                Payout += room.resources[0].activeAmount;
+            }
+        }
+    }
 }
