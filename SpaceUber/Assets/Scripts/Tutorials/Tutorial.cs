@@ -165,7 +165,7 @@ public class Tutorial : Singleton<Tutorial>
             if (GameManager.instance.currentGameState == InGameStates.Events && ticker.IsTickStopped())
             {
                 Debug.LogError("resuming tick");
-                ticker.StartTickUpdate();
+                if(!EventSystem.instance.eventActive) ticker.StartTickUpdate();
             }
 
             highlightPanel.SetActive(false);
@@ -174,7 +174,7 @@ public class Tutorial : Singleton<Tutorial>
             tutorialPanel.SetActive(false);
             index = 0;
 
-            currentTutorial.tutorialFinished = finished;
+            if(!currentTutorial.tutorialFinished) currentTutorial.tutorialFinished = finished;
             SaveTutorialStatus();
         }
     }
