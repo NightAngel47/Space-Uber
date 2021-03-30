@@ -299,7 +299,7 @@ public class EventSystem : MonoBehaviour
 
 		randCheatIndex += indexDirection;
 		isCheatEvent = true;
-		Mathf.Clamp(indexDirection, 0, randomEvents.Count);
+		Mathf.Clamp(randCheatIndex, 0, randomEvents.Count);
 
 		asm.LoadSceneMerged("Event_CharacterFocused");
 		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
@@ -318,7 +318,7 @@ public class EventSystem : MonoBehaviour
 
 		charCheatIndex += indexDirection;
 		isCheatEvent = true;
-		Mathf.Clamp(indexDirection, 0, characterEvents.Count);
+		Mathf.Clamp(charCheatIndex, 0, characterEvents.Count);
 
 		asm.LoadSceneMerged("Event_CharacterFocused");
 		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
