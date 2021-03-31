@@ -366,10 +366,7 @@ public class RoomStats : MonoBehaviour
                 break;
         }
         
-        if(FindObjectOfType<CrewManagementRoomDetailsMenu>() != null)
-        {
-            FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(currentCrew);
-        }
+        FindObjectOfType<CrewManagementRoomDetailsMenu>()?.UpdateCrewAssignment(currentCrew);
         //AddOneRoomStat(resourceData);
     }
 
