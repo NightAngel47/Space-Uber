@@ -13,6 +13,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : Singleton<PauseMenu>
 {
     public Canvas pauseCanvas;
+    public GameObject optionsMenu;
 
     private static bool isPaused = false;
 
@@ -49,6 +50,7 @@ public class PauseMenu : Singleton<PauseMenu>
     public void Unpause()
     {
         pauseCanvas.gameObject.SetActive(false);
+        optionsMenu.SetActive(false);
         isPaused = false;
         Time.timeScale = 1.0f;
     }
