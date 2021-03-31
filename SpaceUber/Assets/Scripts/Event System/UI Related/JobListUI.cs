@@ -27,11 +27,6 @@ public class JobListUI : MonoBehaviour
     [SerializeField] private Animator primaryJobCanvasAnimator;
     [SerializeField] private List<JobUI> jobUIList = new List<JobUI>();
 
-    //[Header("Side Job UI")]
-    //[SerializeField] private GameObject sideJob;
-    //[SerializeField] private Transform sideJobUIPos;
-    //[SerializeField] private TMP_Text sideJobCountText; // TODO Not fully hooked up as side jobs are not in
-
     private static readonly int Transition = Animator.StringToHash("Transition");
 
     private void Start()
@@ -53,18 +48,11 @@ public class JobListUI : MonoBehaviour
     /// <param name="index">The index that the job should display at in the UI</param>
     public void ShowAvailableJob(Job job, int index)
     {
-        if (!job.isSideJob)
-        {
-            jobUIList[index].SetJobInfo(job);
-            jobUIList[index].GetComponent<Button>().interactable = true;
-        }
+        if (job.isSideJob) return;
+        
+        jobUIList[index].SetJobInfo(job);
+        jobUIList[index].GetComponent<Button>().interactable = true;
     }
-
-    public void UpdateSideJobCount(int x)
-    {
-        //sideJobCountText.text = x + " out of 3 side jobs selected";
-    }
-
     /// <summary>
     /// Updates the UI with the details of the selected job.
     /// </summary>

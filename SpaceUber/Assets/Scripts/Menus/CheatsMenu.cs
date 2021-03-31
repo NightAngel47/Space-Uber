@@ -115,10 +115,11 @@ public class CheatsMenu : MonoBehaviour
             es.SkipToEvent();
             Debug.Log("Skipping to event");
         }
+        
         if(Input.GetKey(KeyCode.F8)
             && GameManager.instance.currentGameState == InGameStates.Events)
         {
-            PlayRandomEvents();
+            PlayEvents();
         }
 
         if(Input.GetKey(KeyCode.F9))
@@ -261,7 +262,7 @@ public class CheatsMenu : MonoBehaviour
         }
     }
 
-    public void PlayRandomEvents()
+    public void PlayEvents()
     {
         if(Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -271,8 +272,17 @@ public class CheatsMenu : MonoBehaviour
         {
             StartCoroutine(es.CheatRandomEvent(-1));
         }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            StartCoroutine(es.CheatCharacterEvent(1));
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            StartCoroutine(es.CheatCharacterEvent(-1));
+        }
     }
-    
+
     private void ChangeNarrativeVariables()
     {
         #region Alter narrative booleans with number keys
@@ -349,17 +359,35 @@ public class CheatsMenu : MonoBehaviour
         }
         
         int amount = 0;
-        if(Input.GetKey(KeyCode.UpArrow) || (canUseSideWaysArrows && Input.GetKey(KeyCode.RightArrow)))
+        if(Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift))
         {
-            amount = 1;
-        }
-        else if(Input.GetKey(KeyCode.DownArrow) || (canUseSideWaysArrows && Input.GetKey(KeyCode.LeftArrow)))
-        {
-            amount = -1;
+            if(Input.GetKeyDown(KeyCode.UpArrow) || (canUseSideWaysArrows && Input.GetKeyDown(KeyCode.RightArrow)))
+            {
+                amount = 1;
+            }
+            else if(Input.GetKeyDown(KeyCode.DownArrow) || (canUseSideWaysArrows && Input.GetKeyDown(KeyCode.LeftArrow)))
+            {
+                amount = -1;
+            }
+            else
+            {
+                return;
+            }
         }
         else
         {
-            return;
+            if(Input.GetKey(KeyCode.UpArrow) || (canUseSideWaysArrows && Input.GetKey(KeyCode.RightArrow)))
+            {
+                amount = 1;
+            }
+            else if(Input.GetKey(KeyCode.DownArrow) || (canUseSideWaysArrows && Input.GetKey(KeyCode.LeftArrow)))
+            {
+                amount = -1;
+            }
+            else
+            {
+                return;
+            }
         }
         
         int morale = MoraleManager.instance.CrewMorale;
@@ -396,10 +424,10 @@ public class CheatsMenu : MonoBehaviour
                 MoraleManager.instance.CrewMorale = morale;
                 break;
             case 9:
-                thisShip.EnergyRemaining += new Vector2(amount, 0);
+                thisShip.Energy += new Vector3(amount, 0, 0);
                 break;
             case 10:
-                thisShip.EnergyRemaining += new Vector2(0, amount);
+                thisShip.Energy += new Vector3(0, amount, amount);
                 break;
             case 11:
                 thisShip.ShipHealthCurrent += new Vector2(amount, 0);

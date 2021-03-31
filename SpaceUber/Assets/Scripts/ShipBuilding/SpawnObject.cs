@@ -154,7 +154,7 @@ public class SpawnObject : MonoBehaviour
     public void SpawnRoom(GameObject ga, int level)
     {
         if (FindObjectOfType<ShipStats>().Credits >= ga.GetComponent<RoomStats>().price[level - 1] &&
-            FindObjectOfType<ShipStats>().EnergyRemaining.x >= ga.GetComponent<RoomStats>().minPower[level - 1]) //checks to see if the player has enough credits for the room
+            FindObjectOfType<ShipStats>().Energy.z >= ga.GetComponent<RoomStats>().minPower[level - 1]) //checks to see if the player has enough credits for the room
         {
             if (lastSpawned == null || lastSpawned.GetComponent<ObjectMover>().enabled == false) //makes sure that the prior room is placed before the next room can be added
             {
@@ -191,6 +191,8 @@ public class SpawnObject : MonoBehaviour
                         }
                     }
                 }
+                
+                EndingStats.instance.AddToStat(1, EndingStatTypes.RoomsBought);
 
                 switch (ga.name) //plays sfx for each room
                 {
@@ -249,14 +251,14 @@ public class SpawnObject : MonoBehaviour
         }
         else
         {
-            if (FindObjectOfType<ShipStats>().Credits < ga.GetComponent<RoomStats>().price[ga.GetComponent<RoomStats>().GetRoomLevel() - 1])
+            if (FindObjectOfType<ShipStats>().Credits < ga.GetComponent<RoomStats>().price[level - 1])
             {
                 AudioManager.instance.PlaySFX(cannotPlaceCredits[UnityEngine.Random.Range(0, cannotPlaceCredits.Length)]);
                 //Debug.Log("Cannot Afford");
                 FindObjectOfType<ShipBuildingAlertWindow>().OpenAlert(GameManager.instance.GetResourceData((int) ResourceDataTypes._Credits));
             }
-
-            if (FindObjectOfType<ShipStats>().EnergyRemaining.x < ga.GetComponent<RoomStats>().minPower[ga.GetComponent<RoomStats>().GetRoomLevel() - 1])
+            Debug.Log(FindObjectOfType<ShipStats>().Energy.z);
+            if (FindObjectOfType<ShipStats>().Energy.z < ga.GetComponent<RoomStats>().minPower[level - 1])
             {
                 AudioManager.instance.PlaySFX(cannotPlaceEnergy[UnityEngine.Random.Range(0, cannotPlaceEnergy.Length)]);
                 //Debug.Log("No Energy");

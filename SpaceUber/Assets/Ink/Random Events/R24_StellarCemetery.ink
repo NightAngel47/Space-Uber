@@ -10,15 +10,15 @@ As the ship soars past a nearby planetoid the crew is treated to a grisly sight.
 
 == Sal1 ==
 Crew members are initially hesitant to venture out, but with some coaxing they agree.
-+[Proceed] ->randomEnd1
+->randomEnd1
 
 == Sal2 ==
 Tensions rise as you ask them to continue, some refuse. They relent after you inform them that they will either return with something, or they won’t return at all.
-+[Proceed] ->randomEnd2
+->randomEnd2
 
 == Sal3 ==
 The crew are practically begging to return to the ship at this point. They claim to see something darting around the graveyard, but cannot seem to keep their eyes on it for more than a moment.
-+[Proceed] ->randomEnd3
+->randomEnd3
 
 == FindCred ==
 The crew report finding a few credit stashes. Not much, but some nonetheless.
@@ -33,7 +33,7 @@ The crew report finding a few credit stashes. Not much, but some nonetheless.
 == FindCredV3 ==
 The crew report finding a few credit stashes. Not much, but some nonetheless.
 
-+[Proceed]->Success
+->Success
 
 == FindFood ==
 The crew radio that they’ve managed to find some preserved food, still fit for consumption.
@@ -48,7 +48,7 @@ The crew radio that they’ve managed to find some preserved food, still fit for
 
 == FindFoodV3 ==
 The crew radio that they’ve managed to find some preserved food, still fit for consumption.
-+[Proceed]->Success
+->Success
 
 == GetBent ==
 A scream echoes through the radio channel, followed by another, and another. One by one the signals to the crew are lost. Before you have a chance to process what just happened the ship is struck by a forceful impact. You re-orient the propulsion system as the ship is struck once more. You leave the graveyard faster than you have arrived, and you somehow managed to survive whatever had claimed the lives of the less fortunate ships, but only barely.

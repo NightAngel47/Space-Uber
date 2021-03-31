@@ -17,11 +17,6 @@ public class CrewPaymentScreenBehaviour : MonoBehaviour
     {
         // pay crew
         ship.PayCrew(amount);
-        
-        ship.SaveShipStats();
-        MoraleManager.instance.SaveMorale();
-        ship.cStats.SaveCharacterStats();
-        SavingLoadingManager.instance.SaveRooms();
 
         GameManager.instance.ChangeInGameState(InGameStates.RoomUnlock);
         

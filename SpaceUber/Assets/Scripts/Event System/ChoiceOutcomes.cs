@@ -34,6 +34,7 @@ public class ChoiceOutcomes
     //[SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character = CharacterStats.Characters.None;
     [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterEvent.AnswerState answerType;
     [HideInInspector] public CharacterEvent characterDriver;
+    CampaignManager campMan;
 
     #region Initialized Narrative Variables
     [SerializeField, ShowIf("isNarrativeOutcome"),AllowNesting] private CampaignManager.Campaigns thisCampaign = CampaignManager.Campaigns.CateringToTheRich;
@@ -77,6 +78,7 @@ public class ChoiceOutcomes
                 if(isScalableEvent) //scalable events get a multiplier to amount
                 {
                     amount = Mathf.RoundToInt(amount * campMan.GetMultiplier(resource));
+
                     switch (resource)
                     {
 
@@ -97,7 +99,7 @@ public class ChoiceOutcomes
                             break;
                         case ResourceDataTypes._Energy:
                             
-                            ship.EnergyRemaining += new Vector2(amount, 0);
+                            ship.Energy += new Vector3(amount, 0, 0);
                             SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
 
                             if (amount < 0)
@@ -143,6 +145,8 @@ public class ChoiceOutcomes
                             {
                                 int amountFromAssigned;
                                 int amountFromUnassigned;
+
+                                //if total crew - unassigned crew is greater than amount to lose
                                 if (ship.CrewCurrent.x - ship.CrewCurrent.z >= -amount)
                                 {
                                     amountFromAssigned = -amount;
@@ -154,13 +158,13 @@ public class ChoiceOutcomes
                                     amountFromUnassigned = -amount - amountFromAssigned;
                                 }
                                 ship.RemoveRandomCrew(amountFromAssigned);
-                                ship.CrewCurrent += new Vector3(amount, -amountFromUnassigned, 0);
+                                ship.CrewCurrent += new Vector3(amount, 0, -amountFromUnassigned);
                                 SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou lost " + Math.Abs(amount) + " crew";
                             }
                             else
                             {
-                                ship.CrewCurrent += new Vector3(amount, amount, 0);
+                                ship.CrewCurrent += new Vector3(amount, 0, amount);
                                 SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou gained " + Math.Abs(amount) + " crew";
                             }
@@ -261,7 +265,7 @@ public class ChoiceOutcomes
 
                             break;
                         case ResourceDataTypes._Energy:
-                            ship.EnergyRemaining += new Vector2(amount, 0);
+                            ship.Energy += new Vector3(amount, 0, 0);
                             SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Energy).resourceIcon);
 
                             if (amount < 0)
@@ -506,7 +510,7 @@ public class ChoiceOutcomes
                                 resultText += "\nYou left Lexa to face her doom alone";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.ScienceSavior:
-                                resultText += "\nYou have become a savior through the power of science";
+                                resultText += "\nYou told Lanri to fix the cataclysm";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.TruthTold:
                                 resultText += "\nYou told everyone the truth";
@@ -525,6 +529,24 @@ public class ChoiceOutcomes
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.ResearchShared:
                                 resultText += "\nYou shared your research";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.AncientHackingDevice:
+                                resultText += "\n ";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.ExoSuits:
+                                resultText += "\n ";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.WarpShields:
+                                resultText += "\n ";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.RealityBomb:
+                                resultText += "\n ";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.DisintegrationRay:
+                                resultText += "\n ";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.ArtifactAngry:
+                                resultText += "\nYou angered the alien artifact";
                                 break;
                         }
                         break;

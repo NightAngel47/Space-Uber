@@ -19,6 +19,8 @@ public class EventChoice
     private InkDriverBase driver;    
     private Story story;
     [SerializeField] private string choiceName;
+
+    [Tooltip("The description that will appear in the tool tip for this choice")]
     [SerializeField] public string description;
 
     public string ChoiceName => choiceName;
@@ -76,12 +78,16 @@ public class EventChoice
         //as long as it's not a story event, it's scalable
         isScalableEvent = driver.isScalableEvent;
 
+        foreach (ChoiceOutcomes outcome in this.outcomes)
+        {
+            outcome.isScalableEvent = isScalableEvent;
+        }
+
         if (driver.isCharacterEvent)
         {
             foreach (ChoiceOutcomes outcome in this.outcomes)
             {
                 outcome.AssignCharacterDriver((CharacterEvent)driver);
-                outcome.isScalableEvent = isScalableEvent;
             }
         }
 
@@ -129,11 +135,7 @@ public class EventChoice
         {
             tooltip.SetOutcomeData(description, outcomes, hasSecretOutcomes);
         }
-        //randomize which ending we'll have from the start, needs to have story that matched requirements.
-        if (story != null && hasRandomEnding)
-        {
-            RandomizeEnding(story);
-        }
+        
 
     }
 
@@ -167,7 +169,8 @@ public class EventChoice
 
         if (hasRandomEnding)
         {
-            foreach(MultipleRandom multRando in randomEndingOutcomes)
+            RandomizeEnding(story);
+            foreach (MultipleRandom multRando in randomEndingOutcomes)
             {
                 MultipleRandom thisSet = randomEndingOutcomes[randomizedResult];
                 foreach(ChoiceOutcomes choiceOutcome in thisSet.outcomes)
@@ -211,7 +214,7 @@ public class EventChoice
                 choiceThreshold += percantageIncreased;
             }
 
-            //if the outcome chance is lower than the threshold, we pick this event
+            //if the outcome chance is lower than the threshold, we pick this random ending
             if (outcomeChance <= choiceThreshold || (i == randomEndingOutcomes.Count)) 
             {
                 result = i;
@@ -220,6 +223,7 @@ public class EventChoice
 
         }
 
+        //provides an int to RandomizeEnding in the ink file, which then changes the selected random ending
         story.EvaluateFunction("RandomizeEnding", result);
 
         randomizedResult = result;

@@ -91,11 +91,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] Sound[] ambientTracks = null;
     [SerializeField] RadioStationTrackList[] radioTracks = null;
     [SerializeField] List<Sound> currentlyPlayingAmbience = new List<Sound>();
-    [Range(0f, 1f)] public float masterVolume = 1;
-    [Range(0f, 1f)] public float sfxVolume = 1;
-    [Range(0f, 1f)] public float musicVolume = 1;
-    [Range(0f, 1f)] public float ambienceVolume = 1;
-    [Range(0f, 1f)] public float radioVolume = 0;
     [Tooltip("Time it takes for current track to fade out")]
     [SerializeField] float fadeOutTime = 1;
     [Tooltip("Time window of overlap of current track fade out and next track fade in")]
@@ -105,8 +100,74 @@ public class AudioManager : MonoBehaviour
 
     Sound currentlyPlayingMusic = null;
     Sound currentlyPlayingStation = null;
+    public int currentStationId;
+    
+    private float masterVolume = 1;
+    private float sfxVolume = 1;
+    private float musicVolume = 1;
+    private float ambienceVolume = 1;
+    private float radioVolume = 0;
 
-    public bool isMuted = false;
+    private bool isMuted = false;
+
+    public float MasterVolume
+    {
+        get => masterVolume;
+        set
+        {
+            masterVolume = value;
+            UpdateCurrentVolumes();
+        }
+    }
+    public float SfxVolume
+    {
+        get => sfxVolume;
+        set
+        {
+            sfxVolume = value;
+            UpdateCurrentVolumes();
+        }
+    }
+    
+    public float MusicVolume
+    {
+        get => musicVolume;
+        set
+        {
+            musicVolume = value;
+            UpdateCurrentVolumes();
+        }
+    }
+    
+    public float AmbienceVolume
+    {
+        get => ambienceVolume;
+        set
+        {
+            ambienceVolume = value;
+            UpdateCurrentVolumes();
+        }
+    }
+    
+    public float RadioVolume
+    {
+        get => radioVolume;
+        set
+        {
+            radioVolume = value;
+            UpdateCurrentVolumes();
+        }
+    }
+    
+    public bool IsMuted
+    {
+        get => isMuted;
+        set
+        {
+            isMuted = value;
+            UpdateCurrentVolumes();
+        }
+    }
 
 	private void Awake()
 	{
@@ -131,31 +192,9 @@ public class AudioManager : MonoBehaviour
         PlayMusicWithTransition("General Theme");
     }
 
-    private void Update()
+    //Ensures the volume can be adjusted by player dynamically. 
+    void UpdateCurrentVolumes()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            masterVolume += 1f * Time.deltaTime;
-            if (masterVolume < 0)
-                masterVolume = 0;
-        }
-
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            masterVolume -= 1f * Time.deltaTime;
-            if (masterVolume > 1)
-                masterVolume = 1;
-        }
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            isMuted = !isMuted;
-        }
-    }
-
-    private void FixedUpdate()
-	{
-        //Ensures the volume can be adjusted by player dynamically. 
         if (currentlyPlayingMusic != null)
         {
             if (isMuted) 
@@ -243,7 +282,8 @@ public class AudioManager : MonoBehaviour
     {
         try
         {
-            if (currentlyPlayingStation != null && currentlyPlayingStation.name == radioTracks[station].tracks[0].name) { return; }
+            //if (currentlyPlayingStation != null && currentlyPlayingStation.name == radioTracks[station].tracks[0].name) { return; }
+            currentStationId = station;
             //Search stations to match up the name of the first track
             for (int i = 0; i < radioTracks.Length; i++)
             {
@@ -282,6 +322,7 @@ public class AudioManager : MonoBehaviour
         {
             if (ambientTracks[i].name == soundName && currentlyPlayingAmbience.Contains(ambientTracks[i]))
             {
+             
                 ambientTracks[i].ScaleVolume(ambienceVolume * masterVolume);
                 if (isMuted) ambientTracks[i].ScaleVolume(0);
                 ambientTracks[i].PlayLoop();
@@ -345,8 +386,9 @@ public class AudioManager : MonoBehaviour
     /// <param name="fadeTime"></param>
     /// <param name="fadeIn">False to fade out</param>
     /// <returns></returns>
-    IEnumerator Fade(Sound sound, float fadeTime, bool fadeIn)
+    public IEnumerator Fade(Sound sound, float fadeTime, bool fadeIn)
     {
+        float startVolume;
         //Sanitize Input
         fadeTime = Mathf.Abs(fadeTime);
         //Skip routine if fadeTime is 0
@@ -356,7 +398,7 @@ public class AudioManager : MonoBehaviour
             {
                 int fadeInOrOut;
                 float fadeStart;
-                float startVolume = sound.volume;
+                startVolume = sound.volume;
 
                 //Adjust values to fade in or fade out
                 if (fadeIn) { fadeInOrOut = -1; sound.SetVolume(0.1f); fadeStart = 0; }
@@ -399,5 +441,10 @@ public class AudioManager : MonoBehaviour
         fadeInTime = Mathf.Abs(fadeInTime);
         trackOverlapTime = Mathf.Abs(trackOverlapTime);
         if (trackOverlapTime > fadeOutTime) { trackOverlapTime = fadeOutTime; }
+    }
+
+    public Sound GetCurrentRadioSong()
+    {
+        return currentlyPlayingStation;
     }
 }

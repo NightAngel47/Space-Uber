@@ -14,17 +14,20 @@ using UnityEngine;
 public class SlotReel : MonoBehaviour
 {
     [SerializeField] RectTransform upperHalfReel;
+    [SerializeField] Transform upperLayoutGroup;
     [SerializeField] RectTransform lowerHalfReel;
+    [SerializeField] Transform lowerLayoutGroup;
+    [SerializeField] private GameObject[] slotTypes;
+
     [Tooltip("Transforms who's position is used to snap a reel to a value when stopped")]
-    [SerializeField] Transform[] slots;
-    [SerializeField] int smallBetAmount = 1;
-    [SerializeField] int mediumBetAmount = 5;
-    [SerializeField] int largeBetAmount = 10;
+    [SerializeField] private Transform[] slots;
+
     [Tooltip("Y value for lower half reel to move to be top half reel.")]
-    [SerializeField] float adjustPositionThreshold = -300;
+    [SerializeField] private float adjustPositionThreshold = -300;
     [Tooltip("Distance slot must be from focus before snaping in place.")]
-    [SerializeField] float snapDistanceThreshold = 0.75f;
+    [SerializeField] private float snapDistanceThreshold = 0.75f;
     Transform selectedSlot;
+    
     Slot slot;
     float reelSpeed;
     float spinAfterStopTime;
@@ -36,10 +39,15 @@ public class SlotReel : MonoBehaviour
     void Start()
     {
         x = upperHalfReel.anchoredPosition.x;
+        SpawnSlots();
     }
     void Update()
     {
-        if(spin)Spin();
+        if (spin)
+        {
+            Spin();
+        }
+        
         AdjustPosition();
     }
 
@@ -67,6 +75,59 @@ public class SlotReel : MonoBehaviour
         lowerHalfReel.anchoredPosition = lowerPos;
     }
 
+    /// <summary>
+    /// Spawns all slots in a random order
+    /// </summary>
+    private void SpawnSlots()
+    {
+        bool[] instantiated = new bool[slotTypes.Length];
+        int overallIndex = 0;
+
+        //auto assign all to false from the start
+        for (int i = 0; i < instantiated.Length; i++)
+        {
+            instantiated[i] = false;
+        }
+
+        //instantiate upper slots
+        for (int i = 0; i < slotTypes.Length; i++)
+        {
+            //reroll until we find a slot type we haven't already spawned
+            int randNum = Random.Range(0, slotTypes.Length);
+            
+            while (instantiated[randNum] != false)
+            {
+                randNum = Random.Range(0, slotTypes.Length);
+            }
+
+            Transform newSlot = GameObject.Instantiate(slotTypes[randNum], upperLayoutGroup).transform;
+            slots[overallIndex] = newSlot;
+            overallIndex++;
+            instantiated[randNum] = true;
+        }
+
+        //reset instantiated bool
+        for (int i = 0; i < instantiated.Length; i++)
+        {
+            instantiated[i] = false;
+        }
+
+        //instantiate lower slots
+        for (int i = 0; i < slotTypes.Length; i++)
+        {
+            //reroll until we find a slot type we haven't already spawned
+            int randNum = Random.Range(0, slotTypes.Length);
+            while (instantiated[randNum] != false)
+            {
+                randNum = Random.Range(0, slotTypes.Length);
+            }
+            instantiated[randNum] = true;
+            Transform newSlot = GameObject.Instantiate(slotTypes[randNum], lowerLayoutGroup).transform;
+            slots[overallIndex] = newSlot;
+            overallIndex++;
+        }
+    }
+
     void AdjustPosition()
 	{
         if(upperHalfReel.anchoredPosition.y < adjustPositionThreshold)
@@ -83,7 +144,7 @@ public class SlotReel : MonoBehaviour
         }
     }
 
-    public void StartSpining() 
+    public void StartSpinning() 
     { 
         spin = true; 
         gameStarted = true;

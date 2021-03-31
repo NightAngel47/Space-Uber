@@ -124,20 +124,20 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         roomSize.text = roomPrefab.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
         level.text = levelTemp.ToString();
 
-        if (campaignManager.GetCurrentCampaignIndex() > 0)
+        switch (campaignManager.GetCurrentJobIndex())
         {
-            switch (campaignManager.currentCamp)
-            {
-                case CampaignManager.Campaigns.CateringToTheRich:
-                    newLevelText.SetActive(roomStats.GetRoomGroup() == 1);
-                    break;
-                case CampaignManager.Campaigns.MysteriousEntity:
-                    newLevelText.SetActive(roomStats.GetRoomGroup() == 2);
-                    break;
-                case CampaignManager.Campaigns.FinalTest:
-                    newLevelText.SetActive(roomStats.GetRoomGroup() == 3);
-                    break;
-            }
+            case 0:
+                newLevelText.SetActive(roomStats.GetRoomGroup() == 1);
+                break;
+            case 1:
+                newLevelText.SetActive(roomStats.GetRoomGroup() == 2);
+                break;
+            case 2:
+                newLevelText.SetActive(roomStats.GetRoomGroup() == 3);
+                break;
+            default:
+                newLevelText.SetActive(false);
+                break;
         }
 
         if (roomPrefab.TryGetComponent(out Resource resource))

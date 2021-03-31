@@ -5,13 +5,31 @@
  * Description: 
  */
 
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EndingRestartBehaviour : MonoBehaviour
 {
     //TODO: provide an option to go back to ship building upon death
-    
+
+    public TextMeshProUGUI causeOfDeathText;
+    public string mutinyText;
+    public string hullDeathText;
+
+    public void Start()
+    {
+        if(GameManager.instance.currentGameState == InGameStates.Death)
+        {
+            causeOfDeathText.text = hullDeathText;
+        }
+
+        if (GameManager.instance.currentGameState == InGameStates.Mutiny)
+        {
+            causeOfDeathText.text = mutinyText;
+        }
+    }
+
     public void RestartGame() // TODO: change to different state vs wiping save (probably need to check with design)
     {
         SavingLoadingManager.instance.SetHasSaveFalse();
@@ -26,5 +44,16 @@ public class EndingRestartBehaviour : MonoBehaviour
         GameManager.instance.ChangeInGameState(InGameStates.ShipBuilding);
         SceneManager.LoadScene("LoadingScreen");
         AudioManager.instance.PlayMusicWithTransition("General Theme");
+    }
+    
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("Menu_Main");
+    }
+    
+    public void GoToCredits()
+    {
+        GameManager.instance.ChangeInGameState(InGameStates.ShipBuilding); // so if you continue after ending the game you will continue at the start of the last job
+        SceneManager.LoadScene("Credits");
     }
 }

@@ -108,11 +108,31 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().unhighlight();
+        if (selectedRoom != null) unHighlight();
+    }
+
+    private void OnDisable()
+    {
+        if (selectedRoom != null) unHighlight();
+    }
+
+    private void OnEnable()
+    {
+        if (selectedRoom != null) highlight();
     }
 
     public void toggleHighlight()
     {
         if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().toggleHighlight();
+    }
+
+    public void unHighlight()
+    {
+        if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().unhighlight();
+    }
+
+    public void highlight()
+    {
+        if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().highlight();
     }
 }

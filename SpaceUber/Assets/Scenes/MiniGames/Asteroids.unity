@@ -319,7 +319,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6735677195675284401, guid: 02117a8695b953343bec020189675481,
+  m_Sprite: {fileID: -1097708627131682525, guid: 1b4659ff9bd66b647b67fe9781015ed5,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -3272410848597502291, guid: 3b29c8499aab0cd4890bb4a15e123072,
+  m_Sprite: {fileID: -6880429062539003775, guid: 1b4659ff9bd66b647b67fe9781015ed5,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -641,7 +641,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4246188250553686990, guid: 3b29c8499aab0cd4890bb4a15e123072,
+  m_Sprite: {fileID: 3444241314504944806, guid: 9e5ac32795f0f9c44b94f140d3ec7274,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -1430,7 +1430,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -3272410848597502291, guid: 3b29c8499aab0cd4890bb4a15e123072,
+  m_Sprite: {fileID: -6880429062539003775, guid: 1b4659ff9bd66b647b67fe9781015ed5,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -1764,7 +1764,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7683102381431370574, guid: 3b29c8499aab0cd4890bb4a15e123072,
+  m_Sprite: {fileID: -1097708627131682525, guid: 1b4659ff9bd66b647b67fe9781015ed5,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -1832,7 +1832,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2828524699034471178, guid: 123b415d0b70f7c4faeb09a8cbcb53ec,
     type: 3}
   barrel: {fileID: 1925763291}
-  coolDown: 0.4375
+  coolDown: 0.5
   projectileParent: {fileID: 798573569}
   coolDownBarIndicator: {fileID: 883389310}
   fireCannon:
@@ -1864,13 +1864,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210153120}
-  m_LocalRotation: {x: 0, y: 0, z: -0.35673797, w: 0.9342045}
+  m_LocalRotation: {x: 0, y: 0, z: 0.35429102, w: 0.93513525}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1594494229}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -41.8}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 41.5}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.04, y: 0.99}
@@ -1895,7 +1895,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4246188250553686990, guid: 3b29c8499aab0cd4890bb4a15e123072,
+  m_Sprite: {fileID: -6414569327751609531, guid: 9e5ac32795f0f9c44b94f140d3ec7274,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -2059,7 +2059,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 50
   m_TargetDisplay: 0
 --- !u!224 &1338579866
 RectTransform:
@@ -2448,7 +2448,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2828524699034471178, guid: 123b415d0b70f7c4faeb09a8cbcb53ec,
     type: 3}
   barrel: {fileID: 213667874}
-  coolDown: 0.4375
+  coolDown: 0.5
   projectileParent: {fileID: 798573569}
   coolDownBarIndicator: {fileID: 132471439}
   fireCannon:
@@ -2973,6 +2973,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_UseCustomVertexStreams
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281810107172147124, guid: 6e0f4cf9ebfc2ec48bae9d45688d5796,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281810107172147124, guid: 6e0f4cf9ebfc2ec48bae9d45688d5796,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281810107172147124, guid: 6e0f4cf9ebfc2ec48bae9d45688d5796,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3281810107172147125, guid: 6e0f4cf9ebfc2ec48bae9d45688d5796,
         type: 3}
