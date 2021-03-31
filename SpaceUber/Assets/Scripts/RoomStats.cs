@@ -365,8 +365,11 @@ public class RoomStats : MonoBehaviour
                 Debug.LogError("Resource type: " + resource.resourceType.resourceName + " not setup in RoomStats");
                 break;
         }
-
-        FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(currentCrew);
+        
+        if(FindObjectOfType<CrewManagementRoomDetailsMenu>() != null)
+        {
+            FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(currentCrew);
+        }
         //AddOneRoomStat(resourceData);
     }
 
