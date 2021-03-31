@@ -1032,7 +1032,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141683826}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -2686,7 +2686,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1730, y: 974}
+  m_SizeDelta: {x: 1730, y: 875}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &420286306
 MonoBehaviour:
@@ -3114,36 +3114,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checks:
   - checkResource: {fileID: 11400000, guid: 6179477e2084bca4baf5f41d925fe056, type: 2}
-    passPrompt: Sufficient Food Production.
-    failPrompt: Negative food production! You may run out of food during this job.
+    passPrompt: Sufficient amount of food production on board.
+    failPrompt: 'You have negative food production.
+
+      You may run out of food
+      during this job.'
   - checkResource: {fileID: 11400000, guid: 2ce4c992a1bf5bb4dbcf0b00f2e6cfd8, type: 2}
-    passPrompt: Sufficient Food in storage.
-    failPrompt: Food stores are low, Make sure you have enough food to last the trip.
+    passPrompt: Sufficient amount of food on board.
+    failPrompt: 'Food stores are low.
+
+      Make sure you have enough food to last
+      the trip.'
   - checkResource: {fileID: 11400000, guid: 160c3fbb104fdc44793d026b1f6cd7ef, type: 2}
     passPrompt: Sufficient Security on board.
-    failPrompt: Your ship lacks protection from internal threats. Consider adding
-      more Security.
+    failPrompt: 'Your ship lacks protection from internal threats.
+
+      Consider
+      adding more Security.'
   - checkResource: {fileID: 11400000, guid: 5410253900907ec42bf813317508ae9e, type: 2}
     passPrompt: Sufficient Ship Weapons on board.
-    failPrompt: Your ship lacks protection from external threats. Consider adding
-      more Ship Weapons.
+    failPrompt: 'Your ship lacks protection from external threats.
+
+      Consider
+      adding more Ship Weapons.'
   - checkResource: {fileID: 11400000, guid: f1825cefb97527b43a72906c497df8a4, type: 2}
     passPrompt: All Crew accounted for.
-    failPrompt: Some crew have failed to report in. Make sure they are replaced.
+    failPrompt: 'Some Crew have failed to report in.
+
+      Make sure they are replaced.'
   - checkResource: {fileID: 11400000, guid: f1825cefb97527b43a72906c497df8a4, type: 2}
     passPrompt: All Crew have been assigned.
-    failPrompt: Some crew members are loitering around. Put them to work.
+    failPrompt: 'Some Crew members don''t have a task.
+
+      Make sure to assign
+      them a room.'
   - checkResource: {fileID: 11400000, guid: 418056c5f48660f4fa1affe0e1d5e95d, type: 2}
-    passPrompt: Ship Hull is good.
-    failPrompt: Your ship is damaged. You should consider repairing it.
+    passPrompt: Ship Hull is fully intact.
+    failPrompt: 'Your ship is damaged.
+
+      You should consider repairing your
+      Hull.'
   - checkResource: {fileID: 11400000, guid: 55b417f89e336ee4ea9b06e0b724b013, type: 2}
-    passPrompt: Ship is Powered up.
-    failPrompt: Your ship is not fully powered. You should recharge the Power Core.
+    passPrompt: Ship is fully powered.
+    failPrompt: 'Your ship is not fully powered.
+
+      You should recharge the Power
+      Core.'
   hullRepairPrice: 100
   crewReplacePrice: 20
   energyReplacePrice: 50
   alertPanel: {fileID: 1762082085}
-  checkDelay: 0.25
+  checkDelay: 0.5
   navButtons: {fileID: 1151917581}
   preflightList: {fileID: 2001194425}
   diagnosisList: {fileID: 110460190}
@@ -4617,6 +4638,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726758831}
   m_CullTransparentMesh: 0
+--- !u!1 &730305522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 730305523}
+  m_Layer: 5
+  m_Name: List Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &730305523
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730305522}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 890744467}
+  - {fileID: 1706013211}
+  m_Father: {fileID: 1141683826}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -25}
+  m_SizeDelta: {x: 0, y: -50}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &744364145
 GameObject:
   m_ObjectHideFlags: 0
@@ -4944,7 +5002,7 @@ PrefabInstance:
     - target: {fileID: 4829475355839464754, guid: 3a8623c5ce42af747b98db927992da82,
         type: 3}
       propertyPath: m_text
-      value: Diagnosis List
+      value: Diagnosis Result
       objectReference: {fileID: 0}
     - target: {fileID: 4829475355839464755, guid: 3a8623c5ce42af747b98db927992da82,
         type: 3}
@@ -4984,7 +5042,7 @@ PrefabInstance:
     - target: {fileID: 4829475355839464755, guid: 3a8623c5ce42af747b98db927992da82,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4829475355839464755, guid: 3a8623c5ce42af747b98db927992da82,
         type: 3}
@@ -5009,7 +5067,7 @@ PrefabInstance:
     - target: {fileID: 4829475355839464755, guid: 3a8623c5ce42af747b98db927992da82,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4829475355839464755, guid: 3a8623c5ce42af747b98db927992da82,
         type: 3}
@@ -6190,8 +6248,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1538579386}
-  m_Father: {fileID: 1141683826}
-  m_RootOrder: 1
+  m_Father: {fileID: 730305523}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
@@ -7502,7 +7560,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1141683826}
   m_Layer: 5
-  m_Name: List
+  m_Name: Lists
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7520,18 +7578,17 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1171152913}
-  - {fileID: 890744467}
   - {fileID: 131573271}
   - {fileID: 757343580}
-  - {fileID: 1706013211}
+  - {fileID: 730305523}
   m_Father: {fileID: 990393801}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 32.5}
-  m_SizeDelta: {x: 0, y: -125}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -25}
+  m_SizeDelta: {x: 0, y: 730}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1142221111
 GameObject:
   m_ObjectHideFlags: 0
@@ -7975,12 +8032,12 @@ PrefabInstance:
     - target: {fileID: 4829475355839464755, guid: 3a8623c5ce42af747b98db927992da82,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 395.50006
+      value: 395.5
       objectReference: {fileID: 0}
     - target: {fileID: 4829475355839464755, guid: 3a8623c5ce42af747b98db927992da82,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4829475355839464755, guid: 3a8623c5ce42af747b98db927992da82,
         type: 3}
@@ -11324,8 +11381,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1336529120}
-  m_Father: {fileID: 1141683826}
-  m_RootOrder: 4
+  m_Father: {fileID: 730305523}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
