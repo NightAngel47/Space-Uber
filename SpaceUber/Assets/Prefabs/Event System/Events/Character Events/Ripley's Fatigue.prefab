@@ -28,16 +28,16 @@ MonoBehaviour:
   resultsBox: {fileID: 0}
   textPrintSpeed: 0.01
   eventIntroSFX: 
-  eventBGM: Septic Malfunction
+  eventBGM: General Theme
   requiredStats: []
   nextChoices:
   - choiceName: neu
     description: 
     changeMusic: 0
-    playSFX: 0
+    playSFX: 1
     withoutTransition: 0
     eventBGM: 
-    eventSFX: 
+    eventSFX: Ripley I See-2
     hasRequirements: 0
     choiceRequirements: []
     hasPercentChange: 0
@@ -72,10 +72,10 @@ MonoBehaviour:
   - choiceName: pos
     description: 
     changeMusic: 0
-    playSFX: 0
+    playSFX: 1
     withoutTransition: 0
     eventBGM: 
-    eventSFX: 
+    eventSFX: Ripley Yes-2
     hasRequirements: 0
     choiceRequirements: []
     hasPercentChange: 0
@@ -110,10 +110,10 @@ MonoBehaviour:
   - choiceName: neg
     description: 
     changeMusic: 0
-    playSFX: 0
+    playSFX: 1
     withoutTransition: 0
     eventBGM: 
-    eventSFX: 
+    eventSFX: Ripley Worse-2
     hasRequirements: 0
     choiceRequirements: []
     hasPercentChange: 0
@@ -152,10 +152,10 @@ MonoBehaviour:
     - choiceName: pos
       description: 
       changeMusic: 0
-      playSFX: 0
+      playSFX: 1
       withoutTransition: 0
       eventBGM: 
-      eventSFX: 
+      eventSFX: Ripley Ideal-3
       hasRequirements: 0
       choiceRequirements: []
       hasPercentChange: 0
@@ -190,10 +190,10 @@ MonoBehaviour:
     - choiceName: neu
       description: 
       changeMusic: 0
-      playSFX: 0
+      playSFX: 1
       withoutTransition: 0
       eventBGM: 
-      eventSFX: 
+      eventSFX: Ripley I See-3
       hasRequirements: 0
       choiceRequirements: []
       hasPercentChange: 0

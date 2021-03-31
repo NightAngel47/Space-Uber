@@ -1192,7 +1192,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 47f5c683db20d91429fd6fd3b2b0aa80, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9f83bea75c0234f48bd7c7d59f7cee2e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.85
   m_Pitch: 1
@@ -3910,6 +3910,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu_Options
       objectReference: {fileID: 0}
+    - target: {fileID: 1394832172164152310, guid: b37ad8ba5cacdb44389db3000c9c1912,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b37ad8ba5cacdb44389db3000c9c1912, type: 3}
 --- !u!224 &3210880826420008623 stripped
@@ -3929,6 +3934,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Menu_Unlocks
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002593426126447069, guid: 2f4b315aa4579f24a93bff22df0f3f02,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6002593426126447070, guid: 2f4b315aa4579f24a93bff22df0f3f02,
         type: 3}

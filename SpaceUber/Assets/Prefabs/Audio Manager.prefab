@@ -66,9 +66,9 @@ MonoBehaviour:
     volumeVarience: 0
     pitchVarience: 0
   - name: General Theme
-    clip: {fileID: 8300000, guid: 47f5c683db20d91429fd6fd3b2b0aa80, type: 3}
+    clip: {fileID: 8300000, guid: 6e9cdbd2bf4dfe945a8d11ced03f8a2e, type: 3}
     mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
-    volume: 1
+    volume: 0.45
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0
@@ -352,6 +352,27 @@ MonoBehaviour:
     volume: 0.25
     pitch: 1
     volumeVarience: 0.25
+    pitchVarience: 0.5
+  - name: Metal 1
+    clip: {fileID: 8300000, guid: 79ef3d8052925e2408faa4553d1268d2, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.35
+    pitch: 1
+    volumeVarience: 0.15
+    pitchVarience: 0.5
+  - name: Metal 2
+    clip: {fileID: 8300000, guid: 55a9f9c78fc655f45b6e9d905d55df3a, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.35
+    pitch: 1
+    volumeVarience: 0.15
+    pitchVarience: 0.5
+  - name: Metal 3
+    clip: {fileID: 8300000, guid: ccef314519dff8846a8c4917751eb3b0, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.35
+    pitch: 1
+    volumeVarience: 0.15
     pitchVarience: 0.5
   - name: Alien Noise 2
     clip: {fileID: 8300000, guid: b0187fb7f4e0f904c85ee0ae81cba805, type: 3}
@@ -2106,42 +2127,42 @@ MonoBehaviour:
   - name: Confirm 1
     clip: {fileID: 8300000, guid: c0429e3eb2a2f184b84753acf9e29833, type: 3}
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
-    volume: 0.65
+    volume: 0.55
     pitch: 1
     volumeVarience: 0.05
     pitchVarience: 0
   - name: Confirm 2
     clip: {fileID: 8300000, guid: 3df8b82d49c35e345b0df50dc9d66017, type: 3}
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
-    volume: 0.65
+    volume: 0.55
     pitch: 1
     volumeVarience: 0.05
     pitchVarience: 0
   - name: Confirm 3
     clip: {fileID: 8300000, guid: 63d30ba8fd476b44b984958a0e069cc2, type: 3}
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
-    volume: 0.65
+    volume: 0.55
     pitch: 1
     volumeVarience: 0.05
     pitchVarience: 0
   - name: Deny 1
     clip: {fileID: 8300000, guid: 41f727be6ad41b44dafac1022887530c, type: 3}
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
-    volume: 0.555
+    volume: 0.455
     pitch: 1
     volumeVarience: 0.05
     pitchVarience: 0.5
   - name: Deny 2
     clip: {fileID: 8300000, guid: 0117cdb55fa12364ab731d6cdc74a532, type: 3}
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
-    volume: 0.555
+    volume: 0.455
     pitch: 1
     volumeVarience: 0.05
     pitchVarience: 0
   - name: Deny 3
     clip: {fileID: 8300000, guid: c0fcbb6d86c045e45a6bce46574ee906, type: 3}
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
-    volume: 0.555
+    volume: 0.455
     pitch: 1
     volumeVarience: 0.05
     pitchVarience: 0
@@ -4312,14 +4333,6 @@ MonoBehaviour:
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0
-  - name: Lanri Not Good-3
-    clip: {fileID: 8300000, guid: 7789fe19bc0adbe4a9f60759c53a16c5, type: 3}
-    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
-      type: 2}
-    volume: 0.655
-    pitch: 1
-    volumeVarience: 0
-    pitchVarience: 0
   - name: Lanri Not Good-4
     clip: {fileID: 8300000, guid: 4f90adef7b5a5e54dbedf187d8d4e285, type: 3}
     mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
@@ -5789,6 +5802,462 @@ MonoBehaviour:
     mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
       type: 2}
     volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Good-1
+    clip: {fileID: 8300000, guid: 67ee141c7d5604e4da491014779168e7, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Good-2
+    clip: {fileID: 8300000, guid: 0b6335f6d57c632478dbe45a209fe3ac, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Good-3
+    clip: {fileID: 8300000, guid: 02670ad5733651f40b1d9cc51e65d70e, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Failure-1
+    clip: {fileID: 8300000, guid: 0e4868acb412aa342abc5f83753adcd1, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Failure-2
+    clip: {fileID: 8300000, guid: 37a8d5bd047d0f5478883ac60f23c749, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Failure-3
+    clip: {fileID: 8300000, guid: 02b48096a27c6ef49964c7abc9370514, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Failure-4
+    clip: {fileID: 8300000, guid: 3a25bc42816a39c4b8e104cbd1cc8fca, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Failure-5
+    clip: {fileID: 8300000, guid: 78526a1ad7fba3149ada9e169b7f1610, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Failure-6
+    clip: {fileID: 8300000, guid: f19d1edadb95edb4b9b6f98a1be3ce11, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Failure-7
+    clip: {fileID: 8300000, guid: dd1dfffd9f486fe4ab65679f9836244f, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Failure-8
+    clip: {fileID: 8300000, guid: ea3d9f1c8c900f949ae2ce6347b6a3d5, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Failure-9
+    clip: {fileID: 8300000, guid: 069b757dcc07ba04b89058dfaf7ea5d0, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Hmmmm-1
+    clip: {fileID: 8300000, guid: 26e93622430cb9b4097346c71aece24c, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Hmmmm-2
+    clip: {fileID: 8300000, guid: b3d278b5dd13ad64d8ea6c2814d16d18, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Hmmmm-3
+    clip: {fileID: 8300000, guid: 6b325e13ad2622446b2f98a89bce630f, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Hmmmm-4
+    clip: {fileID: 8300000, guid: e31cf707156041f4e86d3b394d4fda28, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley I See-1
+    clip: {fileID: 8300000, guid: ead6595a3c611e145a07ec9008218118, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley I See-2
+    clip: {fileID: 8300000, guid: ac23e79f2823f9942a03c22c7f23af2f, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley I See-3
+    clip: {fileID: 8300000, guid: 42829c102140cce47a6de7b38123b19e, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Understand-1
+    clip: {fileID: 8300000, guid: f1ede76745e3d964daefcffb68dbf180, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Understand-2
+    clip: {fileID: 8300000, guid: e88cc3f01ac0546458ce9331a1d6992b, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Understand-3
+    clip: {fileID: 8300000, guid: 678a656e9d117bb4183b3686756714c1, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Understand-4
+    clip: {fileID: 8300000, guid: 975b26636847c114894ec46d455a32fe, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Understand-5
+    clip: {fileID: 8300000, guid: b98390f39f5a97e4c9595c88c0a3fe55, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Patient Stable-1
+    clip: {fileID: 8300000, guid: d2c873467d1601b4a8ff20356372a1c2, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Patient Stable-2
+    clip: {fileID: 8300000, guid: 6f2d5aafe0fd62a419e5d1f6ee09a413, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Patient Stable-3
+    clip: {fileID: 8300000, guid: 3f80280068e087f42b56c05d76635a27, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley RFS-1
+    clip: {fileID: 8300000, guid: bd07e2d2730811640b6a701d2fde7bd4, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley RFS-2
+    clip: {fileID: 8300000, guid: 1476b506d2736cc4587271f51e4ee8c5, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley RFS-3
+    clip: {fileID: 8300000, guid: 89ce22beef25436408b44e3065386cea, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley RFS-4
+    clip: {fileID: 8300000, guid: 51b6ff53fbab1ec43a697801dfd21e64, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley RFS-5
+    clip: {fileID: 8300000, guid: dab60448c3ce92a4e9b65d8f097abf9e, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Right-1
+    clip: {fileID: 8300000, guid: 7794deed45aa0d248ab8d45c9e6053c0, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Right-2
+    clip: {fileID: 8300000, guid: dab739d151a8e444abe3eaf5139bf6df, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Right-3
+    clip: {fileID: 8300000, guid: 9ae7554518928874f826aca87a5028cc, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Right-4
+    clip: {fileID: 8300000, guid: e49ee1d8be7fdb14eb58adfda95ee8b0, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Right-5
+    clip: {fileID: 8300000, guid: 553195343e32e634b8e84916d821e94e, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Right-6
+    clip: {fileID: 8300000, guid: 13f1e39ea53d67041921d396883438ec, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Ideal-1
+    clip: {fileID: 8300000, guid: b5bb828742408eb4f9975daba4623dde, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Ideal-2
+    clip: {fileID: 8300000, guid: 7403d0091eb0451408d8b8c2419ea1e9, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Ideal-3
+    clip: {fileID: 8300000, guid: fc4f65389aa2e884d8a86c130e5f57d0, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Ideal-4
+    clip: {fileID: 8300000, guid: 39a3ad761f5dac8438367a25c9320047, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Worse-1
+    clip: {fileID: 8300000, guid: af3ffe70273673045bf23df5745a58bb, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Worse-2
+    clip: {fileID: 8300000, guid: d9672682d2c212c429ac3678aab74280, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Unacceptable-1
+    clip: {fileID: 8300000, guid: 020e0fec0b9221c4e90c827ffd02dcde, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Unacceptable-2
+    clip: {fileID: 8300000, guid: f43cba7aa00dd8d4aac35f92f36fd347, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Unacceptable-3
+    clip: {fileID: 8300000, guid: 0dbd18aeeb0311642a42bdfbe9e3dbf3, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Unacceptable-4
+    clip: {fileID: 8300000, guid: 06f2273df1f16494ea445a23b20b8cdc, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Unacceptable-5
+    clip: {fileID: 8300000, guid: 3b375ba72ca0625438c9eb43b264d4a2, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.955
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Unacceptable-6
+    clip: {fileID: 8300000, guid: a0cb6eee2e114f746b53b5543f6a1c59, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.755
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Unacceptable-7
+    clip: {fileID: 8300000, guid: b28943ee6b1154a4e9be0b2e0ca398cb, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.755
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Unacceptable-8
+    clip: {fileID: 8300000, guid: e60fa43f9a6d7974aa1ded2efadebb42, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.755
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Unacceptable-9
+    clip: {fileID: 8300000, guid: 0707334d6684b964fa87f76915ff7db7, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.755
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Yes-1
+    clip: {fileID: 8300000, guid: ede308340f063174a99004e96aad5ee5, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.855
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Yes-2
+    clip: {fileID: 8300000, guid: 6681db8e7ccee3547b6289a0c9c3f1e6, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.855
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Yes-3
+    clip: {fileID: 8300000, guid: 3aeb086e59a87d0489c2a01c137f83cb, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.855
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Ripley Yes-4
+    clip: {fileID: 8300000, guid: d8af7a0bd952892479aabba000c3e690, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.855
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0

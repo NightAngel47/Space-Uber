@@ -9,13 +9,13 @@ public class AudioSettings : MonoBehaviour
     static float sfxVol = 1;
     static float bgmVol = 1;
     static float radioVol = 0;
-    static float ambientVol = 1;
+    static float ambientVol = 1;  //representing the volume of voice acting
 
     [SerializeField] Slider masterSlider;
     [SerializeField] Slider sfxSlider;
     [SerializeField] Slider bgmSlider;
     [SerializeField] Slider radioSlider;
-    [SerializeField] Slider ambientSlider;
+    [SerializeField] Slider voiceSlider;
 
     // Start is called before the first frame update
     private IEnumerator Start()
@@ -41,7 +41,7 @@ public class AudioSettings : MonoBehaviour
         sfxSlider.value = sfxVol;
         bgmSlider.value = bgmVol;
         radioSlider.value = radioVol;
-        ambientSlider.value = ambientVol;
+        voiceSlider.value = ambientVol;
     }
     private void OnEnable()
     {
@@ -49,7 +49,7 @@ public class AudioSettings : MonoBehaviour
         sfxSlider.value = sfxVol;
         bgmSlider.value = bgmVol;
         radioSlider.value = radioVol;
-        ambientSlider.value = ambientVol;
+        voiceSlider.value = ambientVol;
     }
 
 

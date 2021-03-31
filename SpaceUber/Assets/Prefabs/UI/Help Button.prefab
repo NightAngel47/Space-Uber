@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1040641097312660080}
   - component: {fileID: 1040641097312660087}
   - component: {fileID: 1040641097312660086}
+  - component: {fileID: 5091657746368076109}
   m_Layer: 5
   m_Name: Help Button
   m_TagString: Untagged
@@ -117,4 +118,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1040641097312660087}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5091657746368076109}
+        m_MethodName: ClickPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5091657746368076109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040641097312660084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 093fe5c779844da489ca1f98d9bcb5a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Clicks:
+  - Confirm 1
+  - Confirm 2
+  - Confirm 3
