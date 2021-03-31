@@ -64,6 +64,8 @@ public class RoomStats : MonoBehaviour
     public Image levelIconObject;
     public List<Sprite> levelIcons = new List<Sprite>();
 
+    private CrewManagementRoomDetailsMenu roomDetailsMenu;
+
     private void Awake()
     {
         cam = Camera.main;
@@ -75,6 +77,9 @@ public class RoomStats : MonoBehaviour
         UpdateRoomLevelIcon();
 
         yield return new WaitUntil(() => TryGetComponent(out Resource resource));
+        
+        roomDetailsMenu = FindObjectOfType<CrewManagementRoomDetailsMenu>();
+        
         GetStats();
     }
 
@@ -368,7 +373,7 @@ public class RoomStats : MonoBehaviour
                 break;
         }
         
-        FindObjectOfType<CrewManagementRoomDetailsMenu>()?.UpdateCrewAssignment(currentCrew);
+        //roomDetailsMenu.UpdateCrewAssignment();
         //AddOneRoomStat(resourceData);
     }
 

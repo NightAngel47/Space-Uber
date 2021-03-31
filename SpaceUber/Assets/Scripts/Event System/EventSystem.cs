@@ -8,11 +8,13 @@
  * When the number of events played reaches the maxEvents number, the job ends
  */
 
+using System;
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class EventSystem : MonoBehaviour
 {
@@ -24,6 +26,7 @@ public class EventSystem : MonoBehaviour
     private EventPromptButton eventPromptButton;
     private ProgressBarUI progressBar;
 	private CampaignManager campMan;
+	private CrewManagementRoomDetailsMenu roomDetailsMenu;
 
 	private int maxEvents = 0;
 	private List<GameObject> storyEvents = new List<GameObject>();
@@ -95,9 +98,14 @@ public class EventSystem : MonoBehaviour
 		tick = FindObjectOfType<Tick>();
 		asm = FindObjectOfType<AdditiveSceneManager>();
 		campMan = GetComponent<CampaignManager>();
-    }
+	}
 
-    /// <summary>
+	private void Start()
+	{
+		roomDetailsMenu = FindObjectOfType<CrewManagementRoomDetailsMenu>();
+	}
+
+	/// <summary>
     /// Plays job intro
     /// </summary>
     public IEnumerator PlayIntro()
@@ -198,7 +206,7 @@ public class EventSystem : MonoBehaviour
             // once event rolled or skipped
 
             tick.StopTickUpdate();
-            FindObjectOfType<CrewManagement>().TurnOffPanel();
+            FindObjectOfType<RoomPanelToggle>().ClosePanel();
 
             //wait until done with minigame and/or character event
             yield return new WaitUntil(() => !OverclockController.instance.overclocking && !chatting);
@@ -353,7 +361,7 @@ public class EventSystem : MonoBehaviour
 	public IEnumerator StartNewCharacterEvent(List<GameObject> possibleEvents)
     {
 		chatting = true;
-		FindObjectOfType<CrewManagement>().TurnOffPanel();
+		FindObjectOfType<RoomPanelToggle>().ClosePanel();
 		GameObject newEvent = FindNextCharacterEvent(possibleEvents);
 
 		if (newEvent != null)
@@ -368,7 +376,7 @@ public class EventSystem : MonoBehaviour
 	{
 		mutiny = true;
 		tick.StopTickUpdate();
-		FindObjectOfType<CrewManagement>().TurnOffPanel();
+		FindObjectOfType<RoomPanelToggle>().ClosePanel();
 
 		// set event variables
 		//InkDriverBase mutinyEvent = newEvent.GetComponent<InkDriverBase>();
@@ -396,7 +404,7 @@ public class EventSystem : MonoBehaviour
 	/// <param name="newEvent"></param>
 	private void CreateEvent(GameObject newEvent)
 	{
-		FindObjectOfType<CrewManagementRoomDetailsMenu>()?.unHighlight();
+		roomDetailsMenu.UnHighlight();
 		CrewViewManager.Instance.DisableCrewView();
 		StartCoroutine(AudioManager.instance.Fade(AudioManager.instance.GetCurrentRadioSong(), 1, false));
 
@@ -690,14 +698,12 @@ public class EventSystem : MonoBehaviour
 		//If chat has cooleddown
 		if (tick.DaysSinceChat < chatCooldown)
 		{
-			print("Not ready to chat");
 			return false;
 		}
 
 		//if no possible events are found
 		if (!HasPossibleCharacterEvent(checkEvents))
 		{
-			print("No events available");
 			return false;
 		}
 

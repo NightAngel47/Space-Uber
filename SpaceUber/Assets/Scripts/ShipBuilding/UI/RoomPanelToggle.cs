@@ -15,26 +15,33 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField] Sprite blackButton;
     [SerializeField] Sprite redButton;
     [SerializeField] private Image[] panelTabs = new Image[0];
-    [SerializeField] GameObject[] tabs;
+    [SerializeField] GameObject[] tabs = new GameObject[0];
     private int currentTabIndex = -1;
     private bool isMouseOverObject;
     private CrewManagementRoomDetailsMenu detailsMenu;
     
     private static readonly int IsOpen = Animator.StringToHash("isOpen");
 
-    private void Start()
+    private void Awake()
     {
         panelAnimator = GetComponent<Animator>();
-        detailsMenu = gameObject.GetComponentInChildren<CrewManagementRoomDetailsMenu>();
+        detailsMenu = FindObjectOfType<CrewManagementRoomDetailsMenu>();
     }
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && 
-            GameManager.instance.currentGameState != InGameStates.ShipBuilding && 
-            !ObjectScript.roomIsHovered && !isMouseOverObject && !Tutorial.Instance.GetTutorialActive())
+            ObjectMover.hasPlaced &&
+            !ObjectScript.roomIsHovered && 
+            !isMouseOverObject && 
+            !Tutorial.Instance.GetTutorialActive())
         {
-            detailsMenu.unHighlight();
+            detailsMenu.UnHighlight();
+            ClosePanel();
+        }
+
+        if (isOpen && EventSystem.instance.eventActive)
+        {
             ClosePanel();
         }
 
@@ -53,46 +60,20 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
-    public void OpenPanel(int tabIndex = -1, bool isRoomDetails = false)
+    public void OpenPanel(int tabIndex = -1)
     {
         if (OverclockController.instance.overclocking) return;
 
-        if (!isRoomDetails || currentTabIndex != 0)
-        {
-            SetSelectedTab(tabIndex);
+        SetSelectedTab(tabIndex);
 
-            //swap between radio and room details
-            if(GameManager.instance.currentGameState != InGameStates.ShipBuilding)
+        if (tabs.Length > 0)
+        {
+            for (int i = 0; i < tabs.Length; i++)
             {
-                for (int i = 0; i < tabs.Length; i++)
-                {
-                    if (i == tabIndex)
-                    {
-                        if (tabs[i] == tabs[0]) detailsMenu.highlight();
-                        tabs[i].gameObject.SetActive(true);
-                    }
-                    else
-                    {
-                        if (tabs[i] == tabs[0]) detailsMenu.unHighlight();
-                        tabs[i].gameObject.SetActive(false);
-                    }
-                }
-                
+                tabs[i].SetActive(i == tabIndex);
             }
-            
-        }
-
-        if (isOpen) return;
-        try
-        {
-            if (tabIndex == 0) detailsMenu.highlight();//
-        }
-        catch(System.NullReferenceException)
-        {
-            Debug.LogError("The room details menu doesn't exist. You're probably in ship building.");
         }
         
-
         panelAnimator.SetBool(IsOpen, true);
         isOpen = true;
     }
@@ -100,10 +81,10 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void ClosePanel(int tabIndex = -1)
     {
         if (!isOpen) return;
-
+        
         try
         {
-            if (tabIndex == 0) detailsMenu.unHighlight();//
+            if (tabIndex == 0) detailsMenu.UnHighlight();//
         }
         catch (System.NullReferenceException)
         {

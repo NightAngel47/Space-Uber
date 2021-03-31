@@ -1723,36 +1723,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256035004}
   m_CullTransparentMesh: 0
---- !u!1 &260767166
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 260767167}
-  m_Layer: 0
-  m_Name: statPanel?
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &260767167
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260767166}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1139635635}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &262872216
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,18 +2608,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 391369388}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &391369390 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
-    type: 3}
-  m_PrefabInstance: {fileID: 391369388}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &420286304
 GameObject:
   m_ObjectHideFlags: 0
@@ -4040,7 +3998,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &627550983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7395,21 +7353,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8b79a0bfd8bcea48b2b8061721e8c81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noRoomSelectedMessage: Select a room to view its details.
+  roomDetailsInfo:
+  - {fileID: 0}
+  - {fileID: 0}
   roomImage: {fileID: 1430690560}
   roomName: {fileID: 1234601214}
   roomDesc: {fileID: 454979934}
+  roomLevel: {fileID: 0}
   roomSize: {fileID: 781373487}
+  usedImage: {fileID: 0}
   needsCredits: {fileID: 1673443887}
   needsPower: {fileID: 74571593}
   needsCrew: {fileID: 1158953376}
   producesResource: {fileID: 1235359}
+  producesIcon: {fileID: 0}
   producesAmount: {fileID: 2029385128}
   currentCrew: {fileID: 1709631533}
-  level: {fileID: 70016268}
-  noRoomSelectedMessage: Select a room to view its details.
-  roomDetailSections:
-  - {fileID: 962202590}
-  - {fileID: 806091719}
+  crewButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  overtimeResource: {fileID: 0}
+  overtimeIcon: {fileID: 0}
+  overtimeAmount: {fileID: 0}
+  overtimeButton: {fileID: 0}
+  overtimeButtonText: {fileID: 0}
+  talkButton: {fileID: 0}
+  talkButtonText: {fileID: 0}
 --- !u!1 &1099715223
 GameObject:
   m_ObjectHideFlags: 0
@@ -7513,16 +7483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56eee52834ad0647b45d395632ce3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crewAmount: {fileID: 1709631531}
-  powerAmount: {fileID: 1972277883}
-  overclockOutput: {fileID: 763596371}
-  statPanel: {fileID: 260767166}
-  crewAssignmentCanvas: {fileID: 459016063}
-  chatButton: {fileID: 1521663816}
-  overclockButton: {fileID: 391369390}
-  statAndNumPrefab: {fileID: 3420480323077555833, guid: 7d0e7b910954e3c4ca69105523c9741a,
-    type: 3}
-  outputObject: {fileID: 2016664419}
   sceneButtons:
   - {fileID: 1834532680}
   - {fileID: 1974891725}
@@ -7536,8 +7496,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 555.077, y: 296.44232, z: -525.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 260767167}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10614,18 +10573,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1521663814}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1521663816 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1521663814}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1533126361
 GameObject:
   m_ObjectHideFlags: 0
@@ -13410,17 +13357,17 @@ PrefabInstance:
     - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1974891726}
+      objectReference: {fileID: 1139635634}
     - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: ChangeToShipBuilding
+      value: ClearRoomDetails
       objectReference: {fileID: 0}
     - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
         type: 3}
@@ -13461,6 +13408,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 1974891726}
+    - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: ChangeToShipBuilding
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5, type: 3}

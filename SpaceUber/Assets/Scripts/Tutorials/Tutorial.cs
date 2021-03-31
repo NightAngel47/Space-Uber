@@ -39,7 +39,6 @@ public class Tutorial : Singleton<Tutorial>
     [SerializeField] TextMeshProUGUI tutorialTitleTextbox;
     [SerializeField] GameObject tutorialPanel;
     private Tick ticker;
-    private ProgressBarUI progressBar;
 
     [SerializeField] GameObject highlightPanel;
     [SerializeField] GameObject ghostCursor;
@@ -77,6 +76,7 @@ public class Tutorial : Singleton<Tutorial>
             }
             SaveTutorialStatus();
         }
+        
         ticker = FindObjectOfType<Tick>();
 
         currentTutorial = tutorials[1];
@@ -105,15 +105,15 @@ public class Tutorial : Singleton<Tutorial>
         {
             if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
             {
-                if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorHydroponics) GhostCursorHydroponics();
-                else if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorChargingTerminal) GhostCursorChargingTerminal();
-                else if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorArmorPlating) GhostCursorArmorPlating();
+                if (currentTutorial.tutorialMessages[index].ghostCursorHydroponics) GhostCursorHydroponics();
+                else if (currentTutorial.tutorialMessages[index].ghostCursorChargingTerminal) GhostCursorChargingTerminal();
+                else if (currentTutorial.tutorialMessages[index].ghostCursorArmorPlating) GhostCursorArmorPlating();
                 else if (currentTutorial.tutorialMessages[index].ghostCursorStatBar) GhostCursorStatBar();
             }
 
             if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
             {
-                if (FindObjectOfType<CrewManagementRoomDetailsMenu>() != null && currentTutorial.tutorialMessages[index].selectRoom) EffectSelectRoom();
+                if (currentTutorial.tutorialMessages[index].selectRoom) EffectSelectRoom();
             }
         }
         /////////////////////////////////////////////////////////////////////////////////
@@ -306,8 +306,6 @@ public class Tutorial : Singleton<Tutorial>
         {
             FindObjectOfType<RoomPanelToggle>().OpenPanel(0);
             FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
-            FindObjectOfType<CrewManagement>().UpdateRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
-            FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
             tutorialPrerequisitesComplete = true;
         }
     }

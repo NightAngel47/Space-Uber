@@ -11,115 +11,302 @@ using TMPro;
 
 public class CrewManagementRoomDetailsMenu : MonoBehaviour
 {
+    private ShipStats shipStats;
+    private RoomStats roomStats;
+    private OverclockRoom overclockRoom;
     private GameObject selectedRoom = null;
-
-    [SerializeField, Foldout("UI Elements")] Image roomImage;
-    [SerializeField, Foldout("UI Elements")] TMP_Text roomName;
-    [SerializeField, Foldout("UI Elements")] TMP_Text roomDesc;
-    [SerializeField, Foldout("UI Elements")] TMP_Text roomSize;
-    [SerializeField, Foldout("UI Elements")] TMP_Text needsCredits;
-    [SerializeField, Foldout("UI Elements")] TMP_Text needsPower;
-    [SerializeField, Foldout("UI Elements")] TMP_Text needsCrew;
-    [SerializeField, Foldout("UI Elements")] TMP_Text producesResource;
-    [SerializeField, Foldout("UI Elements")] TMP_Text producesAmount;
-    [SerializeField, Foldout("UI Elements")] TMP_Text currentCrew;
-    [SerializeField, Foldout("UI Elements")] TMP_Text level;
 
     [SerializeField] private string noRoomSelectedMessage = "Select a room to view its details.";
     [SerializeField] private GameObject[] roomDetailsInfo = new GameObject[2];
+    
+    #region UI Elements
 
+    [SerializeField, Foldout("Descriptive Info")] Image roomImage;
+    [SerializeField, Foldout("Descriptive Info")] TMP_Text roomName;
+    [SerializeField, Foldout("Descriptive Info")] TMP_Text roomDesc;
+    [SerializeField, Foldout("Descriptive Info")] TMP_Text roomLevel;
+    [SerializeField, Foldout("Descriptive Info")] TMP_Text roomSize;
+    [SerializeField, Foldout("Descriptive Info")] GameObject usedImage;
+
+    [SerializeField, Foldout("Requirements")] TMP_Text needsCredits;
+    [SerializeField, Foldout("Requirements")] TMP_Text needsPower;
+    [SerializeField, Foldout("Requirements")] TMP_Text needsCrew;
+    
+    [SerializeField, Foldout("Production")] TMP_Text producesResource;
+    [SerializeField, Foldout("Production")] Image producesIcon;
+    [SerializeField, Foldout("Production")] TMP_Text producesAmount;
+    
+    [SerializeField, Foldout("Crew Assignment")] TMP_Text currentCrew;
+    [SerializeField, Foldout("Crew Assignment")] Button[] crewButtons = new Button[2];
+    
+    [SerializeField, Foldout("Overtime")] TMP_Text overtimeResource;
+    [SerializeField, Foldout("Overtime")] Image overtimeIcon;
+    [SerializeField, Foldout("Overtime")] TMP_Text overtimeAmount;
+    [SerializeField, Foldout("Overtime")] Button overtimeButton;
+    [SerializeField, Foldout("Overtime")] ButtonTwoBehaviour overtimeButtonText;
+    
+    [SerializeField, Foldout("Talk To Crew")] Button talkButton;
+    [SerializeField, Foldout("Talk To Crew")] ButtonTwoBehaviour talkButtonText;
+    
+    #endregion
 
     // Start is called before the first frame update
     void Start()
-    { 
-        roomName.text = noRoomSelectedMessage; 
-        roomDesc.text = "";
-        roomSize.text = "";
-        needsCredits.text = "";
-        needsPower.text = "";
-        needsCrew.text = "";
-        producesResource.text = "";
-        producesAmount.text = "";
-
-        currentCrew.text = "";
-
-        level.text = "";
-
-        foreach (GameObject roomDetailSection in roomDetailsInfo)
-        {
-            roomDetailSection.SetActive(false);
-        }
+    {
+        ClearUI();
     }
+
+    public void ChangeCurrentRoom(GameObject room)
+    {
+        if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().Unhighlight();
+        
+        selectedRoom = room;
+        roomStats = room.GetComponent<RoomStats>();
+        overclockRoom = room.GetComponent<OverclockRoom>();
+        shipStats.roomBeingPlaced = selectedRoom;
+        
+        room.GetComponent<RoomHighlight>().Highlight();
+        
+        UpdatePanelInfo();
+    }
+    
     public void UpdatePanelInfo()
     {
+        // enable UI elements
         foreach (GameObject roomDetailSection in roomDetailsInfo)
         {
             roomDetailSection.SetActive(true);
         }
         
+        // set room details
         roomImage.sprite = selectedRoom.GetComponentInChildren<SpriteRenderer>().sprite;
-
-        RoomStats roomStats = selectedRoom.GetComponent<RoomStats>();
         roomName.text = roomStats.roomName;
         roomDesc.text = roomStats.roomDescription;
+        roomLevel.text = "Level: " + roomStats.GetRoomLevel();
+        roomSize.text = selectedRoom.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
+        usedImage.SetActive(roomStats.usedRoom); 
+        
+        // set room requirements details
         needsCredits.text = roomStats.price[roomStats.GetRoomLevel() - 1].ToString();
         needsPower.text = roomStats.minPower[roomStats.GetRoomLevel() - 1].ToString();
-        needsCrew.text = roomStats.minCrew.ToString() + "-" + roomStats.maxCrew.ToString();
+        needsCrew.text = roomStats.minCrew + "-" + roomStats.maxCrew;
+        
+        // update room production, crew value, and crew buttons
+        UpdateCrewAssignment();
+        
+        // set room overtime details
+        SetOvertimeButtonState(GameManager.instance.currentGameState == InGameStates.Events && overclockRoom.MinigameCooledDown);
+        overtimeIcon.gameObject.SetActive(true);
+        switch (overclockRoom.GetMiniGame())
+        {
+            case MiniGameType.Security:
+                overtimeResource.text = GameManager.instance.GetResourceData((int) ResourceDataTypes._Security).resourceName;
+                overtimeIcon.sprite = GameManager.instance.GetResourceData((int) ResourceDataTypes._Security).resourceIcon;
+                overtimeAmount.text = "";
+                break;
+            case MiniGameType.Asteroids:
+                overtimeResource.text = GameManager.instance.GetResourceData((int) ResourceDataTypes._ShipWeapons).resourceName;
+                overtimeIcon.sprite = GameManager.instance.GetResourceData((int) ResourceDataTypes._ShipWeapons).resourceIcon;
+                overtimeAmount.text = "";
+                break;
+            case MiniGameType.CropHarvest:
+                overtimeResource.text = GameManager.instance.GetResourceData((int) ResourceDataTypes._Food).resourceName;
+                overtimeIcon.sprite = GameManager.instance.GetResourceData((int) ResourceDataTypes._Food).resourceIcon;
+                overtimeAmount.text = "";
+                break;
+            case MiniGameType.StabilizeEnergyLevels:
+                overtimeResource.text = GameManager.instance.GetResourceData((int) ResourceDataTypes._Energy).resourceName;
+                overtimeIcon.sprite = GameManager.instance.GetResourceData((int) ResourceDataTypes._Energy).resourceIcon;
+                overtimeAmount.text = "";
+                break;
+            case MiniGameType.SlotMachine:
+                overtimeResource.text = GameManager.instance.GetResourceData((int) ResourceDataTypes._Credits).resourceName;
+                overtimeIcon.sprite = GameManager.instance.GetResourceData((int) ResourceDataTypes._Credits).resourceIcon;
+                overtimeAmount.text = "";
+                break;
+            case MiniGameType.HullRepair:
+                overtimeResource.text = GameManager.instance.GetResourceData((int) ResourceDataTypes._HullDurability).resourceName;
+                overtimeIcon.sprite = GameManager.instance.GetResourceData((int) ResourceDataTypes._HullDurability).resourceIcon;
+                overtimeAmount.text = "";
+                break;
+            default:
+                overtimeResource.text = "";
+                overtimeIcon.gameObject.SetActive(false);
+                overtimeAmount.text = "";
+                SetOvertimeButtonState(false); // disable button is no mini-game on room
+                break;
+        }
+
+        // see if chat available
+        UpdateChatAvailability();
+    }
+
+    /// <summary>
+    /// Updates the crew stat and room production stats
+    /// </summary>
+    public void UpdateCrewAssignment()
+    {
         currentCrew.text = roomStats.currentCrew.ToString();
-        roomSize.text = selectedRoom.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
-        level.text = roomStats.GetRoomLevel().ToString();
 
-        if (selectedRoom.TryGetComponent(out Resource resource)) return;
+        // set room production details
+        if (selectedRoom.TryGetComponent(out Resource resource))
+        {
+            producesResource.text = resource.resourceType.resourceName;
+            producesIcon.sprite = resource.resourceType.resourceIcon;
+            
+            roomStats.SetActiveAmount(resource);
+
+            if (roomStats.flatOutput == false)
+            {
+                producesAmount.text = resource.activeAmount + " / " + resource.amount[roomStats.GetRoomLevel() - 1];
+            }
+            else
+            {
+                producesAmount.text = resource.activeAmount.ToString();
+            }
+        }
+        else
+        {
+            producesResource.text = "No Production";
+            producesIcon.gameObject.SetActive(false);
+            producesAmount.text = "";
+        }
         
-        producesResource.text = "No Production";
-        producesAmount.text = "";
+        UpdateCrewButtons();
     }
 
-    public void UpdateCrewAssignment(int currentCrewAmount)
+    private void UpdateCrewButtons()
     {
-        currentCrew.text = currentCrewAmount.ToString();
-        RoomStats roomStats = selectedRoom.GetComponent<RoomStats>();
-
-        if (!selectedRoom.TryGetComponent(out Resource resource)) return;
+        if (roomStats.maxCrew == 0) // no crew needed for room
+        {
+            foreach (Button crewButton in crewButtons)
+            {
+                crewButton.interactable = false;
+            }
+        }
+        else if(roomStats.currentCrew == 0) // no crew assigned to room 
+        {
+            crewButtons[0].interactable = false;
+            crewButtons[1].interactable = true;
+        }
+        else if (roomStats.currentCrew == roomStats.maxCrew) // crew assigned at max
+        {
+            crewButtons[0].interactable = true;
+            crewButtons[1].interactable = false;
+        }
+        else // crew assigned between min and max (or something went wrong so both buttons active)
+        {
+            foreach (Button crewButton in crewButtons)
+            {
+                crewButton.interactable = true;
+            }
+        }
+    }
+    
+    public void AddCrew(bool fromSave = false)
+    {
+        if (selectedRoom == null) return;
         
-        producesResource.text = resource.resourceType.resourceName;
-        producesAmount.text = resource.activeAmount + "/" + resource.amount[roomStats.GetRoomLevel() - 1];
+        if (shipStats.CrewCurrent.z > 0 && roomStats.currentCrew < roomStats.maxCrew)
+        {
+            roomStats.UpdateCurrentCrew(1);
+            if (!fromSave)
+            {
+                shipStats.CrewCurrent += new Vector3(0, 0, -1);
+            }
+            
+            UpdateCrewAssignment();
+            if(selectedRoom.GetComponent<RoomStats>().resources.Count > 0) 
+                roomStats.UpdateRoomStats(roomStats.resources[0].resourceType);
+            UpdateCrewAssignment();
+
+            if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
+            {
+                FindObjectOfType<CrewManagement>().CheckForMinCrew();
+            }
+        }
     }
 
-    public void ChangeCurrentRoom(GameObject room)
+    public void SubtractCrew()
     {
-        if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().unhighlight();
-        selectedRoom = room;
-        room.GetComponent<RoomHighlight>().highlight();
+        if (selectedRoom == null) return;
+        
+        if (roomStats.currentCrew > 0)
+        {
+            roomStats.UpdateCurrentCrew(-1);
+            shipStats.CrewCurrent += new Vector3(0, 0, 1);
+            
+            UpdateCrewAssignment();
+            roomStats.UpdateRoomStats(roomStats.resources[0].resourceType);
+            UpdateCrewAssignment();
+
+            if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
+            {
+                FindObjectOfType<CrewManagement>().CheckForMinCrew();
+            }
+        }
     }
 
-    private void OnDestroy()
+    public void SetOvertimeButtonState(bool state)
     {
-        if (selectedRoom != null) unHighlight();
+        overtimeButton.interactable = state;
+        overtimeButtonText.SetButtonInteractable(state);
     }
 
-    private void OnDisable()
+    public void SetTalkToCrewButtonState(bool state)
     {
-        if (selectedRoom != null) unHighlight();
+        talkButton.interactable = state;
+        talkButtonText.SetButtonInteractable(state);
+    }
+    
+    public void StartOverclockGame()
+    {
+        overclockRoom.PlayMiniGame();
+    }
+    
+    /// <summary>
+    /// Changes whether or not the chat availability button will activate
+    /// </summary>
+    private void UpdateChatAvailability()
+    {
+        if(overclockRoom.hasEvents && GameManager.instance.currentGameState == InGameStates.Events)
+        {
+            SetTalkToCrewButtonState(EventSystem.instance.CanChat(overclockRoom.GetEvents()));
+        }
     }
 
-    private void OnEnable()
+    public void StartChat()
     {
-        if (selectedRoom != null) highlight();
+        StartCoroutine(EventSystem.instance.StartNewCharacterEvent(overclockRoom.GetEvents()));
     }
 
-    public void toggleHighlight()
+    public void ClearUI()
     {
-        if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().toggleHighlight();
+        shipStats = FindObjectOfType<ShipStats>();
+        roomName.text = noRoomSelectedMessage;
+        usedImage.SetActive(false);
+
+        foreach (GameObject roomDetailSection in roomDetailsInfo)
+        {
+            roomDetailSection.SetActive(false);
+        }
+        
+        SetOvertimeButtonState(false);
+        SetTalkToCrewButtonState(false);
     }
 
-    public void unHighlight()
+    public void ToggleHighlight()
     {
-        if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().unhighlight();
+        if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().ToggleHighlight();
     }
 
-    public void highlight()
+    public void UnHighlight()
     {
-        if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().highlight();
+        if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().Unhighlight();
+    }
+
+    public void Highlight()
+    {
+        if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().Highlight();
     }
 }
