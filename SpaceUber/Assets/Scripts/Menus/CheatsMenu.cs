@@ -395,7 +395,7 @@ public class CheatsMenu : MonoBehaviour
         switch (resourceID)
         {
             case 0:
-                thisShip.Credits += amount;
+                thisShip.Credits += amount * 100;
                 break;
             case 1:
                 thisShip.Payout += amount;
