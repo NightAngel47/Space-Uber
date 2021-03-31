@@ -124,6 +124,8 @@ public class SlotMachine : MiniGame
         smallBetButton.enabled = (shipStats.Credits >= smallBet[roomLevel]);
         mediumBetButton.enabled = (shipStats.Credits >= mediumBet[roomLevel]);
         largeBetButton.enabled = (shipStats.Credits >= largeBet[roomLevel]);
+
+        print("small bet should be:" + smallBet[roomLevel]);
     }
 
     void DetectCrank()
