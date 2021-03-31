@@ -80,7 +80,7 @@ public class EventChoice
 
         foreach (ChoiceOutcomes outcome in this.outcomes)
         {
-            outcome.isScalableEvent = isScalableEvent;
+            outcome.isScaledOutcome = isScalableEvent;
         }
 
         if (driver.isCharacterEvent)
