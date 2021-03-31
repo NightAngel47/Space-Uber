@@ -19,7 +19,6 @@ public class RefillFunctionality : MonoBehaviour
     private int hullIncrement = 0;
 
     private ShipStats shipStats;
-
     
     [SerializeField, Foldout("Replace Crew")] private ButtonTwoBehaviour crewRefillButton;
     [SerializeField, Foldout("Replace Crew")] private TMP_Text[] refillToolTipText = new TMP_Text[2];
