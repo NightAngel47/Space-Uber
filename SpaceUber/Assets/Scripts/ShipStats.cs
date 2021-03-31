@@ -35,7 +35,24 @@ public class ShipStats : MonoBehaviour
 
     [HideInInspector] public GameObject roomBeingPlaced;
 
-    public enum Stats { NA = -1, Credits, Payout, EnergyMax, EnergyRemaining, EnergyUnassigned, Security, ShipWeapons, CrewCapacity, CrewCurrent, CrewUnassigned, Food, FoodPerTick, ShipHealthMax, ShipHealthCurrent}
+    public enum Stats 
+    { 
+        NA = -1, 
+        Credits, 
+        Payout, 
+        EnergyMax, 
+        EnergyRemaining, 
+        EnergyUnassigned, 
+        Security, 
+        ShipWeapons, 
+        CrewCapacity, 
+        CrewCurrent, 
+        CrewUnassigned, 
+        Food, 
+        FoodPerTick, 
+        ShipHealthMax, 
+        ShipHealthCurrent
+    }
 
     private int[] stats = new int[14];
 
@@ -71,7 +88,23 @@ public class ShipStats : MonoBehaviour
 
     private void SetStartingStats()
     {
-        StatsArray = new int[] {startingCredits, 0, startingEnergy, startingEnergy, startingEnergy, startingSecurity, startingShipWeapons, startingCrew, startingCrew, startingCrew, startingFood, 0, startingShipHealth, startingShipHealth};
+        StatsArray = new int[]
+        {
+            startingCredits,
+            0, 
+            startingEnergy, 
+            startingEnergy, 
+            startingEnergy, 
+            startingSecurity, 
+            startingShipWeapons, 
+            startingCrew, 
+            startingCrew, 
+            startingCrew, 
+            startingFood, 
+            0, 
+            startingShipHealth, 
+            startingShipHealth
+        };
     }
 
     /// <summary>
@@ -554,14 +587,6 @@ public class ShipStats : MonoBehaviour
         StatsArray = SavingLoadingManager.instance.Load<int[]>("stats");
     }
 
-    public int[] GetCoreStats()
-    {
-        int[] coreStats = { stats[(int) Stats.CrewCapacity] - stats[(int) Stats.CrewCurrent], (stats[(int) Stats.ShipHealthMax] - stats[(int) Stats.ShipHealthCurrent]), stats[(int) Stats.Food], stats[(int) Stats.FoodPerTick],
-            stats[(int) Stats.Security], stats[(int) Stats.ShipWeapons], stats[(int) Stats.Credits], stats[(int) Stats.EnergyRemaining] - stats[(int) Stats.EnergyUnassigned], stats[(int) Stats.CrewCurrent] };
-
-        return coreStats;
-    }
-
     /// <summary>
     /// returns the number of rooms on the ship that have the same name
     /// </summary>
@@ -616,6 +641,17 @@ public class ShipStats : MonoBehaviour
                 }
             }
             
+        }
+    }
+
+    public void ReAddPayoutFromRooms()
+    {
+        foreach (RoomStats room in FindObjectsOfType<RoomStats>())
+        {
+            if(room.resources[0].resourceType.Rt == ResourceDataTypes._Payout)
+            {
+                Payout += room.resources[0].activeAmount;
+            }
         }
     }
 }

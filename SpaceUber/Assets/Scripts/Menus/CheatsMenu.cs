@@ -115,10 +115,11 @@ public class CheatsMenu : MonoBehaviour
             es.SkipToEvent();
             Debug.Log("Skipping to event");
         }
+        
         if(Input.GetKey(KeyCode.F8)
             && GameManager.instance.currentGameState == InGameStates.Events)
         {
-            PlayRandomEvents();
+            PlayEvents();
         }
 
         if(Input.GetKey(KeyCode.F9))
@@ -261,7 +262,7 @@ public class CheatsMenu : MonoBehaviour
         }
     }
 
-    public void PlayRandomEvents()
+    public void PlayEvents()
     {
         if(Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -271,8 +272,17 @@ public class CheatsMenu : MonoBehaviour
         {
             StartCoroutine(es.CheatRandomEvent(-1));
         }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            StartCoroutine(es.CheatCharacterEvent(1));
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            StartCoroutine(es.CheatCharacterEvent(-1));
+        }
     }
-    
+
     private void ChangeNarrativeVariables()
     {
         #region Alter narrative booleans with number keys

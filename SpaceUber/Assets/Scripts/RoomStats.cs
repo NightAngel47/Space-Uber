@@ -10,6 +10,7 @@ using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoomStats : MonoBehaviour
 {
@@ -60,6 +61,9 @@ public class RoomStats : MonoBehaviour
 
     private int resourceChange = 0;
 
+    public Image levelIconObject;
+    public List<Sprite> levelIcons = new List<Sprite>();
+
     private void Awake()
     {
         cam = Camera.main;
@@ -68,9 +72,26 @@ public class RoomStats : MonoBehaviour
 
     private IEnumerator Start()
     {
-        yield return new WaitUntil(() => TryGetComponent(out Resource resource));
+        UpdateRoomLevelIcon();
 
+        yield return new WaitUntil(() => TryGetComponent(out Resource resource));
         GetStats();
+    }
+
+    private void UpdateRoomLevelIcon()
+    {
+        switch (roomLevel)
+        {
+            case 1:
+                levelIconObject.sprite = levelIcons[0];
+                break;
+            case 2:
+                levelIconObject.sprite = levelIcons[1];
+                break;
+            case 3:
+                levelIconObject.sprite = levelIcons[2];
+                break;
+        }
     }
 
     public void UpdateUsedRoom()
@@ -344,8 +365,8 @@ public class RoomStats : MonoBehaviour
                 Debug.LogError("Resource type: " + resource.resourceType.resourceName + " not setup in RoomStats");
                 break;
         }
-
-        FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(currentCrew);
+        
+        FindObjectOfType<CrewManagementRoomDetailsMenu>()?.UpdateCrewAssignment(currentCrew);
         //AddOneRoomStat(resourceData);
     }
 
@@ -549,6 +570,10 @@ public class RoomStats : MonoBehaviour
                     roomLevel = 3;
                     break;
             }
+
+            // update UI to match level
+            UpdateRoomLevelIcon();
+            roomTooltipUI.UpdateRoomLevel();
 
             foreach (Resource resource in resources)
             {

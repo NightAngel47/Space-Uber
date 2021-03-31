@@ -18,12 +18,14 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField] GameObject[] tabs;
     private int currentTabIndex = -1;
     private bool isMouseOverObject;
+    private CrewManagementRoomDetailsMenu detailsMenu;
     
     private static readonly int IsOpen = Animator.StringToHash("isOpen");
 
     private void Start()
     {
         panelAnimator = GetComponent<Animator>();
+        detailsMenu = gameObject.GetComponentInChildren<CrewManagementRoomDetailsMenu>();
     }
 
     private void Update()
@@ -32,6 +34,7 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
             GameManager.instance.currentGameState != InGameStates.ShipBuilding && 
             !ObjectScript.roomIsHovered && !isMouseOverObject && !Tutorial.Instance.GetTutorialActive())
         {
+            detailsMenu.unHighlight();
             ClosePanel();
         }
 
@@ -63,9 +66,18 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
             {
                 for (int i = 0; i < tabs.Length; i++)
                 {
-                    if (i == tabIndex) tabs[i].gameObject.SetActive(true);
-                    else tabs[i].gameObject.SetActive(false);
+                    if (i == tabIndex)
+                    {
+                        if (tabs[i] == tabs[0]) detailsMenu.highlight();
+                        tabs[i].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        if (tabs[i] == tabs[0]) detailsMenu.unHighlight();
+                        tabs[i].gameObject.SetActive(false);
+                    }
                 }
+                
             }
             
         }
@@ -73,7 +85,7 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (isOpen) return;
         try
         {
-            gameObject.GetComponentInChildren<CrewManagementRoomDetailsMenu>().toggleHighlight();//
+            if (tabIndex == 0) detailsMenu.highlight();//
         }
         catch(System.NullReferenceException)
         {
@@ -91,7 +103,7 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         try
         {
-            gameObject.GetComponentInChildren<CrewManagementRoomDetailsMenu>().toggleHighlight();//
+            if (tabIndex == 0) detailsMenu.unHighlight();//
         }
         catch (System.NullReferenceException)
         {
