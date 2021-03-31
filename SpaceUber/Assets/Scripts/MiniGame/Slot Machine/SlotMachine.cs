@@ -121,9 +121,9 @@ public class SlotMachine : MiniGame
 
     void EnableDisableButtons()
 	{
-        smallBetButton.enabled = (shipStats.Credits >= smallBet[roomLevel]);
-        mediumBetButton.enabled = (shipStats.Credits >= mediumBet[roomLevel]);
-        largeBetButton.enabled = (shipStats.Credits >= largeBet[roomLevel]);
+        smallBetButton.interactable = (shipStats.Credits >= smallBet[roomLevel]);
+        mediumBetButton.interactable = (shipStats.Credits >= mediumBet[roomLevel]);
+        largeBetButton.interactable = (shipStats.Credits >= largeBet[roomLevel]);
 
         print("small bet should be:" + smallBet[roomLevel]);
     }
