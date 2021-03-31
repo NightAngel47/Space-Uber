@@ -48,7 +48,6 @@ public class OutcomeTooltipUI : MonoBehaviour
         }
         else if (outcomes.Count > 0)
         {
-            
             foreach (var outcome in outcomes)
             {
                 if(outcome.isNarrativeOutcome)
@@ -59,16 +58,21 @@ public class OutcomeTooltipUI : MonoBehaviour
                 else
                 {
                     GameObject resourceGO = Instantiate(resourceUI, outcomeList.transform);
-                    resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.GetResourceData((int)outcome.resource).resourceIcon; // resource icon
-                    resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = GameManager.instance.GetResourceData((int)outcome.resource).resourceName; // resource name
+                    resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = 
+                        GameManager.instance.GetResourceData((int)outcome.resource).resourceIcon; // resource icon
+                    resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = 
+                        GameManager.instance.GetResourceData((int)outcome.resource).resourceName; // resource name
                     
-                    if(outcome.isScalableEvent)
+                    if(outcome.isScaledOutcome)
                     {
                         int newAmount = Mathf.RoundToInt(outcome.amount * campMan.GetMultiplier(outcome.resource));
                         resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = newAmount.ToString(); // resource amount
 
                     }
-                    resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = outcome.amount.ToString(); // resource amount
+                    else
+                    {
+                        resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = outcome.amount.ToString(); // resource amount
+                    }
 
                     resourceGO.transform.GetChild(3).gameObject.SetActive(false); // outcome probability
                 }
