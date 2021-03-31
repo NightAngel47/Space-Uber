@@ -19,12 +19,12 @@ public class EndingRestartBehaviour : MonoBehaviour
 
     public void Start()
     {
-        if(GameManager.instance.currentGameState == InGameStates.Death)
+        if(GameManager.instance != null && GameManager.instance.currentGameState == InGameStates.Death)
         {
             causeOfDeathText.text = hullDeathText;
         }
 
-        if (GameManager.instance.currentGameState == InGameStates.Mutiny)
+        if (GameManager.instance != null && GameManager.instance.currentGameState == InGameStates.Mutiny)
         {
             causeOfDeathText.text = mutinyText;
         }
