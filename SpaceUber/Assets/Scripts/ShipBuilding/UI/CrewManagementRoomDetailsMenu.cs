@@ -26,44 +26,38 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     [SerializeField, Foldout("UI Elements")] TMP_Text level;
 
     [SerializeField] private string noRoomSelectedMessage = "Select a room to view its details.";
-    [SerializeField] private GameObject[] roomDetailSections = new GameObject[2];
-    private CrewView[] roomsInScene; 
+    [SerializeField] private GameObject[] roomDetailsInfo = new GameObject[2];
 
 
     // Start is called before the first frame update
     void Start()
-    {
+    { 
+        roomName.text = noRoomSelectedMessage; 
+        roomDesc.text = "";
+        roomSize.text = "";
+        needsCredits.text = "";
+        needsPower.text = "";
+        needsCrew.text = "";
+        producesResource.text = "";
+        producesAmount.text = "";
 
-       roomsInScene = GameObject.FindObjectsOfType<CrewView>();
-       roomName.text = noRoomSelectedMessage;
-       roomDesc.text = "";
-       roomSize.text = "";
-       needsCredits.text = "";
-       needsPower.text = "";
-       needsCrew.text = "";
-       producesResource.text = "";
-       producesAmount.text = "";
+        currentCrew.text = "";
 
-       currentCrew.text = "";
+        level.text = "";
 
-       level.text = "";
-
-       foreach (GameObject roomDetailSection in roomDetailSections)
-       {
-           roomDetailSection.SetActive(false);
-       }
-
-       
+        foreach (GameObject roomDetailSection in roomDetailsInfo)
+        {
+            roomDetailSection.SetActive(false);
+        }
     }
     public void UpdatePanelInfo()
     {
-        foreach (GameObject roomDetailSection in roomDetailSections)
+        foreach (GameObject roomDetailSection in roomDetailsInfo)
         {
             roomDetailSection.SetActive(true);
         }
         
         roomImage.sprite = selectedRoom.GetComponentInChildren<SpriteRenderer>().sprite;
-        //selectedRoom.GetComponent<CrewView>().updateCrewView();//
 
         RoomStats roomStats = selectedRoom.GetComponent<RoomStats>();
         roomName.text = roomStats.roomName;
@@ -75,16 +69,10 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         roomSize.text = selectedRoom.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
         level.text = roomStats.GetRoomLevel().ToString();
 
-        if (selectedRoom.TryGetComponent(out Resource resource))
-        {
-            //producesResource.text = resource.resourceType.resourceName;
-            //producesAmount.text = "/" + resource.amount + " maximum";
-        }
-        else
-        {
-            producesResource.text = "No Production";
-            producesAmount.text = "";
-        }
+        if (selectedRoom.TryGetComponent(out Resource resource)) return;
+        
+        producesResource.text = "No Production";
+        producesAmount.text = "";
     }
 
     public void UpdateCrewAssignment(int currentCrewAmount)
@@ -92,11 +80,10 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         currentCrew.text = currentCrewAmount.ToString();
         RoomStats roomStats = selectedRoom.GetComponent<RoomStats>();
 
-        if (selectedRoom.TryGetComponent(out Resource resource))
-        {
-            producesResource.text = resource.resourceType.resourceName;
-            producesAmount.text = resource.activeAmount + "/" + resource.amount[roomStats.GetRoomLevel() - 1] + " maximum";
-        }
+        if (!selectedRoom.TryGetComponent(out Resource resource)) return;
+        
+        producesResource.text = resource.resourceType.resourceName;
+        producesAmount.text = resource.activeAmount + "/" + resource.amount[roomStats.GetRoomLevel() - 1];
     }
 
     public void ChangeCurrentRoom(GameObject room)

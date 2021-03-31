@@ -5546,12 +5546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myImage: {fileID: 8828453955547895794}
   rotator: {fileID: 8828453954537327226}
-  slider: {fileID: 6590697562346694980}
-  stationDial: 0
-  masterDial: 0
-  radioDial: 1
-  bgmDial: 0
-  sfxDial: 0
+  dial: 0
 --- !u!114 &775211086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6942,12 +6937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myImage: {fileID: 8828453954612753726}
   rotator: {fileID: 8828453955757533366}
-  slider: {fileID: 6590697563188487769}
-  stationDial: 0
-  masterDial: 0
-  radioDial: 0
-  bgmDial: 0
-  sfxDial: 1
+  dial: 0
 --- !u!114 &1014373966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8388,12 +8378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myImage: {fileID: 8828453954681162564}
   rotator: {fileID: 8828453955692254924}
-  slider: {fileID: 6590697563027501414}
-  stationDial: 1
-  masterDial: 0
-  radioDial: 0
-  bgmDial: 0
-  sfxDial: 0
+  dial: 0
 --- !u!114 &1248149668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9582,12 +9567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myImage: {fileID: 8828453953694882048}
   rotator: {fileID: 8828453954831795336}
-  slider: {fileID: 6590697562051507150}
-  stationDial: 0
-  masterDial: 1
-  radioDial: 0
-  bgmDial: 0
-  sfxDial: 0
+  dial: 0
 --- !u!114 &1330566428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10379,12 +10359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myImage: {fileID: 8828453953878484421}
   rotator: {fileID: 8828453954881189965}
-  slider: {fileID: 6590697562089747904}
-  stationDial: 0
-  masterDial: 0
-  radioDial: 0
-  bgmDial: 1
-  sfxDial: 0
+  dial: 0
 --- !u!114 &1457019687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15646,7 +15621,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -15737,8 +15712,8 @@ RectTransform:
   m_Father: {fileID: 6590697563637857403}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -15921,8 +15896,8 @@ RectTransform:
   m_Father: {fileID: 6590697562094799430}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16464,7 +16439,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16501,7 +16476,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16630,7 +16605,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17332,7 +17307,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17368,6 +17343,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentStationName: {fileID: 8828453955720038261}
   currentStationDesc: {fileID: 6590697562788233206}
+  muteButton: {fileID: 0}
+  muteButtonOff: {fileID: 0}
+  muteButtonOn: {fileID: 0}
   stations:
   - name: POPZ
     tooltipName: Space Pop
@@ -17432,7 +17410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6590697563124636220
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17860,7 +17838,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -18055,7 +18033,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -18382,8 +18360,8 @@ RectTransform:
   m_Father: {fileID: 6590697563257437936}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
