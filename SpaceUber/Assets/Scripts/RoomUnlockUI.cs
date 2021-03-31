@@ -159,6 +159,11 @@ public class RoomUnlockUI : MonoBehaviour
         }
         else
         {
+            foreach(RoomStats room in FindObjectsOfType<RoomStats>())
+            {
+                room.UpdateUsedRoom();
+            }
+            
             FindObjectOfType<ShipStats>().ReAddPayoutFromRooms();
             campaignManager.GoToNextJob(); //tells campaign manager to activate the next available job
         }
