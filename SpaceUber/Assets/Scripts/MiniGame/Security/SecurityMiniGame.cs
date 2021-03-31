@@ -13,19 +13,21 @@ using UnityEngine.UI;
 public class SecurityMiniGame : MiniGame
 {
     [Tooltip("Uninteractable toggles used to show the player how many successes they need/have.")]
-    [SerializeField] Toggle[] successTrackers;
-    [SerializeField] CodeBlock[] codeSegments;
+    [SerializeField] private Toggle[] successTrackers;
+    [SerializeField] private CodeBlock[] codeSegments;
+    
     [Tooltip("Text that displays the required code characters.")]
-    [SerializeField] TMP_Text codePreview;
+    [SerializeField] private TMP_Text codePreview;
+    
     [Tooltip("How long each code character can be seen.")]
-    [SerializeField] float displayTime = 1;
-    [SerializeField] GameObject tryAgainText;
-    [SerializeField] int startCodeLength = 3;
+    [SerializeField] private float displayTime = 1;
+    [SerializeField] private GameObject tryAgainText;
+    [SerializeField] private int startCodeLength = 3;
     public int successes = 0;
-    string validChars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
-    string requiredCode = "";
-    string availableCode = "";
-    string inputCode = "";
+    private string validChars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+    private string requiredCode = "";
+    private string availableCode = "";
+    private string inputCode = "";
 
     [Tooltip("SFX names")]
     public string[] Correct;
@@ -33,6 +35,9 @@ public class SecurityMiniGame : MiniGame
     public string[] Incorrect;
     [Tooltip("SFX names")]
     public string[] DisplaySound;
+
+    [SerializeField, Tooltip("The delay before the first part of the code appears")]
+    private float timeBeforeCodes = 0.25f;
 
     void Start() 
     { 
@@ -115,11 +120,14 @@ public class SecurityMiniGame : MiniGame
         tryAgainText.SetActive(false);
 	}
 
+    
     IEnumerator DisplayCode()
 	{
-        foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(false); }
+        foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(false); } //set all codes to disabled for now
         codePreview.text = "";
-        yield return new WaitForSeconds(1);
+        //slight delay before code appears
+        yield return new WaitForSeconds(timeBeforeCodes);
+
         foreach(char codeSegment in requiredCode)
 		{
             AudioManager.instance.PlaySFX(DisplaySound[Random.Range(0, DisplaySound.Length - 1)]);
