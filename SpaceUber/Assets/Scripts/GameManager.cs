@@ -152,19 +152,25 @@ public class GameManager : MonoBehaviour
                 // unload ending screen if replaying
                 additiveSceneManager.UnloadScene("Interface_Runtime");
                 additiveSceneManager.UnloadScene("PromptScreen_End");
-                additiveSceneManager.UnloadScene("PromptScreen_Death");
-                additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
+                additiveSceneManager.UnloadScene("Interface_GameOver");
                 additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
                 additiveSceneManager.UnloadScene("Interface_RoomUnlockScreen");
-
+                
+                // save game stuffs (moved from crew payment)
+                SaveGameState();
+                ship.SaveShipStats();
+                MoraleManager.instance.SaveMorale();
+                ship.cStats.SaveCharacterStats();
+                SavingLoadingManager.instance.SaveRooms();
+                
                 additiveSceneManager.LoadSceneSeperate("Interface_JobList");
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
                 jobManager.RefreshJobList();
-                SaveGameState();
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
                 additiveSceneManager.UnloadScene("Interface_JobList");
                 additiveSceneManager.UnloadScene("Interface_Runtime");
+                additiveSceneManager.UnloadScene("Interface_GameOver");
                 additiveSceneManager.UnloadScene("CrewManagement");
 
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
@@ -185,8 +191,7 @@ public class GameManager : MonoBehaviour
                 break;
             case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
                 additiveSceneManager.UnloadScene("PromptScreen_End");
-                additiveSceneManager.UnloadScene("PromptScreen_Death");
-                additiveSceneManager.UnloadScene("PromptScreen_Mutiny");
+                additiveSceneManager.UnloadScene("Interface_GameOver");
                 additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
                 additiveSceneManager.UnloadScene("Starport BG");
 
@@ -250,7 +255,7 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("Event_Prompt");
                 additiveSceneManager.UnloadScene("Interface_Runtime");
 
-                additiveSceneManager.LoadSceneSeperate("PromptScreen_Mutiny");
+                additiveSceneManager.LoadSceneSeperate("Interface_GameOver");
                 break;
             case InGameStates.Death: // Loads the PromptScreen_Death when the player reaches a death.
                 additiveSceneManager.UnloadScene("Event_General");
@@ -258,7 +263,7 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("Event_Prompt");
                 additiveSceneManager.UnloadScene("Interface_Runtime");
 
-                additiveSceneManager.LoadSceneSeperate("PromptScreen_Death");
+                additiveSceneManager.LoadSceneSeperate("Interface_GameOver");
                 break;
             default: // Output Warning when the passed in game state doesn't have a transition setup.
                 Debug.LogWarning($"The passed in game state, {state.ToString()}, doesn't have a transition setup.");

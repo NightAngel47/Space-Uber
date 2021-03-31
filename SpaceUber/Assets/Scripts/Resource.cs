@@ -15,7 +15,7 @@ public class Resource : MonoBehaviour
     public int activeAmount = 0;
     public int minAmount;
 
-    void Start()
+    void Awake()
     {
         GetComponent<RoomStats>().AddToResourceList(this);
     }

@@ -38,10 +38,6 @@ public class TransitionGameStates : MonoBehaviour
             ObjectMover.hasPlaced = true;
             Destroy(FindObjectOfType<ObjectMover>().gameObject);
         }
-        foreach(RoomStats room in FindObjectsOfType<RoomStats>())
-        {
-            room.UpdateUsedRoom();
-        }
 
         AnalyticsManager.OnLeavingStarport(ship);
         //TODO add overclock button turn on, currently adding it so it appears but needs to be better can remove tag when updated
