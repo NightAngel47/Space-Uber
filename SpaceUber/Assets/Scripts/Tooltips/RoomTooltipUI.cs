@@ -32,4 +32,9 @@ public class RoomTooltipUI : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    public void UpdateRoomLevel()
+    {
+        roomLevelUI.text = roomStats.GetRoomLevel().ToString();
+    }
 }

@@ -38,4 +38,5 @@ public class Job : MonoBehaviour
     public int payout;
     public bool isSideJob;
     public Sprite jobListImage;
+    public AlertThresholds alertThresholds;
 }
