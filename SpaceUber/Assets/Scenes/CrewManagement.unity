@@ -3165,6 +3165,7 @@ MonoBehaviour:
   energyReplacePrice: 50
   alertPanel: {fileID: 1762082085}
   checkDelay: 0.5
+  diagnosisDelay: 0
   navButtons: {fileID: 1151917581}
   preflightList: {fileID: 2001194425}
   diagnosisList: {fileID: 110460190}
@@ -5002,7 +5003,7 @@ PrefabInstance:
     - target: {fileID: 4829475355839464754, guid: 3a8623c5ce42af747b98db927992da82,
         type: 3}
       propertyPath: m_text
-      value: Diagnosis Result
+      value: Diagnostic Result
       objectReference: {fileID: 0}
     - target: {fileID: 4829475355839464755, guid: 3a8623c5ce42af747b98db927992da82,
         type: 3}

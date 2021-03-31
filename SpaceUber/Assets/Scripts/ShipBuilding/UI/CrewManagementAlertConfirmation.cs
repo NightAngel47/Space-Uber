@@ -41,7 +41,8 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
     
     // UI variables
     [SerializeField, Foldout("UI Variables")] GameObject alertPanel;
-    [SerializeField, Foldout("UI Variables"), MinValue(0.01f)] private float checkDelay = 0.1f;
+    [SerializeField, Foldout("UI Variables"), Tooltip("Delay is seconds between checks")] private float checkDelay = 0.1f;
+    [SerializeField, Foldout("UI Variables"), Tooltip("Delay is seconds before the error appears in diagnosis")] private float diagnosisDelay = 0.1f;
     [SerializeField, Foldout("UI Variables")] private GameObject navButtons;
     [SerializeField, Foldout("Lists")] private RectTransform preflightList;
     [SerializeField, Foldout("Lists")] private RectTransform diagnosisList;
@@ -108,7 +109,7 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
                 SpawnCheckEntry(checkEntryError, i, false);
                 spawnedChecks.Add(checkEntryError);
                 
-                yield return new WaitForSeconds(checkDelay / 2);
+                yield return new WaitForSeconds(diagnosisDelay);
                 
                 // lengthen height scroll preflight content container
                 Vector2 diagnosisListSizeDelta = diagnosisList.sizeDelta;
@@ -136,7 +137,7 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
             spawnedChecks.Add(noErrorEntry);
         }
         
-        yield return new WaitForSeconds(checkDelay / 2);
+        yield return new WaitForSeconds(diagnosisDelay);
         
         navButtons.SetActive(true);
     }
