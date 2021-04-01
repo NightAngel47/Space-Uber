@@ -158,8 +158,6 @@ public class Tutorial : Singleton<Tutorial>
     {
         if(disableTutorial) return;
 
-
-
         if (tutorialPanel.activeSelf == true)
         {
             if (GameManager.instance.currentGameState == InGameStates.Events && ticker.IsTickStopped())

@@ -208,7 +208,7 @@ public class GameManager : MonoBehaviour
                     SavingLoadingManager.instance.SaveRooms();
                 }
                 
-                additiveSceneManager.LoadSceneMerged("Interface_Runtime");
+                additiveSceneManager.LoadSceneSeperate("Interface_Runtime");
 
                 StartCoroutine(EventSystem.instance.PlayIntro());
                 break;

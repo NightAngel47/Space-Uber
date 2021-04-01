@@ -5,6 +5,7 @@
  * Description: Controls how the progress bar moves and changes based on what event the player is on.
  */
 
+using System;
 using System.Collections;
 using UnityEngine;
 
