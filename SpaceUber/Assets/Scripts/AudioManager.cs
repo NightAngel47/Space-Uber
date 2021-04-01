@@ -388,6 +388,7 @@ public class AudioManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator Fade(Sound sound, float fadeTime, bool fadeIn)
     {
+        float startVolume;
         //Sanitize Input
         fadeTime = Mathf.Abs(fadeTime);
         //Skip routine if fadeTime is 0
@@ -397,7 +398,7 @@ public class AudioManager : MonoBehaviour
             {
                 int fadeInOrOut;
                 float fadeStart;
-                float startVolume = sound.volume;
+                startVolume = sound.volume;
 
                 //Adjust values to fade in or fade out
                 if (fadeIn) { fadeInOrOut = -1; sound.SetVolume(0.1f); fadeStart = 0; }

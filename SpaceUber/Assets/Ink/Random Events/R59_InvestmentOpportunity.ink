@@ -1,27 +1,18 @@
+VAR randomEndLarge = -> IMP
+VAR randomEndSmall = -> Drone
 While the ship takes a short breather you peruse some of the non-urgent messages and come across an intriguing advertisement. It asks that anyone willing to donate do so in order to fund an experimental project. If enough money is raised it will increase the rewards funders receive. Shall you donate to the cause?
 +[Donate a large amount]->Larg
++[Donate a small amount]->Smol
++[Ignore the Ad]->Ignore
+
 == Larg ==
 You contribute a hefty chunk of change to the project , the results of which you receive promptly.
-+[Proceed]
-{shuffle:
--->IMP
--->SHM
--->Drone
--->Drink
--->Irri
--->Scam
-}
-+[Donate a small amount]->Smol
+->randomEndLarge
+
 == Smol ==
 You provide a small amount of credits to the project, and receive the results rather quickly.
-+[Proceed]
-{shuffle:
--->Drone
--->Drink
--->Irri
--->Scam
-}
-+[Ignore the Ad]->Ignore
+->randomEndSmall
+
 
 == IMP ==
 You’re rewarded with Improved Power Cells, they can hold even more energy. 
@@ -44,3 +35,27 @@ You get nothing. After the credits leave your account so too does the message as
 == Ignore ==
 You promptly ignore the advertisement and continue on with the journey at hand, content in the credits you’ve managed to keep.
 ->DONE
+
+===function RandomizeEnding(rng)===
+{ 
+    - rng == 0: 
+        ~randomEndLarge = -> IMP
+        ~randomEndSmall = -> Drone
+    - rng == 1:
+        ~randomEndLarge = -> SHM
+        ~randomEndSmall = -> Drink
+    - rng == 2:
+        ~randomEndLarge = -> Drone
+        ~randomEndSmall = -> Irri
+    - rng == 3:
+        ~randomEndLarge = -> Drink
+        ~randomEndSmall = -> Scam
+    - rng == 4:
+        ~randomEndLarge = -> Irri
+    - rng == 5:
+        ~randomEndLarge = -> Scam
+    - else:
+        ~randomEndLarge = -> IMP
+        ~randomEndSmall = -> Drone
+
+}

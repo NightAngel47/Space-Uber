@@ -25,7 +25,7 @@ public class CampaignManager : MonoBehaviour
     public MysteriousEntity mysteriousEntity = new MysteriousEntity();
     public FinalTest finalTest = new FinalTest();
 
-    #region
+    #region Multipliers
     [Header("Campaign 2 multipliers")]
 
     [Tooltip("How credits should be multiplied for second campaign"), SerializeField] private float creditsMult2 = 1;
