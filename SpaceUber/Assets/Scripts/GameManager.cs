@@ -298,16 +298,12 @@ public class GameManager : MonoBehaviour
         {
             case 1:
                 return currentMaxLvlGroup1;
-                break;
             case 2:
                 return currentMaxLvlGroup2;
-                break;
             case 3:
                 return currentMaxLvlGroup3;
-                break;
             default:
                 return 0;
-                break;
         }
     }
 

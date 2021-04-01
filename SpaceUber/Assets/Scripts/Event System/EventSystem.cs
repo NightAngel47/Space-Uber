@@ -235,13 +235,11 @@ public class EventSystem : MonoBehaviour
 	    //if it's an even-numbered event, do a story
 	    if (overallEventIndex % 2 == 1 && overallEventIndex != 0)
 	    {
-			
 		    StartCoroutine(StartStoryEvent());
 	    }
 	    else
 	    {
-			
-			Tutorial.Instance.SetCurrentTutorial(4, true);
+		    Tutorial.Instance.SetCurrentTutorial(4, true);
 			StartCoroutine(StartRandomEvent());
 	    }
     }

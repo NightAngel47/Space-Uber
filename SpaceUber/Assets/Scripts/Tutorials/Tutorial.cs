@@ -56,8 +56,7 @@ public class Tutorial : Singleton<Tutorial>
     [SerializeField] GameObject vecStatsLeft;
     [SerializeField] GameObject vecStatsRight;
     [SerializeField] GameObject vecRoomDetails;
-
-
+    
     private TutorialNode currentTutorial;
     private int index;
     private bool tutorialPrerequisitesComplete = false;
@@ -70,16 +69,17 @@ public class Tutorial : Singleton<Tutorial>
         }
         else
         {
-            for(int i = 0; i < tutorials.Length; i++)
+            foreach (var tutorial in tutorials)
             {
-                tutorials[i].tutorialFinished = false;
+                tutorial.tutorialFinished = false;
             }
+
+            currentTutorial = tutorials[1];
+
             SaveTutorialStatus();
         }
         
         ticker = FindObjectOfType<Tick>();
-
-        currentTutorial = tutorials[1];
     }
 
     private void Update()
@@ -318,10 +318,12 @@ public class Tutorial : Singleton<Tutorial>
     public void SaveTutorialStatus()
     {
         SavingLoadingManager.instance.Save<TutorialNode[]>("tutorials", tutorials);
+        SavingLoadingManager.instance.Save<TutorialNode>("currentTutorial", currentTutorial);
     }
     public void LoadTutorialStatus()
     {
         tutorials = SavingLoadingManager.instance.Load<TutorialNode[]>("tutorials");
+        currentTutorial = SavingLoadingManager.instance.Load<TutorialNode>("currentTutorial");
     }
 
 }

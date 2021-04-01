@@ -5,7 +5,6 @@
  * Description: Controls how the progress bar moves and changes based on what event the player is on.
  */
 
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -23,12 +22,10 @@ public class ProgressBarUI : MonoBehaviour
 
     private EventSystem eventSystem;
 
-    private void Awake()
+    private void Start()
     {
         eventSystem = FindObjectOfType<EventSystem>();
     }
-
-
 
     public void StartProgress()
     {
@@ -86,5 +83,10 @@ public class ProgressBarUI : MonoBehaviour
             line.offsetMax += new Vector2(0, 1) * scale;
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    private void OnDestroy()
+    {
+        Debug.LogError("WTF");
     }
 }
