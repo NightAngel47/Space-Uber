@@ -150,7 +150,6 @@ public class GameManager : MonoBehaviour
             case InGameStates.JobSelect: // Loads Jobpicker for the player to pick their job
                 // unload ending screen if replaying
                 additiveSceneManager.UnloadScene("Interface_Runtime");
-                additiveSceneManager.UnloadScene("PromptScreen_End");
                 additiveSceneManager.UnloadScene("Interface_GameOver");
                 additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
                 additiveSceneManager.UnloadScene("Interface_RoomUnlockScreen");
