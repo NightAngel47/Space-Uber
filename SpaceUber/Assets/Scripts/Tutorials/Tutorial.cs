@@ -39,7 +39,6 @@ public class Tutorial : Singleton<Tutorial>
     [SerializeField] TextMeshProUGUI tutorialTitleTextbox;
     [SerializeField] GameObject tutorialPanel;
     private Tick ticker;
-    private ProgressBarUI progressBar;
 
     [SerializeField] GameObject highlightPanel;
     [SerializeField] GameObject ghostCursor;
@@ -57,8 +56,7 @@ public class Tutorial : Singleton<Tutorial>
     [SerializeField] GameObject vecStatsLeft;
     [SerializeField] GameObject vecStatsRight;
     [SerializeField] GameObject vecRoomDetails;
-
-
+    
     private TutorialNode currentTutorial;
     private int index;
     private bool tutorialPrerequisitesComplete = false;
@@ -71,15 +69,17 @@ public class Tutorial : Singleton<Tutorial>
         }
         else
         {
-            for(int i = 0; i < tutorials.Length; i++)
+            foreach (var tutorial in tutorials)
             {
-                tutorials[i].tutorialFinished = false;
+                tutorial.tutorialFinished = false;
             }
+
+            currentTutorial = tutorials[1];
+
             SaveTutorialStatus();
         }
+        
         ticker = FindObjectOfType<Tick>();
-
-        currentTutorial = tutorials[1];
     }
 
     private void Update()
@@ -105,15 +105,15 @@ public class Tutorial : Singleton<Tutorial>
         {
             if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
             {
-                if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorHydroponics) GhostCursorHydroponics();
-                else if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorChargingTerminal) GhostCursorChargingTerminal();
-                else if (FindObjectOfType<ShipBuildingShop>() != null && currentTutorial.tutorialMessages[index].ghostCursorArmorPlating) GhostCursorArmorPlating();
+                if (currentTutorial.tutorialMessages[index].ghostCursorHydroponics) GhostCursorHydroponics();
+                else if (currentTutorial.tutorialMessages[index].ghostCursorChargingTerminal) GhostCursorChargingTerminal();
+                else if (currentTutorial.tutorialMessages[index].ghostCursorArmorPlating) GhostCursorArmorPlating();
                 else if (currentTutorial.tutorialMessages[index].ghostCursorStatBar) GhostCursorStatBar();
             }
 
             if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
             {
-                if (FindObjectOfType<CrewManagementRoomDetailsMenu>() != null && currentTutorial.tutorialMessages[index].selectRoom) EffectSelectRoom();
+                if (currentTutorial.tutorialMessages[index].selectRoom) EffectSelectRoom();
             }
         }
         /////////////////////////////////////////////////////////////////////////////////
@@ -157,8 +157,6 @@ public class Tutorial : Singleton<Tutorial>
     public void CloseCurrentTutorial(bool finished = true)
     {
         if(disableTutorial) return;
-
-
 
         if (tutorialPanel.activeSelf == true)
         {
@@ -306,8 +304,6 @@ public class Tutorial : Singleton<Tutorial>
         {
             FindObjectOfType<RoomPanelToggle>().OpenPanel(0);
             FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
-            FindObjectOfType<CrewManagement>().UpdateRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
-            FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
             tutorialPrerequisitesComplete = true;
         }
     }
@@ -320,10 +316,12 @@ public class Tutorial : Singleton<Tutorial>
     public void SaveTutorialStatus()
     {
         SavingLoadingManager.instance.Save<TutorialNode[]>("tutorials", tutorials);
+        SavingLoadingManager.instance.Save<TutorialNode>("currentTutorial", currentTutorial);
     }
     public void LoadTutorialStatus()
     {
         tutorials = SavingLoadingManager.instance.Load<TutorialNode[]>("tutorials");
+        currentTutorial = SavingLoadingManager.instance.Load<TutorialNode>("currentTutorial");
     }
 
 }
