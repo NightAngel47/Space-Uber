@@ -37,6 +37,6 @@ public class CrewManagement : MonoBehaviour
 
     public void ClearRoomDetails()
     {
-        FindObjectOfType<CrewManagementRoomDetailsMenu>().ClearUI();
+        FindObjectOfType<CrewManagementRoomDetailsMenu>()?.ClearUI();
     }
 }
