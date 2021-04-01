@@ -19,12 +19,12 @@ public class EndingRestartBehaviour : MonoBehaviour
 
     public void Start()
     {
-        if(GameManager.instance != null && GameManager.instance.currentGameState == InGameStates.Death)
+        if(GameManager.instance.currentGameState == InGameStates.Death)
         {
             causeOfDeathText.text = hullDeathText;
         }
 
-        if (GameManager.instance != null && GameManager.instance.currentGameState == InGameStates.Mutiny)
+        if (GameManager.instance.currentGameState == InGameStates.Mutiny)
         {
             causeOfDeathText.text = mutinyText;
         }
@@ -53,7 +53,6 @@ public class EndingRestartBehaviour : MonoBehaviour
     
     public void GoToCredits()
     {
-        GameManager.instance.ChangeInGameState(InGameStates.ShipBuilding); // so if you continue after ending the game you will continue at the start of the last job
-        SceneManager.LoadScene("Credits");
+        GameManager.instance.ChangeInGameState(InGameStates.EndingCredits);
     }
 }
