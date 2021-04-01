@@ -239,6 +239,32 @@
             </e>
           </e>
         </e>
+        <e p="Samples" t="Include">
+          <e p="2D Animation" t="Include">
+            <e p="3.2.4" t="Include">
+              <e p="Samples" t="Include">
+                <e p="5 SpriteSwap" t="Include">
+                  <e p="Scripts" t="Include">
+                    <e p="Editor" t="Include">
+                      <e p="BuildAssetBundle.cs" t="Include" />
+                      <e p="Unity.2D.Animation.Samples.Editor.asmdef" t="Include" />
+                    </e>
+                    <e p="Runtime" t="Include">
+                      <e p="LoadSwapDLC.cs" t="Include" />
+                      <e p="SwapFullSkin.cs" t="Include" />
+                      <e p="SwapPart.cs" t="Include" />
+                      <e p="Unity.2D.Animation.Samples.Runtime.asmdef" t="Include" />
+                    </e>
+                  </e>
+                </e>
+                <e p="Scripts" t="Include">
+                  <e p="AnimationSampleDependency.cs" t="Include" />
+                  <e p="Unity.2D.Animation.Samples.Dependency.asmdef" t="Include" />
+                </e>
+              </e>
+            </e>
+          </e>
+        </e>
         <e p="Scripts" t="Include">
           <e p="AdditiveSceneManager.cs" t="Include" />
           <e p="AnalyticsManager.cs" t="Include" />
@@ -247,6 +273,7 @@
           <e p="BackgroundScrollRepeat.cs" t="Include" />
           <e p="ButtonTwoBehaviour.cs" t="Include" />
           <e p="ChangeGameStateOnTimer.cs" t="Include" />
+          <e p="CharacterAnimations.cs" t="Include" />
           <e p="CharacterSignatureBehaviour.cs" t="Include" />
           <e p="ClickSound.cs" t="Include" />
           <e p="CrewManagement.cs" t="Include" />
@@ -254,6 +281,8 @@
           <e p="DevelopmentAccess.cs" t="Include" />
           <e p="DragAndDropSprite.cs" t="Include" />
           <e p="EndingRestartBehaviour.cs" t="Include" />
+          <e p="EndingStats.cs" t="Include" />
+          <e p="EndingStatsUI.cs" t="Include" />
           <e p="Event System" t="Include">
             <e p="CampaignManager.cs" t="Include" />
             <e p="CharacterEvent.cs" t="Include" />
@@ -279,15 +308,21 @@
           </e>
           <e p="EventCanvas.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
+          <e p="InitialSettingsUpdator.cs" t="Include" />
+          <e p="JobPaymentScreen.cs" t="Include" />
           <e p="LevelChangeUI.cs" t="Include" />
           <e p="Menus" t="Include">
+            <e p="AudioSettings.cs" t="Include" />
+            <e p="CheatsMenu.cs" t="Include" />
             <e p="DontDestroyOnLoad.cs" t="Include" />
             <e p="LoadingScreen.cs" t="Include" />
             <e p="MainMenuButton.cs" t="Include" />
             <e p="MenuButton.cs" t="Include" />
+            <e p="MiniGameControlDropdownBehaviour.cs" t="Include" />
             <e p="PauseMenu.cs" t="Include" />
             <e p="Singleton.cs" t="Include" />
           </e>
+          <e p="MenuTabBehaviour.cs" t="Include" />
           <e p="MiniGame" t="Include">
             <e p="Astroid" t="Include">
               <e p="Astroid.cs" t="Include" />
@@ -305,6 +340,7 @@
             <e p="HullRepair" t="Include">
               <e p="HullGridSquare.cs" t="Include" />
               <e p="HullPiece.cs" t="Include" />
+              <e p="HullPieceSlot.cs" t="Include" />
               <e p="HullRepairMiniGame.cs" t="Include" />
             </e>
             <e p="MiniGame.cs" t="Include" />
@@ -329,6 +365,7 @@
           <e p="OverclockRoom.cs" t="Include" />
           <e p="PageController.cs" t="Include" />
           <e p="Radio" t="Include">
+            <e p="RadioDial.cs" t="Include" />
             <e p="RadioManager.cs" t="Include" />
             <e p="RadioPanelToggle.cs" t="Include" />
           </e>
@@ -336,6 +373,7 @@
           <e p="Resource.cs" t="Include" />
           <e p="RoomStats.cs" t="Include" />
           <e p="RoomUIController.cs" t="Include" />
+          <e p="RoomUnlockUI.cs" t="Include" />
           <e p="SavingLoadingManager.cs" t="Include" />
           <e p="ShipBuilding" t="Include">
             <e p="ArrayLayout.cs" t="Include" />
@@ -356,6 +394,7 @@
               <e p="CrewManagementRoomDetailsMenu.cs" t="Include" />
               <e p="CrewView.cs" t="Include" />
               <e p="CrewViewManager.cs" t="Include" />
+              <e p="CrewViewUIButton.cs" t="Include" />
               <e p="CriewViewAutoPopulator.cs" t="Include" />
               <e p="RoomHighlight.cs" t="Include" />
               <e p="RoomPanelToggle.cs" t="Include" />
@@ -386,6 +425,7 @@
             <e p="Tutorial.cs" t="Include" />
             <e p="TutorialButton.cs" t="Include" />
           </e>
+          <e p="VideoSettingsManager.cs" t="Include" />
         </e>
         <e p="Sprites" t="Include">
           <e p="UI" t="Include">
@@ -433,6 +473,9 @@
       <e p="Packages" t="ExcludeRecursive" />
       <e p="SpaceUber.sln" t="IncludeFlat" />
       <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="Unity.2D.Animation.Samples.Dependency.csproj" t="IncludeRecursive" />
+      <e p="Unity.2D.Animation.Samples.Editor.csproj" t="IncludeRecursive" />
+      <e p="Unity.2D.Animation.Samples.Runtime.csproj" t="IncludeRecursive" />
     </e>
   </component>
 </project>
