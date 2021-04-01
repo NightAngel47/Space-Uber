@@ -26,7 +26,6 @@ public class EventSystem : MonoBehaviour
     private EventPromptButton eventPromptButton;
     private ProgressBarUI progressBar;
 	private CampaignManager campMan;
-	private CrewManagementRoomDetailsMenu roomDetailsMenu;
 
 	private int maxEvents = 0;
 	private List<GameObject> storyEvents = new List<GameObject>();
@@ -100,18 +99,13 @@ public class EventSystem : MonoBehaviour
 		campMan = GetComponent<CampaignManager>();
 	}
 
-	private void Start()
-	{
-		roomDetailsMenu = FindObjectOfType<CrewManagementRoomDetailsMenu>();
-	}
-
 	/// <summary>
     /// Plays job intro
     /// </summary>
     public IEnumerator PlayIntro()
     {
 	    yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_Runtime").isLoaded);
-	    //SetUpEventTimer();
+	    progressBar = FindObjectOfType<ProgressBarUI>();
 
 		chatting = false;
 		while(currentJob == null)
@@ -145,7 +139,6 @@ public class EventSystem : MonoBehaviour
 
 	private IEnumerator Travel()
 	{
-        progressBar = FindObjectOfType<ProgressBarUI>();
         eventButtonSpawn = false;
         tick.DaysSince = 0; // reset days since
 		campMan.cateringToTheRich.SaveEventChoices();
@@ -404,7 +397,7 @@ public class EventSystem : MonoBehaviour
 	/// <param name="newEvent"></param>
 	private void CreateEvent(GameObject newEvent)
 	{
-		roomDetailsMenu.UnHighlight();
+		FindObjectOfType<CrewManagementRoomDetailsMenu>().UnHighlight();
 		CrewViewManager.Instance.DisableCrewView();
 		StartCoroutine(AudioManager.instance.Fade(AudioManager.instance.GetCurrentRadioSong(), 1, false));
 
