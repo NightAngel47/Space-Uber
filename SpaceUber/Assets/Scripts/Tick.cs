@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,7 +14,6 @@ public class Tick : MonoBehaviour
     // days since variables
     private int daysSince;
     private int daysSinceChat;
-    private TMP_Text daysSinceDisplay;
 
     public void Awake()
     {
@@ -25,8 +22,6 @@ public class Tick : MonoBehaviour
 
     public void StartTickUpdate()
     {
-        
-
         secondsPassed = 0;
         if (tickCoroutine == null)
         {
@@ -96,7 +91,6 @@ public class Tick : MonoBehaviour
         set
         {
             daysSince = value;
-            if(daysSinceDisplay != null) daysSinceDisplay.text = daysSince.ToString();
         }
     }
 

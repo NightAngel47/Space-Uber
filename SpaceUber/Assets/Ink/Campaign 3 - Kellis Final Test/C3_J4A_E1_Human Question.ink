@@ -10,10 +10,6 @@ The CEO cocks his head, "Then we'll make changes. First, we'll need to get rid o
 "The chaff?" Lexa supplies.
 The CEO nods gratefully, "I was going to say 'a liability.'" 
 
-[if Lexa_Doomed is true][He thinks for a moment, "You know you are not going to survive this journey, I'll make sure of it."
-Lexa sighs, a suspicion confirmed. "I hope the machine you use to shred my corpse breaks down against my bones."
-The CEO smiles, "Then we'll just replace that machine next."]
-
 The door to the conference room opens, revealing the soiled garb of an engineer. Mateo shuffles forward with a smile. "Hey! Do any of you know how to fix the coffee machine?" The CEO stares as his eye implants inform him who Mateo is. 
 The engineer seems to kick at some imaginary can, "Well if you guys don't know, I guess we'll be going without it for the voyage." he looks up with mock sheepishness, "If no one is there to fix your machines they'll keep plodding along in the dark, with a thousand little issues that you're too high up to see. It's careless to think you can do this without us."
 You know now Mateo has also been marked for termination. The boss leans against his fist and speaks towards your view camera, too exhausted to acknowledge Mateo's jabs. "Well. I know you've been listening, tell us. How would your performance be without these people in the way? We've been working on new ships, only enough room for cargo, no need for life support, food, bunkrooms. Tell us."

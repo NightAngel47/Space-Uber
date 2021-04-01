@@ -23,12 +23,10 @@ public class ProgressBarUI : MonoBehaviour
 
     private EventSystem eventSystem;
 
-    private void Awake()
+    private void Start()
     {
         eventSystem = FindObjectOfType<EventSystem>();
     }
-
-
 
     public void StartProgress()
     {
