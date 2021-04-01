@@ -85,9 +85,4 @@ public class ProgressBarUI : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
-
-    private void OnDestroy()
-    {
-        Debug.LogError("WTF");
-    }
 }
