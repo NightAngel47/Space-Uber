@@ -198,7 +198,7 @@ public class EventSystem : MonoBehaviour
             // once event rolled or skipped
 
             tick.StopTickUpdate();
-            FindObjectOfType<CrewManagement>().TurnOffPanel();
+            FindObjectOfType<CrewManagement>()?.TurnOffPanel();
 
             //wait until done with minigame and/or character event
             yield return new WaitUntil(() => !OverclockController.instance.overclocking && !chatting);
@@ -211,10 +211,11 @@ public class EventSystem : MonoBehaviour
 
             // wait for player to go click button to go to event
             yield return new WaitUntil((() => skippedToEvent));
+			eventButtonSpawn = false;
 
-            // wait for event to conclude
-            yield return new WaitWhile((() => eventActive));
-            eventButtonSpawn = false;
+			// wait for event to conclude
+			yield return new WaitWhile((() => eventActive));
+            
         }
         
         tick.StopTickUpdate();
@@ -315,6 +316,7 @@ public class EventSystem : MonoBehaviour
 		print("About to play '" + randomEvents[randCheatIndex] + "'");
 		CreateEvent(randomEvents[randCheatIndex]);
 		tick.StopTickUpdate();
+		FindObjectOfType<CrewManagement>().TurnOffPanel();
 	}
 
 	public IEnumerator CheatCharacterEvent(int indexDirection)
@@ -343,6 +345,7 @@ public class EventSystem : MonoBehaviour
 		print("About to play '" + characterEvents[charCheatIndex] + "'");
 		CreateEvent(characterEvents[charCheatIndex]);
 		tick.StopTickUpdate();
+		FindObjectOfType<CrewManagement>().TurnOffPanel();
 	}
 
 	/// <summary>
@@ -353,7 +356,7 @@ public class EventSystem : MonoBehaviour
 	public IEnumerator StartNewCharacterEvent(List<GameObject> possibleEvents)
     {
 		chatting = true;
-		FindObjectOfType<CrewManagement>().TurnOffPanel();
+		FindObjectOfType<CrewManagement>()?.TurnOffPanel();
 		GameObject newEvent = FindNextCharacterEvent(possibleEvents);
 
 		if (newEvent != null)
@@ -368,7 +371,7 @@ public class EventSystem : MonoBehaviour
 	{
 		mutiny = true;
 		tick.StopTickUpdate();
-		FindObjectOfType<CrewManagement>().TurnOffPanel();
+		FindObjectOfType<CrewManagement>()?.TurnOffPanel();
 
 		// set event variables
 		//InkDriverBase mutinyEvent = newEvent.GetComponent<InkDriverBase>();
@@ -396,7 +399,8 @@ public class EventSystem : MonoBehaviour
 	/// <param name="newEvent"></param>
 	private void CreateEvent(GameObject newEvent)
 	{
-		FindObjectOfType<CrewManagementRoomDetailsMenu>()?.unHighlight();
+        FindObjectOfType<CrewManagementRoomDetailsMenu>()?.unHighlight();
+
 		CrewViewManager.Instance.DisableCrewView();
 		StartCoroutine(AudioManager.instance.Fade(AudioManager.instance.GetCurrentRadioSong(), 1, false));
 
