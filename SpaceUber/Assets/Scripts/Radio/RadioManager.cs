@@ -9,6 +9,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 [Serializable]
 public struct RadioStation
@@ -23,6 +24,9 @@ public class RadioManager : MonoBehaviour
     private int currentStation = 0;
     [SerializeField] TMP_Text currentStationName;
     [SerializeField] TMP_Text currentStationDesc;
+    [SerializeField] private Image muteButton;
+    [SerializeField] private Sprite muteButtonOff;
+    [SerializeField] private Sprite muteButtonOn;
 
     [SerializeField] private RadioStation[] stations = new RadioStation[6];
 
@@ -49,23 +53,25 @@ public class RadioManager : MonoBehaviour
 
     public void MasterVolSlider(float volume)
     {
-        AudioManager.instance.masterVolume = volume;
+        AudioManager.instance.MasterVolume = volume;
     }
     public void RadioVolSlider(float volume)
     {
-        AudioManager.instance.radioVolume = volume;
+        AudioManager.instance.RadioVolume = volume;
     }
     public void BGMVolSlider(float volume)
     {
-        AudioManager.instance.musicVolume = volume;
+        AudioManager.instance.MusicVolume = volume;
     }
     public void SFXVolSlider(float volume)
     {
-        AudioManager.instance.sfxVolume = volume;
+        AudioManager.instance.SfxVolume = volume;
     }
 
     public void Mute()
     {
-        AudioManager.instance.isMuted = !AudioManager.instance.isMuted;
+        AudioManager.instance.IsMuted = !AudioManager.instance.IsMuted;
+
+        muteButton.sprite = AudioManager.instance.IsMuted ? muteButtonOn : muteButtonOff;
     }
 }

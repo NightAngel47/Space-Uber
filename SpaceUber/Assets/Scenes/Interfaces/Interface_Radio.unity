@@ -128,6 +128,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1394594342, guid: b491113bf3133944abf5cde7db0e2095, type: 3}
+      propertyPath: stations.Array.data[1].name
+      value: JAZZ
+      objectReference: {fileID: 0}
+    - target: {fileID: 1394594342, guid: b491113bf3133944abf5cde7db0e2095, type: 3}
+      propertyPath: stations.Array.data[0].tooltipDesc
+      value: A simulation of popular music in the void of space. Simple and fun!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1394594342, guid: b491113bf3133944abf5cde7db0e2095, type: 3}
+      propertyPath: stations.Array.data[1].tooltipDesc
+      value: Smooth listening for all varieties of space-dwelling individuals.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1394594342, guid: b491113bf3133944abf5cde7db0e2095, type: 3}
+      propertyPath: stations.Array.data[2].tooltipDesc
+      value: Somehow, the tenets of twang made their way out to the stars.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1394594342, guid: b491113bf3133944abf5cde7db0e2095, type: 3}
+      propertyPath: stations.Array.data[3].tooltipDesc
+      value: Rhythm-heavy music with heavier synthetic sounds and less melod.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1394594342, guid: b491113bf3133944abf5cde7db0e2095, type: 3}
+      propertyPath: stations.Array.data[4].tooltipDesc
+      value: Weird, complex, and sraight-up strange noises that the radio picks up.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1394594342, guid: b491113bf3133944abf5cde7db0e2095, type: 3}
+      propertyPath: stations.Array.data[5].tooltipDesc
+      value: Exactly what is sounds like.
+      objectReference: {fileID: 0}
     - target: {fileID: 7816761296726704239, guid: b491113bf3133944abf5cde7db0e2095,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -332,6 +360,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7816761298779460653, guid: b491113bf3133944abf5cde7db0e2095,
+        type: 3}
+      propertyPath: m_Colors.m_ColorMultiplier
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b491113bf3133944abf5cde7db0e2095, type: 3}

@@ -28,18 +28,28 @@ public class ButtonTwoBehaviour : MonoBehaviour
         if (state)
         {
             button.interactable = true;
-            foreach (TMP_Text buttonText in buttonTexts)
+            foreach (TMP_Text text in buttonTexts)
             {
-                buttonText.color = activeColor;
+                text.color = activeColor;
             }
         }
         else
         {
             button.interactable = false;
-            foreach (TMP_Text buttonText in buttonTexts)
+            foreach (TMP_Text text in buttonTexts)
             {
-                buttonText.color = inactiveColor;
+                text.color = inactiveColor;
             }
         }
+    }
+    
+    public void GoToEvent()
+    {
+        button.onClick.AddListener(EventSystem.instance.SkipToEvent);
+    }
+    
+    public void ToggleInteractable()
+    {
+        SetButtonInteractable(!button.interactable);
     }
 }

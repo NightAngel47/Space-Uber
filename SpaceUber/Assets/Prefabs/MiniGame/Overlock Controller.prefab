@@ -43,12 +43,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1beec97bc5db0d746b0756bd33d90bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodBaseAdjustment: 20
-  securityBaseAdjustment: 15
-  shipWeaponsBaseAdjustment: 10
-  energyBaseAdjustment: 3
-  hullRepairBaseAdjustment: 8
-  failHullDurabilityBaseAdjustment: -10
+  foodBaseAdjustments:
+  - 15
+  - 30
+  - 45
+  securityBaseAdjustments:
+  - 15
+  - 25
+  - 35
+  shipWeaponsBaseAdjustments:
+  - 10
+  - 20
+  - 30
+  energyBaseAdjustments:
+  - 3
+  - 6
+  - 9
+  hullRepairBaseAdjustments:
+  - 8
+  - 16
+  - 24
+  failHullDurabilityBaseAdjustments:
+  - -10
+  - -20
+  - -30
   cooldownTime: 5
   cropPercentIncrease: 5
   securityPercentIncrease: 5
@@ -57,3 +75,4 @@ MonoBehaviour:
   hullRepairPercentIncrease: 5
   slotPercentIncrease: 8
   overclocking: 0
+  activeRoom: {fileID: 0}

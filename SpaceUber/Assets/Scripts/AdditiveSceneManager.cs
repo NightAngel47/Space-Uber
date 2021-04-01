@@ -33,7 +33,7 @@ public class AdditiveSceneManager : MonoBehaviour
     /// <summary>
     /// Max number of scenes that can be loaded at once.
     /// </summary>
-    private int maxAddedScenes = 10;
+    private int maxAddedScenes = 100;
     
     // The names of the second loaded scene
     private string[] addedSceneNames;
@@ -302,7 +302,7 @@ public class AdditiveSceneManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Scene: {scene} was not loaded, thus could not be unloaded.");
+            //Debug.LogWarning($"Scene: {scene} was not loaded, thus could not be unloaded.");
         }
     }
 }

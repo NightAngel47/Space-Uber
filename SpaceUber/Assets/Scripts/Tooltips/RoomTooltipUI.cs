@@ -16,11 +16,13 @@ public class RoomTooltipUI : MonoBehaviour
     
     [SerializeField] private TMP_Text roomNameUI;
     [SerializeField] private TMP_Text roomDescUI;
+    [SerializeField] private TMP_Text roomLevelUI;
     
     private void Start()
     {
         roomNameUI.text = roomStats.roomName;
         roomDescUI.text = roomStats.roomDescription;
+        roomLevelUI.text = roomStats.GetRoomLevel().ToString();
     }
 
     private void Update()
@@ -29,5 +31,10 @@ public class RoomTooltipUI : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    public void UpdateRoomLevel()
+    {
+        roomLevelUI.text = roomStats.GetRoomLevel().ToString();
     }
 }

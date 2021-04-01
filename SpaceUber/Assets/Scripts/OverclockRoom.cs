@@ -1,10 +1,11 @@
-﻿/*
+/*
  * OverclockRoom.cs
  * Author(s): Grant Frey
  * Created on: 9/25/2020
  * Description: 
  */
 
+using System;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +22,14 @@ public class OverclockRoom : MonoBehaviour
     private List<GameObject> roomEvents;
 
     private bool minigameCooledDown = true;
+    public bool MinigameCooledDown => minigameCooledDown;
+
+    private CrewManagementRoomDetailsMenu roomDetailsMenu;
+
+    private void Start()
+    {
+	    roomDetailsMenu = FindObjectOfType<CrewManagementRoomDetailsMenu>();
+    }
 
     public void PlayMiniGame()
     {
@@ -36,8 +45,12 @@ public class OverclockRoom : MonoBehaviour
     private IEnumerator MinigameCooldown()
 	{
         minigameCooledDown = false;
+        roomDetailsMenu.SetOvertimeButtonState(minigameCooledDown);
+        
         yield return new WaitForSeconds(OverclockController.instance.cooldownTime);
+        
         minigameCooledDown = true;
+        roomDetailsMenu.SetOvertimeButtonState(minigameCooledDown);
 	}
 
     public MiniGameType GetMiniGame()
