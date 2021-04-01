@@ -102,37 +102,30 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
             case MiniGameType.Security:
                 overtimeResource.text = GameManager.instance.GetResourceData((int) ResourceDataTypes._Security).resourceName;
                 overtimeIcon.sprite = GameManager.instance.GetResourceData((int) ResourceDataTypes._Security).resourceIcon;
-                overtimeAmount.text = "";
                 break;
             case MiniGameType.Asteroids:
                 overtimeResource.text = GameManager.instance.GetResourceData((int) ResourceDataTypes._ShipWeapons).resourceName;
                 overtimeIcon.sprite = GameManager.instance.GetResourceData((int) ResourceDataTypes._ShipWeapons).resourceIcon;
-                overtimeAmount.text = "";
                 break;
             case MiniGameType.CropHarvest:
                 overtimeResource.text = GameManager.instance.GetResourceData((int) ResourceDataTypes._Food).resourceName;
                 overtimeIcon.sprite = GameManager.instance.GetResourceData((int) ResourceDataTypes._Food).resourceIcon;
-                overtimeAmount.text = "";
                 break;
             case MiniGameType.StabilizeEnergyLevels:
                 overtimeResource.text = GameManager.instance.GetResourceData((int) ResourceDataTypes._Energy).resourceName;
                 overtimeIcon.sprite = GameManager.instance.GetResourceData((int) ResourceDataTypes._Energy).resourceIcon;
-                overtimeAmount.text = "";
                 break;
             case MiniGameType.SlotMachine:
                 overtimeResource.text = GameManager.instance.GetResourceData((int) ResourceDataTypes._Credits).resourceName;
                 overtimeIcon.sprite = GameManager.instance.GetResourceData((int) ResourceDataTypes._Credits).resourceIcon;
-                overtimeAmount.text = "";
                 break;
             case MiniGameType.HullRepair:
                 overtimeResource.text = GameManager.instance.GetResourceData((int) ResourceDataTypes._HullDurability).resourceName;
                 overtimeIcon.sprite = GameManager.instance.GetResourceData((int) ResourceDataTypes._HullDurability).resourceIcon;
-                overtimeAmount.text = "";
                 break;
             default:
                 overtimeResource.text = "";
                 overtimeIcon.gameObject.SetActive(false);
-                overtimeAmount.text = "";
                 SetOvertimeButtonState(false); // disable button is no mini-game on room
                 break;
         }
