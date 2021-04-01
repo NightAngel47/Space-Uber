@@ -66,8 +66,8 @@ MonoBehaviour:
     volumeVarience: 0
     pitchVarience: 0
   - name: General Theme
-    clip: {fileID: 8300000, guid: 47f5c683db20d91429fd6fd3b2b0aa80, type: 3}
-    mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    clip: {fileID: 8300000, guid: 0d5d167227cbd264e936b35dd45b4336, type: 3}
+    mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
     volume: 1
     pitch: 1
     volumeVarience: 0
@@ -399,6 +399,27 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: cccdb060bb915ed498082d77d08b41a7, type: 3}
     mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
     volume: 0.25
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.5
+  - name: Metal 1
+    clip: {fileID: 8300000, guid: 79ef3d8052925e2408faa4553d1268d2, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.5
+  - name: Metal 2
+    clip: {fileID: 8300000, guid: 55a9f9c78fc655f45b6e9d905d55df3a, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0.25
+    pitchVarience: 0.5
+  - name: Metal 2
+    clip: {fileID: 8300000, guid: ccef314519dff8846a8c4917751eb3b0, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
     pitch: 1
     volumeVarience: 0.25
     pitchVarience: 0.5
@@ -3428,6 +3449,14 @@ MonoBehaviour:
       pitch: 1
       volumeVarience: 0
       pitchVarience: 0
+    - name: Disco
+      clip: {fileID: 8300000, guid: 0ca3432e1755bbe479b6d73e8373c88c, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.85
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
   - name: JAZZ
     tracks:
     - name: SMTH_demo
@@ -3438,8 +3467,8 @@ MonoBehaviour:
       pitch: 1
       volumeVarience: 0
       pitchVarience: 0
-    - name: SMTH_demo
-      clip: {fileID: 8300000, guid: 124f3a177d725944a8e2ee21fdeb19e9, type: 3}
+    - name: Stroll
+      clip: {fileID: 8300000, guid: 34a67b62822b1e741a3d3063a6922fbf, type: 3}
       mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
         type: 2}
       volume: 0.75
@@ -3490,3 +3519,4 @@ MonoBehaviour:
   fadeOutTime: 2
   trackOverlapTime: 1.25
   fadeInTime: 3.25
+  currentStationId: 0
