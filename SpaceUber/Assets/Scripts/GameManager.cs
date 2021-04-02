@@ -109,7 +109,6 @@ public class GameManager : MonoBehaviour
             switch (currentGameState)
             {
                 case InGameStates.ShipBuilding:
-                    
                     yield return new WaitUntil(() => FindObjectOfType<SpotChecker>());
                     SavingLoadingManager.instance.LoadRoomLevels();
                     break;
@@ -117,7 +116,7 @@ public class GameManager : MonoBehaviour
                     yield return new WaitUntil(() => FindObjectOfType<CrewManagement>());
                     break;
                 case InGameStates.Events:
-                    yield return new WaitUntil(() => FindObjectOfType<SpotChecker>() && FindObjectOfType<CrewManagement>());
+                    yield return new WaitUntil(() => FindObjectOfType<SpotChecker>());
                     break;
                 default:
                     Debug.LogWarning("In Game stat not setup for loading.");
@@ -151,7 +150,6 @@ public class GameManager : MonoBehaviour
             case InGameStates.JobSelect: // Loads Jobpicker for the player to pick their job
                 // unload ending screen if replaying
                 additiveSceneManager.UnloadScene("Interface_Runtime");
-                additiveSceneManager.UnloadScene("PromptScreen_End");
                 additiveSceneManager.UnloadScene("Interface_GameOver");
                 additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
                 additiveSceneManager.UnloadScene("Interface_RoomUnlockScreen");
@@ -190,15 +188,15 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.LoadSceneSeperate("Interface_RoomUnlockScreen");  
                 break;
             case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
+                additiveSceneManager.UnloadScene("CrewManagement");
                 additiveSceneManager.UnloadScene("PromptScreen_End");
                 additiveSceneManager.UnloadScene("Interface_GameOver");
-                additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
                 additiveSceneManager.UnloadScene("Starport BG");
 
                 // if loading from continue
-                if (!FindObjectOfType<CrewManagement>() || !FindObjectOfType<SpotChecker>())
+                if (!FindObjectOfType<SpotChecker>())
                 {
-                    StartCoroutine(SetupNeededManagersIfLoadedIntoEvents());
+                    StartCoroutine(LoadSpotCheckerInShipBuilding());
                 }
                 else // if coming from crew management
                 {
@@ -209,7 +207,7 @@ public class GameManager : MonoBehaviour
                     SavingLoadingManager.instance.SaveRooms();
                 }
                 
-                additiveSceneManager.LoadSceneMerged("Interface_Runtime");
+                additiveSceneManager.LoadSceneSeperate("Interface_Runtime");
 
                 StartCoroutine(EventSystem.instance.PlayIntro());
                 break;
@@ -217,7 +215,6 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("Interface_Runtime");
                 additiveSceneManager.UnloadScene("Event_General");
                 additiveSceneManager.UnloadScene("Event_CharacterFocused");
-                additiveSceneManager.UnloadScene("CrewManagement");
                 
                 additiveSceneManager.LoadSceneSeperate("Interface_JobPaycheckScreen");
                 break;
@@ -276,17 +273,12 @@ public class GameManager : MonoBehaviour
         return resourceDataRef[i];
     }
 
-    private IEnumerator SetupNeededManagersIfLoadedIntoEvents()
+    private IEnumerator LoadSpotCheckerInShipBuilding()
     {
         // load ship building for spot checker to load into don't destroy on load
         additiveSceneManager.LoadSceneSeperate("ShipBuilding");
         yield return new WaitUntil(() => SceneManager.GetSceneByName("ShipBuilding").isLoaded);
         additiveSceneManager.UnloadScene("ShipBuilding"); // unload cause not needed anymore
-        
-        // load crew management for crew management to be loaded
-        additiveSceneManager.LoadSceneSeperate("CrewManagement");
-        yield return new WaitUntil(() => SceneManager.GetSceneByName("CrewManagement").isLoaded);
-        FindObjectOfType<CrewManagement>().FinishWithCrewAssignment(); // deactivate crew assignment elements
     }
 
     private void SaveGameState()
@@ -305,16 +297,12 @@ public class GameManager : MonoBehaviour
         {
             case 1:
                 return currentMaxLvlGroup1;
-                break;
             case 2:
                 return currentMaxLvlGroup2;
-                break;
             case 3:
                 return currentMaxLvlGroup3;
-                break;
             default:
                 return 0;
-                break;
         }
     }
 
