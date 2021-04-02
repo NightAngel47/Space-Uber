@@ -33,7 +33,7 @@ public class AdditiveSceneManager : MonoBehaviour
     /// <summary>
     /// Max number of scenes that can be loaded at once.
     /// </summary>
-    private int maxAddedScenes = 100;
+    private int maxAddedScenes = 10;
     
     // The names of the second loaded scene
     private string[] addedSceneNames;

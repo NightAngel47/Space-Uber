@@ -4,7 +4,6 @@
  * controls the dials on the radio
  */
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,56 +15,54 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 {
     [SerializeField] Image myImage;
     [SerializeField] RectTransform rotator;
-    [SerializeField] private DialType dial;
-    
-    enum DialType
-    {
-        Station,
-        Master,
-        Radio,
-        BGM,
-        SFX
-    };
-    
+    [SerializeField] Slider slider;
+    [SerializeField] bool stationDial;
+    [SerializeField] bool masterDial;
+    [SerializeField] bool radioDial;
+    [SerializeField] bool bgmDial;
+    [SerializeField] bool sfxDial;
     private bool isMouseOverObject;
     private bool locked = false;
-    private RadioManager radioManager;
     private AudioSettings audioSettings;
+    private Quaternion defaultPosition = new Quaternion(0f,0f,0f,0f);
 
-    private float value;
 
     private void Awake()
     {
-        radioManager = GetComponentInParent<RadioManager>();
         audioSettings = FindObjectOfType<AudioSettings>();
 
-        if (dial == DialType.Station)//SavingLoadingManager.instance.GetHasSave() 
+        if (stationDial)//SavingLoadingManager.instance.GetHasSave() 
         {
             LoadRadioSettings();
         }
         else SetAudioSettingsValues();
     }
+
     
+
     private void OnEnable()
     {
         audioSettings = FindObjectOfType<AudioSettings>();
 
-        if (dial == DialType.Station)//SavingLoadingManager.instance.GetHasSave() 
+        if (stationDial)//SavingLoadingManager.instance.GetHasSave() 
         {
             LoadRadioSettings();
         }
         else SetAudioSettingsValues();
+
+
+
+
     }
-    
     private void OnDisable()
     {
         SendAudioSettingsValues();
-        if (dial == DialType.Station) SaveRadioSettings();
+        if (stationDial) SaveRadioSettings();
     }
     private void OnDestroy()
     {
         SendAudioSettingsValues();
-        if (dial == DialType.Station) SaveRadioSettings();
+        if (stationDial) SaveRadioSettings();
     }
 
     void Update()
@@ -82,63 +79,37 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             rotator.transform.Rotate(0f, 0f, -angle);
 
 
-            /*if within 3 degrees of 0. Lock dial, set volume to min or max, return dial to unlocked position, return
-            if (!stationDial && rotator.rotation.eulerAngles.z < 3)
-            {
-                locked = true;
-                rotator.transform.Rotate(0f, 0f, 3);
-                isMouseOverObject = false;
-                if (!stationDial) myImage.fillAmount = slider.value;
-                slider.value = 100; return;
-            }
-            else if (!stationDial && rotator.rotation.eulerAngles.z > 357)
-            {
-                locked = true;
-                rotator.transform.Rotate(0f, 0f, -3);
-                isMouseOverObject = false;
-                if (!stationDial) myImage.fillAmount = slider.value;
-                slider.value = 0; return;
-            }*/
+            //if within 3 degrees of 0. Lock dial, set volume to min or max, return dial to unlocked position, return
+            //if (!stationDial && rotator.rotation.eulerAngles.z < 3)
+            //{
+                //locked = true;
+                //rotator.transform.Rotate(0f, 0f, 3);
+                //isMouseOverObject = false;
+                //if (!stationDial) myImage.fillAmount = slider.value;
+                //slider.value = 100; return;
+            //}
+            //else if (!stationDial && rotator.rotation.eulerAngles.z > 357)
+            //{
+                //locked = true;
+                //rotator.transform.Rotate(0f, 0f, -3);
+                //isMouseOverObject = false;
+                //if (!stationDial) myImage.fillAmount = slider.value;
+                //slider.value = 0; return;
+            //}
 
             //set slider values based on rotation
-            if (dial == DialType.Station) value = (Mathf.Abs(rotator.rotation.z) / 360f) * 100f * 20f;
-            else value = 1 - (rotator.rotation.eulerAngles.z / 360);
-
-            UpdateRadioManager();
+            if (stationDial) slider.value = (Mathf.Abs(rotator.rotation.z) / 360f) * 100f * 20f;
+            else slider.value = 1 - (rotator.rotation.eulerAngles.z / 360);
             
-            //fill volume bar based on slider value
-            if (dial != DialType.Station) myImage.fillAmount = value;
+
         }
+        //fill volume bar based on slider value
+        if (!stationDial)myImage.fillAmount = slider.value;
 
         //if player lets go outside of hitbox, let go
         if(Input.GetMouseButtonUp(0)) isMouseOverObject = false;
 
-        if(Input.GetKeyDown(KeyCode.Escape)) SendAudioSettingsValues();
-    }
-
-    private void UpdateRadioManager()
-    {
-        switch (dial)
-        {
-            case DialType.Station:
-                radioManager.RadioStationSlider(value);
-                return;
-            case DialType.Master:
-                radioManager.MasterVolSlider(value);
-                break;
-            case DialType.Radio:
-                radioManager.RadioVolSlider(value);
-                break;
-            case DialType.BGM:
-                radioManager.BGMVolSlider(value);
-                break;
-            case DialType.SFX:
-                radioManager.SFXVolSlider(value);
-                break;
-            default:
-                Debug.LogError("Radio Dial Type Not Set");
-                break;
-        }
+        if(Input.GetKeyDown(KeyCode.Escape))SendAudioSettingsValues();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -155,71 +126,35 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if(!Input.GetMouseButton(0)) isMouseOverObject = false;
     }
 
-    private void SaveRadioSettings()
+    public void SaveRadioSettings()
     {
-        SavingLoadingManager.instance.Save<float>("sliderVal", value);
+        SavingLoadingManager.instance.Save<float>("sliderVal", slider.value);
     }
-
-    private void LoadRadioSettings()
+    public void LoadRadioSettings()
     {
-        value = SavingLoadingManager.instance.Load<float>("sliderVal");
-        
-        UpdateRadioManager();
+        slider.value = SavingLoadingManager.instance.Load<float>("sliderVal");
     }
 
     public void SetAudioSettingsValues()
     {
-        switch (dial)
+        if (masterDial) slider.value = AudioSettings.masterVol;
+        else if (radioDial) slider.value = AudioSettings.radioVol;
+        else if (bgmDial) slider.value = AudioSettings.bgmVol;
+        else if (sfxDial) slider.value = AudioSettings.sfxVol;
+        if(!stationDial)
         {
-            case DialType.Station:
-                return;
-            case DialType.Master:
-                value = AudioSettings.masterVol;
-                break;
-            case DialType.Radio:
-                value = AudioSettings.radioVol;
-                break;
-            case DialType.BGM:
-                value = AudioSettings.bgmVol;
-                break;
-            case DialType.SFX:
-                value = AudioSettings.sfxVol;
-                break;
-            default:
-                Debug.LogError("Radio Dial Type Not Set");
-                break;
+            rotator.transform.rotation = defaultPosition;
+            rotator.transform.Rotate(0f, 0f, -(slider.value * 360f));
         }
         
-        UpdateRadioManager();
-
-        rotator.transform.rotation = Quaternion.identity;
-        rotator.transform.Rotate(0f, 0f, -(value * 360f));
-        if (dial != DialType.Station) myImage.fillAmount = value;
     }
 
-    private void SendAudioSettingsValues()
+    public void SendAudioSettingsValues()
     {
-        switch (dial)
-        {
-            case DialType.Station:
-                return;
-            case DialType.Master:
-                AudioSettings.masterVol = value;
-                break;
-            case DialType.Radio:
-                AudioSettings.radioVol = value;
-                break;
-            case DialType.BGM:
-                AudioSettings.bgmVol = value;
-                break;
-            case DialType.SFX:
-                AudioSettings.sfxVol = value;
-                break;
-            default:
-                Debug.LogError("Radio Dial Type Not Set");
-                break;
-        }
-        
-        audioSettings?.SaveAudioSettings();
+        if (masterDial) AudioSettings.masterVol = slider.value;
+        else if (radioDial) AudioSettings.radioVol = slider.value;
+        else if (bgmDial) AudioSettings.bgmVol = slider.value;
+        else if (sfxDial) AudioSettings.sfxVol = slider.value;
+        if(FindObjectOfType<AudioSettings>() != null) FindObjectOfType<AudioSettings>().SaveAudioSettings();
     }
 }

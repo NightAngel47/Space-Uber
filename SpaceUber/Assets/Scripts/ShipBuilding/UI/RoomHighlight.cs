@@ -12,18 +12,18 @@ public class RoomHighlight : MonoBehaviour
     [SerializeField] GameObject highlightSprite;
     [SerializeField] GameObject crewViewSprite;
 
-    public void Highlight()
+    public void highlight()
     {
         highlightSprite.SetActive(true);
         crewViewSprite.SetActive(false);
     }
-    public void Unhighlight()
+    public void unhighlight()
     {
         highlightSprite.SetActive(false);
         crewViewSprite.SetActive(true);
     }
 
-    public void ToggleHighlight()
+    public void toggleHighlight()
     {
         if(highlightSprite.activeSelf == true)
         {

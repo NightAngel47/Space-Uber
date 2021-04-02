@@ -16,6 +16,8 @@ public class ButtonTwoBehaviour : MonoBehaviour
     
     [SerializeField] private Color activeColor;
     [SerializeField] private Color inactiveColor;
+    [SerializeField] private Material[] activeMaterials;
+    [SerializeField] private Material[] inactiveMaterials;
     
     void Awake()
     {
@@ -28,17 +30,19 @@ public class ButtonTwoBehaviour : MonoBehaviour
         if (state)
         {
             button.interactable = true;
-            foreach (TMP_Text text in buttonTexts)
+            for(int i = 0; i < buttonTexts.Length; i++)
             {
-                text.color = activeColor;
+                buttonTexts[i].color = activeColor;
+                buttonTexts[i].fontMaterial = activeMaterials[i];
             }
         }
         else
         {
             button.interactable = false;
-            foreach (TMP_Text text in buttonTexts)
+            for(int i = 0; i < buttonTexts.Length; i++)
             {
-                text.color = inactiveColor;
+                buttonTexts[i].color = inactiveColor;
+                buttonTexts[i].fontMaterial = inactiveMaterials[i];
             }
         }
     }

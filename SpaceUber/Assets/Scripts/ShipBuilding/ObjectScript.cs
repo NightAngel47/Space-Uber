@@ -66,6 +66,7 @@ public class ObjectScript : MonoBehaviour
         c = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
         c.a = 1;
         //parentObj = transform.parent.gameObject;
+        
         ResetData();
     }
 
@@ -156,10 +157,10 @@ public class ObjectScript : MonoBehaviour
             //if the object is clicked, open the room management menu
             if (Input.GetMouseButtonDown(0))
             {
-                //FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
-                FindObjectOfType<RoomPanelToggle>().OpenPanel(0);
+                FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
+                FindObjectOfType<RoomPanelToggle>().OpenPanel(0, true);
                 FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(gameObject);
-                //FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
+                FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
                 AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
             }
         }

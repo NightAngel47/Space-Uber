@@ -26,9 +26,9 @@ public class ClickSound : MonoBehaviour
 
     IEnumerator ClickPause()
     {
-        playingSound = true;
-        yield return new WaitForSeconds(0.25f);
         playingSound = false;
+        yield return new WaitForSeconds(0.25f);
+        playingSound = true;
     }
 
     public void ClickPlay()

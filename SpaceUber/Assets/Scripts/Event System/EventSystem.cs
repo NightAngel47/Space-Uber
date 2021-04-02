@@ -8,13 +8,11 @@
  * When the number of events played reaches the maxEvents number, the job ends
  */
 
-using System;
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.SceneManagement;
-using Random = UnityEngine.Random;
 
 public class EventSystem : MonoBehaviour
 {
@@ -97,15 +95,15 @@ public class EventSystem : MonoBehaviour
 		tick = FindObjectOfType<Tick>();
 		asm = FindObjectOfType<AdditiveSceneManager>();
 		campMan = GetComponent<CampaignManager>();
-	}
+    }
 
-	/// <summary>
+    /// <summary>
     /// Plays job intro
     /// </summary>
     public IEnumerator PlayIntro()
     {
 	    yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_Runtime").isLoaded);
-	    progressBar = FindObjectOfType<ProgressBarUI>();
+	    //SetUpEventTimer();
 
 		chatting = false;
 		while(currentJob == null)
@@ -139,6 +137,7 @@ public class EventSystem : MonoBehaviour
 
 	private IEnumerator Travel()
 	{
+        progressBar = FindObjectOfType<ProgressBarUI>();
         eventButtonSpawn = false;
         tick.DaysSince = 0; // reset days since
 		campMan.cateringToTheRich.SaveEventChoices();
@@ -200,7 +199,6 @@ public class EventSystem : MonoBehaviour
 
             tick.StopTickUpdate();
             FindObjectOfType<CrewManagement>()?.TurnOffPanel();
-            FindObjectOfType<RoomPanelToggle>()?.ClosePanel();
 
             //wait until done with minigame and/or character event
             yield return new WaitUntil(() => !OverclockController.instance.overclocking && !chatting);
@@ -237,11 +235,13 @@ public class EventSystem : MonoBehaviour
 	    //if it's an even-numbered event, do a story
 	    if (overallEventIndex % 2 == 1 && overallEventIndex != 0)
 	    {
+			
 		    StartCoroutine(StartStoryEvent());
 	    }
 	    else
 	    {
-		    Tutorial.Instance.SetCurrentTutorial(4, true);
+			
+			Tutorial.Instance.SetCurrentTutorial(4, true);
 			StartCoroutine(StartRandomEvent());
 	    }
     }
@@ -357,7 +357,6 @@ public class EventSystem : MonoBehaviour
     {
 		chatting = true;
 		FindObjectOfType<CrewManagement>()?.TurnOffPanel();
-		FindObjectOfType<RoomPanelToggle>()?.ClosePanel();
 		GameObject newEvent = FindNextCharacterEvent(possibleEvents);
 
 		if (newEvent != null)
@@ -373,7 +372,6 @@ public class EventSystem : MonoBehaviour
 		mutiny = true;
 		tick.StopTickUpdate();
 		FindObjectOfType<CrewManagement>()?.TurnOffPanel();
-		FindObjectOfType<RoomPanelToggle>()?.ClosePanel();
 
 		// set event variables
 		//InkDriverBase mutinyEvent = newEvent.GetComponent<InkDriverBase>();
@@ -696,12 +694,14 @@ public class EventSystem : MonoBehaviour
 		//If chat has cooleddown
 		if (tick.DaysSinceChat < chatCooldown)
 		{
+			print("Not ready to chat");
 			return false;
 		}
 
 		//if no possible events are found
 		if (!HasPossibleCharacterEvent(checkEvents))
 		{
+			print("No events available");
 			return false;
 		}
 
