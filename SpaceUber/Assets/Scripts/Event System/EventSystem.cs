@@ -199,7 +199,7 @@ public class EventSystem : MonoBehaviour
             // once event rolled or skipped
 
             tick.StopTickUpdate();
-            FindObjectOfType<RoomPanelToggle>().ClosePanel();
+            FindObjectOfType<RoomPanelToggle>()?.ClosePanel();
 
             //wait until done with minigame and/or character event
             yield return new WaitUntil(() => !OverclockController.instance.overclocking && !chatting);
@@ -352,7 +352,7 @@ public class EventSystem : MonoBehaviour
 	public IEnumerator StartNewCharacterEvent(List<GameObject> possibleEvents)
     {
 		chatting = true;
-		FindObjectOfType<RoomPanelToggle>().ClosePanel();
+		FindObjectOfType<RoomPanelToggle>()?.ClosePanel();
 		GameObject newEvent = FindNextCharacterEvent(possibleEvents);
 
 		if (newEvent != null)
@@ -367,7 +367,7 @@ public class EventSystem : MonoBehaviour
 	{
 		mutiny = true;
 		tick.StopTickUpdate();
-		FindObjectOfType<RoomPanelToggle>().ClosePanel();
+		FindObjectOfType<RoomPanelToggle>()?.ClosePanel();
 
 		// set event variables
 		//InkDriverBase mutinyEvent = newEvent.GetComponent<InkDriverBase>();
@@ -395,7 +395,7 @@ public class EventSystem : MonoBehaviour
 	/// <param name="newEvent"></param>
 	private void CreateEvent(GameObject newEvent)
 	{
-		FindObjectOfType<CrewManagementRoomDetailsMenu>().UnHighlight();
+		FindObjectOfType<CrewManagementRoomDetailsMenu>()?.UnHighlight();
 		CrewViewManager.Instance.DisableCrewView();
 		StartCoroutine(AudioManager.instance.Fade(AudioManager.instance.GetCurrentRadioSong(), 1, false));
 
