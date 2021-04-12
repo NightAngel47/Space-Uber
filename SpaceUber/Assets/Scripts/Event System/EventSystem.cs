@@ -149,7 +149,7 @@ public class EventSystem : MonoBehaviour
 			// wait till any active event is cleared before starting event timer for next event
 			yield return new WaitWhile((() => eventActive));
 
-            asm.LoadSceneMerged("Event_Prompt"); //Give option to start next event
+            asm.LoadSceneMerged("Event_Prompt"); //Load up the button that lets someone skip to an event
             yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
             
             eventPromptButton = FindObjectOfType<EventPromptButton>();
@@ -169,10 +169,17 @@ public class EventSystem : MonoBehaviour
                 yield return new WaitForEndOfFrame();
 			}
 
-            eventButtonSpawn = true;
-            eventPromptButton.eventButton.GoToEvent();
+            
+			//make absolutely sure that the scene loaded in
+			if (!SceneManager.GetSceneByName("Event_Prompt").isLoaded) 
+			{
+				asm.LoadSceneMerged("Event_Prompt"); //Load up the button that lets someone skip to an event
+				yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
+			}
+			eventButtonSpawn = true;
+			eventPromptButton.eventButton.GoToEvent();
 
-            // roll for next event unless skipped to it
+            // roll to see if it's time to force an event
             while (!skippedToEvent && eventRollCounter <= eventChanceFreq)
             {
 				if(!mutiny) // don't increment timer during mutiny
