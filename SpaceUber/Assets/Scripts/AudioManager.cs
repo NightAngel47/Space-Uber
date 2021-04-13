@@ -278,11 +278,11 @@ public class AudioManager : MonoBehaviour
         Debug.LogWarning("AudioManager: Sound not found in List: " + soundName);
     }
 
-    public void PlayRadio(int station)
+    public void PlayRadio(int station, bool overrideCheck = false)
     {
         try
         {
-            //if (currentlyPlayingStation != null && currentlyPlayingStation.name == radioTracks[station].tracks[0].name) { return; }
+            if (currentlyPlayingStation != null && currentlyPlayingStation.name == radioTracks[station].tracks[0].name && overrideCheck == false) { return; }
             currentStationId = station;
             //Search stations to match up the name of the first track
             for (int i = 0; i < radioTracks.Length; i++)
