@@ -141,6 +141,7 @@ public class EventSystem : MonoBehaviour
         eventButtonSpawn = false;
         tick.DaysSince = 0; // reset days since
 		campMan.cateringToTheRich.SaveEventChoices();
+        progressBar.gameObject.SetActive(true);
 
         // loops once per event
         while (GameManager.instance.currentGameState == InGameStates.Events)
@@ -152,6 +153,7 @@ public class EventSystem : MonoBehaviour
             yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
             
             eventPromptButton = FindObjectOfType<EventPromptButton>();
+            eventPromptButton.gameObject.SetActive(true);
             tick.StartTickUpdate();
             progressBar.StartProgress();
             chanceOfEvent = startingEventChance;
@@ -216,7 +218,8 @@ public class EventSystem : MonoBehaviour
             yield return new WaitWhile((() => eventActive));
             eventButtonSpawn = false;
         }
-        
+        progressBar.gameObject.SetActive(false);
+        eventPromptButton.gameObject.SetActive(false);
         tick.StopTickUpdate();
 	}
 
