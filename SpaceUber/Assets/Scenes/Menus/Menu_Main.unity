@@ -279,6 +279,37 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.size
+      value: 44
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[43].name
+      value: Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[43].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9f83bea75c0234f48bd7c7d59f7cee2e, type: 3}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[43].mixer
+      value: 
+      objectReference: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[43].volume
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354258606540800590, guid: cfd00d5985b7e774da68f5c929635ee4,
+        type: 3}
+      propertyPath: musicTracks.Array.data[43].pitch
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfd00d5985b7e774da68f5c929635ee4, type: 3}
 --- !u!114 &280747027 stripped
@@ -303,6 +334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 291666678}
   - component: {fileID: 291666679}
+  - component: {fileID: 291666680}
   m_Layer: 5
   m_Name: Menu_Main
   m_TagString: Untagged
@@ -349,6 +381,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuButtons: {fileID: 1937380107}
   menuButtonsWithContinue: {fileID: 882146998}
+--- !u!114 &291666680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291666677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1387d94f0f06a9f4bb9644d32385f226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &293835582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -729,7 +773,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769845546}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f,
     type: 2}
