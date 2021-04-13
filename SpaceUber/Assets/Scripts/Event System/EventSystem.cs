@@ -30,7 +30,7 @@ public class EventSystem : MonoBehaviour
 	private int maxEvents = 0;
 	private List<GameObject> storyEvents = new List<GameObject>();
 	private List<GameObject> randomEvents = new List<GameObject>();
-	[SerializeField]private List<GameObject> characterEvents = new List<GameObject>();
+	private List<GameObject> characterEvents = new List<GameObject>();
 
     //how many events (story and random) have occurred
     [HideInInspector] public int overallEventIndex = 0;
@@ -38,6 +38,8 @@ public class EventSystem : MonoBehaviour
 	private int storyEventIndex = 0;
 	//how many random events have passed. Tells code how many events to ignore at the start of the list
 	private int randomEventIndex = 0;
+	//how many random events have passed. Tells code how many events to ignore at the start of the list
+	private int characterEventIndex = 0;
 
 	/// <summary>
 	/// The specific event being played right now
@@ -97,6 +99,7 @@ public class EventSystem : MonoBehaviour
 		tick = FindObjectOfType<Tick>();
 		asm = FindObjectOfType<AdditiveSceneManager>();
 		campMan = GetComponent<CampaignManager>();
+		characterEvents = campMan.GetCharacterEvents();
 	}
 
 	/// <summary>
@@ -543,6 +546,17 @@ public class EventSystem : MonoBehaviour
 
 	private bool HasPossibleCharacterEvent(List<GameObject> possibleEvents)
     {
+		for(int i = characterEventIndex; i < characterEvents.Count; i++)
+        {
+			GameObject charEvent = characterEvents[i];
+			CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
+			List<Requirements> requirements = eventDriver.requiredStats;
+
+			if (HasRequiredStats(requirements) /*&& eventDriver.MatchesRoomType(room)*/)
+			{
+				return true; //end function as soon as one is found
+			}
+		}
 		foreach (GameObject charEvent in possibleEvents)
 		{
 			CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
@@ -559,7 +573,7 @@ public class EventSystem : MonoBehaviour
 	/// <summary>
 	/// Returns the next chosen event that can be played from the possible list supplied.
 	/// If null, do not allow players to go into the event screen. Instead, inform them that no new events
-	/// are available.
+	/// are available. DUMMIED OUT
 	/// </summary>
 	/// <param name="possibleEvents"></param>
 	/// <returns></returns>
@@ -590,6 +604,50 @@ public class EventSystem : MonoBehaviour
 			return null;
         }
 	}
+
+	private GameObject RandomizeCharacterEvent(RoomStats.RoomType roomName)
+    {
+		GameObject thisEvent = characterEvents[characterEventIndex];
+
+		if (characterEventIndex != characterEvents.Count)
+		{
+			//select a random event from the list
+			int eventNum = Random.Range(characterEventIndex, characterEvents.Count);
+			thisEvent = characterEvents[eventNum];
+			List<Requirements> requirements = thisEvent.GetComponent<InkDriverBase>().requiredStats;
+			CharacterEvent charEventData = thisEvent.GetComponent<CharacterEvent>();
+
+			//if the event chosen has requirements that are not met, keep trying
+			if (!HasRequiredStats(requirements) && !charEventData.MatchesRoomType(roomName))
+			{
+				//copies the current index
+				int newIndex = characterEventIndex;
+				List<GameObject> newCharacterEvents = characterEvents;
+
+				//Copies the list to shuffle until it finds a new event to do or runs out of ideas
+				while (!HasRequiredStats(requirements) && newIndex != characterEvents.Count && !charEventData.MatchesRoomType(roomName))
+				{
+					//choose an event to check
+					int newNum = Random.Range(newIndex, newCharacterEvents.Count);
+
+					thisEvent = newCharacterEvents[newNum];
+
+					//insert this event at the beginning of the list so it cannot be picked again
+					newCharacterEvents.RemoveAt(eventNum);
+					newCharacterEvents.Insert(0, thisEvent);
+
+					newIndex++;
+				}
+
+				return null;
+			}
+
+			randomEvents.RemoveAt(eventNum);
+			randomEvents.Insert(0, thisEvent);
+		}
+
+		return thisEvent;
+    }
 
 	/// <summary>
 	/// Picks a random event to spawn. The random numbers include the eventIndex to the count of storyEvents list

@@ -66,6 +66,27 @@ public class RoomStats : MonoBehaviour
 
     private CrewManagementRoomDetailsMenu roomDetailsMenu;
 
+    public enum RoomType
+    {
+        ArmorPlating,
+        Armory,
+        Brig,
+        Bunks,
+        CoreChargingTerminal,
+        EnergyCanon,
+        HydroponicsStation,
+        Medbay,
+        PhotonTorpedoes,
+        Pantry,
+        PowerCore,
+        ShieldGenerator,
+        StorageContainer,
+        TeleportationStation,
+        VIPLounge,
+        WarpDrive
+
+    }
+
     private void Awake()
     {
         cam = Camera.main;

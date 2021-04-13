@@ -56,7 +56,8 @@ public class CharacterEvent : InkDriverBase
         SerializeField]
     private int moraleLoss = -10;
 
-
+    [SerializeField, Tooltip("The types of room this is attached to. Used to determine if this event can be played")]
+    private List<RoomStats.RoomType> roomTypes;
     public enum AnswerState
     {
         POSITIVE,
@@ -65,6 +66,23 @@ public class CharacterEvent : InkDriverBase
     }
 
     private AnswerState answersState = AnswerState.NEUTRAL;
+
+    /// <summary>
+    /// Whether or not the supplied room type is applicable to this event
+    /// </summary>
+    /// <param name="thisRoom"></param>
+    /// <returns></returns>
+    public bool MatchesRoomType(RoomStats.RoomType thisRoom)
+    {
+        foreach (RoomStats.RoomType type in roomTypes)
+        {
+            if(type == thisRoom)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public override void Start()
     {

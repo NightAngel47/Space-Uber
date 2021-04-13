@@ -116,7 +116,7 @@ public class Requirements
     #endregion
 
     #region Room Requirement Variables
-    public enum RoomType
+    public enum RoomType //these are not using the proper roomtype enum found in Roomstats as to avoid unnecessary prefab searches
     {
         ArmorPlating,
         Armory,

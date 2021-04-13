@@ -24,6 +24,11 @@ public class CampaignManager : MonoBehaviour
     public CateringToTheRich cateringToTheRich = new CateringToTheRich();
     public MysteriousEntity mysteriousEntity = new MysteriousEntity();
     public FinalTest finalTest = new FinalTest();
+    
+    [SerializeField, Tooltip("All character Events in the game. Will be supplied to event system")]
+    private List<GameObject> charEvents;
+    private List<GameObject> randEvents;
+
 
     #region Multipliers
     [Header("Campaign 2 multipliers")]
@@ -70,6 +75,10 @@ public class CampaignManager : MonoBehaviour
         }
     }
 
+    public List<GameObject> GetCharacterEvents()
+    {
+        return charEvents;
+    }
     /// <summary>
     /// Sets currentCampaign to the specified index and resets its job index to 0
     /// </summary>
