@@ -140,24 +140,27 @@ public class ChoiceOutcomes
                                 resultText += "\nYou gained " + Math.Abs(newAmount) + " weapons";
                             }
                             break;
-                        case ResourceDataTypes._Crew: //TODO: Figure out how to scale crew
+                        case ResourceDataTypes._Crew: //losing crew
                             if (newAmount < 0)
                             {
                                 int amountFromAssigned;
                                 int amountFromUnassigned;
 
-                                //if total crew - unassigned crew is greater than newAmount to lose
+                                //if there are enough unassigned crew to lose, subtract from there
                                 if (ship.CrewCurrent.x - ship.CrewCurrent.z >= -newAmount)
                                 {
                                     amountFromAssigned = -newAmount;
                                     amountFromUnassigned = 0;
                                 }
-                                else
+                                else //if not, lose crew from assigned crew
                                 {
+                                    //crew current - unassigned
                                     amountFromAssigned = (int)ship.CrewCurrent.x - (int)ship.CrewCurrent.z;
                                     amountFromUnassigned = -newAmount - amountFromAssigned;
                                 }
+
                                 ship.RemoveRandomCrew(amountFromAssigned);
+
                                 ship.CrewCurrent += new Vector3(newAmount, 0, -amountFromUnassigned);
                                 SpawnStatChangeText(ship, newAmount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou lost " + Math.Abs(newAmount) + " crew";
