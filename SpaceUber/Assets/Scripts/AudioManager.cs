@@ -379,6 +379,8 @@ public class AudioManager : MonoBehaviour
 
     public void StopMusic() { currentlyPlayingMusic.Stop(); }
 
+    public void StopRadio() { currentlyPlayingStation?.Stop(); }
+
     /// <summary>
     /// Fades a given sound in or out
     /// </summary>

@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     IEnumerator Start()
     {
         yield return new WaitUntil(() => AudioManager.instance != null);
+        AudioManager.instance.StopRadio();
         AudioManager.instance.PlayMusicWithTransition("Main Menu");
     }
 
