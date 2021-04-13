@@ -21,7 +21,9 @@ public class JobPaymentScreen : MonoBehaviour
     {
         ship = FindObjectOfType<ShipStats>();
         
-        int roomPayout = FindObjectsOfType<RoomStats>().Where(room => room.resources[0].resourceType.Rt == ResourceDataTypes._Payout).Sum(room => room.resources[0].activeAmount);
+        int roomPayout = FindObjectsOfType<RoomStats>().
+            Where(room => room.resources[0].resourceType.Rt == ResourceDataTypes._Payout).
+            Sum(room => room.resources[0].activeAmount);
 
         int jobPayout = ship.Payout - roomPayout;
         
