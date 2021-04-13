@@ -282,7 +282,7 @@ public class AudioManager : MonoBehaviour
     {
         try
         {
-            if (currentlyPlayingStation != null && currentlyPlayingStation.name == radioTracks[station].tracks[0].name && overrideCheck == false) { return; }
+            if (currentlyPlayingStation != null &&  station == currentStationId && overrideCheck == false) { return; } //currentlyPlayingStation.name == radioTracks[station].tracks[0].name
             currentStationId = station;
             //Search stations to match up the name of the first track
             for (int i = 0; i < radioTracks.Length; i++)
@@ -379,7 +379,7 @@ public class AudioManager : MonoBehaviour
 
     public void StopMusic() { currentlyPlayingMusic.Stop(); }
 
-    public void StopRadio() { currentlyPlayingStation?.Stop(); }
+    public void StopRadio() { currentlyPlayingStation?.Stop(); currentStationId = -1; }
 
     /// <summary>
     /// Fades a given sound in or out

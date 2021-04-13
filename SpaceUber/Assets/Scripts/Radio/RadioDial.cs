@@ -121,7 +121,6 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         switch (dial)
         {
             case DialType.Station:
-                Debug.LogError("blah");
                 radioManager.RadioStationSlider(value);
                 return;
             case DialType.Master:
