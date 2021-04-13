@@ -1,6 +1,6 @@
 /*
  * ChoiceOutcomes.cs
- * Author(s): Sam Ferstein
+ * Author(s): Sam Ferstein, Scott Acker
  * Created on: 9/18/2020 (en-US)
  * Description: Controls all outcomes of choices. When the player chooses to do something, code is directed here to determine the effects
  * Effects are written in the inspector
@@ -143,31 +143,31 @@ public class ChoiceOutcomes
                         case ResourceDataTypes._Crew: //losing crew
                             if (newAmount < 0)
                             {
-                                int amountFromAssigned;
-                                int amountFromUnassigned;
+                                //int amountFromAssigned;
+                                //int amountFromUnassigned;
 
-                                //if there are enough unassigned crew to lose, subtract from there
-                                if (ship.CrewCurrent.x - ship.CrewCurrent.z >= -newAmount)
-                                {
-                                    amountFromAssigned = -newAmount;
-                                    amountFromUnassigned = 0;
-                                }
-                                else //if not, lose crew from assigned crew
-                                {
-                                    //crew current - unassigned
-                                    amountFromAssigned = (int)ship.CrewCurrent.x - (int)ship.CrewCurrent.z;
-                                    amountFromUnassigned = -newAmount - amountFromAssigned;
-                                }
+                                ////if there are enough unassigned crew to lose, subtract from there
+                                //if (ship.CrewCurrent.x - ship.CrewCurrent.z >= -newAmount)
+                                //{
+                                //    amountFromAssigned = -newAmount;
+                                //    amountFromUnassigned = 0;
+                                //}
+                                //else //if not, lose crew from assigned crew
+                                //{
+                                //    //crew current - unassigned
+                                //    amountFromAssigned = (int)ship.CrewCurrent.x - (int)ship.CrewCurrent.z;
+                                //    amountFromUnassigned = -newAmount - amountFromAssigned;
+                                //}
 
-                                ship.RemoveRandomCrew(amountFromAssigned);
+                                //ship.RemoveRandomCrew(amountFromAssigned);
 
-                                ship.CrewCurrent += new Vector3(newAmount, 0, -amountFromUnassigned);
+                                ship.CrewCurrent += new Vector3(newAmount, 0, 0);
                                 SpawnStatChangeText(ship, newAmount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou lost " + Math.Abs(newAmount) + " crew";
                             }
                             else
                             {
-                                ship.CrewCurrent += new Vector3(newAmount, 0, newAmount);
+                                ship.CrewCurrent += new Vector3(newAmount, 0, 0);
                                 SpawnStatChangeText(ship, newAmount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou gained " + Math.Abs(newAmount) + " crew";
                             }
