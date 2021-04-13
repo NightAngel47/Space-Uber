@@ -352,11 +352,11 @@ public class EventSystem : MonoBehaviour
 	/// </summary>
 	/// <param name="possibleEvents"></param>
 	/// <returns></returns>
-	public IEnumerator StartNewCharacterEvent(List<GameObject> possibleEvents)
+	public IEnumerator StartNewCharacterEvent(RoomStats.RoomType room)
     {
 		chatting = true;
 		FindObjectOfType<RoomPanelToggle>()?.ClosePanel();
-		GameObject newEvent = FindNextCharacterEvent(possibleEvents);
+		GameObject newEvent = RandomizeCharacterEvent(room);
 
 		if (newEvent != null)
         {
@@ -544,7 +544,7 @@ public class EventSystem : MonoBehaviour
 		return null;
     }
 
-	private bool HasPossibleCharacterEvent(List<GameObject> possibleEvents)
+	private bool HasPossibleCharacterEvent(RoomStats.RoomType room)
     {
 		for(int i = characterEventIndex; i < characterEvents.Count; i++)
         {
@@ -552,17 +552,7 @@ public class EventSystem : MonoBehaviour
 			CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
 			List<Requirements> requirements = eventDriver.requiredStats;
 
-			if (HasRequiredStats(requirements) /*&& eventDriver.MatchesRoomType(room)*/)
-			{
-				return true; //end function as soon as one is found
-			}
-		}
-		foreach (GameObject charEvent in possibleEvents)
-		{
-			CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
-			List<Requirements> requirements = eventDriver.requiredStats;
-
-			if (HasRequiredStats(requirements))
+			if (HasRequiredStats(requirements) && eventDriver.MatchesRoomType(room))
 			{
 				return true; //end function as soon as one is found
 			}
@@ -570,40 +560,40 @@ public class EventSystem : MonoBehaviour
 		return false;
     }
 
-	/// <summary>
-	/// Returns the next chosen event that can be played from the possible list supplied.
-	/// If null, do not allow players to go into the event screen. Instead, inform them that no new events
-	/// are available. DUMMIED OUT
-	/// </summary>
-	/// <param name="possibleEvents"></param>
-	/// <returns></returns>
-	private GameObject FindNextCharacterEvent(List<GameObject> possibleEvents)
-    {
-		List<GameObject> goodEvents = new List<GameObject>(); //add all events that are possible to this list
+	///// <summary>
+	///// Returns the next chosen event that can be played from the possible list supplied.
+	///// If null, do not allow players to go into the event screen. Instead, inform them that no new events
+	///// are available. DUMMIED OUT
+	///// </summary>
+	///// <param name="possibleEvents"></param>
+	///// <returns></returns>
+	//private GameObject FindNextCharacterEvent(List<GameObject> possibleEvents)
+ //   {
+	//	List<GameObject> goodEvents = new List<GameObject>(); //add all events that are possible to this list
 
-		foreach ( GameObject charEvent in possibleEvents)
-        {
-			CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
-			List<Requirements> requirements = eventDriver.requiredStats;
+	//	foreach ( GameObject charEvent in possibleEvents)
+ //       {
+	//		CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
+	//		List<Requirements> requirements = eventDriver.requiredStats;
 
-			if (HasRequiredStats(requirements))
-            {
-				goodEvents.Add(charEvent);
-            }
-		}
+	//		if (HasRequiredStats(requirements))
+ //           {
+	//			goodEvents.Add(charEvent);
+ //           }
+	//	}
 
-		if(goodEvents.Count > 0)
-        {
-			int chosen = Random.Range(0, goodEvents.Count);
-			possibleEvents.Remove(goodEvents[chosen]); //remove this one from the list
-			return goodEvents[chosen];
-        }
-		else
-        {
-			print("Could not get an event");
-			return null;
-        }
-	}
+	//	if(goodEvents.Count > 0)
+ //       {
+	//		int chosen = Random.Range(0, goodEvents.Count);
+	//		possibleEvents.Remove(goodEvents[chosen]); //remove this one from the list
+	//		return goodEvents[chosen];
+ //       }
+	//	else
+ //       {
+	//		print("Could not get an event");
+	//		return null;
+ //       }
+	//}
 
 	private GameObject RandomizeCharacterEvent(RoomStats.RoomType roomName)
     {
@@ -742,7 +732,7 @@ public class EventSystem : MonoBehaviour
         }
     }
 
-	public bool CanChat(List<GameObject> checkEvents)
+	public bool CanChat(RoomStats.RoomType myRoom)
 	{
 		//If chat has cooleddown
 		if (tick.DaysSinceChat < chatCooldown)
@@ -751,7 +741,7 @@ public class EventSystem : MonoBehaviour
 		}
 
 		//if no possible events are found
-		if (!HasPossibleCharacterEvent(checkEvents))
+		if (!HasPossibleCharacterEvent(myRoom))
 		{
 			return false;
 		}

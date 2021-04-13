@@ -86,6 +86,8 @@ public class RoomStats : MonoBehaviour
         WarpDrive
 
     }
+    [SerializeField, Tooltip("The type of room this is")]
+    private RoomType roomType;
 
     private void Awake()
     {
@@ -102,6 +104,11 @@ public class RoomStats : MonoBehaviour
         roomDetailsMenu = FindObjectOfType<CrewManagementRoomDetailsMenu>();
         
         GetStats();
+    }
+
+    public RoomType GetRoomType()
+    {
+        return roomType;
     }
 
     private void UpdateRoomLevelIcon()

@@ -264,13 +264,13 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     {
         if(overclockRoom.hasEvents && GameManager.instance.currentGameState == InGameStates.Events)
         {
-            SetTalkToCrewButtonState(EventSystem.instance.CanChat(overclockRoom.GetEvents()));
+            SetTalkToCrewButtonState(EventSystem.instance.CanChat(overclockRoom.GetRoomType()));
         }
     }
 
     public void StartChat()
     {
-        StartCoroutine(EventSystem.instance.StartNewCharacterEvent(overclockRoom.GetEvents()));
+        StartCoroutine(EventSystem.instance.StartNewCharacterEvent(overclockRoom.GetRoomType()));
     }
 
     public void ClearUI()
