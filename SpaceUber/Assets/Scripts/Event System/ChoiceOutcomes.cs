@@ -417,7 +417,9 @@ public class ChoiceOutcomes
                         campMan.cateringToTheRich.ctr_VIPTrust += VIPTrustChange;
 
                         //the selected bool will become true
-                        campMan.cateringToTheRich.SetCtrNarrativeOutcome(ctrBoolOutcomes, true);
+                        if(ctrBoolOutcomes != CampaignManager.CateringToTheRich.NarrativeOutcomes.NA)
+                            campMan.cateringToTheRich.SetCtrNarrativeOutcome(ctrBoolOutcomes, true);
+                        
                         switch (ctrBoolOutcomes)
                         {
                             case CampaignManager.CateringToTheRich.NarrativeOutcomes.SideWithScientist:
@@ -463,7 +465,9 @@ public class ChoiceOutcomes
                         
                     case CampaignManager.Campaigns.MysteriousEntity:
                         //the selected bool will become true
-                        campMan.mysteriousEntity.SetMeNarrativeVariable(meMainOutcomes, true);
+                        if(meMainOutcomes != CampaignManager.MysteriousEntity.NarrativeVariables.NA)
+                            campMan.mysteriousEntity.SetMeNarrativeVariable(meMainOutcomes, true);
+                        
                         switch (meMainOutcomes)
                         {
                             case CampaignManager.MysteriousEntity.NarrativeVariables.KuonInvestigates:
@@ -504,7 +508,9 @@ public class ChoiceOutcomes
                                 resultText += "\nYou have lost " + assetCountChange + " assets";
                         }
 
-                        campMan.finalTest.SetFtNarrativeVariable(finalTestNarrativeOutcomes, true);
+                        if(finalTestNarrativeOutcomes != CampaignManager.FinalTest.NarrativeVariables.NA)
+                            campMan.finalTest.SetFtNarrativeVariable(finalTestNarrativeOutcomes, true);
+                        
                         switch (finalTestNarrativeOutcomes)
                         {
                             case CampaignManager.FinalTest.NarrativeVariables.KellisLoyalty:
