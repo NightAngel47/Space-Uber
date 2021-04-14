@@ -25,7 +25,7 @@ public class ButtonTwoBehaviour : MonoBehaviour
 
     public void SetButtonInteractable(bool state)
     {
-        if (!button)
+        if (!button) //make sure we still have the button
         {
             button = GetComponent<Button>();
             buttonTexts = GetComponentsInChildren<TMP_Text>();
