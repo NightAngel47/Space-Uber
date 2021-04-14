@@ -76,6 +76,15 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
         
         panelAnimator.SetBool(IsOpen, true);
         isOpen = true;
+
+        if (tabs.Length > 0)
+        {
+            if (tabs[0].name == "Room Details")
+            {
+                //enables crew view when room details panel gets opened
+                CrewViewManager.Instance.EnableCrewView();
+            }
+        }
     }
 
     public void ClosePanel(int tabIndex = -1)
@@ -84,7 +93,7 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
         
         try
         {
-            if (tabIndex == 0) detailsMenu.UnHighlight();//
+            if (tabIndex == 0) detailsMenu.UnHighlight();
         }
         catch (System.NullReferenceException)
         {
@@ -106,6 +115,9 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 currentTabIndex = -1;
             }
         }
+
+        //disables crew view when room details panel gets closed
+        CrewViewManager.Instance.DisableCrewView();
     }
 
     private void SetSelectedTab(int tabIndex)

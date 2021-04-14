@@ -75,6 +75,11 @@ public class ObjectScript : MonoBehaviour
         {
             StartCoroutine(WaitToClickRoom());
         }
+
+        if (Input.GetButton("DeleteRoom") && !preplacedRoom && ObjectMover.hasPlaced && !isDeleting)
+        {
+            StartCoroutine(Delete());
+        }
     }
 
     public void TurnOnClickAgain()
@@ -139,28 +144,32 @@ public class ObjectScript : MonoBehaviour
                 AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
                 Edit();
             }
-
-            if (Input.GetMouseButton(1) && !preplacedRoom && ObjectMover.hasPlaced && !isDeleting)
-            {
-                StartCoroutine(Delete());
-            }
         }
 
-        if (GameManager.instance.currentGameState == InGameStates.CrewManagement
-           || GameManager.instance.currentGameState == InGameStates.Events
-           && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn && !PauseMenu.IsPaused)
+        if (!OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn && !PauseMenu.IsPaused)
         {
             roomTooltip.SetActive(true);
             roomIsHovered = true;
 
             //if the object is clicked, open the room management menu
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(1))
             {
                 //FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
                 FindObjectOfType<RoomPanelToggle>().OpenPanel(0);
                 FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(gameObject);
                 //FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
                 AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
+
+                //Closes the shop window if open
+                RoomPanelToggle[] panels = FindObjectsOfType<RoomPanelToggle>();
+                for(int i = 1; i < 2; i++)
+                {
+                    panels[i].ClosePanel();
+
+                }
+
+                //Enables Crew View while details panel is open
+                CrewViewManager.Instance.EnableCrewView();
             }
         }
     }
@@ -280,6 +289,7 @@ public class ObjectScript : MonoBehaviour
                     SpotChecker.instance.RemoveSpots(r.gameObject, r.rotAdjust);
                     r.gameObject.GetComponent<RoomStats>().SubtractRoomStats();
                     Destroy(r.gameObject);
+                    
                 }
             }
         }
@@ -294,7 +304,14 @@ public class ObjectScript : MonoBehaviour
             HighlightSpotsOff();
         }
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        FindObjectOfType<CrewManagementRoomDetailsMenu>().ClearUI();
+        RoomPanelToggle[] panels = FindObjectsOfType<RoomPanelToggle>();
+        foreach (RoomPanelToggle p in panels)
+        {
+            p.ClosePanel(0);
+        }
+        Destroy(FindObjectOfType<CrewManagementRoomDetailsMenu>().GetSelectedRoom());
     }
 
     public void HighlightSpotsOn()

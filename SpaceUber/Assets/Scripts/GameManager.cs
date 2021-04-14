@@ -169,10 +169,11 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("Interface_JobList");
                 additiveSceneManager.UnloadScene("Interface_Runtime");
                 additiveSceneManager.UnloadScene("Interface_GameOver");
-                additiveSceneManager.UnloadScene("CrewManagement");
+                //additiveSceneManager.UnloadScene("CrewManagement");
 
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
                 additiveSceneManager.LoadSceneSeperate("ShipBuilding");
+                additiveSceneManager.LoadSceneSeperate("CrewManagement");
                 SaveGameState();
                 break;
             case InGameStates.CrewManagement:
@@ -192,6 +193,7 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("PromptScreen_End");
                 additiveSceneManager.UnloadScene("Interface_GameOver");
                 additiveSceneManager.UnloadScene("Starport BG");
+                additiveSceneManager.UnloadScene("ShipBuilding");
 
                 // if loading from continue
                 if (!FindObjectOfType<SpotChecker>())

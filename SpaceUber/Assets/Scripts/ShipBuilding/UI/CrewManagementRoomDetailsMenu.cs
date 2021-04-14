@@ -69,6 +69,11 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         
         UpdatePanelInfo();
     }
+
+    public GameObject GetSelectedRoom()
+    {
+        return selectedRoom;
+    }
     
     public void UpdatePanelInfo()
     {
