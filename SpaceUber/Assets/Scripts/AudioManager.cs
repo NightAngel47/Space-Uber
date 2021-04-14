@@ -400,7 +400,7 @@ public class AudioManager : MonoBehaviour
             {
                 int fadeInOrOut;
                 float fadeStart;
-                startVolume = sound.volume;
+                startVolume = musicVolume * masterVolume;
 
                 //Adjust values to fade in or fade out
                 if (fadeIn) { fadeInOrOut = -1; sound.SetVolume(0.1f); fadeStart = 0; }
@@ -417,7 +417,7 @@ public class AudioManager : MonoBehaviour
                 }
                 //Stop sound and reset volume to original amount
                 if (!fadeIn) sound.Stop();
-                sound.volume = startVolume;
+                //sound.volume = startVolume;
             }
         }
     }
