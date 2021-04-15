@@ -14,6 +14,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     
     [SerializeField] Image resourceIcon;
     [SerializeField] Image roomImage;
+    [SerializeField] Image levelImage;
     [SerializeField] TextMeshProUGUI rname;
     [SerializeField] TextMeshProUGUI roomSize;
     [SerializeField] TextMeshProUGUI needsCredits;
@@ -26,6 +27,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
 
     private SpawnObject objectsToSpawn;
     private CampaignManager campaignManager;
+    private ShipBuildingShop shop;
 
     
 
@@ -38,6 +40,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     {
         objectsToSpawn = FindObjectOfType<SpawnObject>();
         campaignManager = FindObjectOfType<CampaignManager>();
+        shop = FindObjectOfType<ShipBuildingShop>();
     }
 
     private void Start()
@@ -123,6 +126,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         needsCrew.text = "" + roomStats.minCrew + "-" + roomStats.maxCrew.ToString();
         roomSize.text = roomPrefab.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
         level.text = levelTemp.ToString();
+        levelImage.sprite = shop.GetRoomLevelIcons()[levelTemp - 1];
 
         switch (campaignManager.GetCurrentJobIndex())
         {

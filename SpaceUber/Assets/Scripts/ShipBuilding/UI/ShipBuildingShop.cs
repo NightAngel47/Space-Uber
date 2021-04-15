@@ -7,6 +7,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShipBuildingShop : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class ShipBuildingShop : MonoBehaviour
     private SpawnObject objectsToSpawn;
 
     [SerializeField] RoomPanelToggle shopToggle;
+    [SerializeField] Sprite[] roomLevelIcons;
     ShipBuildingBuyableRoom[] shopSlots = new ShipBuildingBuyableRoom[3];
 
     private void Awake()
@@ -106,5 +108,10 @@ public class ShipBuildingShop : MonoBehaviour
             shopSlots[i].gameObject.SetActive(false);
             ++i;
         }
+    }
+
+    public Sprite[] GetRoomLevelIcons()
+    {
+        return roomLevelIcons;
     }
 }
