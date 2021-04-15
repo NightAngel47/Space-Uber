@@ -130,8 +130,9 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (currentTabIndex == tabIndex)
         {
 
-            if (tabs[0].name == "Room Details" && comingFromOpenPanel == true)
+            if (comingFromOpenPanel == true && tabs[0].name == "Room Details")
             {
+                //for room details panel, don't turn off active tab button
             }
             else
             {

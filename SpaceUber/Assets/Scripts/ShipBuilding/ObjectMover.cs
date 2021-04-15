@@ -79,9 +79,9 @@ public class ObjectMover : MonoBehaviour
                     Placement();
                 }
 
-                if(Input.GetMouseButtonDown(1))
+                if(Input.GetButton("DeleteRoom"))
                 {
-                    StartCoroutine(os.Delete(os.isEdited));
+                    StartCoroutine(os.Delete(os.isEdited, gameObject));
                 }
             }
         }
