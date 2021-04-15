@@ -33,24 +33,22 @@ public class VideoSettingsManager : MonoBehaviour
                 case (int) DropdownSettings.Resolution:
                     int lastW = 0;
                     int lastH = 0;
-                    for (int j = 0; j < Screen.resolutions.Length; j++)
+                    foreach (Resolution resolution in Screen.resolutions)
                     {
-                        if(Screen.resolutions[j].width != lastW || Screen.resolutions[j].height != lastH)
-                        {
-                            options.Add(Screen.resolutions[j].width + "x" + Screen.resolutions[j].height);
-                            resolutions.Add(new Vector2(Screen.resolutions[j].width, Screen.resolutions[j].height));
-                            lastW = Screen.resolutions[j].width;
-                            lastH = Screen.resolutions[j].height;
-                        }
+                        if (resolution.width == lastW && resolution.height == lastH) continue;
+                        options.Add(resolution.width + "\tx   " + resolution.height);
+                        resolutions.Add(new Vector2(resolution.width, resolution.height));
+                        lastW = resolution.width;
+                        lastH = resolution.height;
                     }
                     break;
                 case (int) DropdownSettings.TargetFrameRate:
-                    for (int j = 0; j < frameRateOptions.Length; j++)
+                    foreach (int frameRate in frameRateOptions)
                     {
-                        if(frameRateOptions[j] == -1)
-                            options.Add("Unlimited");
+                        if(frameRate == -1)
+                            options.Add("Unlimited FPS");
                         else
-                            options.Add(frameRateOptions[j] + " fps");
+                            options.Add(frameRate + "\tFPS");
                     }
                     break;
                 default:
@@ -137,12 +135,10 @@ public class VideoSettingsManager : MonoBehaviour
                     int lastH = 0;
                     foreach (Resolution resolution in Screen.resolutions)
                     {
-                        if(resolution.width != lastW || resolution.height != lastH)
-                        {
-                            resolutions.Add(new Vector2(resolution.width, resolution.height));
-                            lastW = resolution.width;
-                            lastH = resolution.height;
-                        }
+                        if (resolution.width == lastW && resolution.height == lastH) continue;
+                        resolutions.Add(new Vector2(resolution.width, resolution.height));
+                        lastW = resolution.width;
+                        lastH = resolution.height;
                     }
                     break;
                 case (int) DropdownSettings.TargetFrameRate:
