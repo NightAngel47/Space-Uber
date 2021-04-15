@@ -41,6 +41,11 @@ public class VideoSettingsManager : MonoBehaviour
                             resolutions.Add(new Vector2(Screen.resolutions[j].width, Screen.resolutions[j].height));
                             lastW = Screen.resolutions[j].width;
                             lastH = Screen.resolutions[j].height;
+                            
+                            if(Display.main.systemWidth == Screen.resolutions[j].width && Display.main.systemHeight == Screen.resolutions[j].height)
+                            {
+                                dropdownDefaults[(int) DropdownSettings.Resolution] = resolutions.Count - 1;
+                            }
                         }
                     }
                     break;
@@ -78,8 +83,6 @@ public class VideoSettingsManager : MonoBehaviour
         }
         else
         {
-            dropdownDefaults[(int) DropdownSettings.Resolution] = resolutions.Count - 1;
-            
             for(int i = 0; i < dropdownMenus.Length; i++)
             {
                 dropdownMenus[i].value = dropdownDefaults[i];
