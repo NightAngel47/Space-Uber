@@ -25,6 +25,12 @@ public class ButtonTwoBehaviour : MonoBehaviour
 
     public void SetButtonInteractable(bool state)
     {
+        if (!button) //make sure we still have the button
+        {
+            button = GetComponent<Button>();
+            buttonTexts = GetComponentsInChildren<TMP_Text>();
+        }
+
         if (state)
         {
             button.interactable = true;
@@ -43,6 +49,9 @@ public class ButtonTwoBehaviour : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Sets a listener for when this button is pressed that tells Event System to skip to event
+    /// </summary>
     public void GoToEvent()
     {
         button.onClick.AddListener(EventSystem.instance.SkipToEvent);
