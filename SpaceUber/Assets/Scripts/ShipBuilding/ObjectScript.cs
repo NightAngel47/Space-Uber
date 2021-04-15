@@ -152,24 +152,40 @@ public class ObjectScript : MonoBehaviour
             roomIsHovered = true;
 
             //if the object is clicked, open the room management menu
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1) && ObjectMover.hasPlaced == true && !gameObject.GetComponent<ObjectMover>().enabled)
             {
                 //FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
-                FindObjectOfType<RoomPanelToggle>().OpenPanel(0);
+                //FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
+
+                
+                if (gameObject == FindObjectOfType<CrewManagementRoomDetailsMenu>().GetSelectedRoom())
+                {
+                    Debug.Log("Same Room");
+                    FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
+                }
+                else
+                {
+                    FindObjectOfType<RoomPanelToggle>().OpenPanel(0);
+                    //Enables Crew View while details panel is open
+                    CrewViewManager.Instance.EnableCrewView();
+                }
                 FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(gameObject);
+                
+
                 //FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
                 AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
 
-                //Closes the shop window if open
-                RoomPanelToggle[] panels = FindObjectsOfType<RoomPanelToggle>();
-                for(int i = 1; i < 2; i++)
+                //Closes the shop window if open during shipbuilding
+                if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
                 {
-                    panels[i].ClosePanel();
-
+                    RoomPanelToggle[] panels = FindObjectsOfType<RoomPanelToggle>();
+                    for (int i = 1; i < 2; i++)
+                    {
+                        panels[i].ClosePanel();
+                    }
                 }
 
-                //Enables Crew View while details panel is open
-                CrewViewManager.Instance.EnableCrewView();
+                
             }
         }
     }
@@ -247,7 +263,7 @@ public class ObjectScript : MonoBehaviour
         }
     }
 
-    public IEnumerator Delete(bool removeStats = true)
+    public IEnumerator Delete(bool removeStats = true, GameObject roomBeingPlaced = null)
     {
         if (isDeleting) yield break;
         isDeleting = true;
@@ -307,11 +323,14 @@ public class ObjectScript : MonoBehaviour
         //Destroy(gameObject);
         FindObjectOfType<CrewManagementRoomDetailsMenu>().ClearUI();
         RoomPanelToggle[] panels = FindObjectsOfType<RoomPanelToggle>();
-        foreach (RoomPanelToggle p in panels)
+        for (int i = 0; i < 1; i++) //closes room details if deleting placed room
         {
-            p.ClosePanel(0);
+            panels[i].ClosePanel(0);
         }
+
         Destroy(FindObjectOfType<CrewManagementRoomDetailsMenu>().GetSelectedRoom());
+
+        Destroy(roomBeingPlaced);
     }
 
     public void HighlightSpotsOn()

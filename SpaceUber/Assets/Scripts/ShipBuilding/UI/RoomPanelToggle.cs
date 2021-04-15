@@ -48,11 +48,19 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (!isOpen) Tutorial.Instance.UnHighlightScreenLocation();
     }
 
+    public bool GetIsOpen()
+    {
+        return isOpen;
+    }
+
     public void TogglePanelVis(int tabIndex = -1)
     {
         if (isOpen && currentTabIndex == tabIndex)
         {
             ClosePanel(tabIndex);
+            //disables crew view when room details panel gets closed
+            CrewViewManager.Instance.DisableCrewView();
+            detailsMenu.UnHighlight();
         }
         else if(currentTabIndex != tabIndex)
         {
@@ -64,7 +72,7 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         if (OverclockController.instance.overclocking) return;
 
-        SetSelectedTab(tabIndex);
+        SetSelectedTab(tabIndex, true);
 
         if (tabs.Length > 0)
         {
@@ -105,7 +113,7 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
         
         if (tabIndex != -1)
         {
-            SetSelectedTab(tabIndex);
+            SetSelectedTab(tabIndex, false);
         }
         else
         {
@@ -115,17 +123,22 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 currentTabIndex = -1;
             }
         }
-
-        //disables crew view when room details panel gets closed
-        CrewViewManager.Instance.DisableCrewView();
     }
 
-    private void SetSelectedTab(int tabIndex)
+    private void SetSelectedTab(int tabIndex, bool comingFromOpenPanel)
     {
         if (currentTabIndex == tabIndex)
         {
-            panelTabs[currentTabIndex].sprite = blackButton;
-            currentTabIndex = -1;
+
+            if (comingFromOpenPanel == true && tabs[0].name == "Room Details")
+            {
+                //for room details panel, don't turn off active tab button
+            }
+            else
+            {
+                panelTabs[currentTabIndex].sprite = blackButton;
+                currentTabIndex = -1;
+            }
         }
         else
         {

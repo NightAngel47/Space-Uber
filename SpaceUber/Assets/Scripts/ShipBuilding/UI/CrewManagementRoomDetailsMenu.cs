@@ -64,8 +64,15 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         roomStats = room.GetComponent<RoomStats>();
         overclockRoom = room.GetComponent<OverclockRoom>();
         shipStats.roomBeingPlaced = selectedRoom;
-        
-        room.GetComponent<RoomHighlight>().Highlight();
+
+        if (FindObjectOfType<RoomPanelToggle>().GetIsOpen())
+        {
+            room.GetComponent<RoomHighlight>().Highlight();
+        }
+        else
+        {
+            room.GetComponent<RoomHighlight>().Unhighlight();
+        }
         
         UpdatePanelInfo();
     }
