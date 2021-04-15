@@ -38,6 +38,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     
     [SerializeField, Foldout("Crew Assignment")] TMP_Text currentCrew;
     [SerializeField, Foldout("Crew Assignment")] Button[] crewButtons = new Button[2];
+    [SerializeField, Foldout("Crew Assignment")] ButtonTwoBehaviour[] crewButtonTexts = new ButtonTwoBehaviour[2];
     
     [SerializeField, Foldout("Overtime")] TMP_Text overtimeResource;
     [SerializeField, Foldout("Overtime")] Image overtimeIcon;
@@ -151,7 +152,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     /// </summary>
     public void UpdateCrewAssignment()
     {
-        currentCrew.text = roomStats.currentCrew.ToString();
+        currentCrew.text = roomStats.currentCrew + " / " + roomStats.maxCrew;
 
         // set room production details
         if (selectedRoom.TryGetComponent(out Resource resource))
@@ -184,26 +185,34 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     {
         if (roomStats.maxCrew == 0) // no crew needed for room
         {
-            foreach (Button crewButton in crewButtons)
+            for (var i = 0; i < crewButtons.Length; i++)
             {
-                crewButton.interactable = false;
+                crewButtons[i].interactable = false;
+                crewButtonTexts[i].SetButtonInteractable(false);
             }
         }
         else if(roomStats.currentCrew == 0) // no crew assigned to room 
         {
             crewButtons[0].interactable = false;
             crewButtons[1].interactable = true;
+            
+            crewButtonTexts[0].SetButtonInteractable(false);
+            crewButtonTexts[1].SetButtonInteractable(true);
         }
         else if (roomStats.currentCrew == roomStats.maxCrew) // crew assigned at max
         {
             crewButtons[0].interactable = true;
             crewButtons[1].interactable = false;
+            
+            crewButtonTexts[0].SetButtonInteractable(true);
+            crewButtonTexts[1].SetButtonInteractable(false);
         }
         else // crew assigned between min and max (or something went wrong so both buttons active)
         {
-            foreach (Button crewButton in crewButtons)
+            for (var i = 0; i < crewButtons.Length; i++)
             {
-                crewButton.interactable = true;
+                crewButtons[i].interactable = true;
+                crewButtonTexts[i].SetButtonInteractable(true);
             }
         }
     }
