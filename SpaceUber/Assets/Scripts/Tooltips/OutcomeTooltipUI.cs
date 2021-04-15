@@ -18,7 +18,6 @@ public class OutcomeTooltipUI : MonoBehaviour
     [SerializeField] private GameObject resourceUI;
     [SerializeField] private GameObject outcomeText;
     [SerializeField] private string defaultOutcomeText;
-    [SerializeField] private string unknownOutcomeText;
     [SerializeField] private string randomOutcomeText;
     [SerializeField] private string narrativeOutcomeText;
 
@@ -40,13 +39,7 @@ public class OutcomeTooltipUI : MonoBehaviour
             outcomeDescUI.text = description;
         }
 
-        //if the outcome is meant to be secretive
-        if(isSecret)
-        {
-            GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
-            outcomeTextGO.GetComponent<TMP_Text>().text = unknownOutcomeText;
-        }
-        else if (outcomes.Count > 0)
+        if (!isSecret && outcomes.Count > 0)
         {
             foreach (var outcome in outcomes)
             {
@@ -55,28 +48,45 @@ public class OutcomeTooltipUI : MonoBehaviour
                     GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
                     outcomeTextGO.GetComponent<TMP_Text>().text = narrativeOutcomeText;
                 }
-                else
+                else //if resource related, but not morale
                 {
                     GameObject resourceGO = Instantiate(resourceUI, outcomeList.transform);
-                    resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = 
-                        GameManager.instance.GetResourceData((int)outcome.resource).resourceIcon; // resource icon
-                    resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = 
-                        GameManager.instance.GetResourceData((int)outcome.resource).resourceName; // resource name
-                    
-                    if(outcome.isScaledOutcome)
-                    {
-                        int newAmount = Mathf.RoundToInt(outcome.amount * campMan.GetMultiplier(outcome.resource));
-                        resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = newAmount.ToString(); // resource amount
+                    resourceGO.transform.GetChild(0).GetComponent<Image>().sprite =
+                        GameManager.instance.GetResourceData((int)outcome.resource).resourceIcon; // get resource icon
+                    resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text =
+                        GameManager.instance.GetResourceData((int)outcome.resource).resourceName; // get resource name
 
+                    resourceGO.transform.GetChild(3).gameObject.SetActive(false); // outcome probability
+                    if (outcome.resource != ResourceDataTypes._CrewMorale) 
+                    {
+
+                        if (outcome.isScaledOutcome)
+                        {
+                            int newAmount = Mathf.RoundToInt(outcome.amount * campMan.GetMultiplier(outcome.resource));
+                            resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = newAmount.ToString(); // resource amount
+
+                        }
+                        else
+                        {
+                            resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = outcome.amount.ToString(); // resource amount
+                        }
                     }
                     else
                     {
-                        resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = outcome.amount.ToString(); // resource amount
+                        if(outcome.amount >= 0)
+                            resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = "+";
+                        else
+                            resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = "-";
                     }
+                    
 
-                    resourceGO.transform.GetChild(3).gameObject.SetActive(false); // outcome probability
                 }
             }
+        }
+        else if(isSecret)
+        {
+            GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
+            outcomeTextGO.GetComponent<TMP_Text>().text = description;
         }
         else //Outcome effects nothing
         {
@@ -102,12 +112,7 @@ public class OutcomeTooltipUI : MonoBehaviour
             outcomeDescUI.text = description;
         }
 
-        if (isSecret) //outcome is secretive
-        {
-            GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
-            outcomeTextGO.GetComponent<TMP_Text>().text = unknownOutcomeText;
-        }
-        else if (randomOutcomes.Count > 0) //uses a random outcome
+        if (!isSecret && randomOutcomes.Count > 0) //uses a random outcome
         {
             GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
             outcomeTextGO.GetComponent<TMP_Text>().text = randomOutcomeText;

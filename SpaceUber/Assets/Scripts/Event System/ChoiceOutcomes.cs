@@ -237,11 +237,11 @@ public class ChoiceOutcomes
 
                             if (newAmount < 0)
                             {
-                                resultText += "\nYou lost " + Math.Abs(newAmount) + " crew morale";
+                                resultText += "\nYou lost crew morale";
                             }
                             else
                             {
-                                resultText += "\nYou gained " + Math.Abs(newAmount) + " crew morale";
+                                resultText += "\nYou gained crew morale";
                             }
                             break;
 
@@ -394,11 +394,11 @@ public class ChoiceOutcomes
 
                             if (amount < 0)
                             {
-                                resultText += "\nYou lost " + Math.Abs(amount) + " crew morale";
+                                resultText += "\nYou lost crew morale";
                             }
                             else
                             {
-                                resultText += "\nYou gained " + Math.Abs(amount) + " crew morale";
+                                resultText += "\nYou gained crew morale";
                             }
                             break;
                         default:

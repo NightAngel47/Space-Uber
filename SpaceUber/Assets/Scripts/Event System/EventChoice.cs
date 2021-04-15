@@ -48,6 +48,7 @@ public class EventChoice
     private bool increasedPercent = false;
 
     public bool hasSecretOutcomes;
+    [SerializeField, ShowIf("hasSecretOutcomes")] public string secretOutComeText = "";
     [SerializeField] private bool hasRandomEnding;    
     [SerializeField, ShowIf("hasRandomEnding")] private List<MultipleRandom> randomEndingOutcomes = new List<MultipleRandom>();
     [SerializeField, HideIf("hasRandomEnding")] public List<ChoiceOutcomes> outcomes = new List<ChoiceOutcomes>();
