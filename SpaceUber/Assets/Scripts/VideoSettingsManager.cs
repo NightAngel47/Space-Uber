@@ -31,10 +31,17 @@ public class VideoSettingsManager : MonoBehaviour
             switch(i)
             {
                 case (int) DropdownSettings.Resolution:
+                    int lastW = 0;
+                    int lastH = 0;
                     for (int j = 0; j < Screen.resolutions.Length; j++)
                     {
-                        options.Add(Screen.resolutions[j].width + "x" + Screen.resolutions[j].height);
-                        resolutions.Add(new Vector2(Screen.resolutions[j].width, Screen.resolutions[j].height));
+                        if(Screen.resolutions[j].width != lastW || Screen.resolutions[j].height != lastH)
+                        {
+                            options.Add(Screen.resolutions[j].width + "x" + Screen.resolutions[j].height);
+                            resolutions.Add(new Vector2(Screen.resolutions[j].width, Screen.resolutions[j].height));
+                            lastW = Screen.resolutions[j].width;
+                            lastH = Screen.resolutions[j].height;
+                        }
                     }
                     break;
                 case (int) DropdownSettings.TargetFrameRate:
@@ -71,6 +78,8 @@ public class VideoSettingsManager : MonoBehaviour
         }
         else
         {
+            dropdownDefaults[(int) DropdownSettings.Resolution] = resolutions.Count - 1;
+            
             for(int i = 0; i < dropdownMenus.Length; i++)
             {
                 dropdownMenus[i].value = dropdownDefaults[i];
@@ -116,9 +125,16 @@ public class VideoSettingsManager : MonoBehaviour
             switch(i)
             {
                 case (int) DropdownSettings.Resolution:
+                    int lastW = 0;
+                    int lastH = 0;
                     for (int j = 0; j < Screen.resolutions.Length; j++)
                     {
-                        resolutions.Add(new Vector2(Screen.resolutions[j].width, Screen.resolutions[j].height));
+                        if(Screen.resolutions[j].width != lastW || Screen.resolutions[j].height != lastH)
+                        {
+                            resolutions.Add(new Vector2(Screen.resolutions[j].width, Screen.resolutions[j].height));
+                            lastW = Screen.resolutions[j].width;
+                            lastH = Screen.resolutions[j].height;
+                        }
                     }
                     break;
                 case (int) DropdownSettings.TargetFrameRate:
