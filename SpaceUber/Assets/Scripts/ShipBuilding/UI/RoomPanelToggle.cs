@@ -78,7 +78,15 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             for (int i = 0; i < tabs.Length; i++)
             {
-                tabs[i].SetActive(i == tabIndex);
+                if (i == 0)
+                {
+                    //disables only the UI imagery, not the object with the script on it
+                    tabs[0].gameObject.transform.GetChild(0).gameObject.SetActive(i == tabIndex);
+                }
+                else
+                {
+                    tabs[i].SetActive(i == tabIndex);
+                }
             }
         }
         
@@ -121,15 +129,6 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
             {
                 panelTab.sprite = blackButton;
                 currentTabIndex = -1;
-            }
-        }
-
-        //re-enable room details object so that rooms can be right clicked selected
-        if (tabs.Length > 0 && tabs[0].name == "Room Details")
-        {
-            for (int i = 0; i < 1; i++)
-            {
-                tabs[0].SetActive(true);
             }
         }
     }
