@@ -87,7 +87,7 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         if (tabs.Length > 0)
         {
-            if (tabs[0].name == "Room Details")
+            if (tabs[0].name == "Room Details" && tabIndex == 0)
             {
                 //enables crew view when room details panel gets opened
                 CrewViewManager.Instance.EnableCrewView();
@@ -123,6 +123,15 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 currentTabIndex = -1;
             }
         }
+
+        //re-enable room details object so that rooms can be right clicked selected
+        if (tabs.Length > 0 && tabs[0].name == "Room Details")
+        {
+            for (int i = 0; i < 1; i++)
+            {
+                tabs[0].SetActive(true);
+            }
+        }
     }
 
     private void SetSelectedTab(int tabIndex, bool comingFromOpenPanel)
@@ -130,7 +139,7 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (currentTabIndex == tabIndex)
         {
 
-            if (comingFromOpenPanel == true && tabs[0].name == "Room Details")
+            if (comingFromOpenPanel == true && tabs[0].name == "Room Details" && tabIndex == 0)
             {
                 //for room details panel, don't turn off active tab button
             }

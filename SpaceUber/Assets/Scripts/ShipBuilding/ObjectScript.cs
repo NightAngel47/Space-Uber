@@ -157,10 +157,8 @@ public class ObjectScript : MonoBehaviour
                 //FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
                 //FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
 
-                
                 if (gameObject == FindObjectOfType<CrewManagementRoomDetailsMenu>().GetSelectedRoom())
                 {
-                    Debug.Log("Same Room");
                     FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
                 }
                 else
