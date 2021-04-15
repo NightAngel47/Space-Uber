@@ -3,6 +3,8 @@
  * various controls for the shipbuilding, radio, and crew management UI
  */
 
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -16,6 +18,10 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField] Sprite redButton;
     [SerializeField] private Image[] panelTabs = new Image[0];
     [SerializeField] GameObject[] tabs = new GameObject[0];
+    
+    [SerializeField] private TMP_Text headerText;
+    [SerializeField] private GameObject helpButton;
+    
     private int currentTabIndex = -1;
     private bool isMouseOverObject;
     private CrewManagementRoomDetailsMenu detailsMenu;
@@ -99,6 +105,10 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
             {
                 //enables crew view when room details panel gets opened
                 CrewViewManager.Instance.EnableCrewView();
+                
+                // set header text and help button for room details for when selecting a room with the mouse
+                if(headerText) headerText.text = tabs[0].name; 
+                if(helpButton) helpButton.SetActive(true);
             }
         }
     }
