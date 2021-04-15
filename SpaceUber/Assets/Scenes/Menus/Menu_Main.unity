@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3898,50 +3898,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 750460653}
     m_Modifications:
-    - target: {fileID: 1538771109, guid: b37ad8ba5cacdb44389db3000c9c1912, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1394832171060422741, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MasterVolSlider
-      objectReference: {fileID: 0}
     - target: {fileID: 1394832171060422741, guid: b37ad8ba5cacdb44389db3000c9c1912,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1615856281}
-    - target: {fileID: 1394832171060422741, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1394832171092972645, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1394832171092972645, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1394832171383577912, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1394832171383577912, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1394832171383577912, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1394832172164152309, guid: b37ad8ba5cacdb44389db3000c9c1912,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4057,163 +4018,27 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6834982155000231871, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982155000231871, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982155000231871, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982155232467512, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RadioVolSlider
-      objectReference: {fileID: 0}
     - target: {fileID: 6834982155232467512, guid: b37ad8ba5cacdb44389db3000c9c1912,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1615856281}
-    - target: {fileID: 6834982155232467512, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_Value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982155267646984, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982155267646984, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982155278869998, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982155278869998, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982155278869998, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982155583371800, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SFXVolSlider
-      objectReference: {fileID: 0}
     - target: {fileID: 6834982155583371800, guid: b37ad8ba5cacdb44389db3000c9c1912,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1615856281}
-    - target: {fileID: 6834982155617125928, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982155617125928, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982156165648245, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982156165648245, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982156165648245, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982156784008930, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982156784008930, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982156815631058, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AmbientVolSlider
-      objectReference: {fileID: 0}
     - target: {fileID: 6834982156815631058, guid: b37ad8ba5cacdb44389db3000c9c1912,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1615856281}
-    - target: {fileID: 6834982157037186227, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982157037186227, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982157049327445, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982157049327445, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982157049327445, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834982157070028931, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BGMVolSlider
-      objectReference: {fileID: 0}
     - target: {fileID: 6834982157070028931, guid: b37ad8ba5cacdb44389db3000c9c1912,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1615856281}
-    - target: {fileID: 6834982157070028931, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7293479652645650334, guid: b37ad8ba5cacdb44389db3000c9c1912,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7293479652645650334, guid: b37ad8ba5cacdb44389db3000c9c1912, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b37ad8ba5cacdb44389db3000c9c1912, type: 3}
 --- !u!224 &3210880826420008623 stripped
 RectTransform:
