@@ -452,7 +452,7 @@ public class EventSystem : MonoBehaviour
 	    //reset for next event
 	    eventActive = false;
 	    tick.StartTickUpdate();
-	    AudioManager.instance.PlayRadio(AudioManager.instance.currentStationId);
+	    AudioManager.instance.PlayRadio(AudioManager.instance.currentStationId, true);
 
 	    //set up for the next regular event
 	    if (isRegularEvent)
