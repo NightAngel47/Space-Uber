@@ -143,23 +143,6 @@ public class ChoiceOutcomes
                         case ResourceDataTypes._Crew: //losing crew
                             if (newAmount < 0)
                             {
-                                //int amountFromAssigned;
-                                //int amountFromUnassigned;
-
-                                ////if there are enough unassigned crew to lose, subtract from there
-                                //if (ship.CrewCurrent.x - ship.CrewCurrent.z >= -newAmount)
-                                //{
-                                //    amountFromAssigned = -newAmount;
-                                //    amountFromUnassigned = 0;
-                                //}
-                                //else //if not, lose crew from assigned crew
-                                //{
-                                //    //crew current - unassigned
-                                //    amountFromAssigned = (int)ship.CrewCurrent.x - (int)ship.CrewCurrent.z;
-                                //    amountFromUnassigned = -newAmount - amountFromAssigned;
-                                //}
-
-                                //ship.RemoveRandomCrew(amountFromAssigned);
 
                                 ship.CrewCurrent += new Vector3(newAmount, 0, 0);
                                 SpawnStatChangeText(ship, newAmount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
@@ -310,26 +293,14 @@ public class ChoiceOutcomes
                         case ResourceDataTypes._Crew:
                             if (amount < 0)
                             {
-                                int amountFromAssigned;
-                                int amountFromUnassigned;
-                                if (ship.CrewCurrent.x - ship.CrewCurrent.z >= -amount)
-                                {
-                                    amountFromAssigned = -amount;
-                                    amountFromUnassigned = 0;
-                                }
-                                else
-                                {
-                                    amountFromAssigned = (int)ship.CrewCurrent.x - (int)ship.CrewCurrent.z;
-                                    amountFromUnassigned = -amount - amountFromAssigned;
-                                }
-                                ship.RemoveRandomCrew(amountFromAssigned);
-                                ship.CrewCurrent += new Vector3(amount, -amountFromUnassigned, 0);
+
+                                ship.CrewCurrent += new Vector3(amount, 0, 0);
                                 SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou lost " + Math.Abs(amount) + " crew";
                             }
                             else
                             {
-                                ship.CrewCurrent += new Vector3(amount, amount, 0);
+                                ship.CrewCurrent += new Vector3(amount, 0, 0);
                                 SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou gained " + Math.Abs(amount) + " crew";
                             }
