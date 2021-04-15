@@ -143,23 +143,6 @@ public class ChoiceOutcomes
                         case ResourceDataTypes._Crew: //losing crew
                             if (newAmount < 0)
                             {
-                                //int amountFromAssigned;
-                                //int amountFromUnassigned;
-
-                                ////if there are enough unassigned crew to lose, subtract from there
-                                //if (ship.CrewCurrent.x - ship.CrewCurrent.z >= -newAmount)
-                                //{
-                                //    amountFromAssigned = -newAmount;
-                                //    amountFromUnassigned = 0;
-                                //}
-                                //else //if not, lose crew from assigned crew
-                                //{
-                                //    //crew current - unassigned
-                                //    amountFromAssigned = (int)ship.CrewCurrent.x - (int)ship.CrewCurrent.z;
-                                //    amountFromUnassigned = -newAmount - amountFromAssigned;
-                                //}
-
-                                //ship.RemoveRandomCrew(amountFromAssigned);
 
                                 ship.CrewCurrent += new Vector3(newAmount, 0, 0);
                                 SpawnStatChangeText(ship, newAmount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
@@ -310,26 +293,14 @@ public class ChoiceOutcomes
                         case ResourceDataTypes._Crew:
                             if (amount < 0)
                             {
-                                int amountFromAssigned;
-                                int amountFromUnassigned;
-                                if (ship.CrewCurrent.x - ship.CrewCurrent.z >= -amount)
-                                {
-                                    amountFromAssigned = -amount;
-                                    amountFromUnassigned = 0;
-                                }
-                                else
-                                {
-                                    amountFromAssigned = (int)ship.CrewCurrent.x - (int)ship.CrewCurrent.z;
-                                    amountFromUnassigned = -amount - amountFromAssigned;
-                                }
-                                ship.RemoveRandomCrew(amountFromAssigned);
-                                ship.CrewCurrent += new Vector3(amount, -amountFromUnassigned, 0);
+
+                                ship.CrewCurrent += new Vector3(amount, 0, 0);
                                 SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou lost " + Math.Abs(amount) + " crew";
                             }
                             else
                             {
-                                ship.CrewCurrent += new Vector3(amount, amount, 0);
+                                ship.CrewCurrent += new Vector3(amount, 0, 0);
                                 SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou gained " + Math.Abs(amount) + " crew";
                             }
@@ -417,7 +388,9 @@ public class ChoiceOutcomes
                         campMan.cateringToTheRich.ctr_VIPTrust += VIPTrustChange;
 
                         //the selected bool will become true
-                        campMan.cateringToTheRich.SetCtrNarrativeOutcome(ctrBoolOutcomes, true);
+                        if(ctrBoolOutcomes != CampaignManager.CateringToTheRich.NarrativeOutcomes.NA)
+                            campMan.cateringToTheRich.SetCtrNarrativeOutcome(ctrBoolOutcomes, true);
+                        
                         switch (ctrBoolOutcomes)
                         {
                             case CampaignManager.CateringToTheRich.NarrativeOutcomes.SideWithScientist:
@@ -463,7 +436,9 @@ public class ChoiceOutcomes
                         
                     case CampaignManager.Campaigns.MysteriousEntity:
                         //the selected bool will become true
-                        campMan.mysteriousEntity.SetMeNarrativeVariable(meMainOutcomes, true);
+                        if(meMainOutcomes != CampaignManager.MysteriousEntity.NarrativeVariables.NA)
+                            campMan.mysteriousEntity.SetMeNarrativeVariable(meMainOutcomes, true);
+                        
                         switch (meMainOutcomes)
                         {
                             case CampaignManager.MysteriousEntity.NarrativeVariables.KuonInvestigates:
@@ -504,7 +479,9 @@ public class ChoiceOutcomes
                                 resultText += "\nYou have lost " + assetCountChange + " assets";
                         }
 
-                        campMan.finalTest.SetFtNarrativeVariable(finalTestNarrativeOutcomes, true);
+                        if(finalTestNarrativeOutcomes != CampaignManager.FinalTest.NarrativeVariables.NA)
+                            campMan.finalTest.SetFtNarrativeVariable(finalTestNarrativeOutcomes, true);
+                        
                         switch (finalTestNarrativeOutcomes)
                         {
                             case CampaignManager.FinalTest.NarrativeVariables.KellisLoyalty:
