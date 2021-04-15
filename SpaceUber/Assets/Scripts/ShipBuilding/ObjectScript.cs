@@ -155,21 +155,37 @@ public class ObjectScript : MonoBehaviour
             if (Input.GetMouseButtonDown(1))
             {
                 //FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
-                FindObjectOfType<RoomPanelToggle>().OpenPanel(0);
+                //FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
+
+                
+                if (gameObject == FindObjectOfType<CrewManagementRoomDetailsMenu>().GetSelectedRoom())
+                {
+                    Debug.Log("Same Room");
+                    FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
+                }
+                else
+                {
+                    FindObjectOfType<RoomPanelToggle>().OpenPanel(0);
+                    //Enables Crew View while details panel is open
+                    CrewViewManager.Instance.EnableCrewView();
+                }
                 FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(gameObject);
+                
+
                 //FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
                 AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
 
-                //Closes the shop window if open
-                RoomPanelToggle[] panels = FindObjectsOfType<RoomPanelToggle>();
-                for(int i = 1; i < 2; i++)
+                //Closes the shop window if open during shipbuilding
+                if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
                 {
-                    panels[i].ClosePanel();
-
+                    RoomPanelToggle[] panels = FindObjectsOfType<RoomPanelToggle>();
+                    for (int i = 1; i < 2; i++)
+                    {
+                        panels[i].ClosePanel();
+                    }
                 }
 
-                //Enables Crew View while details panel is open
-                CrewViewManager.Instance.EnableCrewView();
+                
             }
         }
     }

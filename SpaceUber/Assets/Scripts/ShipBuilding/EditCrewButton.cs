@@ -34,6 +34,6 @@ public class EditCrewButton : MonoBehaviour
     public IEnumerator CheckForRooms()
     {
         yield return new WaitUntil(() => FindObjectOfType<SpotChecker>());
-        editCrewButton.SetButtonInteractable(FindObjectsOfType<RoomStats>().Length > minRoomPlacedToContinue);
+        //editCrewButton.SetButtonInteractable(FindObjectsOfType<RoomStats>().Length > minRoomPlacedToContinue);
     }
 }
