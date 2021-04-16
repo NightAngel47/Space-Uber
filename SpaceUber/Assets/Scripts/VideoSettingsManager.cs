@@ -31,19 +31,24 @@ public class VideoSettingsManager : MonoBehaviour
             switch(i)
             {
                 case (int) DropdownSettings.Resolution:
-                    for (int j = 0; j < Screen.resolutions.Length; j++)
+                    int lastW = 0;
+                    int lastH = 0;
+                    foreach (Resolution resolution in Screen.resolutions)
                     {
-                        options.Add(Screen.resolutions[j].width + "x" + Screen.resolutions[j].height);
-                        resolutions.Add(new Vector2(Screen.resolutions[j].width, Screen.resolutions[j].height));
+                        if (resolution.width == lastW && resolution.height == lastH) continue;
+                        options.Add(resolution.width + "\tx   " + resolution.height);
+                        resolutions.Add(new Vector2(resolution.width, resolution.height));
+                        lastW = resolution.width;
+                        lastH = resolution.height;
                     }
                     break;
                 case (int) DropdownSettings.TargetFrameRate:
-                    for (int j = 0; j < frameRateOptions.Length; j++)
+                    foreach (int frameRate in frameRateOptions)
                     {
-                        if(frameRateOptions[j] == -1)
-                            options.Add("Unlimited");
+                        if(frameRate == -1)
+                            options.Add("Unlimited FPS");
                         else
-                            options.Add(frameRateOptions[j] + " fps");
+                            options.Add(frameRate + "\tFPS");
                     }
                     break;
                 default:
@@ -71,6 +76,16 @@ public class VideoSettingsManager : MonoBehaviour
         }
         else
         {
+            for (var i = 0; i < resolutions.Count; i++)
+            {
+                Vector2 resolution = resolutions[i];
+                if (resolution.x == Display.main.systemWidth && resolution.y == Display.main.systemHeight)
+                {
+                    dropdownDefaults[(int) DropdownSettings.Resolution] = i;
+                    break;
+                }
+            }
+            
             for(int i = 0; i < dropdownMenus.Length; i++)
             {
                 dropdownMenus[i].value = dropdownDefaults[i];
@@ -116,9 +131,14 @@ public class VideoSettingsManager : MonoBehaviour
             switch(i)
             {
                 case (int) DropdownSettings.Resolution:
-                    for (int j = 0; j < Screen.resolutions.Length; j++)
+                    int lastW = 0;
+                    int lastH = 0;
+                    foreach (Resolution resolution in Screen.resolutions)
                     {
-                        resolutions.Add(new Vector2(Screen.resolutions[j].width, Screen.resolutions[j].height));
+                        if (resolution.width == lastW && resolution.height == lastH) continue;
+                        resolutions.Add(new Vector2(resolution.width, resolution.height));
+                        lastW = resolution.width;
+                        lastH = resolution.height;
                     }
                     break;
                 case (int) DropdownSettings.TargetFrameRate:
@@ -140,6 +160,17 @@ public class VideoSettingsManager : MonoBehaviour
         }
         else
         {
+            
+            for (var i = 0; i < resolutions.Count; i++)
+            {
+                Vector2 resolution = resolutions[i];
+                if (resolution.x == Display.main.systemWidth && resolution.y == Display.main.systemHeight)
+                {
+                    dropdownDefaults[(int) DropdownSettings.Resolution] = i;
+                    break;
+                }
+            }
+            
             Screen.fullScreen = checkboxDefaults[(int) CheckboxSettings.FullScreen];
             Screen.SetResolution((int) resolutions[dropdownDefaults[(int) DropdownSettings.Resolution]].x, (int) resolutions[dropdownDefaults[(int) DropdownSettings.Resolution]].y, Screen.fullScreen);
             QualitySettings.vSyncCount = checkboxDefaults[(int) CheckboxSettings.VSync] ? 1 : 0;

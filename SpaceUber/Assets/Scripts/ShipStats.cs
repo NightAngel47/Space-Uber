@@ -346,8 +346,9 @@ public class ShipStats : MonoBehaviour
 
             shipStatsUI.UpdateCrewUI(stats[(int) Stats.CrewUnassigned], stats[(int) Stats.CrewCurrent], stats[(int) Stats.CrewCapacity]);
             shipStatsUI.ShowCrewUIChange((int)(value.z - prevValue.z), (int)(value.x - prevValue.x), (int)(value.y - prevValue.y));
-            
-            if(GameManager.instance.currentGameState == InGameStates.Events && value.x - prevValue.x > 0)
+            shipStatsUI.UpdateFoodUI(stats[(int)Stats.Food], stats[(int)Stats.FoodPerTick], stats[(int)Stats.CrewCurrent]);
+
+            if (GameManager.instance.currentGameState == InGameStates.Events && value.x - prevValue.x > 0)
             {
                 EndingStats.instance.AddToStat((int)(value.x - prevValue.x), EndingStatTypes.Crew);
             }
