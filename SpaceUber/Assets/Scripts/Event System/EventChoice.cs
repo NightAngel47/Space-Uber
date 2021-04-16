@@ -20,7 +20,7 @@ public class EventChoice
     private Story story;
     [SerializeField] private string choiceName;
 
-    [Tooltip("The description that will appear in the tool tip for this choice")]
+    [Tooltip("The description that will appear in the tooltip for this choice")]
     [SerializeField] public string description;
 
     public string ChoiceName => choiceName;
@@ -48,6 +48,7 @@ public class EventChoice
     private bool increasedPercent = false;
 
     public bool hasSecretOutcomes;
+    [SerializeField, ShowIf("hasSecretOutcomes")] public string secretOutComeText = "";
     [SerializeField] private bool hasRandomEnding;    
     [SerializeField, ShowIf("hasRandomEnding")] private List<MultipleRandom> randomEndingOutcomes = new List<MultipleRandom>();
     [SerializeField, HideIf("hasRandomEnding")] public List<ChoiceOutcomes> outcomes = new List<ChoiceOutcomes>();
@@ -77,9 +78,10 @@ public class EventChoice
 
         //as long as it's not a story event, it's scalable
         isScalableEvent = driver.isScalableEvent;
-
+        
         foreach (ChoiceOutcomes outcome in this.outcomes)
         {
+            
             outcome.isScaledOutcome = isScalableEvent;
         }
 
@@ -125,6 +127,7 @@ public class EventChoice
         else
         {
             myButton.interactable = false;
+
         }
         // Tooltip stuff
         if (hasRandomEnding)
