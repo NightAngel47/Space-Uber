@@ -230,8 +230,10 @@ public class EventSystem : MonoBehaviour
 		if (skippedToEvent) return;
 
 	    skippedToEvent = true;
-		//asm.UnloadScene("Event_Prompt");
 		eventButtonSpawn = false;
+		eventPromptButton.eventButton.SetButtonInteractable(false);
+		eventPromptButton.backDrop.SetActive(false);
+
 		//if it's an even-numbered event, do a story
 		if (overallEventIndex % 2 == 1 && overallEventIndex != 0)
 	    {
@@ -450,7 +452,7 @@ public class EventSystem : MonoBehaviour
 	    //reset for next event
 	    eventActive = false;
 	    tick.StartTickUpdate();
-	    AudioManager.instance.PlayRadio(AudioManager.instance.currentStationId);
+	    AudioManager.instance.PlayRadio(AudioManager.instance.currentStationId, true);
 
 	    //set up for the next regular event
 	    if (isRegularEvent)
