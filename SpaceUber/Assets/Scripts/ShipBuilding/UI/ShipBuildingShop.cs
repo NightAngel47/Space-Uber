@@ -31,6 +31,7 @@ public class ShipBuildingShop : MonoBehaviour
 
     public void ToResourceTab(string resourceDataType)
     {
+
         Enum.TryParse("_" + resourceDataType, true, out ResourceDataTypes resourceType);
         Enum.TryParse(resourceDataType, true, out ShipBuildingTab shipBuildingTab);
 
@@ -63,6 +64,13 @@ public class ShipBuildingShop : MonoBehaviour
                 break;
         }
         SetShopSlots(resourceDataTypesArray);
+
+        //max out displayed room levels
+        foreach (ShipBuildingBuyableRoom room in shopSlots)
+        {
+            room.CallRoomLevelChange(1);
+            room.CallRoomLevelChange(1);
+        }
     }
 
     public string GetCurrentTab()
