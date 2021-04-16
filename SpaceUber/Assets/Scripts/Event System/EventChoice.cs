@@ -126,6 +126,7 @@ public class EventChoice
         else
         {
             myButton.interactable = false;
+
         }
         // Tooltip stuff
         if (hasRandomEnding)

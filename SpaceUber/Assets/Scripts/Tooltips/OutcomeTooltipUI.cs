@@ -53,13 +53,13 @@ public class OutcomeTooltipUI : MonoBehaviour
                     GameObject resourceGO = Instantiate(resourceUI, outcomeList.transform);
                     resourceGO.transform.GetChild(0).GetComponent<Image>().sprite =
                         GameManager.instance.GetResourceData((int)outcome.resource).resourceIcon; // get resource icon
-                    resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text =
-                        GameManager.instance.GetResourceData((int)outcome.resource).resourceName; // get resource name
+                    
 
                     resourceGO.transform.GetChild(3).gameObject.SetActive(false); // outcome probability
                     if (outcome.resource != ResourceDataTypes._CrewMorale) 
                     {
-
+                        resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text =
+                        GameManager.instance.GetResourceData((int)outcome.resource).resourceName; // get resource name
                         if (outcome.isScaledOutcome)
                         {
                             int newAmount = Mathf.RoundToInt(outcome.amount * campMan.GetMultiplier(outcome.resource));
@@ -71,12 +71,20 @@ public class OutcomeTooltipUI : MonoBehaviour
                             resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = outcome.amount.ToString(); // resource amount
                         }
                     }
-                    else
+                    else //if morale, just add a plus or minus sign to it
                     {
-                        if(outcome.amount >= 0)
-                            resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = "+";
+                        resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = ""; //show no numbers here
+                        if (outcome.amount >= 0)
+                        {
+                            resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + 
+                                GameManager.instance.GetResourceData((int)outcome.resource).resourceName; // get resource name
+                        }
+                        
                         else
-                            resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = "-";
+                        {
+                            resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" +
+                                GameManager.instance.GetResourceData((int)outcome.resource).resourceName; // get resource name
+                        }
                     }
                     
 
