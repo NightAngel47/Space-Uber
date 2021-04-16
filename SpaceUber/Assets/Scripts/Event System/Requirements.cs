@@ -177,7 +177,6 @@ public class Requirements
 
             if(isScalableEvent) //random events get scaled by campaign number
             {
-                Debug.Log("This is scaled");
                 requiredAmount = Mathf.RoundToInt(requiredAmount * campMan.GetMultiplier(selectedResource));
                 
                 switch (selectedResource)
@@ -247,8 +246,6 @@ public class Requirements
                 }
             }
 
-            Debug.Log("required amount was: " + requiredAmount);
-            Debug.Log("Had stat of " + shipStat);
             if (lessThan)
             {
                 result = shipStat < requiredAmount;

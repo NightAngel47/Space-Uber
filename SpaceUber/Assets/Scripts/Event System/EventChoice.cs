@@ -78,9 +78,10 @@ public class EventChoice
 
         //as long as it's not a story event, it's scalable
         isScalableEvent = driver.isScalableEvent;
-
+        
         foreach (ChoiceOutcomes outcome in this.outcomes)
         {
+            
             outcome.isScaledOutcome = isScalableEvent;
         }
 
