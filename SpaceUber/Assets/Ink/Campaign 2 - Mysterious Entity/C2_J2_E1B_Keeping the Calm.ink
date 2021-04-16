@@ -1,7 +1,7 @@
-Ripley comes to you, looking and sounding fatigued. "I, I need some info. A lot of the crew is coming to me, complaining of nightmares. Myself, I've... every time I close my eyes..." A pause. "The 'cursed' artifact is still onboard. Don't deny it. When I'm not seeing my past failu- my past, I'm seeing... it. I don't know what it is, but I know it is sitting in our cargo hold."
+Ripley comes to you, looking and sounding fatigued. "I, I need some info. A lot of the crew is coming to me, complaining of nightmares. Myself, I've... every time I close my eyes..." A pause. "The 'cursed' artifact is still onboard. Don't deny it. When I'm not seeing images of things that I tried to, to forget, I'm seeing... it. I don't know what it is, but I know it is sitting in our cargo hold."
 Keeping her on your side is priority, so you say the only thing that will do so: the truth. After explaining the labeling 'mishap,' you tell her that she must keep this quiet. "If the crew hears about this, some of them will blame this 'curse,' rather than human error." 
 Sighing, she replies. "I don't like it, but I understand. Still, something needs to be done to help the crew. There is a lot of stress and anxiety among them right now, and we need to do something to alleviate it. I can make some medicine to help prevent the nightmares. It will ensure a good night's sleep, although the chemicals used will have to be replaced. Alternatively, you can give the various crew members shorter shifts.
-"I don't want to, but I might just let slip about the artifact if you do nothing. I... They need help." Neither option is great, but you'll have to choose one unless you want unrest to spread among your crew.
+"These nightmares. I know I'm not the only one suffering from them. I... They need help." Neither option is great, but you'll have to choose one unless you want unrest to spread among your crew.
 + [Use the Medicine] -> Use
 + [Allow Shortened Work Shifts] -> Allow
 
