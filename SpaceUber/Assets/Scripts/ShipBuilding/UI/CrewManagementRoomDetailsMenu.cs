@@ -234,7 +234,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
                 roomStats.UpdateRoomStats(roomStats.resources[0].resourceType);
             UpdateCrewAssignment();
 
-            if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
+            if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
             {
                 FindObjectOfType<CrewManagement>().CheckForMinCrew();
             }
@@ -254,7 +254,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
             roomStats.UpdateRoomStats(roomStats.resources[0].resourceType);
             UpdateCrewAssignment();
 
-            if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
+            if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
             {
                 FindObjectOfType<CrewManagement>().CheckForMinCrew();
             }

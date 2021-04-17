@@ -109,11 +109,9 @@ public class Tutorial : Singleton<Tutorial>
                 else if (currentTutorial.tutorialMessages[index].ghostCursorChargingTerminal) GhostCursorChargingTerminal();
                 else if (currentTutorial.tutorialMessages[index].ghostCursorArmorPlating) GhostCursorArmorPlating();
                 else if (currentTutorial.tutorialMessages[index].ghostCursorStatBar) GhostCursorStatBar();
-            }
 
-            if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
-            {
-                if (currentTutorial.tutorialMessages[index].selectRoom) EffectSelectRoom();
+                //Crew Management Effect
+                else if (currentTutorial.tutorialMessages[index].selectRoom) EffectSelectRoom();
             }
         }
         /////////////////////////////////////////////////////////////////////////////////

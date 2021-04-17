@@ -18,7 +18,7 @@ using UnityEngine.SceneManagement;
 ///     Events          player can run into story and random events.
 ///     Ending          player has reached a narrative ending.
 /// </summary>
-public enum InGameStates { None, JobSelect, ShipBuilding, CrewManagement, Events, MoneyEnding, MoraleEnding, Mutiny, Death, JobPayment, CrewPayment, RoomUnlock, EndingStats, EndingCredits}
+public enum InGameStates { None, JobSelect, ShipBuilding, Events, MoneyEnding, MoraleEnding, Mutiny, Death, JobPayment, CrewPayment, RoomUnlock, EndingStats, EndingCredits}
 
 /// <summary>
 /// Manages the state of the game while the player is playing.
@@ -110,10 +110,8 @@ public class GameManager : MonoBehaviour
             {
                 case InGameStates.ShipBuilding:
                     yield return new WaitUntil(() => FindObjectOfType<SpotChecker>());
-                    SavingLoadingManager.instance.LoadRoomLevels();
-                    break;
-                case InGameStates.CrewManagement:
                     yield return new WaitUntil(() => FindObjectOfType<CrewManagement>());
+                    SavingLoadingManager.instance.LoadRoomLevels();
                     break;
                 case InGameStates.Events:
                     yield return new WaitUntil(() => FindObjectOfType<SpotChecker>());
@@ -175,11 +173,6 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.LoadSceneSeperate("ShipBuilding");
                 additiveSceneManager.LoadSceneSeperate("CrewManagement");
                 SaveGameState();
-                break;
-            case InGameStates.CrewManagement:
-                additiveSceneManager.UnloadScene("ShipBuilding");
-
-                additiveSceneManager.LoadSceneSeperate("CrewManagement");
                 break;
             case InGameStates.RoomUnlock:
                 additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
