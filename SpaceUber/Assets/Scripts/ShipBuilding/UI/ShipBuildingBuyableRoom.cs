@@ -228,21 +228,47 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         GameManager.instance.SetUnlockLevel(3, group3);
     }
 
+    //private void CheckActiveButtons2()
+    //{
+        //if(levelTemp >= 3)
+        //{
+           //increaseButton.interactable = false;
+            //decreaseButton.interactable = true;
+        //}
+        //else if(levelTemp <= 1)
+        //{
+            //increaseButton.interactable = true;
+            //decreaseButton.interactable = false;
+        //}
+        //else
+        //{
+            //increaseButton.interactable = true;
+            //decreaseButton.interactable = true;
+        //}
+    //}
+
     private void CheckActiveButtons()
     {
-        if(levelTemp >= 3)
+        int maxLevel = GameManager.instance.GetUnlockLevel(roomPrefab.GetComponent<RoomStats>().GetRoomGroup());
+
+        if(maxLevel == 1)
         {
             increaseButton.interactable = false;
+            decreaseButton.interactable = false;
+        }
+        else if (maxLevel > levelTemp && levelTemp > 1)
+        {
+            increaseButton.interactable = true;
             decreaseButton.interactable = true;
         }
-        else if(levelTemp <= 1)
+        else if(maxLevel > levelTemp && levelTemp == 1)
         {
             increaseButton.interactable = true;
             decreaseButton.interactable = false;
         }
-        else
+        else if(maxLevel == levelTemp && levelTemp > 1)
         {
-            increaseButton.interactable = true;
+            increaseButton.interactable = false;
             decreaseButton.interactable = true;
         }
     }
