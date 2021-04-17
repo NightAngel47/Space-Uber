@@ -76,7 +76,7 @@ public class ObjectScript : MonoBehaviour
             StartCoroutine(WaitToClickRoom());
         }
 
-        if (Input.GetButtonDown("DeleteRoom") && !preplacedRoom && ObjectMover.hasPlaced && !isDeleting)
+        if (Input.GetButtonDown("DeleteRoom") && FindObjectOfType<CrewManagementRoomDetailsMenu>().selectedRoom == gameObject && !preplacedRoom && ObjectMover.hasPlaced && !isDeleting)
         {
             StartCoroutine(Delete());
         }
@@ -263,6 +263,8 @@ public class ObjectScript : MonoBehaviour
                 FindObjectOfType<SpawnObject>().NextToRoomHighlight(r.gameObject);
             }
         }
+
+        FindObjectOfType<CrewManagementRoomDetailsMenu>().selectedRoom = null;
     }
 
     public IEnumerator Delete(bool removeStats = true, GameObject roomBeingPlaced = null)
