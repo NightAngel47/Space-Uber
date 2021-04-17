@@ -14,7 +14,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     private ShipStats shipStats;
     private RoomStats roomStats;
     private OverclockRoom overclockRoom;
-    private GameObject selectedRoom = null;
+    [ReadOnly] public GameObject selectedRoom = null;
 
     [SerializeField] private string noRoomSelectedMessage = "Select a room to view its details.";
     [SerializeField] private GameObject[] roomDetailsInfo = new GameObject[2];
@@ -77,11 +77,6 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         
         UpdatePanelInfo();
         Tutorial.Instance.SetCurrentTutorial(2, true);
-    }
-
-    public GameObject GetSelectedRoom()
-    {
-        return selectedRoom;
     }
     
     public void UpdatePanelInfo()

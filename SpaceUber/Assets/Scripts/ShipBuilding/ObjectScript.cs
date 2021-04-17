@@ -78,7 +78,7 @@ public class ObjectScript : MonoBehaviour
 
         if (Input.GetButton("DeleteRoom") && !preplacedRoom && ObjectMover.hasPlaced && !isDeleting)
         {
-            Delete();
+            StartCoroutine(Delete());
         }
     }
 
@@ -145,7 +145,7 @@ public class ObjectScript : MonoBehaviour
 
                 CrewViewManager.Instance.DisableCrewView();
                 FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
-
+                
                 Edit();
             }
         }
@@ -161,7 +161,7 @@ public class ObjectScript : MonoBehaviour
                 //FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
                 //FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
 
-                if (gameObject == FindObjectOfType<CrewManagementRoomDetailsMenu>().GetSelectedRoom())
+                if (gameObject == FindObjectOfType<CrewManagementRoomDetailsMenu>().selectedRoom)
                 {
                     FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
                 }
@@ -265,10 +265,12 @@ public class ObjectScript : MonoBehaviour
         }
     }
 
-    public void Delete(bool removeStats = true, GameObject roomBeingPlaced = null)
+    public IEnumerator Delete(bool removeStats = true, GameObject roomBeingPlaced = null)
     {
-        if (isDeleting) return;
+        if (isDeleting) yield break;
         isDeleting = true;
+
+        yield return new WaitForSeconds(0.1f);
 
         if (removeStats)
         {
@@ -331,7 +333,7 @@ public class ObjectScript : MonoBehaviour
         // destroy the room being placed otherwise destroy the selected room
         Destroy(roomBeingPlaced
             ? roomBeingPlaced
-            : FindObjectOfType<CrewManagementRoomDetailsMenu>().GetSelectedRoom());
+            : FindObjectOfType<CrewManagementRoomDetailsMenu>().selectedRoom);
     }
 
     public void HighlightSpotsOn()
