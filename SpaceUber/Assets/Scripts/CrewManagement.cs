@@ -28,7 +28,7 @@ public class CrewManagement : MonoBehaviour
         //removed since crew management and shipbuilding are being combined
         //CrewViewManager.Instance.EnableCrewView();//automatically enable crew view when you enter crew mgmt
         
-        Tutorial.Instance.SetCurrentTutorial(2, true);
+        
     }
 
     public void CheckForMinCrew()

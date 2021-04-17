@@ -76,6 +76,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         }
         
         UpdatePanelInfo();
+        Tutorial.Instance.SetCurrentTutorial(2, true);
     }
 
     public GameObject GetSelectedRoom()
