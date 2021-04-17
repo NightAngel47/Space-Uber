@@ -470,6 +470,6 @@ public class ObjectScript : MonoBehaviour
 
     private void OnDestroy()
     {
-        FindObjectOfType<EditCrewButton>()?.CheckForRoomsCall();
+        FindObjectOfType<CrewManagement>()?.CheckForRoomsCall();
     }
 }
