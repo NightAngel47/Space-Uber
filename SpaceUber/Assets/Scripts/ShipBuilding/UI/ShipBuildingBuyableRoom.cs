@@ -14,6 +14,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     
     [SerializeField] Image resourceIcon;
     [SerializeField] Image roomImage;
+    [SerializeField] Image levelImage;
     [SerializeField] TextMeshProUGUI rname;
     [SerializeField] TextMeshProUGUI roomSize;
     [SerializeField] TextMeshProUGUI needsCredits;
@@ -23,9 +24,12 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     [SerializeField] TextMeshProUGUI producesAmount;
     [SerializeField] TextMeshProUGUI level;
     [SerializeField] GameObject newLevelText;
+    [SerializeField] Button increaseButton;
+    [SerializeField] Button decreaseButton;
 
     private SpawnObject objectsToSpawn;
     private CampaignManager campaignManager;
+    private ShipBuildingShop shop;
 
     
 
@@ -38,6 +42,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     {
         objectsToSpawn = FindObjectOfType<SpawnObject>();
         campaignManager = FindObjectOfType<CampaignManager>();
+        shop = FindObjectOfType<ShipBuildingShop>();
     }
 
     private void Start()
@@ -114,15 +119,20 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
 
     public void UpdateRoomInfo()
     {
-        roomImage.sprite = roomPrefab.GetComponentInChildren<SpriteRenderer>().sprite;
+        CheckActiveButtons();
 
+        roomImage.sprite = roomPrefab.GetComponentInChildren<SpriteRenderer>().sprite;
         RoomStats roomStats = roomPrefab.GetComponent<RoomStats>();
+
         rname.text = roomStats.roomName;
         needsCredits.text = "" + roomStats.price[levelTemp - 1];
         needsPower.text = "" + roomStats.minPower[levelTemp - 1];
         needsCrew.text = "" + roomStats.minCrew + "-" + roomStats.maxCrew.ToString();
         roomSize.text = roomPrefab.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
+
+        
         level.text = levelTemp.ToString();
+        levelImage.sprite = shop.GetRoomLevelIcons()[levelTemp - 1];
 
         switch (campaignManager.GetCurrentJobIndex())
         {
@@ -152,6 +162,7 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
             producesResource.text = "No Production";
             producesAmount.text = "";
         }
+
     }
 
     public void SpawnSelectedPrefab()
@@ -168,9 +179,10 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     /// </summary>
     public void CallRoomLevelChange(int levelChange)
     {
+        if (roomPrefab == null) return;
         RoomStats roomStats = roomPrefab.GetComponent<RoomStats>();
 
-        switch(roomStats.GetRoomGroup())
+        switch (roomStats.GetRoomGroup())
         {
             case 1:
                 if ((levelChange < 0 && levelTemp > 1) || (levelChange > 0 && levelTemp < GameManager.instance.GetUnlockLevel(1)))
@@ -215,4 +227,51 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         GameManager.instance.SetUnlockLevel(2, group2);
         GameManager.instance.SetUnlockLevel(3, group3);
     }
+
+    //private void CheckActiveButtons2()
+    //{
+        //if(levelTemp >= 3)
+        //{
+           //increaseButton.interactable = false;
+            //decreaseButton.interactable = true;
+        //}
+        //else if(levelTemp <= 1)
+        //{
+            //increaseButton.interactable = true;
+            //decreaseButton.interactable = false;
+        //}
+        //else
+        //{
+            //increaseButton.interactable = true;
+            //decreaseButton.interactable = true;
+        //}
+    //}
+
+    private void CheckActiveButtons()
+    {
+        int maxLevel = GameManager.instance.GetUnlockLevel(roomPrefab.GetComponent<RoomStats>().GetRoomGroup());
+
+        if(maxLevel == 1)
+        {
+            increaseButton.interactable = false;
+            decreaseButton.interactable = false;
+        }
+        else if (maxLevel > levelTemp && levelTemp > 1)
+        {
+            increaseButton.interactable = true;
+            decreaseButton.interactable = true;
+        }
+        else if(maxLevel > levelTemp && levelTemp == 1)
+        {
+            increaseButton.interactable = true;
+            decreaseButton.interactable = false;
+        }
+        else if(maxLevel == levelTemp && levelTemp > 1)
+        {
+            increaseButton.interactable = false;
+            decreaseButton.interactable = true;
+        }
+    }
+
+    
 }
