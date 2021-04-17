@@ -43,6 +43,7 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
             !Tutorial.Instance.GetTutorialActive())
         {
             detailsMenu.UnHighlight();
+            CrewViewManager.Instance.DisableCrewView();
             ClosePanel();
         }
 
