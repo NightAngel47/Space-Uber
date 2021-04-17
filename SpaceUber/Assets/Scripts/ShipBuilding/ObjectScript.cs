@@ -78,7 +78,7 @@ public class ObjectScript : MonoBehaviour
 
         if (Input.GetButton("DeleteRoom") && !preplacedRoom && ObjectMover.hasPlaced && !isDeleting)
         {
-            StartCoroutine(Delete());
+            Delete();
         }
     }
 
@@ -261,12 +261,10 @@ public class ObjectScript : MonoBehaviour
         }
     }
 
-    public IEnumerator Delete(bool removeStats = true, GameObject roomBeingPlaced = null)
+    public void Delete(bool removeStats = true, GameObject roomBeingPlaced = null)
     {
-        if (isDeleting) yield break;
+        if (isDeleting) return;
         isDeleting = true;
-        
-        yield return new WaitForSeconds(0.25f); // delay for not deleting 2 rooms at once
 
         if (removeStats)
         {
@@ -326,9 +324,10 @@ public class ObjectScript : MonoBehaviour
             panels[i].ClosePanel(0);
         }
 
-        Destroy(FindObjectOfType<CrewManagementRoomDetailsMenu>().GetSelectedRoom());
-
-        Destroy(roomBeingPlaced);
+        // destroy the room being placed otherwise destroy the selected room
+        Destroy(roomBeingPlaced
+            ? roomBeingPlaced
+            : FindObjectOfType<CrewManagementRoomDetailsMenu>().GetSelectedRoom());
     }
 
     public void HighlightSpotsOn()

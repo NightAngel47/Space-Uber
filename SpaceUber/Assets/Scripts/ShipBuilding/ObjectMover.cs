@@ -81,7 +81,7 @@ public class ObjectMover : MonoBehaviour
 
                 if(Input.GetButton("DeleteRoom"))
                 {
-                    StartCoroutine(os.Delete(os.isEdited, gameObject));
+                    os.Delete(os.isEdited, gameObject);
                 }
             }
         }
