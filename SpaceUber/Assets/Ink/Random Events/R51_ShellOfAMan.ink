@@ -8,7 +8,7 @@ Kuon drags the officer to Medbay and straps him to a table. Ripley doesn't bat a
 +[Break Connection]->Break
 +[Get Rid of Him]->Rid
 == Break ==
-Ripley performs the procedure, severing the control the cybernetics had over the man’s body. She sighs, "Nothing more we can do for him now. He can’t survive without life support." The man's vitals stop almost as soon as she finishes speaking. You've lost an officer, but you can tell that taking these steps has helped assuage the discomfort felt by Ripley,Kuon, and the crew.
+Ripley performs the procedure, severing the control the cybernetics had over the man’s body. She sighs, "Nothing more we can do for him now. He can’t survive without life support." The man's vitals stop almost as soon as she finishes speaking. You've lost an officer, but you can tell that taking these steps has helped assuage the discomfort felt by Ripley, Kuon, and the crew.
 ->DONE
 == Rid ==
 Ripley looks away as Kuon takes the man to his final resting place. The officer is ejected without ceremony, but the crew remain worried that this may happen again.
