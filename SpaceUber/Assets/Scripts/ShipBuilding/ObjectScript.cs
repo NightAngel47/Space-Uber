@@ -332,6 +332,8 @@ public class ObjectScript : MonoBehaviour
             panels[i].ClosePanel(0);
         }
 
+        CrewViewManager.Instance.DisableCrewView();
+        
         // destroy the room being placed otherwise destroy the selected room
         Destroy(roomBeingPlaced
             ? roomBeingPlaced
