@@ -177,9 +177,9 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         UpdateCrewButtons();
     }
 
-    private void UpdateCrewButtons()
+    private void UpdateCrewButtons(bool clear = false)
     {
-        if (roomStats.maxCrew == 0) // no crew needed for room
+        if (clear || roomStats.maxCrew == 0) // no crew needed for room
         {
             for (var i = 0; i < crewButtons.Length; i++)
             {
@@ -303,6 +303,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         
         SetOvertimeButtonState(false);
         SetTalkToCrewButtonState(false);
+        UpdateCrewButtons(true);
     }
 
     public void ToggleHighlight()
