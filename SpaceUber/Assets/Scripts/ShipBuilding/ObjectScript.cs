@@ -144,7 +144,10 @@ public class ObjectScript : MonoBehaviour
                 AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
 
                 CrewViewManager.Instance.DisableCrewView();
-                FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
+                if (FindObjectOfType<RoomPanelToggle>().GetIsOpen() == true)
+                {
+                    FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
+                }
                 
                 Edit();
             }
