@@ -76,7 +76,7 @@ public class ObjectScript : MonoBehaviour
             StartCoroutine(WaitToClickRoom());
         }
 
-        if (Input.GetButton("DeleteRoom") && !preplacedRoom && ObjectMover.hasPlaced && !isDeleting)
+        if (Input.GetButtonDown("DeleteRoom") && !preplacedRoom && ObjectMover.hasPlaced && !isDeleting)
         {
             StartCoroutine(Delete());
         }
