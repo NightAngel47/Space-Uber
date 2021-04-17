@@ -3,7 +3,6 @@
  * various controls for the shipbuilding, radio, and crew management UI
  */
 
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -42,9 +41,13 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
             !isMouseOverObject && 
             !Tutorial.Instance.GetTutorialActive())
         {
-            detailsMenu.UnHighlight();
-            CrewViewManager.Instance.DisableCrewView();
             ClosePanel();
+            
+            if (tabs.Length > 0 && tabs[0].name == "Room Details")
+            {
+                detailsMenu.UnHighlight();
+                CrewViewManager.Instance.DisableCrewView();
+            }
         }
 
         if (isOpen && EventSystem.instance.eventActive)
@@ -100,17 +103,14 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
         panelAnimator.SetBool(IsOpen, true);
         isOpen = true;
 
-        if (tabs.Length > 0)
+        if (tabs.Length > 0 && tabs[0].name == "Room Details" && tabIndex == 0)
         {
-            if (tabs[0].name == "Room Details" && tabIndex == 0)
-            {
-                //enables crew view when room details panel gets opened
-                CrewViewManager.Instance.EnableCrewView();
+            //enables crew view when room details panel gets opened
+            CrewViewManager.Instance.EnableCrewView();
                 
-                // set header text and help button for room details for when selecting a room with the mouse
-                if(headerText) headerText.text = tabs[0].name; 
-                if(helpButton) helpButton.SetActive(true);
-            }
+            // set header text and help button for room details for when selecting a room with the mouse
+            if(headerText) headerText.text = tabs[0].name; 
+            if(helpButton) helpButton.SetActive(true);
         }
     }
 
