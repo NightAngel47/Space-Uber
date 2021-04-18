@@ -137,8 +137,11 @@ public class Tutorial : Singleton<Tutorial>
     {
         if(disableTutorial) return;
 
-        //if you're already in a tutorial, stop.
-        if (tutorialPanel.activeSelf == true) return;
+        //if you're already in a tutorial, close it
+        if (tutorialPanel.activeSelf == true)
+        {
+            CloseCurrentTutorial(true);
+        }
         //if the game tries to force a tutorial the player has already seen, stop.
         if (tutorials[tutorialID].tutorialFinished == true && forcedTutorial == true) return;
 
