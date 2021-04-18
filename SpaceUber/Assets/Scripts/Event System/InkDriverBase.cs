@@ -99,6 +99,9 @@ public class InkDriverBase : MonoBehaviour
         }
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
         AudioManager.instance.PlaySFX(eventIntroSFX);
+        
+        //if(pageClips[0] != null)
+        //    AudioManager.instance.PlaySFX(pageClips[0]);
 
         isScalableEvent = !isStoryEvent && !isMutinyEvent;
     }

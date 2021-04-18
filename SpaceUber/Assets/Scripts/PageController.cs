@@ -7,6 +7,7 @@
 
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class PageController : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class PageController : MonoBehaviour
     private bool madeChoice;
     private TMP_Text nextButtonText;
     InkDriverBase inkDriver;
+
+    private List<string> mySFX;
     private void Start()
     {
         nextButtonText = nextButton.GetComponentInChildren<TMP_Text>();
@@ -37,12 +40,14 @@ public class PageController : MonoBehaviour
             {
                 backButton.SetActive(true);
             }
-            if(!inkDriver) inkDriver = FindObjectOfType<InkDriverBase>();
-            if (inkDriver.pageClips.Count >= eventText.pageToDisplay)
+
+            
+
+            if (mySFX.Count >= eventText.pageToDisplay)
             {
-                if (inkDriver.pageClips[eventText.pageToDisplay] != null)
+                if (mySFX[eventText.pageToDisplay] != null)
                 {
-                    AudioManager.instance.PlaySFX(inkDriver.pageClips[eventText.pageToDisplay - 1]);
+                    AudioManager.instance.PlaySFX(mySFX[eventText.pageToDisplay - 1]);
                 }
             }
         }
@@ -68,16 +73,17 @@ public class PageController : MonoBehaviour
         {
             eventText.pageToDisplay -= 1;
             nextButtonText.text = defaultNextMsg;
+            
             if(eventText.pageToDisplay == 1)
             {
                 backButton.SetActive(false);
             }
-            if (!inkDriver) inkDriver = FindObjectOfType<InkDriverBase>();
-            if (inkDriver.pageClips.Count >= eventText.pageToDisplay)
+
+            if (mySFX.Count >= eventText.pageToDisplay)
             {
-                if (inkDriver.pageClips[eventText.pageToDisplay] != null)
+                if (mySFX[eventText.pageToDisplay] != null)
                 {
-                    AudioManager.instance.PlaySFX(inkDriver.pageClips[eventText.pageToDisplay - 1]);
+                    AudioManager.instance.PlaySFX(mySFX[eventText.pageToDisplay - 1]);
                 }
             }
 
@@ -90,6 +96,20 @@ public class PageController : MonoBehaviour
 
     public void ResetPages()
     {
+        if (!inkDriver) inkDriver = FindObjectOfType<InkDriverBase>();
+        int currentPage = eventText.pageToDisplay;
+
+        //cuts list to keep pace with the array
+        if(mySFX.Count < 1) //first pass cuts the original list from idb
+        {
+            mySFX = inkDriver.pageClips;
+        }
+        else //subsequent passes cut the current list
+        {
+            mySFX = mySFX.GetRange(currentPage + 1, inkDriver.pageClips.Count);
+            //plus one, so we don't keep the SFX just played
+        }
+
         eventText.pageToDisplay = 1;
         backButton.SetActive(false);
         nextButtonText.text = defaultNextMsg;
