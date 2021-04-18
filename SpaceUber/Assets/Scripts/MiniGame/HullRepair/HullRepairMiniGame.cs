@@ -23,9 +23,9 @@ public class HullRepairMiniGame : MiniGame
 	protected override void Start()
     {
 		base.Start();
-		//FillLists();
-		//RandomizePositions();
-		Tutorial.Instance.SetCurrentTutorial(7, true);
+        FillLists();
+        RandomizePositions();
+        Tutorial.Instance.SetCurrentTutorial(7, true);
 	}
 
 	private void FillLists()
@@ -75,13 +75,14 @@ public class HullRepairMiniGame : MiniGame
 		foreach(GameObject piece in smallPiecesList)
         {
 			int randNum = Random.Range(0, smallSlotsList.Count);
+			
 			while(smallSlotsList[randNum].taken)
             {
 				randNum = Random.Range(0, smallSlotsList.Count);
 			}
 
 			smallSlotsList[randNum].taken = true;
-			piece.transform.position = smallSlotsList[randNum].myPosition;
+			piece.transform.position = smallSlotsList[randNum].gameObject.transform.position;
 			piece.GetComponent<HullPiece>().mySlot = smallSlotsList[randNum];
 
 		}
@@ -96,7 +97,7 @@ public class HullRepairMiniGame : MiniGame
 			}
 
 			largeSlotsList[randNum].taken = true;
-			piece.transform.position = largeSlotsList[randNum].myPosition;
+			piece.transform.position = largeSlotsList[randNum].gameObject.transform.position;
 			piece.GetComponent<HullPiece>().mySlot = largeSlotsList[randNum];
 		}
 	}

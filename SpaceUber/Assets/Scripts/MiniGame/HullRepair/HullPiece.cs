@@ -2,7 +2,7 @@
  * HullPiece.cs
  * Author(s): #Greg Brandt#
  * Created on: 11/17/2020 (en-US)
- * Description: Implements hull piece for hull repair mini game
+ * Description: Controls the individual pieces for the hull repair puzzle. Includes functionality for picking up the pieces
  */
 
 using UnityEngine;
@@ -41,7 +41,7 @@ public class HullPiece : MonoBehaviour
     {
         Collider2D[] colliders = new Collider2D[1];
 
-        //Selecting a hull piece
+        //if there is no hull piece currently selected, see if you can pick one up
         if (this != HullRepairMiniGame.selectedHullPiece) 
         { 
             HullRepairMiniGame.selectedHullPiece = this; 
