@@ -345,6 +345,13 @@ MonoBehaviour:
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0
+  - name: Main Menu
+    clip: {fileID: 8300000, guid: 9f83bea75c0234f48bd7c7d59f7cee2e, type: 3}
+    mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
   sfxTracks:
   - name: Alien Noise 1
     clip: {fileID: 8300000, guid: 0a9ac1b09bcb2334aaa5eed41303d6ce, type: 3}
@@ -2873,7 +2880,31 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 1fd34f857cb168f44ba2eb1492d5a990, type: 3}
     mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
       type: 2}
-    volume: 0.96
+    volume: 0.76
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Kuon Crew Fight
+    clip: {fileID: 8300000, guid: 0321a6a2649934c45950e980e37539a7, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.86
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Kuon Shell
+    clip: {fileID: 8300000, guid: 0f15bb5793866564b946f9c858d53d3a, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.865
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Kuon Goons
+    clip: {fileID: 8300000, guid: d76c4a226e0b8f948b6d6e887ecab664, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.905
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0
@@ -2986,6 +3017,118 @@ MonoBehaviour:
     mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
       type: 2}
     volume: 1
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Suprise
+    clip: {fileID: 8300000, guid: 3e88db5351a7be14da952f1200e1509e, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Sick
+    clip: {fileID: 8300000, guid: 1cbf77d4697d3534bb9d319a844c6f3f, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Wishing
+    clip: {fileID: 8300000, guid: ec45f322fc7ee6c449e099a82d32a133, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Distress
+    clip: {fileID: 8300000, guid: e98d995cf478ff34f9093a106492076a, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Slacking
+    clip: {fileID: 8300000, guid: debf1d5597357af4bb2033d6599f5578, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Captain
+    clip: {fileID: 8300000, guid: 39a3199c109e8e54998939c3ead57640, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Visions
+    clip: {fileID: 8300000, guid: 40448c46136a48547ac2e4a1d2294647, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Omens
+    clip: {fileID: 8300000, guid: e01469a9faed46046abb4b515618eaf9, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Outfit
+    clip: {fileID: 8300000, guid: 4f005d277f6511a4885899a9155d915a, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Speed
+    clip: {fileID: 8300000, guid: 1a379d6adc3ebbd4e947af2b2e3bd7ad, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Because
+    clip: {fileID: 8300000, guid: e874f0d75d9371648affe109d076eea6, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Talk Back
+    clip: {fileID: 8300000, guid: 162ab92266817834790406e832f80625, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa People on Ship
+    clip: {fileID: 8300000, guid: 1cf504bbbfba76c41a6531b2cc4abc3e, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Last Mutiny
+    clip: {fileID: 8300000, guid: 59529c4a58276a243a4cbe14514a0af1, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.8
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0
