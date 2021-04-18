@@ -25,8 +25,8 @@ public class HullRepairMiniGame : MiniGame
 		base.Start();
 		//FillLists();
 		//RandomizePositions();
-
-    }
+		Tutorial.Instance.SetCurrentTutorial(7, true);
+	}
 
 	private void FillLists()
     {

@@ -289,7 +289,7 @@ public class ShipStats : MonoBehaviour
         get => new Vector3(stats[(int) Stats.CrewCurrent], stats[(int) Stats.CrewCapacity], stats[(int) Stats.CrewUnassigned]);
         set
         {
-            if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
+            if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
             {
                 SetObjectBeingPlaced();
             }

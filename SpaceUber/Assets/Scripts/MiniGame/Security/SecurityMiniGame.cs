@@ -39,42 +39,63 @@ public class SecurityMiniGame : MiniGame
     [SerializeField, Tooltip("The delay before the first part of the code appears")]
     private float timeBeforeCodes = 0.25f;
 
+    private bool setUp = false;
+
     void Start() 
-    { 
-        GenerateCode();
-        foreach (Toggle toggle in successTrackers) { toggle.isOn = false; }
+    {
+        setUp = false;
+
+        Tutorial.Instance.SetCurrentTutorial(8, true);
+        if (!Tutorial.Instance.GetTutorialActive())
+        {
+            GenerateCode();
+            foreach (Toggle toggle in successTrackers) { toggle.isOn = false; }
+            setUp = true;
+        }
+
+
     }
 
     void Update()
     {
-		if (inputCode.Length == requiredCode.Length && inputCode.Length > 0) 
+        if(!Tutorial.Instance.GetTutorialActive() && setUp == false)
         {
-            foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(false); }
-            if (inputCode == requiredCode)
+            GenerateCode();
+            foreach (Toggle toggle in successTrackers) { toggle.isOn = false; }
+            setUp = true;
+        }
+        else if(setUp == true)
+        {
+            if (inputCode.Length == requiredCode.Length && inputCode.Length > 0)
             {
-                inputCode = "";
-                successes++;
-                AudioManager.instance.PlaySFX(Correct[Random.Range(0, Correct.Length - 1)]);
-                for (int i = 0; i < successes; i++) { successTrackers[i].isOn = true; }
-                for(int i = successes; i < successTrackers.Length; i++) { successTrackers[i].isOn = false; }
-                if (successes == successTrackers.Length)
+                foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(false); }
+                if (inputCode == requiredCode)
                 {
-                    Debug.Log("win");
-                    EndMiniGameSuccess();
+                    inputCode = "";
+                    successes++;
+                    AudioManager.instance.PlaySFX(Correct[Random.Range(0, Correct.Length - 1)]);
+                    for (int i = 0; i < successes; i++) { successTrackers[i].isOn = true; }
+                    for (int i = successes; i < successTrackers.Length; i++) { successTrackers[i].isOn = false; }
+                    if (successes == successTrackers.Length)
+                    {
+                        Debug.Log("win");
+                        EndMiniGameSuccess();
+                    }
+                    else
+                    {
+                        Debug.Log("");
+                        GenerateCode();
+                    }
                 }
-                else 
+                else
                 {
-                    Debug.Log("");
-                    GenerateCode();
+                    inputCode = "";
+                    AudioManager.instance.PlaySFX(Incorrect[Random.Range(0, Incorrect.Length - 1)]);
+                    StartCoroutine(PromptTryAgain());
                 }
-            }
-            else 
-            {
-                inputCode = "";
-                AudioManager.instance.PlaySFX(Incorrect[Random.Range(0, Incorrect.Length - 1)]);
-                StartCoroutine(PromptTryAgain());
             }
         }
+		
     }
 
     void ScrambleCodeBlocks()
