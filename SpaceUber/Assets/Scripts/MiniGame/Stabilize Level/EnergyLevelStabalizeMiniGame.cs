@@ -29,6 +29,8 @@ public class EnergyLevelStabalizeMiniGame : MiniGame
 	{
 		InitializeGame();
         int goal = 50;
+
+		Tutorial.Instance.SetCurrentTutorial(9, true);
 		//Ensure starting game state doesn't start within 10 of goal
 		while (Mathf.Abs(CalculatePowerLevel() - goal) < 10) { InitializeGame(); }
 	}

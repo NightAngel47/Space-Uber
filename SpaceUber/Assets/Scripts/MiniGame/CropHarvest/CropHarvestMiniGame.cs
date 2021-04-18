@@ -19,6 +19,11 @@ public class CropHarvestMiniGame : MiniGame
     int score = 0;
     bool gameOver = false;
 
+    private void Start()
+    {
+        Tutorial.Instance.SetCurrentTutorial(6, true);
+    }
+
     void Update()
     {
         if(score == requiredScore&&!gameOver)
