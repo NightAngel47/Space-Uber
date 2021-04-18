@@ -229,8 +229,8 @@ MonoBehaviour:
     tutorialFinished: 0
   - tutorialName: Asteroids Minigame Tutorial
     tutorialMessages:
-    - message: Use your mouse to aim. and LMB to shoot the asteroids before they
-        hit the ship!
+    - message: Use LMB and RMB to shoot the asteroids before they hit the ship! The
+        minigame will begin when this tutorial is closed.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
@@ -262,7 +262,8 @@ MonoBehaviour:
   - tutorialName: Security Minigame Tutorial
     tutorialMessages:
     - message: Watch the security code appear on screen, then click on the corresponding
-        numbers and letters to recreate the code.
+        numbers and letters to recreate the code. The minigame will begin when this
+        tutorial is closed.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
@@ -271,8 +272,18 @@ MonoBehaviour:
     tutorialFinished: 0
   - tutorialName: Energy Minigame Tutorial
     tutorialMessages:
-    - message: Use LMB to interact with the buttons and sliders. Try to get energy
-        to equal 100, then click finished.
+    - message: Use LMB to interact with the buttons and sliders. Try to get optimization
+        equal to 100, then click lock in to finish.
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    tutorialFinished: 0
+  - tutorialName: Slots Minigame Tutorial
+    tutorialMessages:
+    - message: Choose your bet, then use LMB to pull the lever and click the three
+        buttons. Try to match up the images to earn a prize!
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
