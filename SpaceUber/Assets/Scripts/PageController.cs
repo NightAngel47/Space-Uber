@@ -17,27 +17,40 @@ public class PageController : MonoBehaviour
     [SerializeField] private string continueNextMsg;
     private bool madeChoice;
     private TMP_Text nextButtonText;
-
+    InkDriverBase inkDriver;
     private void Start()
     {
         nextButtonText = nextButton.GetComponentInChildren<TMP_Text>();
         ResetPages();
+        
     }
 
     public void NextPage()
     {
-        if(eventText.pageToDisplay < eventText.textInfo.pageCount)
+        //if there are still pages to display
+        if (eventText.pageToDisplay < eventText.textInfo.pageCount)
         {
-            eventText.pageToDisplay += 1;
+            eventText.pageToDisplay += 1; //increment current page
+            
+            //back button is not active
             if(!backButton.activeSelf)
             {
                 backButton.SetActive(true);
             }
+            if(!inkDriver) inkDriver = FindObjectOfType<InkDriverBase>();
+            if (inkDriver.pageClips.Count >= eventText.pageToDisplay)
+            {
+                if (inkDriver.pageClips[eventText.pageToDisplay] != null)
+                {
+                    AudioManager.instance.PlaySFX(inkDriver.pageClips[eventText.pageToDisplay]);
+                }
+            }
         }
         else
         {
-            InkDriverBase inkDriver = FindObjectOfType<InkDriverBase>();
-            if(!inkDriver.ShowChoices())
+            if (!inkDriver) inkDriver = FindObjectOfType<InkDriverBase>();
+
+            if (!inkDriver.ShowChoices()) //if no choices remain
             {
                 inkDriver.ConcludeEvent();
             }
@@ -59,6 +72,15 @@ public class PageController : MonoBehaviour
             {
                 backButton.SetActive(false);
             }
+            if (!inkDriver) inkDriver = FindObjectOfType<InkDriverBase>();
+            if (inkDriver.pageClips.Count >= eventText.pageToDisplay)
+            {
+                if (inkDriver.pageClips[eventText.pageToDisplay] != null)
+                {
+                    AudioManager.instance.PlaySFX(inkDriver.pageClips[eventText.pageToDisplay]);
+                }
+            }
+
         }
         else
         {

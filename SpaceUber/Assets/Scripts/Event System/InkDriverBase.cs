@@ -52,6 +52,8 @@ public class InkDriverBase : MonoBehaviour
 
     [Dropdown("eventMusicTracks")]
     public string eventBGM;
+    [Tooltip("The audioclips that will play on each page of this event, in order")]
+    public List<string> pageClips;
 
     private List<string> eventMusicTracks
     {
