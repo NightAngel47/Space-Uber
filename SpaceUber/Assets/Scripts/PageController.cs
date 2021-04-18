@@ -42,7 +42,7 @@ public class PageController : MonoBehaviour
             {
                 if (inkDriver.pageClips[eventText.pageToDisplay] != null)
                 {
-                    AudioManager.instance.PlaySFX(inkDriver.pageClips[eventText.pageToDisplay]);
+                    AudioManager.instance.PlaySFX(inkDriver.pageClips[eventText.pageToDisplay - 1]);
                 }
             }
         }
@@ -77,7 +77,7 @@ public class PageController : MonoBehaviour
             {
                 if (inkDriver.pageClips[eventText.pageToDisplay] != null)
                 {
-                    AudioManager.instance.PlaySFX(inkDriver.pageClips[eventText.pageToDisplay]);
+                    AudioManager.instance.PlaySFX(inkDriver.pageClips[eventText.pageToDisplay - 1]);
                 }
             }
 
