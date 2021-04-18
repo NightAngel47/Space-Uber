@@ -146,7 +146,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     /// <summary>
     /// Updates the crew stat and room production stats
     /// </summary>
-    public void UpdateCrewAssignment()
+    private void UpdateCrewAssignment()
     {
         currentCrew.text = roomStats.currentCrew + " / " + roomStats.maxCrew;
 
@@ -160,11 +160,11 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
 
             if (roomStats.flatOutput == false)
             {
-                producesAmount.text = resource.activeAmount + " / " + resource.amount[roomStats.GetRoomLevel() - 1];
+                producesAmount.text = resource.activeAmount + " / " + (int)(resource.amount[roomStats.GetRoomLevel() - 1] * MoraleManager.instance.GetMoraleModifier(roomStats.ignoreMorale));
             }
             else
             {
-                producesAmount.text = resource.activeAmount.ToString();
+                producesAmount.text = (resource.amount[roomStats.GetRoomLevel() - 1] * MoraleManager.instance.GetMoraleModifier(roomStats.ignoreMorale)).ToString();
             }
         }
         else
