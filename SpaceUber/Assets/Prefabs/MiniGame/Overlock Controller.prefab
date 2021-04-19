@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodBaseAdjustments:
-  - 20
-  - 40
-  - 60
-  securityBaseAdjustments:
   - 15
   - 30
   - 45
+  securityBaseAdjustments:
+  - 15
+  - 25
+  - 35
   shipWeaponsBaseAdjustments:
   - 10
   - 20
@@ -67,7 +67,7 @@ MonoBehaviour:
   - -10
   - -20
   - -30
-  cooldownTime: 4
+  cooldownTime: 5
   cropPercentIncrease: 5
   securityPercentIncrease: 5
   asteroidPercentIncrease: 5
@@ -75,3 +75,4 @@ MonoBehaviour:
   hullRepairPercentIncrease: 5
   slotPercentIncrease: 8
   overclocking: 0
+  activeRoom: {fileID: 0}

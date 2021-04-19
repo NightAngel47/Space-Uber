@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1640593747910936885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6016304904928124888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfec50bf890af17479ff38a5eee6322e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: {fileID: 11400000, guid: 55b417f89e336ee4ea9b06e0b724b013, type: 2}
+  amount: 140000002300000032000000
+  activeAmount: 0
+  minAmount: 0
 --- !u!1 &4231706174363727311
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,22 +117,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1640593747910936885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6016304904928124888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfec50bf890af17479ff38a5eee6322e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resourceType: {fileID: 11400000, guid: 55b417f89e336ee4ea9b06e0b724b013, type: 2}
-  amount: 140000002300000032000000
-  activeAmount: 0
-  minAmount: 0
 --- !u!1 &8646312440052709566
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +645,7 @@ PrefabInstance:
     - target: {fileID: 1410969508493415506, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1454869677546294712, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -696,6 +696,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1941303797431210799, guid: e3a950c5ebba5874488f86ca44b3f716,
         type: 3}
+    - target: {fileID: 3117145261323384935, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117145261323384935, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117145261323384935, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.49
+      objectReference: {fileID: 0}
     - target: {fileID: 3754232717758567594, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_RootOrder
@@ -892,7 +907,7 @@ PrefabInstance:
     - target: {fileID: 5766507605158571097, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5881200089251463111, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -1065,6 +1080,16 @@ PrefabInstance:
         type: 3}
       propertyPath: Placements.Array.data[1]
       value: Alien Subdue 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778332872527994645, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 2.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778332872527994645, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.55
       objectReference: {fileID: 0}
     - target: {fileID: 8053823772464388611, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -2515,7 +2540,7 @@ PrefabInstance:
     - target: {fileID: 8354016038451866568, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: powercore
       objectReference: {fileID: 0}
     - target: {fileID: 8354016038451866582, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}

@@ -10,6 +10,7 @@ using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoomStats : MonoBehaviour
 {
@@ -58,9 +59,12 @@ public class RoomStats : MonoBehaviour
 
     private Camera cam;
 
-    public List<GameObject> CharacterEvents;
-
     private int resourceChange = 0;
+
+    public Image levelIconObject;
+    public List<Sprite> levelIcons = new List<Sprite>();
+
+    private CrewManagementRoomDetailsMenu roomDetailsMenu;
 
     private void Awake()
     {
@@ -70,9 +74,29 @@ public class RoomStats : MonoBehaviour
 
     private IEnumerator Start()
     {
+        UpdateRoomLevelIcon();
+
         yield return new WaitUntil(() => TryGetComponent(out Resource resource));
         
+        roomDetailsMenu = FindObjectOfType<CrewManagementRoomDetailsMenu>();
+        
         GetStats();
+    }
+
+    private void UpdateRoomLevelIcon()
+    {
+        switch (roomLevel)
+        {
+            case 1:
+                levelIconObject.sprite = levelIcons[0];
+                break;
+            case 2:
+                levelIconObject.sprite = levelIcons[1];
+                break;
+            case 3:
+                levelIconObject.sprite = levelIcons[2];
+                break;
+        }
     }
 
     public void UpdateUsedRoom()
@@ -146,44 +170,46 @@ public class RoomStats : MonoBehaviour
             }
             else
             {
-                resource.minAmount = resource.amount[roomLevel - 1] - (int)(resource.amount[roomLevel - 1] * percent);
+                //TODO Show min in shipbuilding so player knows how much they have
 
-                switch (resource.resourceType.Rt)
-                {
-                    case ResourceDataTypes._Credits:
-                        credits += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
-                        break;
-                    case ResourceDataTypes._Energy:
-                        energy += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
-                        break;
-                    case ResourceDataTypes._Security:
-                        security += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
-                        break;
-                    case ResourceDataTypes._ShipWeapons:
-                        shipWeapons += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
-                        break;
-                    case ResourceDataTypes._Crew:
-                        crew += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
-                        break;
-                    case ResourceDataTypes._Food:
-                        food += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
-                        break;
-                    case ResourceDataTypes._FoodPerTick:
-                        foodPerTick += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
-                        break;
-                    case ResourceDataTypes._HullDurability:
-                        shipHealth += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
-                        break;
-                    case ResourceDataTypes._CrewMorale:
-                        morale += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
-                        break;
-                    case ResourceDataTypes._Payout:
-                        credits += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
-                        break;
-                    default:
-                        Debug.LogError("Resource type: " + resource.resourceType.resourceName + " not setup in RoomStats");
-                        break;
-                }
+                //resource.minAmount = resource.amount[roomLevel - 1] - (int)(resource.amount[roomLevel - 1] * percent);
+
+                //switch (resource.resourceType.Rt)
+                //{
+                //    case ResourceDataTypes._Credits:
+                //        credits += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                //        break;
+                //    case ResourceDataTypes._Energy:
+                //        energy += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                //        break;
+                //    case ResourceDataTypes._Security:
+                //        security += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                //        break;
+                //    case ResourceDataTypes._ShipWeapons:
+                //        shipWeapons += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                //        break;
+                //    case ResourceDataTypes._Crew:
+                //        crew += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                //        break;
+                //    case ResourceDataTypes._Food:
+                //        food += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                //        break;
+                //    case ResourceDataTypes._FoodPerTick:
+                //        foodPerTick += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                //        break;
+                //    case ResourceDataTypes._HullDurability:
+                //        shipHealth += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                //        break;
+                //    case ResourceDataTypes._CrewMorale:
+                //        morale += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                //        break;
+                //    case ResourceDataTypes._Payout:
+                //        credits += (int)(resource.minAmount * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                //        break;
+                //    default:
+                //        Debug.LogError("Resource type: " + resource.resourceType.resourceName + " not setup in RoomStats");
+                //        break;
+                //}
             }
         }
     }
@@ -231,7 +257,7 @@ public class RoomStats : MonoBehaviour
                 Debug.LogError("Resource type: " + resource.resourceType.resourceName + " not setup in RoomStats");
                 break;
         }
-        
+
         SetActiveAmount(resource);
     }
 
@@ -290,7 +316,7 @@ public class RoomStats : MonoBehaviour
         //SubtractOneRoomStat(resourceData);
 
         Resource resource = resources[0];
-        
+
         switch (resourceData.Rt)
         {
             case ResourceDataTypes._Credits:
@@ -346,8 +372,8 @@ public class RoomStats : MonoBehaviour
                 Debug.LogError("Resource type: " + resource.resourceType.resourceName + " not setup in RoomStats");
                 break;
         }
-
-        FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdateCrewAssignment(currentCrew);
+        
+        //roomDetailsMenu.UpdateCrewAssignment();
         //AddOneRoomStat(resourceData);
     }
 
@@ -451,7 +477,7 @@ public class RoomStats : MonoBehaviour
         shipStats.FoodPerTick += foodPerTick;
         shipStats.ShipHealthCurrent += new Vector2(shipHealth, shipHealth);
         MoraleManager.instance.CrewMorale += morale;
-        
+
         AnalyticsManager.AddRoomForAnalytics(this);
     }
 
@@ -479,7 +505,7 @@ public class RoomStats : MonoBehaviour
         shipStats.FoodPerTick += -foodPerTick;
         shipStats.ShipHealthCurrent += new Vector2(-shipHealth, -shipHealth);
         MoraleManager.instance.CrewMorale -= morale;
-        
+
         AnalyticsManager.SubtractRoomForAnalytics(this);
     }
 
@@ -518,12 +544,12 @@ public class RoomStats : MonoBehaviour
     public void ChangeRoomLevel(int levelChange)
     {
         roomLevel = levelChange;
-        
+
         if (roomLevel > 3)
         {
             roomLevel = 3;
         }
-        
+
         if (roomLevel < 1)
         {
             roomLevel = 1;
@@ -533,5 +559,34 @@ public class RoomStats : MonoBehaviour
     public int GetRoomGroup()
     {
         return roomGroup;
+    }
+
+    public void UpgradePower()
+    {
+        if(gameObject.GetComponent<ObjectScript>().objectNum == 3)
+        {
+            switch(FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex())
+            {
+                case 0:
+                    roomLevel = 1;
+                    break;
+                case 1:
+                    roomLevel = 2;
+                    break;
+                case 2:
+                    roomLevel = 3;
+                    break;
+            }
+
+            // update UI to match level
+            UpdateRoomLevelIcon();
+            roomTooltipUI.UpdateRoomLevel();
+
+            foreach (Resource resource in resources)
+            {
+                resourceChange = resource.amount[roomLevel - 1] - resource.amount[roomLevel - 2];
+                UpdateRoomStats(resource.resourceType);
+            }
+        }
     }
 }

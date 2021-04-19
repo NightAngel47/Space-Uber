@@ -13,19 +13,21 @@ using UnityEngine.UI;
 public class SecurityMiniGame : MiniGame
 {
     [Tooltip("Uninteractable toggles used to show the player how many successes they need/have.")]
-    [SerializeField] Toggle[] successTrackers;
-    [SerializeField] CodeBlock[] codeSegments;
+    [SerializeField] private Toggle[] successTrackers;
+    [SerializeField] private CodeBlock[] codeSegments;
+    
     [Tooltip("Text that displays the required code characters.")]
-    [SerializeField] TMP_Text codePreview;
+    [SerializeField] private TMP_Text codePreview;
+    
     [Tooltip("How long each code character can be seen.")]
-    [SerializeField] float displayTime = 1;
-    [SerializeField] GameObject tryAgainText;
-    [SerializeField] int startCodeLength = 3;
+    [SerializeField] private float displayTime = 1;
+    [SerializeField] private GameObject tryAgainText;
+    [SerializeField] private int startCodeLength = 3;
     public int successes = 0;
-    string validChars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
-    string requiredCode = "";
-    string availableCode = "";
-    string inputCode = "";
+    private string validChars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+    private string requiredCode = "";
+    private string availableCode = "";
+    private string inputCode = "";
 
     [Tooltip("SFX names")]
     public string[] Correct;
@@ -34,42 +36,66 @@ public class SecurityMiniGame : MiniGame
     [Tooltip("SFX names")]
     public string[] DisplaySound;
 
+    [SerializeField, Tooltip("The delay before the first part of the code appears")]
+    private float timeBeforeCodes = 0.25f;
+
+    private bool setUp = false;
+
     void Start() 
-    { 
-        GenerateCode();
-        foreach (Toggle toggle in successTrackers) { toggle.isOn = false; }
+    {
+        setUp = false;
+
+        Tutorial.Instance.SetCurrentTutorial(8, true);
+        if (!Tutorial.Instance.GetTutorialActive())
+        {
+            GenerateCode();
+            foreach (Toggle toggle in successTrackers) { toggle.isOn = false; }
+            setUp = true;
+        }
+
+
     }
 
     void Update()
     {
-		if (inputCode.Length == requiredCode.Length && inputCode.Length > 0) 
+        if(!Tutorial.Instance.GetTutorialActive() && setUp == false)
         {
-            foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(false); }
-            if (inputCode == requiredCode)
+            GenerateCode();
+            foreach (Toggle toggle in successTrackers) { toggle.isOn = false; }
+            setUp = true;
+        }
+        else if(setUp == true)
+        {
+            if (inputCode.Length == requiredCode.Length && inputCode.Length > 0)
             {
-                inputCode = "";
-                successes++;
-                AudioManager.instance.PlaySFX(Correct[Random.Range(0, Correct.Length - 1)]);
-                for (int i = 0; i < successes; i++) { successTrackers[i].isOn = true; }
-                for(int i = successes; i < successTrackers.Length; i++) { successTrackers[i].isOn = false; }
-                if (successes == successTrackers.Length)
+                foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(false); }
+                if (inputCode == requiredCode)
                 {
-                    Debug.Log("win");
-                    EndMiniGameSuccess();
+                    inputCode = "";
+                    successes++;
+                    AudioManager.instance.PlaySFX(Correct[Random.Range(0, Correct.Length - 1)]);
+                    for (int i = 0; i < successes; i++) { successTrackers[i].isOn = true; }
+                    for (int i = successes; i < successTrackers.Length; i++) { successTrackers[i].isOn = false; }
+                    if (successes == successTrackers.Length)
+                    {
+                        Debug.Log("win");
+                        EndMiniGameSuccess();
+                    }
+                    else
+                    {
+                        Debug.Log("");
+                        GenerateCode();
+                    }
                 }
-                else 
+                else
                 {
-                    Debug.Log("");
-                    GenerateCode();
+                    inputCode = "";
+                    AudioManager.instance.PlaySFX(Incorrect[Random.Range(0, Incorrect.Length - 1)]);
+                    StartCoroutine(PromptTryAgain());
                 }
-            }
-            else 
-            {
-                inputCode = "";
-                AudioManager.instance.PlaySFX(Incorrect[Random.Range(0, Incorrect.Length - 1)]);
-                StartCoroutine(PromptTryAgain());
             }
         }
+		
     }
 
     void ScrambleCodeBlocks()
@@ -115,11 +141,14 @@ public class SecurityMiniGame : MiniGame
         tryAgainText.SetActive(false);
 	}
 
+    
     IEnumerator DisplayCode()
 	{
-        foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(false); }
+        foreach (CodeBlock block in codeSegments) { block.gameObject.SetActive(false); } //set all codes to disabled for now
         codePreview.text = "";
-        yield return new WaitForSeconds(1);
+        //slight delay before code appears
+        yield return new WaitForSeconds(timeBeforeCodes);
+
         foreach(char codeSegment in requiredCode)
 		{
             AudioManager.instance.PlaySFX(DisplaySound[Random.Range(0, DisplaySound.Length - 1)]);

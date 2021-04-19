@@ -6,6 +6,7 @@
  */
 
 using UnityEngine;
+using System.Collections.Generic;
 
 public class HullRepairMiniGame : MiniGame
 {
@@ -14,48 +15,89 @@ public class HullRepairMiniGame : MiniGame
 	[SerializeField] Color coveredColor = Color.green;
 	[SerializeField] Color uncoveredColor = Color.red;
 
-	public GameObject[] smallHullPieces, largeHullPieces;
-	public HullPieceSlot[] smallSlots, largeSlots;
+	[SerializeField]private GameObject smallPieces, largePieces, smallSlots, largeSlots;
+
+	[SerializeField] private List<GameObject> smallPiecesList, largePiecesList;
+	[SerializeField] private List<HullPieceSlot> smallSlotsList, largeSlotsList;
 
 	protected override void Start()
     {
 		base.Start();
+		//FillLists();
 		//RandomizePositions();
-    }
+		Tutorial.Instance.SetCurrentTutorial(7, true);
+	}
 
+	private void FillLists()
+    {
+		smallPiecesList = new List<GameObject>();
+		largePiecesList = new List<GameObject>();
+		smallSlotsList = new List<HullPieceSlot>();
+		largeSlotsList = new List<HullPieceSlot>();
+
+		//generate array sizes
+		int smallPieceCount = smallPieces.transform.childCount;
+		int largePieceCount = largePieces.transform.childCount;
+		int smallSlotCount = smallSlots.transform.childCount;
+		int largeSlotCount = largeSlots.transform.childCount;
+
+		//fill arrays
+		for (int i = 0; i < smallPieceCount; i++)
+        {
+			smallPiecesList.Add(smallPieces.transform.GetChild(i).gameObject);
+        }
+		for (int i = 0; i < largePieceCount; i++)
+		{
+			largePiecesList.Add(largePieces.transform.GetChild(i).gameObject);
+		}
+
+		for (int i = 0; i < smallSlotCount; i++)
+		{
+			smallSlotsList.Add(smallSlots.transform.GetChild(i).gameObject.GetComponent<HullPieceSlot>());
+		}
+		for (int i = 0; i < largeSlotCount; i++)
+		{
+			largeSlotsList.Add(largeSlots.transform.GetChild(i).gameObject.GetComponent<HullPieceSlot>());
+		}
+	}
 	private void RandomizePositions()
     {
-		foreach(HullPieceSlot slot in smallSlots)
+		//ensure they are "taken" at initialization
+		foreach(HullPieceSlot slot in smallSlotsList)
 		{
 			slot.taken = false;
         }
-		foreach (HullPieceSlot slot in largeSlots)
+		foreach (HullPieceSlot slot in largeSlotsList)
 		{
 			slot.taken = false;
 		}
 
-		foreach(GameObject piece in smallHullPieces)
+		foreach(GameObject piece in smallPiecesList)
         {
-			int randNum = Random.Range(0, smallSlots.Length);
-			while(smallSlots[randNum].taken)
+			int randNum = Random.Range(0, smallSlotsList.Count);
+			while(smallSlotsList[randNum].taken)
             {
-				randNum = Random.Range(0, smallSlots.Length);
+				randNum = Random.Range(0, smallSlotsList.Count);
 			}
 
-			smallSlots[randNum].taken = true;
-			piece.transform.position = smallSlots[randNum].myPosition;
-        }
+			smallSlotsList[randNum].taken = true;
+			piece.transform.position = smallSlotsList[randNum].myPosition;
+			piece.GetComponent<HullPiece>().mySlot = smallSlotsList[randNum];
 
-		foreach (GameObject piece in largeHullPieces)
+		}
+
+		foreach (GameObject piece in largePiecesList)
 		{
-			int randNum = Random.Range(0, largeSlots.Length);
-			while (largeSlots[randNum].taken)
+			int randNum = Random.Range(0, largeSlotsList.Count);
+
+			while (largeSlotsList[randNum].taken)
 			{
-				randNum = Random.Range(0, largeSlots.Length);
+				randNum = Random.Range(0, largeSlotsList.Count);
 			}
 
-			largeSlots[randNum].taken = true;
-			piece.transform.position = largeSlots[randNum].myPosition;
+			largeSlotsList[randNum].taken = true;
+			piece.transform.position = largeSlotsList[randNum].myPosition;
+			piece.GetComponent<HullPiece>().mySlot = largeSlotsList[randNum];
 		}
 	}
 
