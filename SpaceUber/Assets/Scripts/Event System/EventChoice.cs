@@ -136,7 +136,11 @@ public class EventChoice
         }
         else
         {
-            tooltip.SetOutcomeData(description, outcomes, hasSecretOutcomes);
+            if(!hasSecretOutcomes)
+                tooltip.SetOutcomeData(description, outcomes);
+            else
+                tooltip.SetOutcomeData(description, secretOutComeText, outcomes);
+
         }
         
 
