@@ -82,7 +82,9 @@ Kuon walks over to check the engineer's pulse and the CEO drops. Lexa, realizing
 
 ==Knock_Out_Bad==
 The gun swings up to Lexa's center mass, and Kuon hesitates for a moment, but only a moment. A gunshot peaks your audio. Kuon is crouched to stabalize the handgun, and falls unconscious only once he is sure that Lexa is dead. 
-You dispatch security to apprehend the CEO and their former leading officer, and let ventilation flow only once they're in custody. Once Mateo wakes, he sees Lexa's corpse and Kuon straining against his former subordinates. He half-heartedly shadow-boxes, "Alright. We just need to keep moving. Get down there, finish the plan."
+You dispatch security to apprehend the CEO and their former leading officer, and let ventilation flow only once they're in custody. Mateo wakes and sees the situation: Lexa's corpse, Kuon straining against his former subordinates. He half-heartedly shadow-boxes, "Alright. We just need to keep moving. Keep moving. Get down there, finish the plan."
+
+ 
 ->Facility_Dead
 
 ==Knock_Out_Good==
@@ -101,7 +103,7 @@ Mateo sits up and smiles at everyone getting along. "Ok. Time for my awesome pla
 
 ==Airlock==
 There is a metal creaking noise and a terrible silence. Mateo turns, "Was that-?" rushing wind cuts him off as the cabin depressurizes. The CEO is flung against the edge of the airlock, leaving a bloody splotch, before his unconscious body is thrown into the void. Your crew manages to hold on with Mateo's half warning. With his mechanical legs stabbed into the ground, Kuon brings his gun arm up towards the rest of them. He's acting on instinct. 
-Lexa notices before the others, and pushes off. She slams into Kuon with the speed of a rapidly equalizing vaccuum. Kuon's legs rip off the floor and you hear a gunshot as the light leaves Lexa's eyes. Both Kuon and Lexa's corpse tumble into space as the airlock doors close. Mateo chokes on air for a couple seconds before saying. "Poor guy. He really thought he was doing a good thing." he looks up at your camera, "We need to get down there before they realize their boss is dead."
+Lexa notices before the others, and pushes off. She slams into Kuon with the speed of a rapidly equalizing vaccuum. Kuon's legs rip off the floor and you hear a gunshot as the light leaves Lexa's eyes. Both Kuon and Lexa's corpse tumble into space as the airlock doors close. Mateo chokes on air for a couple seconds before speaking. "Poor guy. He really thought he was doing a good thing." He looks up at your camera, "We need to get down there before they realize their boss is dead."
 ->Facility_Dead
 
 ==Cast_Killed==

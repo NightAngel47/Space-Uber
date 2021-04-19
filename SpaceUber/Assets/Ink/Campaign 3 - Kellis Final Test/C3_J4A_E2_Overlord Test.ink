@@ -1,4 +1,4 @@
-Your flight plan has been revised. After Lexa and you spoke with the board, it seems they've been mulling over what you said and want to pefrform another test run. Hopefully it can proove once and for all whether or not you have utility beyond running packages. You're dropping into the atmosphere of a corporate planet. Everyone who lives here works for Kellis and is paid with company credit.
+Your flight plan has been revised. After Lexa and you spoke with the board, it seems they've been mulling over what you said and want to pefrform another test run. Hopefully it can prove once and for all whether or not you have utility beyond running packages. You drop into the atmosphere of a corporate planet. The populace works for Kellis and is paid with company credit.
 You are directed to a landing dock where several engineers begin hooking optic fibres into the ship. The CEO struts down from the cargo hold to survey the work. "Well," he says to no one in particular, "It's time to put to rest all this business about the machine fighting its operator. 
 "We're going to run a test here. A good part of our workforce here has implants to improve performance. They're wired into the system for regular updates and optimizations. We want you to optimize this place. It's only a few square miles, but you should have rather direct control over these employees. Their workflow, breaks, their mistakes, all until they clock out of course. And I have no doubt you'll do a much better job then they can."
 The engineers hook the ship into the system and your mind expands across miles of cabling, short range sensors, and tiny, distinct minds milling about the factories of this planet. You'll be handling a fuel refinery. Already you can sense the employees waiting too long between their shifts, stopping to breath after mistakenly inhaling fumes, they are ripe for improvement.
@@ -28,11 +28,11 @@ You decide not to play Kellis' game this time. You don't control anyone, or medd
 ->Round_Table
 
 ==Round_Table==
-Your crew has come together away from the prying eyes of their corporate overlords, and has asked that you observe. Lexa and Kuon sit opposite of one another, Ripley and Lanri to their flanks, with Mateo lounging in the background. 
+After the test, your crew contacts you. They have come together away from the prying eyes of their corporate overlords, and ask that you observe. Lexa and Kuon sit opposite of one another, Ripley and Lanri to their flanks, with Mateo lounging in the background. 
 Given the attitudes of much of this group, this meeting was inevitable. 
     Lexa starts, "We need to talk about what to do with these people on our ship."
 	"You speak of the hand that feeds you with a bite in your voice." Kuon says.
-	Lexa rolls her eyes, "Kuon, we've done this once before. You trusted me on this before."
+	Lexa rolls her eyes, "Kuon, we've done this once before. You trusted me then. I'm asking you to trust me now."
 	His hand instinctively reaches to his cybernetic face, "Things change. And Kellis is poised to do good things."
 	"Then why haven't they?" Lexa answers back. "Is it because of us?" she points to your camera, "Them? Or is it the people on top who refuse to care about what happens? We have to do something."
 	Lanri nods vigorously, "A chance like this won't come twice. In fact, it's likely that it will never come again. Crews like us will be rendered obsolete in days, not years, so we would have to trust the world to Kellis and whatever they do to our captain."
@@ -48,7 +48,7 @@ Given the attitudes of much of this group, this meeting was inevitable.
 	Kuon sighs, "Fine. Then I will forward my own proposition. We leave them alive. We don't follow up on your insane plans, and we all earn a valuable promotion. From there we stay on good behavior and make sure the company is run in a way that satisfies everyone."
 	Ripley shakes her head, "It would never work. The strength of one man is too little."
 	Kuon winces, "Well what about us five? Counting the captain that's six. I'm not going to watch you all press us back into the dark ages. There has to be something less extreme." After Kuon speaks the rest of the table is silent aside from Mateo throwing in some jokes to break the tension.
-	Lexa looks around, "I'd say anyone's plan here shows promise, save but one," she glances towards the security officer, "Do you think you could throw your weight behind any of these plans?"
+	Lexa looks around, "I'd say anyone's plan here shows promise, save but one," she glances towards the security officer and then to you, "Do you think you could throw your weight behind any of these plans?"
 	
 	*[Lexa's Plan: Assassination]
 	-> Assassination
@@ -80,5 +80,5 @@ Given the attitudes of much of this group, this meeting was inevitable.
 	You tell Kuon that he has the right idea, that everyone else's plans are too much too fast. Kuon is visibly relieved and begins to look around smugly. 
 	Lexa stares daggers across the table, "The board of directors, the goddamn CEO! They're here. What better opportunity are you waiting for!?"
 	"One that won't throw the galaxy into turmoil!" Kuon answers. 
-	The rest of them seem hollowed out. "Really thought you would understand." Mateo says to no one in particular before leaving the round table. The rest find their own reasons to leave, but with the look Lexa is gives you and Kuon at the door, you doubt this is over. 
+	The rest of them seem hollowed out. "Really thought you would understand." Mateo says to no one in particular before leaving the round table. The rest find their own reasons to leave, but with the look Lexa is gives you, you doubt this is over. 
 	->END
