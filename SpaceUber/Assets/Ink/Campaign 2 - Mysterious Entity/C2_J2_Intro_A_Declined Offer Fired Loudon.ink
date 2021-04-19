@@ -1,2 +1,3 @@
-Having left the pit stop, you are to continue couriering Kellis's prize find into their awaiting hands. Although you still have about two-thirds of the way to go, with Loudon gone things should go smoothly. While some crew members are still uneasy about your cargo, without Equinox's pawn fueling them they'll subside soon enough.
+Having left the pit stop, you continue couriering Kellis's priceless antiques to their awaiting hands. With the tales of a curse and the strange goings-on exposed as nothing more than a pathetic attempt to acquire the Keystone, the crew should be relaxed during the rest of the trip.
+However, Ripley has started getting reports of sleepless nights and horrific nightmares from various crew members. Despite the curse having been revealed as a fake, whispers that the artifacts are the cause have started to spread again. You'll have to keep an eye on them, and make sure morale doesn't get too low.
 -> END
