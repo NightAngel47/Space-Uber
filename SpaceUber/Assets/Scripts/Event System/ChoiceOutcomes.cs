@@ -1,6 +1,6 @@
 /*
  * ChoiceOutcomes.cs
- * Author(s): Sam Ferstein
+ * Author(s): Sam Ferstein, Scott Acker
  * Created on: 9/18/2020 (en-US)
  * Description: Controls all outcomes of choices. When the player chooses to do something, code is directed here to determine the effects
  * Effects are written in the inspector
@@ -140,31 +140,17 @@ public class ChoiceOutcomes
                                 resultText += "\nYou gained " + Math.Abs(newAmount) + " weapons";
                             }
                             break;
-                        case ResourceDataTypes._Crew: //TODO: Figure out how to scale crew
+                        case ResourceDataTypes._Crew: //losing crew
                             if (newAmount < 0)
                             {
-                                int amountFromAssigned;
-                                int amountFromUnassigned;
 
-                                //if total crew - unassigned crew is greater than newAmount to lose
-                                if (ship.CrewCurrent.x - ship.CrewCurrent.z >= -newAmount)
-                                {
-                                    amountFromAssigned = -newAmount;
-                                    amountFromUnassigned = 0;
-                                }
-                                else
-                                {
-                                    amountFromAssigned = (int)ship.CrewCurrent.x - (int)ship.CrewCurrent.z;
-                                    amountFromUnassigned = -newAmount - amountFromAssigned;
-                                }
-                                ship.RemoveRandomCrew(amountFromAssigned);
-                                ship.CrewCurrent += new Vector3(newAmount, 0, -amountFromUnassigned);
+                                ship.CrewCurrent += new Vector3(newAmount, 0, 0);
                                 SpawnStatChangeText(ship, newAmount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou lost " + Math.Abs(newAmount) + " crew";
                             }
                             else
                             {
-                                ship.CrewCurrent += new Vector3(newAmount, 0, newAmount);
+                                ship.CrewCurrent += new Vector3(newAmount, 0, 0);
                                 SpawnStatChangeText(ship, newAmount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou gained " + Math.Abs(newAmount) + " crew";
                             }
@@ -234,11 +220,11 @@ public class ChoiceOutcomes
 
                             if (newAmount < 0)
                             {
-                                resultText += "\nYou lost " + Math.Abs(newAmount) + " crew morale";
+                                resultText += "\nYou lost crew morale";
                             }
                             else
                             {
-                                resultText += "\nYou gained " + Math.Abs(newAmount) + " crew morale";
+                                resultText += "\nYou gained crew morale";
                             }
                             break;
 
@@ -307,26 +293,14 @@ public class ChoiceOutcomes
                         case ResourceDataTypes._Crew:
                             if (amount < 0)
                             {
-                                int amountFromAssigned;
-                                int amountFromUnassigned;
-                                if (ship.CrewCurrent.x - ship.CrewCurrent.z >= -amount)
-                                {
-                                    amountFromAssigned = -amount;
-                                    amountFromUnassigned = 0;
-                                }
-                                else
-                                {
-                                    amountFromAssigned = (int)ship.CrewCurrent.x - (int)ship.CrewCurrent.z;
-                                    amountFromUnassigned = -amount - amountFromAssigned;
-                                }
-                                ship.RemoveRandomCrew(amountFromAssigned);
-                                ship.CrewCurrent += new Vector3(amount, -amountFromUnassigned, 0);
+
+                                ship.CrewCurrent += new Vector3(amount, 0, 0);
                                 SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou lost " + Math.Abs(amount) + " crew";
                             }
                             else
                             {
-                                ship.CrewCurrent += new Vector3(amount, amount, 0);
+                                ship.CrewCurrent += new Vector3(amount, 0, 0);
                                 SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou gained " + Math.Abs(amount) + " crew";
                             }
@@ -391,11 +365,11 @@ public class ChoiceOutcomes
 
                             if (amount < 0)
                             {
-                                resultText += "\nYou lost " + Math.Abs(amount) + " crew morale";
+                                resultText += "\nYou lost crew morale";
                             }
                             else
                             {
-                                resultText += "\nYou gained " + Math.Abs(amount) + " crew morale";
+                                resultText += "\nYou gained crew morale";
                             }
                             break;
                         default:
@@ -414,7 +388,9 @@ public class ChoiceOutcomes
                         campMan.cateringToTheRich.ctr_VIPTrust += VIPTrustChange;
 
                         //the selected bool will become true
-                        campMan.cateringToTheRich.SetCtrNarrativeOutcome(ctrBoolOutcomes, true);
+                        if(ctrBoolOutcomes != CampaignManager.CateringToTheRich.NarrativeOutcomes.NA)
+                            campMan.cateringToTheRich.SetCtrNarrativeOutcome(ctrBoolOutcomes, true);
+                        
                         switch (ctrBoolOutcomes)
                         {
                             case CampaignManager.CateringToTheRich.NarrativeOutcomes.SideWithScientist:
@@ -434,6 +410,8 @@ public class ChoiceOutcomes
                                 break;
                             case CampaignManager.CateringToTheRich.NarrativeOutcomes.TellVIPsAboutClones:
                                 resultText += "\nYou told the VIPs about the clones";
+                                break;
+                            case CampaignManager.CateringToTheRich.NarrativeOutcomes.NA:
                                 break;
                         }
 
@@ -458,7 +436,9 @@ public class ChoiceOutcomes
                         
                     case CampaignManager.Campaigns.MysteriousEntity:
                         //the selected bool will become true
-                        campMan.mysteriousEntity.SetMeNarrativeVariable(meMainOutcomes, true);
+                        if(meMainOutcomes != CampaignManager.MysteriousEntity.NarrativeVariables.NA)
+                            campMan.mysteriousEntity.SetMeNarrativeVariable(meMainOutcomes, true);
+                        
                         switch (meMainOutcomes)
                         {
                             case CampaignManager.MysteriousEntity.NarrativeVariables.KuonInvestigates:
@@ -476,6 +456,8 @@ public class ChoiceOutcomes
                                 break;
                             case CampaignManager.MysteriousEntity.NarrativeVariables.Decline_Fire:
                                 resultText += "\nYou declined the offer and said good riddance to Loudon";
+                                break;
+                            case CampaignManager.MysteriousEntity.NarrativeVariables.NA:
                                 break;
                         }
                         break;
@@ -497,7 +479,9 @@ public class ChoiceOutcomes
                                 resultText += "\nYou have lost " + assetCountChange + " assets";
                         }
 
-                        campMan.finalTest.SetFtNarrativeVariable(finalTestNarrativeOutcomes, true);
+                        if(finalTestNarrativeOutcomes != CampaignManager.FinalTest.NarrativeVariables.NA)
+                            campMan.finalTest.SetFtNarrativeVariable(finalTestNarrativeOutcomes, true);
+                        
                         switch (finalTestNarrativeOutcomes)
                         {
                             case CampaignManager.FinalTest.NarrativeVariables.KellisLoyalty:
@@ -531,22 +515,24 @@ public class ChoiceOutcomes
                                 resultText += "\nYou shared your research";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.AncientHackingDevice:
-                                resultText += "\n ";
+                                resultText += "\nYou bought the ancient hacking device";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.ExoSuits:
-                                resultText += "\n ";
+                                resultText += "\nYou bought the exosuits";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.WarpShields:
-                                resultText += "\n ";
+                                resultText += "\nYou bought the warp shields";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.RealityBomb:
-                                resultText += "\n ";
+                                resultText += "\nYou bought the reality bomb";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.DisintegrationRay:
-                                resultText += "\n ";
+                                resultText += "\nYou bought disintegration ray";
                                 break;
                             case CampaignManager.FinalTest.NarrativeVariables.ArtifactAngry:
                                 resultText += "\nYou angered the alien artifact";
+                                break;
+                            case CampaignManager.FinalTest.NarrativeVariables.NA:
                                 break;
                         }
                         break;

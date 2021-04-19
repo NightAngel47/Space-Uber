@@ -40,11 +40,14 @@ public class MenuButton : MonoBehaviour
 
     public void StartGame()
     {
+        AudioManager.instance.PlayMusicWithTransition("General Theme");
         SceneManager.LoadScene("LoadingScreen");
     }
 
     public void NewGame()
     {
+        AudioManager.instance.PlayMusicWithTransition("General Theme");
+
         if (SavingLoadingManager.instance.GetHasSave())
         {
             SavingLoadingManager.instance.SetHasSaveFalse();

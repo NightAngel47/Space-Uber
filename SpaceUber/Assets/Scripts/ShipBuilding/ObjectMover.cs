@@ -79,9 +79,9 @@ public class ObjectMover : MonoBehaviour
                     Placement();
                 }
 
-                if(Input.GetMouseButtonDown(1))
+                if(Input.GetButtonDown("DeleteRoom"))
                 {
-                    StartCoroutine(os.Delete(os.isEdited));
+                    StartCoroutine(os.Delete(os.isEdited, gameObject));
                 }
             }
         }
@@ -243,7 +243,7 @@ public class ObjectMover : MonoBehaviour
                 
                 gameObject.GetComponent<ObjectMover>().enabled = false;
                 
-                FindObjectOfType<EditCrewButton>().CheckForRoomsCall();
+                FindObjectOfType<CrewManagement>().CheckForRoomsCall();
             }
 
             else //If something is placed allow player to keep moving room

@@ -20,7 +20,7 @@ public class EventChoice
     private Story story;
     [SerializeField] private string choiceName;
 
-    [Tooltip("The description that will appear in the tool tip for this choice")]
+    [Tooltip("The description that will appear in the tooltip for this choice")]
     [SerializeField] public string description;
 
     public string ChoiceName => choiceName;
@@ -35,7 +35,7 @@ public class EventChoice
     {
         get
         {
-            return new List<string>() { "", "General Theme", "Wormhole", "Engine Malfunction", "Engine Delivery", "Black Market", "Clone Ambush Intro", "Safari Tampering", "Clone Ambush Negotiation", "Clone Ambush Fight", "Ejection", "Asteroid Mining", "Blockade", "Crop Blight", "Door Malfunction", "Drug Overdose", "Escaped Convicts", "Septic Malfunction", "Soothing Light", "Spatial Aurora", "Food Poisoning", "Hostage Situation", "Hull Maintenance" };
+            return new List<string>() { "", "General Theme", "Wormhole", "Engine Malfunction", "Engine Delivery", "Black Market", "Clone Ambush Intro", "Safari Tampering", "Clone Ambush Negotiation", "Clone Ambush Fight", "Ejection", "Asteroid Mining", "Blockade", "Crop Blight", "Door Malfunction", "Drug Overdose", "Escaped Convicts", "Septic Malfunction", "Soothing Light", "Spatial Aurora", "Food Poisoning", "Hostage Situation", "Hull Maintenance", "Death Theme", "Shocking Situation", "Stranded Stranger", "Void Music", "Void Music [Muffled]", "Ammunition Error", "An Innocent Proposal", "Charity Donation", "Crew Fight", "Distress Signal", "Drag Race", "Frozen in Time", "Fungus Among Us", "Homesick", "Just a Comet", "Lost in Translation", "Neon Nightmare [Chill]", "Neon Nightmare", "Surprise Mechanics", "Taking a Toll", "Thumping" };
         }
     }
 
@@ -48,6 +48,7 @@ public class EventChoice
     private bool increasedPercent = false;
 
     public bool hasSecretOutcomes;
+    [SerializeField, ShowIf("hasSecretOutcomes")] public string secretOutComeText = "";
     [SerializeField] private bool hasRandomEnding;    
     [SerializeField, ShowIf("hasRandomEnding")] private List<MultipleRandom> randomEndingOutcomes = new List<MultipleRandom>();
     [SerializeField, HideIf("hasRandomEnding")] public List<ChoiceOutcomes> outcomes = new List<ChoiceOutcomes>();
@@ -77,9 +78,10 @@ public class EventChoice
 
         //as long as it's not a story event, it's scalable
         isScalableEvent = driver.isScalableEvent;
-
+        
         foreach (ChoiceOutcomes outcome in this.outcomes)
         {
+            
             outcome.isScaledOutcome = isScalableEvent;
         }
 
@@ -125,6 +127,7 @@ public class EventChoice
         else
         {
             myButton.interactable = false;
+
         }
         // Tooltip stuff
         if (hasRandomEnding)
@@ -133,7 +136,11 @@ public class EventChoice
         }
         else
         {
-            tooltip.SetOutcomeData(description, outcomes, hasSecretOutcomes);
+            if(!hasSecretOutcomes)
+                tooltip.SetOutcomeData(description, outcomes);
+            else
+                tooltip.SetOutcomeData(description, secretOutComeText, outcomes);
+
         }
         
 
