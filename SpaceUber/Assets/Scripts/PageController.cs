@@ -19,18 +19,39 @@ public class PageController : MonoBehaviour
     private bool madeChoice;
     private TMP_Text nextButtonText;
     InkDriverBase inkDriver;
+    int currentPage = 0; //the overall current page, used for the page clips
 
-    private List<string> mySFX;
     private void Start()
     {
         nextButtonText = nextButton.GetComponentInChildren<TMP_Text>();
-        ResetPages();
+        currentPage = 0;
+        //ResetPages();
+        
+    }
+
+    private void PlayCurrentPageSFX()
+    {
+        if(currentPage != 1) //doesn't need to play on the first page of the event
+        {
+            //uses currentPage to figure out which SFX to play
+            if (!inkDriver) inkDriver = FindObjectOfType<InkDriverBase>();
+            
+            if (inkDriver.pageClips.Count >= currentPage)
+            {
+                if (inkDriver.pageClips[currentPage - 1] != null) //make sure there is something in that slot
+                {
+                    AudioManager.instance.PlaySFX(inkDriver.pageClips[currentPage - 1]);
+
+                }
+            }
+        }
         
     }
 
     public void NextPage()
     {
-        //if there are still pages to display
+        
+        //if there are still pages to display in this set
         if (eventText.pageToDisplay < eventText.textInfo.pageCount)
         {
             eventText.pageToDisplay += 1; //increment current page
@@ -40,16 +61,8 @@ public class PageController : MonoBehaviour
             {
                 backButton.SetActive(true);
             }
-
-            
-
-            if (mySFX.Count >= eventText.pageToDisplay)
-            {
-                if (mySFX[eventText.pageToDisplay] != null)
-                {
-                    AudioManager.instance.PlaySFX(mySFX[eventText.pageToDisplay - 1]);
-                }
-            }
+            currentPage++;
+            PlayCurrentPageSFX();
         }
         else
         {
@@ -69,6 +82,7 @@ public class PageController : MonoBehaviour
 
     public void PreviousPage()
     {
+        
         if(eventText.pageToDisplay > 1)
         {
             eventText.pageToDisplay -= 1;
@@ -78,14 +92,9 @@ public class PageController : MonoBehaviour
             {
                 backButton.SetActive(false);
             }
+            currentPage--;
 
-            if (mySFX.Count >= eventText.pageToDisplay)
-            {
-                if (mySFX[eventText.pageToDisplay] != null)
-                {
-                    AudioManager.instance.PlaySFX(mySFX[eventText.pageToDisplay - 1]);
-                }
-            }
+            PlayCurrentPageSFX();
 
         }
         else
@@ -96,23 +105,11 @@ public class PageController : MonoBehaviour
 
     public void ResetPages()
     {
-        if (!inkDriver) inkDriver = FindObjectOfType<InkDriverBase>();
-        int currentPage = eventText.pageToDisplay;
-
-        //cuts list to keep pace with the array
-        if(mySFX.Count < 1) //first pass cuts the original list from idb
-        {
-            mySFX = inkDriver.pageClips;
-        }
-        else //subsequent passes cut the current list
-        {
-            mySFX = mySFX.GetRange(currentPage + 1, inkDriver.pageClips.Count);
-            //plus one, so we don't keep the SFX just played
-        }
-
+        currentPage++;
         eventText.pageToDisplay = 1;
         backButton.SetActive(false);
         nextButtonText.text = defaultNextMsg;
+        PlayCurrentPageSFX();
     }
 
     public void UpdateNextPageText()
