@@ -24,7 +24,24 @@ public class OutcomeTooltipUI : MonoBehaviour
     [SerializeField] private RectTransform outcomeList;
     private CampaignManager campMan;
 
-    public void SetOutcomeData(string description, List<ChoiceOutcomes> outcomes, bool isSecret)
+    public void SetOutcomeData(string description, string secretOutcomeDescription, List<ChoiceOutcomes> outcomes)
+    {
+        //if there is no supplied description, use the secret description for it
+        if (description == "")
+        {
+            outcomeDescUI.text = secretOutcomeDescription;
+        }
+        else
+        {
+            outcomeDescUI.text = description;
+            GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
+            outcomeTextGO.GetComponent<TMP_Text>().text = secretOutcomeDescription;
+        }
+
+        
+        
+    }
+    public void SetOutcomeData(string description, List<ChoiceOutcomes> outcomes)
     {
         if (!campMan)
         { campMan = FindObjectOfType<CampaignManager>(); }
@@ -39,7 +56,7 @@ public class OutcomeTooltipUI : MonoBehaviour
             outcomeDescUI.text = description;
         }
 
-        if (!isSecret && outcomes.Count > 0)
+        if (outcomes.Count > 0)
         {
             foreach (var outcome in outcomes)
             {
@@ -90,11 +107,6 @@ public class OutcomeTooltipUI : MonoBehaviour
 
                 }
             }
-        }
-        else if(isSecret)
-        {
-            GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
-            outcomeTextGO.GetComponent<TMP_Text>().text = description;
         }
         else //Outcome effects nothing
         {

@@ -33,14 +33,14 @@ Shortly after your talk with Lanri, you again arrive at Dispatch. The CEO seems 
 You arrive at the CEO's barren and imposing office. Through the window in back you can see Avanshore's sun glowing a soft red. The Kellis headman sits facing you, awaiting your return.
 He claps his hands together. "Wonderful job so far!" he says.
 "Sir?" Kuon asks.
-"Not you. Your captain. The one who, if proven useful, will signal a new age in corporate competition, and whose failure shows that the world no longer needs us." he looks tired, but there's a red shine to his eyes. "From what I heard, you've kept a lid on things so far, despite your extracurricular research. It's so nice to have an employee that listens to me for once." 
-He sighs, "I think it's time I let you into the fold. We did this. We're culpable. The solar flares, the monsters running around out there." he swings his arm to gesture at Avanshore, "But as long as we play this smart, we can get something useful out of this. If they got their way we'd by tied to this dying star with red tape."
+"Not you. Your captain. The one who, if proven useful, will signal a new age in corporate competition, and whose failure shows that the world no longer needs us." he looks tired, but there's a red shine to his eyes. "From what I heard, you've kept a lid on things so far, despite your extracurricular research. It's nice to have an employee that listens to me for once." 
+"But things are only going to get more complicated from here. You need to know that Kellis is culpable. The solar flares, the monsters running around out there." he swings his arm to gesture at Avanshore, "If the world knew, we'd be tied to this dying star with red tape. But as long as we play this smart, we can get something useful out of this."
 Kuon speaks, "Sir, if you may clarify."
-He nods, "We were trying to do something useful. We found an alien ship, undamaged, a little over a century ago now. We were able to take measurements, readings, access its data, and the few drops we got changed everything. High yield weapons, advanced forcefields" he pauses and gives you a look as if trying to gauge reaction, "and even Artificial Intelligence schematics that we were able to apply halfway rather well.
-"But that artifact was capable of so much more, it was drained of power, had been dead in the water for eons. We lugged it to a nearby star and used our scavenged alien tech to try to wake it up. Do you know what we could have done with that power? Equinox would be an afterthought. 
-"It would've propelled us into a new age. The sun catcher dipped into Avanshore's sol and jump-started the artifact, but apparently the entire artifact was its own sort of power source. The material it's built out of has endless applications..." he trails off. 
+He nods, "We were trying to do something useful. We found an alien ship, undamaged, a little over a century ago now. Designation: Portunus. We were able to take measurements, readings, access its data, and the few drops we got changed everything. High yield weapons, advanced forcefields" he pauses and gives you a look as if trying to gauge reaction, "and even Artificial Intelligence schematics that we were able to apply halfway decently.
+"But Portunus was capable of so much more, it was drained of power, had been dead in the water for eons. We lugged it to a nearby star and used our scavenged alien tech to try to wake it up. Do you know what we could have done with that power? Equinox would be an afterthought. 
+"It would've propelled us into a new age. The sun catcher dipped into Avanshore's sol and jump-started Portunus, but apparently the entire artifact was its own sort of power source. The material it's built out of has endless applications..." he trails off. 
 "The feedback caused an explosion that propelled that material across the galaxy, to... debilitating effect. And it also sent Avanshore's sol on a path toward's supernova."
-"The assets you've been picking up are prototypes, replacement pieces, the data required to get a handle on that artifact once we find it again, to handle its power surges. If you let them get wiped out by this thing" he points to the red sun, "All this will be for nothing."
+"The assets you've been picking up are prototypes, replacement pieces, the data required to get a handle on Portunus once we find it again, to handle its power surges. If you let the assets get wiped out by this thing" he points to the red sun, "All this will be for nothing."
 After a pause the CEO splays his hands out in front of you, "So, now that everything is out in the open, can I trust you to finish the job?"
 
 *[Yes, I will finish the job]
@@ -50,7 +50,7 @@ After a pause the CEO splays his hands out in front of you, "So, now that everyt
 
 ==Loyalty==
 You speak, "I will complete the objective. My faith in Kellis is unshakable." 
-The CEO's eyes seem far gentler with that response, "Thank you. And you," he points to Kuon. "You have done much better than the last one. You're on the short list for a promotion."
+The CEO's eyes show relief more than anything, "Thank you. And you," he points to Kuon. "You have done much better than the last one. You're on the short list for a promotion."
 Kuon stares for a moment, "But sir, I hardly spoke."
 Your boss smiles, "Exactly. You're both dismissed."
 Kuon stands and leaves, his reaction time serving well to make you both scarce. He congratulates himself and you on your negotiation, despite how little of it either of you did. You approach the docking bay, back in Kellis' good graces. As long as the job is done.
