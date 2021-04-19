@@ -84,7 +84,7 @@ public class SpawnObject : MonoBehaviour
                         }
                         break;
                     case 1:
-                        foreach (var room in GameManager.instance.allRoomList.Where(room => room.GetComponent<RoomStats>().GetRoomGroup() != 3))
+                        foreach (var room in GameManager.instance.allRoomList.Where(room => room.GetComponent<RoomStats>().GetRoomGroup() == 1 || room.GetComponent<RoomStats>().GetRoomGroup() == 2)) //gets groups 1 & 2 instead of not 3 to make sure medbay is not added
                         {
                             availableRooms.Add(room);
                         }
