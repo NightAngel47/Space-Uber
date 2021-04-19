@@ -76,7 +76,12 @@ public class ObjectScript : MonoBehaviour
             StartCoroutine(WaitToClickRoom());
         }
 
-        if (Input.GetButtonDown("DeleteRoom") && FindObjectOfType<CrewManagementRoomDetailsMenu>().selectedRoom == gameObject && !preplacedRoom && ObjectMover.hasPlaced && !isDeleting)
+        if (Input.GetButtonDown("DeleteRoom") && 
+            GameManager.instance.currentGameState == InGameStates.ShipBuilding && 
+            FindObjectOfType<CrewManagementRoomDetailsMenu>().selectedRoom == gameObject && 
+            !preplacedRoom && 
+            ObjectMover.hasPlaced && 
+            !isDeleting)
         {
             StartCoroutine(Delete());
         }
