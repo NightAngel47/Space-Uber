@@ -283,6 +283,10 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         {
             SetTalkToCrewButtonState(EventSystem.instance.CanChat(overclockRoom.GetEvents()));
         }
+        else
+        {
+            SetTalkToCrewButtonState(false);
+        }
     }
 
     public void StartChat()
