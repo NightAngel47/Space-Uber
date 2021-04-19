@@ -169,6 +169,14 @@ public class SpawnObject : MonoBehaviour
                 //rooms being placed will appear on top of other rooms that are already placed
                 lastSpawned.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
 
+                if (lastSpawned.GetComponent<ObjectScript>().objectNum == 1) //if hydroponics adjust other sprites sorting order
+                {
+                    for (int i = 0; i < lastSpawned.transform.GetChild(0).gameObject.transform.childCount; i++)
+                    {
+                        lastSpawned.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sortingOrder += 3;
+                    }
+                }
+
                 ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
                 ObjectScript.CalledFromSpawn = true;
                 foreach (ObjectScript r in otherRooms)
