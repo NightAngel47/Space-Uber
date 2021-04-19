@@ -1,4 +1,8 @@
-A ship pulls up alongside your own and wastes no time hijacking your communications channel. A man with questionable fashion appears, “Hey there ya space slugs! How fast does that hunk o' junk fly? I bet ya' that ya' can’t beat my beautiful Maxine!” It seems you’ve been challenged to a race, will you take the man up on his offer?
+A ship pulls up alongside your own and wastes no time hijacking your communications channel. A man with questionable fashion appears, “Hey there ya space slugs! How fast does that hunk o' junk fly? I bet ya' that ya' can’t beat my beautiful Maxine!”
+Lanri opens a private channel with you, "Now I'm not saying we should agree to this, but I'd be lying if I said I didn't want to see how fast this ship can go. Knowing our maximum speed could be very valuable data, furthermore...". She continues to speak for a few minutes, straying from the topic at hand only a few times.
+
+"...and that's why you shouldn't try to splice humans and animals together. So have you made up your mind about the race yet?"
+The man has been waiting for a response this whole time, impatiently tapping his fingers, will you take him up on his offer?
 +[Accept the Challenge]
 {shuffle:
 -->Win
@@ -7,6 +11,7 @@ A ship pulls up alongside your own and wastes no time hijacking your communicati
 -->Lose
 -->Pull
 }
+
 +[Chicken Out]->Leave
 
 == Win ==
@@ -22,3 +27,15 @@ Both ships rocket forward, neck and neck. It's anyone's guess as to who will win
 == Leave ==
 The man cackles, “I knew you lot were slugs, but it turns out you're chickens too! Bawk! Bawk! Bawk!” The man's mocking squawks can be heard until your ship leaves communication range.
 ->DONE
+
+===function RandomizeEnding(rng)===
+{ 
+    - rng == 0: 
+        ~randomEnd = -> Win
+    - rng == 1:
+        ~randomEnd = -> Lose
+    - rng == 2:
+        ~randomEnd = -> Pull
+    - else:
+        ~randomEnd = -> Pull
+}

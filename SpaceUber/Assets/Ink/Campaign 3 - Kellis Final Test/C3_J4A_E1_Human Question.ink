@@ -1,5 +1,5 @@
 The CEO has put in a request to speak with your manager, Lexa. Given their last meeting in Avanshore, you doubt it's a social call. Though without any further details to his request, there's no reason you could cite to refuse. 
-The Kellis headman been spending most of his time on your ship taking calls in private, but he calls Lexa to a conference room, where the rest of his board waits. The room cannot hold a candle to his office on Dispatch, but it still conveys a sense of magnitude. It was no doubt designed by countless engineers to illicit dread in whoever stands at the other end of the table from Kellis, in this case, Lexa. Already, she wears a pose of defiance.
+The Kellis headman been spending most of his time on your ship taking calls in private, but he calls Lexa to a conference room, where the rest of his board waits. The room cannot hold a candle to his office on Dispatch, but it still conveys a sense of magnitude. It was no doubt designed by countless engineers to elicit dread in whoever stands at the other end of the table from Kellis, in this case, Lexa. Already, she wears a pose of defiance.
 "Well, since this is the end," the CEO starts, "I wanted to discuss things with you for the last time. Captains like you are no longer going to be necessary, that much is clear."
 "I'm glad you've found employees that can't talk back." Lexa says.
 Your boss laughs, "Well. Yes. Most don't have the mouth you do, and I appreciate their silence. We have a plan up here, you are simply too far down to see it." The board nods their heads in tandem.
@@ -9,10 +9,6 @@ The man whose smallest nod could level planets coughs. "Ms., your leadership has
 The CEO cocks his head, "Then we'll make changes. First, we'll need to get rid of influences like you, we'll increase the weight of company protocol in its head. This thing is fixable. While captains like you are, well..."
 "The chaff?" Lexa supplies.
 The CEO nods gratefully, "I was going to say 'a liability.'" 
-
-[if Lexa_Doomed is true][He thinks for a moment, "You know you are not going to survive this journey, I'll make sure of it."
-Lexa sighs, a suspicion confirmed. "I hope the machine you use to shred my corpse breaks down against my bones."
-The CEO smiles, "Then we'll just replace that machine next."]
 
 The door to the conference room opens, revealing the soiled garb of an engineer. Mateo shuffles forward with a smile. "Hey! Do any of you know how to fix the coffee machine?" The CEO stares as his eye implants inform him who Mateo is. 
 The engineer seems to kick at some imaginary can, "Well if you guys don't know, I guess we'll be going without it for the voyage." he looks up with mock sheepishness, "If no one is there to fix your machines they'll keep plodding along in the dark, with a thousand little issues that you're too high up to see. It's careless to think you can do this without us."

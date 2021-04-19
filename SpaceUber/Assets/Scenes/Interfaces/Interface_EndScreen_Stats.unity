@@ -5372,6 +5372,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297aa69f198706346bdcf602e2af6dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  causeOfDeathText: {fileID: 0}
+  mutinyText: 
+  hullDeathText: 
 --- !u!1 &1447884469
 GameObject:
   m_ObjectHideFlags: 0
@@ -7634,7 +7637,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1000
   m_TargetDisplay: 0
 --- !u!224 &2111873845
 RectTransform:

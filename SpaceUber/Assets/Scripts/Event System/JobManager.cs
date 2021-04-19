@@ -20,8 +20,6 @@ public class JobManager : MonoBehaviour
 
     private JobListUI jobListUI;
     private Job selectedMainJob;
-    
-    private List<Job> selectedSideJobs = new List<Job>();
 
     public void RefreshJobList()
     {
@@ -56,30 +54,17 @@ public class JobManager : MonoBehaviour
 
     public void SelectJob(Job selected)
     {
-        if(!selected.isSideJob)
+        if (selected.isSideJob) return;
+        
+        if (selected != selectedMainJob)
         {
-            if (selected != selectedMainJob)
-            {
-                selectedMainJob = selected;
-                jobListUI.ShowSelectedJobDetails(selectedMainJob);
-            }
-            else
-            {
-                selectedMainJob = null;
-                jobListUI.ClearSelectedJobDetails();
-            }
+            selectedMainJob = selected;
+            jobListUI.ShowSelectedJobDetails(selectedMainJob);
         }
         else
         {
-            if (!selectedSideJobs.Contains(selected))
-            {
-                selectedSideJobs.Add(selected);
-            }
-            else
-            {
-                selectedSideJobs.Remove(selected);
-            }
-            jobListUI.UpdateSideJobCount(selectedSideJobs.Count);
+            selectedMainJob = null;
+            jobListUI.ClearSelectedJobDetails();
         }
     }
 
@@ -87,7 +72,6 @@ public class JobManager : MonoBehaviour
     {
         ship.Payout += selectedMainJob.payout;
         es.TakeStoryJobEvents(selectedMainJob);
-        es.TakeSideJobEvents(selectedSideJobs);
         campaignManager.SaveCampaignData();
         ship.SaveShipStats();
     }

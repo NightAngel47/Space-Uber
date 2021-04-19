@@ -16,8 +16,6 @@ public class ButtonTwoBehaviour : MonoBehaviour
     
     [SerializeField] private Color activeColor;
     [SerializeField] private Color inactiveColor;
-    [SerializeField] private Material[] activeMaterials;
-    [SerializeField] private Material[] inactiveMaterials;
     
     void Awake()
     {
@@ -27,26 +25,33 @@ public class ButtonTwoBehaviour : MonoBehaviour
 
     public void SetButtonInteractable(bool state)
     {
+        if (!button) //make sure we still have the button
+        {
+            button = GetComponent<Button>();
+            buttonTexts = GetComponentsInChildren<TMP_Text>();
+        }
+
         if (state)
         {
             button.interactable = true;
-            for(int i = 0; i < buttonTexts.Length; i++)
+            foreach (TMP_Text text in buttonTexts)
             {
-                buttonTexts[i].color = activeColor;
-                buttonTexts[i].fontMaterial = activeMaterials[i];
+                text.color = activeColor;
             }
         }
         else
         {
             button.interactable = false;
-            for(int i = 0; i < buttonTexts.Length; i++)
+            foreach (TMP_Text text in buttonTexts)
             {
-                buttonTexts[i].color = inactiveColor;
-                buttonTexts[i].fontMaterial = inactiveMaterials[i];
+                text.color = inactiveColor;
             }
         }
     }
     
+    /// <summary>
+    /// Sets a listener for when this button is pressed that tells Event System to skip to event
+    /// </summary>
     public void GoToEvent()
     {
         button.onClick.AddListener(EventSystem.instance.SkipToEvent);

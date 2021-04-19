@@ -35,7 +35,24 @@ public class ShipStats : MonoBehaviour
 
     [HideInInspector] public GameObject roomBeingPlaced;
 
-    public enum Stats { NA = -1, Credits, Payout, EnergyMax, EnergyRemaining, EnergyUnassigned, Security, ShipWeapons, CrewCapacity, CrewCurrent, CrewUnassigned, Food, FoodPerTick, ShipHealthMax, ShipHealthCurrent}
+    public enum Stats 
+    { 
+        NA = -1, 
+        Credits, 
+        Payout, 
+        EnergyMax, 
+        EnergyRemaining, 
+        EnergyUnassigned, 
+        Security, 
+        ShipWeapons, 
+        CrewCapacity, 
+        CrewCurrent, 
+        CrewUnassigned, 
+        Food, 
+        FoodPerTick, 
+        ShipHealthMax, 
+        ShipHealthCurrent
+    }
 
     private int[] stats = new int[14];
 
@@ -71,7 +88,23 @@ public class ShipStats : MonoBehaviour
 
     private void SetStartingStats()
     {
-        StatsArray = new int[] {startingCredits, 0, startingEnergy, startingEnergy, startingEnergy, startingSecurity, startingShipWeapons, startingCrew, startingCrew, startingCrew, startingFood, 0, startingShipHealth, startingShipHealth};
+        StatsArray = new int[]
+        {
+            startingCredits,
+            0, 
+            startingEnergy, 
+            startingEnergy, 
+            startingEnergy, 
+            startingSecurity, 
+            startingShipWeapons, 
+            startingCrew, 
+            startingCrew, 
+            startingCrew, 
+            startingFood, 
+            0, 
+            startingShipHealth, 
+            startingShipHealth
+        };
     }
 
     /// <summary>
@@ -256,7 +289,7 @@ public class ShipStats : MonoBehaviour
         get => new Vector3(stats[(int) Stats.CrewCurrent], stats[(int) Stats.CrewCapacity], stats[(int) Stats.CrewUnassigned]);
         set
         {
-            if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
+            if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
             {
                 SetObjectBeingPlaced();
             }
@@ -313,8 +346,9 @@ public class ShipStats : MonoBehaviour
 
             shipStatsUI.UpdateCrewUI(stats[(int) Stats.CrewUnassigned], stats[(int) Stats.CrewCurrent], stats[(int) Stats.CrewCapacity]);
             shipStatsUI.ShowCrewUIChange((int)(value.z - prevValue.z), (int)(value.x - prevValue.x), (int)(value.y - prevValue.y));
-            
-            if(GameManager.instance.currentGameState == InGameStates.Events && value.x - prevValue.x > 0)
+            shipStatsUI.UpdateFoodUI(stats[(int)Stats.Food], stats[(int)Stats.FoodPerTick], stats[(int)Stats.CrewCurrent]);
+
+            if (GameManager.instance.currentGameState == InGameStates.Events && value.x - prevValue.x > 0)
             {
                 EndingStats.instance.AddToStat((int)(value.x - prevValue.x), EndingStatTypes.Crew);
             }
@@ -554,14 +588,6 @@ public class ShipStats : MonoBehaviour
         StatsArray = SavingLoadingManager.instance.Load<int[]>("stats");
     }
 
-    public int[] GetCoreStats()
-    {
-        int[] coreStats = { stats[(int) Stats.CrewCapacity] - stats[(int) Stats.CrewCurrent], (stats[(int) Stats.ShipHealthMax] - stats[(int) Stats.ShipHealthCurrent]), stats[(int) Stats.Food], stats[(int) Stats.FoodPerTick],
-            stats[(int) Stats.Security], stats[(int) Stats.ShipWeapons], stats[(int) Stats.Credits], stats[(int) Stats.EnergyRemaining] - stats[(int) Stats.EnergyUnassigned], stats[(int) Stats.CrewCurrent] };
-
-        return coreStats;
-    }
-
     /// <summary>
     /// returns the number of rooms on the ship that have the same name
     /// </summary>
@@ -616,6 +642,17 @@ public class ShipStats : MonoBehaviour
                 }
             }
             
+        }
+    }
+
+    public void ReAddPayoutFromRooms()
+    {
+        foreach (RoomStats room in FindObjectsOfType<RoomStats>())
+        {
+            if(room.resources[0].resourceType.Rt == ResourceDataTypes._Payout)
+            {
+                Payout += room.resources[0].activeAmount;
+            }
         }
     }
 }

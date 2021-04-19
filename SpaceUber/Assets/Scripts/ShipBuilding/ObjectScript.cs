@@ -66,7 +66,6 @@ public class ObjectScript : MonoBehaviour
         c = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
         c.a = 1;
         //parentObj = transform.parent.gameObject;
-        
         ResetData();
     }
 
@@ -75,6 +74,16 @@ public class ObjectScript : MonoBehaviour
         if(Input.GetMouseButtonUp(0))
         {
             StartCoroutine(WaitToClickRoom());
+        }
+
+        if (Input.GetButtonDown("DeleteRoom") && 
+            GameManager.instance.currentGameState == InGameStates.ShipBuilding && 
+            FindObjectOfType<CrewManagementRoomDetailsMenu>().selectedRoom == gameObject && 
+            !preplacedRoom && 
+            ObjectMover.hasPlaced && 
+            !isDeleting)
+        {
+            StartCoroutine(Delete());
         }
     }
 
@@ -138,30 +147,55 @@ public class ObjectScript : MonoBehaviour
             {
                 //buttons.SetActive(true);
                 AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
-                Edit();
-            }
 
-            if (Input.GetMouseButton(1) && !preplacedRoom && ObjectMover.hasPlaced && !isDeleting)
-            {
-                StartCoroutine(Delete());
+                CrewViewManager.Instance.DisableCrewView();
+                if (FindObjectOfType<RoomPanelToggle>().GetIsOpen() == true)
+                {
+                    FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
+                }
+                
+                Edit();
             }
         }
 
-        if (GameManager.instance.currentGameState == InGameStates.CrewManagement
-           || GameManager.instance.currentGameState == InGameStates.Events
-           && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn && !PauseMenu.IsPaused)
+        if (!OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn && !PauseMenu.IsPaused)
         {
             roomTooltip.SetActive(true);
             roomIsHovered = true;
 
             //if the object is clicked, open the room management menu
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(1) && ObjectMover.hasPlaced == true && !gameObject.GetComponent<ObjectMover>().enabled)
             {
-                FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
-                FindObjectOfType<RoomPanelToggle>().OpenPanel(0, true);
+                //FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
+                //FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
+
+                if (gameObject == FindObjectOfType<CrewManagementRoomDetailsMenu>().selectedRoom)
+                {
+                    FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
+                }
+                else
+                {
+                    FindObjectOfType<RoomPanelToggle>().OpenPanel(0);
+                    //Enables Crew View while details panel is open
+                    CrewViewManager.Instance.EnableCrewView();
+                }
                 FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(gameObject);
-                FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
+                
+
+                //FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
                 AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
+
+                //Closes the shop window if open during shipbuilding
+                if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
+                {
+                    RoomPanelToggle[] panels = FindObjectsOfType<RoomPanelToggle>();
+                    for (int i = 1; i < 2; i++)
+                    {
+                        panels[i].ClosePanel();
+                    }
+                }
+
+                
             }
         }
     }
@@ -237,14 +271,16 @@ public class ObjectScript : MonoBehaviour
                 FindObjectOfType<SpawnObject>().NextToRoomHighlight(r.gameObject);
             }
         }
+
+        FindObjectOfType<CrewManagementRoomDetailsMenu>().selectedRoom = null;
     }
 
-    public IEnumerator Delete(bool removeStats = true)
+    public IEnumerator Delete(bool removeStats = true, GameObject roomBeingPlaced = null)
     {
         if (isDeleting) yield break;
         isDeleting = true;
-        
-        yield return new WaitForSeconds(0.25f); // delay for not deleting 2 rooms at once
+
+        yield return new WaitForSeconds(0.1f);
 
         if (removeStats)
         {
@@ -281,6 +317,7 @@ public class ObjectScript : MonoBehaviour
                     SpotChecker.instance.RemoveSpots(r.gameObject, r.rotAdjust);
                     r.gameObject.GetComponent<RoomStats>().SubtractRoomStats();
                     Destroy(r.gameObject);
+                    
                 }
             }
         }
@@ -295,7 +332,20 @@ public class ObjectScript : MonoBehaviour
             HighlightSpotsOff();
         }
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        FindObjectOfType<CrewManagementRoomDetailsMenu>().ClearUI();
+        RoomPanelToggle[] panels = FindObjectsOfType<RoomPanelToggle>();
+        for (int i = 0; i < 1; i++) //closes room details if deleting placed room
+        {
+            panels[i].ClosePanel(0);
+        }
+
+        CrewViewManager.Instance.DisableCrewView();
+        
+        // destroy the room being placed otherwise destroy the selected room
+        Destroy(roomBeingPlaced
+            ? roomBeingPlaced
+            : FindObjectOfType<CrewManagementRoomDetailsMenu>().selectedRoom);
     }
 
     public void HighlightSpotsOn()
@@ -438,6 +488,6 @@ public class ObjectScript : MonoBehaviour
 
     private void OnDestroy()
     {
-        FindObjectOfType<EditCrewButton>()?.CheckForRoomsCall();
+        FindObjectOfType<CrewManagement>()?.CheckForRoomsCall();
     }
 }
