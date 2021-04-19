@@ -23,10 +23,14 @@ public class EnergyLevelStabalizeMiniGame : MiniGame
 	float[] sliderTargets = null;
 	int[] buttonSwitchTargets = null;
 
+	[SerializeField] private Button finishButton;
+
     private void Start()
 	{
 		InitializeGame();
         int goal = 50;
+
+		Tutorial.Instance.SetCurrentTutorial(9, true);
 		//Ensure starting game state doesn't start within 10 of goal
 		while (Mathf.Abs(CalculatePowerLevel() - goal) < 10) { InitializeGame(); }
 	}
@@ -47,13 +51,36 @@ public class EnergyLevelStabalizeMiniGame : MiniGame
 			optimizationText.text = (total + "%");
 			if (total == 100)
             {
-                EndMiniGameSuccess();
+				ShowFinishButton();
+            }
+			else
+            {
+				HideFinishButton();
             }
 		}
+	}
+	public void ShowFinishButton()
+    {
+		finishButton.interactable = true;
+    }
+
+	public void HideFinishButton()
+    {
+		finishButton.interactable = false;
+    }
+
+	/// <summary>
+	/// To be linked to the Finish Minigame button
+	/// </summary>
+	public override void EndMiniGameSuccess()
+    {
+		base.EndMiniGameSuccess();
+		HideFinishButton();
 	}
 
 	void InitializeGame()
 	{
+		HideFinishButton();
 		float total = 100;
 		//Assign random values of buttons, switches and sliders and subtract them from 100
 		for (int i = 0; i < sliders.Length + buttonSwitches.Length; i++)

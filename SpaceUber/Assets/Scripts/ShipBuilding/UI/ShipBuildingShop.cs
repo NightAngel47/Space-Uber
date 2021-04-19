@@ -7,6 +7,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShipBuildingShop : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class ShipBuildingShop : MonoBehaviour
     private SpawnObject objectsToSpawn;
 
     [SerializeField] RoomPanelToggle shopToggle;
+    [SerializeField] Sprite[] roomLevelIcons;
     ShipBuildingBuyableRoom[] shopSlots = new ShipBuildingBuyableRoom[3];
 
     private void Awake()
@@ -29,6 +31,7 @@ public class ShipBuildingShop : MonoBehaviour
 
     public void ToResourceTab(string resourceDataType)
     {
+
         Enum.TryParse("_" + resourceDataType, true, out ResourceDataTypes resourceType);
         Enum.TryParse(resourceDataType, true, out ShipBuildingTab shipBuildingTab);
 
@@ -61,6 +64,13 @@ public class ShipBuildingShop : MonoBehaviour
                 break;
         }
         SetShopSlots(resourceDataTypesArray);
+
+        //max out displayed room levels
+        foreach (ShipBuildingBuyableRoom room in shopSlots)
+        {
+            room.CallRoomLevelChange(1);
+            room.CallRoomLevelChange(1);
+        }
     }
 
     public string GetCurrentTab()
@@ -106,5 +116,10 @@ public class ShipBuildingShop : MonoBehaviour
             shopSlots[i].gameObject.SetActive(false);
             ++i;
         }
+    }
+
+    public Sprite[] GetRoomLevelIcons()
+    {
+        return roomLevelIcons;
     }
 }

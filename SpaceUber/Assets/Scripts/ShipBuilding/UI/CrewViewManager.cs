@@ -11,12 +11,18 @@ using UnityEngine;
 public class CrewViewManager : Singleton<CrewViewManager>
 {
     private bool crewViewEnabled = false;
+    private Tick ticker;
+
+    private void Start()
+    {
+        ticker = FindObjectOfType<Tick>();
+    }
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Tab))
         {
-            if (crewViewEnabled == false) EnableCrewView();
+            if (crewViewEnabled == false && (!EventSystem.instance.eventActive || GameManager.instance.currentGameState == InGameStates.ShipBuilding)) EnableCrewView();
             else DisableCrewView();
         }
     }

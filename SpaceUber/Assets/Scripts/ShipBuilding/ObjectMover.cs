@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ObjectMover.cs
  * Author(s): Sydney
  * Created on: #CREATIONDATE#
@@ -37,7 +37,13 @@ public class ObjectMover : MonoBehaviour
     {
         c = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
         c.a = .5f;
-        gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
+
+        foreach (SpriteRenderer spriteRenderer in gameObject.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>())
+        {
+            spriteRenderer.color = c;
+        }
+
+        gameObject.GetComponent<RoomStats>().levelIconObject.GetComponent<Image>().color = c;
         os = gameObject.GetComponent<ObjectScript>();
         
     }
@@ -73,9 +79,9 @@ public class ObjectMover : MonoBehaviour
                     Placement();
                 }
 
-                if(Input.GetMouseButtonDown(1))
+                if(Input.GetButtonDown("DeleteRoom"))
                 {
-                    StartCoroutine(os.Delete(os.isEdited));
+                    StartCoroutine(os.Delete(os.isEdited, gameObject));
                 }
             }
         }
@@ -129,7 +135,7 @@ public class ObjectMover : MonoBehaviour
 
     public void RotateObject()
     {
-        if(Input.GetKeyDown(KeyCode.Q) && os.canRotate == true)
+        if(Input.GetButtonDown("RotateLeft") && os.canRotate == true)
         {
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, 90);
             AudioManager.instance.PlaySFX(SFXs[Random.Range(0, SFXs.Length)]);
@@ -153,7 +159,7 @@ public class ObjectMover : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.E) && os.canRotate == true)
+        if(Input.GetButtonDown("RotateRight") && os.canRotate == true)
         {
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, -90);
             AudioManager.instance.PlaySFX(SFXs[Random.Range(0, SFXs.Length)]);
@@ -232,11 +238,12 @@ public class ObjectMover : MonoBehaviour
                 foreach (SpriteRenderer spriteRenderer in  gameObject.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>())
                 {
                     spriteRenderer.color = ObjectScript.c;
+                    gameObject.GetComponent<RoomStats>().levelIconObject.GetComponent<Image>().color = ObjectScript.c;
                 }
                 
                 gameObject.GetComponent<ObjectMover>().enabled = false;
                 
-                FindObjectOfType<EditCrewButton>().CheckForRoomsCall();
+                FindObjectOfType<CrewManagement>().CheckForRoomsCall();
             }
 
             else //If something is placed allow player to keep moving room
