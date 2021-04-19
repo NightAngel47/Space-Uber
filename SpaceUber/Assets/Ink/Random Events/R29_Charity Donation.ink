@@ -1,4 +1,4 @@
-The former captain, Lexa approaches you. "We recently received a message asking for a donation. Some of the crew members want us to contribute. I recommend doing sending a few credits to boost our morale and Kellis's company image."
+Lexa, the former captain, approaches your terminal. "We recently received a message asking for a donation. Some of the crew members want us to contribute. I recommend doing sending a few credits to boost our morale and Kellis's company image."
 + [Donate Credits] -> Donate 
 + [Don't Donate] -> Miser
 
@@ -8,6 +8,6 @@ You decide to give a small donation to the charity. Not only will it satisfy som
 -> END
 
 === Miser ===
-You decide to not donate. Although it would help the company image, your main priority is making sure you get your job done, and every credit you have can help you achieve your goals. Although some crew members will be disappointed, you will remind them they can make donations themselves. If they aren’t willing to give a little why should you.
+You decide to not donate. Although it would help the company image, your main priority is making sure you get your job done, and every credit you have can help you achieve your goals. Although some crew members are disappointed, you will remind them they can make donations themselves. If they aren’t willing to give a little why should you.
 -> END
 
