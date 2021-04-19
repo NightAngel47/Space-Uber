@@ -51,6 +51,11 @@ public class RoomUnlockUI : MonoBehaviour
                 case 0:
                     if (room.GetComponent<RoomStats>().GetRoomGroup() == 2 && GameManager.instance.GetUnlockLevel(2) < 3)
                     {
+                        newRooms.Add(room);  
+                    }
+                    if (room.GetComponent<ObjectScript>().objectNum == 5 && campaignManager.GetCurrentCampaignIndex() == 1)
+                    {
+                        //adds medbay to list
                         newRooms.Add(room);
                     }
                     break;

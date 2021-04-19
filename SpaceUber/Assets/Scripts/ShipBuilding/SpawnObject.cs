@@ -92,7 +92,10 @@ public class SpawnObject : MonoBehaviour
                     case 2:
                         foreach (GameObject room in GameManager.instance.allRoomList)
                         {
-                            availableRooms.Add(room);
+                            if (room.GetComponent<RoomStats>().GetRoomGroup() != 0)
+                            {
+                                availableRooms.Add(room);
+                            }
                         }
                         break;
                 }
