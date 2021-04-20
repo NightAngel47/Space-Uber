@@ -17,7 +17,7 @@ Lanri contacts you, her shouting immediately drawing your attention. "I've got i
 
 ==Avanshore_Fund==
 Lanri's argument to do it for the kids <i>is</i> compelling. You send Avanshore's joint government Lanri's proposal, with her meticulously documented notes. It takes longer than you would like, given the state of emergency, but the proposal is approved and funded with no cost to you. The senators thank you and call you "the system's lone hero" which is a strange title.
-You give Lanri the go ahead and she audibly screams before you mute the audio. Mateo and her begin work on the relay immediately.
+You give Lanri the go ahead and she audibly screams before you mute the audio. She and Mateo begin work on the relay immediately.
 ->Conspiracy
 
 ==Self_Fund==
@@ -48,9 +48,9 @@ You arrive at the CEO's barren and imposing office. Through the window in back y
 Kuon speaks, "Sir, if you may clarify."
 "We were trying to do something useful. We found an alien ship, undamaged, a little over a century ago now. We were able to take measurements, readings, access its data, and the few drops we got changed everything. High yield weapons, advanced forcefields" he pauses and gives you a pointed look, "and even Artificial Intelligence schematics that we were able to apply halfway decently.
 "But that artifact was capable of so much more, it was drained of power, had been dead in the water for eons. We lugged it to a nearby star and used our scavenged alien tech to try to wake it up. Do you know what we could have done with that power? Equinox would be an afterthought. 
-"It would've propelled us into a new age. The sun catcher dipped into Avanshore's sol and jump-started the artifact, but apparently the entire artifact was its own sort of power source. The material it's built out of has endless applications..." he trails off.
+"It would've propelled us into a new age. The sun catcher dipped into Avanshore's sol and jump-started Portunus, but apparently the entire artifact was its own sort of power source. The material it's built out of has endless applications..." he trails off.
 "The feedback caused an explosion that propelled that material across the galaxy, to... debilitating effect. And it also sent Avanshore's sol on a path toward's supernova.
-"The assets you've been picking up are prototypes, replacement pieces, the data required to get a handle on that artifact once we find it again, to handle its power surges. If you let them get wiped out by this thing" he points to the red sun, "All this will be for nothing."
+"The assets you've been picking up are prototypes, replacement pieces, the data required to get a handle on Portunus once we find it again, to handle its power surges. If you let them get wiped out by this thing" he points to the red sun, "All this will be for nothing."
 After a pause the CEO collapses into his chair, "So, now that everything is out in the open, can I trust you to finish the job?"
 
 *[Yes, I will finish the job]

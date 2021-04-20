@@ -82,7 +82,7 @@ Kuon walks over to check the engineer's pulse and the CEO drops. Lexa, realizing
 
 ==Knock_Out_Bad==
 The gun swings up to Lexa's center mass, and Kuon hesitates for a moment, but only a moment. A gunshot peaks your audio. Kuon is crouched to stabalize the handgun, and falls unconscious only once he is sure that Lexa is dead. 
-You dispatch security to apprehend the CEO and their former leading officer, and let ventilation flow only once they're in custody. Once Ripley wakes, she sees Lexa's corpse and Kuon straining against his former subordinates. She turns to your camera, "What's done is done. No use regreting it. We need to get down to that facility and finish this."
+You dispatch security to apprehend the CEO and their former leading officer, and let ventilation flow only once they're in custody. Ripley wakes and sees the situation: Lexa's corpse, Kuon straining against his former subordinates. She turns to your camera, "What's done is done. No use regreting it. We need to get down to that facility and finish this."
 ->Facility_Dead
 
 ==Knock_Out_Good==
@@ -116,7 +116,9 @@ You live for hundreds of years as the hand of Kellis, with your intelligence rem
 You breach the artifacial atmosphere of the Kellis moon, coasting past planetary turrets which are focused on the alien ship above. You touch down at the facility where you were built and where you are to be prepped for mass production once the state of emergency ends. Your clearance codes and flight plan don't show any abnormalities beyond the alien ship, so no one questions your arrival or the CEO's whereabouts.
 You send Ripley and Lexa inside, while Lanri stays at the docking platform. Lanri quickly negotiates an emergency scan with the engineers there, "In case the ship breaks through." 
 Meanwhile Lexa and Ripley come to a room filled with cloning pods. Ripley begins to alter the data upload, instead of taking the personality and memories from the previous CEO, it will be accepting a custom upload. Lanri sends through the scan and you feel your mind pulled into a pinpoint and tangled together into a complex processor. 
-You are in a glass tube, with Lexa standing over you with a gun drawn. "Who are you?" she asks. You look at your hands and recognize the CEO's body. You tell her that you are resigning from your post as captain, effective immediately. She smiles, "What next then?"
+You are in a glass tube, with Lexa standing over you with a gun drawn. "Who are you?" she asks. 
+You look at your hands and recognize the CEO's body. You speak, "I am resigning from my post as captain, effective immediately." 
+She smiles, "What next then?"
 *[Reforge Kellis]
 ->Reforged
 *[Rule With An Iron Fist]
@@ -126,7 +128,9 @@ You are in a glass tube, with Lexa standing over you with a gun drawn. "Who are 
 You breach the artifacial atmosphere of the Kellis moon, coasting past planetary turrets which are focused on the alien ship above. You touch down at the facility where you were built and where you are to be prepped for mass production once the state of emergency ends. Your clearance codes and flight plan don't show any abnormalities beyond the alien ship, so no one questions your arrival, the CEO's whereabouts, or your missing crew manager.
 You send Ripley inside, while Lanri stays at the docking platform. Lanri quickly negotiates an emergency scan with the engineers there, "In case the ship breaks through." 
 Meanwhile Ripley comes to a room filled with cloning pods. She begins to alter the data upload, instead of taking the personality and memories from the previous CEO, it will be accepting a custom upload. Ripley gives Lanri the go-ahead. Your few months of experiences are brought into focus as the scan plucks them from your mind. You consistently defied Kellis' expectations. And they will never expect this. Your mind is pulled into a pinpoint and tangled together into a complex soft processor. 
-You are in a glass tube, with Ripley standing over you. "With whom am I speaking?" she says. You look at your hands and recognize the CEO's body. You tell her that she is a genius. She smiles, "What next then?"
+You are in a glass tube, with Ripley standing over you. "With whom am I speaking?" she says. 
+You look at your hands and recognize the CEO's body. You speak, "Your captain."
+She smiles, "What next then, captain?"
 *[Reforge Kellis]
 ->Reforged
 *[Rule With An Iron Fist]
@@ -138,7 +142,7 @@ After several hundred more years, Kellis and its rivals become obsolete in an er
 ->END
 
 ==Evil_Overlord==
-It takes you a few years to get a handle on being a human, but you sieze power over the galaxy in half that time. Much to the dismay of your crew, you double down on Kellis' plans to corner the market, and build up a standing military to repel the galatic government's attempts to break you. After a few generations, nearly every known world is yours, its people not understanding a time before your rule. The galaxy endlessly churns out steel, and power, and weaponry, yet there is nothing to build but more factories, nothing to fight but empty space. 
+It takes you a few years to get a handle on being a human, but you sieze power over the galaxy in half that time. Much to the dismay of your crew, you double down on Kellis' plans to corner the market, and build up a standing military to repel the Galatic Government's attempts to break you. After a few generations, nearly every known world is yours, its people not understanding a time before your rule. The galaxy endlessly churns out steel and power and weaponry, yet there is nothing to build but more factories, nothing to fight but empty space. 
 You enslave humanity, and you have millions of useless warehouses to show for it. It was simply what Kellis taught you.
 ->END
 
