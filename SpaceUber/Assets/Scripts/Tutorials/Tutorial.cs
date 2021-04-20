@@ -56,7 +56,7 @@ public class Tutorial : Singleton<Tutorial>
     [SerializeField] GameObject vecStatsLeft;
     [SerializeField] GameObject vecStatsRight;
     [SerializeField] GameObject vecRoomDetails;
-    
+
     private TutorialNode currentTutorial;
     private int index;
     private bool tutorialPrerequisitesComplete = false;
@@ -136,13 +136,18 @@ public class Tutorial : Singleton<Tutorial>
 
         if(disableTutorial) return;
 
+        //if you're already in this same tutorial, stop. 
+        if (tutorials[tutorialID] == currentTutorial && tutorialPanel.activeSelf) return;
+
+        //if the game tries to force a tutorial the player has already seen, stop.
+        if (tutorials[tutorialID].tutorialFinished == true && forcedTutorial == true) return;
+
         //if you're already in a tutorial, close it
         if (tutorialPanel.activeSelf == true)
         {
             CloseCurrentTutorial(true);
         }
-        //if the game tries to force a tutorial the player has already seen, stop.
-        if (tutorials[tutorialID].tutorialFinished == true && forcedTutorial == true) return;
+        
 
         currentTutorial = tutorials[tutorialID];
 
@@ -225,6 +230,11 @@ public class Tutorial : Singleton<Tutorial>
                 CloseCurrentTutorial();
             }
         }
+    }
+
+    public bool CheckActiveTutorial(int value)
+    {
+        return (tutorials[value] == currentTutorial && tutorialPanel.activeSelf);
     }
 
     private void BeginLerping(Vector3 start, Vector3 end)
