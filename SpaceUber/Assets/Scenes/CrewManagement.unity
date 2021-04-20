@@ -844,6 +844,20 @@ MonoBehaviour:
     type: 3}
   diagnosisNoError: {fileID: 3191545777037698036, guid: a2a7a45449cd5aa478ca04105fa1366d,
     type: 3}
+  Goods:
+  - Good 1
+  - Good 2
+  - Good 3
+  - Good 4
+  - Good 5
+  - Good 6
+  Bads:
+  - Bad 1
+  - Bad 2
+  - Bad 3
+  - Bad 4
+  - Bad 5
+  - Bad 6
 --- !u!1001 &479287530
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1947,6 +1961,7 @@ MonoBehaviour:
   sceneButtons:
   - {fileID: 1834532680}
   - {fileID: 1974891725}
+  minRoomPlacedToContinue: 1
 --- !u!4 &1139635635
 Transform:
   m_ObjectHideFlags: 0

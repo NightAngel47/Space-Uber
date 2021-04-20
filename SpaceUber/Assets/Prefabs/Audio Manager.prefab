@@ -47,7 +47,7 @@ MonoBehaviour:
   - name: Wormhole
     clip: {fileID: 8300000, guid: d119bbc55f7e1944fa4e8aca30be92e3, type: 3}
     mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
-    volume: 1
+    volume: 0.67
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   - name: General Theme
     clip: {fileID: 8300000, guid: 6e9cdbd2bf4dfe945a8d11ced03f8a2e, type: 3}
     mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
-    volume: 0.45
+    volume: 0.85
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0
@@ -82,7 +82,7 @@ MonoBehaviour:
   - name: Clone Ambush Intro
     clip: {fileID: 8300000, guid: 957d38c735fde9e4d96279ac1382c819, type: 3}
     mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
-    volume: 0.565
+    volume: 0.505
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0
@@ -6729,6 +6729,104 @@ MonoBehaviour:
     mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
       type: 2}
     volume: 0.855
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Good 1
+    clip: {fileID: 8300000, guid: 22bcdd1f7331367488e8c718a1118579, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Good 2
+    clip: {fileID: 8300000, guid: c55ff469890691647a97c709dd83accc, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Good 3
+    clip: {fileID: 8300000, guid: 069de27e7f7be7b4cb067aa905fe523e, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Good 4
+    clip: {fileID: 8300000, guid: c7a8b071b47e5024d89d3b2e52fb51fc, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Good 5
+    clip: {fileID: 8300000, guid: 977d2fc76d31c514fa36ed51bf81c544, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Good 6
+    clip: {fileID: 8300000, guid: 12b7003825a7ccb46b3e26ec1f88eb96, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Bad 1
+    clip: {fileID: 8300000, guid: b619e900f515b5d4fb4f8a6a005efeec, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Bad 2
+    clip: {fileID: 8300000, guid: 715cce4d14715c5428fb4d80b4faef5a, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Bad 3
+    clip: {fileID: 8300000, guid: 2f3c4f7e72f33e443912882e04032d16, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Bad 4
+    clip: {fileID: 8300000, guid: e5cdc1ff8d0837846bbc7540559e75b2, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Bad 5
+    clip: {fileID: 8300000, guid: 89d489ebc0655514891029c6c25b4fdf, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Bad 6
+    clip: {fileID: 8300000, guid: b418af3aa2b336c4eb20f9ae50228021, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: UI Up
+    clip: {fileID: 8300000, guid: 61f0a4dd4b4f74e4fb718cd1b5852f50, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: UI Down
+    clip: {fileID: 8300000, guid: 33c5224286bcb0b45b0839be2c106237, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0

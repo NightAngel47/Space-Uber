@@ -82,6 +82,7 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OpenPanel(int tabIndex = -1)
     {
+        if (!isOpen) { AudioManager.instance.PlaySFX("UI Up"); }
         if (OverclockController.instance.overclocking) return;
 
         SetSelectedTab(tabIndex, true);
@@ -118,6 +119,7 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void ClosePanel(int tabIndex = -1)
     {
+        if (isOpen) { AudioManager.instance.PlaySFX("UI Down"); }
         if (!isOpen) return;
         
         try
