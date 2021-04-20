@@ -82,7 +82,7 @@ public class EventSystem : MonoBehaviour
 
 	private int randCheatIndex = 0;
 	private int charCheatIndex = 0;
-	public bool isCheatEvent = false;
+	private bool isCheatEvent = false;
 	[HideInInspector] public bool chatting = false; //Whether or not the player is talking to a character
 	[HideInInspector] public bool mutiny;
     [HideInInspector] public bool eventButtonSpawn = false; //Makes it so that the Go To Event button checks for it it can be interactable
@@ -152,8 +152,8 @@ public class EventSystem : MonoBehaviour
 			// wait till any active event is cleared before starting event timer for next event
 			yield return new WaitWhile((() => eventActive));
 
-            asm.LoadSceneMerged("Event_Prompt"); //Give option to start next event
-            yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
+            //asm.LoadSceneMerged("Event_Prompt"); //Load up the button that lets someone skip to an event
+            //yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
             
             eventPromptButton = FindObjectOfType<EventPromptButton>();
             tick.StartTickUpdate();
@@ -172,10 +172,10 @@ public class EventSystem : MonoBehaviour
                 yield return new WaitForEndOfFrame();
 			}
 
-            eventButtonSpawn = true;
-            eventPromptButton.eventButton.GoToEvent();
+			eventButtonSpawn = true;
+			eventPromptButton.eventButton.GoToEvent(); //set a listener for go to event
 
-            // roll for next event unless skipped to it
+            // roll to see if it's time to force an event
             while (!skippedToEvent && eventRollCounter <= eventChanceFreq)
             {
 				if(!mutiny) // don't increment timer during mutiny
@@ -205,10 +205,10 @@ public class EventSystem : MonoBehaviour
             FindObjectOfType<RoomPanelToggle>()?.ClosePanel();
 
             //wait until done with minigame and/or character event
-            yield return new WaitUntil(() => !OverclockController.instance.overclocking && !chatting);
+            yield return new WaitUntil(() => !OverclockController.instance.overclocking && !chatting &&!isCheatEvent);
 
-            //If event button was not clicked ahead of time
-            if (nextEventLockedIn && SceneManager.GetSceneByName("Event_Prompt").isLoaded)
+            //If event button was not clicked ahead of time, set the backdrop to avoid letting anyone click on anything
+            if (nextEventLockedIn)
             {
                 eventPromptButton.backDrop.SetActive(true);
             }
@@ -233,10 +233,12 @@ public class EventSystem : MonoBehaviour
 		if (skippedToEvent) return;
 
 	    skippedToEvent = true;
-	    asm.UnloadScene("Event_Prompt");
+		eventButtonSpawn = false;
+		eventPromptButton.eventButton.SetButtonInteractable(false);
+		eventPromptButton.backDrop.SetActive(false);
 
-	    //if it's an even-numbered event, do a story
-	    if (overallEventIndex % 2 == 1 && overallEventIndex != 0)
+		//if it's an even-numbered event, do a story
+		if (overallEventIndex % 2 == 1 && overallEventIndex != 0)
 	    {
 		    StartCoroutine(StartStoryEvent());
 	    }
@@ -453,7 +455,7 @@ public class EventSystem : MonoBehaviour
 	    //reset for next event
 	    eventActive = false;
 	    tick.StartTickUpdate();
-	    AudioManager.instance.PlayRadio(AudioManager.instance.currentStationId);
+	    AudioManager.instance.PlayRadio(AudioManager.instance.currentStationId, true);
 
 	    //set up for the next regular event
 	    if (isRegularEvent)

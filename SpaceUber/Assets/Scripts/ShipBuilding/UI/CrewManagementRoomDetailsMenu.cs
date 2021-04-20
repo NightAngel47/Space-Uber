@@ -14,7 +14,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     private ShipStats shipStats;
     private RoomStats roomStats;
     private OverclockRoom overclockRoom;
-    private GameObject selectedRoom = null;
+    [ReadOnly] public GameObject selectedRoom = null;
 
     [SerializeField] private string noRoomSelectedMessage = "Select a room to view its details.";
     [SerializeField] private GameObject[] roomDetailsInfo = new GameObject[2];
@@ -38,6 +38,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     
     [SerializeField, Foldout("Crew Assignment")] TMP_Text currentCrew;
     [SerializeField, Foldout("Crew Assignment")] Button[] crewButtons = new Button[2];
+    [SerializeField, Foldout("Crew Assignment")] ButtonTwoBehaviour[] crewButtonTexts = new ButtonTwoBehaviour[2];
     
     [SerializeField, Foldout("Overtime")] TMP_Text overtimeResource;
     [SerializeField, Foldout("Overtime")] Image overtimeIcon;
@@ -64,10 +65,18 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         roomStats = room.GetComponent<RoomStats>();
         overclockRoom = room.GetComponent<OverclockRoom>();
         shipStats.roomBeingPlaced = selectedRoom;
-        
-        room.GetComponent<RoomHighlight>().Highlight();
+
+        if (FindObjectOfType<RoomPanelToggle>().GetIsOpen())
+        {
+            room.GetComponent<RoomHighlight>().Highlight();
+        }
+        else
+        {
+            room.GetComponent<RoomHighlight>().Unhighlight();
+        }
         
         UpdatePanelInfo();
+        Tutorial.Instance.SetCurrentTutorial(2, true);
     }
     
     public void UpdatePanelInfo()
@@ -137,9 +146,9 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     /// <summary>
     /// Updates the crew stat and room production stats
     /// </summary>
-    public void UpdateCrewAssignment()
+    private void UpdateCrewAssignment()
     {
-        currentCrew.text = roomStats.currentCrew.ToString();
+        currentCrew.text = roomStats.currentCrew + " / " + roomStats.maxCrew;
 
         // set room production details
         if (selectedRoom.TryGetComponent(out Resource resource))
@@ -151,11 +160,11 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
 
             if (roomStats.flatOutput == false)
             {
-                producesAmount.text = resource.activeAmount + " / " + resource.amount[roomStats.GetRoomLevel() - 1];
+                producesAmount.text = resource.activeAmount + " / " + (int)(resource.amount[roomStats.GetRoomLevel() - 1] * MoraleManager.instance.GetMoraleModifier(roomStats.ignoreMorale));
             }
             else
             {
-                producesAmount.text = resource.activeAmount.ToString();
+                producesAmount.text = (resource.amount[roomStats.GetRoomLevel() - 1] * MoraleManager.instance.GetMoraleModifier(roomStats.ignoreMorale)).ToString();
             }
         }
         else
@@ -168,30 +177,38 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         UpdateCrewButtons();
     }
 
-    private void UpdateCrewButtons()
+    private void UpdateCrewButtons(bool clear = false)
     {
-        if (roomStats.maxCrew == 0) // no crew needed for room
+        if (clear || roomStats.maxCrew == 0) // no crew needed for room
         {
-            foreach (Button crewButton in crewButtons)
+            for (var i = 0; i < crewButtons.Length; i++)
             {
-                crewButton.interactable = false;
+                crewButtons[i].interactable = false;
+                crewButtonTexts[i].SetButtonInteractable(false);
             }
         }
         else if(roomStats.currentCrew == 0) // no crew assigned to room 
         {
             crewButtons[0].interactable = false;
             crewButtons[1].interactable = true;
+            
+            crewButtonTexts[0].SetButtonInteractable(false);
+            crewButtonTexts[1].SetButtonInteractable(true);
         }
         else if (roomStats.currentCrew == roomStats.maxCrew) // crew assigned at max
         {
             crewButtons[0].interactable = true;
             crewButtons[1].interactable = false;
+            
+            crewButtonTexts[0].SetButtonInteractable(true);
+            crewButtonTexts[1].SetButtonInteractable(false);
         }
         else // crew assigned between min and max (or something went wrong so both buttons active)
         {
-            foreach (Button crewButton in crewButtons)
+            for (var i = 0; i < crewButtons.Length; i++)
             {
-                crewButton.interactable = true;
+                crewButtons[i].interactable = true;
+                crewButtonTexts[i].SetButtonInteractable(true);
             }
         }
     }
@@ -213,7 +230,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
                 roomStats.UpdateRoomStats(roomStats.resources[0].resourceType);
             UpdateCrewAssignment();
 
-            if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
+            if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
             {
                 FindObjectOfType<CrewManagement>().CheckForMinCrew();
             }
@@ -233,7 +250,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
             roomStats.UpdateRoomStats(roomStats.resources[0].resourceType);
             UpdateCrewAssignment();
 
-            if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
+            if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
             {
                 FindObjectOfType<CrewManagement>().CheckForMinCrew();
             }
@@ -266,6 +283,10 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         {
             SetTalkToCrewButtonState(EventSystem.instance.CanChat(overclockRoom.GetRoomType()));
         }
+        else
+        {
+            SetTalkToCrewButtonState(false);
+        }
     }
 
     public void StartChat()
@@ -286,6 +307,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         
         SetOvertimeButtonState(false);
         SetTalkToCrewButtonState(false);
+        UpdateCrewButtons(true);
     }
 
     public void ToggleHighlight()

@@ -82,7 +82,7 @@ Kuon walks over to check the engineer's pulse and the CEO drops. Lexa, realizing
 
 ==Knock_Out_Bad==
 The gun swings up to Lexa's center mass, and Kuon hesitates for a moment, but only a moment. A gunshot peaks your audio. Kuon is crouched to stabalize the handgun, and falls unconscious only once he is sure that Lexa is dead. 
-You dispatch security to apprehend the CEO and their former leading officer, and let ventilation flow only once they're in custody. Once Ripley wakes, she sees Lexa's corpse and Kuon straining against his former subordinates. She turns to your camera, "What's done is done. No use regreting it. We need to get down to that facility and finish this."
+You dispatch security to apprehend the CEO and their former leading officer, and let ventilation flow only once they're in custody. Ripley wakes and sees the situation: Lexa's corpse, Kuon straining against his former subordinates. She turns to your camera, "What's done is done. No use regreting it. We need to get down to that facility and finish this."
 ->Facility_Dead
 
 ==Knock_Out_Good==

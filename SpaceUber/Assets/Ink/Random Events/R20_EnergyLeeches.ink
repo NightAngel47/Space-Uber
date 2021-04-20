@@ -7,7 +7,7 @@ The ship's power readings begin to fluctuate. Gradually at first, but the fluctu
 +[Overload the Core] ->randomEnd2
 == Send ==
 You order a few crew members to suit up, they're going to be taking a little spacewalk. You instruct them to remove the leeches from the exterior of the ship and provide them with plasma prods to get the job done.
-+[Proceed] ->randomEnd
+->randomEnd
 == Bad ==
 You watch on the cameras as the crew make their way towards the leeches, until they stand within striking distance. One of the crew ignites the plasma prod and begins attempting to dislodge one of the creatures. Soon enough, most of the leeches have been removed. As they attempt to get rid of the infestation one of the crew members gets engulfed by one of the leeches, hungry for the power supply in the space-suit. Sadly, the leech manages to untether the crew member, who you watch float away. Thankfully, the last of the leeches are removed without incident.
 ->DONE
