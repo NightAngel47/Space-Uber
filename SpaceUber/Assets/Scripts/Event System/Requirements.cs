@@ -310,6 +310,7 @@ public class Requirements
         }
         else if (isRoomRequirement)
         {
+            //outdated system, but uses integers associated with each room to check if they are on the ship
             RoomStats[] existingRooms = GameObject.FindObjectsOfType<RoomStats>();
             List<int> roomIDs = new List<int>();
 

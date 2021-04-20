@@ -548,12 +548,15 @@ public class EventSystem : MonoBehaviour
 
 	private bool HasPossibleCharacterEvent(RoomStats.RoomType room)
     {
+		print("Looking for events that have " + room.ToString());
+		
 		for(int i = characterEventIndex; i < characterEvents.Count; i++)
         {
 			GameObject charEvent = characterEvents[i];
 			CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
 			List<Requirements> requirements = eventDriver.requiredStats;
-
+			print("Event called " + charEvent.name + " uses ");
+			
 			if (HasRequiredStats(requirements) && eventDriver.MatchesRoomType(room))
 			{
 				return true; //end function as soon as one is found
@@ -713,7 +716,7 @@ public class EventSystem : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Takes the events supplied in newJob and applies them to the event lists here
+	/// Takes the story and random events supplied in newJob and applies them to the event lists here
 	/// </summary>
 	/// <param name="newJob"></param>
 	public void TakeStoryJobEvents(Job newJob)
