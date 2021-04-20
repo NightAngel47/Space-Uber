@@ -42,6 +42,7 @@ public class CrewManagement : MonoBehaviour
     public IEnumerator CheckForRooms()
     {
         yield return new WaitUntil(() => FindObjectOfType<SpotChecker>());
+        yield return new WaitUntil(() => GameManager.instance.hasLoadedRooms);
         passedRoomCount = FindObjectsOfType<RoomStats>().Length > minRoomPlacedToContinue;
 
         CheckForMinCrew();
