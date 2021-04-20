@@ -22,7 +22,7 @@ public class CrewViewManager : Singleton<CrewViewManager>
     {
         if(Input.GetKeyDown(KeyCode.Tab))
         {
-            if (crewViewEnabled == false && (!EventSystem.instance.eventActive || GameManager.instance.currentGameState == InGameStates.ShipBuilding || GameManager.instance.currentGameState == InGameStates.CrewManagement)) EnableCrewView();
+            if (crewViewEnabled == false && (!EventSystem.instance.eventActive || GameManager.instance.currentGameState == InGameStates.ShipBuilding)) EnableCrewView();
             else DisableCrewView();
         }
     }

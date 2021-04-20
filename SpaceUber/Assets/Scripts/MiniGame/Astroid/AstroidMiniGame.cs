@@ -18,14 +18,23 @@ public class AstroidMiniGame : MiniGame
     [SerializeField]TMP_Text scoreText = null;
 	[Tooltip("Number of times asteroids can hit the hull to lose the game.")]
 	public int damageTillFailure = 3;
+	public bool setUp = false;
 
-    private void Update()
+	private void Start()
 	{
-		if (!gameOver)
+		setUp = false;
+		Tutorial.Instance.SetCurrentTutorial(5, true);
+	}
+	private void Update()
+	{
+		if(!Tutorial.Instance.GetTutorialActive() && setUp)
 		{
-			scoreText.text = "Asteroids Remaining: " + requiredAstroids;
-			if (requiredAstroids == 0) { EndMiniGameSuccess(); }
-			if (damageTillFailure == 0) { EndMiniGameFail(true); }
+			if (!gameOver)
+			{
+				scoreText.text = "Asteroids Remaining: " + requiredAstroids;
+				if (requiredAstroids == 0) { EndMiniGameSuccess(); }
+				if (damageTillFailure == 0) { EndMiniGameFail(true); }
+			}
 		}
 	}
 

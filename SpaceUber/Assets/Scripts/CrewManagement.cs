@@ -15,28 +15,45 @@ using UnityEngine.UI;
 
 public class CrewManagement : MonoBehaviour
 {
-    private RoomStats[] currentRoomList;
-
     public GameObject[] sceneButtons; //contains finish ship and back to shipbuilding buttons
-    
+
+    [SerializeField] private int minRoomPlacedToContinue = 1;
+
+    private bool passedRoomCount = false;
+
     public void Start()
     {
-        currentRoomList = FindObjectsOfType<RoomStats>();
-        
+
+        StartCoroutine(CheckForRooms());
+
         CheckForMinCrew();
 
-        CrewViewManager.Instance.EnableCrewView();//automatically enable crew view when you enter crew mgmt
+        //removed since crew management and shipbuilding are being combined
+        //CrewViewManager.Instance.EnableCrewView();//automatically enable crew view when you enter crew mgmt
         
-        Tutorial.Instance.SetCurrentTutorial(2, true);
+        
+    }
+
+    public void CheckForRoomsCall()
+    {
+        StartCoroutine(CheckForRooms());
+    }
+
+    public IEnumerator CheckForRooms()
+    {
+        yield return new WaitUntil(() => FindObjectOfType<SpotChecker>());
+        passedRoomCount = FindObjectsOfType<RoomStats>().Length > minRoomPlacedToContinue;
+
+        CheckForMinCrew();
     }
 
     public void CheckForMinCrew()
     {
-        sceneButtons[0].GetComponent<ButtonTwoBehaviour>().SetButtonInteractable(currentRoomList.All(room => room.minCrew <= room.currentCrew));
+        sceneButtons[0].GetComponent<ButtonTwoBehaviour>().SetButtonInteractable(passedRoomCount && FindObjectsOfType<RoomStats>().All(room => room.minCrew <= room.currentCrew));
     }
 
     public void ClearRoomDetails()
     {
-        FindObjectOfType<CrewManagementRoomDetailsMenu>().ClearUI();
+        FindObjectOfType<CrewManagementRoomDetailsMenu>()?.ClearUI();
     }
 }

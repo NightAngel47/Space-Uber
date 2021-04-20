@@ -34,10 +34,10 @@ MonoBehaviour:
   - choiceName: neg
     description: 
     changeMusic: 0
-    playSFX: 0
+    playSFX: 1
     withoutTransition: 0
     eventBGM: 
-    eventSFX: 
+    eventSFX: Ripley Failure-6
     hasRequirements: 0
     choiceRequirements: []
     hasPercentChange: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
     randomEndingOutcomes: []
     outcomes:
     - outcomeName: neg
-      isScalableEvent: 0
+      isScaledOutcome: 0
       narrativeResultsBox: {fileID: 0}
       hasSubsequentChoices: 0
       isNarrativeOutcome: 0
@@ -72,10 +72,10 @@ MonoBehaviour:
   - choiceName: neu
     description: 
     changeMusic: 0
-    playSFX: 0
+    playSFX: 1
     withoutTransition: 0
     eventBGM: 
-    eventSFX: 
+    eventSFX: Ripley Understand-3
     hasRequirements: 0
     choiceRequirements: []
     hasPercentChange: 0
@@ -85,7 +85,7 @@ MonoBehaviour:
     randomEndingOutcomes: []
     outcomes:
     - outcomeName: neu
-      isScalableEvent: 0
+      isScaledOutcome: 0
       narrativeResultsBox: {fileID: 0}
       hasSubsequentChoices: 0
       isNarrativeOutcome: 0
@@ -114,10 +114,10 @@ MonoBehaviour:
     - choiceName: neg
       description: 
       changeMusic: 0
-      playSFX: 0
+      playSFX: 1
       withoutTransition: 0
       eventBGM: 
-      eventSFX: 
+      eventSFX: Ripley Unacceptable-4
       hasRequirements: 0
       choiceRequirements: []
       hasPercentChange: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
       randomEndingOutcomes: []
       outcomes:
       - outcomeName: neg
-        isScalableEvent: 0
+        isScaledOutcome: 0
         narrativeResultsBox: {fileID: 0}
         hasSubsequentChoices: 0
         isNarrativeOutcome: 0
@@ -152,10 +152,10 @@ MonoBehaviour:
     - choiceName: pos
       description: 
       changeMusic: 0
-      playSFX: 0
+      playSFX: 1
       withoutTransition: 0
       eventBGM: 
-      eventSFX: 
+      eventSFX: Ripley Yes-3
       hasRequirements: 0
       choiceRequirements: []
       hasPercentChange: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
       randomEndingOutcomes: []
       outcomes:
       - outcomeName: pos
-        isScalableEvent: 0
+        isScaledOutcome: 0
         narrativeResultsBox: {fileID: 0}
         hasSubsequentChoices: 0
         isNarrativeOutcome: 0
@@ -209,7 +209,7 @@ PrefabInstance:
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name
-      value: Character Event Driver 4
+      value: Ripley's Demeanor
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}

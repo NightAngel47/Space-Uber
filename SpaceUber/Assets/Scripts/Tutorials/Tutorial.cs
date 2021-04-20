@@ -109,11 +109,9 @@ public class Tutorial : Singleton<Tutorial>
                 else if (currentTutorial.tutorialMessages[index].ghostCursorChargingTerminal) GhostCursorChargingTerminal();
                 else if (currentTutorial.tutorialMessages[index].ghostCursorArmorPlating) GhostCursorArmorPlating();
                 else if (currentTutorial.tutorialMessages[index].ghostCursorStatBar) GhostCursorStatBar();
-            }
 
-            if (GameManager.instance.currentGameState == InGameStates.CrewManagement)
-            {
-                if (currentTutorial.tutorialMessages[index].selectRoom) EffectSelectRoom();
+                //Crew Management Effect
+                else if (currentTutorial.tutorialMessages[index].selectRoom) EffectSelectRoom();
             }
         }
         /////////////////////////////////////////////////////////////////////////////////
@@ -137,8 +135,11 @@ public class Tutorial : Singleton<Tutorial>
     {
         if(disableTutorial) return;
 
-        //if you're already in a tutorial, stop.
-        if (tutorialPanel.activeSelf == true) return;
+        //if you're already in a tutorial, close it
+        if (tutorialPanel.activeSelf == true)
+        {
+            CloseCurrentTutorial(true);
+        }
         //if the game tries to force a tutorial the player has already seen, stop.
         if (tutorials[tutorialID].tutorialFinished == true && forcedTutorial == true) return;
 

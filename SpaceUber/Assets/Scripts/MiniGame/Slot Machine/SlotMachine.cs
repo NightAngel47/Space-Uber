@@ -96,6 +96,7 @@ public class SlotMachine : MiniGame
 
     IEnumerator Start() 
     {
+        Tutorial.Instance.SetCurrentTutorial(10, true);
         sound = false;
         shipStats = OverclockController.instance.ShipStats();
         foreach (SlotReel reel in reels) { reel.SetSpeed(reelSpeed); }
