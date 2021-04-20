@@ -133,6 +133,7 @@ public class Tutorial : Singleton<Tutorial>
     //call this to display a tutorial. Tutorial IDs can be found in the inspector
     public void SetCurrentTutorial(int tutorialID, bool forcedTutorial)
     {
+
         if(disableTutorial) return;
 
         //if you're already in a tutorial, close it
@@ -157,6 +158,7 @@ public class Tutorial : Singleton<Tutorial>
 
     public void CloseCurrentTutorial(bool finished = true)
     {
+
         if(disableTutorial) return;
 
         if (tutorialPanel.activeSelf == true)
@@ -302,7 +304,7 @@ public class Tutorial : Singleton<Tutorial>
     private void EffectSelectRoom()
     {
         if (tutorialPrerequisitesComplete == false)
-        {
+        { 
             FindObjectOfType<RoomPanelToggle>().OpenPanel(0);
             FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
             tutorialPrerequisitesComplete = true;
