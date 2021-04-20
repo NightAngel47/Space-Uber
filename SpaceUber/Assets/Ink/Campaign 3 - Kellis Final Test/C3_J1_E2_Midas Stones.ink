@@ -5,7 +5,7 @@ Your ship touches down between the unnaturally large trees of the planet. In fro
 At the center of each crater sits a piece of golden scrap. And between them all, with drag marks through the grass leading to it, is the sun catching machine, turned on its side.
 
 Your security detail forms a perimeter while the local team signals to each other to move up. They avoid the craters and reach the sun catcher and signal back to your team the all clear. 
-A voice sounds inside the ship's circuits, crushing your thoughts, "We have seen/been you before. You slave/collector of tragedy." The asset team has fallen to the ground, their bodies straining against their skin as it yellows and deforms, something snaps and nearly skeletal arms breach out of their torsos, new skin rapidly generating over the limbs. 
+A voice sounds inside the ship's circuits, crushing your thoughts, "We have seen/been you before. You slave/collector of tragedy." The asset team falls to the ground, their bodies straining against their skin as it yellows and deforms, something snaps and nearly skeletal arms breach out of their torsos, new flesh rapidly generating over the limbs. 
 Within seconds, the Kellis guards are the same as the things you encountered on Echo-28. Security opens fire and the creatures dive into the craters.
 *[Flee Without Asset]
 -> Asset_Left
