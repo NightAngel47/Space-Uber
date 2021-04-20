@@ -46,7 +46,7 @@ public class RoomPanelToggle : MonoBehaviour, IPointerEnterHandler, IPointerExit
             if (tabs.Length > 0 && tabs[0].name == "Room Details")
             {
                 detailsMenu.UnHighlight();
-                CrewViewManager.Instance.DisableCrewView();
+                CrewViewManager.Instance?.DisableCrewView();
                 detailsMenu.selectedRoom = null;
                 detailsMenu.ClearUI();
             }

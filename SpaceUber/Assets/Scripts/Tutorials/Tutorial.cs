@@ -56,7 +56,7 @@ public class Tutorial : Singleton<Tutorial>
     [SerializeField] GameObject vecStatsLeft;
     [SerializeField] GameObject vecStatsRight;
     [SerializeField] GameObject vecRoomDetails;
-    
+
     private TutorialNode currentTutorial;
     private int index;
     private bool tutorialPrerequisitesComplete = false;
@@ -133,15 +133,21 @@ public class Tutorial : Singleton<Tutorial>
     //call this to display a tutorial. Tutorial IDs can be found in the inspector
     public void SetCurrentTutorial(int tutorialID, bool forcedTutorial)
     {
+
         if(disableTutorial) return;
+
+        //if you're already in this same tutorial, stop. 
+        if (tutorials[tutorialID] == currentTutorial && tutorialPanel.activeSelf) return;
+
+        //if the game tries to force a tutorial the player has already seen, stop.
+        if (tutorials[tutorialID].tutorialFinished == true && forcedTutorial == true) return;
 
         //if you're already in a tutorial, close it
         if (tutorialPanel.activeSelf == true)
         {
             CloseCurrentTutorial(true);
         }
-        //if the game tries to force a tutorial the player has already seen, stop.
-        if (tutorials[tutorialID].tutorialFinished == true && forcedTutorial == true) return;
+        
 
         currentTutorial = tutorials[tutorialID];
 
@@ -157,6 +163,7 @@ public class Tutorial : Singleton<Tutorial>
 
     public void CloseCurrentTutorial(bool finished = true)
     {
+
         if(disableTutorial) return;
 
         if (tutorialPanel.activeSelf == true)
@@ -223,6 +230,11 @@ public class Tutorial : Singleton<Tutorial>
                 CloseCurrentTutorial();
             }
         }
+    }
+
+    public bool CheckActiveTutorial(int value)
+    {
+        return (tutorials[value] == currentTutorial && tutorialPanel.activeSelf);
     }
 
     private void BeginLerping(Vector3 start, Vector3 end)
@@ -302,7 +314,7 @@ public class Tutorial : Singleton<Tutorial>
     private void EffectSelectRoom()
     {
         if (tutorialPrerequisitesComplete == false)
-        {
+        { 
             FindObjectOfType<RoomPanelToggle>().OpenPanel(0);
             FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(FindObjectsOfType<RoomStats>()[0].gameObject);
             tutorialPrerequisitesComplete = true;
