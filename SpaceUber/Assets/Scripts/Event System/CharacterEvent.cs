@@ -56,7 +56,7 @@ public class CharacterEvent : InkDriverBase
         SerializeField]
     private int moraleLoss = -10;
 
-    [Tooltip("The types of room this is attached to. Used to determine if this event can be played")]
+    [SerializeField,Tooltip("The types of room this is attached to. Used to determine if this event can be played")]
     private List<RoomStats.RoomType> roomTypes;
     public enum AnswerState
     {
@@ -93,62 +93,64 @@ public class CharacterEvent : InkDriverBase
     }
     public void Awake()
     {
-        SetCharacterRooms();
 
     }
 
-    private void SetCharacterRooms()
+    //private void SetCharacterRooms()
+    //{
+    //    if(thisCharacter == CharacterStats.Characters.Kuon)
+    //    {
+    //        roomTypes = new List<RoomStats.RoomType>
+    //        { 
+    //            RoomStats.RoomType.EnergyCanon, 
+    //            RoomStats.RoomType.PhotonTorpedoes, 
+    //            RoomStats.RoomType.Armory, 
+    //            RoomStats.RoomType.Brig
+    //        };
+    //    }
+    //    if (thisCharacter == CharacterStats.Characters.Lanri)
+    //    {
+    //        roomTypes = new List<RoomStats.RoomType>
+    //        {
+    //            RoomStats.RoomType.Pantry,
+    //            RoomStats.RoomType.HydroponicsStation
+    //        };
+    //    }
+    //    if (thisCharacter == CharacterStats.Characters.Mateo)
+    //    {
+    //        roomTypes = new List<RoomStats.RoomType>
+    //        {
+    //            RoomStats.RoomType.PowerCore,
+    //            RoomStats.RoomType.CoreChargingTerminal
+    //        };
+    //    }
+    //    if (thisCharacter == CharacterStats.Characters.Lexa)
+    //    {
+    //        roomTypes = new List<RoomStats.RoomType>
+    //        {
+    //            RoomStats.RoomType.Bunks
+    //        };
+    //    }
+    //    if (thisCharacter == CharacterStats.Characters.Ripley)
+    //    {
+    //        roomTypes = new List<RoomStats.RoomType>
+    //        {
+    //            RoomStats.RoomType.Medbay
+    //        };
+    //    }
+    //    print("This list for " + thisCharacter.ToString() +" now includes: ");
+    //    foreach(RoomStats.RoomType room in roomTypes)
+    //    {
+    //        print(room.ToString());
+    //    }
+    //}
+
+    public void PrintRoomRequirements()
     {
-        if(thisCharacter == CharacterStats.Characters.Kuon)
-        {
-            roomTypes = new List<RoomStats.RoomType>
-            { 
-                RoomStats.RoomType.EnergyCanon, 
-                RoomStats.RoomType.PhotonTorpedoes, 
-                RoomStats.RoomType.Armory, 
-                RoomStats.RoomType.Brig
-            };
-        }
-        if (thisCharacter == CharacterStats.Characters.Lanri)
-        {
-            roomTypes = new List<RoomStats.RoomType>
-            {
-                RoomStats.RoomType.Pantry,
-                RoomStats.RoomType.HydroponicsStation
-            };
-        }
-        if (thisCharacter == CharacterStats.Characters.Mateo)
-        {
-            roomTypes = new List<RoomStats.RoomType>
-            {
-                RoomStats.RoomType.PowerCore,
-                RoomStats.RoomType.CoreChargingTerminal
-            };
-        }
-        if (thisCharacter == CharacterStats.Characters.Lexa)
-        {
-            roomTypes = new List<RoomStats.RoomType>
-            {
-                RoomStats.RoomType.Bunks
-            };
-        }
-        if (thisCharacter == CharacterStats.Characters.Ripley)
-        {
-            roomTypes = new List<RoomStats.RoomType>
-            {
-                RoomStats.RoomType.Medbay
-            };
-        }
-        print("This list for " + thisCharacter.ToString() +" now includes: ");
-        foreach(RoomStats.RoomType room in roomTypes)
+        foreach (RoomStats.RoomType room in roomTypes)
         {
             print(room.ToString());
         }
-    }
-
-    public List<RoomStats.RoomType> GetRoomRequirements()
-    {
-
     }
 
     public void ChangeEventApproval(int change)

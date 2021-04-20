@@ -547,15 +547,13 @@ public class EventSystem : MonoBehaviour
     }
 
 	private bool HasPossibleCharacterEvent(RoomStats.RoomType room)
-    {
-		print("Looking for events that have " + room.ToString());
-		
+    {		
 		for(int i = characterEventIndex; i < characterEvents.Count; i++)
         {
 			GameObject charEvent = characterEvents[i];
 			CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
 			List<Requirements> requirements = eventDriver.requiredStats;
-			print("Event called " + charEvent.name + " uses ");
+
 			
 			if (HasRequiredStats(requirements) && eventDriver.MatchesRoomType(room))
 			{
@@ -602,45 +600,39 @@ public class EventSystem : MonoBehaviour
 
 	private GameObject RandomizeCharacterEvent(RoomStats.RoomType roomName)
     {
-		GameObject thisEvent = characterEvents[characterEventIndex];
+		
+		GameObject thisEvent = null;
 
 		if (characterEventIndex != characterEvents.Count)
 		{
+			//make a new list with only a subset after the character event index
+			List<GameObject> newCharacterEvents = characterEvents.GetRange(characterEventIndex, characterEvents.Count);
+
 			//select a random event from the list
-			int eventNum = Random.Range(characterEventIndex, characterEvents.Count);
-			thisEvent = characterEvents[eventNum];
-			List<Requirements> requirements = thisEvent.GetComponent<InkDriverBase>().requiredStats;
+			int eventNum = Random.Range(0, newCharacterEvents.Count);
+			thisEvent = newCharacterEvents[eventNum];
 			CharacterEvent charEventData = thisEvent.GetComponent<CharacterEvent>();
 
-			//if the event chosen has requirements that are not met, keep trying
-			if (!HasRequiredStats(requirements) && !charEventData.MatchesRoomType(roomName))
+			//if the event chosen does not match this room
+			while (!charEventData.MatchesRoomType(roomName))
 			{
-				//copies the current index
-				int newIndex = characterEventIndex;
-				List<GameObject> newCharacterEvents = characterEvents;
-
-				//Copies the list to shuffle until it finds a new event to do or runs out of ideas
-				while (!HasRequiredStats(requirements) && newIndex != characterEvents.Count && !charEventData.MatchesRoomType(roomName))
+				newCharacterEvents.RemoveAt(eventNum);
+				if (newCharacterEvents.Count == 0) //none of them left
 				{
-					//choose an event to check
-					int newNum = Random.Range(newIndex, newCharacterEvents.Count);
-
-					thisEvent = newCharacterEvents[newNum];
-
-					//insert this event at the beginning of the list so it cannot be picked again
-					newCharacterEvents.RemoveAt(eventNum);
-					newCharacterEvents.Insert(0, thisEvent);
-
-					newIndex++;
+					return null;
 				}
 
-				return null;
+				//pick a new number and event
+				eventNum = Random.Range(0, newCharacterEvents.Count);
+				thisEvent = newCharacterEvents[eventNum];
+				charEventData = thisEvent.GetComponent<CharacterEvent>();
 			}
-
-			randomEvents.RemoveAt(eventNum);
+			
+			randomEvents.Remove(thisEvent);
 			randomEvents.Insert(0, thisEvent);
 		}
 
+		print(thisEvent.name + " matches " + roomName.ToString()) ;
 		return thisEvent;
     }
 

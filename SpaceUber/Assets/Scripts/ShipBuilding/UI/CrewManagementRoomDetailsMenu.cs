@@ -292,6 +292,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     public void StartChat()
     {
         StartCoroutine(EventSystem.instance.StartNewCharacterEvent(overclockRoom.GetRoomType()));
+        UpdateChatAvailability();
     }
 
     public void ClearUI()
