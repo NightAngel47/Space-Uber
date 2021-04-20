@@ -188,8 +188,9 @@ public class ObjectMover : MonoBehaviour
     {
         if (GameManager.instance.currentGameState != InGameStates.ShipBuilding) return;
         //Checks to see if we have enough credits or energy to place the room
-        if (FindObjectOfType<ShipStats>().Credits >= gameObject.GetComponent<RoomStats>().price[gameObject.GetComponent<RoomStats>().GetRoomLevel() - 1] && 
-            FindObjectOfType<ShipStats>().Energy.z >= gameObject.GetComponent<RoomStats>().minPower[gameObject.GetComponent<RoomStats>().GetRoomLevel() - 1]) 
+        if ((FindObjectOfType<ShipStats>().Credits >= gameObject.GetComponent<RoomStats>().price[gameObject.GetComponent<RoomStats>().GetRoomLevel() - 1] && 
+            FindObjectOfType<ShipStats>().Energy.z >= gameObject.GetComponent<RoomStats>().minPower[gameObject.GetComponent<RoomStats>().GetRoomLevel() - 1]) ||
+            os.isEdited == true) 
         {
             if (os.needsSpecificLocation == false) //Check spots normally
             {
