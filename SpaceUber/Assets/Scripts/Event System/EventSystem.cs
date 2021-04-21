@@ -555,7 +555,7 @@ public class EventSystem : MonoBehaviour
 			List<Requirements> requirements = eventDriver.requiredStats;
 
 			
-			if (HasRequiredStats(requirements) && eventDriver.MatchesRoomType(room))
+			if (HasRequiredStats(requirements) && eventDriver.MatchesRoomType(room) && !eventDriver.playedOnce)
 			{
 				return true; //end function as soon as one is found
 			}
@@ -563,76 +563,24 @@ public class EventSystem : MonoBehaviour
 		return false;
     }
 
-	///// <summary>
-	///// Returns the next chosen event that can be played from the possible list supplied.
-	///// If null, do not allow players to go into the event screen. Instead, inform them that no new events
-	///// are available. DUMMIED OUT
-	///// </summary>
-	///// <param name="possibleEvents"></param>
-	///// <returns></returns>
-	//private GameObject FindNextCharacterEvent(List<GameObject> possibleEvents)
- //   {
-	//	List<GameObject> goodEvents = new List<GameObject>(); //add all events that are possible to this list
-
-	//	foreach ( GameObject charEvent in possibleEvents)
- //       {
-	//		CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
-	//		List<Requirements> requirements = eventDriver.requiredStats;
-
-	//		if (HasRequiredStats(requirements))
- //           {
-	//			goodEvents.Add(charEvent);
- //           }
-	//	}
-
-	//	if(goodEvents.Count > 0)
- //       {
-	//		int chosen = Random.Range(0, goodEvents.Count);
-	//		possibleEvents.Remove(goodEvents[chosen]); //remove this one from the list
-	//		return goodEvents[chosen];
- //       }
-	//	else
- //       {
-	//		print("Could not get an event");
-	//		return null;
- //       }
-	//}
-
 	private GameObject RandomizeCharacterEvent(RoomStats.RoomType roomName)
     {
-		
+		List<GameObject> eligibleEvents = new List<GameObject>();
 		GameObject thisEvent = null;
 
-		if (characterEventIndex != characterEvents.Count)
-		{
-			//make a new list with only a subset after the character event index
-			List<GameObject> newCharacterEvents = characterEvents.GetRange(characterEventIndex, characterEvents.Count);
+		for (int i = 0; i < characterEvents.Count; i++)
+        {
+			CharacterEvent charEvent = characterEvents[i].GetComponent<CharacterEvent>();
+			if (charEvent.MatchesRoomType(roomName) && charEvent.playedOnce == false)
+            {
+				eligibleEvents.Add(characterEvents[i]);
+            }
+        }
 
-			//select a random event from the list
-			int eventNum = Random.Range(0, newCharacterEvents.Count);
-			thisEvent = newCharacterEvents[eventNum];
-			CharacterEvent charEventData = thisEvent.GetComponent<CharacterEvent>();
+		int randNum = Random.Range(0, eligibleEvents.Count);
+		thisEvent = eligibleEvents[randNum];
+		eligibleEvents[randNum].GetComponent<CharacterEvent>().playedOnce = true;
 
-			//if the event chosen does not match this room
-			while (!charEventData.MatchesRoomType(roomName))
-			{
-				newCharacterEvents.RemoveAt(eventNum);
-				if (newCharacterEvents.Count == 0) //none of them left
-				{
-					return null;
-				}
-
-				//pick a new number and event
-				eventNum = Random.Range(0, newCharacterEvents.Count);
-				thisEvent = newCharacterEvents[eventNum];
-				charEventData = thisEvent.GetComponent<CharacterEvent>();
-			}
-			
-			randomEvents.Remove(thisEvent);
-			randomEvents.Insert(0, thisEvent);
-		}
-
-		print(thisEvent.name + " matches " + roomName.ToString()) ;
 		return thisEvent;
     }
 
