@@ -31,15 +31,16 @@ public class EventSystem : MonoBehaviour
 	private List<GameObject> storyEvents = new List<GameObject>();
 	private List<GameObject> randomEvents = new List<GameObject>();
 	private List<GameObject> characterEvents = new List<GameObject>();
+	private List<GameObject> playedCharEvents = new List<GameObject>();
 
-    //how many events (story and random) have occurred
-    [HideInInspector] public int overallEventIndex = 0;
+
+	//how many events (story and random) have occurred
+	[HideInInspector] public int overallEventIndex = 0;
 	// How many story events have occurred. Tells the code which story event to play
 	private int storyEventIndex = 0;
 	//how many random events have passed. Tells code how many events to ignore at the start of the list
 	private int randomEventIndex = 0;
-	//how many random events have passed. Tells code how many events to ignore at the start of the list
-	private int characterEventIndex = 0;
+
 
 	/// <summary>
 	/// The specific event being played right now
@@ -84,6 +85,7 @@ public class EventSystem : MonoBehaviour
 	private int charCheatIndex = 0;
 	private bool isCheatEvent = false;
 	[HideInInspector] public bool chatting = false; //Whether or not the player is talking to a character
+	private int daysSinceChat;
 	[HideInInspector] public bool mutiny;
     [HideInInspector] public bool eventButtonSpawn = false; //Makes it so that the Go To Event button checks for it it can be interactable
 
@@ -359,7 +361,7 @@ public class EventSystem : MonoBehaviour
 		chatting = true;
 		FindObjectOfType<RoomPanelToggle>()?.ClosePanel();
 		GameObject newEvent = RandomizeCharacterEvent(room);
-
+		daysSinceChat = 0;
 		if (newEvent != null)
         {
 			asm.LoadSceneMerged("Event_CharacterFocused");
@@ -414,7 +416,8 @@ public class EventSystem : MonoBehaviour
 		}
 
         eventActive = true;
-		//Does not increment overall event index because intro event does not increment it
+
+		//Does not increment overall event index here because intro event does not increment it
 		tick.StopTickUpdate();
         AnalyticsManager.OnEventStarted(inkDriver, nextEventLockedIn);
 	}
@@ -434,7 +437,6 @@ public class EventSystem : MonoBehaviour
 	    {
 		    isRegularEvent = false;
 		    chatting = false;
-		    tick.DaysSinceChat = 0;
 		    eventInstance.GetComponent<CharacterEvent>().EndCharacterEvent();
 	    }
 	    else if (concludedEvent.isMutinyEvent)
@@ -442,8 +444,12 @@ public class EventSystem : MonoBehaviour
 		    isRegularEvent = false;
 		    mutiny = false;
 	    }
+		else
+        {
+			daysSinceChat++; //all normal events raise days since chat
+		}
 
-	    AnalyticsManager.OnEventComplete(concludedEvent);
+		AnalyticsManager.OnEventComplete(concludedEvent);
 	    Destroy(eventInstance);
 
 	    //Go back to travel scene
@@ -491,9 +497,9 @@ public class EventSystem : MonoBehaviour
 		eventActive = false;
 		eventRollCounter = 0;
 		timeBeforeEventCounter = 0;
-		tick.DaysSinceChat = 0;
 		if (travelCoroutine != null) StopCoroutine(travelCoroutine);
 		tick.StopTickUpdate();
+		daysSinceChat = 0;
 	}
 
 	public void ResetJob()
@@ -510,8 +516,8 @@ public class EventSystem : MonoBehaviour
 		eventActive = false;
 		eventRollCounter = 0;
 		timeBeforeEventCounter = 0;
-		tick.DaysSinceChat = 0;
 		if(travelCoroutine != null) StopCoroutine(travelCoroutine);
+		daysSinceChat = 0;
 	}
 
 	/// <summary>
@@ -548,14 +554,15 @@ public class EventSystem : MonoBehaviour
 
 	private bool HasPossibleCharacterEvent(RoomStats.RoomType room)
     {		
-		for(int i = characterEventIndex; i < characterEvents.Count; i++)
+		for(int i = 0; i < characterEvents.Count; i++)
         {
 			GameObject charEvent = characterEvents[i];
 			CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
-			List<Requirements> requirements = eventDriver.requiredStats;
 
 			
-			if (HasRequiredStats(requirements) && eventDriver.MatchesRoomType(room) && !eventDriver.playedOnce)
+			if (eventDriver.MatchesRoomType(room) /*&& !eventDriver.playedOnce*/
+                && HasRequiredStats(eventDriver.requiredStats))
+
 			{
 				return true; //end function as soon as one is found
 			}
@@ -571,7 +578,9 @@ public class EventSystem : MonoBehaviour
 		for (int i = 0; i < characterEvents.Count; i++)
         {
 			CharacterEvent charEvent = characterEvents[i].GetComponent<CharacterEvent>();
-			if (charEvent.MatchesRoomType(roomName) && charEvent.playedOnce == false)
+			
+			if (charEvent.MatchesRoomType(roomName) /*&& charEvent.playedOnce == false*/
+                && HasRequiredStats(charEvent.requiredStats))
             {
 				eligibleEvents.Add(characterEvents[i]);
             }
@@ -579,7 +588,9 @@ public class EventSystem : MonoBehaviour
 
 		int randNum = Random.Range(0, eligibleEvents.Count);
 		thisEvent = eligibleEvents[randNum];
-		eligibleEvents[randNum].GetComponent<CharacterEvent>().playedOnce = true;
+
+		characterEvents.Remove(thisEvent);
+		playedCharEvents.Add(thisEvent);
 
 		return thisEvent;
     }
@@ -679,15 +690,17 @@ public class EventSystem : MonoBehaviour
 
 	public bool CanChat(RoomStats.RoomType myRoom)
 	{
-		//If chat has cooleddown
-		if (tick.DaysSinceChat < chatCooldown)
-		{
-			return false;
-		}
+        //If chat has cooleddown
+        if (daysSinceChat < chatCooldown)
+        {
+            print("Only " + daysSinceChat + " days since last chat");
+            return false;
+        }
 
-		//if no possible events are found
-		if (!HasPossibleCharacterEvent(myRoom))
+        //if no possible events are found
+        if (!HasPossibleCharacterEvent(myRoom))
 		{
+			print("No character events available");
 			return false;
 		}
 

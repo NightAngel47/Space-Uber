@@ -59,7 +59,6 @@ public class CharacterEvent : InkDriverBase
     [SerializeField,Tooltip("The types of room this is attached to. Used to determine if this event can be played")]
     private List<RoomStats.RoomType> roomTypes;
     
-    [HideInInspector]public bool playedOnce = false;
     public enum AnswerState
     {
         POSITIVE,
@@ -92,13 +91,8 @@ public class CharacterEvent : InkDriverBase
         isCharacterEvent = true;
         isStoryEvent = false;
         characterApproval = 0;
-        playedOnce = false;
+        
     }
-    public void Awake()
-    {
-
-    }
-
     //private void SetCharacterRooms()
     //{
     //    if(thisCharacter == CharacterStats.Characters.Kuon)
