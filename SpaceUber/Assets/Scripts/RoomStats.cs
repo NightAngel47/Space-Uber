@@ -287,6 +287,45 @@ public class RoomStats : MonoBehaviour
         }
 
         SetActiveAmount(resource);
+
+        //sets the rooms resource active amount on load
+        switch (resource.resourceType.Rt)
+        {
+            case ResourceDataTypes._Credits:
+                resource.activeAmount = resourceChange;
+                break;
+            case ResourceDataTypes._Energy:
+
+                resource.activeAmount = resourceChange;
+                break;
+            case ResourceDataTypes._Security:
+                resource.activeAmount = resourceChange;
+                break;
+            case ResourceDataTypes._ShipWeapons:
+                resource.activeAmount = resourceChange;
+                break;
+            case ResourceDataTypes._Crew:
+                resource.activeAmount = resourceChange;
+                break;
+            case ResourceDataTypes._Food:
+                resource.activeAmount = resourceChange;
+                break;
+            case ResourceDataTypes._FoodPerTick:
+                resource.activeAmount = resourceChange;
+                break;
+            case ResourceDataTypes._HullDurability:
+                resource.activeAmount = resourceChange;
+                break;
+            case ResourceDataTypes._CrewMorale:
+                morale += resourceChange;
+                break;
+            case ResourceDataTypes._Payout:
+                resource.activeAmount = resourceChange;
+                break;
+            default:
+                Debug.LogError("Resource type: " + resource.resourceType.resourceName + " not setup in RoomStats");
+                break;
+        }
     }
 
     public void SetIsPowered()

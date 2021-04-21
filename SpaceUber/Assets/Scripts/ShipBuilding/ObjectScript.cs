@@ -237,7 +237,7 @@ public class ObjectScript : MonoBehaviour
         //rooms being placed will appear on top of other rooms that are already placed
         foreach (SpriteRenderer spriteRenderer in  gameObject.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>())
         {
-            spriteRenderer.sortingOrder += 5;
+            spriteRenderer.sortingOrder += 3;
         }
 
         // change transparency while moving room
