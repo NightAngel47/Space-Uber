@@ -29,6 +29,7 @@ You have her administer the Conaxel. Unfortunately, while the medicine stabilize
 
 == Medbay ==
 You instruct Ripley to prepare a bed in the Medbay for the man. After administering some stabalizing agents through an IV the man drifts in and out of consciousness. While he recovers you have a security officer confiscate the rest of the man's drug stash. A few hours later the man, now sober, vows to "never touch that shit again".
+->DONE
 
 ===function RandomizeEnding(rng)===
 { 
