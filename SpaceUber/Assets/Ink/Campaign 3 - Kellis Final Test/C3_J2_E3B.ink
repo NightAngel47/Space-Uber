@@ -1,6 +1,6 @@
-The time has come to collect the last asset in this sector of the solar system. The last asset in this sector of the solar system is located in a new planet at a central government building. After a couple more days of traveling throughout the stars and planets, you arrive at your destination. You slowly descend down and take notice of the complex you will be landing at. A massive dome with columns staged all around the perimeter of the building. Further surrounded by a layer of ammo-filled defense against the Midas Creatures. You make your way to the landing dock inside one of the hangers in the complex.
-You are greeted by a man in a stereotypical sleek suit. "Hello, AI. A pleasure to finally meet you. We have the asset right over here ready to be loaded. Your crew looks awfully tired, please allow me to feed them at no cost. They look like they need a good feast."
-As you watch another solar flare scorch some trees in the distance, you realize that giving the planet's government Lanri's research could help accelerate a potential solution for the impending supernova. Conversely, Kellis would rather you not send the entire solar system into a panic. The choice is yours.
+The time has come to collect the last asset in this sector of the solar system. It is located in on a recently terraformed planet, Highlens, at a central government building. As you descend, you take notice of the complex. A massive steel structure dotted with defenses and occassional old-world architecture: columns accenting its hangars, and domes above. You make your way to the landing dock inside one of the building's hangers.
+You are greeted by a politician in a sleek suit. "Hello, Captain. A pleasure to finally meet you. I heard you would be arriving to pick up some equipment on behalf of Kellis. I'll have them bring it up right away. In the mean-time, I bet your crew hasn't gotten a break recently, I'll get some food for them as well. Your company has done a lot for us, and with concerning reports across the system, we need you now more than ever."
+It's clear to you that this man knows nothing of the supernova to come. If you shared Lanri's research, they would certainly throw their weight behind a solution, but it would mean revealing the Midas scrap surrounding the sol that the CEO obviously wants buried. 
 
 
 + [Show Lanri's Research]
@@ -10,37 +10,26 @@ As you watch another solar flare scorch some trees in the distance, you realize 
 
 
 ==ShowResearch==
-"... My... my god. Avanshore's star is going to supernova? I must tell the rest of my peers. He runs off while you finish loading the asset onto your ship. 
-Once completed, you set off to collect the next asset. Right before you turn on your max ship speed, alarms begin blaring throughout the miles of terrain the government complex covers. You decipher what this means even before they start tearing into the walls of the complex. And there are even more Midas Creatures than last time.
-You already are in the air with the asset, you don't have to worry about a potential failed escape this time. However, helping out the government could work into your favor. What would you like to do?
-
-
-+ [Help the Politicians]
--> HelpPoliticiansA
-+ [Escape with the asset]
--> EscapeWithAssetA
-
-==HelpPoliticiansA==
-You shoot yourself back down to the ground. Kuon heads the team as you rip through dozens upon dozens of Midas Creatures. They eventually catch onto your attack. A few of the MCs leap high into the air and latch onto your ship. You're able to shake them off, but only after they rip some chunks of the hull and weapons off. You suffer some heavy damage overall, but the government is now forever in your debt.
--> END
-
-==EscapeWithAssetA==
-You escape without any issues and leave the government complex to fend for itself. Everyone in there is probably doomed, but you successfully acquired another asset for Kellis.
--> END
-
+You tell the man what you know about the Midas corruption, sending over Lanri's scattered research data.
+... My... my god. Avanshore's star is going to supernova?" He rests his head in his hands, "I'll forward this to the other senators, we need to work towards a solution immediately." He runs off, throwing a word of thanks behind him while you finish loading the asset onto your ship. 
+->Scene_2
 
 ==DontSayAnything==
-Loading the asset onto your ship goes as smoothly as it possibly could. you thank the Politician for his time and the meal and set off to collect the next asset.
+You neglect to mention anything to the man. The asset is loaded onto the ship without incident. You thank the senator for his time and the meal and ready for departure.
+->Scene_2
 
+==Scene_2==
+As you rise towards the cloud layer, alarms begin blaring throughout the miles of hallways in the complex. You decipher what this means as several golden obelisks pierce through the roof and lodge within the building. Within seconds, the employees begin to turn and the Midas beasts begin to drag the obelisks through the facility.
+You already are in the air with the asset. Protocol dictates that since your objective is complete, you should avoid dangerous circumstances. However, helping out the government could work in your favor. 
 + [Help the Politicians]
--> HelpPoliticiansB
-+ [Escape with the asset]
--> EscapeWithAssetB
+-> HelpPoliticians
++ [Escape With the Asset]
+-> EscapeWithAsset
 
-==HelpPoliticiansB==
-You shoot yourself back down to the ground. Kuon heads the team as you rip through dozens upon dozens of Midas Creatures. They eventually catch onto your attack. A few of the MCs leap high into the air and latch onto your ship. You're able to shake them off, but only after they rip some chunks of the hull and weapons off. You suffer some heavy damage overall, but the government is now forever in your debt.
+==HelpPoliticians==
+You shoot yourself back down to the ground. Kuon heads the team, ripping through dozens upon dozens of Midas Creatures to rescue who they can. The Midas creatures, catching on to your plot, focus on your ship, leaping onto it and tearing at its sides. You suffer some heavy damage fighting in the hangar, but hold position until Kuon returns. Avanshore's government is dealt a heavy blow, but it is softened by your help.
 -> END
 
-==EscapeWithAssetB==
-You escape without any issues and leave the government complex to fend for itself. Everyone in there is probably doomed, but you successfully acquired another asset for Kellis.
+==EscapeWithAsset==
+You break the cloud layer and escape Highlens without any issues, leaving the government complex to fend for itself. Everyone in there is probably doomed, but you successfully acquired another asset for Kellis.
 -> END

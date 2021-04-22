@@ -54,6 +54,9 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
     private bool noErrors = true;
     private float entryHeight = 100;
 
+    public string[] Goods;
+    public string[] Bads;
+
     private List<GameObject> spawnedChecks = new List<GameObject>();
 
     private void Awake()
@@ -98,6 +101,7 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
                 GameObject checkEntry = Instantiate(checklistEntry, preflightList);
                 SpawnCheckEntry(checkEntry, i, true);
                 spawnedChecks.Add(checkEntry);
+                AudioManager.instance.PlaySFX(Goods[UnityEngine.Random.Range(0, Goods.Length - 1)]);
             }
             else
             {
@@ -108,7 +112,8 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
                 GameObject checkEntryError = Instantiate(checklistEntryError, preflightList);
                 SpawnCheckEntry(checkEntryError, i, false);
                 spawnedChecks.Add(checkEntryError);
-                
+                AudioManager.instance.PlaySFX(Bads[UnityEngine.Random.Range(0, Goods.Length - 1)]);
+
                 yield return new WaitForSeconds(diagnosisDelay);
                 
                 // lengthen height scroll preflight content container
@@ -135,6 +140,7 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
             
             GameObject noErrorEntry = Instantiate(diagnosisNoError, diagnosisList);
             spawnedChecks.Add(noErrorEntry);
+            AudioManager.instance.PlaySFX("Power Up");
         }
         
         yield return new WaitForSeconds(diagnosisDelay);
