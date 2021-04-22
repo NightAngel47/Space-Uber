@@ -1,12 +1,7 @@
+VAR randomEnd = -> Gluttony
 The ship finds itself in the midst of an asteroid field. However, the journey is interrupted by a blinding flash followed by the sudden emergence of lights of all colors dancing across the sky. A massive aurora stretches into the horizon, and it seems to be having adverse effects on any crew member that looks at it. How shall you proceed?
 +[Fly Blind]->Blind
-+[Continue as Normal]
-{shuffle:
--->Gluttony
--->Greed
--->Wrath
--->Lust
-}
++[Continue as Normal] -> randomEnd
 
 == Blind ==
 The crew all close their eyes and you find that controlling the ship without assistance is more difficult than you had anticipated. After a few collisions with asteroids, you manage to maneuver the ship out of the range of the aurora. The ship has sustained some damage, but the crew are safe.
@@ -23,3 +18,17 @@ You manage to escape the aurora, but it seems to have affected the crew. They be
 == Lust ==
 You manage to escape the aurora, but it seems to have affected the crew. They become completely enamored with you, explaining that they believe you can do no wrong. The crew proclaim that they would lay down their lives if you asked it of them. Thankfully, this shameful display doesn’t last long, but you find yourself wishing the crew thought like that more often.
 ->DONE
+
+===function RandomizeEnding(rng)===
+{ 
+    - rng == 0: 
+        ~randomEnd = -> Gluttony
+    - rng == 1:
+        ~randomEnd = -> Greed
+    - rng == 2:
+        ~randomEnd = -> Wrath
+    - rng == 3:
+        ~randomEnd = -> Lust
+    - else:
+        ~randomEnd = -> Lust
+}

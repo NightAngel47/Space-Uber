@@ -407,12 +407,12 @@ PrefabInstance:
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: nextChoices.Array.data[0].eventSFX
-      value: Mateo Cool-5
+      value: Lexa Yes-1
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: nextChoices.Array.data[1].eventSFX
-      value: Mateo Bad-3
+      value: Lexa Robot!-4
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
@@ -422,7 +422,7 @@ PrefabInstance:
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: nextChoices.Array.data[2].eventSFX
-      value: Mateo Okay-5
+      value: Lexa Okay-2
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
@@ -437,7 +437,7 @@ PrefabInstance:
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].eventSFX
-      value: Mateo Bad-3
+      value: Lexa Wrong-9
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
@@ -447,7 +447,7 @@ PrefabInstance:
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].eventSFX
-      value: Mateo Sure-6
+      value: Lexa Respect-1
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
@@ -457,7 +457,7 @@ PrefabInstance:
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].eventSFX
-      value: Mateo Okay-6
+      value: Lexa Okay-1
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
@@ -467,7 +467,7 @@ PrefabInstance:
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].eventSFX
-      value: Mateo Okay-7
+      value: Lexa Okay-4
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
@@ -477,17 +477,27 @@ PrefabInstance:
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].eventSFX
-      value: Mateo Okay-7
+      value: Lexa Okay-3
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[2].eventSFX
-      value: Mateo Bad-5
+      value: Lexa Robot!-7
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[2].playSFX
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: eventBGM
+      value: General Theme
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: eventIntroSFX
+      value: Lexa Captain
       objectReference: {fileID: 0}
     - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
