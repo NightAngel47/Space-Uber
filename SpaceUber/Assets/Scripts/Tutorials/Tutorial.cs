@@ -38,7 +38,7 @@ public class Tutorial : Singleton<Tutorial>
     [SerializeField] TextMeshProUGUI tutorialTextbox;
     [SerializeField] TextMeshProUGUI tutorialTitleTextbox;
     [SerializeField] GameObject tutorialPanel;
-    [SerializeField] Button backButton;
+    [SerializeField] ButtonTwoBehaviour backButton;
     private Tick ticker;
 
     [SerializeField] GameObject highlightPanel;
@@ -85,8 +85,8 @@ public class Tutorial : Singleton<Tutorial>
 
     private void Update()
     {
-        if (tutorialPanel.activeSelf && index == 0) backButton.interactable = false;
-        else backButton.interactable = true;
+        if (tutorialPanel.activeSelf && index == 0) backButton.SetButtonInteractable(false);
+        else backButton.SetButtonInteractable(true);
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
