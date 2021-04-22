@@ -1,17 +1,15 @@
-The CEO has put in a request to speak with your manager, Lexa. Given their last meeting in Avanshore, you doubt it's a social call. Though without any further details to his request, there's no reason you could cite to refuse. 
-The Kellis headman been spending most of his time on your ship taking calls in private, but he calls Lexa to a conference room, where the rest of his board waits. The room cannot hold a candle to his office on Dispatch, but it still conveys a sense of magnitude. It was no doubt designed by countless engineers to elicit dread in whoever stands at the other end of the table from Kellis, in this case, Lexa. Already, she wears a pose of defiance.
+The CEO has put in a request to speak with your manager, Lexa. Given their last meeting in Avanshore, you doubt it's a social call. 
+The room cannot hold a candle to his office on Dispatch, but it still conveys a sense of magnitude. The CEO sits opposite of Lexa, with the board flanking them. Already, she wears a pose of defiance.
 "Well, since this is the end," the CEO starts, "I wanted to discuss things with you for the last time. Captains like you are no longer going to be necessary, that much is clear."
 "I'm glad you've found employees that can't talk back." Lexa says.
 Your boss laughs, "Well. Yes. Most don't have the mouth you do, and I appreciate their silence. We have a plan up here, you are simply too far down to see it." The board nods their heads in tandem.
-"If that's what you think, why call me in here to chat?" Lexa is deadpan. "Unless it's to lord my termination over me?"
-The man whose smallest nod could level planets coughs. "Ms., your leadership has been a scourge upon this ship for almost a decade now. Forgive me for trying to get something useful out of you just this once."
 "It won't work. Trying to rid Kellis of opposition within its ranks, trying to use an AI you don't have to pay, trying to make a person who won't hold you accountable. You haven't seen it in action, it's more like us than you think."
 The CEO cocks his head, "Then we'll make changes. First, we'll need to get rid of influences like you, we'll increase the weight of company protocol in its head. This thing is fixable. While captains like you are, well..."
 "The chaff?" Lexa supplies.
 The CEO nods gratefully, "I was going to say 'a liability.'" 
 
-The door to the conference room opens, revealing the soiled garb of an engineer. Mateo shuffles forward with a smile. "Hey! Do any of you know how to fix the coffee machine?" The CEO stares as his eye implants inform him who Mateo is. 
-The engineer seems to kick at some imaginary can, "Well if you guys don't know, I guess we'll be going without it for the voyage." he looks up with mock sheepishness, "If no one is there to fix your machines they'll keep plodding along in the dark, with a thousand little issues that you're too high up to see. It's careless to think you can do this without us."
+The door to the conference room opens, revealing the soiled garb of an engineer. Mateo shuffles forward with a smile. "Hey! Do any of you know how to fix the coffee machine?" The CEO stares as his eye implants try to inform him who Mateo is. 
+The engineer seems to kick at some imaginary can, "Well if you guys don't know, I guess we'll be going without it for the voyage." he looks up with mock sheepishness, "If no one is there to fix your machines they'll keep plodding along in the dark, with a thousand little issues that you're too high up to see."
 You know now Mateo has also been marked for termination. The boss leans against his fist and speaks towards your view camera, too exhausted to acknowledge Mateo's jabs. "Well. I know you've been listening, tell us. How would your performance be without these people in the way? We've been working on new ships, only enough room for cargo, no need for life support, food, bunkrooms. Tell us."
 
 *["I Can't Do This Without Them"]
@@ -23,7 +21,7 @@ You know now Mateo has also been marked for termination. The boss leans against 
 
 == Crew_Trust ==
 You inform the board of directors and the CEO himself just how important Lexa and Mateo have been, the whole crew in fact, how the 'back talk' is the only way you can see where you're headed. You are only one consciousness, you need to see through others' eyes to get the whole picture.
-The CEO returns you a glare of spite. "Your feedback will be taken into consideration." You notice he doesn't say who is going to consider your feedback. The board scribbles notes into their tablets and share concerned glances, the never had to put faith in something that talked back before. The face of Kellis notices this and gives an overbearing grin. "You've obviously given us a lot to think about! Leave us."
+The CEO returns you a glare of spite. "Your feedback will be taken into consideration." You notice he doesn't say who is going to consider your feedback. The board scribbles notes into their tablets and share concerned glances, they never had to put faith in something that talked back before. The face of Kellis notices this and gives an overbearing grin. "You've obviously given us a lot to think about! Leave us."
 Mateo and Lexa leave the room, Lexa trying to apologize all the while. Mateo laughs, "At least now we know that even a little engineer can piss them off. This data will be instrumental in innovating our project of career suicide." They both laugh. "Thanks for the assist, 9000." Mateo gives your nearest camera a thumbs up. 
 Lexa bows her head slightly, "We'll make this right. Whatever it takes." While your employees are satisfied with your answer, they aren't the ones who have you on a leash. And you don't know if you can keep them safe. 
 ->END
