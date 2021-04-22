@@ -30,8 +30,7 @@ public class EventSystem : MonoBehaviour
 	private int maxEvents = 0;
 	private List<GameObject> storyEvents = new List<GameObject>();
 	private List<GameObject> randomEvents = new List<GameObject>();
-	private List<GameObject> characterEvents = new List<GameObject>();
-	private List<GameObject> playedCharEvents = new List<GameObject>();
+
 
 
 	//how many events (story and random) have occurred
@@ -101,7 +100,6 @@ public class EventSystem : MonoBehaviour
 		tick = FindObjectOfType<Tick>();
 		asm = FindObjectOfType<AdditiveSceneManager>();
 		campMan = GetComponent<CampaignManager>();
-		characterEvents = campMan.GetCharacterEvents();
 	}
 
 	/// <summary>
@@ -336,9 +334,9 @@ public class EventSystem : MonoBehaviour
 
 		if(charCheatIndex < 0)
         {
-			charCheatIndex = characterEvents.Count - 1;
+			charCheatIndex = campMan.GetCharacterEvents().Count - 1;
 		}
-		else if(charCheatIndex > characterEvents.Count - 1)
+		else if(charCheatIndex > campMan.GetCharacterEvents().Count - 1)
         {
 			charCheatIndex = 0;
 		}
@@ -346,8 +344,8 @@ public class EventSystem : MonoBehaviour
 		asm.LoadSceneMerged("Event_CharacterFocused");
 		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
 
-		print("About to play '" + characterEvents[charCheatIndex] + "'");
-		CreateEvent(characterEvents[charCheatIndex]);
+		print("About to play '" + campMan.GetCharacterEvents()[charCheatIndex] + "'");
+		CreateEvent(campMan.GetCharacterEvents()[charCheatIndex]);
 		tick.StopTickUpdate();
 	}
 
@@ -554,9 +552,9 @@ public class EventSystem : MonoBehaviour
 
 	private bool HasPossibleCharacterEvent(RoomStats.RoomType room)
     {		
-		for(int i = 0; i < characterEvents.Count; i++)
+		for(int i = 0; i < campMan.GetCharacterEvents().Count; i++)
         {
-			GameObject charEvent = characterEvents[i];
+			GameObject charEvent = campMan.GetCharacterEvents()[i];
 			CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
 
 			
@@ -575,22 +573,21 @@ public class EventSystem : MonoBehaviour
 		List<GameObject> eligibleEvents = new List<GameObject>();
 		GameObject thisEvent = null;
 
-		for (int i = 0; i < characterEvents.Count; i++)
+		for (int i = 0; i < campMan.GetCharacterEvents().Count; i++)
         {
-			CharacterEvent charEvent = characterEvents[i].GetComponent<CharacterEvent>();
+			CharacterEvent charEvent = campMan.GetCharacterEvents()[i].GetComponent<CharacterEvent>();
 			
 			if (charEvent.MatchesRoomType(roomName) /*&& charEvent.playedOnce == false*/
                 && HasRequiredStats(charEvent.requiredStats))
             {
-				eligibleEvents.Add(characterEvents[i]);
+				eligibleEvents.Add(campMan.GetCharacterEvents()[i]);
             }
         }
 
 		int randNum = Random.Range(0, eligibleEvents.Count);
 		thisEvent = eligibleEvents[randNum];
 
-		characterEvents.Remove(thisEvent);
-		playedCharEvents.Add(thisEvent);
+		campMan.RemoveFromCharEvents(thisEvent);
 
 		return thisEvent;
     }

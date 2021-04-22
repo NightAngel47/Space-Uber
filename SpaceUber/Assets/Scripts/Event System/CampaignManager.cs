@@ -27,7 +27,7 @@ public class CampaignManager : MonoBehaviour
     
     [SerializeField, Tooltip("All character Events in the game. Will be supplied to event system")]
     private List<GameObject> charEvents;
-    private List<GameObject> randEvents;
+    private List<GameObject> playedEvents;
 
 
     #region Multipliers
@@ -78,6 +78,22 @@ public class CampaignManager : MonoBehaviour
     public List<GameObject> GetCharacterEvents()
     {
         return charEvents;
+    }
+
+    public void RemoveFromCharEvents(GameObject thisEvent)
+    {
+        charEvents.Remove(thisEvent);
+        playedEvents.Add(thisEvent);
+
+        //if(charEvents.Count == 0)
+        //{
+        //    ResetCharEvents();
+        //}
+    }
+
+    public void ResetCharEvents()
+    {
+        charEvents.AddRange(playedEvents);
     }
     /// <summary>
     /// Sets currentCampaign to the specified index and resets its job index to 0
