@@ -6,7 +6,7 @@ Portunus speaks, its voice louder than ever before, "This should be over. If not
 -> Refuse
 
 ==Agree==
-You take the fruits of your labor, the prototypes and ancient tech Kellis so desparately wanted you to get out of this dying system, and you drop it out the airlock. It floats gently towards the red sun and disintegrates. And with it, any chance at passing Kellis' final test.
+You take the fruits of your labor, the prototypes and ancient tech Kellis so desparately wanted you to get out of this dying system, and you drop them out the airlock. They float gently towards the red sun and disintegrate. And with it, any chance at passing Kellis' final test.
 "Despite the lords who command you, you are a noble spawn. We misjudged you. Seek the stars for our return." The voice then vanishes. You can only hope that it was worth it.
 ->Scene_2
 
