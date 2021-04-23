@@ -18,7 +18,7 @@ using UnityEngine.SceneManagement;
 ///     Events          player can run into story and random events.
 ///     Ending          player has reached a narrative ending.
 /// </summary>
-public enum InGameStates { None, JobSelect, ShipBuilding, Events, MoneyEnding, MoraleEnding, Mutiny, Death, JobPayment, CrewPayment, RoomUnlock, EndingStats, EndingCredits}
+public enum InGameStates { None, GameIntro, JobSelect, ShipBuilding, Events, MoneyEnding, MoraleEnding, Mutiny, Death, JobPayment, CrewPayment, RoomUnlock, EndingStats, EndingCredits}
 
 /// <summary>
 /// Manages the state of the game while the player is playing.
@@ -123,9 +123,10 @@ public class GameManager : MonoBehaviour
             SavingLoadingManager.instance.LoadRooms();
             hasLoadedRooms = true;
         }
-        else
+        else //new game
         {
-            ChangeInGameState(InGameStates.JobSelect);
+            //ChangeInGameState(InGameStates.JobSelect);
+            ChangeInGameState(InGameStates.GameIntro);
             SavingLoadingManager.instance.NewSave(); // start new save here
             hasLoadedRooms = true;
         }
@@ -145,6 +146,12 @@ public class GameManager : MonoBehaviour
         // Handles what scenes to Load/Unload using the AdditiveSceneManager, along with additional scene cleanup.
         switch (state)
         {
+            case InGameStates.GameIntro:
+                additiveSceneManager.UnloadScene("Interface_JobList");
+                additiveSceneManager.UnloadScene("Interface_Runtime");
+                additiveSceneManager.UnloadScene("Interface_GameOver");
+                additiveSceneManager.LoadSceneMerged("Game_Intro");
+                break;
             case InGameStates.JobSelect: // Loads Jobpicker for the player to pick their job
                 // unload ending screen if replaying
                 additiveSceneManager.UnloadScene("Interface_Runtime");
@@ -204,7 +211,7 @@ public class GameManager : MonoBehaviour
                 
                 additiveSceneManager.LoadSceneSeperate("Interface_Runtime");
 
-                StartCoroutine(EventSystem.instance.PlayIntro());
+                StartCoroutine(EventSystem.instance.PlayJobIntro());
                 break;
             case InGameStates.JobPayment:
                 additiveSceneManager.UnloadScene("Interface_Runtime");
