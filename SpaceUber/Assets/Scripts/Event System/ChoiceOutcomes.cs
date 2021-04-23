@@ -26,10 +26,11 @@ public class ChoiceOutcomes
 
     [SerializeField] public bool isNarrativeOutcome;
     [SerializeField] public bool isResourceOutcome;
+    [SerializeField] public bool isMutinyOutcome;
     [SerializeField] public bool isApprovalOutcome;
 
-    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public ResourceDataTypes resource;
-    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public int amount;
+    [SerializeField, ShowIf("isResourceOutcome"), AllowNesting] public ResourceDataTypes resource;
+    [SerializeField, ShowIf("isResourceOutcome"), AllowNesting] public int amount;
 
     //[SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character = CharacterStats.Characters.None;
     [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterEvent.AnswerState answerType;
@@ -37,20 +38,17 @@ public class ChoiceOutcomes
     CampaignManager campMan;
 
     #region Initialized Narrative Variables
-    [SerializeField, ShowIf("isNarrativeOutcome"),AllowNesting] private CampaignManager.Campaigns thisCampaign = CampaignManager.Campaigns.CateringToTheRich;
+    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private CampaignManager.Campaigns thisCampaign = CampaignManager.Campaigns.CateringToTheRich;
 
     [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeOutcome", "IsCateringToTheRich"), AllowNesting] private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolOutcomes;
     [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeOutcome", "IsCateringToTheRich"), AllowNesting] private int cloneTrustChange;
     [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeOutcome", "IsCateringToTheRich"), AllowNesting] private int VIPTrustChange;
 
-    [SerializeField, ShowIf("IsMysteriousEntity"), AllowNesting] private CampaignManager.MysteriousEntity.NarrativeVariables meMainOutcomes;
-    [SerializeField, ShowIf("IsFinalTest"), AllowNesting] private CampaignManager.FinalTest.NarrativeVariables finalTestNarrativeOutcomes;
-    [SerializeField, ShowIf("IsFinalTest"), AllowNesting] private int assetCountChange = 0;
+    [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeOutcome", "IsMysteriousEntity"), AllowNesting] private CampaignManager.MysteriousEntity.NarrativeVariables meMainOutcomes;
+    [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeOutcome", "IsFinalTest"), AllowNesting] private CampaignManager.FinalTest.NarrativeVariables finalTestNarrativeOutcomes;
+    [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeOutcome", "IsFinalTest"), AllowNesting] private int assetCountChange = 0;
 
-    [SerializeField] public bool changeGameState;
     #endregion
-
-    [SerializeField, ShowIf("changeGameState"), AllowNesting] public InGameStates state;
 
     #region Check for Campaign
     public bool IsCateringToTheRich()
@@ -538,6 +536,10 @@ public class ChoiceOutcomes
                         break;
                 }
             }
+            else if (isMutinyOutcome)
+            {
+                GameManager.instance.ChangeInGameState(InGameStates.Mutiny);
+            }
             else //approval outcomes
             {
                 int eventApprovalChange = 0;
@@ -581,11 +583,6 @@ public class ChoiceOutcomes
             if(!hasSubsequentChoices) //do at the end of the event
             {
                 narrativeResultsBox.SetActive(true);
-            }
-
-            if(changeGameState)
-            {
-                GameManager.instance.ChangeInGameState(state);
             }
 
             //Debug.Log("Adding: " + resultText);
