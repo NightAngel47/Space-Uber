@@ -571,9 +571,7 @@ public class EventSystem : MonoBehaviour
 	private GameObject RandomizeCharacterEvent(RoomStats.RoomType roomName)
     {
 		List<GameObject> eligibleEvents = new List<GameObject>();
-		GameObject thisEvent = null;
-
-		for (int i = 0; i < campMan.GetCharacterEvents().Count; i++)
+        for (int i = 0; i < campMan.GetCharacterEvents().Count; i++)
         {
 			CharacterEvent charEvent = campMan.GetCharacterEvents()[i].GetComponent<CharacterEvent>();
 			
@@ -585,9 +583,11 @@ public class EventSystem : MonoBehaviour
         }
 
 		int randNum = Random.Range(0, eligibleEvents.Count);
-		thisEvent = eligibleEvents[randNum];
+        GameObject thisEvent = eligibleEvents[randNum];
 
-		campMan.RemoveFromCharEvents(thisEvent);
+		campMan.playedEvents.Add(thisEvent);
+		campMan.charEvents.Remove(thisEvent);
+        //campMan.RemoveFromCharEvents(thisEvent);
 
 		return thisEvent;
     }

@@ -26,8 +26,8 @@ public class CampaignManager : MonoBehaviour
     public FinalTest finalTest = new FinalTest();
     
     [SerializeField, Tooltip("All character Events in the game. Will be supplied to event system")]
-    private List<GameObject> charEvents;
-    private List<GameObject> playedEvents;
+    public List<GameObject> charEvents;
+    [HideInInspector] public List<GameObject> playedEvents;
 
 
     #region Multipliers
