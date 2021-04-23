@@ -11,7 +11,7 @@ You give Lanri the go-ahead to continue with the experiment. She promises not to
 You decide to let Lanri see this project to the end and you are surprised when the harvested crops come out looking perfectly ripe and ludicrously large. Unfortunately, it seems these super crops are completely inedible. Some of your crew had to be admitted to the Medbay from their intestinal distress. Lanri sheepishly apologizes for her blunder, “Now we know…” she nervously laughs to herself. You hear complaints of stomach pain from the Medbay and inform Lanri that you aren’t the only one she should apologize to. She scurries away, embarrassed.
 ->DONE
 == Dispose ==
-Seeing as it’s not currently known what would happen if these plants grew to maturity you explain that you want Lanri to stop the experiment and dispose of the plants already affected. She seems disheartened and doesn’t really speak much as she gets rid of her notes. She thanks you for your input and says she’ll keep you updated on future prospects.
+Seeing as it’s not currently known what would happen if these plants grew to maturity you explain that you want Lanri to stop the experiment and dispose of the plants already affected. She seems disheartened and doesn’t really speak much as she gets rid of her notes. A security officer assigned to clean up finds out the hard way that the plant stems have mutated to share the properties of stinging nettles. It will take time for his hands to heal. Lanri thanks you for your input and says she’ll keep you updated on future prospects.
 ->DONE
 
 ===function RandomizeEnding(rng)===

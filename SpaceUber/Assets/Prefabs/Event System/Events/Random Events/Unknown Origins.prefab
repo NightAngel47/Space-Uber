@@ -66,7 +66,7 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: nextChoices.Array.data[0].description
-      value: You have no need for the artifact, but you could profit off of it
+      value: You have no need for the artifact, but you could sell it for a profit.
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -76,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: nextChoices.Array.data[1].description
-      value: Surely there's more to this than meets the eye
+      value: Hand it off to Lanri for further inspection.
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -101,7 +101,7 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].description
-      value: Where could this lead? There's only one way to find out
+      value: Where could this lead? There's only one way to find out...
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -132,7 +132,7 @@ PrefabInstance:
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].description
       value: "This is more trouble than it\u2019s worth, you might as well sell the
-        thing"
+        thing."
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -237,6 +237,16 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].hasRequirements
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: eventIntroSFX
+      value: Mateo Unknown
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].hasSecretOutcomes
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,

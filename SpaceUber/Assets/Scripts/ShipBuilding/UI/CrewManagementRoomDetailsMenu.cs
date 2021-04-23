@@ -14,6 +14,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     private ShipStats shipStats;
     private RoomStats roomStats;
     private OverclockRoom overclockRoom;
+    private bool tutorialAlreadyPlayed = false;
     [ReadOnly] public GameObject selectedRoom = null;
 
     [SerializeField] private string noRoomSelectedMessage = "Select a room to view its details.";
@@ -76,7 +77,11 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         }
         
         UpdatePanelInfo();
-        Tutorial.Instance.SetCurrentTutorial(2, true);
+        if (!tutorialAlreadyPlayed)
+        {
+            Tutorial.Instance.SetCurrentTutorial(2, true);
+            tutorialAlreadyPlayed = true;
+        }
     }
     
     public void UpdatePanelInfo()
@@ -282,6 +287,10 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         if(overclockRoom.hasEvents && GameManager.instance.currentGameState == InGameStates.Events)
         {
             SetTalkToCrewButtonState(EventSystem.instance.CanChat(overclockRoom.GetEvents()));
+        }
+        else
+        {
+            SetTalkToCrewButtonState(false);
         }
     }
 
