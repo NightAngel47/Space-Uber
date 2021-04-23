@@ -1,5 +1,5 @@
 VAR randomEnd = -> Goodmeat
-As you travel, you happen upon an asteroid carrying some form of organic growth. The crew look upon it as the ship passes by. Suddenly, without warning, the growth ruptures. An orange cloud of spores spews forth in all directions, and the ship is caught in the blast. You quickly leave the cloud, but not before some of the crew were exposed to the spores. They are taken to the Medbay, where you watch their condition worsen from the camera system. Over a ten-minute period their flesh falls apart, collecting in a squelching pile. How are you going to deal with this unsightly mess?
+As you travel, you happen upon a suspicious asteroid carrying some form of organic growth. The crew look upon it as the ship passes by. Suddenly, without warning, the growth ruptures. An orange cloud of spores spews forth in all directions, and the ship is caught in the blast. You quickly leave the cloud, but not before some of the crew were exposed to the spores. They are taken to the Medbay, where you watch their condition worsen from the camera system. Over a ten-minute period their flesh falls apart, collecting in a squelching pile. How are you going to deal with this unsightly mess?
 +[Recycle the Meat] -> randomEnd
 +[Dispose of the Meat]->Dispose
 

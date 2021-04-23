@@ -47,8 +47,11 @@ public class EventChoice
     private float percantageIncreased;
     private bool increasedPercent = false;
 
+    [SerializeField, Tooltip("Whether or not the outcome of this event is a secret.")]
     public bool hasSecretOutcomes;
-    [SerializeField, ShowIf("hasSecretOutcomes")] public string secretOutComeText = "";
+
+    [SerializeField, ShowIf(EConditionOperator.Or,"hasSecretOutcomes","hasRandomEnding"), Tooltip("Text that is read if outcome is secret or random. Will be printed beneath the regular description")] 
+    public string secretOutComeText = "";
     [SerializeField] private bool hasRandomEnding;    
     [SerializeField, ShowIf("hasRandomEnding")] private List<MultipleRandom> randomEndingOutcomes = new List<MultipleRandom>();
     [SerializeField, HideIf("hasRandomEnding")] public List<ChoiceOutcomes> outcomes = new List<ChoiceOutcomes>();
@@ -132,11 +135,16 @@ public class EventChoice
         // Tooltip stuff
         if (hasRandomEnding)
         {
-            tooltip.SetOutcomeData(description, randomEndingOutcomes, hasSecretOutcomes);
+            tooltip.SetOutcomeData(description, secretOutComeText, randomEndingOutcomes);
+
         }
         else
         {
-            tooltip.SetOutcomeData(description, outcomes, hasSecretOutcomes);
+            if(!hasSecretOutcomes)
+                tooltip.SetOutcomeData(description, outcomes);
+            else
+                tooltip.SetOutcomeData(description, secretOutComeText, outcomes);
+
         }
         
 
