@@ -1,17 +1,16 @@
-Your ship coasts towards Kellis' headquarters. Somewhere between a space station and a mobile fortress, it is known colloquially as "Dispatch." You can only estimate how many hundreds of billions of credits pass through this place every each week.
-As the ship locks into the auto-docking rail, Lexa and you are summoned to your performance review. You are expected to download into a robot on-site. 
+Your arrive at Kellis local headquarters. Somewhere between a space station and a mobile fortress, it is known colloquially as "Dispatch." As the ship locks into the auto-docking rail, Lexa and you are summoned to your performance review. You are expected to view through her suit cam.
 Dispatch resembles a skyscraper in many ways, the architecture wrapping around several massive atriums, populated by sleek elevator bays and glass balconies. Maintenance hallways are placed at intervals throughout the station, leading past ductwork to crew quarters and gundecks that no one wants to see. Lexa passes by all this and heads straight to the top.
-The CEO's office is much in the same style as the rest of the station, a black marble floor, a glass wall looking out at the Avanshore system, and the bodyguards tucked into the shadows of the room, as if they spoil the decor.
+The CEO's office is much in the same style as the rest of the station, a black marble floor, a glass wall looking out at the Avanshore system, and bodyguards tucked into the shadows of the room, as if they spoil the decor.
 A man who has been in his prime for the last three centuries stands across the table from Lexa. He is the acting CEO of Kellis, and will be until the funding for his designer clones dries up.
 "Crew Manager." he says, referring to Lexa's formal title, "Your replacement has exceeded you in our metrics. Statistics and timetables are only so reliable though . What have you observed?"
-Lexa moves her lips silently for a few seconds and clears her throat, "They’re certainly more your speed."
+Lexa clears her throat, "They’re certainly more your speed."
 "Oh?" the suit chuckles, "For a moment there I forgot why you were being phased out."
 Lexa takes the insult without hitting back.
-"How about the latest two missions then?" the Kellis head starts, likely downloading the mission brief as he speaks. He frowns, "It doing its job, is that what you consider 'our speed,' Crew Manager?"
+"How about the latest two missions then?" The Kellis head starts, likely downloading the mission brief as he speaks. He frowns, "It doing its job, is that what you consider 'our speed,' Crew Manager?"
 "There were people down there, they worked for you."
 "And I paid them to protect that asset with their lives. What about 'a job' is so difficult for you to understand?" the executive gestures as though he is explaining economics to a child.
 "Just because I work for you doesn’t mean I stop being a person." Lexa replies.
-"People like you are why we can't stomp down the competition." the CEO complains to himself, "If you serve the company's plan, we can do things none of you could do on your own. We could do more good than any of you could alone." he lowers his head, "But we need you to work with us."
+"People like you are why we can't stomp down the competition." the CEO complains to himself, "If you serve the company's plan, we can do things none of you could do on your own. Good things." he lowers his head, "But we need you to work with us."
 "You've had the money for years, I'll lay down my life for your profits once you do something useful with them."
 The man laughs, and comments halfheartedly about Lexa being a firebrand. After a moment he sighs and his implants light up. "No, laughing that off didn’t really work. Will you need her?" your boss is speaking directly to you via implant, Lexa left out of the loop. "Once this mission is over, do you need this woman alive?"
 
