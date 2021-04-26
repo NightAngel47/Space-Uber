@@ -177,6 +177,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
             }
             else //specifically medbay
             {
+                producesResource.text = "Morale Gain";
                 if (roomStats.GetRoomLevel() == 1)
                 {
                     producesAmount.text = "+";
