@@ -467,10 +467,14 @@ public class CampaignManager : MonoBehaviour
         mysteriousEntity.SaveEventChoices();
         finalTest.SaveEventChoices();
 
-        SavingLoadingManager.instance.Save<Campaigns>("currentCamp", currentCamp);
-        SavingLoadingManager.instance.Save <GameObject[]> ("UnplayedCharacterEvents", charEvents.ToArray());
-        SavingLoadingManager.instance.Save<GameObject[]>("PlayedCharacterEvents", playedEvents.ToArray());
+        List<String> playedEventNames = new List<String>();
 
+        foreach(GameObject thisEvent in playedEvents)
+        {
+            playedEventNames.Add(thisEvent.name);
+        }
+        SavingLoadingManager.instance.Save<Campaigns>("currentCamp", currentCamp);
+        SavingLoadingManager.instance.Save<List<String>>("playedCharacterEvents", playedEventNames);
 
         int currentJob;
         switch (currentCamp)
@@ -501,14 +505,24 @@ public class CampaignManager : MonoBehaviour
         currentCamp = SavingLoadingManager.instance.Load<Campaigns>("currentCamp");
         
         //Loads character event arrays
-        GameObject[] tempArray = SavingLoadingManager.instance.Load<GameObject[]>("UnplayedCharacterEvents");
-        charEvents = new List<GameObject>(tempArray);
-
-        tempArray = SavingLoadingManager.instance.Load<GameObject[]>("PlayedCharacterEvents");
-        playedEvents
-            = new List<GameObject>(tempArray);
+        List<String> playedEventNames = SavingLoadingManager.instance.Load<List<String>>("playedCharacterEvents");
+        List<GameObject> foundEvents = new List<GameObject>();
         
-        switch (currentCamp)
+        foreach(GameObject thisEvent in charEvents)
+        {
+            if(playedEventNames.Contains(thisEvent.name))
+            {
+                foundEvents.Add(thisEvent);
+            }
+        }
+
+        foreach (GameObject thisEvent in foundEvents)
+        {
+            playedEvents.Add(thisEvent);
+            charEvents.Remove(thisEvent);
+        }
+
+            switch (currentCamp)
         {
             case Campaigns.CateringToTheRich:
                 cateringToTheRich.jobIndex = SavingLoadingManager.instance.Load<int>("currentJob");
