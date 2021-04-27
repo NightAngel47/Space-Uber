@@ -1,43 +1,45 @@
 Lexa sheepishly approaches your terminal. "I think it's time I told you what happened before you were installed... and why Kuon has his cybernetics." From the way she's speaking, you can tell this is a topic she isn't very comfortable discussing. 
-+ ["Is this about the captain that came before you?"] -> PosRes1
-+ ["I don't see how this is relevant to me."] -> NegRes1
++ ["Is this about the previous captain?"] -> PosRes1
++ ["I don't see how this is relevant."] -> NegRes1
 + ["Was it your fault?"] -> NeuRes1
 
 
 === PosRes1 ===
 She sighs, seemingly lost in her memories, "Yeah... he was the kind of man that made you think the word 'bastard' was invented just for him." She takes a moment to compose herself before she continues. "The captain before me was everything he shouldn't have been. Abusive, lazy, and untouchable because he had connections. It was a cocktail for disaster... and that's just what happened."
 + ["So you just didn't like him?"] -> NegRes2
-+ ["Nepotism and corruption go hand in hand, please continue."] -> PosRes2
-+ ["So he was to blame for the incident?"] -> NeuRes2
++ ["Nepotism and corruption go hand in hand."] -> PosRes2
++ ["So he was to blame?"] -> NeuRes2
 
 === NeuRes1 ===
 Lexa chokes, the words not wanting to come, "It...was and it wasn't... at least that's what I keep telling myself." She takes a moment to compose herself before she continues. "The captain before me was everything he shouldn't have been. Abusive, lazy, and untouchable because he had connections. It was a cocktail for disaster... and that's just what happened."
 + ["So you just didn't like him?"] -> NegRes2
-+ ["Nepotism and corruption go hand in hand, please continue."] -> PosRes2
-+ ["So he was to blame for the incident?"] -> NeuRes2
++ ["Nepotism and corruption go hand in hand."] -> PosRes2
++ ["So he was to blame?"] -> NeuRes2
+
 
 === NegRes1 ===
 She glares at your terminal, "They say history is bound to repeat itself. I'd rather that doesn't happen, for all those involved." She takes a moment to compose herself before she continues. "The captain before me was everything he shouldn't have been. Abusive, lazy, and untouchable because he had connections. It was a cocktail for disaster... and that's just what happened."
 + ["So you just didn't like him?"] -> NegRes2
-+ ["Nepotism and corruption go hand in hand, please continue."] -> PosRes2
-+ ["So he was to blame for the incident?"] -> NeuRes2
++ ["Nepotism and corruption go hand in hand."] -> PosRes2
++ ["So he was to blame?"] -> NeuRes2
+
 
 === PosRes2 ===
-A soft yet shaky chuckle rises from her throat, "I doubt truer words have ever been spoken." She wipes her eyes with her sleeve before continuing. "The crew had finally had enough of him, and I managed to convince Kuon to help. No one was meant to get hurt, we were just going to hold the captain until we got to port, but that stupid bastard..."
-+ ["Get on with it, I have duties to attend to."] -> NegRes3
-+ ["Take your time, I'm not going anywhere."] -> PosRes3
+A soft yet shaky chuckle rises from her throat, "I doubt truer words have ever been spoken." She wipes her eyes with her sleeve before continuing. "The crew had finally had enough of him, and I managed to convince Kuon to help. No one was meant to get hurt, we were just going to hold the captain until we got to port, but that stupid bastard...". She struggles to finish.
++ ["Get on with it."] -> NegRes3
++ ["Take your time.."] -> PosRes3
 + ["Then what happened?"] -> NeuRes3
 
 === NeuRes2 ===
 "I wish that was the short of it, but I can't shake the feeling that I'm at least partially responsible for the events that transpired." She wipes her eyes with her sleeve before continuing. "The crew had finally had enough of him, and I managed to convince Kuon to help. No one was meant to get hurt, we were just going to hold the captain until we got to port, but that stupid bastard..."
-+ ["Get on with it, I have duties to attend to."] -> NegRes3
-+ ["Take your time, I'm not going anywhere."] -> PosRes3
++ ["Get on with it."] -> NegRes3
++ ["Take your time.."] -> PosRes3
 + ["Then what happened?"] -> NeuRes3
 
 === NegRes2 ===
 "NO ONE liked him, but that's not the point. Something had to be done, needed to be done. I just wish things had played out differently." She wipes her eyes with her sleeve before continuing. "The crew had finally had enough of him, and I managed to convince Kuon to help. No one was meant to get hurt, we were just going to hold the captain until we got to port, but that stupid bastard..."
-+ ["Get on with it, I have duties to attend to."] -> NegRes3
-+ ["Take your time, I'm not going anywhere."] -> PosRes3
++ ["Get on with it."] -> NegRes3
++ ["Take your time."] -> PosRes3
 + ["Then what happened?"] -> NeuRes3
 
 == PosRes3 ==
