@@ -468,6 +468,9 @@ public class CampaignManager : MonoBehaviour
         finalTest.SaveEventChoices();
 
         SavingLoadingManager.instance.Save<Campaigns>("currentCamp", currentCamp);
+        SavingLoadingManager.instance.Save <GameObject[]> ("UnplayedCharacterEvents", charEvents.ToArray());
+        SavingLoadingManager.instance.Save<GameObject[]>("PlayedCharacterEvents", playedEvents.ToArray());
+
 
         int currentJob;
         switch (currentCamp)
@@ -496,7 +499,15 @@ public class CampaignManager : MonoBehaviour
         finalTest.ResetEventChoicesToJobStart();
 
         currentCamp = SavingLoadingManager.instance.Load<Campaigns>("currentCamp");
+        
+        //Loads character event arrays
+        GameObject[] tempArray = SavingLoadingManager.instance.Load<GameObject[]>("UnplayedCharacterEvents");
+        charEvents = new List<GameObject>(tempArray);
 
+        tempArray = SavingLoadingManager.instance.Load<GameObject[]>("PlayedCharacterEvents");
+        playedEvents
+            = new List<GameObject>(tempArray);
+        
         switch (currentCamp)
         {
             case Campaigns.CateringToTheRich:
