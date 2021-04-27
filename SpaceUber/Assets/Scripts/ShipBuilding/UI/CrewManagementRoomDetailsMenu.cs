@@ -331,7 +331,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         else
         {
             //overtimeToolTipDisabledText.SetActive(true);
-            overtimeToolTipDisabledText.text = "Overtime Mini-Game is on Cooldown and will be available again shortly";
+            overtimeToolTipDisabledText.text = "Overtime Mini-Game is on Cooldown";
         }
     }
 
@@ -344,7 +344,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
         {
             //overtimeToolTipDisabledText.SetActive(true);
-            talkToCrewToolTipDisabledText.text = "The Crew Member is awat from the ship. Can't talk with them while Docked in the StarPort";
+            talkToCrewToolTipDisabledText.text = "Can't talk with Crew while Docked in the StarPort";
         }
         else if (state == true)
         {
@@ -373,7 +373,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
             SetTalkToCrewButtonState(EventSystem.instance.CanChat(overclockRoom.GetRoomType()));
             if(EventSystem.instance.CanChat(overclockRoom.GetRoomType()) == false)
             {
-                talkToCrewToolTipDisabledText.text = "The Crew Member isn't available to talk right now, come back later";
+                talkToCrewToolTipDisabledText.text = "The Crew Member isn't available to talk right now";
             }
         }
         else
