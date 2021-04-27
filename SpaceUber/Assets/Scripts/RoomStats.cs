@@ -66,6 +66,29 @@ public class RoomStats : MonoBehaviour
 
     private CrewManagementRoomDetailsMenu roomDetailsMenu;
 
+    public enum RoomType
+    {
+        ArmorPlating,
+        Armory,
+        Brig,
+        Bunks,
+        CoreChargingTerminal,
+        EnergyCanon,
+        HydroponicsStation,
+        Medbay,
+        PhotonTorpedoes,
+        Pantry,
+        PowerCore,
+        ShieldGenerator,
+        StorageContainer,
+        TeleportationStation,
+        VIPLounge,
+        WarpDrive
+
+    }
+    [SerializeField, Tooltip("The type of room this is")]
+    private RoomType roomType;
+
     private void Awake()
     {
         cam = Camera.main;
@@ -81,6 +104,11 @@ public class RoomStats : MonoBehaviour
         roomDetailsMenu = FindObjectOfType<CrewManagementRoomDetailsMenu>();
         
         GetStats();
+    }
+
+    public RoomType GetRoomType()
+    {
+        return roomType;
     }
 
     private void UpdateRoomLevelIcon()

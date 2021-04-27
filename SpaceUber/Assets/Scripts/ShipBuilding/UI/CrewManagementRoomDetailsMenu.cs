@@ -370,7 +370,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     {
         if(overclockRoom.hasEvents && GameManager.instance.currentGameState == InGameStates.Events)
         {
-            SetTalkToCrewButtonState(EventSystem.instance.CanChat(overclockRoom.GetEvents()));
+            SetTalkToCrewButtonState(EventSystem.instance.CanChat(overclockRoom.GetRoomType()));
             if(EventSystem.instance.CanChat(overclockRoom.GetEvents()) == false)
             {
                 talkToCrewToolTipDisabledText.text = "The Crew Member isn't available to talk right now, come back later";
@@ -384,7 +384,8 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
 
     public void StartChat()
     {
-        StartCoroutine(EventSystem.instance.StartNewCharacterEvent(overclockRoom.GetEvents()));
+        StartCoroutine(EventSystem.instance.StartNewCharacterEvent(overclockRoom.GetRoomType()));
+        UpdateChatAvailability();
     }
 
     public void ClearUI()
