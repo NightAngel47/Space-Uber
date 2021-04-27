@@ -48,6 +48,8 @@ public class EndingRestartBehaviour : MonoBehaviour
     
     public void GoToMainMenu()
     {
+        SavingLoadingManager.instance.SetHasSaveFalse();
+        if(FindObjectOfType<SpotChecker>()) Destroy(FindObjectOfType<SpotChecker>().gameObject);
         SceneManager.LoadScene("Menu_Main");
     }
     
