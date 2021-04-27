@@ -18,9 +18,6 @@ public class OverclockRoom : MonoBehaviour
 
     public bool hasEvents = false;
 
-    [SerializeField, Tooltip("All events that can happen with this room"),ShowIf("hasEvents")]
-    private List<GameObject> roomEvents;
-
     private bool minigameCooledDown = true;
     public bool MinigameCooledDown => minigameCooledDown;
 
@@ -58,8 +55,12 @@ public class OverclockRoom : MonoBehaviour
         return miniGame;
     }
 
-    public List<GameObject> GetEvents()
+    /// <summary>
+    /// Passes along the roomtype stored in RoomStats
+    /// </summary>
+    /// <returns></returns>
+    public RoomStats.RoomType GetRoomType()
     {
-        return roomEvents;
+        return gameObject.GetComponent<RoomStats>().GetRoomType(); ;
     }
 }
