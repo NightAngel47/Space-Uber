@@ -18,7 +18,7 @@ using UnityEngine.SceneManagement;
 ///     Events          player can run into story and random events.
 ///     Ending          player has reached a narrative ending.
 /// </summary>
-public enum InGameStates { None, GameIntro, JobSelect, ShipBuilding, Events, MoneyEnding, MoraleEnding, Mutiny, Death, JobPayment, CrewPayment, RoomUnlock, EndingStats, EndingCredits}
+public enum InGameStates { None, JobSelect, ShipBuilding, Events, MoneyEnding, MoraleEnding, Mutiny, Death, JobPayment, CrewPayment, RoomUnlock, EndingStats, EndingCredits, GameIntro}
 
 /// <summary>
 /// Manages the state of the game while the player is playing.
@@ -146,7 +146,12 @@ public class GameManager : MonoBehaviour
         // Handles what scenes to Load/Unload using the AdditiveSceneManager, along with additional scene cleanup.
         switch (state)
         {
-            
+            case InGameStates.GameIntro:
+                additiveSceneManager.UnloadScene("Interface_JobList");
+                additiveSceneManager.UnloadScene("Interface_Runtime");
+                additiveSceneManager.UnloadScene("Interface_GameOver");
+                additiveSceneManager.LoadSceneMerged("Game_Intro");
+                break;
             case InGameStates.JobSelect: // Loads Jobpicker for the player to pick their job
                 // unload ending screen if replaying
                 additiveSceneManager.UnloadScene("Game_Intro");
@@ -270,12 +275,6 @@ public class GameManager : MonoBehaviour
                 additiveSceneManager.UnloadScene("Interface_Runtime");
 
                 additiveSceneManager.LoadSceneSeperate("Interface_GameOver");
-                break;
-            case InGameStates.GameIntro:
-                additiveSceneManager.UnloadScene("Interface_JobList");
-                additiveSceneManager.UnloadScene("Interface_Runtime");
-                additiveSceneManager.UnloadScene("Interface_GameOver");
-                additiveSceneManager.LoadSceneMerged("Game_Intro");
                 break;
             default: // Output Warning when the passed in game state doesn't have a transition setup.
                 Debug.LogWarning($"The passed in game state, {state.ToString()}, doesn't have a transition setup.");
