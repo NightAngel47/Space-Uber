@@ -1,26 +1,26 @@
 “How’s it hangin’ Rust-Bucket? Glad you could make it to my humble abode. First and foremost, I wanna make sure we’re cool. You and me.” He grins as he speaks, “You don’t mind the nicknames right, riiight?” After asking this question he points his finger guns towards you.
-+[You find the names and the fact he has so many amusing.]->PosRes1
-+[You are indifferent to these nicknames, but you see no problem in it continuing.]->NeuRes1
-+[Anything other than your given designation is a breach of protocol.]->NegRes1
++[You find the names amusing.]->PosRes1
++[You are indifferent, but see no problems.]->NeuRes1
++[They are a breach of protocol.]->NegRes1
 
 == PosRes1 ==
 Mateo pumps his fist. “Right on! I’ve got too many to count up here,”, he says as he taps the side of his head, “so feel free to let me know if I ever call you something you’ve heard before.”
 “Anyway, I did have something else I wanted to ask ya bout. See, my tools have a tendency to break easily. Do you think getting some better tools could possibly, maybe, perchance find its way into the budget?” He asks this sheepishly, unsure of how you will respond.
-+[You’d be happy to provide him with better tools.]->PosRes2
-+[New tools are currently out of the question, but replacements will be provided.]->NeuRes2
-+[Only when you see Mateo actually do his job instead of tinkering in the workshop.]->NegRes2
++[You'll provide him with better tools.]->PosRes2
++[Replacements will be provided, but nothing new.]->NeuRes2
++[When he does his job instead of tinkering.]->NegRes2
 == NeuRes1 ==
 He gives a nonchalant shrug in response, “Well, if it ever gets on your nerves… or on your circuits, just let me know.”
 “Anyway, I did have something else I wanted to ask ya bout. See, my tools have a tendency to break easily. Do you think getting some better tools could possibly, maybe, perchance find its way into the budget?” He asks this sheepishly, unsure of how you will respond.
-+[You’d be happy to provide him with better tools.]->PosRes2
-+[New tools are currently out of the question, but replacements will be provided.]->NeuRes2
-+[Only when you see Mateo actually do his job instead of tinkering in the workshop.]->NegRes2
++[You'll provide him with better tools.]->PosRes2
++[Replacements will be provided, but nothing new.]->NeuRes2
++[When he does his job instead of tinkering.]->NegRes2
 == NegRes1 ==
 Mateo bursts into laughter. As he wipes a tear from his eye the realization slowly dawns on him that you aren’t joking. He clears his throat nervously. “Heard loud and clear Boss-Bot.” One of his hands immediately clasps his mouth. You inform him that he has been warned.
 “Anyway, I did have something else I wanted to ask ya bout. See, my tools have a tendency to break easily. Do you think getting some better tools could possibly, maybe, perchance find its way into the budget?” He asks this sheepishly, unsure of how you will respond.
-+[You’d be happy to provide him with better tools.]->PosRes2
-+[New tools are currently out of the question, but replacements will be provided.]->NeuRes2
-+[Only when you see Mateo actually do his job instead of tinkering in the workshop.]->NegRes2
++[You'll provide him with better tools.]->PosRes2
++[Replacements will be provided, but nothing new.]->NeuRes2
++[When he does his job instead of tinkering.]->NegRes2
 
 == PosRes2 ==
 He gives a soft chuckle, “No need to worry, with some new tools this ship will be purring like a kitten when I’m done with it.” He shifts, unsure of how to carry on the current conversation. “If you need anything you know where I’ll be.” He gives a wink and a nod as his attention is redirected to a small pile of scrap on the table.
