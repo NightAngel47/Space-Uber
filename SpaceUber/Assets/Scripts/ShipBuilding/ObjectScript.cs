@@ -158,7 +158,7 @@ public class ObjectScript : MonoBehaviour
             }
         }
 
-        if (!OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn && !PauseMenu.IsPaused)
+        if ((GameManager.instance.currentGameState == InGameStates.Events || GameManager.instance.currentGameState == InGameStates.ShipBuilding) && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn && !PauseMenu.IsPaused)
         {
             roomTooltip.SetActive(true);
             roomIsHovered = true;
