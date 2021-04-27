@@ -54,6 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
+      propertyPath: roomTypes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
       propertyPath: inkJSONAsset
       value: 
       objectReference: {fileID: 4900000, guid: df9a4efd7bbc0b44eb2ac8d9ada6a744, type: 3}
@@ -348,6 +353,26 @@ PrefabInstance:
         type: 3}
       propertyPath: eventIntroSFX
       value: Kuon Lexa
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: roomTypes.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: roomTypes.Array.data[1]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: roomTypes.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: roomTypes.Array.data[3]
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
