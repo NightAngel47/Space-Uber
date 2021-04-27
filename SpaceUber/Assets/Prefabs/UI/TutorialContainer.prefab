@@ -55,9 +55,9 @@ MonoBehaviour:
     - message: Click the tabs on the left to open the shop. Click to select a room,
         and click on the ship where you want to place the room. Notice that you cannot
         place rooms on top of each other.
-      ghostCursorHydroponics: 1
+      ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
-      ghostCursorArmorPlating: 0
+      ghostCursorArmorPlating: 1
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: Left click a room you've placed to pick it back up and click again
@@ -92,8 +92,8 @@ MonoBehaviour:
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: Before you can leave port, you need to assign crew to rooms. Right
-        click a room to assign crew.
-      ghostCursorHydroponics: 0
+        click a room to open the room details panel to see more.
+      ghostCursorHydroponics: 1
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
