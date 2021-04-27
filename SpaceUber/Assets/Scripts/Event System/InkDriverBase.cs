@@ -82,6 +82,7 @@ public class InkDriverBase : MonoBehaviour
     private bool donePrinting = true;
     private bool showingChoices = false;
 
+
     // Start is called before the first frame update
     public virtual void Start()
     {
