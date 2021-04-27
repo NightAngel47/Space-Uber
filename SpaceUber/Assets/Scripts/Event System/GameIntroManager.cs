@@ -65,11 +65,13 @@ public class GameIntroManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(AudioManager.instance.Fade(AudioManager.instance.GetCurrentRadioSong(), 1, false));
         asm = FindObjectOfType<AdditiveSceneManager>();
         story = new Story(inkJSONAsset.text); //this draws text out of the JSON file
         AssignStatusFromEventSystem();
 
-        //Refresh(); //starts the dialogue
+        Refresh(); //starts the dialogue
+        
         titleBox.text = eventName;
         backgroundUI.sprite = backgroundImage;
         if (hasAnimatedBG)
@@ -83,6 +85,7 @@ public class GameIntroManager : MonoBehaviour
 
     public void AssignStatusFromEventSystem()
     {
+        eventCanvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<EventCanvas>();
         titleBox = eventCanvas.titleBox;
         textBox = eventCanvas.textBox;
         resultsBox = eventCanvas.choiceResultsBox;
@@ -99,7 +102,7 @@ public class GameIntroManager : MonoBehaviour
         {
             if (!story.canContinue && story.currentChoices.Count == 0)
             {
-                //go to job select
+                GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
             }
         }
     }
@@ -117,9 +120,90 @@ public class GameIntroManager : MonoBehaviour
 
     private void CreateEvent(GameObject newEvent)
     {
-        StartCoroutine(AudioManager.instance.Fade(AudioManager.instance.GetCurrentRadioSong(), 1, false));
+        
 
         eventCanvas = FindObjectOfType<EventCanvas>();
 
+    }
+
+    /// <summary>
+    /// Prints text into the textbox character by character
+    /// </summary>
+    /// <param name="text"></param>
+    /// <returns></returns>
+    private IEnumerator PrintText(string text)
+    {
+        donePrinting = false;
+
+        string tempString = "";
+        textBox.text = tempString;
+        int runningIndex = 0;
+
+        while (tempString.Length < text.Length)
+        {
+            tempString += text[runningIndex];
+            runningIndex++;
+
+            //click to instantly finish text,
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
+            {
+                tempString = text;
+            }
+            textBox.text = tempString;
+
+            yield return new WaitForSeconds(textPrintSpeed);
+        }
+
+        donePrinting = true;
+    }
+
+    
+    /// <summary>
+    /// Refreshes the UI elements connected to this object whenever a button is clicked to change it
+    /// Clears any current elements and starts the function to print out the next story chunk
+    /// </summary>
+    void Refresh()
+    {
+        // Clear the UI
+        ClearUI();
+
+        // Set the text from new story block
+        string text = GetNextStoryBlock();
+        StartCoroutine(PrintText(text));
+    }
+
+    /// <summary>
+    /// Returns a string of the next line of text, if there is story left
+    /// </summary>
+    string GetNextStoryBlock()
+    {
+        string text = ""; //error check
+
+        //Allows the story to add different paragraphs up until the next choice
+        while (story.canContinue)
+        {
+            text += story.Continue() + "\n";
+        }
+
+        return text;
+    }
+
+    // Clear out all of the UI, calling Destory() in reverse
+    // Currently causes a stackoverflow error
+    public void ClearUI()
+    {
+        if (buttonGroup != null)
+        {
+            foreach (var button in buttonGroup.transform.GetComponentsInChildren<Button>())
+            {
+                Destroy(button.gameObject);
+            }
+        }
+
+        foreach (var text in transform.GetComponentsInChildren<TMP_Text>())
+        {
+            Destroy(text.gameObject);
+        }
+        FindObjectOfType<PageController>().ResetPages();
     }
 }
