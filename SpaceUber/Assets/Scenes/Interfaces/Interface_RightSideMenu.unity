@@ -7558,7 +7558,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1239073352
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7597,7 +7597,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Why Disabled
+  m_text: test
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 814f343da59605545b19571b87874865, type: 2}
   m_sharedMaterial: {fileID: -6362999969210495281, guid: 814f343da59605545b19571b87874865,
@@ -8038,7 +8038,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1309938202
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11334,6 +11334,8 @@ MonoBehaviour:
   - {fileID: 1728989549}
   addCrewToolTipDisabledText: {fileID: 1213095211}
   removeCrewToolTipDisabledText: {fileID: 437031667}
+  overtimeToolTipDisabledText: {fileID: 1239073351}
+  talkToCrewToolTipDisabledText: {fileID: 1309938201}
   roomImage: {fileID: 1663347101}
   roomName: {fileID: 93078891}
   roomDesc: {fileID: 1728989551}

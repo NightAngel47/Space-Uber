@@ -22,6 +22,8 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
 
     [SerializeField] private GameObject addCrewToolTipDisabledText;
     [SerializeField] private GameObject removeCrewToolTipDisabledText;
+    [SerializeField] private GameObject overtimeToolTipDisabledText;
+    [SerializeField] private GameObject talkToCrewToolTipDisabledText;
 
     #region UI Elements
 
@@ -144,6 +146,8 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
                 overtimeResource.text = "";
                 overtimeIcon.gameObject.SetActive(false);
                 SetOvertimeButtonState(false); // disable button is no mini-game on room
+                //overtimeToolTipDisabledText.SetActive(true);
+                overtimeToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "No Overtime Mini-Game for this Room";
                 break;
         }
 
@@ -295,12 +299,46 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     {
         overtimeButton.interactable = state;
         overtimeButtonText.SetButtonInteractable(state);
+
+        //changes tool tip text on why button is disabled
+        if(GameManager.instance.currentGameState == InGameStates.ShipBuilding)
+        {
+            //overtimeToolTipDisabledText.SetActive(true);
+            overtimeToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "Can't Perform Overtime Mini-Game while docked in the StarPort";
+        }
+        else if(state == true)
+        {
+            //overtimeToolTipDisabledText.SetActive(false);
+            overtimeToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = " ";
+        }
+        else
+        {
+            //overtimeToolTipDisabledText.SetActive(true);
+            overtimeToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "Overtime Mini-Game is on Cooldown and will be available again shortly";
+        }
     }
 
     public void SetTalkToCrewButtonState(bool state)
     {
         talkButton.interactable = state;
         talkButtonText.SetButtonInteractable(state);
+
+        //changes tool tip text on why button is disabled
+        if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
+        {
+            //overtimeToolTipDisabledText.SetActive(true);
+            talkToCrewToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "The Crew Member is awat from the ship. Can't talk with them while Docked in the StarPort";
+        }
+        else if (state == true)
+        {
+            //overtimeToolTipDisabledText.SetActive(false);
+            talkToCrewToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = " ";
+        }
+        else
+        {
+            //overtimeToolTipDisabledText.SetActive(true);
+            talkToCrewToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "No Crew to Talk to in this Room";
+        }
     }
     
     public void StartOverclockGame()
@@ -316,6 +354,10 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         if(overclockRoom.hasEvents && GameManager.instance.currentGameState == InGameStates.Events)
         {
             SetTalkToCrewButtonState(EventSystem.instance.CanChat(overclockRoom.GetEvents()));
+            if(EventSystem.instance.CanChat(overclockRoom.GetEvents()) == false)
+            {
+                talkToCrewToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "The Crew Member isn't available to talk right now, come back later";
+            }
         }
         else
         {
