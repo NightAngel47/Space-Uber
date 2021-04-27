@@ -1,7 +1,7 @@
 Again, a transmission reaches you. The clones of your passengers sit in a meeting room, clouds and skyscrapers behind them. 
 Near the front of the pack is a clone of Miniver Beckett, smugly holding a wine glass. He grins at you before speaking, "Thanks for doing what you were told so far. It's been awfully convenient for us." 
 He sounds just like his original, voice hardly interesting enough to listen to, "But keep in mind, you're the one with bloody hands here, not us." 
-"So if you don't go all the way..." he trails off. A woman in back notes, "We would come out on top in a courtroom, remember that."
+"So, if you don't go all the way..." he trails off. A woman in back notes, "We would come out on top in a courtroom, remember that."
 * ["What's the next step?"]
 -> Cooperate
 * ["I'm done with you."]

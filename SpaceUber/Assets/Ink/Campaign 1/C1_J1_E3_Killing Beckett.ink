@@ -1,7 +1,7 @@
- Your ship is passing near the site of a very unstable star. The elites have asked you to take them within a safe distance to watch it go supernova, most of them watching it from the observation deck.
+Your ship is passing near the site of a very unstable star. The elites have asked you to take them within a safe distance to watch it go supernova, most of them watching it from the observation deck.
  While the sun is detonating, Beckett, drunk, wanders into the airlock. If you're willing to take the clones up on their offer, this could serve as the perfect starting point. 
  Simply open the airlock and that would be the end of Miniver Beckett. His body would be vaporized, and considering his unlikable behavior, the other clients will hopefully not take notice of his absence.
- If you do this, you could earn a large amount of credits, but murdering a client may come back to trouble you in the future.
+ If you do this, you could earn a large number of credits, but murdering a client may come back to trouble you in the future.
 + [Kill Him] -> Death
 + [Let Him Live] -> Life
 

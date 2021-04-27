@@ -1,16 +1,15 @@
 There's a commotion in the VIP lounge. The corporate elites are arguing with one another over what to do with their clones. Apparently, records show that several of their copies have placed calls to your ship without the originals being alerted. Some argue that this batch has gotten too comfortable with borrowed power, others speculate that the clones are plotting something vile. 
 A sharply dressed woman, Olivia Whitwer, marches over to the console with the others in tow. "I know you're listening," she says, "Care to comment on these calls?"
-
-* [Cover for the clones (Lie)]
+* [Cover for the clones]
 -> Cover
-* [Frame a VIP (Lie)]
+* [Frame a VIP]
 -> Frame
 * [Reveal Clone Plot]
 -> Reveal_Clones
 
 == Cover ==
 You tell the VIPs that their clones had simply been checking in on the voyage. You go on to explain that there were growing concerns that something suspicious was happening during the retreat, so you had been supplying updates. Most of the skittish passengers take this in stride, reasoning that they would do the same thing. 
-Olivia instead glares at your camera, "Our clones have nothing to lose if something happens to us. In fact... they have everything to gain." she pauses, her lack of evidence catching up to her. "Don't think this is over." She says before pacing off. You suspect that if you had been more reckless, she would have been a real threat.
+Olivia instead glares at your camera, "Our clones have nothing to lose if something happens to us. In fact, they have everything to gain." she pauses, her lack of evidence catching up to her. "Don't think this is over." She says before pacing off. You suspect that if you had been more reckless, she would have been a real threat.
 -> END
 
 == Frame == 
@@ -20,5 +19,5 @@ Delicately, they all agree with Olivia, but you can tell their focus has shifted
 
 == Reveal_Clones ==
 Olivia's eyes widen, realizing the obvious truth, "Oh fuck." she breathes out. Several of the elites put their fingers to hidden earpieces or communication implants, "We're cut off, I can't contact my company." one says. The entire group begins shaking, pacing, fidgeting. For once, they are not in control. 
-"Ok ok." Olivia says, turning back to you, "Whatever their plan is, you cannot follow it. Once we get back to civilized society, we can contact the right people, fix this. And... and you will get your money of course." Your passengers are suddenly very polite, now that you're in control.
+"Ok, ok." Olivia says, turning back to you, "Whatever their plan is, you cannot follow it. Once we get back to civilized society, we can contact the right people, fix this. And... and you will get your money of course." Your passengers are suddenly very polite now that you're in control.
 -> END
