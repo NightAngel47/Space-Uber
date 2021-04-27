@@ -20,10 +20,10 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     [SerializeField] private string noRoomSelectedMessage = "Select a room to view its details.";
     [SerializeField] private GameObject[] roomDetailsInfo = new GameObject[2];
 
-    [SerializeField] private GameObject addCrewToolTipDisabledText;
-    [SerializeField] private GameObject removeCrewToolTipDisabledText;
-    [SerializeField] private GameObject overtimeToolTipDisabledText;
-    [SerializeField] private GameObject talkToCrewToolTipDisabledText;
+    [SerializeField] private TextMeshProUGUI addCrewToolTipDisabledText;
+    [SerializeField] private TextMeshProUGUI removeCrewToolTipDisabledText;
+    [SerializeField] private TextMeshProUGUI overtimeToolTipDisabledText;
+    [SerializeField] private TextMeshProUGUI talkToCrewToolTipDisabledText;
 
     #region UI Elements
 
@@ -147,7 +147,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
                 overtimeIcon.gameObject.SetActive(false);
                 SetOvertimeButtonState(false); // disable button is no mini-game on room
                 //overtimeToolTipDisabledText.SetActive(true);
-                overtimeToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "No Overtime Mini-Game for this Room";
+                overtimeToolTipDisabledText.text = "No Overtime Mini-Game for this Room";
                 break;
         }
 
@@ -198,11 +198,11 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
                 crewButtons[i].interactable = false;
                 crewButtonTexts[i].SetButtonInteractable(false);
 
-                addCrewToolTipDisabledText.SetActive(true);
-                addCrewToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "No Crew Required for this Room";
+                addCrewToolTipDisabledText.gameObject.SetActive(true);
+                addCrewToolTipDisabledText.text = "No Crew Required for this Room";
 
-                removeCrewToolTipDisabledText.SetActive(true);
-                removeCrewToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "No Crew Required for this Room";
+                removeCrewToolTipDisabledText.gameObject.SetActive(true);
+                removeCrewToolTipDisabledText.text = "No Crew Required for this Room";
             }
         }
         else if(roomStats.currentCrew == 0) // no crew assigned to room 
@@ -213,10 +213,10 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
             crewButtonTexts[0].SetButtonInteractable(false);
             crewButtonTexts[1].SetButtonInteractable(true);
 
-            removeCrewToolTipDisabledText.SetActive(true);
-            removeCrewToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "No Crew Assigned to this Room";
+            removeCrewToolTipDisabledText.gameObject.SetActive(true);
+            removeCrewToolTipDisabledText.text = "No Crew Assigned to this Room";
 
-            addCrewToolTipDisabledText.SetActive(false);
+            addCrewToolTipDisabledText.gameObject.SetActive(false);
         }
         else if (roomStats.currentCrew == roomStats.maxCrew) // crew assigned at max
         {
@@ -226,10 +226,10 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
             crewButtonTexts[0].SetButtonInteractable(true);
             crewButtonTexts[1].SetButtonInteractable(false);
 
-            addCrewToolTipDisabledText.SetActive(true);
-            addCrewToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "The Room is at Max Crew Capacity";
+            addCrewToolTipDisabledText.gameObject.SetActive(true);
+            addCrewToolTipDisabledText.text = "The Room is at Max Crew Capacity";
 
-            removeCrewToolTipDisabledText.SetActive(false);
+            removeCrewToolTipDisabledText.gameObject.SetActive(false);
         }
         else // crew assigned between min and max (or something went wrong so both buttons active)
         {
@@ -238,8 +238,8 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
                 crewButtons[i].interactable = true;
                 crewButtonTexts[i].SetButtonInteractable(true);
 
-                addCrewToolTipDisabledText.SetActive(false);
-                removeCrewToolTipDisabledText.SetActive(false);
+                addCrewToolTipDisabledText.gameObject.SetActive(false);
+                removeCrewToolTipDisabledText.gameObject.SetActive(false);
             }
         }
     }
@@ -250,7 +250,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         
         if (shipStats.CrewCurrent.z > 0 && roomStats.currentCrew < roomStats.maxCrew)
         {
-            addCrewToolTipDisabledText.SetActive(false);
+            addCrewToolTipDisabledText.gameObject.SetActive(false);
 
             roomStats.UpdateCurrentCrew(1);
             if (!fromSave)
@@ -270,8 +270,8 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         }
         else if(shipStats.CrewCurrent.z == 0)
         {
-            addCrewToolTipDisabledText.SetActive(true);
-            addCrewToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "No Available Crew on the Ship to be able to Assign to this Room";
+            addCrewToolTipDisabledText.gameObject.SetActive(true);
+            addCrewToolTipDisabledText.text = "No Available Crew on the Ship to be able to Assign to this Room";
         }
     }
 
@@ -304,17 +304,17 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         if(GameManager.instance.currentGameState == InGameStates.ShipBuilding)
         {
             //overtimeToolTipDisabledText.SetActive(true);
-            overtimeToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "Can't Perform Overtime Mini-Game while docked in the StarPort";
+            overtimeToolTipDisabledText.text = "Can't Perform Overtime Mini-Game while docked in the StarPort";
         }
         else if(state == true)
         {
             //overtimeToolTipDisabledText.SetActive(false);
-            overtimeToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = " ";
+            overtimeToolTipDisabledText.text = " ";
         }
         else
         {
             //overtimeToolTipDisabledText.SetActive(true);
-            overtimeToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "Overtime Mini-Game is on Cooldown and will be available again shortly";
+            overtimeToolTipDisabledText.text = "Overtime Mini-Game is on Cooldown and will be available again shortly";
         }
     }
 
@@ -327,17 +327,17 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
         {
             //overtimeToolTipDisabledText.SetActive(true);
-            talkToCrewToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "The Crew Member is awat from the ship. Can't talk with them while Docked in the StarPort";
+            talkToCrewToolTipDisabledText.text = "The Crew Member is awat from the ship. Can't talk with them while Docked in the StarPort";
         }
         else if (state == true)
         {
             //overtimeToolTipDisabledText.SetActive(false);
-            talkToCrewToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = " ";
+            talkToCrewToolTipDisabledText.text = " ";
         }
         else
         {
             //overtimeToolTipDisabledText.SetActive(true);
-            talkToCrewToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "No Crew to Talk to in this Room";
+            talkToCrewToolTipDisabledText.text = "No Crew to Talk to in this Room";
         }
     }
     
@@ -356,7 +356,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
             SetTalkToCrewButtonState(EventSystem.instance.CanChat(overclockRoom.GetEvents()));
             if(EventSystem.instance.CanChat(overclockRoom.GetEvents()) == false)
             {
-                talkToCrewToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "The Crew Member isn't available to talk right now, come back later";
+                talkToCrewToolTipDisabledText.text = "The Crew Member isn't available to talk right now, come back later";
             }
         }
         else
