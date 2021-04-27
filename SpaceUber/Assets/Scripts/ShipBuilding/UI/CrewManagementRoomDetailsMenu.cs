@@ -19,7 +19,10 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
 
     [SerializeField] private string noRoomSelectedMessage = "Select a room to view its details.";
     [SerializeField] private GameObject[] roomDetailsInfo = new GameObject[2];
-    
+
+    [SerializeField] private GameObject addCrewToolTipDisabledText;
+    [SerializeField] private GameObject removeCrewToolTipDisabledText;
+
     #region UI Elements
 
     [SerializeField, Foldout("Descriptive Info")] Image roomImage;
@@ -190,6 +193,12 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
             {
                 crewButtons[i].interactable = false;
                 crewButtonTexts[i].SetButtonInteractable(false);
+
+                addCrewToolTipDisabledText.SetActive(true);
+                addCrewToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "No Crew Required for this Room";
+
+                removeCrewToolTipDisabledText.SetActive(true);
+                removeCrewToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "No Crew Required for this Room";
             }
         }
         else if(roomStats.currentCrew == 0) // no crew assigned to room 
@@ -199,6 +208,11 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
             
             crewButtonTexts[0].SetButtonInteractable(false);
             crewButtonTexts[1].SetButtonInteractable(true);
+
+            removeCrewToolTipDisabledText.SetActive(true);
+            removeCrewToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "No Crew Assigned to this Room";
+
+            addCrewToolTipDisabledText.SetActive(false);
         }
         else if (roomStats.currentCrew == roomStats.maxCrew) // crew assigned at max
         {
@@ -207,6 +221,11 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
             
             crewButtonTexts[0].SetButtonInteractable(true);
             crewButtonTexts[1].SetButtonInteractable(false);
+
+            addCrewToolTipDisabledText.SetActive(true);
+            addCrewToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "The Room is at Max Crew Capacity";
+
+            removeCrewToolTipDisabledText.SetActive(false);
         }
         else // crew assigned between min and max (or something went wrong so both buttons active)
         {
@@ -214,6 +233,9 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
             {
                 crewButtons[i].interactable = true;
                 crewButtonTexts[i].SetButtonInteractable(true);
+
+                addCrewToolTipDisabledText.SetActive(false);
+                removeCrewToolTipDisabledText.SetActive(false);
             }
         }
     }
@@ -224,6 +246,8 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         
         if (shipStats.CrewCurrent.z > 0 && roomStats.currentCrew < roomStats.maxCrew)
         {
+            addCrewToolTipDisabledText.SetActive(false);
+
             roomStats.UpdateCurrentCrew(1);
             if (!fromSave)
             {
@@ -239,6 +263,11 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
             {
                 FindObjectOfType<CrewManagement>().CheckForMinCrew();
             }
+        }
+        else if(shipStats.CrewCurrent.z == 0)
+        {
+            addCrewToolTipDisabledText.SetActive(true);
+            addCrewToolTipDisabledText.GetComponent<TextMeshProUGUI>().text = "No Available Crew on the Ship to be able to Assign to this Room";
         }
     }
 
