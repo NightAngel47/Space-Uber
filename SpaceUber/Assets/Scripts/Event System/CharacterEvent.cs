@@ -93,54 +93,6 @@ public class CharacterEvent : InkDriverBase
         characterApproval = 0;
         
     }
-    //private void SetCharacterRooms()
-    //{
-    //    if(thisCharacter == CharacterStats.Characters.Kuon)
-    //    {
-    //        roomTypes = new List<RoomStats.RoomType>
-    //        { 
-    //            RoomStats.RoomType.EnergyCanon, 
-    //            RoomStats.RoomType.PhotonTorpedoes, 
-    //            RoomStats.RoomType.Armory, 
-    //            RoomStats.RoomType.Brig
-    //        };
-    //    }
-    //    if (thisCharacter == CharacterStats.Characters.Lanri)
-    //    {
-    //        roomTypes = new List<RoomStats.RoomType>
-    //        {
-    //            RoomStats.RoomType.Pantry,
-    //            RoomStats.RoomType.HydroponicsStation
-    //        };
-    //    }
-    //    if (thisCharacter == CharacterStats.Characters.Mateo)
-    //    {
-    //        roomTypes = new List<RoomStats.RoomType>
-    //        {
-    //            RoomStats.RoomType.PowerCore,
-    //            RoomStats.RoomType.CoreChargingTerminal
-    //        };
-    //    }
-    //    if (thisCharacter == CharacterStats.Characters.Lexa)
-    //    {
-    //        roomTypes = new List<RoomStats.RoomType>
-    //        {
-    //            RoomStats.RoomType.Bunks
-    //        };
-    //    }
-    //    if (thisCharacter == CharacterStats.Characters.Ripley)
-    //    {
-    //        roomTypes = new List<RoomStats.RoomType>
-    //        {
-    //            RoomStats.RoomType.Medbay
-    //        };
-    //    }
-    //    print("This list for " + thisCharacter.ToString() +" now includes: ");
-    //    foreach(RoomStats.RoomType room in roomTypes)
-    //    {
-    //        print(room.ToString());
-    //    }
-    //}
 
     public void PrintRoomRequirements()
     {
