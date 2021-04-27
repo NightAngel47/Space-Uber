@@ -53,11 +53,6 @@ public class RoomUnlockUI : MonoBehaviour
                     {
                         newRooms.Add(room);  
                     }
-                    if (room.GetComponent<ObjectScript>().objectNum == 5 && campaignManager.GetCurrentCampaignIndex() == 1)
-                    {
-                        //adds medbay to list
-                        newRooms.Add(room);
-                    }
                     break;
                 case 1:
                     if (room.GetComponent<RoomStats>().GetRoomGroup() == 3 && GameManager.instance.GetUnlockLevel(3) < 3)
@@ -70,7 +65,13 @@ public class RoomUnlockUI : MonoBehaviour
                     {
                         newRooms.Add(room);
                     }
+                    if (room.GetComponent<ObjectScript>().objectNum == 5 && campaignManager.GetCurrentCampaignIndex() == 0)
+                    {
+                        //adds medbay to list
+                        newRooms.Add(room);
+                    }
                     break;
+
             }
         }
         
@@ -96,20 +97,36 @@ public class RoomUnlockUI : MonoBehaviour
         if ((campaignManager.GetCurrentCampaignIndex() > 0 && campaignManager.GetCurrentJobIndex() < 3) || 
             (campaignManager.GetCurrentCampaignIndex() == 0 && campaignManager.GetCurrentJobIndex() == 2)) //room is getting a new level
         {
-            // old level
-            levelOld.text = "Level " + GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup());
-            needsCreditsOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString(); //-2 to get old level
-            needsPowerOld.text = roomStats.minPower[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
-            needsCrewOld.text = roomStats.minCrew + "-" + roomStats.maxCrew;
+            if (roomStats.gameObject.GetComponent<ObjectScript>().objectNum == 5) //adds medbay stats like a new room, not a new level
+            {
+                levelOld.text = "Level 1";
+                needsCreditsOld.text = roomStats.price[0].ToString();
+                needsPowerOld.text = roomStats.minPower[0].ToString();
+                needsCrewOld.text = roomStats.minCrew + "-" + roomStats.maxCrew;
 
-            // new level
-            levelNew.text = "Level " + (GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) + 1);
-            needsCreditsNew.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())].ToString(); //-1 to get current level
-            needsPowerNew.text = roomStats.minPower[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())].ToString();
-            needsCrewNew.text = roomStats.minCrew + "-" + roomStats.maxCrew;
+                newRoomText.SetActive(true);
+                rightSideData.SetActive(false);
+            }
 
-            newRoomText.SetActive(false);
-            rightSideData.SetActive(true);
+            else //shows level change like normal
+            {
+                // old level
+                levelOld.text = "Level " + GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup());
+                needsCreditsOld.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString(); //-2 to get old level
+                needsPowerOld.text = roomStats.minPower[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
+                needsCrewOld.text = roomStats.minCrew + "-" + roomStats.maxCrew;
+
+                // new level
+                levelNew.text = "Level " + (GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) + 1);
+                needsCreditsNew.text = roomStats.price[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())].ToString(); //-1 to get current level
+                needsPowerNew.text = roomStats.minPower[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())].ToString();
+                needsCrewNew.text = roomStats.minCrew + "-" + roomStats.maxCrew;
+
+                newRoomText.SetActive(false);
+                rightSideData.SetActive(true);
+            }
+
+            
         }
         else //Getting a entire new room, just getting one the new rooms stats
         {
@@ -128,15 +145,25 @@ public class RoomUnlockUI : MonoBehaviour
         // update produces stats
         if (roomStats.TryGetComponent(out Resource resource))
         {
-            // old produces
-            resourceIconLeft.sprite = resource.resourceType.resourceIcon;
-            producesResourceOld.text = resource.resourceType.resourceName;
-            producesAmountOld.text = resource.amount[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
-            
-            // new produces
-            resourceIconRight.sprite = resource.resourceType.resourceIcon;
-            producesResourceNew.text = resource.resourceType.resourceName;
-            producesAmountNew.text = resource.amount[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())].ToString();
+            if (roomStats.gameObject.GetComponent<ObjectScript>().objectNum == 5)
+            {
+                resourceIconLeft.sprite = resource.resourceType.resourceIcon;
+                producesResourceOld.text = resource.resourceType.resourceName;
+                producesAmountOld.text = resource.amount[0].ToString();
+            }
+
+            else
+            {
+                // old produces
+                resourceIconLeft.sprite = resource.resourceType.resourceIcon;
+                producesResourceOld.text = resource.resourceType.resourceName;
+                producesAmountOld.text = resource.amount[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup()) - 1].ToString();
+
+                // new produces
+                resourceIconRight.sprite = resource.resourceType.resourceIcon;
+                producesResourceNew.text = resource.resourceType.resourceName;
+                producesAmountNew.text = resource.amount[GameManager.instance.GetUnlockLevel(roomStats.GetRoomGroup())].ToString();
+            }
         }
         else
         {

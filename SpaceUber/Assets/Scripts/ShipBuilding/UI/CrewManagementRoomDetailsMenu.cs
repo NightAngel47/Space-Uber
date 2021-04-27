@@ -137,6 +137,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
                 overtimeResource.text = GameManager.instance.GetResourceData((int) ResourceDataTypes._HullDurability).resourceName;
                 overtimeIcon.sprite = GameManager.instance.GetResourceData((int) ResourceDataTypes._HullDurability).resourceIcon;
                 break;
+
             default:
                 overtimeResource.text = "";
                 overtimeIcon.gameObject.SetActive(false);
@@ -158,19 +159,35 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         // set room production details
         if (selectedRoom.TryGetComponent(out Resource resource))
         {
+            print(resource.resourceType.resourceName);
             producesResource.text = resource.resourceType.resourceName;
             producesIcon.sprite = resource.resourceType.resourceIcon;
             
             roomStats.SetActiveAmount(resource);
-
-            if (roomStats.flatOutput == false)
+            if(resource.resourceType.resourceName != "Crew Morale")
             {
-                producesAmount.text = resource.activeAmount + " / " + (int)(resource.amount[roomStats.GetRoomLevel() - 1] * MoraleManager.instance.GetMoraleModifier(roomStats.ignoreMorale));
+                if (roomStats.flatOutput == false)
+                {
+                    producesAmount.text = resource.activeAmount + " / " + (int)(resource.amount[roomStats.GetRoomLevel() - 1] * MoraleManager.instance.GetMoraleModifier(roomStats.ignoreMorale));
+                }
+                else
+                {
+                    producesAmount.text = (resource.amount[roomStats.GetRoomLevel() - 1] * MoraleManager.instance.GetMoraleModifier(roomStats.ignoreMorale)).ToString();
+                }
             }
-            else
+            else //specifically medbay
             {
-                producesAmount.text = (resource.amount[roomStats.GetRoomLevel() - 1] * MoraleManager.instance.GetMoraleModifier(roomStats.ignoreMorale)).ToString();
+                producesResource.text = "Morale Gain";
+                if (roomStats.GetRoomLevel() == 1)
+                {
+                    producesAmount.text = "+";
+                }
+                else
+                {
+                    producesAmount.text = "++";
+                }
             }
+            
         }
         else
         {
