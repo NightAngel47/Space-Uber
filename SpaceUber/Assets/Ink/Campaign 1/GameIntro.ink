@@ -3,7 +3,4 @@ Welcome and congratulations on being the newest member of the Kellis family! You
 Kellis has designed you to be a fully automatic captain and manager. In this trial run, you will transport persons and parcels  across the galaxy, representing corporate interests away from home. If you impress our leadership, you will be mass produced and make us all unheard amounts of sweet, sweet credits. 
 
 Our CEO is expecting fantastic results from this project. Don’t disappoint!
-
-Good luck to you, my artificial friend.
-
 -> END
