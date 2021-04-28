@@ -102,10 +102,11 @@ public class EventSystem : MonoBehaviour
 		campMan = GetComponent<CampaignManager>();
 	}
 
+	
 	/// <summary>
     /// Plays job intro
     /// </summary>
-    public IEnumerator PlayIntro()
+    public IEnumerator PlayJobIntro()
     {
 	    yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_Runtime").isLoaded);
 	    progressBar = FindObjectOfType<ProgressBarUI>();
