@@ -182,7 +182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ff8e53760ad11114a808e67db2029eb1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3feb9432304c65b468748a9c392807d2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1789,6 +1789,26 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 4683171017065847321, guid: eff8a900134a530449df4be5cf461ac5,
+        type: 3}
+      propertyPath: m_margin.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683171017065847321, guid: eff8a900134a530449df4be5cf461ac5,
+        type: 3}
+      propertyPath: m_margin.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683171017065847321, guid: eff8a900134a530449df4be5cf461ac5,
+        type: 3}
+      propertyPath: m_margin.z
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683171017065847321, guid: eff8a900134a530449df4be5cf461ac5,
+        type: 3}
+      propertyPath: m_margin.w
+      value: 25.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4683171017820960220, guid: eff8a900134a530449df4be5cf461ac5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1827,7 +1847,7 @@ PrefabInstance:
     - target: {fileID: 4683171017820960220, guid: eff8a900134a530449df4be5cf461ac5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4683171017820960220, guid: eff8a900134a530449df4be5cf461ac5,
         type: 3}
@@ -1852,17 +1872,17 @@ PrefabInstance:
     - target: {fileID: 4683171017820960220, guid: eff8a900134a530449df4be5cf461ac5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -37.5
+      value: -32.5
       objectReference: {fileID: 0}
     - target: {fileID: 4683171017820960220, guid: eff8a900134a530449df4be5cf461ac5,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 675
+      value: 685
       objectReference: {fileID: 0}
     - target: {fileID: 4683171017820960220, guid: eff8a900134a530449df4be5cf461ac5,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 325
+      value: 335
       objectReference: {fileID: 0}
     - target: {fileID: 4683171017820960220, guid: eff8a900134a530449df4be5cf461ac5,
         type: 3}
@@ -1898,6 +1918,28 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Text Container
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683171017820960223, guid: eff8a900134a530449df4be5cf461ac5,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 78bd7e330b254fb449664deffd118c22,
+        type: 3}
+    - target: {fileID: 4683171017820960223, guid: eff8a900134a530449df4be5cf461ac5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244582187069705568, guid: eff8a900134a530449df4be5cf461ac5,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 78bd7e330b254fb449664deffd118c22,
+        type: 3}
+    - target: {fileID: 7244582187069705568, guid: eff8a900134a530449df4be5cf461ac5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eff8a900134a530449df4be5cf461ac5, type: 3}

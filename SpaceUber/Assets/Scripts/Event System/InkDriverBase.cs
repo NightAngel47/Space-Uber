@@ -122,8 +122,11 @@ public class InkDriverBase : MonoBehaviour
         thisShip = ship;
         campMan = campaignManager;
 
-        resultsBox.transform.GetChild(0).GetComponent<TMP_Text>().text = "";
-        resultsBox.SetActive(false);
+        if (resultsBox != null)
+        {
+            resultsBox.transform.GetChild(0).GetComponent<TMP_Text>().text = "";
+            resultsBox.SetActive(false);
+        }
     }
 
     public void ConcludeEvent()
