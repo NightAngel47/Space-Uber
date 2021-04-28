@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfec50bf890af17479ff38a5eee6322e, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   resourceType: {fileID: 11400000, guid: 2ce4c992a1bf5bb4dbcf0b00f2e6cfd8, type: 2}
   amount: 3c000000550000006e000000
   activeAmount: 0
@@ -26,7 +26,7 @@ PrefabInstance:
     - target: {fileID: 1209818939397508712, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_Controller
-      value:
+      value: 
       objectReference: {fileID: 9100000, guid: 9440462d75f9c2e46ae958e607b413a7, type: 2}
     - target: {fileID: 1215871102662997994, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -36,7 +36,7 @@ PrefabInstance:
     - target: {fileID: 1903612125139519356, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 21300000, guid: b58e2d8ea2bb81d42acf1e8071a2eb5d,
         type: 3}
     - target: {fileID: 1903612125139519356, guid: d75062b47e0b75b4384d6d8e19141c62,
@@ -62,19 +62,19 @@ PrefabInstance:
     - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomEvents.Array.data[0]
-      value:
+      value: 
       objectReference: {fileID: 5234566933638593567, guid: fd5e1e995c1fcba4bbe137a13940c0e7,
         type: 3}
     - target: {fileID: 2641448655269380362, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomEvents.Array.data[1]
-      value:
+      value: 
       objectReference: {fileID: 5234566933638593567, guid: 73fb9f15a81ee5f4d9e590e77bfa9515,
         type: 3}
     - target: {fileID: 3793781089566335948, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 21300000, guid: e11196f05932b8b40bbdceee266129ff,
         type: 3}
     - target: {fileID: 3793781089566335948, guid: d75062b47e0b75b4384d6d8e19141c62,
@@ -177,6 +177,11 @@ PrefabInstance:
       propertyPath: ignoreMorale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: roomType
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: mouseOverAudio.Array.size
@@ -210,7 +215,7 @@ PrefabInstance:
     - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: shapeDataTemplate
-      value:
+      value: 
       objectReference: {fileID: 11400000, guid: 903b9def759991c4da01b679f53d375c,
         type: 2}
     - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
@@ -261,7 +266,7 @@ PrefabInstance:
     - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: nextToRoomName
-      value:
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5740368950282066039, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -276,7 +281,7 @@ PrefabInstance:
     - target: {fileID: 7466476032214522637, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 21300000, guid: e11196f05932b8b40bbdceee266129ff,
         type: 3}
     - target: {fileID: 7466476032214522637, guid: d75062b47e0b75b4384d6d8e19141c62,
@@ -562,7 +567,7 @@ PrefabInstance:
     - target: {fileID: 8263844349415334236, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 21300000, guid: 2f0530e10d117584990a63ba678dd36a,
         type: 3}
     - target: {fileID: 8354016038451866568, guid: d75062b47e0b75b4384d6d8e19141c62,

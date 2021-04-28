@@ -93,13 +93,4 @@ public class Tick : MonoBehaviour
             daysSince = value;
         }
     }
-
-    public int DaysSinceChat
-    {
-        get => daysSinceChat;
-        set
-        {
-            daysSince = value;
-        }
-    }
 }
