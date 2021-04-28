@@ -81,7 +81,11 @@ public class EventChoice
 
         //as long as it's not a story event, it's scalable
         isScalableEvent = driver.isScalableEvent;
-        
+        if(hasRandomEnding)
+        {
+            RandomizeEnding(thisStory);
+        }
+
         foreach (ChoiceOutcomes outcome in this.outcomes)
         {
             
@@ -180,7 +184,7 @@ public class EventChoice
 
         if (hasRandomEnding)
         {
-            RandomizeEnding(story);
+            
             foreach (MultipleRandom multRando in randomEndingOutcomes)
             {
                 MultipleRandom thisSet = randomEndingOutcomes[randomizedResult];
@@ -236,7 +240,7 @@ public class EventChoice
 
         //provides an int to RandomizeEnding in the ink file, which then changes the selected random ending
         story.EvaluateFunction("RandomizeEnding", result);
-
+        Debug.Log("Random result: " + result);
         randomizedResult = result;
     }
 }
