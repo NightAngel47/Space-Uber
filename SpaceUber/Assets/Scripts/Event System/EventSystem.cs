@@ -125,7 +125,7 @@ public class EventSystem : MonoBehaviour
 		if (intro != null)
         {
 			// Load Event_General Scene for upcoming event
-			asm.LoadSceneMerged("Event_NoChoices");
+			asm.LoadSceneSeperate("Event_NoChoices");
 			yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_NoChoices").isLoaded);
 
 			eventCanvas = FindObjectOfType<EventCanvas>();
