@@ -1,23 +1,23 @@
-“Greetings, if you would be so kind as to offer me a few moments of your time I have a few questions for you. These are simply for the sake of my own curiosity and are hypothetical in nature.” She continues without waiting for any sort of response, “First question: You have a crewmate that doesn’t pull his weight and is causing problems due to this. How do you handle this scenario?”
-+[I would encourage them.]->PosRes1
-+[They are a part of a team.]->NeuRes1
-+[There's no need for someone like that.]->NegRes1
+“Greetings, if you would be so kind as to offer me a few moments of your time I have a few questions for you. These are simply for the sake of my own curiosity and are hypothetical in nature.” She continues without waiting for any sort of response, “First question: You have a crewmate that doesn’t pull their weight and is causing problems due to this. How do you handle this scenario?”
++[Encourage them.]->PosRes1
++[Remind them of their place.]->NeuRes1
++[Dispose of them.]->NegRes1
 
 == PosRes1 ==
-Lexa seems surprised by your answer, but in a good way. She smiles, “Noted, now onto the next question…”
-“Kellis has been exploiting a whole planet’s worth of people for their personal gain, how would you feel about that?” This is followed by silence before she relents, rolling her eyes, “Hypothetically, of course.”.
-+[I'd raise awareness of the worker’s concerns.]->PosRes2
-+[So long as the job is completed.]->NeuRes2
-+[These workers exist only to work.]->NegRes2
+Lexa seems pleasantly surprised by your answer. She smiles, “Noted, now onto the next question…”
+“Kellis has been exploiting a whole planet’s worth of people for their personal gain. How would you feel about that?” This is followed by silence before she relents, rolling her eyes, “Hypothetically, of course.”.
++[Not happy, but the job must be done.]->NeuRes2
++[Nothing.]->NegRes2
++[Raise awareness of the workers' concerns.]->PosRes2
 == NeuRes1 ==
 She doesn’t seem particularly satisfied with your answer but doesn’t object either. “I see what you are going for, but if they are shirking their responsibilities it’s safe to say that they don’t really care about the opinions of others. Regardless, the next question…”
-“Kellis has been exploiting a whole planet’s worth of people for their personal gain, how would you feel about that?” This is followed by silence before she relents, rolling her eyes, “Hypothetically, of course.”.
+“Kellis has been exploiting a whole planet’s worth of people for their personal gain. How would you feel about that?” This is followed by silence before she relents, rolling her eyes, “Hypothetically, of course.”.
 +[I'd raise awareness of the worker’s concerns.]->PosRes2
 +[So long as the job is completed.]->NeuRes2
 +[These workers exist only to work.]->NegRes2
 == NegRes1 ==
 Lexa looks at you for a long while, speechless. Finally, she mutters to herself, “Sounds about right…”. Glaring at you, she continues with her line of questioning.
-“Kellis has been exploiting a whole planet’s worth of people for their personal gain, how would you feel about that?” This is followed by silence before she relents, rolling her eyes, “Hypothetically, of course.”.
+“Kellis has been exploiting a whole planet’s worth of people for their personal gain. How would you feel about that?” This is followed by silence before she relents, rolling her eyes, “Hypothetically, of course.”.
 +[I'd raise awareness of the worker’s concerns.]->PosRes2
 +[So long as the job is completed.]->NeuRes2
 +[These workers exist only to work.]->NegRes2
