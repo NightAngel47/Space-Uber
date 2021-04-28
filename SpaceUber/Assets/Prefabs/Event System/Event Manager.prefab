@@ -44,22 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 648b2c3348e353845b943affc2f53023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterEvents:
-  - {fileID: 1725932300848155161, guid: 9d04a7496feeae5409483fe2975eeb98, type: 3}
-  - {fileID: 3559381158675748153, guid: d8b57c06b3566c646a30359128c972d3, type: 3}
-  - {fileID: 2397118123195013090, guid: b05c7d568e913c94db077561555d6b02, type: 3}
-  - {fileID: 6580942830547354849, guid: 3ac2404274494044ba3f6a079b4aa5f6, type: 3}
-  - {fileID: 4811399107607197311, guid: e6c4b70a8bdb47942bc4f856c99181f0, type: 3}
-  - {fileID: 3475442694966374480, guid: ff12789c37a42bb41ae841366ef78971, type: 3}
-  - {fileID: 1941303797431210799, guid: c95483f5a529b4144ada57931cba09c6, type: 3}
-  - {fileID: 4811399107607197311, guid: d63c6d8e27298ae48af0fdf4e7e9b81d, type: 3}
-  - {fileID: 5234566933638593567, guid: fd5e1e995c1fcba4bbe137a13940c0e7, type: 3}
-  - {fileID: 5234566933638593567, guid: 73fb9f15a81ee5f4d9e590e77bfa9515, type: 3}
-  - {fileID: 1941303797431210799, guid: e3a950c5ebba5874488f86ca44b3f716, type: 3}
-  - {fileID: 6580942830547354849, guid: 31f409e21062ce346b56e35a2fa102c8, type: 3}
-  - {fileID: 2248932978714231536, guid: ce20df4bfa330de4dbd87aeec1119512, type: 3}
-  - {fileID: 5234566933638593567, guid: ea66f370fe17a2b4cb3265101afaf899, type: 3}
-  - {fileID: 5234566933638593567, guid: 39677683dabf36747a07fc64eb339b19, type: 3}
   overallEventIndex: 0
   eventChanceFreq: 6
   timeBeforeEventRoll: 30
@@ -104,19 +88,21 @@ MonoBehaviour:
     - {fileID: 1344640265864245594, guid: 33b000953997f9249a05a815165c47b6, type: 3}
     - {fileID: 202342142667441818, guid: 746acd1cec905aa4a87fe615fd8b5cc1, type: 3}
     assetCount: 0
+  charEvents: []
+  playedEvents: []
   creditsMult2: 3
-  securityMult2: 2
-  weaponsMult2: 2
+  securityMult2: 2.5
+  weaponsMult2: 2.5
   foodMult2: 4
   foodPerTickMult2: 2
   crewMult2: 1.5
   energyMult2: 2
-  hullMult2: 1.5
+  hullMult2: 2
   creditsMult3: 5
-  securityMult3: 3
-  weaponsMult3: 3
+  securityMult3: 4
+  weaponsMult3: 4
   foodMult3: 6
   foodPerTickMult3: 3
   crewMult3: 2
   energyMult3: 3
-  hullMult3: 2.5
+  hullMult3: 3
