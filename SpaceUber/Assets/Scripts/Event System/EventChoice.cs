@@ -184,15 +184,14 @@ public class EventChoice
 
         if (hasRandomEnding)
         {
-            
-            foreach (MultipleRandom multRando in randomEndingOutcomes)
+            MultipleRandom thisSet = randomEndingOutcomes[randomizedResult];
+            foreach(ChoiceOutcomes choiceOutcome in thisSet.outcomes)
             {
-                MultipleRandom thisSet = randomEndingOutcomes[randomizedResult];
-                foreach(ChoiceOutcomes choiceOutcome in thisSet.outcomes)
-                {
-                    choiceOutcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
-                }
+                choiceOutcome.narrativeResultsBox = driver.resultsBox;
+                choiceOutcome.hasSubsequentChoices = hasSubsequentChoices;
+                choiceOutcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
             }
+            
         }
         else
         {
