@@ -462,14 +462,14 @@ public class ChoiceOutcomes
                     case CampaignManager.Campaigns.FinalTest:
                         campMan.finalTest.assetCount += assetCountChange;
 
-                        if (assetCountChange < 0)
+                        if (assetCountChange > 0)
                         {
                             if (assetCountChange == 1)
                                 resultText += "\nYou have gained 1 asset";
                             else
                                 resultText += "\nYou have gained " + assetCountChange + " assets";
                         }
-                        else if (assetCountChange > 0)
+                        else if (assetCountChange < 0)
                         {
                             if (assetCountChange == 1)
                                 resultText += "\nYou have lost 1 asset";
