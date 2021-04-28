@@ -124,7 +124,7 @@ public class InkDriverBase : MonoBehaviour
 
         if (resultsBox != null)
         {
-            resultsBox.transform.GetChild(0).GetComponent<TMP_Text>().text = "";
+            resultsBox.transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = "";
             resultsBox.SetActive(false);
         }
     }
@@ -178,11 +178,11 @@ public class InkDriverBase : MonoBehaviour
     /// <returns>Nextchar, but replaced if necessary</returns>
     private char CheckChar(char nextChar)
     {
-        if (nextChar == '’' || nextChar == '’' || nextChar == '‘' || nextChar == '’' || nextChar == '’' || nextChar == '’')
+        if (nextChar == 'ï¿½' || nextChar == 'ï¿½' || nextChar == 'ï¿½' || nextChar == 'ï¿½' || nextChar == 'ï¿½' || nextChar == 'ï¿½')
         {
             nextChar = '\'';
         }
-        if(nextChar == '“' || nextChar == '”' || nextChar == '“' || nextChar == '”')
+        if(nextChar == 'ï¿½' || nextChar == 'ï¿½' || nextChar == 'ï¿½' || nextChar == 'ï¿½')
         {
             nextChar = '\"';
         }
