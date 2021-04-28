@@ -23,12 +23,21 @@ public class TutorialNode
 public class TutorialMessage
 {
     [TextArea] public string message;
+
+    [Header("Tutorial Effects")]
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorHydroponics;
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorChargingTerminal;
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorArmorPlating;
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorStatBar;
-
     [Foldout("Other effects")] public bool selectRoom;
+
+    [Header("Tutorial Continue Conditions")]
+    public bool continueOnPlaceRoom;
+    public bool continueOnDeleteRoom;
+    public bool continueOnAddCrew;
+    public bool continueOnRoomRotate;
+
+    //[HideInInspector] public bool dynamicActionCompleted = false;
 }
 
 public class Tutorial : Singleton<Tutorial>
@@ -51,6 +60,7 @@ public class Tutorial : Singleton<Tutorial>
     private float percentageComplete;
     private Vector3 lerpStart;
     private Vector3 lerpEnd;
+    private RoomStats[] rooms;
 
     [SerializeField] GameObject vecInsideShip;
     [SerializeField] GameObject vecShopPanel;
@@ -79,7 +89,8 @@ public class Tutorial : Singleton<Tutorial>
 
             SaveTutorialStatus();
         }
-        
+
+        rooms = FindObjectsOfType<RoomStats>();
         ticker = FindObjectOfType<Tick>();
     }
 
@@ -131,6 +142,8 @@ public class Tutorial : Singleton<Tutorial>
             }
         }
 
+        //DynamicController();
+
     }
 
 
@@ -146,14 +159,18 @@ public class Tutorial : Singleton<Tutorial>
         //if the game tries to force a tutorial the player has already seen, stop.
         if (tutorials[tutorialID].tutorialFinished == true && forcedTutorial == true) return;
 
-        //if you're already in a tutorial, close it
+        //if you're already in a tutorial, close it and continue
         if (tutorialPanel.activeSelf == true)
         {
             CloseCurrentTutorial(true);
         }
-        
+
+        //reset effects
+        tutorialPrerequisitesComplete = false;
 
         currentTutorial = tutorials[tutorialID];
+
+        
 
         if (tutorialPanel.activeSelf == false)
         {
@@ -177,6 +194,12 @@ public class Tutorial : Singleton<Tutorial>
                 Debug.LogWarning("resuming tick");
                 if(!EventSystem.instance.eventActive) ticker.StartTickUpdate();
             }
+
+            //reset all dynamic actions of the current tutorial
+            //for (int i = 0; i < currentTutorial.tutorialMessages.Length; i++)
+            //{
+                //currentTutorial.tutorialMessages[i].dynamicActionCompleted = false;
+            //}
 
             highlightPanel.SetActive(false);
             lerping = false;
@@ -217,6 +240,7 @@ public class Tutorial : Singleton<Tutorial>
             {
                 index++;
                 tutorialTextbox.text = currentTutorial.tutorialMessages[index].message;
+                //currentTutorial.tutorialMessages[index - 1].dynamicActionCompleted = false;
 
                 StopLerping();
                 UnHighlightScreenLocation();
@@ -241,6 +265,8 @@ public class Tutorial : Singleton<Tutorial>
         return (tutorials[value] == currentTutorial && tutorialPanel.activeSelf);
     }
 
+    #region LERPING
+    // methods relevant to lerping the ghost cursor
     private void BeginLerping(Vector3 start, Vector3 end)
     {
         ghostCursor.SetActive(true);
@@ -267,10 +293,12 @@ public class Tutorial : Singleton<Tutorial>
         var result = Vector3.Lerp(start, end, percentageComplete);
 
         return result;
-
-
     }
+    #endregion
 
+    #region TUTORIAL SPECIAL EFFECTS
+    // these methods display visual effects if the current tutorialMessage contains
+    // the relevant boolean
     private void GhostCursorHydroponics()
     {
         if (tutorialPrerequisitesComplete == false)
@@ -324,12 +352,36 @@ public class Tutorial : Singleton<Tutorial>
             tutorialPrerequisitesComplete = true;
         }
     }
+    #endregion
 
     public bool GetTutorialActive()
     {
         return tutorialPanel.activeSelf;
     }
 
+    #region CONDITIONAL CONTINUES
+    // these alternatives to the ContinueButton method allow scripts outside of Tutorial.cs
+    // to go forward a page if the associated tutorial has the required boolean
+    // this allows player actions (like placing a room) to advance the tutorial in the right circumstances
+    public void conditionalContinuePlaceRoom()
+    {
+        if (GetTutorialActive() && currentTutorial.tutorialMessages[index].continueOnPlaceRoom) ContinueButton();
+    }
+    public void ConditionalContinueDelete()
+    {
+        if (GetTutorialActive() && currentTutorial.tutorialMessages[index].continueOnDeleteRoom) ContinueButton();
+    }
+    public void ConditionalContinueAddCrew()
+    {
+        if (GetTutorialActive() && currentTutorial.tutorialMessages[index].continueOnAddCrew) ContinueButton();
+    }
+    public void ConditionalContinueRotateRoom()
+    {
+        if (GetTutorialActive() && currentTutorial.tutorialMessages[index].continueOnRoomRotate) ContinueButton();
+    }
+    #endregion
+
+    #region SAVE LOAD
     public void SaveTutorialStatus()
     {
         SavingLoadingManager.instance.Save<TutorialNode[]>("tutorials", tutorials);
@@ -340,5 +392,5 @@ public class Tutorial : Singleton<Tutorial>
         tutorials = SavingLoadingManager.instance.Load<TutorialNode[]>("tutorials");
         currentTutorial = SavingLoadingManager.instance.Load<TutorialNode>("currentTutorial");
     }
-
+    #endregion
 }
