@@ -132,7 +132,7 @@ public class ObjectScript : MonoBehaviour
     {
         //if(preplacedRoom) return;
 
-        if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true) // && PauseMenu.Instance.isPaused == false// commented out until menus are ready
+        if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true && !FindObjectOfType<CrewManagementAlertConfirmation>().AlertPanel.activeSelf) // && PauseMenu.Instance.isPaused == false// commented out until menus are ready
         {
             if (ObjectMover.hasPlaced && !PauseMenu.IsPaused)
             {
@@ -257,6 +257,8 @@ public class ObjectScript : MonoBehaviour
         gameObject.GetComponent<ObjectMover>().enabled = true;
         gameObject.GetComponent<ObjectMover>().TurnOnBeingDragged();
         ObjectMover.hasPlaced = false;
+        
+        FindObjectOfType<CrewManagement>().CheckForRoomsCall();
 
         if (needsSpecificLocation == true)
         {
