@@ -1,20 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class StatThreasholdToggle : MonoBehaviour
+[Serializable]
+public class StatThresholdToggle
 {
-    [SerializeField] private ResourceDataTypes stat;
-    [SerializeField] private int threashold;
-    [SerializeField] private GameObject onBelowThreashold;
-    [SerializeField] private GameObject onAboveThreashold;
-    
-    private ShipStats ship;
-    
-    void Start()
+    public ResourceDataTypes stat;
+    public int threshold;
+
+    public bool MeetsThreshold(ShipStats ship)
     {
-        ship = FindObjectOfType<ShipStats>();
-        
         int shipStat = 0;
         switch (stat)
         {
@@ -48,9 +41,11 @@ public class StatThreasholdToggle : MonoBehaviour
             case ResourceDataTypes._Payout:
                 shipStat = ship.Payout;
                 break;
+            default:
+                UnityEngine.Debug.LogError("Stat not specified in StatThresholdToggle");
+                break;
         }
-        
-        onBelowThreashold.SetActive(shipStat < threashold);
-        onAboveThreashold.SetActive(shipStat >= threashold);
+
+        return shipStat >= threshold;
     }
 }
