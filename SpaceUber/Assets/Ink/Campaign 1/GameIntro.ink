@@ -4,13 +4,6 @@ Kellis has designed you to become a fully automatic captain of ships all across 
 
 Our CEO is expecting fantastic results. Hopefully, you’ll get to be graced by his presence soon.
 
-We have prepared an esteemed crew leadership to assist you on your journeys. They are:
-
-Lanri Alileo, the head scientist.
-Lexa Kogen, the former captain who you’re replacing. The rest of the crew really seem to like this one.
-Dr. Ripley Lormay, the head medical director.
-Kuon Tezuka, the head of ship defense.
-Mateo Vieira, the lead engineer and mechanic.
 Good luck to you, my artificial friend.
 
 -> END
