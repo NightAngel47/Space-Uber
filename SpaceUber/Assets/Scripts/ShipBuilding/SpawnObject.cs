@@ -203,6 +203,8 @@ public class SpawnObject : MonoBehaviour
                     }
                 }
                 
+                FindObjectOfType<CrewManagement>().CheckForRoomsCall();
+                
                 EndingStats.instance.AddToStat(1, EndingStatTypes.RoomsBought);
 
                 switch (ga.name) //plays sfx for each room
