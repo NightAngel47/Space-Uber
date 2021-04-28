@@ -392,7 +392,7 @@ public class ChoiceOutcomes
                         switch (ctrBoolOutcomes)
                         {
                             case CampaignManager.CateringToTheRich.NarrativeOutcomes.SideWithScientist:
-                                resultText += "\nYou sided with the scientist";
+                                resultText += "\nYou sided with Lanri";
                                 break;
                             case CampaignManager.CateringToTheRich.NarrativeOutcomes.KillBeckett:
                                 campMan.cateringToTheRich.SetCtrNarrativeOutcome(CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledOnce, true);

@@ -1,6 +1,6 @@
 You patch into the cameras within the personal lab of Lanri Alileo. She has asked you here to demonstrate a breakthrough in her research, though you suspect she may want to ask something of you. She waves to the camera and begins to explain her discovery. Unfortunately, her tendency to ramble is present in full force and you’ve only managed to glean the fact that she’s made some sort of stimulant.
-+[Would you mind focusing on the stimulant?]->focus
-+[Stop talking, I want to hear your discovery]->stop
++[Please focus on the stimulant.]->focus
++[Stop talking. What of your discovery?]->stop
 +[*Briefly Trigger Alarms*]->alarm
 
 == focus ==
@@ -15,8 +15,8 @@ Alarms blare for approximately four seconds as Lanri tightly clasps her hands ov
 
 == step2 ==
 Lanri goes on to divulge her breakthrough: a stimulant capable of keeping an organism free of fatigue for approximately 24 hours. “The candidate rats that survived were seen to continue testing well past their normal sleep schedule.” After she finishes speaking her hands fumble with each other nervously. It’s clear she’s having trouble getting to the point.
-+[It's clear you want to ask me something]->ask
-+[And what of those that didn't survive?]->nah
++[You want to ask me something]->ask
++[What of those that didn't survive?]->nah
 
 == ask ==
 “Ah, yes, um, about that, you see…” It takes some coaxing but you eventually manage to uncover the reason Lanri called you to the lab.
@@ -27,7 +27,7 @@ Lanri goes on to divulge her breakthrough: a stimulant capable of keeping an org
 
 == step3 ==
 “There’s only so much testing to be done on trial animals. If we really want valuable data we’ll need to conduct human testing. I was wondering if you could, perhaps, voluntell some people to participate?”
-+[Not until you work out the kinks]->kink
++[Wrk out the kinks first]->kink
 +[I see no reason to do so]->reason
 +[Is this worth it?]->worth
 
