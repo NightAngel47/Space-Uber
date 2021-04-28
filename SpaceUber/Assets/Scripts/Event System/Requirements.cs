@@ -17,6 +17,7 @@ public class Requirements
 {
     [HideInInspector]
     public bool isScalableEvent = false;
+    private bool alreadyScaled = false;
 
     #region Stat Requirement Stuff
 
@@ -167,6 +168,12 @@ public class Requirements
     //public string campaign;
     //[HideInInspector] public List<string> PossibleCampaigns => new List<string>() { "NA", "Catering to the Rich" };
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="thisShip"></param>
+    /// <param name="campMan"></param>
+    /// <returns></returns>
     public bool MatchesRequirements(ShipStats thisShip, CampaignManager campMan)
     {
         bool result = true;
@@ -174,78 +181,47 @@ public class Requirements
         if (isStatRequirement)
         {
             int shipStat = 0;
-
-            if(isScalableEvent) //random events get scaled by campaign number
+            
+            if (isScalableEvent && !alreadyScaled) //random events get scaled by campaign number
             {
                 requiredAmount = Mathf.RoundToInt(requiredAmount * campMan.GetMultiplier(selectedResource));
+                alreadyScaled = true;
                 
-                switch (selectedResource)
-                {
-                    case ResourceDataTypes._HullDurability:
-                        shipStat = (int)thisShip.ShipHealthCurrent.x;
-                        break;
-
-                    case ResourceDataTypes._Energy:
-                        shipStat = (int)thisShip.Energy.x;
-                        break;
-
-                    case ResourceDataTypes._Crew:
-                        shipStat = (int)thisShip.CrewCurrent.x;
-                        break;
-
-                    case ResourceDataTypes._Food:
-                        shipStat = thisShip.Food;
-                        break;
-
-                    case ResourceDataTypes._ShipWeapons:
-                        shipStat = thisShip.ShipWeapons;
-                        break;
-
-                    case ResourceDataTypes._Security:
-                        shipStat = thisShip.Security;
-                        break;
-
-                    case ResourceDataTypes._CrewMorale:
-                        shipStat = MoraleManager.instance.CrewMorale;
-                        break;
-
-                    case ResourceDataTypes._Credits:
-                        shipStat = thisShip.Credits;
-                        break;
-                }
             }
-            else
+            switch (selectedResource)
             {
-                switch (selectedResource)
-                {
+                case ResourceDataTypes._HullDurability:
+                    shipStat = (int)thisShip.ShipHealthCurrent.x;
+                    break;
 
-                    case ResourceDataTypes._HullDurability:
-                        shipStat = (int)thisShip.ShipHealthCurrent.x;
-                        break;
-                    case ResourceDataTypes._Energy:
-                        shipStat = (int)thisShip.Energy.x;
-                        break;
-                    case ResourceDataTypes._Crew:
-                        shipStat = (int)thisShip.CrewCurrent.x;
-                        break;
-                    case ResourceDataTypes._Food:
-                        shipStat = thisShip.Food;
-                        break;
-                    case ResourceDataTypes._ShipWeapons:
-                        shipStat = thisShip.ShipWeapons;
-                        break;
-                    case ResourceDataTypes._Security:
-                        shipStat = thisShip.Security;
-                        break;
-                    case ResourceDataTypes._CrewMorale:
-                        shipStat = MoraleManager.instance.CrewMorale;
-                        break;
-                    case ResourceDataTypes._Credits:
-                        shipStat = thisShip.Credits;
-                        break;
-                }
+                case ResourceDataTypes._Energy:
+                    shipStat = (int)thisShip.Energy.x;
+                    break;
+
+                case ResourceDataTypes._Crew:
+                    shipStat = (int)thisShip.CrewCurrent.x;
+                    break;
+
+                case ResourceDataTypes._Food:
+                    shipStat = thisShip.Food;
+                    break;
+
+                case ResourceDataTypes._ShipWeapons:
+                    shipStat = thisShip.ShipWeapons;
+                    break;
+
+                case ResourceDataTypes._Security:
+                    shipStat = thisShip.Security;
+                    break;
+
+                case ResourceDataTypes._CrewMorale:
+                    shipStat = MoraleManager.instance.CrewMorale;
+                    break;
+
+                case ResourceDataTypes._Credits:
+                    shipStat = thisShip.Credits;
+                    break;
             }
-
             if (lessThan)
             {
                 result = shipStat < requiredAmount;

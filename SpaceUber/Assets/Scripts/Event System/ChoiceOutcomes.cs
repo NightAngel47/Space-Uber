@@ -471,7 +471,7 @@ public class ChoiceOutcomes
                         }
                         else if (assetCountChange < 0)
                         {
-                            if (assetCountChange == 1)
+                            if (assetCountChange == -1)
                                 resultText += "\nYou have lost 1 asset";
                             else
                                 resultText += "\nYou have lost " + assetCountChange + " assets";

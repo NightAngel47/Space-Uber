@@ -120,7 +120,7 @@ public class EventSystem : MonoBehaviour
 		//check for an introduction "event"
 		GameObject intro = (from introEvent in currentJob.introEvents
 			let requirements = introEvent.GetComponent<InkDriverBase>().requiredStats
-			where HasRequiredStats(requirements) select introEvent).FirstOrDefault();
+			where HasRequiredStats(requirements, introEvent.GetComponent<InkDriverBase>().isScalableEvent) select introEvent).FirstOrDefault();
 
 		if (intro != null)
         {
@@ -541,7 +541,7 @@ public class EventSystem : MonoBehaviour
 		foreach (var storyEvent
 			in from storyEvent in storyEvents
 			let story = storyEvent.GetComponent<InkDriverBase>() let requirements = story.requiredStats
-			where story.storyIndex == storyEventIndex && HasRequiredStats(requirements) select storyEvent)
+			where story.storyIndex == storyEventIndex && HasRequiredStats(requirements,storyEvent.GetComponent<InkDriverBase>().isScalableEvent) select storyEvent)
 		{
 			++storyEventIndex;
 			return storyEvent;
@@ -560,7 +560,7 @@ public class EventSystem : MonoBehaviour
 
 			
 			if (eventDriver.MatchesRoomType(room) /*&& !eventDriver.playedOnce*/
-                && HasRequiredStats(eventDriver.requiredStats))
+                && HasRequiredStats(eventDriver.requiredStats,eventDriver.isScalableEvent))
 
 			{
 				return true; //end function as soon as one is found
@@ -577,7 +577,7 @@ public class EventSystem : MonoBehaviour
 			CharacterEvent charEvent = campMan.GetCharacterEvents()[i].GetComponent<CharacterEvent>();
 			
 			if (charEvent.MatchesRoomType(roomName) /*&& charEvent.playedOnce == false*/
-                && HasRequiredStats(charEvent.requiredStats))
+                && HasRequiredStats(charEvent.requiredStats,charEvent.isScalableEvent))
             {
 				eligibleEvents.Add(campMan.GetCharacterEvents()[i]);
             }
@@ -611,14 +611,14 @@ public class EventSystem : MonoBehaviour
 			List<Requirements> requirements = thisEvent.GetComponent<InkDriverBase>().requiredStats;
 
 			//if the event chosen has requirements that are not met
-			if (!HasRequiredStats(requirements))
+			if (!HasRequiredStats(requirements, thisEvent.GetComponent<InkDriverBase>().isScalableEvent))
 			{
 				//copies the current index
 				int newIndex = randomEventIndex;
 				List<GameObject> newRandomEvents = randomEvents;
 
 				//Copies the list to shuffle until it finds a new event to do or runs out of ideas
-				while (!HasRequiredStats(requirements) && newIndex != randomEvents.Count)
+				while (!HasRequiredStats(requirements, thisEvent.GetComponent<InkDriverBase>().isScalableEvent) && newIndex != randomEvents.Count)
 				{
 					//choose an event to check
 					int newNum = Random.Range(newIndex, newRandomEvents.Count);
@@ -648,12 +648,13 @@ public class EventSystem : MonoBehaviour
 	/// </summary>
 	/// <param name="selectedRequirements"></param>
 	/// <returns></returns>
-	private bool HasRequiredStats(List<Requirements> selectedRequirements)
+	private bool HasRequiredStats(List<Requirements> selectedRequirements, bool scalable)
 	{
 		bool result = true;
 
 		foreach (Requirements required in selectedRequirements)
 		{
+			required.isScalableEvent = scalable;
 			//break the loop the second that one requirement doesn't match
 			if (!required.MatchesRequirements(ship, campMan))
 			{
