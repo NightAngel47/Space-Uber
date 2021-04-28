@@ -37,20 +37,18 @@ You tell Lanri no. She makes a pun about how you can't spell fun without funding
 -> Conspiracy
 
 ==Conspiracy==
-Shortly after your talk with Lanri, you again arrive at Dispatch. The CEO seems to have learned from the previous encounter, and summons Kuon and you rather than Captain Lexa to debrief with. The place seems to be in a sort of frenzy, with employees rushing through its unnaturally wide atriums, no doubt prepping the station to depart before they get caught up in this dying system.
-The unfolding tragedy of Avanshore has gained attention around the galaxy, and many savvy reporters question whether Kellis is involved. Kuon ignores the chaos and steps into the sleek elevator.
-You arrive at the CEO's barren and imposing office. Through the window in back you can see Avanshore's sun glowing a soft red. The Kellis headman stands with his back to you, staring out at the system.
+Shortly after your talk with Lanri, you again arrive at Dispatch. The CEO summons Kuon this time rather than Captain Lexa to debrief with. The place seems to be in a  frenzy, no doubt prepping the station to depart before they get caught up in this dying system.
+The unfolding tragedy of Avanshore has gained attention around the galaxy, and many savvy reporters question whether Kellis is involved.
+You arrive at the CEO's barren and imposing office. Through the window in the back you can see Avanshore's sun glowing a soft red. The Kellis headman stands with his back to you, awaiting your return.
 "Do you know what you've done?" he says.
 "Sir?" Kuon asks.
-"Not you. Your captain, the one whose future is tied to this mission. The one who, if proven useful, will signal a new age in corporate competition, and whose failure shows that the world no longer needs us." He whirls around, his face looks shallow, tired, his eyes shine red from the light of the sun. "Do you <i>know</i> what you have <i>done?</i>
-"Everyone knows that we're involved now, something we took great pains to cover up. What did I tell you to do, get the assets, get out, don't mention Echo-28, don't get <i>sidetracked.</i> Do your goddamn job," he sighs. "I don't think you realize just how important this is. We <i>did</i> this. We're culpable in this and you just pointed the whole galaxy at this system. 
-"The solar flares, the monsters running around out there," he swings his arm to gesture at Avanshore. "Now we're tied in and they're not going to let us sneak anything useful out of this. If they got their way we'd by tied to this dying star with red tape."
+"Not you. Your captain, the one whose future is tied to this mission. The one whose failure shows that the world no longer needs us." He whirls around, his face looks shallow, tired, his eyes shine red from the light of the sun. "Do you <i>know</i> what you have <i>done?</i>
+"Everyone knows that we're involved now, something we took great pains to cover up. What did I tell you to do, get the assets, get out, don't mention Echo-28, don't get <i>sidetracked.</i> Do your goddamn job," he sighs. "I don't think you realize just how important this is. We <i>did</i> this. We're culpable in this and you just pointed the whole galaxy at this system."
 Kuon speaks, "Sir, if you may clarify."
-"We were trying to do something useful. We found an alien ship, undamaged, a little over a century ago now. We were able to take measurements, readings, access its data, and the few drops we got changed everything. High yield weapons, advanced forcefields," he pauses and gives you a pointed look, "and even Artificial Intelligence schematics that we were able to apply halfway decently.
-"But that artifact was capable of so much more, it was drained of power, had been dead in the water for eons. We lugged it to a nearby star and used our scavenged alien tech to try to wake it up. Do you know what we could have done with that power? Equinox would be an afterthought. 
-"It would've propelled us into a new age. The sun catcher dipped into Avanshore's sol and jump-started Portunus, but apparently the entire artifact was its own sort of power source. The material it's built out of has endless applications..." he trails off.
-"The feedback caused an explosion that propelled that material across the galaxy, to... debilitating effect. And it also sent Avanshore's sol on a path toward's supernova.
-"The assets you've been picking up are prototypes, replacement pieces, the data required to get a handle on Portunus once we find it again, to handle its power surges. If you let them get wiped out by this thing," he points to the red sun, "All this will be for nothing."
+"We found an alien ship, undamaged, a little over a century ago now. Designation: Portunus. We were able to gather little information, but what we got changed everything. High yield weapons, advanced forcefields," he gives you a pointed look, "and even Artificial Intelligence schematics.”
+"But Portunus was capable of so much more, it had been dead in the water for eons. We lugged it to a nearby star and tried to wake it up. Do you know what we could have done with that power? Equinox would be an afterthought. 
+"It would've propelled us into a new age. The sun catcher dipped into Avanshore's sol and jump-started Portunus, but our data was wrong. The feedback caused an explosion that propelled that golden material across the galaxy, to... debilitating effect. And it also sent Avanshore's sol on a path towards supernova."
+"The assets you've been picking up are prototypes and replacement pieces required to get a handle on Portunus once we find it again. If you let the assets get wiped out by this thing," he points to the red sun, "All this will be for nothing."
 After a pause the CEO collapses into his chair. "So, now that everything is out in the open, can I trust you to finish the job?"
 
 *[Yes, I will finish the job]

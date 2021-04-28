@@ -4,10 +4,12 @@ The voice of Portunus winks out, you land at the mountain base. Like clockwork, 
 You hear distant gunfire and the captain immediately radios to get a read of the situation. He is reduced to a red piñata within seconds of several Midas creatures flooding up onto the landing pad. The crack of gunshots confirm the base is surrounded. 
 You can help the military base fight off the Midas beasts, or try to escape with the asset.
 
-+ [Help the military base]
++ [Help the Military Base]
 -> HelpMilitaryBase
-+ [Attempt escape]
++ [Escape With Asset]
 -> AttemptEscape
+* [Escape Without Asset]
+-> CowardEscape
 
 
 ==HelpMilitaryBase==
@@ -19,3 +21,7 @@ You ready your ship's weapons and security team. Waves of monsters now crawl up 
 In the midst of the attack, you maneuver the ship into position and try to catch the asset in your loading bay, but it's not quick enough. The Midas creatures pull the asset and fling it down the mountain, and soon start to jump onto the sides of your ship. The base is lost within minutes while you attempt to locate the asset and fend off the beings clinging to the hull. 
 Without the base's firepower, the mountain is overrun, and any hope at recovering the asset is lost. You take your exit, and rocket into space, the Midas beasts being ripped from the ship as you break the sound barrier.
 -> END
+
+==CowardEscape==
+In the midst of the attack, you ignore the base and blast up into the atmosphere. You see the Midas creatures pull the asset and fling it down the mountain and move on to slaughter the soldiers. As the base is lost, you assure your crew that there was nothing you could have done, but the constant attacks are clearly getting to them. 
+->END

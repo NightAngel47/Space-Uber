@@ -28,26 +28,23 @@ You decide not to play Kellis' game this time. You don't control anyone, or medd
 ->Round_Table
 
 ==Round_Table==
-After the test, your crew contacts you. They have come together away from the prying eyes of their corporate overlords, and ask that you observe. Lexa and Kuon sit opposite of one another, Ripley and Lanri to their flanks, with Mateo lounging in the background. 
+After the test, your crew contacts you. They have come together away from the prying eyes of their corporate overlords, and ask that you observe. Lexa and Kuon sit opposite of one another, Ripley and Lanri to their flanks, Mateo lounging in the background. 
     Lexa starts, "We need to talk about what to do with these people on our ship."
-	"You speak of the hand that feeds you with a bite in your voice." Kuon says.
-	Lexa rolls her eyes, "Kuon, we've done this once before. You trusted me then. I'm asking you to trust me now."
-	His hand instinctively reaches to his cybernetic face, "Things change. And Kellis is poised to do good things."
-	"Then why haven't they?" Lexa answers back. "Is it because of us?" she points to your camera, "Them? Or is it the people on top who refuse to care about what happens? We have to do something."
-	Lanri nods vigorously, "A chance like this won't come twice. In fact, it's likely that it will never come again. Crews like us will be rendered obsolete in days, not years, so we would have to trust the world to Kellis and what's left of our captain."
-	Ripley regards the room, "We stand on a precipice. That much is clear. The smallest motion on this ship could cascade to the destruction of worlds." The eyes in the room drift towards Mateo, who hasn't spoken. 
-	Noticing their attention, Mateo nods as if everyone has just made very good points and gives a thumbs up. "Sorry, didn't get a lot of sleep last night, but I totally agree, let's destroy Kellis from the inside!"
-	Kuon pushes to his feet, "We are not discussing sabotage and mutiny again! Do you not see how much you owe this company?"
-	Mateo frowns, "I am oh so grateful that Kellis turned my planet into a work camp. Is that what you want me to say?"
-	"No, I- that wasn't ideal-" Kuon falters and Lexa steps in.
-	"We're the only ones who can make it ideal, Kuon. And this is the only chance we have. My plan is that we kill them, mess with their clone backups somehow, cut off the head of the snake."
-	Lanri raises her hand excitedly, "Oo oo! Speaking of clones, we could do that. Clone the CEO, port our captain into the clone, and then they can fix everything! I would just need Ripley's help to do it."
-	Ripley rolls her eyes at Lanri's enthusiasm and agrees. 
-	Mateo, in a thinker pose says, "Well hey, we can always go through with their plan, mass produce the Rustbucket. I could just backup their personality to keep them in control of Kellis' entire shipping network."
-	Kuon sighs, "Fine. Then I will forward my own proposition: We leave them alive. We don't follow up on your insane plans, and we all earn a valuable promotion. From there we stay on good behavior and make sure the company is run in a way that satisfies everyone."
-	Ripley shakes her head, "It would never work. The strength of one man is too little."
-	Kuon winces, "Well what about us five? Counting the captain that's six. I'm not going to watch you all press us back into the dark ages. There has to be something less extreme." After Kuon speaks the rest of the table is silent. 
-	Lexa looks around, "I'd say anyone's plan here shows promise, save but one." She glances towards your camera, "Do you think you could throw your weight behind any of these plans?"
+    "Why?” Kuon says, “Kellis is poised to do good things."
+    "Then why haven't they?" Lexa answers back. "Is it because of us?" she points to your camera, "Them? Or is it the people on top? We have to do something."
+    Lanri nods vigorously, "A chance like this won't come twice. Crews like us will be rendered obsolete in days, not years,."
+    Ripley speaks, "We stand on a precipice. That much is clear."
+    Mateo nods as if everyone has just made very good points and gives a thumbs up. "Sorry, didn't get a lot of sleep last night, but I totally agree, let's destroy Kellis from the inside!"
+    Kuon pushes to his feet, "We are not discussing sabotage and mutiny again! Do you not see how much you owe this company?"
+    Mateo frowns, "I am oh so grateful that Kellis turned my planet into a work camp. Is that what you want me to say?"
+    Kuon falters and Lexa steps in. "Kuon, this is the only chance we have. My plan is that we kill them, corrupt their clone backups."
+    Lanri raises her hand excitedly, "Oo oo! Speaking of clones, we could do that. Clone the CEO, port our captain into the clone, and then they can fix everything! I would just need Ripley's help to do it."
+    Ripley rolls her eyes at Lanri's enthusiasm but agrees. 
+    Mateo, in a thinker pose says, "Well hey, we can always go through with their plan, mass produce the Rustbucket. I could just backup their personality to keep them in control of Kellis' entire shipping network."
+    Kuon sighs, "Fine. Then I will forward my own proposition: We don't follow up on your insane plans, and we all earn a valuable promotion. We stay on good behavior and make sure that company protocols satisfy everyone."
+    Ripley shakes her head, "It would never work. The strength of one man is too little."
+    Kuon winces, "Well what about us six? You don’t need to do this." 
+    After a silence, Lexa looks around, "I'd say anyone's plan here shows promise, save but one." She glances towards your camera, "Would you support any of these plans?"
 	
 	*[Lexa's Plan: Assassination]
 	-> Assassination
