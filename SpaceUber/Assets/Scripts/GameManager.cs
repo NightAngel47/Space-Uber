@@ -147,14 +147,15 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case InGameStates.GameIntro:
-                additiveSceneManager.UnloadScene("Interface_JobList");
-                additiveSceneManager.UnloadScene("Interface_Runtime");
-                additiveSceneManager.UnloadScene("Interface_GameOver");
-                additiveSceneManager.LoadSceneMerged("Game_Intro");
+                additiveSceneManager.LoadSceneSeperate("Event_NoChoices");
+                additiveSceneManager.LoadSceneSeperate("Game_Intro");
                 break;
             case InGameStates.JobSelect: // Loads Jobpicker for the player to pick their job
-                // unload ending screen if replaying
+                // unload game intro 
+                additiveSceneManager.UnloadScene("Event_NoChoices");
                 additiveSceneManager.UnloadScene("Game_Intro");
+                
+                // unload normal
                 additiveSceneManager.UnloadScene("Interface_Runtime");
                 additiveSceneManager.UnloadScene("Interface_GameOver");
                 additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
@@ -172,32 +173,20 @@ public class GameManager : MonoBehaviour
                 jobManager.RefreshJobList();
                 break;
             case InGameStates.ShipBuilding: // Loads ShipBuilding for the player to edit their ship
-                additiveSceneManager.UnloadScene("Game_Intro");
                 additiveSceneManager.UnloadScene("Interface_JobList");
                 additiveSceneManager.UnloadScene("Interface_Runtime");
                 additiveSceneManager.UnloadScene("Interface_GameOver");
-                //additiveSceneManager.UnloadScene("CrewManagement");
 
                 additiveSceneManager.LoadSceneSeperate("Starport BG");
                 additiveSceneManager.LoadSceneSeperate("ShipBuilding");
                 additiveSceneManager.LoadSceneSeperate("CrewManagement");
                 SaveGameState();
                 break;
-            case InGameStates.RoomUnlock:
-                additiveSceneManager.UnloadScene("Game_Intro"); 
-                additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
-                additiveSceneManager.UnloadScene("Interface_JobPaycheckScreen");
-                additiveSceneManager.UnloadScene("Interface_Runtime");
-
-                additiveSceneManager.LoadSceneSeperate("Interface_RoomUnlockScreen");  
-                break;
             case InGameStates.Events: // Unloads ShipBuilding and starts the Travel coroutine for the event system.
-                additiveSceneManager.UnloadScene("Game_Intro"); 
-                additiveSceneManager.UnloadScene("CrewManagement");
-                additiveSceneManager.UnloadScene("PromptScreen_End");
-                additiveSceneManager.UnloadScene("Interface_GameOver");
                 additiveSceneManager.UnloadScene("Starport BG");
                 additiveSceneManager.UnloadScene("ShipBuilding");
+                additiveSceneManager.UnloadScene("CrewManagement");
+                additiveSceneManager.UnloadScene("Interface_GameOver");
 
                 // if loading from continue
                 if (!FindObjectOfType<SpotChecker>())
@@ -217,64 +206,53 @@ public class GameManager : MonoBehaviour
 
                 StartCoroutine(EventSystem.instance.PlayJobIntro());
                 break;
-            case InGameStates.JobPayment:
-                additiveSceneManager.UnloadScene("Game_Intro");
-                additiveSceneManager.UnloadScene("Interface_Runtime");
+            case InGameStates.Mutiny: // Loads the when the player reaches a mutiny.
+            case InGameStates.Death: // Loads the when the player reaches a death.
                 additiveSceneManager.UnloadScene("Event_General");
                 additiveSceneManager.UnloadScene("Event_CharacterFocused");
+                additiveSceneManager.UnloadScene("Interface_Runtime");
+
+                additiveSceneManager.LoadSceneSeperate("Interface_GameOver");
+                break;
+            case InGameStates.JobPayment:
+                additiveSceneManager.UnloadScene("Event_General");
+                additiveSceneManager.UnloadScene("Event_CharacterFocused");
+                additiveSceneManager.UnloadScene("Interface_Runtime");
                 
                 additiveSceneManager.LoadSceneSeperate("Interface_JobPaycheckScreen");
                 break;
             case InGameStates.CrewPayment:
-                additiveSceneManager.UnloadScene("Game_Intro");
                 additiveSceneManager.UnloadScene("Interface_JobPaycheckScreen");
 
                 additiveSceneManager.LoadSceneSeperate("Interface_CrewPaymentScreen");
                 break;
-            case InGameStates.MoneyEnding: // Loads the PromptScreen_Money_End when the player reaches a narrative ending.
-                additiveSceneManager.UnloadScene("Game_Intro");
-                additiveSceneManager.UnloadScene("Interface_JobList");
-                additiveSceneManager.UnloadScene("Interface_Runtime");
-                additiveSceneManager.UnloadScene("Interface_Radio");
+            case InGameStates.RoomUnlock:
                 additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
 
+                additiveSceneManager.LoadSceneSeperate("Interface_RoomUnlockScreen");  
+                break;
+            case InGameStates.MoneyEnding: // Loads the PromptScreen_Money_End when the player reaches a narrative ending.
+                additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
+                additiveSceneManager.UnloadScene("Interface_RoomUnlockScreen");
+
+                additiveSceneManager.LoadSceneSeperate("Event_NoChoices");
                 additiveSceneManager.LoadSceneSeperate("PromptScreen_Money_End");
                 break;
             case InGameStates.MoraleEnding: // Loads the PromptScreen_Morale_End after the PromptScreen_Money_End.
-                additiveSceneManager.UnloadScene("Game_Intro");
                 additiveSceneManager.UnloadScene("PromptScreen_Money_End");
 
                 additiveSceneManager.LoadSceneSeperate("PromptScreen_Morale_End");
                 break;
             case InGameStates.EndingStats: // Loads the Interface_EndScreen_Stats after the PromptScreen_Morale_End.
-                additiveSceneManager.UnloadScene("Game_Intro"); 
+                additiveSceneManager.UnloadScene("Event_NoChoices");
                 additiveSceneManager.UnloadScene("PromptScreen_Morale_End");
                 
                 additiveSceneManager.LoadSceneSeperate("Interface_EndScreen_Stats");
                 break;
             case InGameStates.EndingCredits: // Loads the Credits after the Interface_EndScreen_Stats.
-                additiveSceneManager.UnloadScene("Game_Intro");
                 additiveSceneManager.UnloadScene("Interface_EndScreen_Stats");
                 
                 additiveSceneManager.LoadSceneSeperate("Credits");
-                break;
-            case InGameStates.Mutiny: // Loads the PromptScreen_Mutiny when the player reaches a mutiny.
-                additiveSceneManager.UnloadScene("Game_Intro"); 
-                additiveSceneManager.UnloadScene("Event_General");
-                additiveSceneManager.UnloadScene("Event_CharacterFocused");
-                additiveSceneManager.UnloadScene("Event_Prompt");
-                additiveSceneManager.UnloadScene("Interface_Runtime");
-
-                additiveSceneManager.LoadSceneSeperate("Interface_GameOver");
-                break;
-            case InGameStates.Death: // Loads the PromptScreen_Death when the player reaches a death.
-                additiveSceneManager.UnloadScene("Game_Intro"); 
-                additiveSceneManager.UnloadScene("Event_General");
-                additiveSceneManager.UnloadScene("Event_CharacterFocused");
-                additiveSceneManager.UnloadScene("Event_Prompt");
-                additiveSceneManager.UnloadScene("Interface_Runtime");
-
-                additiveSceneManager.LoadSceneSeperate("Interface_GameOver");
                 break;
             default: // Output Warning when the passed in game state doesn't have a transition setup.
                 Debug.LogWarning($"The passed in game state, {state.ToString()}, doesn't have a transition setup.");
