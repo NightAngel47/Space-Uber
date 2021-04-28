@@ -23,15 +23,8 @@ public class CrewManagement : MonoBehaviour
 
     public void Start()
     {
-
         StartCoroutine(CheckForRooms());
-
         CheckForMinCrew();
-
-        //removed since crew management and shipbuilding are being combined
-        //CrewViewManager.Instance.EnableCrewView();//automatically enable crew view when you enter crew mgmt
-        
-        
     }
 
     public void CheckForRoomsCall()
@@ -39,10 +32,9 @@ public class CrewManagement : MonoBehaviour
         StartCoroutine(CheckForRooms());
     }
 
-    public IEnumerator CheckForRooms()
+    private IEnumerator CheckForRooms()
     {
-        yield return new WaitUntil(() => FindObjectOfType<SpotChecker>());
-        yield return new WaitUntil(() => GameManager.instance.hasLoadedRooms);
+        yield return new WaitUntil(() => FindObjectOfType<SpotChecker>() && GameManager.instance.hasLoadedRooms);
         passedRoomCount = FindObjectsOfType<RoomStats>().Length > minRoomPlacedToContinue;
 
         CheckForMinCrew();
@@ -50,7 +42,7 @@ public class CrewManagement : MonoBehaviour
 
     public void CheckForMinCrew()
     {
-        sceneButtons[0].GetComponent<ButtonTwoBehaviour>().SetButtonInteractable(passedRoomCount && FindObjectsOfType<RoomStats>().All(room => room.minCrew <= room.currentCrew));
+        sceneButtons[0].GetComponent<ButtonTwoBehaviour>().SetButtonInteractable(passedRoomCount && ObjectMover.hasPlaced && FindObjectsOfType<RoomStats>().All(room => room.minCrew <= room.currentCrew));
     }
 
     public void ClearRoomDetails()
