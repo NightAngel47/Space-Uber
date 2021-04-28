@@ -586,9 +586,8 @@ public class ChoiceOutcomes
             }
 
             //Debug.Log("Adding: " + resultText);
-            narrativeResultsBox.transform.GetChild(0).GetComponent<TMP_Text>().text += resultText;
+            narrativeResultsBox.transform.GetChild(0).GetComponentInChildren<TMP_Text>().text += resultText;
         }
-
     }
 
     /// <summary>

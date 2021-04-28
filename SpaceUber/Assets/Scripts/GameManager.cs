@@ -233,7 +233,7 @@ public class GameManager : MonoBehaviour
                 break;
             case InGameStates.MoneyEnding: // Loads the PromptScreen_Money_End when the player reaches a narrative ending.
                 additiveSceneManager.UnloadScene("Interface_CrewPaymentScreen");
-                //additiveSceneManager.UnloadScene("Interface_RoomUnlockScreen");
+                additiveSceneManager.UnloadScene("Interface_RoomUnlockScreen");
 
                 additiveSceneManager.LoadSceneSeperate("Event_NoChoices");
                 additiveSceneManager.LoadSceneSeperate("PromptScreen_Money_End");
