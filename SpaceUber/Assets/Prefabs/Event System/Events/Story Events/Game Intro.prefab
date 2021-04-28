@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81b3a4b217867a348bcba604f5626805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkJSONAsset: {fileID: 4900000, guid: 58cc0b645111d9743b90987ffc186455, type: 3}
+  inkJSONAsset: {fileID: 4900000, guid: 2e82c9abd3b4ee84eaaf1f70a0eeae6b, type: 3}
   eventName: Welcome to Kellis
   hasAnimatedBG: 0
   backgroundImage: {fileID: 21300000, guid: 55b8a2770408a8e44a586cee5b6c4f90, type: 3}
@@ -40,7 +40,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inkJSONAsset
       value: 
-      objectReference: {fileID: 4900000, guid: 7855781f6b7c69f4fb6537077fcb5632, type: 3}
+      objectReference: {fileID: 4900000, guid: 2e82c9abd3b4ee84eaaf1f70a0eeae6b, type: 3}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: eventBGM
@@ -166,7 +166,8 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 492e23da0c4f0a84188d48989e322a6d, type: 3}
 --- !u!1 &7403371472362636021 stripped
 GameObject:
