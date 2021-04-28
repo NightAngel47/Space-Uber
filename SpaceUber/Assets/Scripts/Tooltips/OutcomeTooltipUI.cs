@@ -18,13 +18,29 @@ public class OutcomeTooltipUI : MonoBehaviour
     [SerializeField] private GameObject resourceUI;
     [SerializeField] private GameObject outcomeText;
     [SerializeField] private string defaultOutcomeText;
-    [SerializeField] private string randomOutcomeText;
     [SerializeField] private string narrativeOutcomeText;
 
     [SerializeField] private RectTransform outcomeList;
     private CampaignManager campMan;
 
-    public void SetOutcomeData(string description, List<ChoiceOutcomes> outcomes, bool isSecret)
+    public void SetOutcomeData(string description, string secretOutcomeDescription, List<ChoiceOutcomes> outcomes)
+    {
+        //if there is no supplied description, use the secret description for it
+        if (description == "")
+        {
+            outcomeDescUI.text = secretOutcomeDescription;
+        }
+        else
+        {
+            outcomeDescUI.text = description;
+            GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
+            outcomeTextGO.GetComponent<TMP_Text>().text = secretOutcomeDescription;
+        }
+
+        
+        
+    }
+    public void SetOutcomeData(string description, List<ChoiceOutcomes> outcomes)
     {
         if (!campMan)
         { campMan = FindObjectOfType<CampaignManager>(); }
@@ -39,7 +55,7 @@ public class OutcomeTooltipUI : MonoBehaviour
             outcomeDescUI.text = description;
         }
 
-        if (!isSecret && outcomes.Count > 0)
+        if (outcomes.Count > 0)
         {
             foreach (var outcome in outcomes)
             {
@@ -91,11 +107,6 @@ public class OutcomeTooltipUI : MonoBehaviour
                 }
             }
         }
-        else if(isSecret)
-        {
-            GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
-            outcomeTextGO.GetComponent<TMP_Text>().text = description;
-        }
         else //Outcome effects nothing
         {
             GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
@@ -104,31 +115,43 @@ public class OutcomeTooltipUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Set outcome data for random events 
+    /// Set outcome data for random events that will be secret
     /// </summary>
     /// <param name="description">The description of the event</param>
     /// <param name="randomOutcomes">List of random outcomes possible</param>
     /// <param name="isSecret">Whether or not the result of this choice is secret</param>
-    public void SetOutcomeData(string description, List<EventChoice.MultipleRandom> randomOutcomes, bool isSecret)
+    public void SetOutcomeData(string description, string secretEffectDescription, List<EventChoice.MultipleRandom> randomOutcomes)
     {
-        if(description == "")
+        if (description == "") //if no description supplied, use secret effect description for first spot
         {
             outcomeDescUI.gameObject.SetActive(false);
+            if (randomOutcomes.Count > 0) //there are actually outcomes listed
+            {
+                outcomeDescUI.GetComponent<TMP_Text>().text = secretEffectDescription;
+            }
+            else //this does not does effect any sort of stats
+            {
+                outcomeDescUI.GetComponent<TMP_Text>().text = defaultOutcomeText;
+            }
         }
         else
         {
             outcomeDescUI.text = description;
+
+            if (randomOutcomes.Count > 0) //there are actually outcomes listed
+            {
+                GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
+                outcomeTextGO.GetComponent<TMP_Text>().text = secretEffectDescription;
+            }
+            else //this does not does effect any sort of stats
+            {
+                GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
+                outcomeTextGO.GetComponent<TMP_Text>().text = defaultOutcomeText;
+            }
         }
 
-        if (!isSecret && randomOutcomes.Count > 0) //uses a random outcome
-        {
-            GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
-            outcomeTextGO.GetComponent<TMP_Text>().text = randomOutcomeText;
-        }
-        else //this does not does effect any sort of stats
-        {
-            GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
-            outcomeTextGO.GetComponent<TMP_Text>().text = defaultOutcomeText;
-        }
+        
+
+
     }
 }

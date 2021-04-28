@@ -1,32 +1,25 @@
-This planet is being completely overrun by the Midas Creatures. You must still continue with your mission, however. You first fly over to an old warehouse, completely surrounded by MCs. It almost seems impossible to get into the warehouse given the hundreds of MCs guarding it. What would you like to do?
+While the rain of golden obelisks has slowed across Avanshore, your target planet is close to the sun and has been ravaged by wildfires, crippling its defenses and allowing the Midas creatures to take complete control. The only thing left are ruins, monsters, and, of course, two assets Kellis wants found immediately.  
+Your preliminary scans lock in on an asset in a leaning skyscraper. It is absolutely crawling with Midas creatures. 
+The voice of Portunus crackles across your brain, "This is what you/your lords have wrought/ensured. Leave this final/regrettable tomb. What you fetch only perpetuates our struggle."
+Do you procede?
 
-+ [Attempt to collect the asset]
++ [Fight for the Asset]
 -> AttemptAssetCollectionA
-+ [Don't collect it]
--> DontCollect
++ [Don't Collect the Asset]
+-> DontCollectA
 
 ==AttemptAssetCollectionA==
-You go into the chaos as a lone ship, Kuon leads the weapons team as they begin tearing down the walls of Midas Creatures. Eventually, you're able to create a gap. You enter the warehouse and quickly collect the asset inside. But not before many MCs reach your ship and cause significant damages. However, you make it out alive.
-You then make your way to the next asset on this planet, located inside a small government building. Like the previous location the building is destroyed and surrounded by hundreds of Midas Creatures. You already are heavily damaged, making it even harder to get the next asset through the endless MCs. 
+Alone on the ruined planet, you begin strafing runs on the building, tearing down walls of Midas creatures who throw rocks back in your direction. Eventually, though, you need to move in to secure the asset. Once you enter their effective range, Midas beasts come out of the woodwork to tear down your ship. While you only need a few seconds to grab the asset, it's enough time for them to deal significant damage to you.
+You then make your way to the next asset on this planet, located within the half-buried remains of subway tunnels. You can expect another horde of Midas creatures, but at close quarters this will be far more difficult. 
 Do you still want to try to collect the asset?
 
-+ [Attempt to collect the asset]
++ [Attempt to Collect the Asset]
 -> AttemptAssetCollection2B
-+ [Don't collect it]
++ [Dont Collect It]
 -> DontCollectB
 
-==AttemptAssetCollection2B==
-You again prepare for battle all by yourself, launching an all out attack on the Midas Creatures, again blowing up an entire side of the building to create a gap you can enter. You speed your way in, load the asset onto your ship, and get out of there. While successful, you sustain even more significant damages from the MCs. Your ship is in desperate need of repair, but you were able to collect both assets on this planet.
-Lanri again contacts you. "Boss, the solution is ready. I'll make the preparation to put it into action. We can finally save the people!"
--> END
-==DontCollectB==
-You fly away, determining it too risky to collect this one. Kellis' CEO might be satisfied with you bringing one asset back.
-Lanri again contacts you. "Boss, the solution is ready. I'll make the preparation to put it into action. We can finally save the people!"
--> END
-
-
-==DontCollect==
-You fly away from the warehouse and off to the next asset, determining it too risky to attempt to collect this one. You head over the next location, a small government building. On arrival, you see that the building is destroyed and surrounded by hundreds of Midas Creatures. Again, it will be incredibly difficult to break into the building. 
+==DontCollectA==
+You fly away from the skyscraper and off to the next asset, determining it too risky to attempt to collect this one. You move to the next location, a half-buried network of subway tunnels. You can expect another horde of Midas creatures, this time at close quarters. Victory is uncertain at best.
 Do you still want to try to collect the asset?
 
 + [Attempt to collect the asset]
@@ -34,11 +27,18 @@ Do you still want to try to collect the asset?
 + [Don't collect it]
 -> DontCollectC
 
-==AttemptAssetCollection2C==
-You go into the chaos as a lone ship, Kuon leads the weapons team as they begin tearing down the walls of Midas Creatures. Eventually, you're able to create a gap. You enter the government building and quickly collect the asset inside. But not before many MCs reach your ship and cause significant damages. However, you make it out alive with the asset.
-Lanri again contacts you. "Boss, the solution is ready. I'll make the preparation to out it into action. We can finally save the people!"
+==AttemptAssetCollection2B==
+You launch an all out attack, bombing the tunnels and sending your security team in before the Midas beasts can recover. You lay down covering fire for several minutes, hoping to draw the monsters attention away from the small team fighting through the underground. As soon as the away team radios for pickup you swoop down to to find them, missing many of their members, but bearing the asset. You rush them aboard and flee the doomed planet.
 -> END
+
+==DontCollectB==
+You fly away, determining it too risky to collect this one. Kellis' CEO might not be satisfied with you bringing one asset back, but it is clear that the price for another was far too high. You leave the doomed planet behind you
+-> END
+
+==AttemptAssetCollection2C==
+You launch an all out attack, bombing the tunnels and sending your security team in before the Midas beasts can recover. You lay down covering fire for several minutes, hoping to draw the monsters attention away from the small team fighting through the underground. As soon as the away team radios for pickup you swoop down to to find them, missing many of their members, but bearing the asset. You rush them aboard and flee the doomed planet.
+-> END
+
 ==DontCollectC==
-You fly away again, determining it too risky to collect the asset. Kellis' CEO will likely be upset you didn't collect more assets when you had the chance.
-Lanri again contacts you. "Boss, the solution is ready. I'll make the preparation to out it into action. We can finally save the people!"
+You fly away again, determining it too risky to collect the asset. Kellis' CEO will likely be upset you didn't collect more assets when you had the chance, but it is clear that the price of two more was too high to pay.
 -> END

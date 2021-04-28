@@ -1,6 +1,6 @@
-This is to be your last assignment working under Kellis. You were requested by the CEO himself and will be closely monitored for the duration of the mission. 
+This is your last assignment working under Kellis. You were requested by the CEO himself and will be closely monitored for the duration of the mission. 
 The outcome will determine whether or not the mechanized captain project will continue beyond you, and whether or not the human element will be removed. 
-On the surface, it is a simple job, you'll be constrained to the solar system of Avanshore, recovering packages from across its myriad planets at sub-light speeds and delivering them to Kellis' mobile headquarters currently in orbit. 
+You'll be constrained to the solar system of Avanshore, recovering packages from across its myriad planets at sub-light speeds and delivering them to Kellis' mobile headquarters currently in orbit. 
 No celestial body in Avanshore's orbit has gone uncolonized, which means there should be no pickups in dangerously unexplored territory, and every delivery will fall on a schedule. 
 But below the surface, the CEO's hand in this means you will need to be very careful.
 

@@ -10,5 +10,5 @@ You inform him that if does not change his attitude he will be relieved of his p
 You ask the man to fetch something from the airlock. He is hesitant, but relents. When he enters you seal the interior door and project the chamber's video feed across the ship. You inform the crew that insubordination will not be tolerated, lest they wish to end up like this man. With that you open the airlock, sending the man hurtling into the abyss.
 ->DONE
 == Nothing ==
-You explain that the reason you called him here is to inform him that his lack of effort is adversely affecting the rest of the crew. You will not punish him, but encourage him to perform better. Not for you, but for the rest of the crew. He appears to realize the error of his ways, and volunteers as part of the security detail.
+You explain that the reason you called him here is to inform him that his lack of effort is adversely affecting the rest of the crew. You will not punish him, but encourage him to perform better. Not for you, but for the rest of the crew. He appears to realize the error of his ways, and volunteers as part of the security detail. While his performance leaves much to be desired, he seems happy with his new role.
 ->DONE

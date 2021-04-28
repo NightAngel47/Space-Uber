@@ -12,9 +12,9 @@ You radio the miners and offer them use of your guns to cut through the stone th
 -> END
 
 == Hire == 
-You radio the miners and offer the employees jobs on an interstellar courier ship. Given how long the station had been tugged around the belt, several apply to join your crew out of sheer wanderlust. A couple more apply becayse they know their industry is dying. Regardless, your bunks are filled out, and the station gets some credits out of it thanks to contract cancellations. Maybe it'll be enough to get their drills  in order and keep them floating a bit longer.
+You radio the miners and offer the employees jobs on an interstellar courier ship. Given how long the station had been tugged around the belt, several apply to join your crew out of sheer wanderlust. A couple more apply because they know their industry is dying. Regardless, your bunks are filled with more mouths to feed, and the station gets some credits out of it thanks to contract cancellations. Maybe it'll be enough to get their drills  in order and keep them floating a bit longer.
 -> END 
 
 == Repair ==
-You radio the miners and ask if you could dock momentarily, get done the sort of repairs impossible at light speed. They accept and graciously offer access to scrap they've pulled from the belt. In the few hours you have, your engineering team grafts the scrap onto your hull without affecting aerodynamics too harshly. 
+You radio the miners and ask if you could dock momentarily, get done the sort of repairs impossible at light speed. They accept and graciously offer access to scrap they've pulled from the belt, for a price. In the few hours you have, your engineering team grafts the scrap onto your hull without affecting aerodynamics too harshly. 
 -> END

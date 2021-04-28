@@ -1,2 +1,2 @@
-After your tense conversation with the CEO of Kellis and your encounter with those golden beasts, you must continue to the next sector of the solar system to collect two more assets. 
-The amount of the golden beasts are increasing and the solar flares are only growing in power. Can you figure out what's going on with Avanshore? And more importantly, is there any way you can fix it all?
+After your tense conversation with the Kellis CEO and your encounter with the monsters on Echo-28 and Apotheo, you must continue to the next sector of the solar system to collect two more assets. Kellis keeps pushing you on to the next pickup point faster than the last, and given what what you've seen, you can't blame them. Avanshore is only going to get worse, so they're trying to get what they can out now. 
+Still, you wonder if there's a method to all this, if there's anything Kellis could do to fix it. Even if there was, would they?
