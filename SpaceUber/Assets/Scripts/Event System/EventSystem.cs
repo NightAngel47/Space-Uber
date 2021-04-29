@@ -22,7 +22,6 @@ public class EventSystem : MonoBehaviour
 	private ShipStats ship;
 	private Tick tick;
 	private AdditiveSceneManager asm;
-	private EventCanvas eventCanvas;
     private EventPromptButton eventPromptButton;
     private ProgressBarUI progressBar;
 	private CampaignManager campMan;
@@ -125,10 +124,8 @@ public class EventSystem : MonoBehaviour
 		if (intro != null)
         {
 			// Load Event_General Scene for upcoming event
-			asm.LoadSceneMerged("Event_NoChoices");
+			asm.LoadSceneSeperate("Event_NoChoices");
 			yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_NoChoices").isLoaded);
-
-			eventCanvas = FindObjectOfType<EventCanvas>();
 
 			CreateEvent(intro);
         }
@@ -405,7 +402,7 @@ public class EventSystem : MonoBehaviour
 		CrewViewManager.Instance.DisableCrewView();
 		StartCoroutine(AudioManager.instance.Fade(AudioManager.instance.GetCurrentRadioSong(), 1, false));
 
-		eventCanvas = FindObjectOfType<EventCanvas>();
+		EventCanvas eventCanvas = FindObjectOfType<EventCanvas>();
 		eventInstance = Instantiate(newEvent, eventCanvas.canvas.transform);
 
 		if (eventInstance.TryGetComponent(out InkDriverBase inkDriver))
