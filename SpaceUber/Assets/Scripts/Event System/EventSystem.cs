@@ -557,7 +557,7 @@ public class EventSystem : MonoBehaviour
 
 			
 			if (eventDriver.MatchesRoomType(room) /*&& !eventDriver.playedOnce*/
-                && HasRequiredStats(eventDriver.requiredStats,eventDriver.isScalableEvent))
+                && HasRequiredStats(eventDriver.requiredStats,true))
 
 			{
 				return true; //end function as soon as one is found
@@ -574,7 +574,7 @@ public class EventSystem : MonoBehaviour
 			CharacterEvent charEvent = campMan.GetCharacterEvents()[i].GetComponent<CharacterEvent>();
 			
 			if (charEvent.MatchesRoomType(roomName) /*&& charEvent.playedOnce == false*/
-                && HasRequiredStats(charEvent.requiredStats,charEvent.isScalableEvent))
+                && HasRequiredStats(charEvent.requiredStats,true))
             {
 				eligibleEvents.Add(campMan.GetCharacterEvents()[i]);
             }
@@ -608,14 +608,14 @@ public class EventSystem : MonoBehaviour
 			List<Requirements> requirements = thisEvent.GetComponent<InkDriverBase>().requiredStats;
 
 			//if the event chosen has requirements that are not met
-			if (!HasRequiredStats(requirements, thisEvent.GetComponent<InkDriverBase>().isScalableEvent))
+			if (!HasRequiredStats(requirements, true))
 			{
 				//copies the current index
 				int newIndex = randomEventIndex;
 				List<GameObject> newRandomEvents = randomEvents;
 
 				//Copies the list to shuffle until it finds a new event to do or runs out of ideas
-				while (!HasRequiredStats(requirements, thisEvent.GetComponent<InkDriverBase>().isScalableEvent) && newIndex != randomEvents.Count)
+				while (!HasRequiredStats(requirements, true) && newIndex != randomEvents.Count)
 				{
 					//choose an event to check
 					int newNum = Random.Range(newIndex, newRandomEvents.Count);
@@ -645,7 +645,7 @@ public class EventSystem : MonoBehaviour
 	/// </summary>
 	/// <param name="selectedRequirements"></param>
 	/// <returns></returns>
-	private bool HasRequiredStats(List<Requirements> selectedRequirements, bool scalable)
+	private bool HasRequiredStats(List<Requirements> selectedRequirements, bool scalable = false)
 	{
 		bool result = true;
 
