@@ -106,6 +106,7 @@ public class EventChoice
             for (int i = 0; i < choiceRequirements.Count; i++)
             {
                 choiceRequirements[i].isScalableEvent = isScalableEvent;
+
                 if (!choiceRequirements[i].MatchesRequirements(ship, driver.campMan))
                 {
                     requirementMatch = false;

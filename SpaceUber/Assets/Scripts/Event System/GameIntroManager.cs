@@ -16,7 +16,6 @@ using TMPro;
 
 public class GameIntroManager : MonoBehaviour
 {
-    private AdditiveSceneManager asm;
     private EventCanvas eventCanvas;
     [Tooltip("Attach the.JSON file you want read to this")]
     public TextAsset inkJSONAsset;
@@ -24,17 +23,10 @@ public class GameIntroManager : MonoBehaviour
     [SerializeField] private bool hasAnimatedBG = false;
     [SerializeField, HideIf("hasAnimatedBG")] private Sprite backgroundImage;
     [SerializeField, ShowIf("hasAnimatedBG")] private GameObject backgroundAnimation;
-    public string EventName => eventName;
 
-    //A prefab of the button we will generate every time a choice is needed
-    [SerializeField, Tooltip("Attach the prefab of a choice button to this")]
-    private Button buttonPrefab;
-
-    [HideInInspector] public CampaignManager campMan;
     private Transform buttonGroup;
     private TMP_Text titleBox;
     private TMP_Text textBox;
-    [HideInInspector] public GameObject resultsBox;
     private Image backgroundUI;
 
     [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
@@ -63,11 +55,13 @@ public class GameIntroManager : MonoBehaviour
         }
     }
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
         StartCoroutine(AudioManager.instance.Fade(AudioManager.instance.GetCurrentRadioSong(), 1, false));
-        asm = FindObjectOfType<AdditiveSceneManager>();
+        
         story = new Story(inkJSONAsset.text); //this draws text out of the JSON file
+        
+        yield return new WaitUntil(() => FindObjectOfType<EventCanvas>());
         AssignStatusFromEventSystem();
 
         Refresh(); //starts the dialogue
@@ -85,15 +79,11 @@ public class GameIntroManager : MonoBehaviour
 
     public void AssignStatusFromEventSystem()
     {
-        eventCanvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<EventCanvas>();
+        eventCanvas = FindObjectOfType<EventCanvas>();
         titleBox = eventCanvas.titleBox;
         textBox = eventCanvas.textBox;
-        resultsBox = eventCanvas.choiceResultsBox;
         backgroundUI = eventCanvas.backgroundImage;
         buttonGroup = eventCanvas.buttonGroup;
-
-        resultsBox.transform.GetChild(0).GetComponent<TMP_Text>().text = "";
-        resultsBox.SetActive(false);
     }
 
     public void ConcludeEvent()
@@ -105,25 +95,6 @@ public class GameIntroManager : MonoBehaviour
                 GameManager.instance.ChangeInGameState(InGameStates.JobSelect);
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public IEnumerator PlayGameIntro()
-    {
-        yield return new WaitForSeconds(2);
-    }
-
-    private void CreateEvent(GameObject newEvent)
-    {
-        
-
-        eventCanvas = FindObjectOfType<EventCanvas>();
-
     }
 
     /// <summary>

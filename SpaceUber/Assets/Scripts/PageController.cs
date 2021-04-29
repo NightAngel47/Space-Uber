@@ -37,14 +37,18 @@ public class PageController : MonoBehaviour
         else
         {
             InkDriverBase inkDriver = FindObjectOfType<InkDriverBase>();
-            if(inkDriver && !inkDriver.ShowChoices())
+            if(inkDriver && !inkDriver.ShowChoices()) // normal
             {
                 inkDriver.ConcludeEvent();
             }
-            else if(!inkDriver)
+            else if(!inkDriver && FindObjectOfType<GameIntroManager>()) // game intro
             {
                 GameIntroManager intro = FindObjectOfType<GameIntroManager>();
                 intro.ConcludeEvent();
+            }
+            else if(FindObjectOfType<MoneyEndingBehaviour>()) // endings
+            {
+                FindObjectOfType<MoneyEndingBehaviour>().TransitionToScene();
             }
         }
 
