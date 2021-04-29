@@ -3846,13 +3846,73 @@ PrefabInstance:
     - target: {fileID: 1745659671281333166, guid: bc69c8e122dd87e4787c158acaba7e67,
         type: 3}
       propertyPath: tutorials.Array.data[2].tutorialMessages.Array.data[1].selectRoom
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1745659671281333166, guid: bc69c8e122dd87e4787c158acaba7e67,
         type: 3}
       propertyPath: backButton
       value: 
       objectReference: {fileID: 1320066743}
+    - target: {fileID: 1745659671281333166, guid: bc69c8e122dd87e4787c158acaba7e67,
+        type: 3}
+      propertyPath: tutorials.Array.data[1].tutorialMessages.Array.data[0].continueOnPlaceRoom
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745659671281333166, guid: bc69c8e122dd87e4787c158acaba7e67,
+        type: 3}
+      propertyPath: tutorials.Array.data[1].tutorialMessages.Array.data[0].continueOnDeleteRoom
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745659671281333166, guid: bc69c8e122dd87e4787c158acaba7e67,
+        type: 3}
+      propertyPath: tutorials.Array.data[1].tutorialMessages.Array.data[2].continueOnDeleteRoom
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745659671281333166, guid: bc69c8e122dd87e4787c158acaba7e67,
+        type: 3}
+      propertyPath: tutorials.Array.data[1].tutorialMessages.Array.data[4].continueOnPlaceRoom
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745659671281333166, guid: bc69c8e122dd87e4787c158acaba7e67,
+        type: 3}
+      propertyPath: tutorials.Array.data[1].tutorialMessages.Array.data[1].continueOnRoomRotate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745659671281333166, guid: bc69c8e122dd87e4787c158acaba7e67,
+        type: 3}
+      propertyPath: tutorials.Array.data[2].tutorialMessages.Array.data[1].continueOnAddCrew
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745659671281333166, guid: bc69c8e122dd87e4787c158acaba7e67,
+        type: 3}
+      propertyPath: tutorials.Array.data[2].tutorialMessages.Array.data[2].continueOnToggleCV
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745659671281333166, guid: bc69c8e122dd87e4787c158acaba7e67,
+        type: 3}
+      propertyPath: tutorials.Array.data[2].tutorialMessages.Array.data[4].continueOnPlaceRoom
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745659671281333166, guid: bc69c8e122dd87e4787c158acaba7e67,
+        type: 3}
+      propertyPath: tutorials.Array.data[2].tutorialMessages.Array.data[4].continueOnDeleteRoom
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745659671281333166, guid: bc69c8e122dd87e4787c158acaba7e67,
+        type: 3}
+      propertyPath: tutorials.Array.data[2].tutorialMessages.Array.data[4].continueOnRoomRotate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745659671281333166, guid: bc69c8e122dd87e4787c158acaba7e67,
+        type: 3}
+      propertyPath: tutorials.Array.data[1].tutorialMessages.Array.data[5].ghostCursorCrewBunks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745659671281333166, guid: bc69c8e122dd87e4787c158acaba7e67,
+        type: 3}
+      propertyPath: tutorials.Array.data[1].tutorialMessages.Array.data[5].ghostCursorStatBar
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc69c8e122dd87e4787c158acaba7e67, type: 3}
 --- !u!114 &1320066743 stripped
