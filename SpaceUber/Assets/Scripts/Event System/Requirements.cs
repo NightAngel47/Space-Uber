@@ -116,7 +116,7 @@ public class Requirements
     #endregion
 
     #region Room Requirement Variables
-    public enum RoomType
+    public enum RoomType //these are not using the proper roomtype enum found in Roomstats as to avoid unnecessary prefab searches
     {
         ArmorPlating,
         Armory,
@@ -167,6 +167,12 @@ public class Requirements
     //public string campaign;
     //[HideInInspector] public List<string> PossibleCampaigns => new List<string>() { "NA", "Catering to the Rich" };
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="thisShip"></param>
+    /// <param name="campMan"></param>
+    /// <returns></returns>
     public bool MatchesRequirements(ShipStats thisShip, CampaignManager campMan)
     {
         bool result = true;
@@ -174,85 +180,56 @@ public class Requirements
         if (isStatRequirement)
         {
             int shipStat = 0;
-
-            if(isScalableEvent) //random events get scaled by campaign number
+            int thisAmount;
+            if (isScalableEvent ) //random events get scaled by campaign number
             {
-                requiredAmount = Mathf.RoundToInt(requiredAmount * campMan.GetMultiplier(selectedResource));
-                
-                switch (selectedResource)
-                {
-                    case ResourceDataTypes._HullDurability:
-                        shipStat = (int)thisShip.ShipHealthCurrent.x;
-                        break;
-
-                    case ResourceDataTypes._Energy:
-                        shipStat = (int)thisShip.Energy.x;
-                        break;
-
-                    case ResourceDataTypes._Crew:
-                        shipStat = (int)thisShip.CrewCurrent.x;
-                        break;
-
-                    case ResourceDataTypes._Food:
-                        shipStat = thisShip.Food;
-                        break;
-
-                    case ResourceDataTypes._ShipWeapons:
-                        shipStat = thisShip.ShipWeapons;
-                        break;
-
-                    case ResourceDataTypes._Security:
-                        shipStat = thisShip.Security;
-                        break;
-
-                    case ResourceDataTypes._CrewMorale:
-                        shipStat = MoraleManager.instance.CrewMorale;
-                        break;
-
-                    case ResourceDataTypes._Credits:
-                        shipStat = thisShip.Credits;
-                        break;
-                }
+                thisAmount = Mathf.RoundToInt(requiredAmount * campMan.GetMultiplier(selectedResource));                
             }
             else
             {
-                switch (selectedResource)
-                {
-
-                    case ResourceDataTypes._HullDurability:
-                        shipStat = (int)thisShip.ShipHealthCurrent.x;
-                        break;
-                    case ResourceDataTypes._Energy:
-                        shipStat = (int)thisShip.Energy.x;
-                        break;
-                    case ResourceDataTypes._Crew:
-                        shipStat = (int)thisShip.CrewCurrent.x;
-                        break;
-                    case ResourceDataTypes._Food:
-                        shipStat = thisShip.Food;
-                        break;
-                    case ResourceDataTypes._ShipWeapons:
-                        shipStat = thisShip.ShipWeapons;
-                        break;
-                    case ResourceDataTypes._Security:
-                        shipStat = thisShip.Security;
-                        break;
-                    case ResourceDataTypes._CrewMorale:
-                        shipStat = MoraleManager.instance.CrewMorale;
-                        break;
-                    case ResourceDataTypes._Credits:
-                        shipStat = thisShip.Credits;
-                        break;
-                }
+                thisAmount = requiredAmount;
             }
+            switch (selectedResource)
+            {
+                case ResourceDataTypes._HullDurability:
+                    shipStat = (int)thisShip.ShipHealthCurrent.x;
+                    break;
 
+                case ResourceDataTypes._Energy:
+                    shipStat = (int)thisShip.Energy.x;
+                    break;
+
+                case ResourceDataTypes._Crew:
+                    shipStat = (int)thisShip.CrewCurrent.x;
+                    break;
+
+                case ResourceDataTypes._Food:
+                    shipStat = thisShip.Food;
+                    break;
+
+                case ResourceDataTypes._ShipWeapons:
+                    shipStat = thisShip.ShipWeapons;
+                    break;
+
+                case ResourceDataTypes._Security:
+                    shipStat = thisShip.Security;
+                    break;
+
+                case ResourceDataTypes._CrewMorale:
+                    shipStat = MoraleManager.instance.CrewMorale;
+                    break;
+
+                case ResourceDataTypes._Credits:
+                    shipStat = thisShip.Credits;
+                    break;
+            }
             if (lessThan)
             {
-                result = shipStat < requiredAmount;
+                result = shipStat < thisAmount;
             }
             else
             {
-                result = shipStat >= requiredAmount;
+                result = shipStat >= thisAmount;
             }
         }
 
@@ -310,6 +287,7 @@ public class Requirements
         }
         else if (isRoomRequirement)
         {
+            //outdated system, but uses integers associated with each room to check if they are on the ship
             RoomStats[] existingRooms = GameObject.FindObjectsOfType<RoomStats>();
             List<int> roomIDs = new List<int>();
 

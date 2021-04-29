@@ -79,9 +79,9 @@ public class ObjectMover : MonoBehaviour
                     Placement();
                 }
 
-                if(Input.GetMouseButtonDown(1))
+                if(Input.GetButtonDown("DeleteRoom"))
                 {
-                    StartCoroutine(os.Delete(os.isEdited));
+                    StartCoroutine(os.Delete(os.isEdited, gameObject));
                 }
             }
         }
@@ -118,6 +118,8 @@ public class ObjectMover : MonoBehaviour
                 if (isBeingDragged == false)
                 {
                     isBeingDragged = true;
+                    
+                    StartCoroutine(WaitToCallCheck());
                 }
             }
         }
@@ -188,8 +190,9 @@ public class ObjectMover : MonoBehaviour
     {
         if (GameManager.instance.currentGameState != InGameStates.ShipBuilding) return;
         //Checks to see if we have enough credits or energy to place the room
-        if (FindObjectOfType<ShipStats>().Credits >= gameObject.GetComponent<RoomStats>().price[gameObject.GetComponent<RoomStats>().GetRoomLevel() - 1] && 
-            FindObjectOfType<ShipStats>().Energy.z >= gameObject.GetComponent<RoomStats>().minPower[gameObject.GetComponent<RoomStats>().GetRoomLevel() - 1]) 
+        if ((FindObjectOfType<ShipStats>().Credits >= gameObject.GetComponent<RoomStats>().price[gameObject.GetComponent<RoomStats>().GetRoomLevel() - 1] && 
+            FindObjectOfType<ShipStats>().Energy.z >= gameObject.GetComponent<RoomStats>().minPower[gameObject.GetComponent<RoomStats>().GetRoomLevel() - 1]) ||
+            os.isEdited == true) 
         {
             if (os.needsSpecificLocation == false) //Check spots normally
             {
@@ -216,9 +219,17 @@ public class ObjectMover : MonoBehaviour
                 //makes sure the room is on the lower layer so that the new rooms can be on top without flickering
                 foreach (SpriteRenderer spriteRenderer in  gameObject.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>())
                 {
-                    spriteRenderer.sortingOrder -= 5;
+                    spriteRenderer.sortingOrder -= 3;
                 }
-                
+
+                //if (os.objectNum == 1) //if hydroponics adjust other sprites sorting order
+                //{
+                //    for (int i = 0; i < gameObject.transform.GetChild(0).gameObject.transform.childCount; i++)
+                //    {
+                //        gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sortingOrder -= 3;
+                //    }
+                //}
+
                 hasPlaced = true;
 
                 if (os.needsSpecificLocation == true)
@@ -241,9 +252,9 @@ public class ObjectMover : MonoBehaviour
                     gameObject.GetComponent<RoomStats>().levelIconObject.GetComponent<Image>().color = ObjectScript.c;
                 }
                 
-                gameObject.GetComponent<ObjectMover>().enabled = false;
-                
-                FindObjectOfType<EditCrewButton>().CheckForRoomsCall();
+                enabled = false;
+
+                StartCoroutine(WaitToCallCheck());
             }
 
             else //If something is placed allow player to keep moving room
@@ -282,4 +293,10 @@ public class ObjectMover : MonoBehaviour
     //    gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = ObjectScript.c;
     //    Destroy(gameObject.GetComponent<ObjectMover>());
     //}
+
+    private IEnumerator WaitToCallCheck()
+    {
+        yield return new WaitForSeconds(0.25f);
+        FindObjectOfType<CrewManagement>().CheckForRoomsCall();
+    }
 }

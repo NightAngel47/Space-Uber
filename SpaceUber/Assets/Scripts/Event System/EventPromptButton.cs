@@ -25,7 +25,9 @@ public class EventPromptButton : MonoBehaviour
     {
         if(EventSystem.instance.eventButtonSpawn == true)
         {
-            eventButton.SetButtonInteractable(!(OverclockController.instance.overclocking || EventSystem.instance.chatting || EventSystem.instance.mutiny));
+            eventButton.SetButtonInteractable(!
+                (OverclockController.instance.overclocking || EventSystem.instance.chatting ||
+                EventSystem.instance.mutiny || EventSystem.instance.eventActive));
         }
     }
 }

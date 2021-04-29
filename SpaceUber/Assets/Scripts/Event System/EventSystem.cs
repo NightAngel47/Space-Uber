@@ -22,7 +22,6 @@ public class EventSystem : MonoBehaviour
 	private ShipStats ship;
 	private Tick tick;
 	private AdditiveSceneManager asm;
-	private EventCanvas eventCanvas;
     private EventPromptButton eventPromptButton;
     private ProgressBarUI progressBar;
 	private CampaignManager campMan;
@@ -30,14 +29,16 @@ public class EventSystem : MonoBehaviour
 	private int maxEvents = 0;
 	private List<GameObject> storyEvents = new List<GameObject>();
 	private List<GameObject> randomEvents = new List<GameObject>();
-	[SerializeField]private List<GameObject> characterEvents = new List<GameObject>();
 
-    //how many events (story and random) have occurred
-    [HideInInspector] public int overallEventIndex = 0;
+
+
+	//how many events (story and random) have occurred
+	[HideInInspector] public int overallEventIndex = 0;
 	// How many story events have occurred. Tells the code which story event to play
 	private int storyEventIndex = 0;
 	//how many random events have passed. Tells code how many events to ignore at the start of the list
 	private int randomEventIndex = 0;
+
 
 	/// <summary>
 	/// The specific event being played right now
@@ -80,8 +81,9 @@ public class EventSystem : MonoBehaviour
 
 	private int randCheatIndex = 0;
 	private int charCheatIndex = 0;
-	public bool isCheatEvent = false;
+	private bool isCheatEvent = false;
 	[HideInInspector] public bool chatting = false; //Whether or not the player is talking to a character
+	private int daysSinceChat;
 	[HideInInspector] public bool mutiny;
     [HideInInspector] public bool eventButtonSpawn = false; //Makes it so that the Go To Event button checks for it it can be interactable
 
@@ -99,10 +101,11 @@ public class EventSystem : MonoBehaviour
 		campMan = GetComponent<CampaignManager>();
 	}
 
+	
 	/// <summary>
     /// Plays job intro
     /// </summary>
-    public IEnumerator PlayIntro()
+    public IEnumerator PlayJobIntro()
     {
 	    yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_Runtime").isLoaded);
 	    progressBar = FindObjectOfType<ProgressBarUI>();
@@ -116,15 +119,13 @@ public class EventSystem : MonoBehaviour
 		//check for an introduction "event"
 		GameObject intro = (from introEvent in currentJob.introEvents
 			let requirements = introEvent.GetComponent<InkDriverBase>().requiredStats
-			where HasRequiredStats(requirements) select introEvent).FirstOrDefault();
+			where HasRequiredStats(requirements, introEvent.GetComponent<InkDriverBase>().isScalableEvent) select introEvent).FirstOrDefault();
 
 		if (intro != null)
         {
 			// Load Event_General Scene for upcoming event
-			asm.LoadSceneMerged("Event_NoChoices");
+			asm.LoadSceneSeperate("Event_NoChoices");
 			yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_NoChoices").isLoaded);
-
-			eventCanvas = FindObjectOfType<EventCanvas>();
 
 			CreateEvent(intro);
         }
@@ -149,8 +150,8 @@ public class EventSystem : MonoBehaviour
 			// wait till any active event is cleared before starting event timer for next event
 			yield return new WaitWhile((() => eventActive));
 
-            asm.LoadSceneMerged("Event_Prompt"); //Give option to start next event
-            yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
+            //asm.LoadSceneMerged("Event_Prompt"); //Load up the button that lets someone skip to an event
+            //yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_Prompt").isLoaded);
             
             eventPromptButton = FindObjectOfType<EventPromptButton>();
             tick.StartTickUpdate();
@@ -169,10 +170,10 @@ public class EventSystem : MonoBehaviour
                 yield return new WaitForEndOfFrame();
 			}
 
-            eventButtonSpawn = true;
-            eventPromptButton.eventButton.GoToEvent();
+			eventButtonSpawn = true;
+			eventPromptButton.eventButton.GoToEvent(); //set a listener for go to event
 
-            // roll for next event unless skipped to it
+            // roll to see if it's time to force an event
             while (!skippedToEvent && eventRollCounter <= eventChanceFreq)
             {
 				if(!mutiny) // don't increment timer during mutiny
@@ -202,10 +203,10 @@ public class EventSystem : MonoBehaviour
             FindObjectOfType<RoomPanelToggle>()?.ClosePanel();
 
             //wait until done with minigame and/or character event
-            yield return new WaitUntil(() => !OverclockController.instance.overclocking && !chatting);
+            yield return new WaitUntil(() => !OverclockController.instance.overclocking && !chatting &&!isCheatEvent);
 
-            //If event button was not clicked ahead of time
-            if (nextEventLockedIn && SceneManager.GetSceneByName("Event_Prompt").isLoaded)
+            //If event button was not clicked ahead of time, set the backdrop to avoid letting anyone click on anything
+            if (nextEventLockedIn)
             {
                 eventPromptButton.backDrop.SetActive(true);
             }
@@ -230,10 +231,12 @@ public class EventSystem : MonoBehaviour
 		if (skippedToEvent) return;
 
 	    skippedToEvent = true;
-	    asm.UnloadScene("Event_Prompt");
+		eventButtonSpawn = false;
+		eventPromptButton.eventButton.SetButtonInteractable(false);
+		eventPromptButton.backDrop.SetActive(false);
 
-	    //if it's an even-numbered event, do a story
-	    if (overallEventIndex % 2 == 1 && overallEventIndex != 0)
+		//if it's an even-numbered event, do a story
+		if (overallEventIndex % 2 == 1 && overallEventIndex != 0)
 	    {
 		    StartCoroutine(StartStoryEvent());
 	    }
@@ -329,9 +332,9 @@ public class EventSystem : MonoBehaviour
 
 		if(charCheatIndex < 0)
         {
-			charCheatIndex = characterEvents.Count - 1;
+			charCheatIndex = campMan.GetCharacterEvents().Count - 1;
 		}
-		else if(charCheatIndex > characterEvents.Count - 1)
+		else if(charCheatIndex > campMan.GetCharacterEvents().Count - 1)
         {
 			charCheatIndex = 0;
 		}
@@ -339,8 +342,8 @@ public class EventSystem : MonoBehaviour
 		asm.LoadSceneMerged("Event_CharacterFocused");
 		yield return new WaitUntil(() => SceneManager.GetSceneByName("Event_CharacterFocused").isLoaded);
 
-		print("About to play '" + characterEvents[charCheatIndex] + "'");
-		CreateEvent(characterEvents[charCheatIndex]);
+		print("About to play '" + campMan.GetCharacterEvents()[charCheatIndex] + "'");
+		CreateEvent(campMan.GetCharacterEvents()[charCheatIndex]);
 		tick.StopTickUpdate();
 	}
 
@@ -349,12 +352,12 @@ public class EventSystem : MonoBehaviour
 	/// </summary>
 	/// <param name="possibleEvents"></param>
 	/// <returns></returns>
-	public IEnumerator StartNewCharacterEvent(List<GameObject> possibleEvents)
+	public IEnumerator StartNewCharacterEvent(RoomStats.RoomType room)
     {
 		chatting = true;
 		FindObjectOfType<RoomPanelToggle>()?.ClosePanel();
-		GameObject newEvent = FindNextCharacterEvent(possibleEvents);
-
+		GameObject newEvent = RandomizeCharacterEvent(room);
+		daysSinceChat = 0;
 		if (newEvent != null)
         {
 			asm.LoadSceneMerged("Event_CharacterFocused");
@@ -399,7 +402,7 @@ public class EventSystem : MonoBehaviour
 		CrewViewManager.Instance.DisableCrewView();
 		StartCoroutine(AudioManager.instance.Fade(AudioManager.instance.GetCurrentRadioSong(), 1, false));
 
-		eventCanvas = FindObjectOfType<EventCanvas>();
+		EventCanvas eventCanvas = FindObjectOfType<EventCanvas>();
 		eventInstance = Instantiate(newEvent, eventCanvas.canvas.transform);
 
 		if (eventInstance.TryGetComponent(out InkDriverBase inkDriver))
@@ -409,7 +412,8 @@ public class EventSystem : MonoBehaviour
 		}
 
         eventActive = true;
-		//Does not increment overall event index because intro event does not increment it
+
+		//Does not increment overall event index here because intro event does not increment it
 		tick.StopTickUpdate();
         AnalyticsManager.OnEventStarted(inkDriver, nextEventLockedIn);
 	}
@@ -429,7 +433,6 @@ public class EventSystem : MonoBehaviour
 	    {
 		    isRegularEvent = false;
 		    chatting = false;
-		    tick.DaysSinceChat = 0;
 		    eventInstance.GetComponent<CharacterEvent>().EndCharacterEvent();
 	    }
 	    else if (concludedEvent.isMutinyEvent)
@@ -437,8 +440,12 @@ public class EventSystem : MonoBehaviour
 		    isRegularEvent = false;
 		    mutiny = false;
 	    }
+		else
+        {
+			daysSinceChat++; //all normal events raise days since chat
+		}
 
-	    AnalyticsManager.OnEventComplete(concludedEvent);
+		AnalyticsManager.OnEventComplete(concludedEvent);
 	    Destroy(eventInstance);
 
 	    //Go back to travel scene
@@ -450,7 +457,7 @@ public class EventSystem : MonoBehaviour
 	    //reset for next event
 	    eventActive = false;
 	    tick.StartTickUpdate();
-	    AudioManager.instance.PlayRadio(AudioManager.instance.currentStationId);
+	    AudioManager.instance.PlayRadio(AudioManager.instance.currentStationId, true);
 
 	    //set up for the next regular event
 	    if (isRegularEvent)
@@ -486,9 +493,9 @@ public class EventSystem : MonoBehaviour
 		eventActive = false;
 		eventRollCounter = 0;
 		timeBeforeEventCounter = 0;
-		tick.DaysSinceChat = 0;
 		if (travelCoroutine != null) StopCoroutine(travelCoroutine);
 		tick.StopTickUpdate();
+		daysSinceChat = 0;
 	}
 
 	public void ResetJob()
@@ -505,8 +512,8 @@ public class EventSystem : MonoBehaviour
 		eventActive = false;
 		eventRollCounter = 0;
 		timeBeforeEventCounter = 0;
-		tick.DaysSinceChat = 0;
 		if(travelCoroutine != null) StopCoroutine(travelCoroutine);
+		daysSinceChat = 0;
 	}
 
 	/// <summary>
@@ -531,7 +538,7 @@ public class EventSystem : MonoBehaviour
 		foreach (var storyEvent
 			in from storyEvent in storyEvents
 			let story = storyEvent.GetComponent<InkDriverBase>() let requirements = story.requiredStats
-			where story.storyIndex == storyEventIndex && HasRequiredStats(requirements) select storyEvent)
+			where story.storyIndex == storyEventIndex && HasRequiredStats(requirements,storyEvent.GetComponent<InkDriverBase>().isScalableEvent) select storyEvent)
 		{
 			++storyEventIndex;
 			return storyEvent;
@@ -541,14 +548,17 @@ public class EventSystem : MonoBehaviour
 		return null;
     }
 
-	private bool HasPossibleCharacterEvent(List<GameObject> possibleEvents)
-    {
-		foreach (GameObject charEvent in possibleEvents)
-		{
+	private bool HasPossibleCharacterEvent(RoomStats.RoomType room)
+    {		
+		for(int i = 0; i < campMan.GetCharacterEvents().Count; i++)
+        {
+			GameObject charEvent = campMan.GetCharacterEvents()[i];
 			CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
-			List<Requirements> requirements = eventDriver.requiredStats;
 
-			if (HasRequiredStats(requirements))
+			
+			if (eventDriver.MatchesRoomType(room) /*&& !eventDriver.playedOnce*/
+                && HasRequiredStats(eventDriver.requiredStats,true))
+
 			{
 				return true; //end function as soon as one is found
 			}
@@ -556,40 +566,29 @@ public class EventSystem : MonoBehaviour
 		return false;
     }
 
-	/// <summary>
-	/// Returns the next chosen event that can be played from the possible list supplied.
-	/// If null, do not allow players to go into the event screen. Instead, inform them that no new events
-	/// are available.
-	/// </summary>
-	/// <param name="possibleEvents"></param>
-	/// <returns></returns>
-	private GameObject FindNextCharacterEvent(List<GameObject> possibleEvents)
+	private GameObject RandomizeCharacterEvent(RoomStats.RoomType roomName)
     {
-		List<GameObject> goodEvents = new List<GameObject>(); //add all events that are possible to this list
-
-		foreach ( GameObject charEvent in possibleEvents)
+		List<GameObject> eligibleEvents = new List<GameObject>();
+        for (int i = 0; i < campMan.GetCharacterEvents().Count; i++)
         {
-			CharacterEvent eventDriver = charEvent.GetComponent<CharacterEvent>();
-			List<Requirements> requirements = eventDriver.requiredStats;
-
-			if (HasRequiredStats(requirements))
+			CharacterEvent charEvent = campMan.GetCharacterEvents()[i].GetComponent<CharacterEvent>();
+			
+			if (charEvent.MatchesRoomType(roomName) /*&& charEvent.playedOnce == false*/
+                && HasRequiredStats(charEvent.requiredStats,true))
             {
-				goodEvents.Add(charEvent);
+				eligibleEvents.Add(campMan.GetCharacterEvents()[i]);
             }
-		}
+        }
 
-		if(goodEvents.Count > 0)
-        {
-			int chosen = Random.Range(0, goodEvents.Count);
-			possibleEvents.Remove(goodEvents[chosen]); //remove this one from the list
-			return goodEvents[chosen];
-        }
-		else
-        {
-			print("Could not get an event");
-			return null;
-        }
-	}
+		int randNum = Random.Range(0, eligibleEvents.Count);
+        GameObject thisEvent = eligibleEvents[randNum];
+
+		campMan.playedEvents.Add(thisEvent);
+		campMan.charEvents.Remove(thisEvent);
+        //campMan.RemoveFromCharEvents(thisEvent);
+
+		return thisEvent;
+    }
 
 	/// <summary>
 	/// Picks a random event to spawn. The random numbers include the eventIndex to the count of storyEvents list
@@ -609,14 +608,14 @@ public class EventSystem : MonoBehaviour
 			List<Requirements> requirements = thisEvent.GetComponent<InkDriverBase>().requiredStats;
 
 			//if the event chosen has requirements that are not met
-			if (!HasRequiredStats(requirements))
+			if (!HasRequiredStats(requirements, true))
 			{
 				//copies the current index
 				int newIndex = randomEventIndex;
 				List<GameObject> newRandomEvents = randomEvents;
 
 				//Copies the list to shuffle until it finds a new event to do or runs out of ideas
-				while (!HasRequiredStats(requirements) && newIndex != randomEvents.Count)
+				while (!HasRequiredStats(requirements, true) && newIndex != randomEvents.Count)
 				{
 					//choose an event to check
 					int newNum = Random.Range(newIndex, newRandomEvents.Count);
@@ -646,12 +645,13 @@ public class EventSystem : MonoBehaviour
 	/// </summary>
 	/// <param name="selectedRequirements"></param>
 	/// <returns></returns>
-	private bool HasRequiredStats(List<Requirements> selectedRequirements)
+	private bool HasRequiredStats(List<Requirements> selectedRequirements, bool scalable = false)
 	{
 		bool result = true;
 
 		foreach (Requirements required in selectedRequirements)
 		{
+			required.isScalableEvent = scalable;
 			//break the loop the second that one requirement doesn't match
 			if (!required.MatchesRequirements(ship, campMan))
 			{
@@ -663,7 +663,7 @@ public class EventSystem : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Takes the events supplied in newJob and applies them to the event lists here
+	/// Takes the story and random events supplied in newJob and applies them to the event lists here
 	/// </summary>
 	/// <param name="newJob"></param>
 	public void TakeStoryJobEvents(Job newJob)
@@ -684,17 +684,19 @@ public class EventSystem : MonoBehaviour
         }
     }
 
-	public bool CanChat(List<GameObject> checkEvents)
+	public bool CanChat(RoomStats.RoomType myRoom)
 	{
-		//If chat has cooleddown
-		if (tick.DaysSinceChat < chatCooldown)
-		{
-			return false;
-		}
+        //If chat has cooleddown
+        if (daysSinceChat < chatCooldown)
+        {
+            print("Only " + daysSinceChat + " days since last chat");
+            return false;
+        }
 
-		//if no possible events are found
-		if (!HasPossibleCharacterEvent(checkEvents))
+        //if no possible events are found
+        if (!HasPossibleCharacterEvent(myRoom))
 		{
+			print("No character events available");
 			return false;
 		}
 

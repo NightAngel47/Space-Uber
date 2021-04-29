@@ -41,6 +41,7 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
     
     // UI variables
     [SerializeField, Foldout("UI Variables")] GameObject alertPanel;
+    public GameObject AlertPanel => alertPanel;
     [SerializeField, Foldout("UI Variables"), Tooltip("Delay is seconds between checks")] private float checkDelay = 0.1f;
     [SerializeField, Foldout("UI Variables"), Tooltip("Delay is seconds before the error appears in diagnosis")] private float diagnosisDelay = 0.1f;
     [SerializeField, Foldout("UI Variables")] private GameObject navButtons;
@@ -53,6 +54,9 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
     private ShipStats ship;
     private bool noErrors = true;
     private float entryHeight = 100;
+
+    public string[] Goods;
+    public string[] Bads;
 
     private List<GameObject> spawnedChecks = new List<GameObject>();
 
@@ -98,6 +102,7 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
                 GameObject checkEntry = Instantiate(checklistEntry, preflightList);
                 SpawnCheckEntry(checkEntry, i, true);
                 spawnedChecks.Add(checkEntry);
+                AudioManager.instance.PlaySFX(Goods[UnityEngine.Random.Range(0, Goods.Length - 1)]);
             }
             else
             {
@@ -108,7 +113,8 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
                 GameObject checkEntryError = Instantiate(checklistEntryError, preflightList);
                 SpawnCheckEntry(checkEntryError, i, false);
                 spawnedChecks.Add(checkEntryError);
-                
+                AudioManager.instance.PlaySFX(Bads[UnityEngine.Random.Range(0, Goods.Length - 1)]);
+
                 yield return new WaitForSeconds(diagnosisDelay);
                 
                 // lengthen height scroll preflight content container
@@ -135,6 +141,7 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
             
             GameObject noErrorEntry = Instantiate(diagnosisNoError, diagnosisList);
             spawnedChecks.Add(noErrorEntry);
+            AudioManager.instance.PlaySFX("Power Up");
         }
         
         yield return new WaitForSeconds(diagnosisDelay);

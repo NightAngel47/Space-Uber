@@ -84,7 +84,7 @@ public class SpawnObject : MonoBehaviour
                         }
                         break;
                     case 1:
-                        foreach (var room in GameManager.instance.allRoomList.Where(room => room.GetComponent<RoomStats>().GetRoomGroup() != 3))
+                        foreach (var room in GameManager.instance.allRoomList.Where(room => room.GetComponent<RoomStats>().GetRoomGroup() == 1 || room.GetComponent<RoomStats>().GetRoomGroup() == 2)) //gets groups 1 & 2 instead of not 3 to make sure medbay is not added
                         {
                             availableRooms.Add(room);
                         }
@@ -92,7 +92,10 @@ public class SpawnObject : MonoBehaviour
                     case 2:
                         foreach (GameObject room in GameManager.instance.allRoomList)
                         {
-                            availableRooms.Add(room);
+                            if (room.GetComponent<RoomStats>().GetRoomGroup() != 0)
+                            {
+                                availableRooms.Add(room);
+                            }
                         }
                         break;
                 }
@@ -169,6 +172,14 @@ public class SpawnObject : MonoBehaviour
                 //rooms being placed will appear on top of other rooms that are already placed
                 lastSpawned.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
 
+                if (lastSpawned.GetComponent<ObjectScript>().objectNum == 1) //if hydroponics adjust other sprites sorting order
+                {
+                    for (int i = 0; i < lastSpawned.transform.GetChild(0).gameObject.transform.childCount; i++)
+                    {
+                        lastSpawned.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sortingOrder += 3;
+                    }
+                }
+
                 ObjectScript[] otherRooms = FindObjectsOfType<ObjectScript>();
                 ObjectScript.CalledFromSpawn = true;
                 foreach (ObjectScript r in otherRooms)
@@ -191,6 +202,8 @@ public class SpawnObject : MonoBehaviour
                         }
                     }
                 }
+                
+                FindObjectOfType<CrewManagement>().CheckForRoomsCall();
                 
                 EndingStats.instance.AddToStat(1, EndingStatTypes.RoomsBought);
 

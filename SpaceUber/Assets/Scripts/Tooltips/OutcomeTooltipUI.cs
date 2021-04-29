@@ -18,14 +18,29 @@ public class OutcomeTooltipUI : MonoBehaviour
     [SerializeField] private GameObject resourceUI;
     [SerializeField] private GameObject outcomeText;
     [SerializeField] private string defaultOutcomeText;
-    [SerializeField] private string unknownOutcomeText;
-    [SerializeField] private string randomOutcomeText;
     [SerializeField] private string narrativeOutcomeText;
 
     [SerializeField] private RectTransform outcomeList;
     private CampaignManager campMan;
 
-    public void SetOutcomeData(string description, List<ChoiceOutcomes> outcomes, bool isSecret)
+    public void SetOutcomeData(string description, string secretOutcomeDescription, List<ChoiceOutcomes> outcomes)
+    {
+        //if there is no supplied description, use the secret description for it
+        if (description == "")
+        {
+            outcomeDescUI.text = secretOutcomeDescription;
+        }
+        else
+        {
+            outcomeDescUI.text = description;
+            GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
+            outcomeTextGO.GetComponent<TMP_Text>().text = secretOutcomeDescription;
+        }
+
+        
+        
+    }
+    public void SetOutcomeData(string description, List<ChoiceOutcomes> outcomes)
     {
         if (!campMan)
         { campMan = FindObjectOfType<CampaignManager>(); }
@@ -40,13 +55,7 @@ public class OutcomeTooltipUI : MonoBehaviour
             outcomeDescUI.text = description;
         }
 
-        //if the outcome is meant to be secretive
-        if(isSecret)
-        {
-            GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
-            outcomeTextGO.GetComponent<TMP_Text>().text = unknownOutcomeText;
-        }
-        else if (outcomes.Count > 0)
+        if (outcomes.Count > 0)
         {
             foreach (var outcome in outcomes)
             {
@@ -55,26 +64,46 @@ public class OutcomeTooltipUI : MonoBehaviour
                     GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
                     outcomeTextGO.GetComponent<TMP_Text>().text = narrativeOutcomeText;
                 }
-                else
+                else //if resource related, but not morale
                 {
                     GameObject resourceGO = Instantiate(resourceUI, outcomeList.transform);
-                    resourceGO.transform.GetChild(0).GetComponent<Image>().sprite = 
-                        GameManager.instance.GetResourceData((int)outcome.resource).resourceIcon; // resource icon
-                    resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = 
-                        GameManager.instance.GetResourceData((int)outcome.resource).resourceName; // resource name
+                    resourceGO.transform.GetChild(0).GetComponent<Image>().sprite =
+                        GameManager.instance.GetResourceData((int)outcome.resource).resourceIcon; // get resource icon
                     
-                    if(outcome.isScaledOutcome)
-                    {
-                        int newAmount = Mathf.RoundToInt(outcome.amount * campMan.GetMultiplier(outcome.resource));
-                        resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = newAmount.ToString(); // resource amount
-
-                    }
-                    else
-                    {
-                        resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = outcome.amount.ToString(); // resource amount
-                    }
 
                     resourceGO.transform.GetChild(3).gameObject.SetActive(false); // outcome probability
+                    if (outcome.resource != ResourceDataTypes._CrewMorale) 
+                    {
+                        resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text =
+                        GameManager.instance.GetResourceData((int)outcome.resource).resourceName; // get resource name
+                        if (outcome.isScaledOutcome)
+                        {
+                            int newAmount = Mathf.RoundToInt(outcome.amount * campMan.GetMultiplier(outcome.resource));
+                            resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = newAmount.ToString(); // resource amount
+
+                        }
+                        else
+                        {
+                            resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = outcome.amount.ToString(); // resource amount
+                        }
+                    }
+                    else //if morale, just add a plus or minus sign to it
+                    {
+                        resourceGO.transform.GetChild(2).GetComponent<TMP_Text>().text = ""; //show no numbers here
+                        if (outcome.amount >= 0)
+                        {
+                            resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + 
+                                GameManager.instance.GetResourceData((int)outcome.resource).resourceName; // get resource name
+                        }
+                        
+                        else
+                        {
+                            resourceGO.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" +
+                                GameManager.instance.GetResourceData((int)outcome.resource).resourceName; // get resource name
+                        }
+                    }
+                    
+
                 }
             }
         }
@@ -86,36 +115,43 @@ public class OutcomeTooltipUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Set outcome data for random events 
+    /// Set outcome data for random events that will be secret
     /// </summary>
     /// <param name="description">The description of the event</param>
     /// <param name="randomOutcomes">List of random outcomes possible</param>
     /// <param name="isSecret">Whether or not the result of this choice is secret</param>
-    public void SetOutcomeData(string description, List<EventChoice.MultipleRandom> randomOutcomes, bool isSecret)
+    public void SetOutcomeData(string description, string secretEffectDescription, List<EventChoice.MultipleRandom> randomOutcomes)
     {
-        if(description == "")
+        if (description == "") //if no description supplied, use secret effect description for first spot
         {
             outcomeDescUI.gameObject.SetActive(false);
+            if (randomOutcomes.Count > 0) //there are actually outcomes listed
+            {
+                outcomeDescUI.GetComponent<TMP_Text>().text = secretEffectDescription;
+            }
+            else //this does not does effect any sort of stats
+            {
+                outcomeDescUI.GetComponent<TMP_Text>().text = defaultOutcomeText;
+            }
         }
         else
         {
             outcomeDescUI.text = description;
+
+            if (randomOutcomes.Count > 0) //there are actually outcomes listed
+            {
+                GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
+                outcomeTextGO.GetComponent<TMP_Text>().text = secretEffectDescription;
+            }
+            else //this does not does effect any sort of stats
+            {
+                GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
+                outcomeTextGO.GetComponent<TMP_Text>().text = defaultOutcomeText;
+            }
         }
 
-        if (isSecret) //outcome is secretive
-        {
-            GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
-            outcomeTextGO.GetComponent<TMP_Text>().text = unknownOutcomeText;
-        }
-        else if (randomOutcomes.Count > 0) //uses a random outcome
-        {
-            GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
-            outcomeTextGO.GetComponent<TMP_Text>().text = randomOutcomeText;
-        }
-        else //this does not does effect any sort of stats
-        {
-            GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
-            outcomeTextGO.GetComponent<TMP_Text>().text = defaultOutcomeText;
-        }
+        
+
+
     }
 }

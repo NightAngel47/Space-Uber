@@ -53,13 +53,7 @@ public class InkDriverBase : MonoBehaviour
     [Dropdown("eventMusicTracks")]
     public string eventBGM;
 
-    private List<string> eventMusicTracks
-    {
-        get
-        {
-            return new List<string>() { "", "General Theme", "Wormhole", "Engine Malfunction", "Engine Delivery", "Black Market", "Clone Ambush Intro", "Safari Tampering", "Clone Ambush Negotiation", "Clone Ambush Fight", "Ejection", "Asteroid Mining", "Blockade", "Crop Blight", "Door Malfunction", "Drug Overdose", "Escaped Convicts", "Septic Malfunction", "Soothing Light", "Spatial Aurora", "Food Poisoning", "Hostage Situation", "Hull Maintenance", "Death Theme", "Shocking Situation", "Stranded Stranger", "Void Music", "Void Music [Muffled]", "Ammunition Error", "An Innocent Proposal", "Charity Donation", "Crew Fight", "Distress Signal", "Drag Race", "Frozen in Time", "Fungus Among Us", "Homesick", "Just a Comet", "Lost in Translation", "Neon Nightmare [Chill]", "Neon Nightmare", "Surprise Mechanics", "Taking a Toll", "Thumping" };
-        }
-    }
+    private List<string> eventMusicTracks => new List<string>() { "", "General Theme", "Wormhole", "Engine Malfunction", "Engine Delivery", "Black Market", "Clone Ambush Intro", "Safari Tampering", "Clone Ambush Negotiation", "Clone Ambush Fight", "Ejection", "Asteroid Mining", "Blockade", "Crop Blight", "Door Malfunction", "Drug Overdose", "Escaped Convicts", "Septic Malfunction", "Soothing Light", "Spatial Aurora", "Food Poisoning", "Hostage Situation", "Hull Maintenance", "Death Theme", "Shocking Situation", "Stranded Stranger", "Void Music", "Void Music [Muffled]", "Ammunition Error", "An Innocent Proposal", "Charity Donation", "Crew Fight", "Distress Signal", "Drag Race", "Frozen in Time", "Fungus Among Us", "Homesick", "Just a Comet", "Lost in Translation", "Neon Nightmare [Chill]", "Neon Nightmare", "Surprise Mechanics", "Taking a Toll", "Thumping" };
 
     [SerializeField] public List<Requirements> requiredStats = new List<Requirements>();
 
@@ -81,6 +75,7 @@ public class InkDriverBase : MonoBehaviour
     /// </summary>
     private bool donePrinting = true;
     private bool showingChoices = false;
+
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -122,8 +117,11 @@ public class InkDriverBase : MonoBehaviour
         thisShip = ship;
         campMan = campaignManager;
 
-        resultsBox.transform.GetChild(0).GetComponent<TMP_Text>().text = "";
-        resultsBox.SetActive(false);
+        if (resultsBox != null)
+        {
+            resultsBox.transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = "";
+            resultsBox.SetActive(false);
+        }
     }
 
     public void ConcludeEvent()
@@ -175,11 +173,11 @@ public class InkDriverBase : MonoBehaviour
     /// <returns>Nextchar, but replaced if necessary</returns>
     private char CheckChar(char nextChar)
     {
-        if (nextChar == '’' || nextChar == '’' || nextChar == '‘' || nextChar == '’' || nextChar == '’')
+        if (nextChar == 'ï¿½' || nextChar == 'ï¿½' || nextChar == 'ï¿½' || nextChar == 'ï¿½' || nextChar == 'ï¿½' || nextChar == 'ï¿½')
         {
             nextChar = '\'';
         }
-        if(nextChar == '“' || nextChar == '”' || nextChar == '“' || nextChar == '”')
+        if(nextChar == 'ï¿½' || nextChar == 'ï¿½' || nextChar == 'ï¿½' || nextChar == 'ï¿½')
         {
             nextChar = '\"';
         }

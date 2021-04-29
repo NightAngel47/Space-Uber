@@ -1,7 +1,7 @@
-You have got footage of Loudon sneaking around. You were able to get footage of him hiding miniature speakers around the ship, no doubt the source of the noise. Having some crew member's retrieve them, you have your proof to fire Loudon, although you don't have a motive.
-A motive becomes clear, however, when a ship belonging to Equinox contacts you, offering to buy the supposedly cursed relic. "We heard you were having some trouble with a piece of your cargo. We could take it off your hands in return for some credits."
-Their offer is much less than the artifact is actually worth, and Kellis would be furious if you gave it to them. If you decline their offer, you'd need to do something about Loudon. Kicking him off the ship at the upcoming pit stop would be the easiest solution, although you would have one less crew member. You could also give him a small bribe to stop causing trouble.
-You could also accept their offer. The more valuable cargo has trackers built in. If you sold it to them, you could set the crew's minds at ease and let your rivals make most of the trip. After all, Equinox's headquarters are near Kellis's. Once you neared the end of your voyage, you could intercept them and take the artifact back (mostly likely by force.)
+As a result of his suspicious behavior, you've been keeping an eye on Loudon. Your focus pays off within a day, as you've got footage of him sneaking around during quiet hours. Especially damning is your video of him hiding miniature speakers around the ship, no doubt the source of the various 'strange noises'. Having Kuon retrieve them, they become the nails in the coffin of Loudon's career.
+The only question remaining, "why," answers itself when a ship belonging to Equinox contacts you. "We heard through the grapevine that some of your crew is frightened by 'cursed cargo.' As we only hire the bravest and the best around, we'd be willing to relieve you of this horrible burden. With compensation, of course."
+Your rival's offer doesn't even begin to cover the Keystone's value, and it definitely wouldn't soothe your employer's fury if you give it up.  The most logical thing to do, declining their offer, would leave you having to deal with their mole, Loudon. Either kick him off at the upcoming pit stop or buy his loyalty out from under Equinox's nose.
+Thinking about it... you could actually accept this offer. The Keystone's container has trackers built into it. If you sold it, you could set the crew's minds at ease. You'd tail Equinox for a while, and once they stopped heading in the same general direction, you'd 'renegotiate' the deal.
 + [Decline Offer, Kick Loudon Off] -> Decline1
 + [Decline Offer, Bribe Loudon] -> Decline2
 + [Accept Offer] -> Accept
@@ -9,13 +9,16 @@ You could also accept their offer. The more valuable cargo has trackers built in
 
 
 === Decline1 ===
-You send a message back, declining their offer. You give Kuon orders to escort Loudon off the ship once you dock at the rest point. You'll have one less crew member, but it's better than having Loudon continue to cause trouble. Hopefully things go smoothly from here on.
+You send a message back, declining their offer. You surreptitiously give Kuon orders to escort Loudon off the ship once you dock at the rest point, and make sure he doesn't return. You'll have one less crew member, but without that weasel around Equinox won't be able to terrorize your crew anymore. Hopefully they don't try any more underhanded tricks.
+Telling your crew about the whole scheme seems to reassure them. Hopefully the rest of the trip goes smoothly.
 -> END
 
 === Decline2 ===
-You send a message back, declining their offer. You let Loudon know that you're on to him, but that he can stay on if he stops causing trouble, and that if he keeps you informed about what the rival ship is doing, you'll even make sure he is compensated for it.
+You send a message back, declining their offer. You let Loudon know that you're on to him, but that he can stay on if he stops causing trouble. You promising him a pay raise cinches your control of him, as he makes it clear he'll do his best to keep Equinox off your back.
+One of his new duties is disavowing the tales he had been telling about your cargo, which sets your crew's minds at ease.
 -> END
 
 === Accept ===
-You decide to accept their offer. You meet up with the rival ship and give them the 'cursed artifacts' in exchange for a rather small number of credits. The crew is relieved, although Kuon objects. You tell him your plan to use the tracking to get back the artifact once your voyage is almost over. Although he still doesn't approve because of the variety of things that could go wrong, he understands your decision and promises to keep quiet.
+You decide to accept their offer. You meet up with the rival ship and give them the 'cursed' Keystone. Although the payment is paltry, the real compensation is the relief most of the crew feels.
+The only objections come from Kuon, his obedience to Kellis clashing with this apparent insubordination. Letting him in on your plans, he seems unhappy with the risk. That, however, doesn't stop him from volunteering to lead the retrieval team.
 -> END

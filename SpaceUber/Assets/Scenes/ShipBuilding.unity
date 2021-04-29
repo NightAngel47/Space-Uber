@@ -3385,6 +3385,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopToggle: {fileID: 637779972}
+  roomLevelIcons:
+  - {fileID: 3703259124722258395, guid: 0847e45d429f65b419b02a6044d3082f, type: 3}
+  - {fileID: 6017064795407227500, guid: 0847e45d429f65b419b02a6044d3082f, type: 3}
+  - {fileID: 8096679528179085428, guid: 0847e45d429f65b419b02a6044d3082f, type: 3}
 --- !u!1 &553198895
 GameObject:
   m_ObjectHideFlags: 0
@@ -3553,6 +3557,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 540441674}
     m_Modifications:
+    - target: {fileID: 1468123731, guid: 0ca6278b293d74e49bd5bf668515c491, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6241036181789747474, guid: 0ca6278b293d74e49bd5bf668515c491,
         type: 3}
       propertyPath: m_IsActive
@@ -4339,6 +4347,8 @@ MonoBehaviour:
   - {fileID: 1916649230}
   - {fileID: 1151463908}
   tabs: []
+  headerText: {fileID: 0}
+  helpButton: {fileID: 0}
 --- !u!1 &667808850
 GameObject:
   m_ObjectHideFlags: 0
@@ -4686,6 +4696,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Edit Crew
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963481259364165005, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8963481259364165007, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
         type: 3}
@@ -6132,6 +6147,8 @@ MonoBehaviour:
   redButton: {fileID: 0}
   panelTabs: []
   tabs: []
+  headerText: {fileID: 0}
+  helpButton: {fileID: 0}
 --- !u!95 &940027998
 Animator:
   serializedVersion: 3
@@ -6727,6 +6744,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 540441674}
     m_Modifications:
+    - target: {fileID: 1468123731, guid: 0ca6278b293d74e49bd5bf668515c491, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4666240182852512127, guid: 0ca6278b293d74e49bd5bf668515c491,
         type: 3}
       propertyPath: m_RootOrder
@@ -14879,6 +14900,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 540441674}
     m_Modifications:
+    - target: {fileID: 1468123731, guid: 0ca6278b293d74e49bd5bf668515c491, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4666240182852512127, guid: 0ca6278b293d74e49bd5bf668515c491,
         type: 3}
       propertyPath: m_RootOrder

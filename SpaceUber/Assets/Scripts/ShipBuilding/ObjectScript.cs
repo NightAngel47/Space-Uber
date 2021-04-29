@@ -9,9 +9,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using NaughtyAttributes;
-using TMPro;
 using Random = UnityEngine.Random;
 
 public class ObjectScript : MonoBehaviour
@@ -60,8 +58,13 @@ public class ObjectScript : MonoBehaviour
 
     [HideInInspector] public bool isDeleting;
 
-    private void Start()
+    private CrewManagementRoomDetailsMenu roomDetailsMenu;
+
+    private IEnumerator Start()
     {
+        yield return new WaitUntil(() => FindObjectOfType<CrewManagementRoomDetailsMenu>());
+        roomDetailsMenu = FindObjectOfType<CrewManagementRoomDetailsMenu>();
+        
         //rotAdjust = false;
         c = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
         c.a = 1;
@@ -74,6 +77,16 @@ public class ObjectScript : MonoBehaviour
         if(Input.GetMouseButtonUp(0))
         {
             StartCoroutine(WaitToClickRoom());
+        }
+
+        if (Input.GetButtonDown("DeleteRoom") && 
+            GameManager.instance.currentGameState == InGameStates.ShipBuilding && 
+            roomDetailsMenu.selectedRoom == gameObject && 
+            !preplacedRoom && 
+            ObjectMover.hasPlaced && 
+            !isDeleting)
+        {
+            StartCoroutine(Delete());
         }
     }
 
@@ -119,7 +132,7 @@ public class ObjectScript : MonoBehaviour
     {
         //if(preplacedRoom) return;
 
-        if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true) // && PauseMenu.Instance.isPaused == false// commented out until menus are ready
+        if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true && !FindObjectOfType<CrewManagementAlertConfirmation>().AlertPanel.activeSelf) // && PauseMenu.Instance.isPaused == false// commented out until menus are ready
         {
             if (ObjectMover.hasPlaced && !PauseMenu.IsPaused)
             {
@@ -137,30 +150,57 @@ public class ObjectScript : MonoBehaviour
             {
                 //buttons.SetActive(true);
                 AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
-                Edit();
-            }
 
-            if (Input.GetMouseButton(1) && !preplacedRoom && ObjectMover.hasPlaced && !isDeleting)
-            {
-                StartCoroutine(Delete());
+                CrewViewManager.Instance.DisableCrewView();
+                if (FindObjectOfType<RoomPanelToggle>().GetIsOpen() == true)
+                {
+                    FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
+                }
+                
+                Edit();
             }
         }
 
-        if (GameManager.instance.currentGameState == InGameStates.CrewManagement
-           || GameManager.instance.currentGameState == InGameStates.Events
-           && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn && !PauseMenu.IsPaused)
+        if ((GameManager.instance.currentGameState == InGameStates.Events || GameManager.instance.currentGameState == InGameStates.ShipBuilding && !FindObjectOfType<CrewManagementAlertConfirmation>().AlertPanel.activeSelf) 
+            && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn && !PauseMenu.IsPaused)
         {
+            
             roomTooltip.SetActive(true);
             roomIsHovered = true;
 
             //if the object is clicked, open the room management menu
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(1) && ObjectMover.hasPlaced == true && !gameObject.GetComponent<ObjectMover>().enabled)
             {
                 //FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
-                FindObjectOfType<RoomPanelToggle>().OpenPanel(0);
-                FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(gameObject);
+                //FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
+
+                if (gameObject == roomDetailsMenu.selectedRoom)
+                {
+                    FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
+                }
+                else
+                {
+                    FindObjectOfType<RoomPanelToggle>().OpenPanel(0);
+                    //Enables Crew View while details panel is open
+                    CrewViewManager.Instance.EnableCrewView();
+                }
+                roomDetailsMenu.ChangeCurrentRoom(gameObject);
+                
+
                 //FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
                 AudioManager.instance.PlaySFX(mouseOverAudio[Random.Range(0, mouseOverAudio.Length - 1)]);
+
+                //Closes the shop window if open during shipbuilding
+                if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
+                {
+                    RoomPanelToggle[] panels = FindObjectsOfType<RoomPanelToggle>();
+                    for (int i = 1; i < 2; i++)
+                    {
+                        panels[i].ClosePanel();
+                    }
+                }
+
+                
             }
         }
     }
@@ -202,7 +242,7 @@ public class ObjectScript : MonoBehaviour
         //rooms being placed will appear on top of other rooms that are already placed
         foreach (SpriteRenderer spriteRenderer in  gameObject.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>())
         {
-            spriteRenderer.sortingOrder += 5;
+            spriteRenderer.sortingOrder += 3;
         }
 
         // change transparency while moving room
@@ -217,6 +257,8 @@ public class ObjectScript : MonoBehaviour
         gameObject.GetComponent<ObjectMover>().enabled = true;
         gameObject.GetComponent<ObjectMover>().TurnOnBeingDragged();
         ObjectMover.hasPlaced = false;
+        
+        FindObjectOfType<CrewManagement>().CheckForRoomsCall();
 
         if (needsSpecificLocation == true)
         {
@@ -236,14 +278,16 @@ public class ObjectScript : MonoBehaviour
                 FindObjectOfType<SpawnObject>().NextToRoomHighlight(r.gameObject);
             }
         }
+
+        roomDetailsMenu.selectedRoom = null;
     }
 
-    public IEnumerator Delete(bool removeStats = true)
+    public IEnumerator Delete(bool removeStats = true, GameObject roomBeingPlaced = null)
     {
         if (isDeleting) yield break;
         isDeleting = true;
-        
-        yield return new WaitForSeconds(0.25f); // delay for not deleting 2 rooms at once
+
+        yield return new WaitForSeconds(0.1f);
 
         if (removeStats)
         {
@@ -280,6 +324,7 @@ public class ObjectScript : MonoBehaviour
                     SpotChecker.instance.RemoveSpots(r.gameObject, r.rotAdjust);
                     r.gameObject.GetComponent<RoomStats>().SubtractRoomStats();
                     Destroy(r.gameObject);
+                    
                 }
             }
         }
@@ -294,7 +339,20 @@ public class ObjectScript : MonoBehaviour
             HighlightSpotsOff();
         }
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        roomDetailsMenu.ClearUI();
+        RoomPanelToggle[] panels = FindObjectsOfType<RoomPanelToggle>();
+        for (int i = 0; i < 1; i++) //closes room details if deleting placed room
+        {
+            panels[i].ClosePanel(0);
+        }
+
+        CrewViewManager.Instance.DisableCrewView();
+        
+        // destroy the room being placed otherwise destroy the selected room
+        Destroy(roomBeingPlaced
+            ? roomBeingPlaced
+            : roomDetailsMenu.selectedRoom);
     }
 
     public void HighlightSpotsOn()
@@ -437,6 +495,6 @@ public class ObjectScript : MonoBehaviour
 
     private void OnDestroy()
     {
-        FindObjectOfType<EditCrewButton>()?.CheckForRoomsCall();
+        FindObjectOfType<CrewManagement>()?.CheckForRoomsCall();
     }
 }

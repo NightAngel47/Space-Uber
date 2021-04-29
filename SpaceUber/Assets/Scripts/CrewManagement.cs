@@ -15,24 +15,34 @@ using UnityEngine.UI;
 
 public class CrewManagement : MonoBehaviour
 {
-    private RoomStats[] currentRoomList;
-
     public GameObject[] sceneButtons; //contains finish ship and back to shipbuilding buttons
-    
+
+    [SerializeField] private int minRoomPlacedToContinue = 1;
+
+    private bool passedRoomCount = false;
+
     public void Start()
     {
-        currentRoomList = FindObjectsOfType<RoomStats>();
-        
+        StartCoroutine(CheckForRooms());
         CheckForMinCrew();
+    }
 
-        CrewViewManager.Instance.EnableCrewView();//automatically enable crew view when you enter crew mgmt
-        
-        Tutorial.Instance.SetCurrentTutorial(2, true);
+    public void CheckForRoomsCall()
+    {
+        StartCoroutine(CheckForRooms());
+    }
+
+    private IEnumerator CheckForRooms()
+    {
+        yield return new WaitUntil(() => FindObjectOfType<SpotChecker>() && GameManager.instance.hasLoadedRooms);
+        passedRoomCount = FindObjectsOfType<RoomStats>().Length > minRoomPlacedToContinue;
+
+        CheckForMinCrew();
     }
 
     public void CheckForMinCrew()
     {
-        sceneButtons[0].GetComponent<ButtonTwoBehaviour>().SetButtonInteractable(currentRoomList.All(room => room.minCrew <= room.currentCrew));
+        sceneButtons[0].GetComponent<ButtonTwoBehaviour>().SetButtonInteractable(passedRoomCount && ObjectMover.hasPlaced && FindObjectsOfType<RoomStats>().All(room => room.minCrew <= room.currentCrew));
     }
 
     public void ClearRoomDetails()

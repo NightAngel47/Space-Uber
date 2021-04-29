@@ -53,11 +53,12 @@ MonoBehaviour:
   - tutorialName: 'Ship Building Tutorial '
     tutorialMessages:
     - message: Click the tabs on the left to open the shop. Click to select a room,
-        and click on the ship where you want to place the room. Notice that you cannot
-        place rooms on top of each other.
-      ghostCursorHydroponics: 1
+        and click on the ship where you want to place the room. You cannot place
+        rooms on top of each other. Certain rooms can only be placed in spots highlighted
+        in blue when placing.
+      ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
-      ghostCursorArmorPlating: 0
+      ghostCursorArmorPlating: 1
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: Left click a room you've placed to pick it back up and click again
@@ -67,8 +68,9 @@ MonoBehaviour:
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
-    - message: Right click on a placed room to sell and remove it from your ship
-        at full price. However, if you use a room on a trip the sale price is reduced.
+    - message: Left Click a room and press Left Shift to sell the room and remove
+        it from your ship at full price. However, if you use a room on a trip the
+        sale price is reduced.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
@@ -82,12 +84,11 @@ MonoBehaviour:
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 1
       selectRoom: 0
-    - message: Some rooms have restrictions on where they can be placed. These rooms
-        will highlight potential placement locations in blue when they're dragged
-        from the left menu.
-      ghostCursorHydroponics: 0
+    - message: Before you can leave port, you need to assign crew to rooms. Right
+        click a room to open the room details panel to see more.
+      ghostCursorHydroponics: 1
       ghostCursorChargingTerminal: 0
-      ghostCursorArmorPlating: 1
+      ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
     - message: You may press the question mark on the bottom right of the shop to
@@ -106,7 +107,7 @@ MonoBehaviour:
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
-    - message: Click on a room to open the room details window and assign/unassign
+    - message: Right click a room to open the room details window and assign/unassign
         crew members to that room. Notice you can only can assign crew members up
         to the number of max crew of that room, or until your unassigned crew are
         depleted.
@@ -125,22 +126,22 @@ MonoBehaviour:
       selectRoom: 0
     - message: Note that crew can be replaced at a port if something "unfortunate"
         happens to them on a journey. You can also pay to have your ship repaired
-        if it takes any damage between trips.
+        if it takes any damage between trips, or recharge your ship if it loses power.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
-    - message: You may press the shipbuilding button in the lower left of the screen
-        to go back to ship building if you realize you need to change your ship.
+    - message: You may left click a room to move it or add a room from the room selection
+        panel if you realize you need to change your ship.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
-    - message: You may also click the question mark on the top left of the crew management
-        screen to replay this tutorial at any time. When you're ready to go, click
-        the "begin job" button.
+    - message: You may also click the question mark on the bottom right to replay
+        this tutorial at any time. Once the required amount of crew are assigned
+        to all rooms, click the "Begin Job" button to start your journey.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
@@ -167,7 +168,7 @@ MonoBehaviour:
     - message: The lower the crew's morale, the less efficently they work and the
         more likely they are to stage a mutiny. If they do mutinize, they'll ask
         for money. Greedy bastards.
-      ghostCursorHydroponics: 1
+      ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
@@ -182,14 +183,14 @@ MonoBehaviour:
       selectRoom: 0
     - message: A good conversation will leave them happy and increase morale, but
         a bad one could make them wish you didn't talk to them in the first place.
-        Flex those AI social algorithms!
+        Figure out what makes them happy.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
       selectRoom: 0
-    - message: A problem might arise while forcing overtime. You'll be alerted of
-        this so you can focus on overtime.
+    - message: A problem might arise while forcing overtime. When you complete overtime
+        you will be alerted of the problem.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
@@ -227,9 +228,81 @@ MonoBehaviour:
       ghostCursorStatBar: 0
       selectRoom: 0
     tutorialFinished: 0
+  - tutorialName: Asteroids Minigame Tutorial
+    tutorialMessages:
+    - message: "Destroy the asteroids with your weapons before they damage your ship!
+        Move your mouse around to aim your weapons. Use Left Click to fire the left
+        cannon; Right Click to fire the right cannon. \r\nThe minigame will begin
+        when this tutorial is closed."
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    tutorialFinished: 0
+  - tutorialName: Crop Harvest Minigame Tutorial
+    tutorialMessages:
+    - message: 'Plant and grow extra food! Follow the instructions on screen. Use
+        Left Click to select or use a tool; Right Click to put it down.
+
+'
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    tutorialFinished: 0
+  - tutorialName: Hull Repair Minigame Tutorial
+    tutorialMessages:
+    - message: "Patch up your ship! Left Click to move the pieces over the hole and
+        Left Click again to place them. \r\n"
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    tutorialFinished: 0
+  - tutorialName: Security Minigame Tutorial
+    tutorialMessages:
+    - message: 'Bolster ship security with new passwords! Remember and enter the
+        code shown in the middle of the panel. Left Click the code in the order shown.
+
+'
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    tutorialFinished: 0
+  - tutorialName: Energy Minigame Tutorial
+    tutorialMessages:
+    - message: 'Optimize ship power! Adjust the sliders, buttons, and switches with
+        Left Click to get ship power consumption to 100% needed output.
+
+'
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    tutorialFinished: 0
+  - tutorialName: Slots Minigame Tutorial
+    tutorialMessages:
+    - message: 'Earn a chance for extra credits! Bet some credits and pull the lever
+        with Left Click to start. Left Click the buttons to stop the reels. Higher
+        bets give higher rewards.
+
+'
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 0
+      ghostCursorStatBar: 0
+      selectRoom: 0
+    tutorialFinished: 0
   tutorialTextbox: {fileID: 1390818382375749914}
   tutorialTitleTextbox: {fileID: 1390818382010185175}
   tutorialPanel: {fileID: 1390818382567571727}
+  backButton: {fileID: 3139196115031363487}
   highlightPanel: {fileID: 1390818382344072519}
   ghostCursor: {fileID: 1390818382735140604}
   timeStartedLerping: 0
@@ -613,9 +686,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -126135313247612634, guid: 35dd3de144fbf694ca6d4b418b7511c2,
+  m_Sprite: {fileID: 1215444024754251964, guid: 3eac1ce9d4ddd754899d08982124e019,
     type: 3}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -933,9 +1006,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -126135313247612634, guid: 35dd3de144fbf694ca6d4b418b7511c2,
+  m_Sprite: {fileID: 1215444024754251964, guid: 3eac1ce9d4ddd754899d08982124e019,
     type: 3}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1008,9 +1081,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -126135313247612634, guid: 35dd3de144fbf694ca6d4b418b7511c2,
+  m_Sprite: {fileID: 1215444024754251964, guid: 3eac1ce9d4ddd754899d08982124e019,
     type: 3}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1266,9 +1339,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -126135313247612634, guid: 35dd3de144fbf694ca6d4b418b7511c2,
+  m_Sprite: {fileID: 1215444024754251964, guid: 3eac1ce9d4ddd754899d08982124e019,
     type: 3}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1341,9 +1414,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -126135313247612634, guid: 35dd3de144fbf694ca6d4b418b7511c2,
+  m_Sprite: {fileID: 1215444024754251964, guid: 3eac1ce9d4ddd754899d08982124e019,
     type: 3}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2306,6 +2379,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5, type: 3}
+--- !u!114 &3139196115031363487 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3722645125476746485, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1745659670457650026}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7232071328325381863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a338377f2281a0141bc68ae71085168a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7232071328325381862 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8963481259364165004, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,

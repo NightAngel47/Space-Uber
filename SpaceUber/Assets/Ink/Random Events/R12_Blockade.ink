@@ -3,7 +3,7 @@ Kuon reaches you on an emergency signal, "Game time," he says, "There’s a mili
 
 * [Bribe]
 -> Bribe
-* [Fight] #(50% FightWin (+100 credits) 50% FightLose (--hull --weapons))
+* [Fight]
     ->randomEnd
 
 

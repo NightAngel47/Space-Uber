@@ -47,7 +47,7 @@ MonoBehaviour:
   - name: Wormhole
     clip: {fileID: 8300000, guid: d119bbc55f7e1944fa4e8aca30be92e3, type: 3}
     mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
-    volume: 1
+    volume: 0.67
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   - name: General Theme
     clip: {fileID: 8300000, guid: 6e9cdbd2bf4dfe945a8d11ced03f8a2e, type: 3}
     mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
-    volume: 0.45
+    volume: 0.85
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0
@@ -82,7 +82,7 @@ MonoBehaviour:
   - name: Clone Ambush Intro
     clip: {fileID: 8300000, guid: 957d38c735fde9e4d96279ac1382c819, type: 3}
     mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
-    volume: 0.565
+    volume: 0.505
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0
@@ -342,6 +342,13 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 207746bbd7ce5f94a94ebea19861e696, type: 3}
     mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
     volume: 0.55
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Main Menu
+    clip: {fileID: 8300000, guid: 9f83bea75c0234f48bd7c7d59f7cee2e, type: 3}
+    mixer: {fileID: 2029307787252296301, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0
@@ -2873,7 +2880,127 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 1fd34f857cb168f44ba2eb1492d5a990, type: 3}
     mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
       type: 2}
-    volume: 0.96
+    volume: 0.76
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Kuon Crew Fight
+    clip: {fileID: 8300000, guid: 0321a6a2649934c45950e980e37539a7, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.86
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Kuon Shell
+    clip: {fileID: 8300000, guid: 0f15bb5793866564b946f9c858d53d3a, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.865
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Kuon Goons
+    clip: {fileID: 8300000, guid: d76c4a226e0b8f948b6d6e887ecab664, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.905
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Kuon Legs
+    clip: {fileID: 8300000, guid: fdd473aca8042a54a937ea5dc8e66288, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.905
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Kuon Lexa
+    clip: {fileID: 8300000, guid: 36f238180cc2d1e45a135d9bab234efc, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.905
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Kuon Case
+    clip: {fileID: 8300000, guid: f9666f5e983b69b45b89c0692c362f97, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.905
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Kuon Dirt
+    clip: {fileID: 8300000, guid: 5fbdc25f84b83cd4188758749c405b89, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.905
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Kuon Box1
+    clip: {fileID: 8300000, guid: fa51048ecef42d34e8908987f16f8e3a, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.905
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Kuon Box2
+    clip: {fileID: 8300000, guid: 32675c23974232e4f9aa3fae29c7a651, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.905
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Kuon Fog
+    clip: {fileID: 8300000, guid: 1568f59bfd05f434ba1cdf855cce72d7, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.905
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Kuon Nightmare1
+    clip: {fileID: 8300000, guid: 766bad99176f5c248bfb69663639b666, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.905
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Kuon Nightmare2
+    clip: {fileID: 8300000, guid: fe1dac53303197b4ba3d36cfe74c7d85, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.905
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Kuon Promotion
+    clip: {fileID: 8300000, guid: c8a776ede92acd64c9b23e6027df3b2d, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.905
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Kuon Break
+    clip: {fileID: 8300000, guid: e8994416fff14b04a96acfa1648df5ca, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.905
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Kuon Hands
+    clip: {fileID: 8300000, guid: ca38b384d62282c4d87d102fc3124c4f, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.905
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0
@@ -2911,6 +3038,142 @@ MonoBehaviour:
     pitchVarience: 0
   - name: Lanri Soothing Light
     clip: {fileID: 8300000, guid: 5186c77cf513dd2498b627bd1ac8d4c9, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lanri Thumping1
+    clip: {fileID: 8300000, guid: 8e9861484b4f4384f95e75c3d856d19a, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lanri Thumping2
+    clip: {fileID: 8300000, guid: 482ca46bfcade2643aafc8091969de87, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lanri Winner
+    clip: {fileID: 8300000, guid: 186ec7fece5c308458b395da5a9461a6, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lanri Cheap
+    clip: {fileID: 8300000, guid: 720310a6de3d07b47a44e7f04224d2b5, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lanri Storm
+    clip: {fileID: 8300000, guid: 5ec89845fe200b444baba56f6689945d, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lanri Invest
+    clip: {fileID: 8300000, guid: c08e6471ecc07474ea4a9a71da9930b1, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lanri Worst
+    clip: {fileID: 8300000, guid: 5f9b3dd7793ad9e43bdcedb89e08f1b3, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lanri Curious
+    clip: {fileID: 8300000, guid: 9692afbae570d6940bed51d15ec959c8, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lanri Private
+    clip: {fileID: 8300000, guid: cf45cbdff927eae4092dd02a8b0a7eab, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lanri Beckett
+    clip: {fileID: 8300000, guid: f4ab933d2a94cff45bb76e0f8d24b0a9, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lanri Dreams1
+    clip: {fileID: 8300000, guid: f302820578c6e5e48ae2332e1ca24a6d, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lanri Dreams2
+    clip: {fileID: 8300000, guid: c269ec7ae9b8dc44c92dcdf98ada09b2, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lanri Midas
+    clip: {fileID: 8300000, guid: d624dc079b8455a4c8338ca2b59e89d4, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lanri Solar
+    clip: {fileID: 8300000, guid: 67ae753ac64f9044289511a45da0ce8f, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lanri Exp
+    clip: {fileID: 8300000, guid: 5c67d2bd329d55e40a418af64a4a8e89, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lanri Final
+    clip: {fileID: 8300000, guid: 83a4796cac5757d439ca0fc14409a5fe, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.65
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lanri Harvest
+    clip: {fileID: 8300000, guid: 70d3904077aa4a248ac7e84270564c23, type: 3}
     mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
       type: 2}
     volume: 0.65
@@ -2989,6 +3252,118 @@ MonoBehaviour:
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0
+  - name: Lexa Suprise
+    clip: {fileID: 8300000, guid: 3e88db5351a7be14da952f1200e1509e, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Sick
+    clip: {fileID: 8300000, guid: 1cbf77d4697d3534bb9d319a844c6f3f, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Wishing
+    clip: {fileID: 8300000, guid: ec45f322fc7ee6c449e099a82d32a133, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Distress
+    clip: {fileID: 8300000, guid: e98d995cf478ff34f9093a106492076a, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Slacking
+    clip: {fileID: 8300000, guid: debf1d5597357af4bb2033d6599f5578, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Captain
+    clip: {fileID: 8300000, guid: 39a3199c109e8e54998939c3ead57640, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Visions
+    clip: {fileID: 8300000, guid: 40448c46136a48547ac2e4a1d2294647, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Omens
+    clip: {fileID: 8300000, guid: e01469a9faed46046abb4b515618eaf9, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Outfit
+    clip: {fileID: 8300000, guid: 4f005d277f6511a4885899a9155d915a, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Speed
+    clip: {fileID: 8300000, guid: 1a379d6adc3ebbd4e947af2b2e3bd7ad, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Because
+    clip: {fileID: 8300000, guid: e874f0d75d9371648affe109d076eea6, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Talk Back
+    clip: {fileID: 8300000, guid: 162ab92266817834790406e832f80625, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa People on Ship
+    clip: {fileID: 8300000, guid: 1cf504bbbfba76c41a6531b2cc4abc3e, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.9
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Lexa Last Mutiny
+    clip: {fileID: 8300000, guid: 59529c4a58276a243a4cbe14514a0af1, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.8
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
   - name: Mateo Request
     clip: {fileID: 8300000, guid: bf07f92ea5fbaf04b9fde7130ef690f3, type: 3}
     mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
@@ -3034,6 +3409,102 @@ MonoBehaviour:
     mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
       type: 2}
     volume: 0.95
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Mateo Lost
+    clip: {fileID: 8300000, guid: b33810d85fac0204fa4a673b21ca08d0, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Mateo Unknown
+    clip: {fileID: 8300000, guid: 0e6092d4c82bb7e43afe0094b75648ff, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Mateo Entertain
+    clip: {fileID: 8300000, guid: 20301f98dda591f4cb0369ea5509e316, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Mateo Asylum
+    clip: {fileID: 8300000, guid: c49cd0f6db966f04a912acae7015d610, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Mateo Powerful
+    clip: {fileID: 8300000, guid: ae12c3cff3cc8bf4eb3f407b4f824620, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Mateo Sigh
+    clip: {fileID: 8300000, guid: b415861209e87e74ea9ddfd59e5f72fb, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Mateo Rot1
+    clip: {fileID: 8300000, guid: 12a17b9b7f56c734399b4d7586b79394, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Mateo Rot2
+    clip: {fileID: 8300000, guid: c1fbb42c699d8f34281cb02d1a3f8d87, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Mateo Overlord
+    clip: {fileID: 8300000, guid: c52f438ca4a4afe41afb4dc573f20c32, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Mateo Main
+    clip: {fileID: 8300000, guid: eadfb0187b1eecf4180f49ebfa6a370f, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Mateo Frozen
+    clip: {fileID: 8300000, guid: 40eb7065b0c20a749a6d080302243d40, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.95
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Mateo Brief
+    clip: {fileID: 8300000, guid: 9b57b6680bdc1f54292845443dadd9d0, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.75
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0
@@ -6258,6 +6729,104 @@ MonoBehaviour:
     mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
       type: 2}
     volume: 0.855
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Good 1
+    clip: {fileID: 8300000, guid: 22bcdd1f7331367488e8c718a1118579, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Good 2
+    clip: {fileID: 8300000, guid: c55ff469890691647a97c709dd83accc, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Good 3
+    clip: {fileID: 8300000, guid: 069de27e7f7be7b4cb067aa905fe523e, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Good 4
+    clip: {fileID: 8300000, guid: c7a8b071b47e5024d89d3b2e52fb51fc, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Good 5
+    clip: {fileID: 8300000, guid: 977d2fc76d31c514fa36ed51bf81c544, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Good 6
+    clip: {fileID: 8300000, guid: 12b7003825a7ccb46b3e26ec1f88eb96, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Bad 1
+    clip: {fileID: 8300000, guid: b619e900f515b5d4fb4f8a6a005efeec, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Bad 2
+    clip: {fileID: 8300000, guid: 715cce4d14715c5428fb4d80b4faef5a, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Bad 3
+    clip: {fileID: 8300000, guid: 2f3c4f7e72f33e443912882e04032d16, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Bad 4
+    clip: {fileID: 8300000, guid: e5cdc1ff8d0837846bbc7540559e75b2, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Bad 5
+    clip: {fileID: 8300000, guid: 89d489ebc0655514891029c6c25b4fdf, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: Bad 6
+    clip: {fileID: 8300000, guid: b418af3aa2b336c4eb20f9ae50228021, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: UI Up
+    clip: {fileID: 8300000, guid: 61f0a4dd4b4f74e4fb718cd1b5852f50, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
+  - name: UI Down
+    clip: {fileID: 8300000, guid: 33c5224286bcb0b45b0839be2c106237, type: 3}
+    mixer: {fileID: 8491735462949882338, guid: 4baaccc3fdc14004284321e2c802e30f, type: 2}
+    volume: 0.55
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0

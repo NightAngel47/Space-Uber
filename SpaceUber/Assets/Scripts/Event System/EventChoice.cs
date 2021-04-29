@@ -20,7 +20,7 @@ public class EventChoice
     private Story story;
     [SerializeField] private string choiceName;
 
-    [Tooltip("The description that will appear in the tool tip for this choice")]
+    [Tooltip("The description that will appear in the tooltip for this choice")]
     [SerializeField] public string description;
 
     public string ChoiceName => choiceName;
@@ -47,7 +47,11 @@ public class EventChoice
     private float percantageIncreased;
     private bool increasedPercent = false;
 
+    [SerializeField, Tooltip("Whether or not the outcome of this event is a secret.")]
     public bool hasSecretOutcomes;
+
+    [SerializeField, ShowIf(EConditionOperator.Or,"hasSecretOutcomes","hasRandomEnding"), Tooltip("Text that is read if outcome is secret or random. Will be printed beneath the regular description")] 
+    public string secretOutComeText = "";
     [SerializeField] private bool hasRandomEnding;    
     [SerializeField, ShowIf("hasRandomEnding")] private List<MultipleRandom> randomEndingOutcomes = new List<MultipleRandom>();
     [SerializeField, HideIf("hasRandomEnding")] public List<ChoiceOutcomes> outcomes = new List<ChoiceOutcomes>();
@@ -77,9 +81,14 @@ public class EventChoice
 
         //as long as it's not a story event, it's scalable
         isScalableEvent = driver.isScalableEvent;
+        if(hasRandomEnding)
+        {
+            RandomizeEnding(thisStory);
+        }
 
         foreach (ChoiceOutcomes outcome in this.outcomes)
         {
+            
             outcome.isScaledOutcome = isScalableEvent;
         }
 
@@ -97,6 +106,7 @@ public class EventChoice
             for (int i = 0; i < choiceRequirements.Count; i++)
             {
                 choiceRequirements[i].isScalableEvent = isScalableEvent;
+
                 if (!choiceRequirements[i].MatchesRequirements(ship, driver.campMan))
                 {
                     requirementMatch = false;
@@ -125,15 +135,21 @@ public class EventChoice
         else
         {
             myButton.interactable = false;
+
         }
         // Tooltip stuff
         if (hasRandomEnding)
         {
-            tooltip.SetOutcomeData(description, randomEndingOutcomes, hasSecretOutcomes);
+            tooltip.SetOutcomeData(description, secretOutComeText, randomEndingOutcomes);
+
         }
         else
         {
-            tooltip.SetOutcomeData(description, outcomes, hasSecretOutcomes);
+            if(!hasSecretOutcomes)
+                tooltip.SetOutcomeData(description, outcomes);
+            else
+                tooltip.SetOutcomeData(description, secretOutComeText, outcomes);
+
         }
         
 
@@ -169,15 +185,14 @@ public class EventChoice
 
         if (hasRandomEnding)
         {
-            RandomizeEnding(story);
-            foreach (MultipleRandom multRando in randomEndingOutcomes)
+            MultipleRandom thisSet = randomEndingOutcomes[randomizedResult];
+            foreach(ChoiceOutcomes choiceOutcome in thisSet.outcomes)
             {
-                MultipleRandom thisSet = randomEndingOutcomes[randomizedResult];
-                foreach(ChoiceOutcomes choiceOutcome in thisSet.outcomes)
-                {
-                    choiceOutcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
-                }
+                choiceOutcome.narrativeResultsBox = driver.resultsBox;
+                choiceOutcome.hasSubsequentChoices = hasSubsequentChoices;
+                choiceOutcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
             }
+            
         }
         else
         {
@@ -225,7 +240,7 @@ public class EventChoice
 
         //provides an int to RandomizeEnding in the ink file, which then changes the selected random ending
         story.EvaluateFunction("RandomizeEnding", result);
-
+        Debug.Log("Random result: " + result);
         randomizedResult = result;
     }
 }
