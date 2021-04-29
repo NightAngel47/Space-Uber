@@ -118,6 +118,11 @@ public class ShipBuildingShop : MonoBehaviour
         }
     }
 
+    public bool GetShopOpen()
+    {
+        return shopToggle.GetIsOpen();
+    }
+
     public Sprite[] GetRoomLevelIcons()
     {
         return roomLevelIcons;
