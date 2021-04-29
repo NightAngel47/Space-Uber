@@ -1,25 +1,25 @@
 It's once again time for the chief engineer to tune you up. As Mateo performs his work, you notice that he is uncharacteristically quiet. The lack of his wisecracks makes the otherwise usually unnoticed beeping and humming of the various computer banks almost deafening.
-Maybe you should break the silence, make sure everything is okay. After all, he is fiddling with your various circuits and wires.
-+ ["What's eating you?"] -> PosRes1
-+ ["Anything bothering you?"] -> NeuRes1
-+ [Stay Silent.] -> NegRes1
+Maybe you should break the silence.
++ [Ask what's eating at him.] -> PosRes1
++ [See what he's thinking about.] -> NeuRes1
++ [Stay silent.] -> NegRes1
 
 
 === PosRes1 ===
 For a second after you speak, silence fills the room. All of a sudden you hear a subdued chuckle escape your mechanic. "I think Lanri's cooking is getting to me. I should have known better than to try her 'meat loaf surprise' again." 
 After another bout of silence, he once again speaks, the humor gone from his voice. "It's the anniversary of the grand festival on my home planet. My family would always go. We'd make a day out of it. I don't even know if I could enjoy it now. It's probably a corporate sham now that Kellis has its claws dug so deeply in everything on the planet."
-+ ["Don't give up. You can make it better."] -> PosRes2
-+ ["Kellis is only trying to help."] -> NegRes2
++ [Assure him Kellis is helping.] -> NegRes2
++ [Tell him not to give up.] -> PosRes2
 
 === NeuRes1 ===
 You hear a sigh in response. After a moment or two, Mateo responds, his voice quiet and humorless. "It's the anniversary of the grand festival on my home planet. My family would always go. We'd make a day out of it. I don't even know if I could enjoy it now. It's probably a corporate sham now that Kellis has its claws dug so deeply in the planet.
-+ ["Don't give up. You can make it better."] -> PosRes2
-+ ["Kellis is only trying to help."] -> NegRes2
++ [Assure him Kellis is helping.] -> NegRes2
++ [Tell him not to give up.] -> PosRes2
+
 
 === NegRes1 ===
-He finishes up the maintenance. Despite his unusual demeanor, he works fast and efficiently, as is the norm. As he finishes up, your cameras catch sight of his face. He looks haggard, and his eyes are red. You really should ask him if there is anything wrong. 
-+ ["What's eating you?"] -> PosRes1
-+ ["Anything bothering you?"] -> NeuRes1
+He finishes up the maintenance. Despite his unusual demeanor, he works fast and efficiently, as is the norm. As he finishes up, your cameras catch sight of his face. He looks haggard, and his eyes are red. He scurries out of the room without a word.
+-> END
 
 === PosRes2 ===
 At those words you see him grit his teeth. "What can I do? I'm working for those I hate the most." He calms down, and the ghost of a grin tugs at his mouth. "But I am both one of the best engineers and mechanics in the galaxy. You're right. I can make things better from the inside."
