@@ -304,11 +304,23 @@ public class GameManager : MonoBehaviour
         {
             case 1:
                 currentMaxLvlGroup1 = newValue;
+                if (newValue > 1)
+                {
+                    currentMaxLvlGroup2 = newValue - 1;
+                    currentMaxLvlGroup3 = newValue - 1;
+                }
                 break;
             case 2:
+                currentMaxLvlGroup1 = newValue;
                 currentMaxLvlGroup2 = newValue;
+                if (newValue > 1)
+                {
+                    currentMaxLvlGroup3 = newValue - 1;
+                }
                 break;
             case 3:
+                currentMaxLvlGroup1 = newValue;
+                currentMaxLvlGroup2 = newValue;
                 currentMaxLvlGroup3 = newValue;
                 break;
             default:
