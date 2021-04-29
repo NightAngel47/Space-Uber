@@ -365,6 +365,43 @@ PrefabInstance:
       propertyPath: roomTypes.Array.data[1]
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: hasAnimatedBG
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: backgroundAnimation
+      value: 
+      objectReference: {fileID: 5951636095986500723, guid: baa0154b69af8734d9832e843f3336ac,
+        type: 3}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: energyBoost
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: energyLoss
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].description
+      value: '"Keep the nicknames. It means little."'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].description
+      value: '"Further reference to anything other than my given designation will
+        result in a deduction of pay."'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].description
+      value: '"It''s amusing you manage to have a different name each time."'
+      objectReference: {fileID: 0}
     - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: m_LocalPosition.x

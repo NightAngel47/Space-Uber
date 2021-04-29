@@ -164,7 +164,7 @@ You all hear the deep warbling sound of a machine charging. You start to see a g
 You immediately go into evasive maneuvers. Your ship lurches forward in the cramped docking bay as the plasma cannon fires, just barely glancing off your armor, the outer plating left white hot. Before it charges up again you need to act. 
 ->Fight
 
-*[Flee (No Pay)]
+*[Flee]
 You decide there isn't any use dying for this money, and you don't trust Beckett to give it up without killing something. You order your crew to take off. The engines flare, the landing gear struggles to keep up. A shockwave rattles the ship as you break the sound barrier, the ship twisting from the violence of the takeoff, out of  the mercenaries range before they could snap to their scopes.
 Over the call, Beckett Two bellows for you to be dropped out of the sky and Olivia Two shouts him back down. "We have our money! Forget the ship, dammit!" A plasma cannon illuminates itself in the shadows of the docking bay as you rocket upwards, gleaming with green light as it powers down from the momentary confusion of orders. Considering the damage that thing could punch through your ship, you're glad to have left when you did. 
 ->Flee

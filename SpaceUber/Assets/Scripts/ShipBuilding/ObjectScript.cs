@@ -9,9 +9,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using NaughtyAttributes;
-using TMPro;
 using Random = UnityEngine.Random;
 
 public class ObjectScript : MonoBehaviour
@@ -60,8 +58,13 @@ public class ObjectScript : MonoBehaviour
 
     [HideInInspector] public bool isDeleting;
 
-    private void Start()
+    private CrewManagementRoomDetailsMenu roomDetailsMenu;
+
+    private IEnumerator Start()
     {
+        yield return new WaitUntil(() => FindObjectOfType<CrewManagementRoomDetailsMenu>());
+        roomDetailsMenu = FindObjectOfType<CrewManagementRoomDetailsMenu>();
+        
         //rotAdjust = false;
         c = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
         c.a = 1;
@@ -78,7 +81,7 @@ public class ObjectScript : MonoBehaviour
 
         if (Input.GetButtonDown("DeleteRoom") && 
             GameManager.instance.currentGameState == InGameStates.ShipBuilding && 
-            FindObjectOfType<CrewManagementRoomDetailsMenu>().selectedRoom == gameObject && 
+            roomDetailsMenu.selectedRoom == gameObject && 
             !preplacedRoom && 
             ObjectMover.hasPlaced && 
             !isDeleting)
@@ -129,7 +132,7 @@ public class ObjectScript : MonoBehaviour
     {
         //if(preplacedRoom) return;
 
-        if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true) // && PauseMenu.Instance.isPaused == false// commented out until menus are ready
+        if (GameManager.instance.currentGameState == InGameStates.ShipBuilding && clickAgain == true && !FindObjectOfType<CrewManagementAlertConfirmation>().AlertPanel.activeSelf) // && PauseMenu.Instance.isPaused == false// commented out until menus are ready
         {
             if (ObjectMover.hasPlaced && !PauseMenu.IsPaused)
             {
@@ -158,8 +161,10 @@ public class ObjectScript : MonoBehaviour
             }
         }
 
-        if (!OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn && !PauseMenu.IsPaused)
+        if ((GameManager.instance.currentGameState == InGameStates.Events || GameManager.instance.currentGameState == InGameStates.ShipBuilding && !FindObjectOfType<CrewManagementAlertConfirmation>().AlertPanel.activeSelf) 
+            && !OverclockController.instance.overclocking && !EventSystem.instance.eventActive && !EventSystem.instance.NextEventLockedIn && !PauseMenu.IsPaused)
         {
+            
             roomTooltip.SetActive(true);
             roomIsHovered = true;
 
@@ -169,7 +174,7 @@ public class ObjectScript : MonoBehaviour
                 //FindObjectOfType<CrewManagement>().UpdateRoom(gameObject);
                 //FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
 
-                if (gameObject == FindObjectOfType<CrewManagementRoomDetailsMenu>().selectedRoom)
+                if (gameObject == roomDetailsMenu.selectedRoom)
                 {
                     FindObjectOfType<RoomPanelToggle>().TogglePanelVis(0);
                 }
@@ -179,7 +184,7 @@ public class ObjectScript : MonoBehaviour
                     //Enables Crew View while details panel is open
                     CrewViewManager.Instance.EnableCrewView();
                 }
-                FindObjectOfType<CrewManagementRoomDetailsMenu>().ChangeCurrentRoom(gameObject);
+                roomDetailsMenu.ChangeCurrentRoom(gameObject);
                 
 
                 //FindObjectOfType<CrewManagementRoomDetailsMenu>().UpdatePanelInfo();
@@ -252,6 +257,8 @@ public class ObjectScript : MonoBehaviour
         gameObject.GetComponent<ObjectMover>().enabled = true;
         gameObject.GetComponent<ObjectMover>().TurnOnBeingDragged();
         ObjectMover.hasPlaced = false;
+        
+        FindObjectOfType<CrewManagement>().CheckForRoomsCall();
 
         if (needsSpecificLocation == true)
         {
@@ -272,7 +279,7 @@ public class ObjectScript : MonoBehaviour
             }
         }
 
-        FindObjectOfType<CrewManagementRoomDetailsMenu>().selectedRoom = null;
+        roomDetailsMenu.selectedRoom = null;
     }
 
     public IEnumerator Delete(bool removeStats = true, GameObject roomBeingPlaced = null)
@@ -333,7 +340,7 @@ public class ObjectScript : MonoBehaviour
         }
 
         //Destroy(gameObject);
-        FindObjectOfType<CrewManagementRoomDetailsMenu>().ClearUI();
+        roomDetailsMenu.ClearUI();
         RoomPanelToggle[] panels = FindObjectsOfType<RoomPanelToggle>();
         for (int i = 0; i < 1; i++) //closes room details if deleting placed room
         {
@@ -341,11 +348,13 @@ public class ObjectScript : MonoBehaviour
         }
 
         CrewViewManager.Instance.DisableCrewView();
-        
+
+        Tutorial.Instance.ConditionalContinueDelete();
+
         // destroy the room being placed otherwise destroy the selected room
         Destroy(roomBeingPlaced
             ? roomBeingPlaced
-            : FindObjectOfType<CrewManagementRoomDetailsMenu>().selectedRoom);
+            : roomDetailsMenu.selectedRoom);
     }
 
     public void HighlightSpotsOn()
