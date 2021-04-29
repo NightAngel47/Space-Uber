@@ -57,6 +57,10 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
 
     public string[] Goods;
     public string[] Bads;
+    private int minTicks, maxTicks;
+    [SerializeField, Range(0, 1)] private float foodSafety = .5f;
+    private int foodSafetyThreshold;
+    private int foodNeeded = 0;
 
     private List<GameObject> spawnedChecks = new List<GameObject>();
 
@@ -68,6 +72,34 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
     private void Start()
     {
         ship = FindObjectOfType<ShipStats>();
+        CalculateTicks();
+    }
+
+    private void CalculateTicks()
+    {
+        Tick tick = FindObjectOfType<Tick>();
+        EventSystem es = EventSystem.instance;
+        minTicks = Mathf.RoundToInt((es.GetMaxEvents() * es.GetTimeBeforeRoll())/ tick.GetSecondsPerTick());
+        
+        int extraRollsPerEvent = Mathf.RoundToInt((100 - es.GetStartingChance())/ es.GetChanceIncrease());
+        int extraTimePerEvent = Mathf.RoundToInt(extraRollsPerEvent * es.GetEventChanceFrequency());
+        int totalExtraTime = extraTimePerEvent * es.GetMaxEvents();
+
+        maxTicks =Mathf.RoundToInt( minTicks + totalExtraTime / tick.GetSecondsPerTick());
+
+        
+    }
+
+    private void CalculateFoodNeeded()
+    {
+        foodSafetyThreshold = Mathf.RoundToInt((maxTicks - minTicks) * foodSafety + minTicks);
+        print("Safety Threshold: " + foodSafetyThreshold);
+        
+        //int thisJobThreshold = EventSystem.instance.CurrentJob.alertThresholds.thresholds[(int)AlertThresholds.ThresholdStat.Food]
+        //Food Needed = Net Food Prod * Safeness Threshold + Food Storage
+        
+        foodNeeded = (ship.FoodPerTick - (int)ship.CrewCurrent.x) * foodSafetyThreshold + ship.Food;
+        print("Food needed: " + foodNeeded);
     }
 
     /// <summary>
@@ -160,14 +192,19 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
         switch(checkIndex)
         {
             case 0: // positive food production
-                return ship.FoodPerTick - ship.CrewCurrent.x >= 0;
-            case 1: // greater/equal food than job threshold
-                return ship.Food >= EventSystem.instance.CurrentJob.alertThresholds.thresholds[(int)AlertThresholds.ThresholdStat.Food];
-            case 2: // greater/equal security than job threshold
+                CalculateFoodNeeded();
+                return foodNeeded >= 0;
+            case 1: // greater/equal security than job threshold
                 return ship.Security >= EventSystem.instance.CurrentJob.alertThresholds.thresholds[(int) AlertThresholds.ThresholdStat.Security];
+<<<<<<< Updated upstream
             case 3: // greater/equal ship weapons than job threshold
                 return ship.Security >= EventSystem.instance.CurrentJob.alertThresholds.thresholds[(int) AlertThresholds.ThresholdStat.ShipWeapons];
             case 4: // current crew equal to crew capacity or below with credits to fix
+=======
+            case 2: // greater/equal ship weapons than job threshold
+                return ship.ShipWeapons >= EventSystem.instance.CurrentJob.alertThresholds.thresholds[(int) AlertThresholds.ThresholdStat.ShipWeapons];
+            case 3: // current crew equal to crew capacity or below with credits to fix
+>>>>>>> Stashed changes
                 if ((int) ship.CrewCurrent.y == (int) ship.CrewCurrent.x) // if current crew is at capacity
                 {
                     return true;
@@ -177,9 +214,9 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
                     return true;
                 }
                 return false; // fails if player is below and can buy crew
-            case 5: // no unassigned crew with places to assign them
+            case 4: // no unassigned crew with places to assign them
                 return !(ship.CrewCurrent.z > 0) || FindObjectsOfType<RoomStats>().Sum(room => room.maxCrew - room.currentCrew) <= 0;
-            case 6: // hull durability is at max or below with credits to fix
+            case 5: // hull durability is at max or below with credits to fix
                 if ((int) ship.ShipHealthCurrent.x == (int) ship.ShipHealthCurrent.y) // if current health is at max
                 {
                     return true;
