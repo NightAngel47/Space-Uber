@@ -2,7 +2,7 @@ The clients are holding a dinner party in their lounge, with your crew serving a
 Although the other elites sitting with him make half-hearted attempts to settle him down, he ignores them and stumbles over to Lanri, your chief scientist. She's bringing in some more food, having cooked a good portion of the various dishes herself. 
 Being polite, she asks him if he has a problem. It appears he does, as he responds "What is this shit! Are you trying to poison me with this slop?" He follows up his crude response by uncerimoniously knocking the tray out of her hand. Indignant, she calls out for you to do something about him. Beckett follows her lead and shouts back, "This is my vacation, so I think I deserve some real food. Right, chauffeur?"
 Although Beckett is making an ass of himself and treating Lanri and the rest of the crew unfairly, he's still a client. You could side with her and have security do something about Beckett, or you could stay out of it. You could even side with Beckett, as getting in his good graces might be a good idea.
-+ [Have Beckett Returned to His Cabin] -> Scientist
++ [Side with Lanri] -> Scientist
 + [Side with Beckett] -> Beckett
 + [Stay Out of It] -> Neutral
 

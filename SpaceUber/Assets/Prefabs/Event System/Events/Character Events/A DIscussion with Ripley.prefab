@@ -530,6 +530,53 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7947821688816057826, guid: 07ab99dc8d5fcc14d87b4a0e1f7d2700,
         type: 3}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].description
+      value: '"Yes, I was programmed to feel... emotion."'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].description
+      value: '"No, but I will offer assistance."'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].description
+      value: '"No, emotions interfere with decision-making."'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].description
+      value: '"It shouldn''t matter, but to him it does. Just let him in."'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].description
+      value: '"Go away. Your friend is dead and not coming back."'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].description
+      value: '"Let the man have his closure. This person clearly meant a lot and
+        it would be good for his mental health."'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].description
+      value: '"If they want to grieve they can find the corpses in the airlock."'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].description
+      value: '"There is no reason for such formalities, but it would get them to
+        stop complaining."'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[2].description
+      value: '"It would benefit crew members'' grieving process."'
+      objectReference: {fileID: 0}
     - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: m_LocalPosition.x
