@@ -10,7 +10,7 @@ His story finished, he takes a seat on a nearby chair, watching as the various c
 
 === Reassure ===
 You decide that calming down the crew is more important than chastising Loudon. "There is no such thing as curses, and even if there is, I will make sure you all stay safe during our trip. We also have one of the best medical professionals employed by Kellis on board. Despite her dour demeanor, Ripley is qualified to help with your mental wellness as well as your physical health."
-"Lastly, the Keystone is simply invaluable, hence its name. that's the only reason Kellis is being so protective of it." Some of your crew members show visible relief at your words, although some are still shaken up. You notice Loudon glowering. You take note to keep watch on him.
+"Lastly, the Keystone is simply invaluable, hence its name. That's the only reason Kellis is being so protective of it." Some of your crew members show visible relief at your words, although some are still shaken up. You notice Loudon glowering. You take note to keep watch on him.
 -> END
 
 === Chastise ===
