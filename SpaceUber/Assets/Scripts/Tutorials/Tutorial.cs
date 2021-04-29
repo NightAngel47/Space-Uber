@@ -306,7 +306,7 @@ public class Tutorial : Singleton<Tutorial>
     {
         if (tutorialPrerequisitesComplete == false)
         {
-            if (FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "Food") FindObjectOfType<ShipBuildingShop>().ToResourceTab("Food");
+            if (FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "Food" || !FindObjectOfType<ShipBuildingShop>().GetShopOpen()) FindObjectOfType<ShipBuildingShop>().ToResourceTab("Food");
             tutorialPrerequisitesComplete = true;
         }
         if(lerping == false) BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
@@ -315,7 +315,7 @@ public class Tutorial : Singleton<Tutorial>
     {
         if (tutorialPrerequisitesComplete == false)
         {
-            if (FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "HullDurability") FindObjectOfType<ShipBuildingShop>().ToResourceTab("HullDurability");
+            if (FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "HullDurability" || !FindObjectOfType<ShipBuildingShop>().GetShopOpen()) FindObjectOfType<ShipBuildingShop>().ToResourceTab("HullDurability");
             tutorialPrerequisitesComplete = true;
         }
         if (lerping == false) BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
@@ -324,7 +324,7 @@ public class Tutorial : Singleton<Tutorial>
     {
         if (tutorialPrerequisitesComplete == false)
         {
-            if (FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "Energy") FindObjectOfType<ShipBuildingShop>().ToResourceTab("Energy");
+            if (FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "Energy" || !FindObjectOfType<ShipBuildingShop>().GetShopOpen()) FindObjectOfType<ShipBuildingShop>().ToResourceTab("Energy");
             tutorialPrerequisitesComplete = true;
         }
         if (lerping == false) BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
@@ -333,7 +333,7 @@ public class Tutorial : Singleton<Tutorial>
     {
         if (tutorialPrerequisitesComplete == false)
         {
-            if (FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "HullDurability") FindObjectOfType<ShipBuildingShop>().ToResourceTab("HullDurability");
+            if (FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "HullDurability" || !FindObjectOfType<ShipBuildingShop>().GetShopOpen()) FindObjectOfType<ShipBuildingShop>().ToResourceTab("HullDurability");
             tutorialPrerequisitesComplete = true;
         }
         if (lerping == false) BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
@@ -350,7 +350,7 @@ public class Tutorial : Singleton<Tutorial>
     {
         if (tutorialPrerequisitesComplete == false)
         {
-            if (FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "Crew") FindObjectOfType<ShipBuildingShop>().ToResourceTab("Crew");
+            if (FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "Crew" || !FindObjectOfType<ShipBuildingShop>().GetShopOpen()) FindObjectOfType<ShipBuildingShop>().ToResourceTab("Crew");
             tutorialPrerequisitesComplete = true;
         }
         if (lerping == false) BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
