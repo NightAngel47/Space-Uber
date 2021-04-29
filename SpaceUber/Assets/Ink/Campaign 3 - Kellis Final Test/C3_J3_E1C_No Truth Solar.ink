@@ -33,14 +33,14 @@ Shortly after your talk with Lanri, you again arrive at Dispatch. The CEO summon
 You arrive at the CEO's barren and imposing office. Through the window in the back you can see Avanshore's sun glowing a soft red. The Kellis headman sits facing you, awaiting your return.
 He claps his hands together. "Wonderful job so far!" he says.
 "Sir?" Kuon asks.
-"Not you. Your captain. The one who will soon signal a new age in corporate competition." There is a red shine to his eyes, "You've kept a lid on things so far, despite your extracurricular research. It's nice to have an employee that listens.”
-"To reward that loyalty, we're going to let you into the fold. We've been trying to keep this buried because Kellis is culpable. He gestures at Avanshore, "If the world knew, we'd be tied to this dying star with red tape. But as long as we play this smart, we can get something useful out of this."
-Kuon speaks, "Sir, if you may clarify."
-He nods, "We found an alien ship, undamaged, a little over a century ago now. Designation: Portunus. We were able to gather little information, but what we got changed everything. High yield weapons, advanced forcefields," he pauses and gives you a look as if trying to gauge reaction, "and even Artificial Intelligence schematics.”
+The CEO ignores Kuon, focusing on you. “You’ve kept a lid on things so far, despite what you’ve learned. It’s nice to have someone who listens.” He gestures at Avanshore. "If the world knew, we'd be tied to this dying star with red tape. But as long as we play this smart, we can get something useful out of this.”
+Kuon makes a motion to speak but the CEO cuts him off.
+"We found an alien ship, undamaged, a little over a century ago now. Designation: Portunus. We were able to gather little information, but what we got changed everything. High yield weapons, advanced forcefields," he pauses and gives you a look as if trying to gauge reaction, "and even Artificial Intelligence schematics.”
 "But Portunus was capable of so much more, it had been dead in the water for eons. We lugged it to a nearby star and tried to wake it up. Do you know what we could have done with that power? Equinox would be an afterthought. 
-"It would've propelled us into a new age. The sun catcher dipped into Avanshore's sol and jump-started Portunus, but our data was wrong. The feedback caused an explosion that propelled that golden material across the galaxy, to... debilitating effect. And it also sent Avanshore's sol on a path towards supernova."
+"The sun catcher dipped into Avanshore's sol and jump-started Portunus, as planned, but our data was wrong. The feedback caused an explosion that propelled the golden material across the galaxy, to... debilitating effect. And it also sent Avanshore's sol on a path towards supernova."
 "The assets you've been picking up are prototypes and replacement pieces required to get a handle on Portunus once we find it again. If you let the assets get wiped out by this thing," he points to the red sun, "All this will be for nothing."
-After a pause the CEO splays his hands out in front of you. "So, now that everything is out in the open, can I trust you to finish the job?"
+After a pause the CEO splays his hands out in front of you. "So, can I trust you to finish the job?"
+
 
 *[Yes, I will finish the job]
 -> Loyalty

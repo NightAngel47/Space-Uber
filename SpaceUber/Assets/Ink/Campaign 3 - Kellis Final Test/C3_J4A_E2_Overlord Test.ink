@@ -30,13 +30,12 @@ You decide not to play Kellis' game this time. You don't control anyone, or medd
 ==Round_Table==
 After the test, your crew contacts you. They have come together away from the prying eyes of their corporate overlords, and ask that you observe. Lexa and Kuon sit opposite of one another, Ripley and Lanri to their flanks, Mateo lounging in the background. 
     Lexa starts, "We need to talk about what to do with these people on our ship."
-    "Why?” Kuon says, “Kellis is poised to do good things."
-    "Then why haven't they?" Lexa answers back. "Is it because of us?" she points to your camera, "Them? Or is it the people on top? We have to do something."
-    Lanri nods vigorously, "A chance like this won't come twice. Crews like us will be rendered obsolete in days, not years,."
-    Ripley speaks, "We stand on a precipice. That much is clear."
+    "There's nothing to discuss.” Kuon says, “Kellis is poised to do good things."
+    "Then why haven't they?" Lexa answers back. "Is it because of us?" she points to your camera, "Them? Or maybe it's the people on top who are making things worse."
+    Lanri nods vigorously, "A chance like this won't come twice. Crews like us will be rendered obsolete in days, not years."
     Mateo nods as if everyone has just made very good points and gives a thumbs up. "Sorry, didn't get a lot of sleep last night, but I totally agree, let's destroy Kellis from the inside!"
     Kuon pushes to his feet, "We are not discussing sabotage and mutiny again! Do you not see how much you owe this company?"
-    Mateo frowns, "I am oh so grateful that Kellis turned my planet into a work camp. Is that what you want me to say?"
+    Mateo frowns, "I am oh so grateful that Kellis turned my planet into a work camp."
     Kuon falters and Lexa steps in. "Kuon, this is the only chance we have. My plan is that we kill them, corrupt their clone backups."
     Lanri raises her hand excitedly, "Oo oo! Speaking of clones, we could do that. Clone the CEO, port our captain into the clone, and then they can fix everything! I would just need Ripley's help to do it."
     Ripley rolls her eyes at Lanri's enthusiasm but agrees. 
