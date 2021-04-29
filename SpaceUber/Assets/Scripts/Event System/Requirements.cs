@@ -17,7 +17,6 @@ public class Requirements
 {
     [HideInInspector]
     public bool isScalableEvent = false;
-    private bool alreadyScaled = false;
 
     #region Stat Requirement Stuff
 
@@ -181,12 +180,14 @@ public class Requirements
         if (isStatRequirement)
         {
             int shipStat = 0;
-            
-            if (isScalableEvent && !alreadyScaled) //random events get scaled by campaign number
+            int thisAmount;
+            if (isScalableEvent ) //random events get scaled by campaign number
             {
-                requiredAmount = Mathf.RoundToInt(requiredAmount * campMan.GetMultiplier(selectedResource));
-                alreadyScaled = true;
-                
+                thisAmount = Mathf.RoundToInt(requiredAmount * campMan.GetMultiplier(selectedResource));                
+            }
+            else
+            {
+                thisAmount = requiredAmount;
             }
             switch (selectedResource)
             {
@@ -224,11 +225,11 @@ public class Requirements
             }
             if (lessThan)
             {
-                result = shipStat < requiredAmount;
+                result = shipStat < thisAmount;
             }
             else
             {
-                result = shipStat >= requiredAmount;
+                result = shipStat >= thisAmount;
             }
         }
 
