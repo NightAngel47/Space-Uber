@@ -93,13 +93,11 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
     private void CalculateFoodNeeded()
     {
         foodSafetyThreshold = Mathf.RoundToInt((maxTicks - minTicks) * foodSafety + minTicks);
-        print("Safety Threshold: " + foodSafetyThreshold);
         
         //int thisJobThreshold = EventSystem.instance.CurrentJob.alertThresholds.thresholds[(int)AlertThresholds.ThresholdStat.Food]
         //Food Needed = Net Food Prod * Safeness Threshold + Food Storage
         
         foodNeeded = (ship.FoodPerTick - (int)ship.CrewCurrent.x) * foodSafetyThreshold + ship.Food;
-        print("Food needed: " + foodNeeded);
     }
 
     /// <summary>
@@ -196,15 +194,9 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
                 return foodNeeded >= 0;
             case 1: // greater/equal security than job threshold
                 return ship.Security >= EventSystem.instance.CurrentJob.alertThresholds.thresholds[(int) AlertThresholds.ThresholdStat.Security];
-<<<<<<< Updated upstream
-            case 3: // greater/equal ship weapons than job threshold
-                return ship.Security >= EventSystem.instance.CurrentJob.alertThresholds.thresholds[(int) AlertThresholds.ThresholdStat.ShipWeapons];
-            case 4: // current crew equal to crew capacity or below with credits to fix
-=======
             case 2: // greater/equal ship weapons than job threshold
                 return ship.ShipWeapons >= EventSystem.instance.CurrentJob.alertThresholds.thresholds[(int) AlertThresholds.ThresholdStat.ShipWeapons];
             case 3: // current crew equal to crew capacity or below with credits to fix
->>>>>>> Stashed changes
                 if ((int) ship.CrewCurrent.y == (int) ship.CrewCurrent.x) // if current crew is at capacity
                 {
                     return true;
@@ -226,7 +218,7 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
                     return true;
                 }
                 return false; // fails if player is below and can buy hull
-            case 7: // remaining power is at max or below with credits to fix
+            case 6: // remaining power is at max or below with credits to fix
                 if ((int) ship.Energy.x == (int) ship.Energy.z) // if energy remaining is equal to unassigned
                 {
                     return true;
