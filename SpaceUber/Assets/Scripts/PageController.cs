@@ -16,6 +16,7 @@ public class PageController : MonoBehaviour
     [SerializeField] private string defaultNextMsg;
     [SerializeField] private string continueNextMsg;
     private bool madeChoice;
+    //private bool pageSeen = false;
     private TMP_Text nextButtonText;
 
     private void Start()
@@ -26,18 +27,23 @@ public class PageController : MonoBehaviour
 
     public void NextPage()
     {
-        if(eventText.pageToDisplay < eventText.textInfo.pageCount)
+        InkDriverBase inkDriver = FindObjectOfType<InkDriverBase>();
+        if (eventText.pageToDisplay < eventText.textInfo.pageCount)
         {
             eventText.pageToDisplay += 1;
-            if(!backButton.activeSelf)
+            inkDriver.textMask.fillAmount = 0;
+            //if(!pageSeen)
+            //{
+
+            //}
+            if (!backButton.activeSelf)
             {
                 backButton.SetActive(true);
             }
         }
         else
         {
-            InkDriverBase inkDriver = FindObjectOfType<InkDriverBase>();
-            if(!inkDriver.ShowChoices())
+            if (!inkDriver.ShowChoices())
             {
                 inkDriver.ConcludeEvent();
             }
@@ -51,9 +57,12 @@ public class PageController : MonoBehaviour
 
     public void PreviousPage()
     {
-        if(eventText.pageToDisplay > 1)
+        InkDriverBase inkDriver = FindObjectOfType<InkDriverBase>();
+        if (eventText.pageToDisplay > 1)
         {
             eventText.pageToDisplay -= 1;
+            //pageSeen = true;
+            inkDriver.textMask.fillAmount = 1;
             nextButtonText.text = defaultNextMsg;
             if(eventText.pageToDisplay == 1)
             {

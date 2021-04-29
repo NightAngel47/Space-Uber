@@ -41,6 +41,7 @@ public class InkDriverBase : MonoBehaviour
     private Transform buttonGroup;
     private TMP_Text titleBox;
     private TMP_Text textBox;
+    [HideInInspector] public Image textMask;
     [HideInInspector] public GameObject resultsBox;
     private Image backgroundUI;
     protected ShipStats thisShip;
@@ -108,16 +109,18 @@ public class InkDriverBase : MonoBehaviour
     /// <param name="text"></param>
     /// <param name="results"></param>
     /// <param name="background"></param>
+    /// <param name="textBoxMask"></param>
     /// <param name="buttonSpace"></param>
     /// <param name="ship"></param>
     /// <param name="campaignManager"></param>
-    public void AssignStatusFromEventSystem(TMP_Text title, TMP_Text text, GameObject results, Image background, Transform buttonSpace,
+    public void AssignStatusFromEventSystem(TMP_Text title, TMP_Text text, GameObject results, Image background, Image textBoxMask, Transform buttonSpace,
         ShipStats ship, CampaignManager campaignManager)
     {
         titleBox = title;
         textBox = text;
         resultsBox = results;
         backgroundUI = background;
+        textMask = textBoxMask;
         buttonGroup = buttonSpace;
         thisShip = ship;
         campMan = campaignManager;
@@ -142,29 +145,24 @@ public class InkDriverBase : MonoBehaviour
     /// </summary>
     /// <param name="text"></param>
     /// <returns></returns>
-    private IEnumerator PrintText(string text)
+    private void PrintText(string text)
     {
+        //text = textBox.text;
         donePrinting = false;
 
         string tempString = "";
         textBox.text = tempString;
-        int runningIndex = 0;
-
-        while (tempString.Length < text.Length)
-        {      
-            tempString += CheckChar(text[runningIndex]);
-            runningIndex++;
-
-            //click to instantly finish text,
-            if(Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
-            {
-                tempString = text;
-            }
-            textBox.text = tempString;
-
-            yield return new WaitForSeconds(textPrintSpeed);
+        tempString = text;
+        textMask.fillAmount += 0.1f * Time.deltaTime;
+        //click to instantly finish text,
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) ||
+            Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow) ||
+            Input.GetMouseButtonDown(0))
+        {
+            textMask.fillAmount = 1;
         }
-
+        textBox.text = tempString;
+        //yield return new WaitForSeconds(textPrintSpeed);
         donePrinting = true;
     }
 
@@ -238,7 +236,7 @@ public class InkDriverBase : MonoBehaviour
 
         // Set the text from new story block
         string text = GetNextStoryBlock();
-        StartCoroutine(PrintText(text));
+        PrintText(text);
     }
 
     /// <summary>
