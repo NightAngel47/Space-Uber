@@ -1,3 +1,3 @@
 You've been summoned back to Dispatch for another performance review. Avanshore's sun has made no visible sign to its citizens that something is wrong, and neither have you. 
-The next few weeks could be used to evacuate a small portion of the citizens, hedge bets as it were, but Kellis is increasingly insistent that the assets are recovered. They are reeling you back to HQ likely to address this, and you hope, give you guidance on how to proceed with your mission. 
-Lanri has said that the sun is growing by the day, and soon will render the closer planets to it completely unlivable. Your time to finish Kellis' final test is closing, but the first matter is returning to Dispatch.
+The next few weeks could be used to evacuate a small portion of the citizens, but Kellis is increasingly insistent that the assets are recovered. They are reeling you back to HQ, likely to address this and hopefully to give guidance on how to proceed.
+Lanri says that the sun is growing by the day, and soon will render the closer planets to it uninhabitable. Your time to finish Kellis' final test is closing, but the first matter is returning to Dispatch.

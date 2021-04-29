@@ -24,6 +24,11 @@ public class CampaignManager : MonoBehaviour
     public CateringToTheRich cateringToTheRich = new CateringToTheRich();
     public MysteriousEntity mysteriousEntity = new MysteriousEntity();
     public FinalTest finalTest = new FinalTest();
+    
+    [SerializeField, Tooltip("All character Events in the game. Will be supplied to event system")]
+    public List<GameObject> charEvents;
+    [HideInInspector] public List<GameObject> playedEvents;
+
 
     #region Multipliers
     [Header("Campaign 2 multipliers")]
@@ -70,6 +75,26 @@ public class CampaignManager : MonoBehaviour
         }
     }
 
+    public List<GameObject> GetCharacterEvents()
+    {
+        return charEvents;
+    }
+
+    public void RemoveFromCharEvents(GameObject thisEvent)
+    {
+        charEvents.Remove(thisEvent);
+        playedEvents.Add(thisEvent);
+
+        //if(charEvents.Count == 0)
+        //{
+        //    ResetCharEvents();
+        //}
+    }
+
+    public void ResetCharEvents()
+    {
+        charEvents.AddRange(playedEvents);
+    }
     /// <summary>
     /// Sets currentCampaign to the specified index and resets its job index to 0
     /// </summary>
@@ -442,7 +467,14 @@ public class CampaignManager : MonoBehaviour
         mysteriousEntity.SaveEventChoices();
         finalTest.SaveEventChoices();
 
+        List<String> playedEventNames = new List<String>();
+
+        foreach(GameObject thisEvent in playedEvents)
+        {
+            playedEventNames.Add(thisEvent.name);
+        }
         SavingLoadingManager.instance.Save<Campaigns>("currentCamp", currentCamp);
+        SavingLoadingManager.instance.Save<List<String>>("playedCharacterEvents", playedEventNames);
 
         int currentJob;
         switch (currentCamp)
@@ -471,8 +503,26 @@ public class CampaignManager : MonoBehaviour
         finalTest.ResetEventChoicesToJobStart();
 
         currentCamp = SavingLoadingManager.instance.Load<Campaigns>("currentCamp");
+        
+        //Loads character event arrays
+        List<String> playedEventNames = SavingLoadingManager.instance.Load<List<String>>("playedCharacterEvents");
+        List<GameObject> foundEvents = new List<GameObject>();
+        
+        foreach(GameObject thisEvent in charEvents)
+        {
+            if(playedEventNames.Contains(thisEvent.name))
+            {
+                foundEvents.Add(thisEvent);
+            }
+        }
 
-        switch (currentCamp)
+        foreach (GameObject thisEvent in foundEvents)
+        {
+            playedEvents.Add(thisEvent);
+            charEvents.Remove(thisEvent);
+        }
+
+            switch (currentCamp)
         {
             case Campaigns.CateringToTheRich:
                 cateringToTheRich.jobIndex = SavingLoadingManager.instance.Load<int>("currentJob");

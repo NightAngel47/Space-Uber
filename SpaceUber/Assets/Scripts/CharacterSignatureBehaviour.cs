@@ -1,17 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class CharacterSignatureBehaviour : MonoBehaviour
+[Serializable]
+public class CharacterSignatureBehaviour
 {
-    [SerializeField] private CharacterStats.Characters character;
-    [SerializeField] private int threashold;
-    
-    void Start()
-    {
-        if(FindObjectOfType<CharacterStats>().GetCharacterApproval(character) < threashold)
-        {
-            gameObject.SetActive(false);
-        }
-    }
+    public CharacterStats.Characters character;
+    public int threshold;
 }
