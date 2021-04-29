@@ -166,7 +166,7 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
             case 2: // greater/equal security than job threshold
                 return ship.Security >= EventSystem.instance.CurrentJob.alertThresholds.thresholds[(int) AlertThresholds.ThresholdStat.Security];
             case 3: // greater/equal ship weapons than job threshold
-                return ship.Security >= EventSystem.instance.CurrentJob.alertThresholds.thresholds[(int) AlertThresholds.ThresholdStat.ShipWeapons];
+                return ship.ShipWeapons >= EventSystem.instance.CurrentJob.alertThresholds.thresholds[(int) AlertThresholds.ThresholdStat.ShipWeapons];
             case 4: // current crew equal to crew capacity or below with credits to fix
                 if ((int) ship.CrewCurrent.y == (int) ship.CrewCurrent.x) // if current crew is at capacity
                 {
