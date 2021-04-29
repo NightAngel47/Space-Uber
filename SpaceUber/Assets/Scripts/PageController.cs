@@ -37,9 +37,18 @@ public class PageController : MonoBehaviour
         else
         {
             InkDriverBase inkDriver = FindObjectOfType<InkDriverBase>();
-            if(!inkDriver.ShowChoices())
+            if(inkDriver && !inkDriver.ShowChoices()) // normal
             {
                 inkDriver.ConcludeEvent();
+            }
+            else if(!inkDriver && FindObjectOfType<GameIntroManager>()) // game intro
+            {
+                GameIntroManager intro = FindObjectOfType<GameIntroManager>();
+                intro.ConcludeEvent();
+            }
+            else if(FindObjectOfType<MoneyEndingBehaviour>()) // endings
+            {
+                FindObjectOfType<MoneyEndingBehaviour>().TransitionToScene();
             }
         }
 
@@ -70,6 +79,8 @@ public class PageController : MonoBehaviour
     {
         eventText.pageToDisplay = 1;
         backButton.SetActive(false);
+        if(!nextButtonText)
+            nextButtonText = nextButton.GetComponentInChildren<TMP_Text>();
         nextButtonText.text = defaultNextMsg;
     }
 

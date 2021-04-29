@@ -41,6 +41,7 @@ public class CrewManagementAlertConfirmation : MonoBehaviour
     
     // UI variables
     [SerializeField, Foldout("UI Variables")] GameObject alertPanel;
+    public GameObject AlertPanel => alertPanel;
     [SerializeField, Foldout("UI Variables"), Tooltip("Delay is seconds between checks")] private float checkDelay = 0.1f;
     [SerializeField, Foldout("UI Variables"), Tooltip("Delay is seconds before the error appears in diagnosis")] private float diagnosisDelay = 0.1f;
     [SerializeField, Foldout("UI Variables")] private GameObject navButtons;

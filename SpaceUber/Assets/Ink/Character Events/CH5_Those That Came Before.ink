@@ -1,27 +1,27 @@
 Lexa sheepishly approaches your terminal. "I think it's time I told you what happened before you were installed... and why Kuon has his cybernetics." From the way she's speaking, you can tell this is a topic she isn't very comfortable discussing. 
-+ ["Is this about the previous captain?"] -> PosRes1
-+ ["I don't see how this is relevant."] -> NegRes1
-+ ["Was it your fault?"] -> NeuRes1
++ [Ask if this is the previous captain.] -> PosRes1
++ [Ask if it was her fault.] -> NeuRes1
++ [Wonder how this is relevant.] -> NegRes1
 
 
 === PosRes1 ===
 She sighs, seemingly lost in her memories, "Yeah... he was the kind of man that made you think the word 'bastard' was invented just for him." She takes a moment to compose herself before she continues. "The captain before me was everything he shouldn't have been. Abusive, lazy, and untouchable because he had connections. It was a cocktail for disaster... and that's just what happened."
-+ ["So you just didn't like him?"] -> NegRes2
 + ["Nepotism and corruption go hand in hand."] -> PosRes2
 + ["So he was to blame?"] -> NeuRes2
++ ["So you just didn't like him?"] -> NegRes2
 
 === NeuRes1 ===
 Lexa chokes, the words not wanting to come, "It...was and it wasn't... at least that's what I keep telling myself." She takes a moment to compose herself before she continues. "The captain before me was everything he shouldn't have been. Abusive, lazy, and untouchable because he had connections. It was a cocktail for disaster... and that's just what happened."
-+ ["So you just didn't like him?"] -> NegRes2
 + ["Nepotism and corruption go hand in hand."] -> PosRes2
 + ["So he was to blame?"] -> NeuRes2
++ ["So you just didn't like him?"] -> NegRes2
 
 
 === NegRes1 ===
 She glares at your terminal, "They say history is bound to repeat itself. I'd rather that doesn't happen, for all those involved." She takes a moment to compose herself before she continues. "The captain before me was everything he shouldn't have been. Abusive, lazy, and untouchable because he had connections. It was a cocktail for disaster... and that's just what happened."
-+ ["So you just didn't like him?"] -> NegRes2
 + ["Nepotism and corruption go hand in hand."] -> PosRes2
 + ["So he was to blame?"] -> NeuRes2
++ ["So you just didn't like him?"] -> NegRes2
 
 
 === PosRes2 ===
