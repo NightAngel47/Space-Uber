@@ -1,16 +1,14 @@
 The CEO has put in a request to speak with your manager, Lexa. Given their last meeting in Avanshore, you doubt it's a social call. 
-The room cannot hold a candle to his office on Dispatch, but it still conveys a sense of magnitude. The CEO sits opposite of Lexa, with the board flanking them. Already, she wears a pose of defiance.
-"Well, since this is the end," the CEO starts, "I wanted to discuss things with you for the last time. Captains like you are no longer going to be necessary, that much is clear."
+Lexa enters the CEO’s office. He sits opposite of her, with the board flanking them. Already, she wears a pose of defiance.
+The CEO begins, "I wanted to discuss things with you one last time. Captains like you are no longer necessary, that much is clear."
 "I'm glad you've found employees that can't talk back." Lexa says.
-Your boss laughs, "Well. Yes. Most don't have the mouth you do, and I appreciate their silence. We have a plan up here, you are simply too far down to see it." The board nods their heads in tandem.
-"It won't work. Trying to rid Kellis of opposition within its ranks, trying to use an AI you don't have to pay, trying to make a person who won't hold you accountable. You haven't seen it in action, it's more like us than you think."
-The CEO cocks his head, "Then we'll make changes. First, we'll need to get rid of influences like you, we'll increase the weight of company protocol in its head. This thing is fixable. While captains like you are, well..."
-"The chaff?" Lexa supplies.
-The CEO nods gratefully, "I was going to say 'a liability.'" 
+Your boss laughs, "Well. Yes. Most don't have the mouth you do. We have a plan up here, you are simply too far down to see it." The board nods their heads in tandem.
+"It won't work. Ridding Kellis of dissenting voices, using an AI you don't have to pay, making a person who won't hold you accountable. You haven't seen it in action, it's more like us than you think."
+The CEO cocks his head, "Then we'll make changes. If we get rid of influences like you and strengthen protocol, this thing is fixable. While captains like you are a liability.”
 
 The door to the conference room opens, revealing the soiled garb of an engineer. Mateo shuffles forward with a smile. "Hey! Do any of you know how to fix the coffee machine?" The CEO stares as his eye implants try to inform him who Mateo is. 
-The engineer seems to kick at some imaginary can, "Well if you guys don't know, I guess we'll be going without it for the voyage." he looks up with mock sheepishness, "If no one is there to fix your machines they'll keep plodding along in the dark, with a thousand little issues that you're too high up to see."
-You know now Mateo has also been marked for termination. The boss leans against his fist and speaks towards your view camera, too exhausted to acknowledge Mateo's jabs. "Well. I know you've been listening, tell us. How would your performance be without these people in the way? We've been working on new ships, only enough room for cargo, no need for life support, food, bunkrooms. Tell us."
+"Well if you guys don't know, I guess we'll be going without it for the voyage." Mateo looks up with mock sheepishness, "Without people like us, your machines will break."
+You know now Mateo has also been marked for termination. The boss leans against his fist and speaks towards your view camera, "Well. I know you've been listening, tell us. How would your performance be without these people in the way?"
 
 *["I Can't Do This Without Them"]
 ->Crew_Trust
