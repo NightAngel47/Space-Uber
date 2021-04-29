@@ -223,9 +223,11 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     /// </summary>
     public void UpdateMaxLevelGroups(int group1, int group2, int group3)
     {
-        GameManager.instance.SetUnlockLevel(1, group1);
-        GameManager.instance.SetUnlockLevel(2, group2);
-        GameManager.instance.SetUnlockLevel(3, group3);
+        //Removed as it updates 2nd and 3rd level groups to 1 when they need to be higher
+
+        //GameManager.instance.SetUnlockLevel(1, group1);
+        //GameManager.instance.SetUnlockLevel(2, group2);
+        //GameManager.instance.SetUnlockLevel(3, group3);
     }
 
     //private void CheckActiveButtons2()
