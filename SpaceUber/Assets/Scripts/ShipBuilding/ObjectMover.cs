@@ -77,6 +77,7 @@ public class ObjectMover : MonoBehaviour
                 {
                     isBeingDragged = false;
                     Placement();
+                    Tutorial.Instance.conditionalContinuePlaceRoom();
                 }
 
                 if(Input.GetButtonDown("DeleteRoom"))
@@ -139,6 +140,8 @@ public class ObjectMover : MonoBehaviour
     {
         if(Input.GetButtonDown("RotateLeft") && os.canRotate == true)
         {
+            Tutorial.Instance.ConditionalContinueRotateRoom();
+
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, 90);
             AudioManager.instance.PlaySFX(SFXs[Random.Range(0, SFXs.Length)]);
 
@@ -163,6 +166,8 @@ public class ObjectMover : MonoBehaviour
 
         if(Input.GetButtonDown("RotateRight") && os.canRotate == true)
         {
+            Tutorial.Instance.ConditionalContinueRotateRoom();
+
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, -90);
             AudioManager.instance.PlaySFX(SFXs[Random.Range(0, SFXs.Length)]);
 
@@ -285,6 +290,11 @@ public class ObjectMover : MonoBehaviour
     {
         yield return new WaitForSeconds(.1f);
         canPlace = true;
+    }
+
+    public bool GetIsBeingDragged()
+    {
+        return isBeingDragged;
     }
 
     //public void LayoutPlacement() //for spawning from layout to make sure they act as if they were placed normallys
