@@ -8,7 +8,7 @@ public class AudioSettings : MonoBehaviour
     public static float masterVol = 1;
     public static float sfxVol = 1;
     public static float bgmVol = 1;
-    public static float radioVol = 0;
+    public static float radioVol = 1;
     public static float ambientVol = 1;
 
     [SerializeField] Slider masterSlider;
@@ -23,14 +23,14 @@ public class AudioSettings : MonoBehaviour
     {
         yield return new WaitUntil(() => AudioManager.instance != null);
 
-        if (SavingLoadingManager.instance.GetHasSave())//change to gethassettingssave when merged?
+        if (SavingLoadingManager.instance.GetHasSettingsSaved())//change to gethassettingssave when merged?
         {
             LoadAudioSettings();
         }
     }
     private void OnEnable()
     {
-        if (SavingLoadingManager.instance.GetHasSave())//change to gethassettingssave when merged?
+        if (SavingLoadingManager.instance.GetHasSettingsSaved())//change to gethassettingssave when merged?
         {
             LoadAudioSettings();
         }
