@@ -9,8 +9,6 @@ In front of you is an array of gattling turrets, heavy armor, and high-caliber w
 -> WeldedArmor
 + [Anti-Tank Weaponry]
 -> AntiTankArmory
-+ [Don't Buy Anything]
--> DontBuyAnything
 
 ==GatlingArsenal==
 For your upcoming battle you decide the best defense is a solid offense. You tell the seller that you'll purchase the guns. "Excellent choice. The pure volume of bullets these can output could chew through tungsten in a matter of seconds. I won't ask what you're going to use them for, but I'd hate to be on the business end of these."
@@ -27,10 +25,6 @@ The HQ will be sprawling, and your security team will be essential in scouting i
 With your choice made, the merchant leads you to the next room. Now that your opponents are going to have a hard time getting to you, your next purchases should probably help you prepare if they actually get to you.
 ->Choice_2
 
-==DontBuyAnything==
-You decide that nothing in this room is worth purchasing for the final battle against Kellis. The salesman gives a reflexive "Very good" and leads you to the next room. Now that your opponents are going to have a hard time getting to you, your next purchases should probably help you prepare if they actually get to you.
-->Choice_2
-
 ==Choice_2==
 In the second room there are functional but stranger items. A massive gun stands in the corner, rippling with waves of electricity. A shield generator is displayed in the center, the air around it wavering. And near you are several mechanical exo-suits, with built in weapons and sensors. 
 + [Disintegration Ray]
@@ -39,8 +33,6 @@ In the second room there are functional but stranger items. A massive gun stands
 -> WarpShield
 + [Security Exo-Suits]
 -> SecurityExoSuits
-+ [Don't Buy Anything]
--> DontBuyAnything2
 
 ==DisintegrationRay==
 The barker’s manages a sleazy grin behind their mask, “Ah, you’ve got a good eye for quality, friend! This device will melt your problems away! Simply point the end towards an obstacle and watch in amazement as it’s reduced to little more than a grey vapor.” Assuming what he says is true, this should make getting into Central HQ significantly easier. 
@@ -63,10 +55,10 @@ You are led into the next room of scavenged alien technology and advanced protot
 The barker, seeing your interest, speaks up. "Good eye. The bomb there was made to create a gravitational singularity in the shortest time-frame possible. Scientists don't quite agree what it would do, but they agree that it could wipe out a small planet. The data drive there contains what we call the Masterkey AI, which has been employed by several cyber-terrorists to break into high security systems across the galaxy. First time we've gotten our hands on them." Either one could drop Kellis to their knees in the right situation.
 + [Reality Bomb]
 -> RealityBomb
-+ [Ancient AI hacking tool]
++ [Ancient AI Hacking Tool]
 -> AncientAITool
 + [Don't Buy Anything]
--> DontBuyAnything3
+-> DontBuyAnything
 
 ==RealityBomb==
 You purchase the bomb, and make sure your crew is very careful while loading it. The merchant transfers you the various codes required to use it while you transfer over the CEO's credits. It's only one bomb, but you could eliminate Central HQ if you just get near its center. You stay at the market for another hour while your purchases are loaded, but you can feel that the time for preparations is over.
@@ -76,6 +68,6 @@ You purchase the bomb, and make sure your crew is very careful while loading it.
 You purchase the hacking tool and a employee carefully removes it from its glass case. The merchant transfers you the various codes required to use it while you transfer over the CEO's credits. You can feel the data drive probing the world around it, its electronic mind curious. You're glad the both of you are working together. You stay at the market for another hour while your purchases are loaded, but you can feel that the time for preparations is over.
 -> END
 
-==DontBuyAnything3==
+==DontBuyAnything==
 You decide not to purchase any highly dangerous prototype, as much for your safety as for your credit count. The merchant smiles back at you and tries to console themself by helping you load your previous purchases. You stay at the market for another hour while this happens, but you can feel that time for preparations is over.
 -> END
