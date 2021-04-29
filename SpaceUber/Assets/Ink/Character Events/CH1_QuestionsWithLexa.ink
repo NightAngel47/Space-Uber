@@ -25,9 +25,9 @@ Lexa looks at you for a long while, speechless. Finally, she mutters to herself,
 == PosRes2 ==
 Lexa raises an eyebrow, "Really? You’d stick out your neck for the little guy? I see…" She jots down some notes. "Just one more question…"
 She stares, unfazed and unblinking as she asks this final question: "In this scenario, it’s between you and another crewmate. Only one of you can come out of this alive and the choice is yours. Who’s it going to be?"
-+[The crew member,as I'll live on.]->PosRes3
-+[It would depend on their importance.]->NeuRes3
-+[I'm an asset of Kellis, they are not.]->NegRes3
++[Me.]->NegRes3
++[The crew member.]->PosRes3
++[It depends.]->NeuRes3
 == NeuRes2 ==
 She Sighs, "That’s about what I expected. Alright, just one more question…"
 She stares, unfazed and unblinking as she asks this final question: "In this scenario, it’s between you and another crewmate, any crewmate. Only one of you can come out of this alive and the choice is yours. Who’s it going to be?"
