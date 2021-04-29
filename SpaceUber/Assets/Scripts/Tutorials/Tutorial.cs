@@ -29,6 +29,7 @@ public class TutorialMessage
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorChargingTerminal;
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorArmorPlating;
     [Foldout("Ghost Cursor Effects")] public bool ghostCursorStatBar;
+    [Foldout("Ghost Cursor Effects")] public bool ghostCursorCrewBunks;
     [Foldout("Other effects")] public bool selectRoom;
 
     [Header("Tutorial Continue Conditions")]
@@ -36,6 +37,7 @@ public class TutorialMessage
     public bool continueOnDeleteRoom;
     public bool continueOnAddCrew;
     public bool continueOnRoomRotate;
+    public bool continueOnToggleCV;
 
     //[HideInInspector] public bool dynamicActionCompleted = false;
 }
@@ -124,6 +126,7 @@ public class Tutorial : Singleton<Tutorial>
                 else if (currentTutorial.tutorialMessages[index].ghostCursorChargingTerminal) GhostCursorChargingTerminal();
                 else if (currentTutorial.tutorialMessages[index].ghostCursorArmorPlating) GhostCursorArmorPlating();
                 else if (currentTutorial.tutorialMessages[index].ghostCursorStatBar) GhostCursorStatBar();
+                else if (currentTutorial.tutorialMessages[index].ghostCursorCrewBunks) GhostCursorCrewBunks();
 
                 //Crew Management Effect
                 else if (currentTutorial.tutorialMessages[index].selectRoom) EffectSelectRoom();
@@ -343,6 +346,16 @@ public class Tutorial : Singleton<Tutorial>
         }
         if (lerping == false) BeginLerping(vecStatsLeft.transform.position, vecStatsRight.transform.position);
     }
+    private void GhostCursorCrewBunks()
+    {
+        if (tutorialPrerequisitesComplete == false)
+        {
+            if (FindObjectOfType<ShipBuildingShop>().GetCurrentTab() != "Crew") FindObjectOfType<ShipBuildingShop>().ToResourceTab("Crew");
+            tutorialPrerequisitesComplete = true;
+        }
+        if (lerping == false) BeginLerping(vecShopPanel.transform.position, vecInsideShip.transform.position);
+    }
+
     private void EffectSelectRoom()
     {
         if (tutorialPrerequisitesComplete == false)
@@ -378,6 +391,10 @@ public class Tutorial : Singleton<Tutorial>
     public void ConditionalContinueRotateRoom()
     {
         if (GetTutorialActive() && currentTutorial.tutorialMessages[index].continueOnRoomRotate) ContinueButton();
+    }
+    public void ConditionalContinueToggleCrewView()
+    {
+        if (GetTutorialActive() && currentTutorial.tutorialMessages[index].continueOnToggleCV) ContinueButton();
     }
     #endregion
 

@@ -257,6 +257,8 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
                 FindObjectOfType<CrewManagement>().CheckForMinCrew();
             }
         }
+
+        Tutorial.Instance.ConditionalContinueAddCrew();
     }
 
     public void SubtractCrew()
@@ -277,6 +279,8 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
                 FindObjectOfType<CrewManagement>().CheckForMinCrew();
             }
         }
+
+        Tutorial.Instance.ConditionalContinueAddCrew();
     }
 
     public void SetOvertimeButtonState(bool state)
