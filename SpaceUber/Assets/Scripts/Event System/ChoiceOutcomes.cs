@@ -71,7 +71,7 @@ public class ChoiceOutcomes
     {
         if (ship != null)
         {
-            if (isResourceOutcome || (!isNarrativeOutcome && !isApprovalOutcome)) //Will change to "isResourceOutcome" when designers have the chance to check the box in all old events
+            if (isResourceOutcome)
             {
                 if(isScaledOutcome) //scalable events get a multiplier to amount
                 {

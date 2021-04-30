@@ -595,8 +595,8 @@ PrefabInstance:
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: nextChoices.Array.data[1].description
-      value: "\"I\u2019d remind them that they are a part of a team, and by slacking
-        off they will come to be resented by their fellow crew members.\""
+      value: '"I''d remind them that they are a part of a team, and by slacking off
+        they will come to be resented by their fellow crew members."'
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
@@ -619,6 +619,27 @@ PrefabInstance:
         type: 3}
       propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[2].description
       value: '"It depends on the importance of the crew member in question."'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].changeMusic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].description
+      value: '"How one feels is irrelevant. The job must be completed somehow."'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].description
+      value: '"Why feel for them?"'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].description
+      value: '"They ought to be treated well. People seem to be more efficient when
+        happy."'
       objectReference: {fileID: 0}
     - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
