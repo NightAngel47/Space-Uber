@@ -51,8 +51,6 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         {
             if (campaignManager.GetCurrentCampaignIndex() > 0)
             {
-                RoomStats[] rooms = FindObjectsOfType<RoomStats>();
-
                 switch (campaignManager.GetCurrentJobIndex())
                 {
                     case 0:
@@ -61,30 +59,11 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
                     case 1:
                         GameManager.instance.SetUnlockLevel(1, campaignManager.GetCurrentCampaignIndex() + 1);
                         GameManager.instance.SetUnlockLevel(2, campaignManager.GetCurrentCampaignIndex() + 1);
-
-                        foreach (RoomStats room in rooms)
-                        {
-                            if (room.roomName == "Power Core")
-                            {
-                                room.ChangeRoomLevel(1);
-                                break;
-                            }
-                        }
                         break;
                     case 2:
                         GameManager.instance.SetUnlockLevel(1, campaignManager.GetCurrentCampaignIndex() + 1);
                         GameManager.instance.SetUnlockLevel(2, campaignManager.GetCurrentCampaignIndex() + 1);
                         GameManager.instance.SetUnlockLevel(3, campaignManager.GetCurrentCampaignIndex() + 1);
-
-
-                        foreach (RoomStats room in rooms)
-                        {
-                            if (room.roomName == "Power Core")
-                            {
-                                room.ChangeRoomLevel(1);
-                                break;
-                            }
-                        }
                         break;
                 }
             }
