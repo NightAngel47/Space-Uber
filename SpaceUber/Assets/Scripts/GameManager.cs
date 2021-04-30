@@ -50,7 +50,8 @@ public class GameManager : MonoBehaviour
     private ShipStats ship;
 
     [SerializeField] private List<ResourceDataType> resourceDataRef = new List<ResourceDataType>();
-    
+    public List<ResourceDataType> ResourceDataRef => resourceDataRef;
+
     [HideInInspector] public bool hasLoadedRooms = false;
 
     public List<GameObject> allRoomList = new List<GameObject>();

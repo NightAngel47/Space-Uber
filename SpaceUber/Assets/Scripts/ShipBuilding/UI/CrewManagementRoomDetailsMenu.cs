@@ -25,6 +25,8 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI overtimeToolTipDisabledText;
     [SerializeField] private TextMeshProUGUI talkToCrewToolTipDisabledText;
 
+    [SerializeField] private MenuTabBehaviour roomDetailsTab;
+
     #region UI Elements
 
     [SerializeField, Foldout("Descriptive Info")] Image roomImage;
@@ -71,6 +73,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         roomStats = room.GetComponent<RoomStats>();
         overclockRoom = room.GetComponent<OverclockRoom>();
         shipStats.roomBeingPlaced = selectedRoom;
+        roomDetailsTab.SetInteractableState(true);
 
         if (FindObjectOfType<RoomPanelToggle>().GetIsOpen())
         {
@@ -394,6 +397,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
 
     public void ClearUI()
     {
+        roomDetailsTab.SetInteractableState(false);
         shipStats = FindObjectOfType<ShipStats>();
         roomName.text = noRoomSelectedMessage;
         usedImage.SetActive(false);
