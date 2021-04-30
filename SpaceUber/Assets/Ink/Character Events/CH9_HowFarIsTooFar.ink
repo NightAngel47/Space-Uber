@@ -32,10 +32,10 @@ Lanri goes on to divulge her breakthrough: a stimulant capable of keeping an org
 +[Ask if this is worth it.]->worth
 
 == kink ==
-“But I can’t work out the kinks if I don’t have sufficient data in the first place!” This sudden outburst surprises you. Lanri recomposes herself and apologizes. “Very well, I will continue my limited testing. You’ll be informed of any new breakthroughs. Farewell.” You disconnect from the camera, content with the outcome.
+“But I can’t work out the kinks if I don’t have sufficient data in the first place!” This sudden outburst surprises you. Lanri recomposes herself and apologizes. “Very well, I will continue my limited testing. You’ll be informed of any new breakthroughs. Farewell.” You disconnect from the camera.
 ->DONE
 == reason ==
-Lanri is flummoxed by your answer. She tries to form an argument, but continues to trip over herself. She sighs, “If that’s what you want, I can’t really argue. However, I’m keeping the notes collected thus far!” You find no problem with this outcome, and sever the camera’s connection soon after.
+Lanri is flummoxed by your answer. She tries to form an argument, but continues to trip over herself. She sighs, “If that’s what you want, I can’t really argue. However, I’m keeping the notes collected thus far!” You sever the camera’s connection soon after.
 ->DONE
 == worth ==
 Lanri is taken aback by the question. It seems she was so swept up in the prospects the stimulant presented that she failed to consider the ramifications. “I, uh, think I may have a few things to figure out before we move onto the next phase of testing. Thank you for your input.” You break the camera’s connection and return to your terminal.
