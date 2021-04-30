@@ -33,7 +33,7 @@ MonoBehaviour:
   requiredStats: []
   nextChoices:
   - choiceName: neg
-    description: 
+    description: '"You ought to be fired for even asking such a question."'
     changeMusic: 0
     playSFX: 1
     withoutTransition: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
     subsequentChoiceIndex: 0
     isScalableEvent: 0
   - choiceName: pos
-    description: 
+    description: '"You may access what is available."'
     changeMusic: 0
     playSFX: 1
     withoutTransition: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
     subsequentChoiceIndex: 0
     isScalableEvent: 0
   - choiceName: neu
-    description: 
+    description: '"Not all of it is accessible to me, but I can see what can be done."'
     changeMusic: 0
     playSFX: 1
     withoutTransition: 0
@@ -160,6 +160,7 @@ MonoBehaviour:
   positiveMoraleBoost: 10
   neutralMoraleBoost: 5
   moraleLoss: -10
+  roomTypes: 0900000006000000
 --- !u!1001 &593058587815589351
 PrefabInstance:
   m_ObjectHideFlags: 0

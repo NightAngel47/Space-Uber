@@ -46,7 +46,7 @@ Before they get far, Olivia Whitwer approaches one of your monitors, “Ship, we
 You arrive at the abandoned docking bay, without any of the targets the clones asked for. The bay is a huge circular room with no roof, a tangle of shadows and catwalks along its walls. You set down, leaving the bay doors to your ship closed. Several metal-clad men kneel, pointing assault weapons at your ship, waiting for sight of the originals. In the shadows, a huge plasma artillery cannon lurks, humming softly. As the clones call you and ask that you open your cargo hold, you realize you need to act.
 -> Fight
 
-*[Leave Planet(End Campaign)]
+*[Leave Planet]
 -> Paid_By_VIPs
 
 
