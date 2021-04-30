@@ -1,0 +1,870 @@
+fileFormatVersion: 2
+guid: 28f752219bd315244969968a1c1e928f
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    isReadable: 0
+    streamingMipmaps: 1
+    streamingMipmapsPriority: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  spriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 0, y: 0}
+  mosaicSpriteImportData: []
+  rigSpriteImportData:
+  - name: Ship
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 7936
+      y: 3668
+      width: 132
+      height: 64
+    spriteID: b5fa7d441498d994bb4499a23db01f93
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 7475, y: 3531}
+  - name: Ship backlight
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 7228
+      y: 417
+      width: 322
+      height: 279
+    spriteID: 26a6aed1802fb6a438bade4051961a54
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 6850, y: 386}
+  - name: Fog
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 2400
+      height: 1060
+    spriteID: d9093728c78461a45a506c7ab3e9f097
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 4}
+  - name: Forcefield glow
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2412
+      y: 4
+      width: 2400
+      height: 1060
+    spriteID: 8adbcc04a16db164aa6e04ef63045fab
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2412, y: 4}
+  - name: Hexagonal field
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4820
+      y: 4
+      width: 2400
+      height: 1060
+    spriteID: 56224088197db114aa300f73e8121a39
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4820, y: 4}
+  - name: Lens flare
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2082
+      y: 4108
+      width: 2169
+      height: 421
+    spriteID: 0f1d062ee20471449a47b2d9ca814529
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1966, y: 3596}
+  - name: Glow
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4108
+      width: 2070
+      height: 829
+    spriteID: 20c4e1a7e8939b24290aa07b663ece4a
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -170, y: 3877}
+  - name: Cannon 3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 7936
+      y: 3453
+      width: 207
+      height: 207
+    spriteID: 0a04d066e2584af4980360bf190cbbb3
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 6220, y: 2833}
+  - name: Cannon 2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 7641
+      y: 4
+      width: 207
+      height: 207
+    spriteID: c2b78def75f153a4ba9911a8ae4c9036
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 6556, y: -616}
+  - name: Cannon 1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 7641
+      y: 219
+      width: 207
+      height: 207
+    spriteID: 27bbcf01036276b4796cbbde13182159
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 7187, y: -401}
+  - name: Light/Glow
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4945
+      width: 1819
+      height: 905
+    spriteID: 0ae2edd6e4a27c4488f1693d64e95467
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -342, y: 4790}
+  - name: Buildings
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 3208
+      width: 2343
+      height: 892
+    spriteID: 9ebbc678580fa684287de521d52a3d5f
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -53, y: 3071}
+  - name: Fog_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4645
+      y: 3208
+      width: 2400
+      height: 767
+    spriteID: d748c573ee6e76f4e9917d3f68d807bb
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4645, y: 2915}
+  - name: Light/Glow_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1072
+      width: 2400
+      height: 1060
+    spriteID: 39cfc581d5e83844bbfe20c9dbf1b58c
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 1072}
+  - name: Buildings_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2355
+      y: 3208
+      width: 2282
+      height: 858
+    spriteID: 24c03b83253b38343a0ecd62de87786d
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2267, y: 3006}
+  - name: Clouds
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2412
+      y: 2140
+      width: 2400
+      height: 918
+    spriteID: faff93b14a7ee9d4b8cf5993e3e4f9f5
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2412, y: 2003}
+  - name: Light/Glow_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2412
+      y: 1072
+      width: 2400
+      height: 1060
+    spriteID: 57814b03c7812924f9393e8f77a9696d
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2412, y: 1072}
+  - name: Buildings_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4820
+      y: 2140
+      width: 2400
+      height: 881
+    spriteID: 0d6552ccc0dd77946afc2921393fea49
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4820, y: 1967}
+  - name: Glow_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4820
+      y: 1072
+      width: 2400
+      height: 1060
+    spriteID: 509d0f78361b1674db1f17fc79231ceb
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4820, y: 1072}
+  - name: Star 4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 7936
+      y: 3208
+      width: 237
+      height: 237
+    spriteID: 0b386849c6faa484593e3913846f94ec
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 6945, y: 3063}
+  - name: Star 3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 7228
+      y: 704
+      width: 296
+      height: 296
+    spriteID: 93d753852be29434a94bf7e1ae344440
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 6652, y: 430}
+  - name: Star 2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 7228
+      y: 4
+      width: 405
+      height: 405
+    spriteID: 38e806b1331cf934fbaf9ed770d99cad
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 5819, y: -569}
+  - name: Star 1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 7053
+      y: 3208
+      width: 875
+      height: 592
+    spriteID: cd60ca603149b6344b88d335465dede5
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 6237, y: 2740}
+  - name: Background
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 2140
+      width: 2400
+      height: 1060
+    spriteID: 5e50396eec60e97449f1214e9cfb7119
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 2140}
+  platformSettings: []
+  mosaicLayers: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  importedTextureWidth: 2048
+  importedTextureHeight: 2048
+  documentSize: {x: 2400, y: 1060}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 0
+  spriteCategoryList:
+    categories: []
+  textureActualWidth: 8192
+  textureActualHeight: 8192
+  spritePackingTag: 
+  resliceFromLayer: 0
+  characterMode: 1
+  mosaicPSDLayers: []
+  rigPSDLayers:
+  - name: Ship
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 
+    layerID: 83
+    mosaicPosition: {x: 0, y: 0}
+  - name: Ship
+    spriteName: Ship
+    isGroup: 0
+    parentIndex: 0
+    spriteID: b5fa7d441498d994bb4499a23db01f93
+    layerID: 39
+    mosaicPosition: {x: 7936, y: 3668}
+  - name: Ship backlight
+    spriteName: Ship backlight
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 26a6aed1802fb6a438bade4051961a54
+    layerID: 55
+    mosaicPosition: {x: 7228, y: 417}
+  - name: Fog
+    spriteName: Fog
+    isGroup: 0
+    parentIndex: -1
+    spriteID: d9093728c78461a45a506c7ab3e9f097
+    layerID: 87
+    mosaicPosition: {x: 4, y: 4}
+  - name: Forcefield
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 
+    layerID: 75
+    mosaicPosition: {x: 0, y: 0}
+  - name: Forcefield glow
+    spriteName: Forcefield glow
+    isGroup: 0
+    parentIndex: 4
+    spriteID: 8adbcc04a16db164aa6e04ef63045fab
+    layerID: 74
+    mosaicPosition: {x: 2412, y: 4}
+  - name: Hexagonal field
+    spriteName: Hexagonal field
+    isGroup: 0
+    parentIndex: 4
+    spriteID: 56224088197db114aa300f73e8121a39
+    layerID: 73
+    mosaicPosition: {x: 4820, y: 4}
+  - name: City
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 
+    layerID: 53
+    mosaicPosition: {x: 0, y: 0}
+  - name: Lens flare
+    spriteName: Lens flare
+    isGroup: 0
+    parentIndex: 7
+    spriteID: 0f1d062ee20471449a47b2d9ca814529
+    layerID: 131
+    mosaicPosition: {x: 2082, y: 4108}
+  - name: Cannons
+    spriteName: 
+    isGroup: 1
+    parentIndex: 7
+    spriteID: 
+    layerID: 106
+    mosaicPosition: {x: 0, y: 0}
+  - name: Glow
+    spriteName: Glow
+    isGroup: 0
+    parentIndex: 9
+    spriteID: 20c4e1a7e8939b24290aa07b663ece4a
+    layerID: 109
+    mosaicPosition: {x: 4, y: 4108}
+  - name: Cannon 3
+    spriteName: Cannon 3
+    isGroup: 0
+    parentIndex: 9
+    spriteID: 0a04d066e2584af4980360bf190cbbb3
+    layerID: 105
+    mosaicPosition: {x: 7936, y: 3453}
+  - name: Cannon 2
+    spriteName: Cannon 2
+    isGroup: 0
+    parentIndex: 9
+    spriteID: c2b78def75f153a4ba9911a8ae4c9036
+    layerID: 100
+    mosaicPosition: {x: 7641, y: 4}
+  - name: Cannon 1
+    spriteName: Cannon 1
+    isGroup: 0
+    parentIndex: 9
+    spriteID: 27bbcf01036276b4796cbbde13182159
+    layerID: 89
+    mosaicPosition: {x: 7641, y: 219}
+  - name: Top Layer
+    spriteName: 
+    isGroup: 1
+    parentIndex: 7
+    spriteID: 
+    layerID: 77
+    mosaicPosition: {x: 0, y: 0}
+  - name: Light/Glow
+    spriteName: Light/Glow
+    isGroup: 0
+    parentIndex: 14
+    spriteID: 0ae2edd6e4a27c4488f1693d64e95467
+    layerID: 86
+    mosaicPosition: {x: 4, y: 4945}
+  - name: Buildings
+    spriteName: Buildings
+    isGroup: 0
+    parentIndex: 14
+    spriteID: 9ebbc678580fa684287de521d52a3d5f
+    layerID: 123
+    mosaicPosition: {x: 4, y: 3208}
+  - name: Middle layer
+    spriteName: 
+    isGroup: 1
+    parentIndex: 7
+    spriteID: 
+    layerID: 65
+    mosaicPosition: {x: 0, y: 0}
+  - name: Fog
+    spriteName: Fog_1
+    isGroup: 0
+    parentIndex: 17
+    spriteID: d748c573ee6e76f4e9917d3f68d807bb
+    layerID: 67
+    mosaicPosition: {x: 4645, y: 3208}
+  - name: Light/Glow
+    spriteName: Light/Glow_1
+    isGroup: 0
+    parentIndex: 17
+    spriteID: 39cfc581d5e83844bbfe20c9dbf1b58c
+    layerID: 71
+    mosaicPosition: {x: 4, y: 1072}
+  - name: Buildings
+    spriteName: Buildings_1
+    isGroup: 0
+    parentIndex: 17
+    spriteID: 24c03b83253b38343a0ecd62de87786d
+    layerID: 124
+    mosaicPosition: {x: 2355, y: 3208}
+  - name: Back layer
+    spriteName: 
+    isGroup: 1
+    parentIndex: 7
+    spriteID: 
+    layerID: 60
+    mosaicPosition: {x: 0, y: 0}
+  - name: Clouds
+    spriteName: Clouds
+    isGroup: 0
+    parentIndex: 21
+    spriteID: faff93b14a7ee9d4b8cf5993e3e4f9f5
+    layerID: 63
+    mosaicPosition: {x: 2412, y: 2140}
+  - name: Light/Glow
+    spriteName: Light/Glow_2
+    isGroup: 0
+    parentIndex: 21
+    spriteID: 57814b03c7812924f9393e8f77a9696d
+    layerID: 62
+    mosaicPosition: {x: 2412, y: 1072}
+  - name: Buildings
+    spriteName: Buildings_2
+    isGroup: 0
+    parentIndex: 21
+    spriteID: 0d6552ccc0dd77946afc2921393fea49
+    layerID: 125
+    mosaicPosition: {x: 4820, y: 2140}
+  - name: Stars
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 
+    layerID: 47
+    mosaicPosition: {x: 0, y: 0}
+  - name: Glow
+    spriteName: Glow_1
+    isGroup: 0
+    parentIndex: 25
+    spriteID: 509d0f78361b1674db1f17fc79231ceb
+    layerID: 52
+    mosaicPosition: {x: 4820, y: 1072}
+  - name: Star 4
+    spriteName: Star 4
+    isGroup: 0
+    parentIndex: 25
+    spriteID: 0b386849c6faa484593e3913846f94ec
+    layerID: 46
+    mosaicPosition: {x: 7936, y: 3208}
+  - name: Star 3
+    spriteName: Star 3
+    isGroup: 0
+    parentIndex: 25
+    spriteID: 93d753852be29434a94bf7e1ae344440
+    layerID: 45
+    mosaicPosition: {x: 7228, y: 704}
+  - name: Star 2
+    spriteName: Star 2
+    isGroup: 0
+    parentIndex: 25
+    spriteID: 38e806b1331cf934fbaf9ed770d99cad
+    layerID: 44
+    mosaicPosition: {x: 7228, y: 4}
+  - name: Star 1
+    spriteName: Star 1
+    isGroup: 0
+    parentIndex: 25
+    spriteID: cd60ca603149b6344b88d335465dede5
+    layerID: 43
+    mosaicPosition: {x: 7053, y: 3208}
+  - name: Background
+    spriteName: Background
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 5e50396eec60e97449f1214e9cfb7119
+    layerID: 130
+    mosaicPosition: {x: 4, y: 2140}
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+  generateGOHierarchy: 0
+  textureAssetName: Kellis HQ for Animation Texture
+  prefabAssetName: Kellis HQ for Animation Prefab
+  spriteLibAssetName: Kellis HQ for Animation Sprite Lib
+  secondarySpriteTextures: []
