@@ -300,6 +300,8 @@ public class GameManager : MonoBehaviour
 
     public void SetUnlockLevel(int roomGroup, int newValue)
     {
+        RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+
         switch (roomGroup)
         {
             case 1:
@@ -308,6 +310,21 @@ public class GameManager : MonoBehaviour
                 {
                     currentMaxLvlGroup2 = newValue - 1;
                     currentMaxLvlGroup3 = newValue - 1;
+                }
+
+                foreach (RoomStats room in rooms)
+                {
+                    if (room.roomName == "Power Core" && FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() == 1)
+                    {
+                        room.ChangeRoomLevel(2);
+                        break;
+                    }
+
+                    if (room.roomName == "Power Core" && FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() == 2)
+                    {
+                        room.ChangeRoomLevel(3);
+                        break;
+                    }
                 }
                 break;
             case 2:
