@@ -24,6 +24,8 @@ public class CrewViewManager : Singleton<CrewViewManager>
         {
             if (crewViewEnabled == false && (!EventSystem.instance.eventActive || GameManager.instance.currentGameState == InGameStates.ShipBuilding)) EnableCrewView();
             else DisableCrewView();
+
+            Tutorial.Instance.ConditionalContinueToggleCrewView();
         }
     }
 

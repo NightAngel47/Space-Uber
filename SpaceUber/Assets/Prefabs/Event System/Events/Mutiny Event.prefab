@@ -60,7 +60,7 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: nextChoices.Array.data[0].outcomes.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -226,12 +226,12 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: nextChoices.Array.data[0].description
-      value: The money will definitely make up for all the death and/or starvation
+      value: The money will definitely make up for all the death and/or starvation.
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: nextChoices.Array.data[1].description
-      value: Give up your ship and possibly your life
+      value: Give up your ship and possibly your life.
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -271,7 +271,7 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: nextChoices.Array.data[0].outcomes.Array.data[1].amount
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -407,6 +407,11 @@ PrefabInstance:
         type: 3}
       propertyPath: nextChoices.Array.data[0].outcomes.Array.data[2].thisCampaign
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].hasSecretOutcomes
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
