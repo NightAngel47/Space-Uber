@@ -2,8 +2,8 @@ VAR randomEnd = -> Fix1
 VAR randomEnd2 = -> Fix2
 
 
-The mechanic, Mateo, contacts you, "Now I swear this may sound like the start of one of my jokes, but the waste disposal systems aren't working correctly. The tanks aren't emptying properly, and they're filling up too quick. If we don't fix it and soon, all that... stuff may damage the ship.
-"We could have some crew members fix it, but that may not be safe or pleasant for them, y'know. You could also fix it remotely, but that may allow some pressure to build up, and we don't want that." 
+The ship's mechanic, Mateo, contacts you, "Now I swear this may sound like the start of one of my jokes, but the waste disposal systems aren't working correctly. The tanks aren't emptying properly, and they're filling up too quick. If we don't fix it —and soon—, all that... stuff may damage the ship.
+"We could have some crew members fix it, but that may not be safe or pleasant for them. You could also fix it remotely, but that may allow some pressure to build up. That's something we definitely <i>don't</i> want." 
 * [Fix with Crew ]
     ->randomEnd
 * [Fix Remotely ]
@@ -14,7 +14,7 @@ You send a couple crew members to fix the waste disposal systems. Their suits he
 -> END
 
 === Drown ===
-You send a couple crew members to fix the waste disposal systems. They manage to fix the problem before any damage is done to the ship. Unfortunately, one of crew member's suits malfunctions, causing it to rapidly fill with sewage, leading to one of the most disgusting deaths possible.
+You send a couple crew members to fix the waste disposal systems. They manage to fix the problem before any damage is done to the ship. Unfortunately, one of crew member's suits malfunctions, causing it to rapidly fill with sewage. This leads to one of the most disgusting deaths you have ever had the displeasure of witnessing.
 -> END
 
 === Fix2 ===

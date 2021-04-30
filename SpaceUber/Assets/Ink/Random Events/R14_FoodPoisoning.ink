@@ -1,4 +1,4 @@
-Consistent shrieks from the bunks fill your automated ears as Ripley calmly pages you. "It appears that a sizable portion of our food supply is causing poisoning in the crewmates." Tone unchanged, Dr. Lormay continues, "You could have the food removed from the ship. Or, we could ignore this and continue to allow the crew to be poisoned. Some will likely die. Please let me know of your decision."
+Consistent pained moans from the bunks fill your automated ears as Ripley calmly pages you. "It appears that a sizable portion of our food supply is tainted. As a result, crewmates are suffering from food poisoning." Tone unchanged, Dr. Lormay continues, "You could have the food removed from the ship. Or, we could ignore this and continue to allow the crew to be poisoned. Some will likely die. Please let me know your decision."
 
 + [Remove the food]
 -> RemoveTheFood
@@ -8,11 +8,11 @@ Consistent shrieks from the bunks fill your automated ears as Ripley calmly page
 ->Treat
 
 ==RemoveTheFood==
-You have the bad food launched into space. You have lost a sizable portion of your food storages. However, all of the poisoned crew make it back to full health.
+You have the bad food launched into space. You have lost a sizable portion of your food storages. However, all of the poisoned crew make it back to full health. Ripley thanks you for both making her job easier, and for not subjecting the crew to more tainted food.
 -> END
 
 ==ContinueToEatTheFood==
-You tell Ripley to prepare for sick crewmates, as the poisonous food is to be eaten anyways. A couple of days later Kelly informs you that all of the bad food has been eaten by the crew, making it no longer an issue. You prepare to feel satisfied before she informs you that two crewmates died from the food poisoning.
+You tell Ripley to prepare for sick crewmates, as the poisonous food is to be eaten anyways. A couple of days later she informs you that all of the bad food has been eaten by the crew, making it no longer an issue. You feel satisfied before she informs you that two crewmates died from the food poisoning. She lets out a heavy sigh, "This was entirely avoidable."
 -> END
 
 == Treat ==

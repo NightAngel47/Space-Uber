@@ -11,8 +11,8 @@ She turns to leave, before turning back and adding one more remark. "And thanks 
 
 === NeuRes1 ===
 Her face darkens and she looks away. "I'm not going into it. Are you okay with me keeping my research private?" 
-+ ["I will respect your privacy. You can do as you wish with your research?"] -> PosRes2
-+ ["That research was done while employed by Kellis. It belongs to them."] -> NegRes1
++ ["I will respect your privacy."] -> PosRes2
++ ["That research belongs to Kellis"] -> NegRes1
 
 === NegRes1 ===
 Your response gets her fuming. "What's the point of doing research to help people when that research can only be used by those working for a corporation?" Anticipating a reply, she cuts you off. "And trust me, they won't be using it for good. They will use it to increase their bottom line, consequences be damned."
