@@ -77,6 +77,7 @@ public class ObjectMover : MonoBehaviour
                 {
                     isBeingDragged = false;
                     Placement();
+                    Tutorial.Instance.conditionalContinuePlaceRoom();
                 }
 
                 if(Input.GetButtonDown("DeleteRoom"))
@@ -118,6 +119,8 @@ public class ObjectMover : MonoBehaviour
                 if (isBeingDragged == false)
                 {
                     isBeingDragged = true;
+                    
+                    StartCoroutine(WaitToCallCheck());
                 }
             }
         }
@@ -137,6 +140,8 @@ public class ObjectMover : MonoBehaviour
     {
         if(Input.GetButtonDown("RotateLeft") && os.canRotate == true)
         {
+            Tutorial.Instance.ConditionalContinueRotateRoom();
+
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, 90);
             AudioManager.instance.PlaySFX(SFXs[Random.Range(0, SFXs.Length)]);
 
@@ -161,6 +166,8 @@ public class ObjectMover : MonoBehaviour
 
         if(Input.GetButtonDown("RotateRight") && os.canRotate == true)
         {
+            Tutorial.Instance.ConditionalContinueRotateRoom();
+
             gameObject.transform.GetChild(0).transform.Rotate(0, 0, -90);
             AudioManager.instance.PlaySFX(SFXs[Random.Range(0, SFXs.Length)]);
 
@@ -250,9 +257,9 @@ public class ObjectMover : MonoBehaviour
                     gameObject.GetComponent<RoomStats>().levelIconObject.GetComponent<Image>().color = ObjectScript.c;
                 }
                 
-                gameObject.GetComponent<ObjectMover>().enabled = false;
-                
-                FindObjectOfType<CrewManagement>().CheckForRoomsCall();
+                enabled = false;
+
+                StartCoroutine(WaitToCallCheck());
             }
 
             else //If something is placed allow player to keep moving room
@@ -285,10 +292,21 @@ public class ObjectMover : MonoBehaviour
         canPlace = true;
     }
 
+    public bool GetIsBeingDragged()
+    {
+        return isBeingDragged;
+    }
+
     //public void LayoutPlacement() //for spawning from layout to make sure they act as if they were placed normallys
     //{
     //    hasPlaced = true;
     //    gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = ObjectScript.c;
     //    Destroy(gameObject.GetComponent<ObjectMover>());
     //}
+
+    private IEnumerator WaitToCallCheck()
+    {
+        yield return new WaitForSeconds(0.25f);
+        FindObjectOfType<CrewManagement>().CheckForRoomsCall();
+    }
 }

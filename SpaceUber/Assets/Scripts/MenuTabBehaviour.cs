@@ -39,6 +39,11 @@ public class MenuTabBehaviour : MonoBehaviour
         ChangeChildColors(state);
     }
 
+    public bool GetInteractableState()
+    {
+        return button.interactable;
+    }
+
     // change child colors based on new state
     private void ChangeChildColors(bool state)
     {

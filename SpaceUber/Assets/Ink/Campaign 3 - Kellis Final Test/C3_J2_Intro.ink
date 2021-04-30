@@ -1,2 +1,3 @@
-After your tense conversation with the Kellis CEO and your encounter with the monsters on Echo-28 and Apotheo, you must continue to the next sector of the solar system to collect two more assets. Kellis keeps pushing you on to the next pickup point faster than the last, and given what what you've seen, you can't blame them. Avanshore is only going to get worse, so they're trying to get what they can out now. 
-Still, you wonder if there's a method to all this, if there's anything Kellis could do to fix it. Even if there was, would they?
+After your tense conversation with the CEO and your encounter with the monsters on Echo-28 and Apotheo, you must continue to the next sector of the solar system to collect two more assets. 
+Kellis keeps pushing you on to the next pickup point faster than the last, and given what what you've seen, you can't blame them. Avanshore is only going to get worse.
+Still, you wonder if there's anything Kellis could do to fix it. And even if there was, would they?

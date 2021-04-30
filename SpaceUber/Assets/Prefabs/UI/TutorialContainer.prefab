@@ -52,21 +52,33 @@ MonoBehaviour:
     tutorialFinished: 0
   - tutorialName: 'Ship Building Tutorial '
     tutorialMessages:
-    - message: Click the tabs on the left to open the shop. Click to select a room,
-        and click on the ship where you want to place the room. Notice that you cannot
-        place rooms on top of each other.
-      ghostCursorHydroponics: 1
+    - message: 'Click the tabs on the left to open the room shop. Click to select
+        a room, and click on the ship where you want to place the room. You cannot
+        place rooms on top of each other. '
+      ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 1
       selectRoom: 0
+      continueOnPlaceRoom: 1
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     - message: Left click a room you've placed to pick it back up and click again
         to place it down. You can rotate a room you're holding with Q/E.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 1
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 1
+      continueOnToggleCV: 0
     - message: Left Click a room and press Left Shift to sell the room and remove
         it from your ship at full price. However, if you use a room on a trip the
         sale price is reduced.
@@ -74,7 +86,26 @@ MonoBehaviour:
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 1
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
+    - message: Certain rooms can only be placed in spots highlighted in blue when
+        placing.
+      ghostCursorHydroponics: 0
+      ghostCursorChargingTerminal: 0
+      ghostCursorArmorPlating: 1
+      ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
+      selectRoom: 0
+      continueOnPlaceRoom: 1
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     - message: Rooms cost money and power to operate, but are essential to make it
         to your destination. They provide your ship with stats. Hover over the icons
         directly above this tutorial to see what the stats do.
@@ -82,29 +113,39 @@ MonoBehaviour:
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 1
+      ghostCursorCrewBunks: 0
       selectRoom: 0
-    - message: Some rooms have restrictions on where they can be placed. These rooms
-        will highlight potential placement locations in blue when they're dragged
-        from the left menu.
-      ghostCursorHydroponics: 0
-      ghostCursorChargingTerminal: 0
-      ghostCursorArmorPlating: 1
-      ghostCursorStatBar: 0
-      selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     - message: Before you can leave port, you need to assign crew to rooms. Right
-        click a room to assign crew.
-      ghostCursorHydroponics: 0
+        click a room to open the room details panel to see more.
+      ghostCursorHydroponics: 1
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     - message: You may press the question mark on the bottom right of the shop to
         replay this tutorial at any time. Good luck!
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     tutorialFinished: 0
   - tutorialName: Crew Management Tutorial
     tutorialMessages:
@@ -113,7 +154,13 @@ MonoBehaviour:
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     - message: Right click a room to open the room details window and assign/unassign
         crew members to that room. Notice you can only can assign crew members up
         to the number of max crew of that room, or until your unassigned crew are
@@ -122,7 +169,13 @@ MonoBehaviour:
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 1
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 1
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     - message: Assigning crew members to rooms increases room output. You can see
         how many workers a room has by looking at the icons over the rooms. This
         view can be enabled or disabled at any time by pressing Tab.
@@ -130,7 +183,13 @@ MonoBehaviour:
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 1
     - message: Note that crew can be replaced at a port if something "unfortunate"
         happens to them on a journey. You can also pay to have your ship repaired
         if it takes any damage between trips, or recharge your ship if it loses power.
@@ -138,14 +197,26 @@ MonoBehaviour:
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     - message: You may left click a room to move it or add a room from the room selection
         panel if you realize you need to change your ship.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     - message: You may also click the question mark on the bottom right to replay
         this tutorial at any time. Once the required amount of crew are assigned
         to all rooms, click the "Begin Job" button to start your journey.
@@ -153,7 +224,13 @@ MonoBehaviour:
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     tutorialFinished: 0
   - tutorialName: Morale/Overtime Tutorial
     tutorialMessages:
@@ -164,14 +241,26 @@ MonoBehaviour:
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 1
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     - message: Unfortunately we still have to listen to our crew and try to make
         them happy. If not, they might mutiny against you.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     - message: The lower the crew's morale, the less efficently they work and the
         more likely they are to stage a mutiny. If they do mutinize, they'll ask
         for money. Greedy bastards.
@@ -179,7 +268,13 @@ MonoBehaviour:
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     - message: One way to keep them happy is to have a "conversation" with a leader.
         Click on a room to chat with a particular leader about anything on their
         mind.
@@ -187,7 +282,13 @@ MonoBehaviour:
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     - message: A good conversation will leave them happy and increase morale, but
         a bad one could make them wish you didn't talk to them in the first place.
         Figure out what makes them happy.
@@ -195,21 +296,39 @@ MonoBehaviour:
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     - message: A problem might arise while forcing overtime. When you complete overtime
         you will be alerted of the problem.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     - message: You may replay this tutorial at any time by clicking the question
         mark at the top right of the room details menu.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     tutorialFinished: 0
   - tutorialName: Random Events Tutorial
     tutorialMessages:
@@ -219,21 +338,39 @@ MonoBehaviour:
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     - message: Always remember the bottom line. Make as much money as you can. Sometimes
         you might have to sacrifice other things. Whatever.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     - message: But remember that people will remember the choices you make and it
         may affect things down the line.
       ghostCursorHydroponics: 0
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     tutorialFinished: 0
   - tutorialName: Asteroids Minigame Tutorial
     tutorialMessages:
@@ -245,7 +382,13 @@ MonoBehaviour:
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     tutorialFinished: 0
   - tutorialName: Crop Harvest Minigame Tutorial
     tutorialMessages:
@@ -257,7 +400,13 @@ MonoBehaviour:
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     tutorialFinished: 0
   - tutorialName: Hull Repair Minigame Tutorial
     tutorialMessages:
@@ -267,7 +416,13 @@ MonoBehaviour:
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     tutorialFinished: 0
   - tutorialName: Security Minigame Tutorial
     tutorialMessages:
@@ -279,7 +434,13 @@ MonoBehaviour:
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     tutorialFinished: 0
   - tutorialName: Energy Minigame Tutorial
     tutorialMessages:
@@ -291,7 +452,13 @@ MonoBehaviour:
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     tutorialFinished: 0
   - tutorialName: Slots Minigame Tutorial
     tutorialMessages:
@@ -304,11 +471,18 @@ MonoBehaviour:
       ghostCursorChargingTerminal: 0
       ghostCursorArmorPlating: 0
       ghostCursorStatBar: 0
+      ghostCursorCrewBunks: 0
       selectRoom: 0
+      continueOnPlaceRoom: 0
+      continueOnDeleteRoom: 0
+      continueOnAddCrew: 0
+      continueOnRoomRotate: 0
+      continueOnToggleCV: 0
     tutorialFinished: 0
   tutorialTextbox: {fileID: 1390818382375749914}
   tutorialTitleTextbox: {fileID: 1390818382010185175}
   tutorialPanel: {fileID: 1390818382567571727}
+  backButton: {fileID: 3139196115031363487}
   highlightPanel: {fileID: 1390818382344072519}
   ghostCursor: {fileID: 1390818382735140604}
   timeStartedLerping: 0
@@ -2385,6 +2559,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5, type: 3}
+--- !u!114 &3139196115031363487 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3722645125476746485, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1745659670457650026}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7232071328325381863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a338377f2281a0141bc68ae71085168a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7232071328325381862 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8963481259364165004, guid: 7c6b2fb6150cea44b9c7fcd233a2c0a5,

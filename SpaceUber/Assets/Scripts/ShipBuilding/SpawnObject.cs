@@ -44,8 +44,12 @@ public class SpawnObject : MonoBehaviour
     public string[] cannotPlaceCredits;
     public string[] cannotPlaceEnergy;
 
+    public static bool finishedAddingRooms;
+
     public IEnumerator Start()
     {
+        finishedAddingRooms = false;
+
         RectTransform rt = buttonPanel.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(rt.sizeDelta.x, 280 * availableRooms.Count);
 
@@ -118,8 +122,12 @@ public class SpawnObject : MonoBehaviour
 
         //CreateRoomSpawnButtons();
 
+        finishedAddingRooms = true;
+
         //display shipbuilding tutorial
         Tutorial.Instance.SetCurrentTutorial(1, true);
+
+        
     }
 
     IEnumerator PreplacedRoom()
@@ -202,6 +210,8 @@ public class SpawnObject : MonoBehaviour
                         }
                     }
                 }
+                
+                FindObjectOfType<CrewManagement>().CheckForRoomsCall();
                 
                 EndingStats.instance.AddToStat(1, EndingStatTypes.RoomsBought);
 

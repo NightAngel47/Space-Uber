@@ -1,7 +1,7 @@
 While the rain of golden obelisks has slowed across Avanshore, your target planet is close to the sun and has been ravaged by wildfires, crippling its defenses and allowing the Midas creatures to take complete control. The only thing left are ruins, monsters, and, of course, two assets Kellis wants found immediately.  
 Your preliminary scans lock in on an asset in a leaning skyscraper. It is absolutely crawling with Midas creatures. 
 The voice of Portunus crackles across your brain, "This is what you/your lords have wrought/ensured. Leave this final/regrettable tomb. What you fetch only perpetuates our struggle."
-Do you procede?
+Do you proceed?
 
 + [Fight for the Asset]
 -> AttemptAssetCollectionA

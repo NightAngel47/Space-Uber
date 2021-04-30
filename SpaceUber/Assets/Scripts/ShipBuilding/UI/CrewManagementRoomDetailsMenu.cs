@@ -19,7 +19,14 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
 
     [SerializeField] private string noRoomSelectedMessage = "Select a room to view its details.";
     [SerializeField] private GameObject[] roomDetailsInfo = new GameObject[2];
-    
+
+    [SerializeField] private TextMeshProUGUI addCrewToolTipDisabledText;
+    [SerializeField] private TextMeshProUGUI removeCrewToolTipDisabledText;
+    [SerializeField] private TextMeshProUGUI overtimeToolTipDisabledText;
+    [SerializeField] private TextMeshProUGUI talkToCrewToolTipDisabledText;
+
+    [SerializeField] private MenuTabBehaviour roomDetailsTab;
+
     #region UI Elements
 
     [SerializeField, Foldout("Descriptive Info")] Image roomImage;
@@ -32,24 +39,24 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     [SerializeField, Foldout("Requirements")] TMP_Text needsCredits;
     [SerializeField, Foldout("Requirements")] TMP_Text needsPower;
     [SerializeField, Foldout("Requirements")] TMP_Text needsCrew;
-    
+
     [SerializeField, Foldout("Production")] TMP_Text producesResource;
     [SerializeField, Foldout("Production")] Image producesIcon;
     [SerializeField, Foldout("Production")] TMP_Text producesAmount;
-    
+
     [SerializeField, Foldout("Crew Assignment")] TMP_Text currentCrew;
     [SerializeField, Foldout("Crew Assignment")] Button[] crewButtons = new Button[2];
     [SerializeField, Foldout("Crew Assignment")] ButtonTwoBehaviour[] crewButtonTexts = new ButtonTwoBehaviour[2];
-    
+
     [SerializeField, Foldout("Overtime")] TMP_Text overtimeResource;
     [SerializeField, Foldout("Overtime")] Image overtimeIcon;
     [SerializeField, Foldout("Overtime")] TMP_Text overtimeAmount;
     [SerializeField, Foldout("Overtime")] Button overtimeButton;
     [SerializeField, Foldout("Overtime")] ButtonTwoBehaviour overtimeButtonText;
-    
+
     [SerializeField, Foldout("Talk To Crew")] Button talkButton;
     [SerializeField, Foldout("Talk To Crew")] ButtonTwoBehaviour talkButtonText;
-    
+
     #endregion
 
     // Start is called before the first frame update
@@ -61,11 +68,12 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     public void ChangeCurrentRoom(GameObject room)
     {
         if (selectedRoom != null) selectedRoom.GetComponent<RoomHighlight>().Unhighlight();
-        
+
         selectedRoom = room;
         roomStats = room.GetComponent<RoomStats>();
         overclockRoom = room.GetComponent<OverclockRoom>();
         shipStats.roomBeingPlaced = selectedRoom;
+        roomDetailsTab.SetInteractableState(true);
 
         if (FindObjectOfType<RoomPanelToggle>().GetIsOpen())
         {
@@ -75,7 +83,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         {
             room.GetComponent<RoomHighlight>().Unhighlight();
         }
-        
+
         UpdatePanelInfo();
         if (!tutorialAlreadyPlayed)
         {
@@ -83,7 +91,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
             tutorialAlreadyPlayed = true;
         }
     }
-    
+
     public void UpdatePanelInfo()
     {
         // enable UI elements
@@ -91,23 +99,23 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         {
             roomDetailSection.SetActive(true);
         }
-        
+
         // set room details
         roomImage.sprite = selectedRoom.GetComponentInChildren<SpriteRenderer>().sprite;
         roomName.text = roomStats.roomName;
         roomDesc.text = roomStats.roomDescription;
         roomLevel.text = "Level: " + roomStats.GetRoomLevel();
         roomSize.text = selectedRoom.GetComponent<ObjectScript>().shapeDataTemplate.roomSizeName;
-        usedImage.SetActive(roomStats.usedRoom); 
-        
+        usedImage.SetActive(roomStats.usedRoom);
+
         // set room requirements details
         needsCredits.text = roomStats.price[roomStats.GetRoomLevel() - 1].ToString();
         needsPower.text = roomStats.minPower[roomStats.GetRoomLevel() - 1].ToString();
         needsCrew.text = roomStats.minCrew + "-" + roomStats.maxCrew;
-        
+
         // update room production, crew value, and crew buttons
         UpdateCrewAssignment();
-        
+
         // set room overtime details
         SetOvertimeButtonState(GameManager.instance.currentGameState == InGameStates.Events && overclockRoom.MinigameCooledDown);
         overtimeIcon.gameObject.SetActive(true);
@@ -137,10 +145,13 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
                 overtimeResource.text = GameManager.instance.GetResourceData((int) ResourceDataTypes._HullDurability).resourceName;
                 overtimeIcon.sprite = GameManager.instance.GetResourceData((int) ResourceDataTypes._HullDurability).resourceIcon;
                 break;
+
             default:
                 overtimeResource.text = "";
                 overtimeIcon.gameObject.SetActive(false);
                 SetOvertimeButtonState(false); // disable button is no mini-game on room
+                //overtimeToolTipDisabledText.SetActive(true);
+                overtimeToolTipDisabledText.text = "No Overtime Mini-Game for this Room";
                 break;
         }
 
@@ -158,19 +169,35 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         // set room production details
         if (selectedRoom.TryGetComponent(out Resource resource))
         {
+            print(resource.resourceType.resourceName);
             producesResource.text = resource.resourceType.resourceName;
             producesIcon.sprite = resource.resourceType.resourceIcon;
-            
-            roomStats.SetActiveAmount(resource);
 
-            if (roomStats.flatOutput == false)
+            roomStats.SetActiveAmount(resource);
+            if(resource.resourceType.resourceName != "Crew Morale")
             {
-                producesAmount.text = resource.activeAmount + " / " + (int)(resource.amount[roomStats.GetRoomLevel() - 1] * MoraleManager.instance.GetMoraleModifier(roomStats.ignoreMorale));
+                if (roomStats.flatOutput == false)
+                {
+                    producesAmount.text = resource.activeAmount + " / " + (int)(resource.amount[roomStats.GetRoomLevel() - 1] * MoraleManager.instance.GetMoraleModifier(roomStats.ignoreMorale));
+                }
+                else
+                {
+                    producesAmount.text = (resource.amount[roomStats.GetRoomLevel() - 1] * MoraleManager.instance.GetMoraleModifier(roomStats.ignoreMorale)).ToString();
+                }
             }
-            else
+            else //specifically medbay
             {
-                producesAmount.text = (resource.amount[roomStats.GetRoomLevel() - 1] * MoraleManager.instance.GetMoraleModifier(roomStats.ignoreMorale)).ToString();
+                producesResource.text = "Morale Gain";
+                if (roomStats.GetRoomLevel() == 1)
+                {
+                    producesAmount.text = "+";
+                }
+                else
+                {
+                    producesAmount.text = "++";
+                }
             }
+
         }
         else
         {
@@ -178,7 +205,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
             producesIcon.gameObject.SetActive(false);
             producesAmount.text = "";
         }
-        
+
         UpdateCrewButtons();
     }
 
@@ -190,23 +217,39 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
             {
                 crewButtons[i].interactable = false;
                 crewButtonTexts[i].SetButtonInteractable(false);
+
+                addCrewToolTipDisabledText.gameObject.SetActive(true);
+                addCrewToolTipDisabledText.text = "No Crew Required for this Room";
+
+                removeCrewToolTipDisabledText.gameObject.SetActive(true);
+                removeCrewToolTipDisabledText.text = "No Crew Required for this Room";
             }
         }
-        else if(roomStats.currentCrew == 0) // no crew assigned to room 
+        else if(roomStats.currentCrew == 0) // no crew assigned to room
         {
             crewButtons[0].interactable = false;
             crewButtons[1].interactable = true;
-            
+
             crewButtonTexts[0].SetButtonInteractable(false);
             crewButtonTexts[1].SetButtonInteractable(true);
+
+            removeCrewToolTipDisabledText.gameObject.SetActive(true);
+            removeCrewToolTipDisabledText.text = "No Crew Assigned to this Room";
+
+            addCrewToolTipDisabledText.gameObject.SetActive(false);
         }
         else if (roomStats.currentCrew == roomStats.maxCrew) // crew assigned at max
         {
             crewButtons[0].interactable = true;
             crewButtons[1].interactable = false;
-            
+
             crewButtonTexts[0].SetButtonInteractable(true);
             crewButtonTexts[1].SetButtonInteractable(false);
+
+            addCrewToolTipDisabledText.gameObject.SetActive(true);
+            addCrewToolTipDisabledText.text = "The Room is at Max Crew Capacity";
+
+            removeCrewToolTipDisabledText.gameObject.SetActive(false);
         }
         else // crew assigned between min and max (or something went wrong so both buttons active)
         {
@@ -214,24 +257,29 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
             {
                 crewButtons[i].interactable = true;
                 crewButtonTexts[i].SetButtonInteractable(true);
+
+                addCrewToolTipDisabledText.gameObject.SetActive(false);
+                removeCrewToolTipDisabledText.gameObject.SetActive(false);
             }
         }
     }
-    
+
     public void AddCrew(bool fromSave = false)
     {
         if (selectedRoom == null) return;
-        
+
         if (shipStats.CrewCurrent.z > 0 && roomStats.currentCrew < roomStats.maxCrew)
         {
+            addCrewToolTipDisabledText.gameObject.SetActive(false);
+
             roomStats.UpdateCurrentCrew(1);
             if (!fromSave)
             {
                 shipStats.CrewCurrent += new Vector3(0, 0, -1);
             }
-            
+
             UpdateCrewAssignment();
-            if(selectedRoom.GetComponent<RoomStats>().resources.Count > 0) 
+            if(selectedRoom.GetComponent<RoomStats>().resources.Count > 0)
                 roomStats.UpdateRoomStats(roomStats.resources[0].resourceType);
             UpdateCrewAssignment();
 
@@ -239,18 +287,25 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
             {
                 FindObjectOfType<CrewManagement>().CheckForMinCrew();
             }
+
+            Tutorial.Instance.ConditionalContinueAddCrew();
+        }
+        else if(shipStats.CrewCurrent.z == 0)
+        {
+            addCrewToolTipDisabledText.gameObject.SetActive(true);
+            addCrewToolTipDisabledText.text = "No Available Crew on the Ship to be able to Assign to this Room";
         }
     }
 
     public void SubtractCrew()
     {
         if (selectedRoom == null) return;
-        
+
         if (roomStats.currentCrew > 0)
         {
             roomStats.UpdateCurrentCrew(-1);
             shipStats.CrewCurrent += new Vector3(0, 0, 1);
-            
+
             UpdateCrewAssignment();
             roomStats.UpdateRoomStats(roomStats.resources[0].resourceType);
             UpdateCrewAssignment();
@@ -260,25 +315,61 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
                 FindObjectOfType<CrewManagement>().CheckForMinCrew();
             }
         }
+
+        Tutorial.Instance.ConditionalContinueAddCrew();
     }
 
     public void SetOvertimeButtonState(bool state)
     {
         overtimeButton.interactable = state;
         overtimeButtonText.SetButtonInteractable(state);
+
+        //changes tool tip text on why button is disabled
+        if(GameManager.instance.currentGameState == InGameStates.ShipBuilding)
+        {
+            //overtimeToolTipDisabledText.SetActive(true);
+            overtimeToolTipDisabledText.text = "Can't Perform Overtime Mini-Game while docked in the StarPort";
+        }
+        else if(state == true)
+        {
+            //overtimeToolTipDisabledText.SetActive(false);
+            overtimeToolTipDisabledText.text = " ";
+        }
+        else
+        {
+            //overtimeToolTipDisabledText.SetActive(true);
+            overtimeToolTipDisabledText.text = "Overtime Mini-Game is on Cooldown";
+        }
     }
 
     public void SetTalkToCrewButtonState(bool state)
     {
         talkButton.interactable = state;
         talkButtonText.SetButtonInteractable(state);
+
+        //changes tool tip text on why button is disabled
+        if (GameManager.instance.currentGameState == InGameStates.ShipBuilding)
+        {
+            //overtimeToolTipDisabledText.SetActive(true);
+            talkToCrewToolTipDisabledText.text = "Can't talk with Crew while Docked in the StarPort";
+        }
+        else if (state == true)
+        {
+            //overtimeToolTipDisabledText.SetActive(false);
+            talkToCrewToolTipDisabledText.text = " ";
+        }
+        else
+        {
+            //overtimeToolTipDisabledText.SetActive(true);
+            talkToCrewToolTipDisabledText.text = "No Crew to Talk to in this Room";
+        }
     }
-    
+
     public void StartOverclockGame()
     {
         overclockRoom.PlayMiniGame();
     }
-    
+
     /// <summary>
     /// Changes whether or not the chat availability button will activate
     /// </summary>
@@ -286,7 +377,11 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     {
         if(overclockRoom.hasEvents && GameManager.instance.currentGameState == InGameStates.Events)
         {
-            SetTalkToCrewButtonState(EventSystem.instance.CanChat(overclockRoom.GetEvents()));
+            SetTalkToCrewButtonState(EventSystem.instance.CanChat(overclockRoom.GetRoomType()));
+            if(EventSystem.instance.CanChat(overclockRoom.GetRoomType()) == false)
+            {
+                talkToCrewToolTipDisabledText.text = "The Crew Member isn't available to talk right now";
+            }
         }
         else
         {
@@ -296,11 +391,13 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
 
     public void StartChat()
     {
-        StartCoroutine(EventSystem.instance.StartNewCharacterEvent(overclockRoom.GetEvents()));
+        StartCoroutine(EventSystem.instance.StartNewCharacterEvent(overclockRoom.GetRoomType()));
+        UpdateChatAvailability();
     }
 
     public void ClearUI()
     {
+        roomDetailsTab.SetInteractableState(false);
         shipStats = FindObjectOfType<ShipStats>();
         roomName.text = noRoomSelectedMessage;
         usedImage.SetActive(false);
@@ -309,7 +406,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         {
             roomDetailSection.SetActive(false);
         }
-        
+
         SetOvertimeButtonState(false);
         SetTalkToCrewButtonState(false);
         UpdateCrewButtons(true);

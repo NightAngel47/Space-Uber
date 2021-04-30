@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -782,14 +782,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checks:
-  - checkResource: {fileID: 11400000, guid: 6179477e2084bca4baf5f41d925fe056, type: 2}
-    passPrompt: Sufficient amount of food production on board.
-    failPrompt: 'You have negative food production.
-
-      You may run out of food
-      during this job.'
   - checkResource: {fileID: 11400000, guid: 2ce4c992a1bf5bb4dbcf0b00f2e6cfd8, type: 2}
-    passPrompt: Sufficient amount of food on board.
+    passPrompt: Sufficient amount of food and food production on board.
     failPrompt: 'Food stores are low.
 
       Make sure you have enough food to last
@@ -858,6 +852,7 @@ MonoBehaviour:
   - Bad 4
   - Bad 5
   - Bad 6
+  foodSafety: 0.5
 --- !u!1001 &479287530
 PrefabInstance:
   m_ObjectHideFlags: 0
