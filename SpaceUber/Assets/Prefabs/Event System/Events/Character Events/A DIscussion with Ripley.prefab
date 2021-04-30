@@ -74,6 +74,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
+      propertyPath: roomTypes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
       propertyPath: eventName
       value: A Discussion with Ripley
       objectReference: {fileID: 0}
@@ -86,7 +91,7 @@ PrefabInstance:
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: thisCharacter
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
@@ -509,6 +514,22 @@ PrefabInstance:
       propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[2].eventSFX
       value: Ripley Right-5
       objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: roomTypes.Array.data[0]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: hasAnimatedBG
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: backgroundAnimation
+      value: 
+      objectReference: {fileID: 7947821688816057826, guid: 07ab99dc8d5fcc14d87b4a0e1f7d2700,
+        type: 3}
     - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: m_LocalPosition.x
