@@ -499,9 +499,9 @@ public class CampaignManager : MonoBehaviour
         [ReadOnly] public int jobIndex = 0;
         public List<Job> campaignJobs = new List<Job>();
 
-        public enum NarrativeOutcomes { NA = -1, SideWithScientist, KillBeckett, LetBalePilot, KilledAtSafari, KilledOnce, TellVIPsAboutClones, VIPTrust, CloneTrust}
+        public enum NarrativeOutcomes { NA = -1, SideWithScientist, KillBeckett, LetBalePilot, KilledAtSafari, KilledOnce, TellVIPsAboutClones, VIPsToParty, VIPTrust, CloneTrust}
 
-        protected bool[] ctrNarrativeOutcomes = new bool[6];
+        protected bool[] ctrNarrativeOutcomes = new bool[7];
 
         public int ctr_VIPTrust = 50;
         public int ctr_cloneTrust = 50;
@@ -558,10 +558,14 @@ public class CampaignManager : MonoBehaviour
             Decline_Bribe,
             Decline_Fire,
             Accept,
-            OpenedCargo
+            OpenedCargo,
+            WorkedWithEntity,
+            UsedKuon,
+            DestroyedObelisk,
+            HidObelisk
         }
 
-        private bool[] meNarrativeVariables = new bool[5];
+        private bool[] meNarrativeVariables = new bool[9];
 
         public string GetOutcomeName(int index)
         {
