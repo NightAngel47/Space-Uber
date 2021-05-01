@@ -158,12 +158,13 @@ MonoBehaviour:
   meetsThresholdText: "Dear Ship AI,\n\tThank you for being such a great captain. 
     Everyone appreciates your generosity and genuine care for our lives, despite
     the hardships we've faced.  We've all pitched in to get you a gift and can't
-    wait to see you enjoy it during future jobs.  \n\t\t\t\t\t\tSincerely,\n"
+    wait to see you enjoy it during future jobs.  \n\t\t\t\t\t\tSincerely,\n\t\t\t\t\t\tYour
+    Crew\n"
   belowThresholdText: "Ship AI,\n\tEveryone has agreed that staying any longer would
     be certain death.  You are just as cold hearted and artificial as the CEO's who
     built you.  I feel sorry for whoever is unfortunate enough to end up on your
     crew in the future.  \n\t\t\t\t\t\tSincerely,\n\t\t\t\t\t\tCaptain Lexa"
-  stateToTransition: 11
+  stateToTransition: 12
   characterSignatures:
   - character: 0
     threshold: 3
