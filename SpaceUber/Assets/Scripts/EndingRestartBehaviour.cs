@@ -46,6 +46,13 @@ public class EndingRestartBehaviour : MonoBehaviour
         AudioManager.instance.PlayMusicWithTransition("General Theme");
     }
     
+    public void ResetJobAndQuitToMainMenu()
+    {
+        if(FindObjectOfType<SpotChecker>()) Destroy(FindObjectOfType<SpotChecker>().gameObject);
+        GameManager.instance.ChangeInGameState(InGameStates.ShipBuilding);
+        SceneManager.LoadScene("Menu_Main");
+    }
+    
     public void GoToMainMenu()
     {
         SavingLoadingManager.instance.SetHasSaveFalse();
