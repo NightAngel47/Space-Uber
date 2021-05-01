@@ -52,6 +52,8 @@ public class InkDriverBase : MonoBehaviour
 
     [Dropdown("eventMusicTracks")]
     public string eventBGM;
+    [Tooltip("The audioclips that will play on each page of this event, in order")]
+    public List<string> pageClips;
 
     private List<string> eventMusicTracks => new List<string>() { "", "General Theme", "Wormhole", "Engine Malfunction", "Engine Delivery", "Black Market", "Clone Ambush Intro", "Safari Tampering", "Clone Ambush Negotiation", "Clone Ambush Fight", "Ejection", "Asteroid Mining", "Blockade", "Crop Blight", "Door Malfunction", "Drug Overdose", "Escaped Convicts", "Septic Malfunction", "Soothing Light", "Spatial Aurora", "Food Poisoning", "Hostage Situation", "Hull Maintenance", "Death Theme", "Shocking Situation", "Stranded Stranger", "Void Music", "Void Music [Muffled]", "Ammunition Error", "An Innocent Proposal", "Charity Donation", "Crew Fight", "Distress Signal", "Drag Race", "Frozen in Time", "Fungus Among Us", "Homesick", "Just a Comet", "Lost in Translation", "Neon Nightmare [Chill]", "Neon Nightmare", "Surprise Mechanics", "Taking a Toll", "Thumping" };
 
@@ -91,6 +93,9 @@ public class InkDriverBase : MonoBehaviour
         }
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
         AudioManager.instance.PlaySFX(eventIntroSFX);
+        
+        //if(pageClips[0] != null)
+        //    AudioManager.instance.PlaySFX(pageClips[0]);
 
         isScalableEvent = !isStoryEvent && !isMutinyEvent;
     }

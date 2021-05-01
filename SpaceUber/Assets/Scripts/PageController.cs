@@ -7,6 +7,7 @@
 
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 using DG.Tweening;
 
 public class PageController : MonoBehaviour
@@ -19,12 +20,31 @@ public class PageController : MonoBehaviour
     private bool madeChoice;
     //private bool pageSeen = false;
     private TMP_Text nextButtonText;
+    int currentPage = 0; //the overall current page, used for the page clips
     private int furthestPage = 1;
 
     private void Start()
     {
         nextButtonText = nextButton.GetComponentInChildren<TMP_Text>();
-        ResetPages();
+        currentPage = 0;
+        //ResetPages();
+
+    }
+
+    private void PlayCurrentPageSFX()
+    {
+        if(currentPage != 1) //doesn't need to play on the first page of the event
+        {
+            InkDriverBase inkDriver = FindObjectOfType<InkDriverBase>();
+            //uses currentPage to figure out which SFX to play
+            if (inkDriver && inkDriver.pageClips.Count >= currentPage)
+            {
+                if (inkDriver.pageClips[currentPage - 1] != null) //make sure there is something in that slot
+                {
+                    AudioManager.instance.PlaySFX(inkDriver.pageClips[currentPage - 1]);
+                }
+            }
+        }
     }
 
     private void Update()
@@ -64,6 +84,8 @@ public class PageController : MonoBehaviour
             {
                 backButton.SetActive(true);
             }
+            currentPage++;
+            PlayCurrentPageSFX();
         }
         else
         {
@@ -98,10 +120,15 @@ public class PageController : MonoBehaviour
             inkDriver.textMask.fillAmount = 1;
             inkDriver.textMask.DOComplete();
             nextButtonText.text = defaultNextMsg;
+
             if(eventText.pageToDisplay == 1)
             {
                 backButton.SetActive(false);
             }
+            currentPage--;
+
+            PlayCurrentPageSFX();
+
         }
         else
         {
@@ -111,11 +138,13 @@ public class PageController : MonoBehaviour
 
     public void ResetPages()
     {
+        currentPage++;
         eventText.pageToDisplay = 1;
         backButton.SetActive(false);
         if(!nextButtonText)
             nextButtonText = nextButton.GetComponentInChildren<TMP_Text>();
         nextButtonText.text = defaultNextMsg;
+        PlayCurrentPageSFX();
     }
 
     public void UpdateNextPageText()
