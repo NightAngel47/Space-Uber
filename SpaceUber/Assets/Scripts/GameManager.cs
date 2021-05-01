@@ -244,14 +244,10 @@ public class GameManager : MonoBehaviour
 
                 additiveSceneManager.LoadSceneSeperate("PromptScreen_Morale_End");
                 break;
-            case InGameStates.EndingStats: // Loads the Interface_EndScreen_Stats after the PromptScreen_Morale_End.
+            case InGameStates.EndingStats: // Keeping only to not have errors, load into ending credits instead
+            case InGameStates.EndingCredits: // Loads the Credits after the Interface_EndScreen_Stats.
                 additiveSceneManager.UnloadScene("Event_NoChoices");
                 additiveSceneManager.UnloadScene("PromptScreen_Morale_End");
-                
-                additiveSceneManager.LoadSceneSeperate("Interface_EndScreen_Stats");
-                break;
-            case InGameStates.EndingCredits: // Loads the Credits after the Interface_EndScreen_Stats.
-                additiveSceneManager.UnloadScene("Interface_EndScreen_Stats");
                 
                 additiveSceneManager.LoadSceneSeperate("Credits");
                 break;
