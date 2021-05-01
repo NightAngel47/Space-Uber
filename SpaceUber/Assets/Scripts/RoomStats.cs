@@ -104,6 +104,8 @@ public class RoomStats : MonoBehaviour
         roomDetailsMenu = FindObjectOfType<CrewManagementRoomDetailsMenu>();
         
         GetStats();
+
+        UpgradePower();
     }
 
     public RoomType GetRoomType()
@@ -165,7 +167,7 @@ public class RoomStats : MonoBehaviour
                         credits += (int)(resource.amount[roomLevel - 1] * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._Energy:
-                        energy += (int)(resource.amount[roomLevel - 1] * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        energy += (int)(resource.amount[FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex()] * MoraleManager.instance.GetMoraleModifier(ignoreMorale)); //sets energy based on which campaign it is
                         break;
                     case ResourceDataTypes._Security:
                         security += (int)(resource.amount[roomLevel - 1] * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
@@ -605,7 +607,7 @@ public class RoomStats : MonoBehaviour
     }
 
     /// <summary>
-    /// Subtracts or adds to the room level based on whether the up or down arrow was pressed
+    /// Sets the room level based on whether the up or down arrow was pressed
     /// levelChange will be positive if adding or negative when subtracting
     /// </summary>
     public void ChangeRoomLevel(int levelChange)
@@ -651,9 +653,13 @@ public class RoomStats : MonoBehaviour
 
             foreach (Resource resource in resources)
             {
-                resourceChange = resource.amount[roomLevel - 1] - resource.amount[roomLevel - 2];
-                UpdateRoomStats(resource.resourceType);
+                if (energy != resource.amount[roomLevel - 1]) //if current active is not the same as the new level amount change the resource value
+                {
+                    resourceChange = resource.amount[roomLevel - 1] - resource.amount[roomLevel - 2];
+                    UpdateRoomStats(resource.resourceType);
+                }
             }
+
         }
     }
 }

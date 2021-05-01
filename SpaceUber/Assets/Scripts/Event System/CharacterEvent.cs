@@ -15,6 +15,8 @@ public class CharacterEvent : InkDriverBase
     [SerializeField,Tooltip("The character that this event focuses on")]
     private CharacterStats.Characters thisCharacter = CharacterStats.Characters.None;
 
+    public CharacterStats.Characters Character => thisCharacter;
+
     [Tooltip("The total approval from this character")]
     private int characterApproval = 0;
 

@@ -81,7 +81,11 @@ public class EventChoice
 
         //as long as it's not a story event, it's scalable
         isScalableEvent = driver.isScalableEvent;
-        
+        if(hasRandomEnding)
+        {
+            RandomizeEnding(thisStory);
+        }
+
         foreach (ChoiceOutcomes outcome in this.outcomes)
         {
             
@@ -102,6 +106,7 @@ public class EventChoice
             for (int i = 0; i < choiceRequirements.Count; i++)
             {
                 choiceRequirements[i].isScalableEvent = isScalableEvent;
+
                 if (!choiceRequirements[i].MatchesRequirements(ship, driver.campMan))
                 {
                     requirementMatch = false;
@@ -180,15 +185,14 @@ public class EventChoice
 
         if (hasRandomEnding)
         {
-            RandomizeEnding(story);
-            foreach (MultipleRandom multRando in randomEndingOutcomes)
+            MultipleRandom thisSet = randomEndingOutcomes[randomizedResult];
+            foreach(ChoiceOutcomes choiceOutcome in thisSet.outcomes)
             {
-                MultipleRandom thisSet = randomEndingOutcomes[randomizedResult];
-                foreach(ChoiceOutcomes choiceOutcome in thisSet.outcomes)
-                {
-                    choiceOutcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
-                }
+                choiceOutcome.narrativeResultsBox = driver.resultsBox;
+                choiceOutcome.hasSubsequentChoices = hasSubsequentChoices;
+                choiceOutcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
             }
+            
         }
         else
         {
@@ -236,7 +240,7 @@ public class EventChoice
 
         //provides an int to RandomizeEnding in the ink file, which then changes the selected random ending
         story.EvaluateFunction("RandomizeEnding", result);
-
+        Debug.Log("Random result: " + result);
         randomizedResult = result;
     }
 }
