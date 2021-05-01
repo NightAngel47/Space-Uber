@@ -42,7 +42,7 @@ public class PageController : MonoBehaviour
     public void NextPage()
     {
         InkDriverBase inkDriver = FindObjectOfType<InkDriverBase>();
-        if (!inkDriver.donePrinting)
+        if (inkDriver && !inkDriver.donePrinting)
         {
             inkDriver.textMask.DOComplete();
             inkDriver.donePrinting = true;

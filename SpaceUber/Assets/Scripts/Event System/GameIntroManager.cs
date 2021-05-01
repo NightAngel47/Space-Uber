@@ -11,8 +11,10 @@ using Ink.Runtime;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 using NaughtyAttributes;
 using TMPro;
+using DG.Tweening;
 
 public class GameIntroManager : MonoBehaviour
 {
@@ -27,6 +29,7 @@ public class GameIntroManager : MonoBehaviour
     private Transform buttonGroup;
     private TMP_Text titleBox;
     private TMP_Text textBox;
+    [HideInInspector] public Image textMask;
     private Image backgroundUI;
 
     [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
@@ -76,12 +79,26 @@ public class GameIntroManager : MonoBehaviour
         AudioManager.instance.PlayMusicWithTransition(eventBGM);
         AudioManager.instance.PlaySFX(eventIntroSFX);
     }
+    
+    private void Update()
+    {
+        //click to instantly finish text,
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+        {
+            textMask.DOComplete();
+        }
+        if (!donePrinting && textMask.fillAmount >= 1)
+        {
+            donePrinting = true;
+        }
+    }
 
     public void AssignStatusFromEventSystem()
     {
         eventCanvas = FindObjectOfType<EventCanvas>();
         titleBox = eventCanvas.titleBox;
         textBox = eventCanvas.textBox;
+        textMask = eventCanvas.textMask;
         backgroundUI = eventCanvas.backgroundImage;
         buttonGroup = eventCanvas.buttonGroup;
     }
@@ -102,32 +119,40 @@ public class GameIntroManager : MonoBehaviour
     /// </summary>
     /// <param name="text"></param>
     /// <returns></returns>
-    private IEnumerator PrintText(string text)
+    private void PrintText(string text)
     {
-        donePrinting = false;
-
-        string tempString = "";
-        textBox.text = tempString;
-        int runningIndex = 0;
-
-        while (tempString.Length < text.Length)
-        {
-            tempString += text[runningIndex];
-            runningIndex++;
-
-            //click to instantly finish text,
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
-            {
-                tempString = text;
-            }
-            textBox.text = tempString;
-
-            yield return new WaitForSeconds(textPrintSpeed);
-        }
-
-        donePrinting = true;
+        textMask.fillAmount = 0;
+        FillBox();
+        textBox.text = text.Aggregate("", (current, t) => current + CheckChar(t));
     }
 
+    /// <summary>
+    /// Controls the tweening aspect of the mask for the textbox
+    /// </summary>
+    public void FillBox()
+    {
+        donePrinting = false;
+        textMask.DORestart();
+        textMask.DOFillAmount(1, 4).SetEase(Ease.Linear);
+    }
+    
+    /// <summary>
+    /// If the character in Ink is an undisplay-able character, swap it out with its proper version
+    /// </summary>
+    /// <param name="nextChar">The next character to be checked</param>
+    /// <returns>Nextchar, but replaced if necessary</returns>
+    private char CheckChar(char nextChar)
+    {
+        if (nextChar == '�' || nextChar == '�' || nextChar == '�' || nextChar == '�' || nextChar == '�' || nextChar == '�')
+        {
+            nextChar = '\'';
+        }
+        if(nextChar == '�' || nextChar == '�' || nextChar == '�' || nextChar == '�')
+        {
+            nextChar = '\"';
+        }
+        return nextChar;
+    }
     
     /// <summary>
     /// Refreshes the UI elements connected to this object whenever a button is clicked to change it
@@ -139,8 +164,7 @@ public class GameIntroManager : MonoBehaviour
         ClearUI();
 
         // Set the text from new story block
-        string text = GetNextStoryBlock();
-        StartCoroutine(PrintText(text));
+        PrintText(GetNextStoryBlock());
     }
 
     /// <summary>

@@ -11,6 +11,7 @@ using Ink.Runtime;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 using NaughtyAttributes;
 using TMPro;
 using DG.Tweening;
@@ -47,9 +48,6 @@ public class InkDriverBase : MonoBehaviour
     private Image backgroundUI;
     protected ShipStats thisShip;
 
-    [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
-    private float textPrintSpeed = 0.1f;
-
     public string eventIntroSFX;
 
     [Dropdown("eventMusicTracks")]
@@ -65,8 +63,7 @@ public class InkDriverBase : MonoBehaviour
     [SerializeField] bool hasSubsequentChoices;
     [ShowIf("hasSubsequentChoices"), Tooltip("Sets of subsequent choices that can be accessed by index by an event choice.")]
     public List<SubsequentChoices> subsequentChoices = new List<SubsequentChoices>();
-
-
+    
     /// <summary>
     /// The story itself being read
     /// </summary>
@@ -159,12 +156,9 @@ public class InkDriverBase : MonoBehaviour
     /// <returns></returns>
     private void PrintText(string text)
     {
-        string tempString = "";
-        textBox.text = tempString;
-        tempString = text;
         textMask.fillAmount = 0;
         FillBox();
-        textBox.text = tempString;
+        textBox.text = text.Aggregate("", (current, t) => current + CheckChar(t));
     }
 
     /// <summary>
@@ -246,8 +240,7 @@ public class InkDriverBase : MonoBehaviour
         ClearUI();
 
         // Set the text from new story block
-        string text = GetNextStoryBlock();
-        PrintText(text);
+        PrintText(GetNextStoryBlock());
     }
 
     /// <summary>
