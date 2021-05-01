@@ -1,11 +1,7 @@
 VAR randomEnd = -> Survive
 
 
-The ship mechanic, Mateo, contacts you. "There seems to be a major problem with the engine. It's starting to overheat, and if something isn't done soon, the surrounding hull is going to start melting like wax in the desert. A few parts are malfunctioning, and they need to be fixed, pronto."
-
-
-
-"We could have some crew members suit up and do the work, but I don't trust the protection suits the company issued us. They're about a century outdated. We could make it safer if we use parts from around the ship, but replacing those would be costly." It's clear from how he speaks that he wants to avoid sending the crew out, but the choice is yours to make.
+The ship mechanic, Mateo, contacts you. "There seems to be a major problem with the engine. It's starting to overheat, and if something isn't done soon, the surrounding hull is going to start melting like wax in the desert. A few parts are malfunctioning, and they need to be fixed, pronto. We could have some crew members suit up and do the work, but I don't trust the protection suits the company issued us. They're a century outdated. We could make it safer if we use parts from around the ship, but replacing those would be costly." It's clear that he wants to avoid sending the crew out, but the choice is yours.
 * [Risk Crew Members]
     ->randomEnd
 + [Salvage Parts] -> Repair
