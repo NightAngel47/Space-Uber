@@ -1,4 +1,4 @@
-Kuon approaches your terminal, "Boss. We have a signal ping. Universal code transmition. Less than a thousand kilometers off the flight plan. We're seeing 'bartering,' 'value,' and 'discretion.'" He slows down, as if gauging your reaction, "This sounds like a boon. Given the legality of their trade, prices should be good for us. I suggest we follow up.”
+Kuon approaches your terminal, "Boss. We have a signal ping. Universal code transmition. Less than a thousand kilometers off the flight plan. We're seeing 'bartering,' 'value,' and 'discretion.'" He slows down, as if gauging your reaction, "This sounds like a boon. Given the legality of their trade, prices should be good for us. I suggest we follow up."
 
 -> Black_Market
 
