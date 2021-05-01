@@ -55,7 +55,7 @@ Kuon falters, "It wasn't ideal, but come on, your the only one who trusts me."
 ->Round_Table_2
 
 ==Round_Table_2==
-    Lexa steps in to bring everyone back together. "Kuon, this is the only chance we have. My plan is that we kill the CEO, corrupt his clone backups."
+    Lexa steps in to bring everyone back together. "This is the only chance we have. Let's discuss plans. I say we kill the CEO, corrupt his clone backups."
     Lanri raises her hand excitedly, "Oo oo! Speaking of clones, we could do that. Clone the CEO, port our captain into the clone, and then they can fix everything! I would just need Ripley's help to do it."
     Ripley rolls her eyes at Lanri's enthusiasm but agrees. 
     Mateo, in a thinker pose says, "Well hey, we can always go through with their plan, mass produce the Rustbucket. I could just backup their personality to keep them in control of Kellis' entire shipping network."
