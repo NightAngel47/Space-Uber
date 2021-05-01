@@ -7,6 +7,7 @@
 
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class PageController : MonoBehaviour
 {
@@ -16,7 +17,9 @@ public class PageController : MonoBehaviour
     [SerializeField] private string defaultNextMsg;
     [SerializeField] private string continueNextMsg;
     private bool madeChoice;
+    //private bool pageSeen = false;
     private TMP_Text nextButtonText;
+    private int furthestPage = 1;
 
     private void Start()
     {
@@ -24,19 +27,46 @@ public class PageController : MonoBehaviour
         ResetPages();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            NextPage();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            PreviousPage();
+        }
+    }
+
     public void NextPage()
     {
-        if(eventText.pageToDisplay < eventText.textInfo.pageCount)
+        InkDriverBase inkDriver = FindObjectOfType<InkDriverBase>();
+        if (inkDriver && !inkDriver.donePrinting)
+        {
+            inkDriver.textMask.DOComplete();
+            inkDriver.donePrinting = true;
+        }
+        else if (eventText.pageToDisplay < eventText.textInfo.pageCount && inkDriver.donePrinting)
         {
             eventText.pageToDisplay += 1;
-            if(!backButton.activeSelf)
+            if (eventText.pageToDisplay >= furthestPage)
+            {
+                furthestPage++;
+                inkDriver.textMask.fillAmount = 0;
+                inkDriver.FillBox();
+            }
+            else
+            {
+                inkDriver.textMask.fillAmount = 1;
+            }
+            if (!backButton.activeSelf)
             {
                 backButton.SetActive(true);
             }
         }
         else
         {
-            InkDriverBase inkDriver = FindObjectOfType<InkDriverBase>();
             if(inkDriver && !inkDriver.ShowChoices()) // normal
             {
                 inkDriver.ConcludeEvent();
@@ -60,9 +90,13 @@ public class PageController : MonoBehaviour
 
     public void PreviousPage()
     {
-        if(eventText.pageToDisplay > 1)
+        InkDriverBase inkDriver = FindObjectOfType<InkDriverBase>();
+        if (eventText.pageToDisplay > 1)
         {
             eventText.pageToDisplay -= 1;
+            //pageSeen = true;
+            inkDriver.textMask.fillAmount = 1;
+            inkDriver.textMask.DOComplete();
             nextButtonText.text = defaultNextMsg;
             if(eventText.pageToDisplay == 1)
             {
