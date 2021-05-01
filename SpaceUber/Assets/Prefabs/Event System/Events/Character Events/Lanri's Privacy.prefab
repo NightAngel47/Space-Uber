@@ -33,7 +33,7 @@ MonoBehaviour:
   requiredStats: []
   nextChoices:
   - choiceName: neu
-    description: 
+    description: '"Has Kellis misused your research before?"'
     changeMusic: 0
     playSFX: 1
     withoutTransition: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
     subsequentChoiceIndex: 0
     isScalableEvent: 0
   - choiceName: pos
-    description: 
+    description: '"Rest assured your privacy will be respected and honored."'
     changeMusic: 0
     playSFX: 1
     withoutTransition: 0
@@ -109,7 +109,8 @@ MonoBehaviour:
     subsequentChoiceIndex: 0
     isScalableEvent: 0
   - choiceName: neg
-    description: 
+    description: '"As an employee of Kellis your research belongs to them. Hand it
+      over."'
     changeMusic: 0
     playSFX: 0
     withoutTransition: 0
@@ -151,7 +152,7 @@ MonoBehaviour:
   - subsequentChoicesName: '#2'
     eventChoices:
     - choiceName: pos
-      description: 
+      description: '"Rest assured your privacy will be respected and honored."'
       changeMusic: 0
       playSFX: 1
       withoutTransition: 0
@@ -189,7 +190,8 @@ MonoBehaviour:
       subsequentChoiceIndex: 0
       isScalableEvent: 0
     - choiceName: neg
-      description: 
+      description: '"As an employee of Kellis your research belongs to them. Hand
+        it over."'
       changeMusic: 0
       playSFX: 1
       withoutTransition: 0

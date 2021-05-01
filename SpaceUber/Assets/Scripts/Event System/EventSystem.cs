@@ -702,4 +702,26 @@ public class EventSystem : MonoBehaviour
 
 		return true;
 	}
+
+	public int GetMaxEvents()
+    {
+		return maxEvents;
+    }
+	public float GetTimeBeforeRoll()
+    {
+		return timeBeforeEventRoll;
+    }
+	public float GetEventChanceFrequency()
+    {
+		return eventChanceFreq;
+    }
+
+	public float GetChanceIncrease()
+    {
+		return chanceIncreasePerFreq;
+    }
+	public float GetStartingChance()
+    {
+		return startingEventChance;
+    }
 }

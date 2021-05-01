@@ -50,7 +50,8 @@ public class GameManager : MonoBehaviour
     private ShipStats ship;
 
     [SerializeField] private List<ResourceDataType> resourceDataRef = new List<ResourceDataType>();
-    
+    public List<ResourceDataType> ResourceDataRef => resourceDataRef;
+
     [HideInInspector] public bool hasLoadedRooms = false;
 
     public List<GameObject> allRoomList = new List<GameObject>();
@@ -300,15 +301,44 @@ public class GameManager : MonoBehaviour
 
     public void SetUnlockLevel(int roomGroup, int newValue)
     {
+        RoomStats[] rooms = FindObjectsOfType<RoomStats>();
+
         switch (roomGroup)
         {
             case 1:
                 currentMaxLvlGroup1 = newValue;
+                if (newValue > 1)
+                {
+                    currentMaxLvlGroup2 = newValue - 1;
+                    currentMaxLvlGroup3 = newValue - 1;
+                }
+
+                foreach (RoomStats room in rooms)
+                {
+                    if (room.roomName == "Power Core" && FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() == 1)
+                    {
+                        room.ChangeRoomLevel(2);
+                        break;
+                    }
+
+                    if (room.roomName == "Power Core" && FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex() == 2)
+                    {
+                        room.ChangeRoomLevel(3);
+                        break;
+                    }
+                }
                 break;
             case 2:
+                currentMaxLvlGroup1 = newValue;
                 currentMaxLvlGroup2 = newValue;
+                if (newValue > 1)
+                {
+                    currentMaxLvlGroup3 = newValue - 1;
+                }
                 break;
             case 3:
+                currentMaxLvlGroup1 = newValue;
+                currentMaxLvlGroup2 = newValue;
                 currentMaxLvlGroup3 = newValue;
                 break;
             default:

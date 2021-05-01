@@ -348,7 +348,9 @@ public class ObjectScript : MonoBehaviour
         }
 
         CrewViewManager.Instance.DisableCrewView();
-        
+
+        Tutorial.Instance.ConditionalContinueDelete();
+
         // destroy the room being placed otherwise destroy the selected room
         Destroy(roomBeingPlaced
             ? roomBeingPlaced
