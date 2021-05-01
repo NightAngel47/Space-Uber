@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 7288551996117429960, guid: 0811af2a59d6a1446b9335983477bd8c,
         type: 3}
       propertyPath: m_Name
-      value: Menu_Button_FlippedY
+      value: Menu_Button_FlippedY Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7288551996117429975, guid: 0811af2a59d6a1446b9335983477bd8c,
         type: 3}
@@ -116,6 +116,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7288551996991023042, guid: 0811af2a59d6a1446b9335983477bd8c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7288551996991023042, guid: 0811af2a59d6a1446b9335983477bd8c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0811af2a59d6a1446b9335983477bd8c, type: 3}
