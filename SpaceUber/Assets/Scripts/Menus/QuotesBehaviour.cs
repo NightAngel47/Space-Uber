@@ -15,7 +15,7 @@ public class QuotesBehaviour : MonoBehaviour
     private string[] quotes = new string[10];
 
     private TMP_Text quoteText;
-    private int previousQuoteIndex = 0;
+    private static int previousQuoteIndex = 0;
     
     private void Awake()
     {
@@ -24,14 +24,14 @@ public class QuotesBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
-        quoteText.text = $"\"{quotes[GetNewQuoteIndex()]}\"";
+        SetQuoteText();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
-            quoteText.text = $"\"{quotes[GetNewQuoteIndex()]}\"";
+            SetQuoteText();
         }
     }
 
@@ -42,7 +42,12 @@ public class QuotesBehaviour : MonoBehaviour
         {
             return GetNewQuoteIndex();
         }
-
+        previousQuoteIndex = index;
         return index;
+    }
+
+    private void SetQuoteText()
+    {
+        quoteText.text = $"\"{quotes[GetNewQuoteIndex()]}\"";
     }
 }
