@@ -51,8 +51,6 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
         {
             if (campaignManager.GetCurrentCampaignIndex() > 0)
             {
-                RoomStats[] rooms = FindObjectsOfType<RoomStats>();
-
                 switch (campaignManager.GetCurrentJobIndex())
                 {
                     case 0:
@@ -61,30 +59,11 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
                     case 1:
                         GameManager.instance.SetUnlockLevel(1, campaignManager.GetCurrentCampaignIndex() + 1);
                         GameManager.instance.SetUnlockLevel(2, campaignManager.GetCurrentCampaignIndex() + 1);
-
-                        foreach (RoomStats room in rooms)
-                        {
-                            if (room.roomName == "Power Core")
-                            {
-                                room.ChangeRoomLevel(1);
-                                break;
-                            }
-                        }
                         break;
                     case 2:
                         GameManager.instance.SetUnlockLevel(1, campaignManager.GetCurrentCampaignIndex() + 1);
                         GameManager.instance.SetUnlockLevel(2, campaignManager.GetCurrentCampaignIndex() + 1);
                         GameManager.instance.SetUnlockLevel(3, campaignManager.GetCurrentCampaignIndex() + 1);
-
-
-                        foreach (RoomStats room in rooms)
-                        {
-                            if (room.roomName == "Power Core")
-                            {
-                                room.ChangeRoomLevel(1);
-                                break;
-                            }
-                        }
                         break;
                 }
             }
@@ -223,9 +202,11 @@ public class ShipBuildingBuyableRoom : MonoBehaviour
     /// </summary>
     public void UpdateMaxLevelGroups(int group1, int group2, int group3)
     {
-        GameManager.instance.SetUnlockLevel(1, group1);
-        GameManager.instance.SetUnlockLevel(2, group2);
-        GameManager.instance.SetUnlockLevel(3, group3);
+        //Removed as it updates 2nd and 3rd level groups to 1 when they need to be higher
+
+        //GameManager.instance.SetUnlockLevel(1, group1);
+        //GameManager.instance.SetUnlockLevel(2, group2);
+        //GameManager.instance.SetUnlockLevel(3, group3);
     }
 
     //private void CheckActiveButtons2()

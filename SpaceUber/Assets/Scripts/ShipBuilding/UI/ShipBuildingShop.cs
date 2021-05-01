@@ -5,7 +5,10 @@
  */
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,14 +22,70 @@ public class ShipBuildingShop : MonoBehaviour
     [SerializeField] Sprite[] roomLevelIcons;
     ShipBuildingBuyableRoom[] shopSlots = new ShipBuildingBuyableRoom[3];
 
+    [SerializeField] private Transform shopTabsContainer;
+
     private void Awake()
     {
         shopSlots = GetComponentsInChildren<ShipBuildingBuyableRoom>();
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        MenuTabBehaviour[] shopTabs = shopTabsContainer.GetComponentsInChildren<MenuTabBehaviour>();
+
+        foreach(MenuTabBehaviour tab in shopTabs)
+        {
+            tab.SetInteractableState(false);
+        }
+
         objectsToSpawn = FindObjectOfType<SpawnObject>();
+
+        yield return new WaitUntil(() => SpawnObject.finishedAddingRooms == true);
+
+        // find matching resource rooms
+        foreach (var roomPrefab in objectsToSpawn.availableRooms)
+        {
+            if (!roomPrefab.TryGetComponent(out Resource resource)) continue;
+            foreach(ResourceDataType dataType in GameManager.instance.ResourceDataRef)
+            {
+                if (dataType == resource.resourceType)
+                {
+                    
+
+                    //allow it to stay false, but if true do not revert back to false
+
+                    foreach (MenuTabBehaviour panelTab in shopTabs)
+                    {
+                        if (panelTab.GetInteractableState() == false)
+                        {
+                            string rName = roomPrefab.GetComponent<Resource>().resourceType.resourceName;
+
+                            switch (roomPrefab.GetComponent<Resource>().resourceType.Rt)
+                            {
+                                case ResourceDataTypes._Food:
+                                case ResourceDataTypes._FoodPerTick:
+                                    rName = "Food";
+                                    break;
+                                case ResourceDataTypes._Credits:
+                                case ResourceDataTypes._Payout:
+                                    rName = "Credits";
+                                    break;
+                            }
+                            if (panelTab.gameObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text == rName)
+                            {
+                                panelTab.SetInteractableState(true);
+                            }
+                            //else
+                            //{
+                            //    panelTab.SetInteractableState(true);
+                            //}
+                        }
+                    }
+
+                    continue;
+                }
+            }
+        }
     }
 
     public void ToResourceTab(string resourceDataType)
@@ -86,7 +145,7 @@ public class ShipBuildingShop : MonoBehaviour
             slot.gameObject.SetActive(true);
             slot.levelTemp = 1;
         }
-        
+
         // find matching resource rooms
         int i = 0;
         foreach (var roomPrefab in objectsToSpawn.availableRooms)
@@ -95,8 +154,9 @@ public class ShipBuildingShop : MonoBehaviour
             if (resourceDataTypesArray.All(resourceDataType => resource.resourceType.Rt != resourceDataType)) continue;
             shopSlots[i].roomPrefab = roomPrefab;
             shopSlots[i].UpdateRoomInfo();
-            if(++i > shopSlots.Length) break;
+            if (++i > shopSlots.Length) break;
         }
+
 
         // special exception case for medbay
         if (resourceDataTypesArray[0] == ResourceDataTypes._Crew)
@@ -116,6 +176,11 @@ public class ShipBuildingShop : MonoBehaviour
             shopSlots[i].gameObject.SetActive(false);
             ++i;
         }
+    }
+
+    public bool GetShopOpen()
+    {
+        return shopToggle.GetIsOpen();
     }
 
     public Sprite[] GetRoomLevelIcons()

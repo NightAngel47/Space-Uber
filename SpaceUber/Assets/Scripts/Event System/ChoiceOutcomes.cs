@@ -26,10 +26,11 @@ public class ChoiceOutcomes
 
     [SerializeField] public bool isNarrativeOutcome;
     [SerializeField] public bool isResourceOutcome;
+    [SerializeField] public bool isMutinyOutcome;
     [SerializeField] public bool isApprovalOutcome;
 
-    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public ResourceDataTypes resource;
-    [SerializeField, HideIf("isNarrativeOutcome"), AllowNesting] public int amount;
+    [SerializeField, ShowIf("isResourceOutcome"), AllowNesting] public ResourceDataTypes resource;
+    [SerializeField, ShowIf("isResourceOutcome"), AllowNesting] public int amount;
 
     //[SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterStats.Characters character = CharacterStats.Characters.None;
     [SerializeField, ShowIf("isApprovalOutcome"), AllowNesting] public CharacterEvent.AnswerState answerType;
@@ -37,20 +38,17 @@ public class ChoiceOutcomes
     CampaignManager campMan;
 
     #region Initialized Narrative Variables
-    [SerializeField, ShowIf("isNarrativeOutcome"),AllowNesting] private CampaignManager.Campaigns thisCampaign = CampaignManager.Campaigns.CateringToTheRich;
+    [SerializeField, ShowIf("isNarrativeOutcome"), AllowNesting] private CampaignManager.Campaigns thisCampaign = CampaignManager.Campaigns.CateringToTheRich;
 
     [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeOutcome", "IsCateringToTheRich"), AllowNesting] private CampaignManager.CateringToTheRich.NarrativeOutcomes ctrBoolOutcomes;
     [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeOutcome", "IsCateringToTheRich"), AllowNesting] private int cloneTrustChange;
     [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeOutcome", "IsCateringToTheRich"), AllowNesting] private int VIPTrustChange;
 
-    [SerializeField, ShowIf("IsMysteriousEntity"), AllowNesting] private CampaignManager.MysteriousEntity.NarrativeVariables meMainOutcomes;
-    [SerializeField, ShowIf("IsFinalTest"), AllowNesting] private CampaignManager.FinalTest.NarrativeVariables finalTestNarrativeOutcomes;
-    [SerializeField, ShowIf("IsFinalTest"), AllowNesting] private int assetCountChange = 0;
+    [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeOutcome", "IsMysteriousEntity"), AllowNesting] private CampaignManager.MysteriousEntity.NarrativeVariables meMainOutcomes;
+    [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeOutcome", "IsFinalTest"), AllowNesting] private CampaignManager.FinalTest.NarrativeVariables finalTestNarrativeOutcomes;
+    [SerializeField, ShowIf(EConditionOperator.And, "isNarrativeOutcome", "IsFinalTest"), AllowNesting] private int assetCountChange = 0;
 
-    [SerializeField] public bool changeGameState;
     #endregion
-
-    [SerializeField, ShowIf("changeGameState"), AllowNesting] public InGameStates state;
 
     #region Check for Campaign
     public bool IsCateringToTheRich()
@@ -73,7 +71,7 @@ public class ChoiceOutcomes
     {
         if (ship != null)
         {
-            if (isResourceOutcome || (!isNarrativeOutcome && !isApprovalOutcome)) //Will change to "isResourceOutcome" when designers have the chance to check the box in all old events
+            if (isResourceOutcome)
             {
                 if(isScaledOutcome) //scalable events get a multiplier to amount
                 {
@@ -394,7 +392,7 @@ public class ChoiceOutcomes
                         switch (ctrBoolOutcomes)
                         {
                             case CampaignManager.CateringToTheRich.NarrativeOutcomes.SideWithScientist:
-                                resultText += "\nYou sided with the scientist";
+                                resultText += "\nYou sided with Lanri";
                                 break;
                             case CampaignManager.CateringToTheRich.NarrativeOutcomes.KillBeckett:
                                 campMan.cateringToTheRich.SetCtrNarrativeOutcome(CampaignManager.CateringToTheRich.NarrativeOutcomes.KilledOnce, true);
@@ -464,16 +462,16 @@ public class ChoiceOutcomes
                     case CampaignManager.Campaigns.FinalTest:
                         campMan.finalTest.assetCount += assetCountChange;
 
-                        if (assetCountChange < 0)
+                        if (assetCountChange > 0)
                         {
                             if (assetCountChange == 1)
                                 resultText += "\nYou have gained 1 asset";
                             else
                                 resultText += "\nYou have gained " + assetCountChange + " assets";
                         }
-                        else if (assetCountChange > 0)
+                        else if (assetCountChange < 0)
                         {
-                            if (assetCountChange == 1)
+                            if (assetCountChange == -1)
                                 resultText += "\nYou have lost 1 asset";
                             else
                                 resultText += "\nYou have lost " + assetCountChange + " assets";
@@ -538,6 +536,10 @@ public class ChoiceOutcomes
                         break;
                 }
             }
+            else if (isMutinyOutcome)
+            {
+                GameManager.instance.ChangeInGameState(InGameStates.Mutiny);
+            }
             else //approval outcomes
             {
                 int eventApprovalChange = 0;
@@ -557,25 +559,24 @@ public class ChoiceOutcomes
 
                 characterDriver.ChangeEventApproval(eventApprovalChange);
 
-                //TODO: Changes character specific approval. To be implemented as someone sees fit
-                //switch (character)
-                //{
-                //    case CharacterStats.Characters.KUON:
-                //        ship.cStats.KuonApproval += approvalChange;
-                //        break;
-                //    case CharacterStats.Characters.MATEO:
-                //        ship.cStats.MateoApproval += approvalChange;
-                //        break;
-                //    case CharacterStats.Characters.LANRI:
-                //        ship.cStats.LanriApproval += approvalChange;
-                //        break;
-                //    case CharacterStats.Characters.LEXA:
-                //        ship.cStats.LexaApproval += approvalChange;
-                //        break;
-                //    case CharacterStats.Characters.RIPLEY:
-                //        ship.cStats.RipleyApproval += approvalChange;
-                //        break;
-                //}
+                switch (characterDriver.Character)
+                {
+                    case CharacterStats.Characters.Kuon:
+                        ship.cStats.KuonApproval += eventApprovalChange;
+                        break;
+                    case CharacterStats.Characters.Mateo:
+                        ship.cStats.MateoApproval += eventApprovalChange;
+                        break;
+                    case CharacterStats.Characters.Lanri:
+                        ship.cStats.LanriApproval += eventApprovalChange;
+                        break;
+                    case CharacterStats.Characters.Lexa:
+                        ship.cStats.LexaApproval += eventApprovalChange;
+                        break;
+                    case CharacterStats.Characters.Ripley:
+                        ship.cStats.RipleyApproval += eventApprovalChange;
+                        break;
+                }
             }
 
             if(!hasSubsequentChoices) //do at the end of the event
@@ -583,15 +584,9 @@ public class ChoiceOutcomes
                 narrativeResultsBox.SetActive(true);
             }
 
-            if(changeGameState)
-            {
-                GameManager.instance.ChangeInGameState(state);
-            }
-
             //Debug.Log("Adding: " + resultText);
-            narrativeResultsBox.transform.GetChild(0).GetComponent<TMP_Text>().text += resultText;
+            narrativeResultsBox.transform.GetChild(0).GetComponentInChildren<TMP_Text>().text += resultText;
         }
-
     }
 
     /// <summary>

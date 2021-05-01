@@ -26,7 +26,22 @@ public class AstroidEmitter : MonoBehaviour
 	private void Start()
 	{
 		miniGameManager = FindObjectOfType<AstroidMiniGame>();
-		StartCoroutine(SpawnAstroids());
+
+		if(!Tutorial.Instance.GetTutorialActive())
+		{
+			StartCoroutine(SpawnAstroids());
+			miniGameManager.setUp = true;
+		}
+		
+	}
+
+	private void Update()
+	{
+		if(!Tutorial.Instance.GetTutorialActive() && miniGameManager.setUp == false)
+		{
+			StartCoroutine(SpawnAstroids());
+			miniGameManager.setUp = true;
+		}
 	}
 
 	IEnumerator SpawnAstroids()

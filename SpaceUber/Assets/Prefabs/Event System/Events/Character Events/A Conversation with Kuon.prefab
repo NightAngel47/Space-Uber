@@ -54,6 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
+      propertyPath: roomTypes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
       propertyPath: eventName
       value: A Conversation with Kuon
       objectReference: {fileID: 0}
@@ -81,7 +86,7 @@ PrefabInstance:
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: nextChoices.Array.data[0].choiceName
-      value: "Say he\u2019s been doing just fine"
+      value: Negative
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
@@ -106,8 +111,7 @@ PrefabInstance:
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: nextChoices.Array.data[1].choiceName
-      value: "Tell him he has been doing more than enough, you\u2019re happy to have
-        him aboard"
+      value: Neutral
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
@@ -127,8 +131,7 @@ PrefabInstance:
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: nextChoices.Array.data[2].choiceName
-      value: "Let him know he\u2019s been doing good enough, but there\u2019s always
-        room for improvement"
+      value: Positive
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
@@ -153,7 +156,7 @@ PrefabInstance:
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: thisCharacter
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
@@ -297,7 +300,7 @@ PrefabInstance:
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: nextChoices.Array.data[0].eventSFX
-      value: Kuon Yes-7
+      value: Kuon Understand-7
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
@@ -322,7 +325,7 @@ PrefabInstance:
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
       propertyPath: nextChoices.Array.data[2].eventSFX
-      value: Kuon Understand-7
+      value: Kuon Yes-7
       objectReference: {fileID: 0}
     - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}
@@ -353,6 +356,57 @@ PrefabInstance:
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].eventSFX
       value: Kuon Understand-7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: roomTypes.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: roomTypes.Array.data[1]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: roomTypes.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: roomTypes.Array.data[3]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].description
+      value: '"Consider your own needs. I need you at your best when it matters.
+        Don''t push yourself too hard."'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].description
+      value: '"You ought to start doing better. Your ''performance'' is unsatisfactory."'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[2].description
+      value: '"Yes, you can do more."'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].description
+      value: '"Your performance is... lacking. It needs serious improvement."'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].description
+      value: '"You have been doing well... enough."'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567501940625030691, guid: 52a7a344084ef654789f7ca96de3299c,
+        type: 3}
+      propertyPath: nextChoices.Array.data[2].description
+      value: '"Glad to have you aboard. Keep up the good work."'
       objectReference: {fileID: 0}
     - target: {fileID: 5234566933638593566, guid: 52a7a344084ef654789f7ca96de3299c,
         type: 3}

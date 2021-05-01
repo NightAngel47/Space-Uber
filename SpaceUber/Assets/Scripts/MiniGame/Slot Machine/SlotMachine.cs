@@ -96,6 +96,7 @@ public class SlotMachine : MiniGame
 
     IEnumerator Start() 
     {
+        Tutorial.Instance.SetCurrentTutorial(10, true);
         sound = false;
         shipStats = OverclockController.instance.ShipStats();
         foreach (SlotReel reel in reels) { reel.SetSpeed(reelSpeed); }
@@ -109,7 +110,7 @@ public class SlotMachine : MiniGame
         smallBetButton.transform.GetChild(0).GetComponent<TMP_Text>().text = smallBet[roomLevel].ToString();
         mediumBetButton.transform.GetChild(0).GetComponent<TMP_Text>().text = mediumBet[roomLevel].ToString();
         largeBetButton.transform.GetChild(0).GetComponent<TMP_Text>().text = largeBet[roomLevel].ToString();
-        EnableDisableButtons();
+        EnableDisableBetButtons();
     }
 
     void Update()
@@ -119,13 +120,19 @@ public class SlotMachine : MiniGame
         DetectEndOfGame();
     }
 
-    void EnableDisableButtons()
+    void EnableDisableBetButtons()
 	{
         smallBetButton.interactable = (shipStats.Credits >= smallBet[roomLevel]);
         mediumBetButton.interactable = (shipStats.Credits >= mediumBet[roomLevel]);
         largeBetButton.interactable = (shipStats.Credits >= largeBet[roomLevel]);
+    }
 
-        print("small bet should be:" + smallBet[roomLevel]);
+    private IEnumerator EnableDisableStopButtons()
+    {
+        foreach (Button button in buttons) { button.interactable = false; }
+        yield return new WaitForSeconds(1f);
+        foreach (Button button in buttons) { button.interactable = true; }
+
     }
 
     void DetectCrank()
@@ -139,7 +146,7 @@ public class SlotMachine : MiniGame
         {
             AudioManager.instance.PlaySFX("Pull Crank");
             StartCoroutine(SpinSound());
-            foreach (Button button in buttons) { button.interactable = true; }
+            StartCoroutine(EnableDisableStopButtons());
             gameStarted = true;
             switch(betAmount)
 			{
@@ -150,6 +157,8 @@ public class SlotMachine : MiniGame
             StartCoroutine(Spin()); 
         }
     }
+
+
 
     void DetectEndOfGame()
 	{

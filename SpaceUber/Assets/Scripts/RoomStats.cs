@@ -66,6 +66,29 @@ public class RoomStats : MonoBehaviour
 
     private CrewManagementRoomDetailsMenu roomDetailsMenu;
 
+    public enum RoomType
+    {
+        ArmorPlating,
+        Armory,
+        Brig,
+        Bunks,
+        CoreChargingTerminal,
+        EnergyCanon,
+        HydroponicsStation,
+        Medbay,
+        PhotonTorpedoes,
+        Pantry,
+        PowerCore,
+        ShieldGenerator,
+        StorageContainer,
+        TeleportationStation,
+        VIPLounge,
+        WarpDrive
+
+    }
+    [SerializeField, Tooltip("The type of room this is")]
+    private RoomType roomType;
+
     private void Awake()
     {
         cam = Camera.main;
@@ -81,6 +104,13 @@ public class RoomStats : MonoBehaviour
         roomDetailsMenu = FindObjectOfType<CrewManagementRoomDetailsMenu>();
         
         GetStats();
+
+        UpgradePower();
+    }
+
+    public RoomType GetRoomType()
+    {
+        return roomType;
     }
 
     private void UpdateRoomLevelIcon()
@@ -137,7 +167,7 @@ public class RoomStats : MonoBehaviour
                         credits += (int)(resource.amount[roomLevel - 1] * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
                         break;
                     case ResourceDataTypes._Energy:
-                        energy += (int)(resource.amount[roomLevel - 1] * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
+                        energy += (int)(resource.amount[FindObjectOfType<CampaignManager>().GetCurrentCampaignIndex()] * MoraleManager.instance.GetMoraleModifier(ignoreMorale)); //sets energy based on which campaign it is
                         break;
                     case ResourceDataTypes._Security:
                         security += (int)(resource.amount[roomLevel - 1] * MoraleManager.instance.GetMoraleModifier(ignoreMorale));
@@ -259,6 +289,45 @@ public class RoomStats : MonoBehaviour
         }
 
         SetActiveAmount(resource);
+
+        //sets the rooms resource active amount on load
+        switch (resource.resourceType.Rt)
+        {
+            case ResourceDataTypes._Credits:
+                resource.activeAmount = resourceChange;
+                break;
+            case ResourceDataTypes._Energy:
+
+                resource.activeAmount = resourceChange;
+                break;
+            case ResourceDataTypes._Security:
+                resource.activeAmount = resourceChange;
+                break;
+            case ResourceDataTypes._ShipWeapons:
+                resource.activeAmount = resourceChange;
+                break;
+            case ResourceDataTypes._Crew:
+                resource.activeAmount = resourceChange;
+                break;
+            case ResourceDataTypes._Food:
+                resource.activeAmount = resourceChange;
+                break;
+            case ResourceDataTypes._FoodPerTick:
+                resource.activeAmount = resourceChange;
+                break;
+            case ResourceDataTypes._HullDurability:
+                resource.activeAmount = resourceChange;
+                break;
+            case ResourceDataTypes._CrewMorale:
+                morale += resourceChange;
+                break;
+            case ResourceDataTypes._Payout:
+                resource.activeAmount = resourceChange;
+                break;
+            default:
+                Debug.LogError("Resource type: " + resource.resourceType.resourceName + " not setup in RoomStats");
+                break;
+        }
     }
 
     public void SetIsPowered()
@@ -538,7 +607,7 @@ public class RoomStats : MonoBehaviour
     }
 
     /// <summary>
-    /// Subtracts or adds to the room level based on whether the up or down arrow was pressed
+    /// Sets the room level based on whether the up or down arrow was pressed
     /// levelChange will be positive if adding or negative when subtracting
     /// </summary>
     public void ChangeRoomLevel(int levelChange)
@@ -584,9 +653,13 @@ public class RoomStats : MonoBehaviour
 
             foreach (Resource resource in resources)
             {
-                resourceChange = resource.amount[roomLevel - 1] - resource.amount[roomLevel - 2];
-                UpdateRoomStats(resource.resourceType);
+                if (energy != resource.amount[roomLevel - 1]) //if current active is not the same as the new level amount change the resource value
+                {
+                    resourceChange = resource.amount[roomLevel - 1] - resource.amount[roomLevel - 2];
+                    UpdateRoomStats(resource.resourceType);
+                }
             }
+
         }
     }
 }

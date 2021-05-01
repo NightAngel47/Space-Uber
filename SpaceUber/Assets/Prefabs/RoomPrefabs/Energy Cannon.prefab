@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceType: {fileID: 11400000, guid: 5410253900907ec42bf813317508ae9e, type: 2}
-  amount: 140000001d00000026000000
+  amount: 0f0000001800000021000000
   activeAmount: 0
   minAmount: 0
 --- !u!114 &8914881331037085880
@@ -190,8 +190,8 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomDescription
-      value: 'Fires a laser beam at unwanted guests. Strengthens Weapons based on
-        crew assigned. Must be placed on the side of the ship. '
+      value: Strengthens Weapons based on crew assigned. Must be placed on the ship's
+        side.
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -226,17 +226,17 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: price.Array.data[0]
-      value: 85
+      value: 95
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: price.Array.data[1]
-      value: 120
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: price.Array.data[2]
-      value: 155
+      value: 165
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
@@ -254,6 +254,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2397118123195013090, guid: b05c7d568e913c94db077561555d6b02,
         type: 3}
+    - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
+        type: 3}
+      propertyPath: roomType
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4570362770752095651, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: m_Offset.x

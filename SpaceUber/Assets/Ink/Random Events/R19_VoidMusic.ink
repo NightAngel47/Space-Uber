@@ -1,4 +1,6 @@
-Your crew reports soft music permeating the ship. A hauntingly eerie melody from the sounds of it. You think little of it, after all, how is this any different from the music the crew listens to on the radio? However, soon it becomes apparent that this is not the case. Crew members begin to frantically try and find the source of this music, ransacking through the ship. None of them can explain this strange sense of urgency, when pressed they only answer with “It's a Siren Song!”. There is an ominous sense of foreboding as the unsettling tune continues to play from nowhere in particular.
+Your crew reports soft music permeating the ship. A hauntingly eerie melody from the sounds of it. You think little of it, after all, how is this any different from the music the crew listens to on the radio? However, soon it becomes apparent that this is not the case. Crew members begin to frantically try and find the source of this music, ransacking through the ship. None of them can explain this strange sense of urgency, when pressed they only answer with “It's a Siren Song!”. 
+
+Ripley contacts you, her speech strained, "This music... it's affecting our pscychological state...we need to do something!" There is an ominous sense of foreboding as the unsettling tune continues to play from nowhere in particular.
 +[Plug Ears] -> Plug
 +[Ignore It] -> Ignore
 

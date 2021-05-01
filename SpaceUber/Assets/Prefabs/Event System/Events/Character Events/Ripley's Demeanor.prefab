@@ -19,20 +19,21 @@ MonoBehaviour:
   isMutinyEvent: 0
   isScalableEvent: 0
   storyIndex: 0
-  hasAnimatedBG: 0
+  hasAnimatedBG: 1
   backgroundImage: {fileID: 21300000, guid: 06d21e773fff8874d87a91c713d66f27, type: 3}
-  backgroundAnimation: {fileID: 0}
+  backgroundAnimation: {fileID: 7947821688816057826, guid: 07ab99dc8d5fcc14d87b4a0e1f7d2700,
+    type: 3}
   buttonPrefab: {fileID: 509883202669863463, guid: d0efe66bb43b67247b612caf7107f379,
     type: 3}
   campMan: {fileID: 0}
   resultsBox: {fileID: 0}
   textPrintSpeed: 0.01
-  eventIntroSFX: 
-  eventBGM: Septic Malfunction
+  eventIntroSFX: Ripley Worse-1
+  eventBGM: General Theme
   requiredStats: []
   nextChoices:
   - choiceName: neg
-    description: 
+    description: '"Your bedside manner is lacking. Work on it."'
     changeMusic: 0
     playSFX: 1
     withoutTransition: 0
@@ -43,6 +44,7 @@ MonoBehaviour:
     hasPercentChange: 0
     percentIncrease: []
     hasSecretOutcomes: 1
+    secretOutComeText: 
     hasRandomEnding: 0
     randomEndingOutcomes: []
     outcomes:
@@ -52,6 +54,7 @@ MonoBehaviour:
       hasSubsequentChoices: 0
       isNarrativeOutcome: 0
       isResourceOutcome: 0
+      isMutinyOutcome: 0
       isApprovalOutcome: 1
       resource: 0
       amount: 0
@@ -64,13 +67,11 @@ MonoBehaviour:
       meMainOutcomes: 0
       finalTestNarrativeOutcomes: 0
       assetCountChange: 0
-      changeGameState: 0
-      state: 0
     hasSubsequentChoices: 1
     subsequentChoiceIndex: 0
     isScalableEvent: 0
   - choiceName: neu
-    description: 
+    description: '"You should have more compassion for your patients."'
     changeMusic: 0
     playSFX: 1
     withoutTransition: 0
@@ -81,6 +82,7 @@ MonoBehaviour:
     hasPercentChange: 0
     percentIncrease: []
     hasSecretOutcomes: 1
+    secretOutComeText: 
     hasRandomEnding: 0
     randomEndingOutcomes: []
     outcomes:
@@ -90,6 +92,7 @@ MonoBehaviour:
       hasSubsequentChoices: 0
       isNarrativeOutcome: 0
       isResourceOutcome: 0
+      isMutinyOutcome: 0
       isApprovalOutcome: 1
       resource: 0
       amount: 0
@@ -102,8 +105,6 @@ MonoBehaviour:
       meMainOutcomes: 0
       finalTestNarrativeOutcomes: 0
       assetCountChange: 0
-      changeGameState: 0
-      state: 0
     hasSubsequentChoices: 1
     subsequentChoiceIndex: 0
     isScalableEvent: 0
@@ -112,7 +113,7 @@ MonoBehaviour:
   - subsequentChoicesName: '#2'
     eventChoices:
     - choiceName: neg
-      description: 
+      description: '"Dismissed."'
       changeMusic: 0
       playSFX: 1
       withoutTransition: 0
@@ -123,6 +124,7 @@ MonoBehaviour:
       hasPercentChange: 0
       percentIncrease: []
       hasSecretOutcomes: 1
+      secretOutComeText: 
       hasRandomEnding: 0
       randomEndingOutcomes: []
       outcomes:
@@ -132,6 +134,7 @@ MonoBehaviour:
         hasSubsequentChoices: 0
         isNarrativeOutcome: 0
         isResourceOutcome: 0
+        isMutinyOutcome: 0
         isApprovalOutcome: 1
         resource: 0
         amount: 0
@@ -144,13 +147,12 @@ MonoBehaviour:
         meMainOutcomes: 0
         finalTestNarrativeOutcomes: 0
         assetCountChange: 0
-        changeGameState: 0
-        state: 0
       hasSubsequentChoices: 0
       subsequentChoiceIndex: 0
       isScalableEvent: 0
     - choiceName: pos
-      description: 
+      description: '"A person''s final moment should be peaceful. They experience
+        loss much less often than you."'
       changeMusic: 0
       playSFX: 1
       withoutTransition: 0
@@ -161,6 +163,7 @@ MonoBehaviour:
       hasPercentChange: 0
       percentIncrease: []
       hasSecretOutcomes: 1
+      secretOutComeText: 
       hasRandomEnding: 0
       randomEndingOutcomes: []
       outcomes:
@@ -170,6 +173,7 @@ MonoBehaviour:
         hasSubsequentChoices: 0
         isNarrativeOutcome: 0
         isResourceOutcome: 0
+        isMutinyOutcome: 0
         isApprovalOutcome: 1
         resource: 0
         amount: 0
@@ -182,8 +186,6 @@ MonoBehaviour:
         meMainOutcomes: 0
         finalTestNarrativeOutcomes: 0
         assetCountChange: 0
-        changeGameState: 0
-        state: 0
       hasSubsequentChoices: 0
       subsequentChoiceIndex: 0
       isScalableEvent: 0
@@ -199,6 +201,7 @@ MonoBehaviour:
   positiveMoraleBoost: 10
   neutralMoraleBoost: 5
   moraleLoss: -10
+  roomTypes: 07000000
 --- !u!1001 &593058587815589351
 PrefabInstance:
   m_ObjectHideFlags: 0
