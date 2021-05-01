@@ -1,4 +1,4 @@
-You receive an alert that a rogue program has infiltrated the ship's systems through the security terminal. You contact Kuon to figure out what happened. He sheepishly explains, “I received a message that I had won a grand prize, but when I went to claim it the terminal froze up.”. It appears that cyber-security is not one of his fortes. Nonetheless, you need to sort this out.
+You receive an alert that a rogue program has infiltrated the ship's systems through the security terminal. You contact Kuon to figure out what happened. He sheepishly explains, "I received a message that I had won a grand prize, but when I went to claim it the terminal froze up.". It appears that cyber-security is not one of his fortes. Nonetheless, you need to sort this out.
 +[Purge the Virus]->Purge
 +[Protect What You Can]->Protect
 
