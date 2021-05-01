@@ -67,6 +67,7 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         SendAudioSettingsValues();
         if (dial == DialType.Station) SaveRadioSettings();
     }
+    
 
     void Update()
     {
@@ -101,7 +102,18 @@ public class RadioDial : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             }*/
 
             //set slider values based on rotation
-            if (dial == DialType.Station) value = (Mathf.Abs(rotator.rotation.z) / 360f) * 100f * 20f;
+            //if (dial == DialType.Station) value = (Mathf.Abs(rotator.rotation.z) / 360f) * 100f * 20f;
+            if (dial == DialType.Station)
+            {
+                //within 4 degrees of each notch (20, 45, 90, 270, 315, 340 degrees) switch stations. 
+                if (rotator.rotation.eulerAngles.z > 18 && rotator.rotation.eulerAngles.z <= 22) value = 0;
+                else if (rotator.rotation.eulerAngles.z > 43 && rotator.rotation.eulerAngles.z <= 55) value = 1;
+                else if (rotator.rotation.eulerAngles.z > 88 && rotator.rotation.eulerAngles.z <= 92) value = 2;
+                else if (rotator.rotation.eulerAngles.z > 268 && rotator.rotation.eulerAngles.z <= 272) value = 3;
+                else if (rotator.rotation.eulerAngles.z > 305 && rotator.rotation.eulerAngles.z <= 317) value = 4;
+                else if (rotator.rotation.eulerAngles.z > 338 && rotator.rotation.eulerAngles.z <= 342) value = 5;
+
+            }
             else value = 1 - (rotator.rotation.eulerAngles.z / 360);
 
             UpdateRadioManager();
