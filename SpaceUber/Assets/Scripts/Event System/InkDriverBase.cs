@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Collections;
 using NaughtyAttributes;
 using TMPro;
+using DG.Tweening;
 
 public class InkDriverBase : MonoBehaviour
 {
@@ -74,7 +75,7 @@ public class InkDriverBase : MonoBehaviour
     /// <summary>
     /// Whether the latest bit of text is done printing so it can show the choices
     /// </summary>
-    private bool donePrinting = true;
+    [HideInInspector] public bool donePrinting = true;
     private bool showingChoices = false;
 
 
@@ -95,6 +96,19 @@ public class InkDriverBase : MonoBehaviour
         AudioManager.instance.PlaySFX(eventIntroSFX);
 
         isScalableEvent = !isStoryEvent && !isMutinyEvent;
+    }
+
+    private void Update()
+    {
+        //click to instantly finish text,
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+        {
+            textMask.DOComplete();
+        }
+        if (textMask.fillAmount >= 1)
+        {
+            donePrinting = true;
+        }
     }
 
     /// <summary>
@@ -145,23 +159,22 @@ public class InkDriverBase : MonoBehaviour
     /// <returns></returns>
     private void PrintText(string text)
     {
-        //text = textBox.text;
-        donePrinting = false;
-
         string tempString = "";
         textBox.text = tempString;
         tempString = text;
-        textMask.fillAmount += 0.1f * Time.deltaTime;
-        //click to instantly finish text,
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) ||
-            Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow) ||
-            Input.GetMouseButtonDown(0))
-        {
-            textMask.fillAmount = 1;
-        }
+        textMask.fillAmount = 0;
+        FillBox();
         textBox.text = tempString;
-        //yield return new WaitForSeconds(textPrintSpeed);
-        donePrinting = true;
+    }
+
+    /// <summary>
+    /// Controls the tweening aspect of the mask for the textbox
+    /// </summary>
+    public void FillBox()
+    {
+        donePrinting = false;
+        textMask.DORestart();
+        textMask.DOFillAmount(1, 4).SetEase(Ease.Linear);
     }
 
     /// <summary>
