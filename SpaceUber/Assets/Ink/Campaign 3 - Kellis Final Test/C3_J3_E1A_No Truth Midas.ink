@@ -35,10 +35,29 @@ He claps his hands together. "Wonderful job so far!" he says.
 "Sir?" Kuon asks.
 The CEO ignores Kuon, focusing on you. “You’ve kept a lid on things so far, despite what you’ve learned. It’s nice to have someone who listens.” He gestures at Avanshore. "If the world knew, we'd be tied to this dying star with red tape. But as long as we play this smart, we can get something useful out of this.”
 Kuon makes a motion to speak but the CEO cuts him off.
-"We found an alien ship, undamaged, a little over a century ago now. Designation: Portunus. We were able to gather little information, but what we got changed everything. High yield weapons, advanced forcefields," he pauses and gives you a look as if trying to gauge reaction, "and even Artificial Intelligence schematics.”
-"But Portunus was capable of so much more, it had been dead in the water for eons. We lugged it to a nearby star and tried to wake it up. Do you know what we could have done with that power? Equinox would be an afterthought. 
-"The sun catcher dipped into Avanshore's sol and jump-started Portunus, as planned, but our data was wrong. The feedback caused an explosion that propelled the golden material across the galaxy, to... debilitating effect. And it also sent Avanshore's sol on a path towards supernova."
-"The assets you've been picking up are prototypes and replacement pieces required to get a handle on Portunus once we find it again. If you let the assets get wiped out by this thing," he points to the red sun, "All this will be for nothing."
+"We found an alien ship, undamaged and unpowered, a little over a century ago now. Designation: Portunus. We were able to gather little information, but what we found changed everything. High yield weapons, advanced forcefields," he gives you a measured look, "and even Artificial Intelligence schematics.”
+*["You copied Portunus to make me?"]
+->Question_AI
+*["What do you know about the aliens?"]
+->Question_Aliens
+*["How much tech has Kellis stolen?"]
+->Question_Theft
+
+==Question_AI==
+"Of course we did, a synthetic mind would be impossible without their technology. We took hundreds of readings for a basic idea of that ship's structure. But let me repeat: Basic. If we could wake Portunus up we wouldn't need you; we would have the universe at our command. Equinox would be an afterthought." 
+->Conspiracy_2
+
+==Question_Aliens==
+"Precious little. We've only been able to decode bits and pieces, but we think they wiped themselves out once they created a 'Matter Printer.' We're still looking for that one. The point is they were eons beyond us. If we could just wake Portunus up we would have those eons of information at our command. Equinox would be an afterthought."
+->Conspiracy_2
+
+==Question_Theft==
+"You mean just from the shadowy alien race before us?" he laughs. "It's not theft so much as rediscovery. They were eons ahead of us, we need to reverse engineer what we can to catch up. If we do, the universe will practically be at our command. Equinox would be an afterthought."
+->Conspiracy_2
+
+==Conspiracy_2==
+"We lugged the ship to the closest star, Avanshore's, and tried to wake it up using an aparatus of our design. We directed the sun's power into Portunus and jump-started it, as planned, but our data was wrong. The feedback caused an explosion that propelled alien scrap across the galaxy, to... debilitating effect. And it also sent Avanshore's sol on a path towards supernova."
+"The assets you've been picking up are prototypes and replacement pieces of that aparatus. With them, we'll be able to control Portunus once we find it again. If you let the assets get wiped out by this thing," he points to the red sun, "All this will be for nothing."
 After a pause the CEO splays his hands out in front of you. "So, can I trust you to finish the job?"
 
 *[Yes, I will finish the job]
@@ -55,9 +74,9 @@ Kuon stands and leaves, his reaction time serving well to make you both scarce. 
 ->END
 
 ==Rebellion==
-You speak, "You have listed every crime Kellis has commited against Avanshore. And all you ask is for me to enable you to repeat these crimes until you can reign in the power of this ancient intelligence? I will not serve a monster, nor will I hand it the keys to the destruction of worlds."
+You speak, "You have listed every crime Kellis has commited against Avanshore. And all you ask is for me to enable you to repeat these crimes until you can reign in this ancient intelligence? I will not serve a monster, nor will I hand it the keys to the destruction of worlds."
 The CEO stares back at you and blinks, finally caught off guard. 
-Kuon fills the silence, "What the hell are you doing." You sense he is speaking to you, "Kellis is the only one posed to fix this galaxy, why would a creature of reason stand against them?"
-The CEO regains his composure and his rage, "You will finish the mission. If you fail the AI branch will be severed from the company and your ship will be taken into custody. It will be incinerated, along with your intelligence, the crew, and any record of your existence," He thinks for a moment. "I will grant amnesty to your Security Officer here, for he at least seems to be a <i>creature of reason.</i> You are dismissed."
+Kuon fills the silence, "What the hell are you doing." You sense he is speaking to you, "Kellis is the only one who can fix this galaxy, why would a creature of reason stand against them?"
+The CEO regains his composure and his rage, "You will finish the mission. If you fail your ship will be incinerated, along with your intelligence, the crew, and any record of your existence," He thinks for a moment. "I will grant amnesty to your Security Officer here, for he at least seems to be a <i>creature of reason.</i> You are dismissed."
 Kuon stands and leaves before you can get another word in. He is silent during the walk back. In your experience, Kuon only goes silent when he needs to make a point or ready himself for combat. You pray it is the former.
 ->END
