@@ -1,6 +1,6 @@
 Mateo saunters over to the main terminal. He rubs the sleep from his eyes as he starts to perform maintenance on your systems. "Sorry for the delay Sparky, must've missed my alarm or sumthin." He chuckles to himself as he speaks. You realize that there hasn't been a time you can recall where Mateo was punctual.
 +[Ask why he's always late]->late
-+[Ask how matinence is going]->mati
++[Ask how maintenance is going]->mati
 
 == late ==
 A cheeky grin flashes across Mateo's mouth, "What if I told you it was on purpose? What if I told you I wanted to impact Kellis' performance?" You'd like to believe that he's joking, but you surmise that this answer was more serious than Mateo is letting on.
