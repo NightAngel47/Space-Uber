@@ -540,7 +540,7 @@ public class ChoiceOutcomes
             {
                 GameManager.instance.ChangeInGameState(InGameStates.Mutiny);
             }
-            else //approval outcomes
+            else if(characterDriver) //approval outcomes
             {
                 int eventApprovalChange = 0;
 
@@ -577,6 +577,10 @@ public class ChoiceOutcomes
                         ship.cStats.RipleyApproval += eventApprovalChange;
                         break;
                 }
+            }
+            else
+            {
+                Debug.LogWarning("Event Choice has no Choice Outcome");
             }
 
             if(!hasSubsequentChoices) //do at the end of the event
