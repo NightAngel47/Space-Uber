@@ -1,5 +1,5 @@
 VAR randomEnd = -> Garbo
-After some rummaging through the cargo hold, a few crew members find a some strange boxes. You recognize them as a discontinued Kellis product: “The Surprise Box”. All one needs to do is deposit an appropriate amount of credits for the box to open, revealing the surprise. The contents could range from worthless garbage to valuables, shall you test your luck?
+After some rummaging through the cargo hold, a few crew members find a some strange boxes. You recognize them as a discontinued Kellis product: “The Surprise Box”. All one needs to do is deposit an appropriate amount of credits for the box to open, revealing the surprise. The contents could range from worthless garbage to valuables; shall you test your luck?
 +[Pay to Play]->randomEnd
 +[Jettison the Boxes]->Jett
 

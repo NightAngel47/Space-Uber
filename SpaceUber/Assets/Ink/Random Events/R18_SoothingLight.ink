@@ -5,7 +5,7 @@ As you forge ahead through the cold abyss, you come across a startling yet welco
 +[Shine on Solar Panels]->Solar
 
 == Hydro ==
-You decide to move the Radiance to Hydroponics. The gentle warmth invigorates the plants and you reap a bountiful harvest as a result. After roughly twelve hours, the Radiance fades away. Leaving only a faint shimmer.
+You decide to move the Radiance to Hydroponics. The gentle warmth invigorates the plants and you reap a bountiful harvest as a result. After roughly twelve hours, the Radiance fades away, leaving only a faint shimmer.
 ->DONE
 == Deck ==
 The crew seems pleased with the current arrangement, no need to fix what isn't broken. They revel in the soft light for as long as it lasts, telling stories and sharing laughs. Before long the Radiance fades, leaving the crew with a pleasant memory.

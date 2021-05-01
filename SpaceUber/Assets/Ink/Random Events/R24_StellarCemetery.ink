@@ -2,7 +2,7 @@ VAR randomEnd1 = -> FindCred
 VAR randomEnd2 = -> FindCredV2
 VAR randomEnd3 = -> FindCredV3
 
-As the ship soars past a nearby planetoid, the crew is treated to a grisly sight. Ships of all makes and models, utterly decimated and left floating through the dark. You have stumbled upon a cosmic graveyard. Scans indicate that there are no lifeforms present on any ship, but perhaps you could benefit from these circumstances?
+As the ship soars past a nearby planetoid, the crew is treated to a grisly sight. Ships of all makes and models lie utterly decimated, left floating through the dark. You have stumbled upon a cosmic graveyard. Scans indicate that there are no lifeforms present on any ship, but perhaps you could benefit from these circumstances?
 
 +[Salvage what remains]->Sal1
 

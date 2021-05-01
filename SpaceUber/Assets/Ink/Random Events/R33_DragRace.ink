@@ -16,7 +16,7 @@ Both ships rocket forward, neck and neck. You swiftly approach the moon. At the 
 Both ships rocket forward, neck and neck. As you approach the moon the man speaks once more, “You didn't think I was givin' it all she's got did you?”. Your crew can only watch as the opposing ship blasts ahead to claim victory. The crew, disheartened, listens to the man laugh as you depart.
 ->DONE
 == Pull ==
-Both ships rocket forward, neck and neck. It's anyone's guess as to who will win. However, just as both ships reach the moon the race race is cut short. An enforcement ship appears upon the horizon and demands you come to a halt. You comply; the other racer doesn't. He blasts off, leaving you alone. For breaching the speed limit without authorization, your ship is fined a sum of credits, but is otherwise free to go.
+Both ships rocket forward, neck and neck. It's anyone's guess as to who will win. However, just as both ships reach the moon the race is cut short. An enforcement ship appears upon the horizon and demands you come to a halt. You comply; the other racer doesn't. He blasts off, leaving you alone. For breaching the speed limit without authorization, your ship is fined a sum of credits, but is otherwise free to go.
 ->DONE
 
 == Leave ==

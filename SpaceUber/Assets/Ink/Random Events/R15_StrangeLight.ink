@@ -7,7 +7,7 @@ Lanri rushes to one of your contact terminals. She plants her feet to stop quick
 -> SolarPanels
 
 ==ShineTheLightOnTheCrops==
-You tell her to focus the light on the ship's crops. As if by magic, the crops grow exponentially over the next couple hours. Giving you more food than you would usually harvest in a week.
+You tell her to focus the light on the ship's crops. As if by magic, the crops grow exponentially over the next couple of hours. Giving you more food than you would usually harvest in a week.
 -> END
 
 ==SolarPanels==
