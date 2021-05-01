@@ -60,8 +60,9 @@ public class GameIntroManager : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        StartCoroutine(AudioManager.instance.Fade(AudioManager.instance.GetCurrentRadioSong(), 1, false));
-        
+        //StartCoroutine(AudioManager.instance.Fade(AudioManager.instance.GetCurrentRadioSong(), 1, false));
+        AudioManager.instance.PlayRadio(AudioManager.instance.currentStationId, true);
+
         story = new Story(inkJSONAsset.text); //this draws text out of the JSON file
         
         yield return new WaitUntil(() => FindObjectOfType<EventCanvas>());
