@@ -8,6 +8,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class PageController : MonoBehaviour
 {
@@ -17,47 +18,69 @@ public class PageController : MonoBehaviour
     [SerializeField] private string defaultNextMsg;
     [SerializeField] private string continueNextMsg;
     private bool madeChoice;
+    //private bool pageSeen = false;
     private TMP_Text nextButtonText;
-    InkDriverBase inkDriver;
     int currentPage = 0; //the overall current page, used for the page clips
+    private int furthestPage = 1;
 
     private void Start()
     {
         nextButtonText = nextButton.GetComponentInChildren<TMP_Text>();
         currentPage = 0;
         //ResetPages();
-        
+
     }
 
     private void PlayCurrentPageSFX()
     {
         if(currentPage != 1) //doesn't need to play on the first page of the event
         {
+            InkDriverBase inkDriver = FindObjectOfType<InkDriverBase>();
             //uses currentPage to figure out which SFX to play
-            if (!inkDriver) inkDriver = FindObjectOfType<InkDriverBase>();
-            
-            if (inkDriver.pageClips.Count >= currentPage)
+            if (inkDriver && inkDriver.pageClips.Count >= currentPage)
             {
                 if (inkDriver.pageClips[currentPage - 1] != null) //make sure there is something in that slot
                 {
                     AudioManager.instance.PlaySFX(inkDriver.pageClips[currentPage - 1]);
-
                 }
             }
         }
-        
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            NextPage();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            PreviousPage();
+        }
     }
 
     public void NextPage()
     {
-        
-        //if there are still pages to display in this set
-        if (eventText.pageToDisplay < eventText.textInfo.pageCount)
+        InkDriverBase inkDriver = FindObjectOfType<InkDriverBase>();
+        if (inkDriver && !inkDriver.donePrinting)
         {
-            eventText.pageToDisplay += 1; //increment current page
-            
-            //back button is not active
-            if(!backButton.activeSelf)
+            inkDriver.textMask.DOComplete();
+            inkDriver.donePrinting = true;
+        }
+        else if (eventText.pageToDisplay < eventText.textInfo.pageCount && inkDriver.donePrinting)
+        {
+            eventText.pageToDisplay += 1;
+            if (eventText.pageToDisplay >= furthestPage)
+            {
+                furthestPage++;
+                inkDriver.textMask.fillAmount = 0;
+                inkDriver.FillBox();
+            }
+            else
+            {
+                inkDriver.textMask.fillAmount = 1;
+            }
+            if (!backButton.activeSelf)
             {
                 backButton.SetActive(true);
             }
@@ -66,7 +89,6 @@ public class PageController : MonoBehaviour
         }
         else
         {
-            InkDriverBase inkDriver = FindObjectOfType<InkDriverBase>();
             if(inkDriver && !inkDriver.ShowChoices()) // normal
             {
                 inkDriver.ConcludeEvent();
@@ -90,12 +112,15 @@ public class PageController : MonoBehaviour
 
     public void PreviousPage()
     {
-        
-        if(eventText.pageToDisplay > 1)
+        InkDriverBase inkDriver = FindObjectOfType<InkDriverBase>();
+        if (eventText.pageToDisplay > 1)
         {
             eventText.pageToDisplay -= 1;
+            //pageSeen = true;
+            inkDriver.textMask.fillAmount = 1;
+            inkDriver.textMask.DOComplete();
             nextButtonText.text = defaultNextMsg;
-            
+
             if(eventText.pageToDisplay == 1)
             {
                 backButton.SetActive(false);

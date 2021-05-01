@@ -11,8 +11,10 @@ using Ink.Runtime;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 using NaughtyAttributes;
 using TMPro;
+using DG.Tweening;
 
 public class InkDriverBase : MonoBehaviour
 {
@@ -41,12 +43,10 @@ public class InkDriverBase : MonoBehaviour
     private Transform buttonGroup;
     private TMP_Text titleBox;
     private TMP_Text textBox;
+    [HideInInspector] public Image textMask;
     [HideInInspector] public GameObject resultsBox;
     private Image backgroundUI;
     protected ShipStats thisShip;
-
-    [SerializeField, Tooltip("Controls how fast text will scroll. It's the seconds of delay between words, so less is faster.")]
-    private float textPrintSpeed = 0.1f;
 
     public string eventIntroSFX;
 
@@ -65,8 +65,7 @@ public class InkDriverBase : MonoBehaviour
     [SerializeField] bool hasSubsequentChoices;
     [ShowIf("hasSubsequentChoices"), Tooltip("Sets of subsequent choices that can be accessed by index by an event choice.")]
     public List<SubsequentChoices> subsequentChoices = new List<SubsequentChoices>();
-
-
+    
     /// <summary>
     /// The story itself being read
     /// </summary>
@@ -75,7 +74,7 @@ public class InkDriverBase : MonoBehaviour
     /// <summary>
     /// Whether the latest bit of text is done printing so it can show the choices
     /// </summary>
-    private bool donePrinting = true;
+    [HideInInspector] public bool donePrinting = true;
     private bool showingChoices = false;
 
 
@@ -101,6 +100,19 @@ public class InkDriverBase : MonoBehaviour
         isScalableEvent = !isStoryEvent && !isMutinyEvent;
     }
 
+    private void Update()
+    {
+        //click to instantly finish text,
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+        {
+            textMask.DOComplete();
+        }
+        if (textMask.fillAmount >= 1)
+        {
+            donePrinting = true;
+        }
+    }
+
     /// <summary>
     /// Assigns necessary UI elements
     /// </summary>
@@ -108,16 +120,18 @@ public class InkDriverBase : MonoBehaviour
     /// <param name="text"></param>
     /// <param name="results"></param>
     /// <param name="background"></param>
+    /// <param name="textBoxMask"></param>
     /// <param name="buttonSpace"></param>
     /// <param name="ship"></param>
     /// <param name="campaignManager"></param>
-    public void AssignStatusFromEventSystem(TMP_Text title, TMP_Text text, GameObject results, Image background, Transform buttonSpace,
+    public void AssignStatusFromEventSystem(TMP_Text title, TMP_Text text, GameObject results, Image background, Image textBoxMask, Transform buttonSpace,
         ShipStats ship, CampaignManager campaignManager)
     {
         titleBox = title;
         textBox = text;
         resultsBox = results;
         backgroundUI = background;
+        textMask = textBoxMask;
         buttonGroup = buttonSpace;
         thisShip = ship;
         campMan = campaignManager;
@@ -145,30 +159,21 @@ public class InkDriverBase : MonoBehaviour
     /// </summary>
     /// <param name="text"></param>
     /// <returns></returns>
-    private IEnumerator PrintText(string text)
+    private void PrintText(string text)
+    {
+        textMask.fillAmount = 0;
+        FillBox();
+        textBox.text = text.Aggregate("", (current, t) => current + CheckChar(t));
+    }
+
+    /// <summary>
+    /// Controls the tweening aspect of the mask for the textbox
+    /// </summary>
+    public void FillBox()
     {
         donePrinting = false;
-
-        string tempString = "";
-        textBox.text = tempString;
-        int runningIndex = 0;
-
-        while (tempString.Length < text.Length)
-        {      
-            tempString += CheckChar(text[runningIndex]);
-            runningIndex++;
-
-            //click to instantly finish text,
-            if(Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
-            {
-                tempString = text;
-            }
-            textBox.text = tempString;
-
-            yield return new WaitForSeconds(textPrintSpeed);
-        }
-
-        donePrinting = true;
+        textMask.DORestart();
+        textMask.DOFillAmount(1, 4).SetEase(Ease.Linear);
     }
 
     /// <summary>
@@ -240,8 +245,7 @@ public class InkDriverBase : MonoBehaviour
         ClearUI();
 
         // Set the text from new story block
-        string text = GetNextStoryBlock();
-        StartCoroutine(PrintText(text));
+        PrintText(GetNextStoryBlock());
     }
 
     /// <summary>
