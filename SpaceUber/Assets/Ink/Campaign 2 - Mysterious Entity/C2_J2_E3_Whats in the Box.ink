@@ -7,11 +7,11 @@ Falling silent, Kuon stands there awaiting a response. Ripley doesn't speak up a
 
 === Open ===
 You decide that, despite your orders, the Keystone should be examined. Your crew is already suffering, and you need to see if you can alleviate it.
-As the crate is opened, the sound of whispering and murmuring fills the air. Revealing in the dim lights of the cargo hold is a strange, alien obelisk: the Keystone. Standing tall, its smooth, dark surface is broken by carvings--hieroglyphics of an ancient, dead race.
+As the crate is opened, the sound of whispering and murmuring fills the air. Revealing in the dim lights of the cargo hold is a strange, alien obelisk: the Keystone. Standing tall, its smooth, dark surface is broken by carvings: hieroglyphics of an ancient, dead race.
 You're going to have Lanri go over it and make sure that it isn't emitting any sort of radiation or anything else that could be the cause of your recent problems.
 -> END
 
 === Closed ===
-You side with Kuon. Orders are orders. The Keystone and its container are not to be distrubed. All this cursed artifact business could just be coincidental with what the crew is going through. Opening the cargo may end up solving nothing, and only add more problems when your superiors find out you disobeyed an explicit order.
-Kuon is right that your crew will just have to push through the nightmares and anxiety. They may hate you for it but keeping Kellis happy will be best for everyone.
+You side with Kuon. Orders are orders. The Keystone and its container are not to be disturbed. All this cursed artifact business could just be coincidental with what the crew is going through. Opening the cargo may end up solving nothing, and only add more problems when your superiors find out you disobeyed an explicit order.
+Kuon is right that your crew will just have to push through the nightmares and anxiety. They may hate you for it, but keeping Kellis happy will be best for everyone.
 -> END
