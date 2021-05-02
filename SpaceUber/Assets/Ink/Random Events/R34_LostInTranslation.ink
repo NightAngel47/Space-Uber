@@ -1,4 +1,4 @@
-During routine maintenance of the ship's power core a mistake causes a sudden surge of energy throughout the ship. It overloads your processors. You find yourself having trouble making heads or tails of the situation. The crew look to the camera in the core room and speak, but you can't make out what they're saying. “1s [[/]ev3ry..;\thing 0k(a))y? Th4t was--_a w1cked-d-d-d sur%^g3.”
+During routine maintenance of the ship's power core a mistake causes a sudden surge of energy throughout the ship. It overloads your processors. You find yourself having trouble making heads or tails of the situation. The crew look to the camera in the core room and speak, but you can't make out what they're saying. "1s [[/]ev3ry..;\thing 0k(a))y? Th4t was--_a w1cked-d-d-d sur%^g3."
 +[Reboot Systems]->Reboot
 +[Wait for it to Dissapate]->Wait
 

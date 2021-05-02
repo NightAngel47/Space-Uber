@@ -1,5 +1,4 @@
-Lanri excitedly contacts you. "I just picked up a message. I'm sure you've noticed the ship nearby. It's a food vendor. They're well known for selling delicious but cheap food. I think it would be really neat to pick some up. It would be a cheap way to keep our pantry stocked and feed the crew. Additionally, they've been known to purchase any food offered to them as well."
-Her exuberance falters for a moment. "I have heard some rumors of food poisoning surrounding their wares." Perking back up, she continues. "However, they're few and far between, with no fatalities attributed to it, so I still recommend them."
+Lanri contacts you. "I just picked up a message. It's a food vendor! They're well known for selling delicious but cheap food. I think it would be great to pick some up. It would be a cheap way to keep our pantry stocked and feed the crew. They've also been known to purchase any food offered to them as well." Her exuberance falters for a moment. "I have heard some rumors of food poisoning surrounding their wares." Perking back up, she continues. "But they're few and far between, with no fatalities attributed to it, so I still recommend them."
 + [Buy Some Food] -> Buy
 + [Offer Some of Your Own] -> Decline
 
