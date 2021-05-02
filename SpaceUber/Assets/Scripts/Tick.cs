@@ -19,7 +19,10 @@ public class Tick : MonoBehaviour
     {
         shipStats = FindObjectOfType<ShipStats>();
     }
-
+    public float GetSecondsPerTick()
+    {
+        return secondsPerTick;
+    }
     public void StartTickUpdate()
     {
         secondsPassed = 0;

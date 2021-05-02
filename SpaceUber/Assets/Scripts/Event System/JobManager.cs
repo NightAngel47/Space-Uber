@@ -19,6 +19,7 @@ public class JobManager : MonoBehaviour
     [SerializeField] private EventSystem es;
 
     private JobListUI jobListUI;
+    private JobUI jobUI;
     private Job selectedMainJob;
 
     public void RefreshJobList()
@@ -34,6 +35,7 @@ public class JobManager : MonoBehaviour
     {
         yield return new WaitUntil(() => SceneManager.GetSceneByName("Interface_JobList").isLoaded);
         jobListUI = FindObjectOfType<JobListUI>();
+        jobUI = FindObjectOfType<JobUI>();
 
         for (var i = 0; i < campaignManager.GetAvailableJobs().Count; i++)
         {
@@ -46,6 +48,8 @@ public class JobManager : MonoBehaviour
                 thisJob.isSideJob)
             {
                 jobListUI.ShowAvailableJob(thisJob, i);
+                jobUI.JobSelected();
+                jobListUI.jobUIList[i].GetComponent<Button>().interactable = false;
             }
         }
 

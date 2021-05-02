@@ -71,7 +71,7 @@ public class ChoiceOutcomes
     {
         if (ship != null)
         {
-            if (isResourceOutcome || (!isNarrativeOutcome && !isApprovalOutcome)) //Will change to "isResourceOutcome" when designers have the chance to check the box in all old events
+            if (isResourceOutcome)
             {
                 if(isScaledOutcome) //scalable events get a multiplier to amount
                 {
@@ -471,7 +471,7 @@ public class ChoiceOutcomes
                         }
                         else if (assetCountChange < 0)
                         {
-                            if (assetCountChange == 1)
+                            if (assetCountChange == -1)
                                 resultText += "\nYou have lost 1 asset";
                             else
                                 resultText += "\nYou have lost " + assetCountChange + " assets";
@@ -540,7 +540,7 @@ public class ChoiceOutcomes
             {
                 GameManager.instance.ChangeInGameState(InGameStates.Mutiny);
             }
-            else //approval outcomes
+            else if(characterDriver) //approval outcomes
             {
                 int eventApprovalChange = 0;
 
@@ -559,25 +559,28 @@ public class ChoiceOutcomes
 
                 characterDriver.ChangeEventApproval(eventApprovalChange);
 
-                //TODO: Changes character specific approval. To be implemented as someone sees fit
-                //switch (character)
-                //{
-                //    case CharacterStats.Characters.KUON:
-                //        ship.cStats.KuonApproval += approvalChange;
-                //        break;
-                //    case CharacterStats.Characters.MATEO:
-                //        ship.cStats.MateoApproval += approvalChange;
-                //        break;
-                //    case CharacterStats.Characters.LANRI:
-                //        ship.cStats.LanriApproval += approvalChange;
-                //        break;
-                //    case CharacterStats.Characters.LEXA:
-                //        ship.cStats.LexaApproval += approvalChange;
-                //        break;
-                //    case CharacterStats.Characters.RIPLEY:
-                //        ship.cStats.RipleyApproval += approvalChange;
-                //        break;
-                //}
+                switch (characterDriver.Character)
+                {
+                    case CharacterStats.Characters.Kuon:
+                        ship.cStats.KuonApproval += eventApprovalChange;
+                        break;
+                    case CharacterStats.Characters.Mateo:
+                        ship.cStats.MateoApproval += eventApprovalChange;
+                        break;
+                    case CharacterStats.Characters.Lanri:
+                        ship.cStats.LanriApproval += eventApprovalChange;
+                        break;
+                    case CharacterStats.Characters.Lexa:
+                        ship.cStats.LexaApproval += eventApprovalChange;
+                        break;
+                    case CharacterStats.Characters.Ripley:
+                        ship.cStats.RipleyApproval += eventApprovalChange;
+                        break;
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Event Choice has no Choice Outcome");
             }
 
             if(!hasSubsequentChoices) //do at the end of the event
@@ -586,9 +589,8 @@ public class ChoiceOutcomes
             }
 
             //Debug.Log("Adding: " + resultText);
-            narrativeResultsBox.transform.GetChild(0).GetComponent<TMP_Text>().text += resultText;
+            narrativeResultsBox.transform.GetChild(0).GetComponentInChildren<TMP_Text>().text += resultText;
         }
-
     }
 
     /// <summary>

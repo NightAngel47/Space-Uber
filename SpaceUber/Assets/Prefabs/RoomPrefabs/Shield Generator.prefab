@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceType: {fileID: 11400000, guid: 418056c5f48660f4fa1affe0e1d5e95d, type: 2}
-  amount: 3c0000005000000064000000
+  amount: 32000000460000005a000000
   activeAmount: 0
   minAmount: 0
 --- !u!1001 &2228332728607482427
@@ -183,8 +183,7 @@ PrefabInstance:
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
       propertyPath: roomDescription
-      value: Generates shields to prevent damage. Increases Hull Durability based
-        on crew assigned.
+      value: Generates shields. Increases Hull Durability based on crew assigned.
       objectReference: {fileID: 0}
     - target: {fileID: 4360159919716397346, guid: d75062b47e0b75b4384d6d8e19141c62,
         type: 3}
