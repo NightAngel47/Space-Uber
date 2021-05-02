@@ -1,4 +1,4 @@
-As you continue on your journey you pick up a curious signal. You eventually draw closer to the source of the beacon: a wreck floating aimlessly amidst the stars. In the time it takes for your crew to wonder if there are any survivors aboard, the radar cries out. 
+You pick up a curious signal. You eventually draw closer to the source of the beacon: a wreck floating aimlessly amidst the stars. In the time it takes for your crew to wonder if there are any survivors aboard, the radar cries out. 
 You appear to be surrounded by a number of unknown vessels. Soon, a communications request comes in and you tentatively answer. They inform you that you are currently flying through a sector which requires a toll for safe passage. The ships waiting ominously around you want to know: your money or your lives?
 +[Face Them]->Face
 +[Retreat]->Retreat

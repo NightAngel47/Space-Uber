@@ -20,9 +20,7 @@ As you approach the umbral blot, the alarms start blaring and the gravitational 
 ->END
 
 === Money ===
-As you approach the umbral blot, the alarms start blaring and the gravitational pull spikes. In an instant, the ship is wrenched from its position in space into the center of the wormhole. The gravitational density grows exponentially around you, with a metallic groan echoing through the ship. However, the wormhole somehow fails to condense you into its singularity. 
-
-After a few short seconds, the ship lurches beyond the wormhole's influence, seemingly unaffected. However, it wasn't for nothing. Upon further inspection, you find a hyper-condensed diamond in the direct center of the ship. 
+As you approach the umbral blot, the alarms start blaring and the gravitational pull spikes. In an instant, the ship is wrenched from its position in space into the center of the wormhole. The gravitational density grows exponentially around you, a metallic groan echoing through the ship. However, the wormhole somehow fails to condense you into its singularity. After a few short seconds, the ship lurches beyond the wormhole's influence, seemingly unaffected. However, it wasn't for nothing. Upon further inspection, you find a hyper-condensed diamond in the direct center of the ship. 
 ->END
 
 === Shuffle ===
