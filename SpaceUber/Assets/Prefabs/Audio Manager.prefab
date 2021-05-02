@@ -6830,6 +6830,14 @@ MonoBehaviour:
     pitch: 1
     volumeVarience: 0
     pitchVarience: 0
+  - name: Game Intro
+    clip: {fileID: 8300000, guid: 11e329997e5cd07428e911d662dae8b0, type: 3}
+    mixer: {fileID: -7963772419508520180, guid: 4baaccc3fdc14004284321e2c802e30f,
+      type: 2}
+    volume: 0.85
+    pitch: 1
+    volumeVarience: 0
+    pitchVarience: 0
   ambientTracks:
   - name: Warbling White Noise
     clip: {fileID: 8300000, guid: 6d140a3d68eb54947857dc1f58801017, type: 3}
@@ -6882,11 +6890,19 @@ MonoBehaviour:
       pitch: 1
       volumeVarience: 0
       pitchVarience: 0
-    - name: Disco
-      clip: {fileID: 8300000, guid: 0ca3432e1755bbe479b6d73e8373c88c, type: 3}
+    - name: Reflective
+      clip: {fileID: 8300000, guid: c5a732b702301014393cfe4564ac7482, type: 3}
       mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
         type: 2}
-      volume: 0.85
+      volume: 0.65
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
+    - name: Brilliant
+      clip: {fileID: 8300000, guid: 997e5b30395a09d4bb80be2a7d8fed9b, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.7
       pitch: 1
       volumeVarience: 0
       pitchVarience: 0
@@ -6908,6 +6924,14 @@ MonoBehaviour:
       pitch: 1
       volumeVarience: 0
       pitchVarience: 0
+    - name: Chat
+      clip: {fileID: 8300000, guid: e76903a0b2d325040b10e315636eafc0, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.65
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
   - name: CTRY
     tracks:
     - name: CTRY_Demo
@@ -6918,13 +6942,53 @@ MonoBehaviour:
       pitch: 1
       volumeVarience: 0
       pitchVarience: 0
+    - name: Geeter
+      clip: {fileID: 8300000, guid: d3bec01e59f5a4b49a0825eb9d8a6336, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.95
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
+    - name: Solo Cup in Space
+      clip: {fileID: 8300000, guid: 6f2daed9d61c3da458965003aca45f11, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.85
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
   - name: ZERO
     tracks:
-    - name: ZERO_demo
+    - name: Download
       clip: {fileID: 8300000, guid: f5f99958e7318c245bebc55bcb614542, type: 3}
       mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
         type: 2}
-      volume: 0.6
+      volume: 0.85
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
+    - name: Bleep
+      clip: {fileID: 8300000, guid: 7f25d8d499f428f4d84398e85edb6a6a, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.95
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
+    - name: Bloop
+      clip: {fileID: 8300000, guid: 1d9d35c457416064781e59e0f0060663, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.95
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
+    - name: Hack'd
+      clip: {fileID: 8300000, guid: f5f99958e7318c245bebc55bcb614542, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.95
       pitch: 1
       volumeVarience: 0
       pitchVarience: 0
@@ -6938,13 +7002,61 @@ MonoBehaviour:
       pitch: 1
       volumeVarience: 0
       pitchVarience: 0
+    - name: Asteroid Jam
+      clip: {fileID: 8300000, guid: 424c6b0ada56cf0458b77e976a70ab67, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.9
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
+    - name: Haunted Frequency
+      clip: {fileID: 8300000, guid: b7c04d80e8ccbf04cbace980ecfbab65, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.9
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
+    - name: Undone
+      clip: {fileID: 8300000, guid: af72dc59fccb43845babd0eb78b98c97, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.92
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
   - name: LBTC
     tracks:
     - name: LBTC_1
       clip: {fileID: 8300000, guid: 1ddb5ac8ffe79594a95d4eaf90fdeea5, type: 3}
       mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
         type: 2}
-      volume: 0.7
+      volume: 0.78
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
+    - name: Shipping
+      clip: {fileID: 8300000, guid: 32c1cf361fa084e48b55a484105061ae, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.85
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
+    - name: Unboxing Day
+      clip: {fileID: 8300000, guid: 2bbb44c8a05810948b645519882a153f, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.865
+      pitch: 1
+      volumeVarience: 0
+      pitchVarience: 0
+    - name: Plugma
+      clip: {fileID: 8300000, guid: 8c80acb42fb4c72418770d40fbdbd6fd, type: 3}
+      mixer: {fileID: 6454263606239654843, guid: 4baaccc3fdc14004284321e2c802e30f,
+        type: 2}
+      volume: 0.8
       pitch: 1
       volumeVarience: 0
       pitchVarience: 0
