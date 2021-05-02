@@ -12,7 +12,7 @@ While it is tantalizing to see just what lies beyond the wormhole, risking your 
 ->END
 
 === MinorDamage ===
-As you approach the umbral blot, the alarms start blaring and the gravitational pull spikes. All engines are at full power, but the gravity is too strong to resist. However, rather than being completely swallowed, the ship only skirts along the event horizon before slingshotting free. Thankfully, this shouldnt affect your flight path too heavily, but the pressure has torn off the outer plating of your ship.
+As you approach the umbral blot, the alarms start blaring and the gravitational pull spikes. All engines are at full power, but the gravity is too strong to resist. However, rather than being completely swallowed, the ship only skirts along the event horizon before slingshotting free. Thankfully, this shouldn't affect your flight path too heavily, but the pressure has torn off the outer plating of your ship.
 ->END
 
 === Pranked ===
