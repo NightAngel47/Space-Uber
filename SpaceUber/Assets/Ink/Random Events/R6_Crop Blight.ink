@@ -10,11 +10,11 @@
 
 == Cull ==
 You tell Lanri to follow the most feasible and direct method: Uproot any crops showing signs of the blight as soon as possible and drop them out the airlock. Lanri nods vigorously, latching onto a plan of action. 
-"Of course! I’ll start right away." Rations are going to be tight for a while, but letting the blight fester would be far worse.
+"Of course! I'll start right away." Rations are going to be tight for a while, but letting the blight fester would be far worse.
 -> END
 
 == Mulch ==
-You realize there’s an easy way to create a nutritious mulch between destinations. You tell Lanri it will be tended to. Between her relief and overzealous words of thanks, she doesn't ask about the solution. You didn't intend to tell her as humans get much too emotional when it comes to these things.
+You realize there's an easy way to create a nutritious mulch between destinations. You tell Lanri it will be tended to. Between her relief and overzealous words of thanks, she doesn't ask about the solution. You didn't intend to tell her as humans get much too emotional when it comes to these things.
 You request someone to handle diasgnostics in hydroponics, and use the automated arms in the room to quickly and efficiently rip them apart. Lanri soon has her mulch. 
 -> END
 

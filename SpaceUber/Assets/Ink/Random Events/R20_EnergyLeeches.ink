@@ -1,7 +1,7 @@
 VAR randomEnd = -> Goodcore
 VAR randomEnd2 = -> Badcore
 
-The ship's power readings have begun to fluctuate. Gradually at first, but the fluctuations continue to grow in severity. Mateo contacts you, explaining that there's something stuck to the outside of the ship, right next to the power core. You take a peek through the external cameras to find a number of long, fleshy lumps. It takes only a moment for you to recognize them. These aptly named “Shock Suckers” are energy leeches. You need to remove them if at all possible.
+The ship's power readings have begun to fluctuate. Gradually at first, but the fluctuations continue to grow in severity. Mateo contacts you, explaining that there's something stuck to the outside of the ship, right next to the power core. You take a peek through the external cameras to find a number of long, fleshy lumps. It takes only a moment for you to recognize them. These aptly named "Shock Suckers" are energy leeches. You need to remove them if at all possible.
 +[Send the Crew] ->Send
 +[Let them Eat] ->Eat
 +[Overload the Core] ->randomEnd2

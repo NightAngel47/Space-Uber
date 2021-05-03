@@ -9,7 +9,7 @@ Thinking about it... you could actually accept this offer. The Keystone's contai
 
 
 === Decline1 ===
-You send a message back, declining their offer. You surreptitiously give Kuon orders to escort Loudon off the ship once you dock at the rest point, and make sure he doesn't return. You'll have one less crew member, but without that weasel around Equinox won't be able to terrorize your crew anymore. Hopefully they don't try any more underhanded tricks.
+You send a message back, declining their offer. You surreptitiously give Kuon orders to escort Loudon off the ship once you dock at the rest point and make sure he doesn't return. You'll have one less crew member but without that weasel around, Equinox won't be able to terrorize your crew anymore. Hopefully they don't try any more underhanded tricks.
 Telling your crew about the whole scheme seems to reassure them. Hopefully the rest of the trip goes smoothly.
 -> END
 

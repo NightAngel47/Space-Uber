@@ -1,5 +1,5 @@
-After a cargo container was delivered to you by a courier drone, Lexa approaches you. "The shipment we just received has a supply of food and desserts as well as a note. It appears it was meant for some other ship as a gift, but that drone must have malfunctioned and given it to us instead."
-"I personally feel we should return it. The drone can only go so far, so the sender should still be nearby. Plus, it's the right thing to do. I know the crew would enjoy whatever's inside, but it doesn't belong to us. It's your call."
+After a cargo container was delivered to you by a courier drone, Lexa approaches you. "The shipment we just received has a supply of food and desserts as well as a note. It appears it was meant for some other ship as a gift, but the drone malfunctioned and ended up here."
+"I personally feel we should return it. The drone can only go so far, so the sender should still be nearby. Plus, it's the right thing to do. I know the crew would enjoy whatever's inside, but it doesn't belong to us. Your call."
 + [Keep Gift] -> Keep
 + [Return Gift] -> Honesty
 
