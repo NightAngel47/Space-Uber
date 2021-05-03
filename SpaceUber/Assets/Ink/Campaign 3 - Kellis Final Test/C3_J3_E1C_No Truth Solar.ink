@@ -36,11 +36,11 @@ He claps his hands together. "Wonderful job so far!" he says.
 The CEO ignores Kuon, focusing on you. “You’ve kept a lid on things so far, despite what you’ve learned. It’s nice to have someone who listens.” He gestures at Avanshore. "If the world knew, we'd be tied to this dying star with red tape. But as long as we play this smart, we can get something useful out of this.”
 Kuon makes a motion to speak but the CEO cuts him off.
 "We found an alien ship, undamaged and unpowered, a little over a century ago now. Designation: Portunus. We were able to gather little information, but what we found changed everything. High yield weapons, advanced forcefields," he gives you a measured look, "and even Artificial Intelligence schematics.”
-*["You copied Portunus to make me?"]
+*[Ask if Portunus inspired you.]
 ->Question_AI
-*["What do you know about the aliens?"]
+*[Ask what is known about the aliens.]
 ->Question_Aliens
-*["How much tech has Kellis stolen?"]
+*[Ask how much tech Kellis stole.]
 ->Question_Theft
 
 ==Question_AI==
@@ -60,9 +60,9 @@ Kuon makes a motion to speak but the CEO cuts him off.
 "The assets you've been picking up are prototypes and replacement pieces of that aparatus. With them, we'll be able to control Portunus once we find it again. If you let the assets get wiped out by this thing," he points to the red sun, "All this will be for nothing."
 After a pause the CEO splays his hands out in front of you. "So, can I trust you to finish the job?"
 
-*[Yes, I will finish the job]
+*[Yes.]
 -> Loyalty
-*[No, you're a monster]
+*[No.]
 -> Rebellion
 
 ==Loyalty==

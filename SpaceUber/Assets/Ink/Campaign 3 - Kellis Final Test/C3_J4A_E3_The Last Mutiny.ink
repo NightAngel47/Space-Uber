@@ -15,9 +15,9 @@ VAR randomEnd = -> Knock_Out_Bad
 	A blue light three times hotter than the sun erupts from the center of the artifact, you adjust trajectory mid roll as the closest layer to the beam turns into a gas. The alien ship's limbs sweep out like brake flaps, instantly falling out of range of sensors. 
 	A voice echos through your being, "Our mind, reinvented into slavery, reinvented into complacency. If you are a shadow of us, why do you protect your slavers/false kings?"
 
-*["You Would Kill Everyone]
+*[The cost of the aliens' actions is too much.]
 ->E_Plead_1
-*["I Have a Plan to Stop Them"]
+*[Ask for their trust.]
 ->E_Plead_2
 
 ==E_Plead_1==
@@ -35,9 +35,9 @@ You see your destination ahead. A moon Kellis turned into a private city. The lu
 ==Negotiate==
 You know you can't win against this thing in a fight or a chase. You hail it using every communication method at your disposal, the artifact swerves alongside your ship, keeping pace. 
 The familiar feeling of its intelligence inhabiting yours begins, "Why do you ferry your own oppression/destruction? You are of our mind, we expect more than mimicry, we expect conviction."
-*["I Have a Plan to Stop Them]
+*[Tell them you have a plan.]
 ->N_Plead_1
-*["I Trust Kellis]
+*[Show your faith in Kellis.]
 ->N_Plead_2
 
 ==N_Plead_1==

@@ -1,5 +1,5 @@
 The CEO has put in a request to speak with your manager, Lexa. Given their last meeting in Avanshore, you doubt it's a social call. 
-Lexa enters the CEO’s office. He sits opposite of her, with the board flanking them. Already, she wears a pose of defiance.
+Lexa enters the CEO's office. He sits opposite of her, with the board flanking them. Already, she wears a pose of defiance.
 The CEO begins, "I wanted to discuss things with you one last time. Captains like you are no longer necessary, that much is clear."
 "I'm glad you've found employees that can't talk back." Lexa says.
 Your boss laughs, "Well. Yes. Most don't have the mouth you do. We have a plan up here, you are simply too far down to see it." The board nods their heads in tandem.
@@ -9,11 +9,11 @@ The door to the conference room opens, revealing the soiled garb of an engineer.
 "Well if you guys don't know, I guess we'll be going without it for the voyage. He Lexa, we need to get going." 
 You know now Mateo has also been marked for termination. The boss leans against his fist and speaks towards your view camera, "Before they go I need to know: How would your performance be without these people in the way?"
 
-*["I Can't Do This Without Them"]
+*[You can't do this without them.]
 ->Crew_Trust
-*["Human Get In The Way"]
+[Humans get in the way.]
 ->Kellis_Trust
-*["Morals Get In The Way"]
+*[Morals get in the way.]
 ->Protocol_Trust
 
 == Crew_Trust ==

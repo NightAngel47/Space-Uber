@@ -37,5 +37,5 @@ You took heavy loses to your security team and ammo stores, but are able to hook
 As you leave the planet behind, you realize that something is wrong. One of the creatures has gotten inside the ship. It has climbed within your server room, your effective consciousness. It places a powerful claw onto your server bank, and begins to crush it. The monster stops and stands there, docile. "We see. You are our mind, reforged." the voice spreads throughout your being. "We will not kill a sibling/offspring."
 The monster stays there, non-hostile, at least to you. You inform Lanri and ask that she contain it. 
 You spot countless small lights on the horizon as you fly away, wreckage superheating as it falls into the atmosphere. Every piece glows the same gold as the monster now in your ship.
-If just a few pieces could threaten your entire operation, there’s no telling what a blanket rain across Apotheo could do. According to protocol, it’s not your job to think about it.
+If just a few pieces could threaten your entire operation, there's no telling what a blanket rain across Apotheo could do. According to protocol, it's not your job to think about it.
 ->END

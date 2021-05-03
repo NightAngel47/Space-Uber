@@ -6,7 +6,7 @@ The crew alerts you that a strange object has been detected right outside the sh
 Within moments of listing the artifact, a buyer has offered to meet your price. After a brief exchange, you have one less artifact but a decent chunk of change.
 ->DONE
 == Investigate ==
-You have Mateo and Lanri look into the artifact. While she wishes to study its components, he is content to fiddle with the orb. They bicker about who should be the first to handle it but Mateo scoops it up. Lanri flicks his ear as he begins tampering with the artifact. After an errant twist, the orb begins to glow. An emerald streak of light shoots outward into space, twisting along a predetermined path. It appears it’s trying to guide you somewhere.
+You have Mateo and Lanri look into the artifact. While she wishes to study its components, he is content to fiddle with the orb. They bicker about who should be the first to handle it but Mateo scoops it up. Lanri flicks his ear as he begins tampering with the artifact. After an errant twist, the orb begins to glow. An emerald streak of light shoots outward into space, twisting along a predetermined path. It appears it's trying to guide you somewhere.
 +[Follow the Light]->Light
 +[Just Sell It] ->Sell
 
