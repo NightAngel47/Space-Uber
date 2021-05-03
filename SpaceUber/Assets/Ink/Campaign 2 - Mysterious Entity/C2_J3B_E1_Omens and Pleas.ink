@@ -6,11 +6,11 @@ Lexa speaks afterward. "I, I know it would leave us shorthanded, but, uh, I thin
 + [Deny Their Request] -> Deny
 
 === Grant ===
-Although continuing on will be harder without them, you decide to grant the trio's request and allow them to take leave, much to their relief and Lexa's approval. They. They will depart as soon as you find a suitable drop off point for them.
+Although continuing on will be harder without them, you decide to grant the trio's request and allow them to take leave, much to their relief and Lexa's approval. They will depart as soon as you find a suitable drop-off point for them.
 Although some of your already stressed crew is annoyed by the fact that they will have to put in some extra time here and there to make up for the three's absence, almost everyone is heartened by the empathy you have shown.
 -> END
 
 === Deny ===
-You make it clear that you need all hands-on deck in case of an emergency. With the troubles that you have faced so far, you can't spare anyone. Especially with the strange whispering and the air of danger and mystery surrounding the Keystone.
-With your decision made, the trio, as well as Lexa, leave the terminal room, downtrodden. Despite their visible dismay at your choice, you believe their words that they'll avoid causing trouble.
+You make it clear that you need all hands on deck in case of an emergency. With the troubles that you have faced so far, you can't spare anyone. Especially with the strange whispering and the air of danger and mystery surrounding the Keystone.
+With your decision made, the trio of crewmates and Lexa leave the terminal room, downtrodden. Despite their visible dismay at your choice, you believe their words that they'll avoid causing trouble.
 -> END

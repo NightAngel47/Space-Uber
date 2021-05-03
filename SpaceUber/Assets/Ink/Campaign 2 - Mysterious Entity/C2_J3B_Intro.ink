@@ -1,4 +1,4 @@
-You are starting off on the final stretch of your journey. However, siding with Kuon has only caused further stress among the crew as, to them, it seems you have put appeasing Kellis over their safety and wellbeing.
+You are starting off on the final stretch of your journey. However, siding with Kuon has only caused further stress among the crew. To them, it seems you have put appeasing Kellis over their safety and wellbeing.
 The nightmares have gotten worse and worse for the various crew members. Kuon seems to be the only one not bothered too much, either due to his cybernetic implants or a general numbness to the visions the crew has been seeing while asleep.
 Even more troubling is that several crew members have had periods where they seem to be entranced. Stumbling around the rooms and halls of the ship, they wander aimlessly about. When snapped out of it, they display an unawareness of what they were doing. You'll have to keep an eye on this.
 -> END

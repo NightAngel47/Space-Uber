@@ -1,4 +1,4 @@
-Having left the pit stop, you are to continue on your way to your destination. The crew (minus Kuon) are much calmer now that the Keystone, and the curse it supposedly carries, is now in the possession of your rivals. This respite is short lived, however.
-You attempt to check the tracking beacon on the artifact, to make sure Equinox hasn't gotten too far away from you. The result, however, is unexpected. The Keystone is still aboard your ship.
-Something must have gone wrong. The crates must have been mislabeled accidently... or purposely. This is unlikely to please your crew, and Equinox might try something later. The only crew member you let know is Kuon. You want him to keep an eye out for anymore suspicious behavior.
+Having left the pit stop, you are to continue on your way to your destination. The crew (minus Kuon) are much calmer now that the Keystone and the curse it supposedly carries are now in the possession of your rivals. This respite is short lived, however.
+You attempt to check the tracking beacon on the artifact to make sure Equinox hasn't gotten too far away from you. The result, however, is unexpected. The Keystone is still aboard your ship.
+Something must have gone wrong. The crates must have been mislabeled accidentally... or purposely. This is unlikely to please your crew, and Equinox might try something later. The only crew member you let know is Kuon. You want him to keep an eye out for any further suspicious behavior.
 -> END
