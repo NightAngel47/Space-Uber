@@ -1,4 +1,4 @@
-Consistent pained moans from the bunks fill your automated ears as Ripley calmly pages you. "It appears that a sizable portion of our food supply is tainted. As a result, crewmates are suffering from food poisoning." Tone unchanged, Dr. Lormay continues, "You could have the food removed from the ship. Or, we could ignore this and continue to allow the crew to be poisoned. Some will likely die. Please let me know your decision."
+Consistent pained moans from the bunks fill your automated ears as Ripley calmly pages you. "It appears that a sizable portion of our food supply is tainted. Crewmates are suffering from food poisoning." Tone unchanged, Dr. Lormay continues, "You could have the food removed from the ship. Or, we could ignore this and continue to allow the crew to be poisoned. Some will likely die. Please let me know your decision."
 
 + [Remove the food]
 -> RemoveTheFood

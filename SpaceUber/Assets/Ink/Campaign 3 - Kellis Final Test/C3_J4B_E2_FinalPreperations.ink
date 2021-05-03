@@ -1,7 +1,7 @@
-After a couple days of fiddling with the implants within the CEO's corpse, Lanri is able to find access codes to his business associates and personal fortune. And right on time. You approach an exotic black market and trasmit the CEO's clearance codes, claiming that you're on an errand from the man himself.
-The brokers welcome you with open arms, knowing Kellis to be a big spender on experimental technology. You coast into their hangar and a member of your crew to look through their suit cam and manage the deal.
+After a couple days of fiddling with the implants within the CEO's corpse, Lanri is able to find access codes to his business associates and personal fortune. And right on time. You approach an exotic black market and transmit the CEO's clearance codes, claiming that you're on an errand for the man himself.
+The brokers welcome you with open arms, knowing Kellis to be a big spender on experimental technology. You coast into their hangar and sned a member of your crew to be your arms and legs.
 You are met with a masked salesman, who guides you into a gallery. The first room contains simple ship upgrades. They mention that the third room has "more of your typical purchases," which means highly expensive, highly dangerous tech. Thankfully, you'll be on the CEO's dollar this trip. 
-In front of you is an array of gattling turrets, heavy armor, and high-caliber weapons for your security team.
+In front of you is an array of gatling turrets, heavy armor, and high-caliber weapons for your security team.
 
 + [Gatling Arsenal]
 -> GatlingArsenal
@@ -16,17 +16,17 @@ With your choice made, the merchant leads you to the next room. With your offens
 ->Choice_2
 
 ==WeldedArmor==
-The most important part of the upcoming battle is surviving it. With that in mind you choose the welded armor. The seller seems delighted. "You're a smart one. This armor is dense and has a melting point out of the reach of most commerical lasers. And besides, the more layers of steel between yourself and the enemy, the better."
+The most important part of the upcoming battle is surviving it. With that in mind you choose the welded armor. The seller seems delighted. "You're a smart one. This armor is dense and has a melting point out of the reach of most commercial lasers. And besides, the more layers of steel between yourself and the enemy, the better."
 With your choice made, the merchant leads you to the next room. Your enemies will have a hard time hurting you, so you should focus on getting something to hurt them.
 ->Choice_2
 
 ==AntiTankArmory==
-The HQ will be sprawling, and your security team will be essential in scouting it and quelling the threats on the way. You tell the seller that you want to purchase the anti-tank ordinace. The seller approves. "Very good. These are essential in smaller scale conflicts. I mean, doubt you're going up against an army, but with these you might be able to swing it."
+The HQ will be sprawling, and your security team will be essential in scouting it and quelling the threats on the way. You tell the seller that you want to purchase the anti-tank ordinance. The seller approves. "Very good. These are essential in smaller scale conflicts. I doubt you're going up against an army, but with these you might be able to swing it."
 With your choice made, the merchant leads you to the next room. Now that your opponents are going to have a hard time getting to you, your next purchases should probably help you prepare if they actually get to you.
 ->Choice_2
 
 ==Choice_2==
-In the second room there are functional but stranger items. A massive gun stands in the corner, rippling with waves of electricity. A shield generator is displayed in the center, the air around it wavering. And near you are several mechanical exo-suits, with built in weapons and sensors. 
+There are stranger items in the second room. A massive gun stands in the corner, rippling with waves of electricity; A shield generator is displayed in the center, the air around it wavering; And near you are several mechanical exo-suits, with built-in weapons and sensors. 
 + [Disintegration Ray]
 -> DisintegrationRay
 + [Warp Shield]
@@ -35,19 +35,15 @@ In the second room there are functional but stranger items. A massive gun stands
 -> SecurityExoSuits
 
 ==DisintegrationRay==
-The barker’s manages a sleazy grin behind their mask, “Ah, you’ve got a good eye for quality, friend! This device will melt your problems away! Simply point the end towards an obstacle and watch in amazement as it’s reduced to little more than a grey vapor.” Assuming what he says is true, this should make getting into Central HQ significantly easier. 
+The barker claps their hands together, "Ah, you've got a good eye for quality, friend! This device will melt your problems away! Simply point the end towards an obstacle and watch in amazement as it's reduced to little more than a grey vapor." Assuming what he says is true, this should make getting into Central HQ significantly easier. 
 ->Choice_3
 
 ==WarpShield==
-The barker gives a small nod of agreement, “Wonderful choice, that one. If you’re looking for protection then look no further! This gravity shield is guaranteed to keep your ship safe from threats both tall and small.” You hope you won’t have to find out the hard way if he’s lying. 
+The barker gives a small nod of agreement, "Wonderful choice, that one. If you're looking for protection then look no further! This gravity shield is guaranteed to keep your ship safe from threats both tall and small." You hope you won't have to find out the hard way if he’s lying. 
 ->Choice_3
 
 ==SecurityExoSuits==
-The barker puts their arm around the display suit, “If you’re looking for a challenge, then you’re looking for something else. Made by Equinox, these suits will trivialize any fight your team gets into.” Your security officers will be excited about the new gear, and you hope that the suits will work as advertised. 
-->Choice_3
-
-==DontBuyAnything2==
-bruh
+The barker puts their arm around the display suit, "If you’re looking for a challenge, then you’re looking for something else. Made by Equinox, these suits will trivialize any fight your team gets into." Your security officers will be excited about the new gear, and you hope that the suits will work as advertised. 
 ->Choice_3
 
 ==Choice_3==

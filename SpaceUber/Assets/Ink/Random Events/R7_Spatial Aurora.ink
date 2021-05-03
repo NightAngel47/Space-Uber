@@ -1,8 +1,6 @@
 VAR randomEnd = -> Ravenous
     
-  Lanri contacts you. She speaks, seemingly very excited, 
-    "Sir‒! Ma'am‒ ...Boss. There’s a strange anomaly, impossible lights, no discernable source, encoded data within the color variations, the <i>works.</i> 
-    Our flight plan is putting us right through it, so I was hoping I could study the crew afterwards. You know, see what happens?" 
+  Lanri contacts you. She speaks, seemingly very excited, "Sir‒! Ma'am‒ ...Boss. There’s a strange anomaly, impossible lights, no discernable source, encoded data within the color variations, the <i>works</i>. Our flight plan is putting us right through it, so I was hoping I could study the crew afterwards. You know, see what happens?" 
     Protocol insists that you should absolutely not expose your crew to an unidentified aurora. The alternative is have the crew fly blind, which protocol advises against as well.
     
 * [Blind Pilots]
@@ -24,8 +22,7 @@ By the time you clear the aurora, everyone is back to normal and your food store
 -> END
 
 == Murderous ==
-You accept Lanri's scientific advice to "just see what happens" and fly through the aurora normally. Your sensors pixelate, the color red quickly filling your lenses. You can barely make out what is happening. The crew have armed themselves with service tools and are bludgeoning each other to death. 
-You lock down the doors to separate the murderers and wait out the path through the aurora. Once you're clear of the lights, the killers suddenly scramble away from the fresh corpses, not realizing who disposed of them. Lanri is horrified, but doesn't recall that this was her idea.
+You accept Lanri's scientific advice to "just see what happens" and fly through the aurora normally. Your sensors pixelate, the color red quickly filling your lenses. You barely make out what is happening. The crew have armed themselves with service tools and are bludgeoning each other to death. You lock down the doors to separate the murderers and wait out the path through the aurora. Once you're clear of the lights, the killers scramble away from the fresh corpses, not realizing who disposed of them. Lanri is horrified, but doesn't recall that this was her idea.
 -> END
 
 == Surge ==

@@ -1,4 +1,4 @@
-You notice that something unknown is draining the ship’s energy. You contact Mateo and ask him if he knows the cause. "Uh, so it appears that, like, some of the crew is using a slight amount of energy to watch holo-movies. We should be able to get by without it...and I don't think the crew would be happy about us taking their movies."
+You notice that something unknown is draining the ship's energy. You contact Mateo and ask him if he knows the cause. "Uh, so it appears that, like, some of the crew is using a slight amount of energy to watch holo-movies. We should be able to get by without it...and I don't think the crew would be happy about us taking their movies."
 + [Allow the Holo-Movies] -> Allow
 + [Stop the Entertainment] -> Stop
 
