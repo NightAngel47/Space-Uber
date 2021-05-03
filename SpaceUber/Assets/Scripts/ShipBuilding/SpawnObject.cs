@@ -17,9 +17,7 @@ public class SpawnObject : MonoBehaviour
 {
     
     public List<GameObject> availableRooms;
-    [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private GameObject buttonPanel;
-    [SerializeField] private Vector2 spawnLoc;
     public GameObject powercore;
     public static bool donePreplacedRoom = false;
 
@@ -120,8 +118,6 @@ public class SpawnObject : MonoBehaviour
             }
         }
 
-        //CreateRoomSpawnButtons();
-
         finishedAddingRooms = true;
 
         //display shipbuilding tutorial
@@ -141,25 +137,6 @@ public class SpawnObject : MonoBehaviour
 
         FindObjectOfType<ShipStats>().SaveShipStats();
         SavingLoadingManager.instance.SaveRooms();
-    }
-
-    public void SetAvailableRoomList(List<GameObject> l)
-    {
-        availableRooms = new List<GameObject>(l);
-    }
-
-    public void CreateRoomSpawnButtons()
-    {
-        foreach (GameObject room in availableRooms)
-        {
-            //g is the button that is created
-            GameObject roomButton = Instantiate(buttonPrefab, buttonPanel.transform);
-            //g.transform.SetParent(buttonPanel.transform);
-            roomButton.GetComponent<Button>().onClick.AddListener(() => SpawnRoom(room, 1)); //spawn a room upon clicking the button
-            roomButton.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = room.name; //Set G's title to the room's name
-            roomButton.transform.GetChild(3).gameObject.GetComponent<Image>().sprite = room.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
-            roomButton.GetComponentInChildren<ShopTooltipUI>().SetRoomInfo(room.GetComponent<RoomStats>());
-        }
     }
 
     public void SpawnRoom(GameObject ga, int level)

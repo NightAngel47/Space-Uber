@@ -14,7 +14,7 @@ Thinking about it... you could actually accept this offer. The Keystone's contai
 === Blackmail1 ===
 Having Kuon apprehend Loudon, you send Equinox a counter-offer. Either they give you some resources in exchange for Loudon and the evidence you've gathered, or you let the general public know about the dirty, underhanded tactics used by those in the employ of the Equinox conglomerate.
 The response back is rather quick. They accept. Meeting up with them, there is a tense trade-off as Loudon is marched onto the rival ship. On him is a small box, the coffin of this failed stunt to get you to sell the Keystone, filled with all the evidence you had gathered.
-At the same time, several crates are brought onto your ship. Checking them over before Equinox has the chance to scoot off, you confirm they have upheld their end of the deal. There's one crate of fresh rations, one of barely used Equinox-produced sidearms, and one with fully-charged energy cells.
+At the same time, several crates are brought onto your ship. Checking them over before Equinox has the chance to scoot off, you confirm they have upheld their end of the deal. There's one crate of fresh rations, one of barely-used, Equinox-produced sidearms, and one with fully-charged energy cells.
 As your disgraced rivals run off, taking their mole with them, your crew has started to feel better about everything.
 -> END
 
