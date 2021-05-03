@@ -92,7 +92,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
         }
     }
 
-    public void UpdatePanelInfo()
+    private void UpdatePanelInfo()
     {
         // enable UI elements
         foreach (GameObject roomDetailSection in roomDetailsInfo)
@@ -162,7 +162,7 @@ public class CrewManagementRoomDetailsMenu : MonoBehaviour
     /// <summary>
     /// Updates the crew stat and room production stats
     /// </summary>
-    private void UpdateCrewAssignment()
+    public void UpdateCrewAssignment()
     {
         currentCrew.text = roomStats.currentCrew + " / " + roomStats.maxCrew;
 

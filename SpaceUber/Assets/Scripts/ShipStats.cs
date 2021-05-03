@@ -560,7 +560,12 @@ public class ShipStats : MonoBehaviour
 
                 if(crewChecked > selection)
                 {
+                    CrewManagementRoomDetailsMenu roomDetailsMenu = FindObjectOfType<CrewManagementRoomDetailsMenu>();
                     rooms[index].UpdateCurrentCrew(-1);
+                    roomDetailsMenu.ChangeCurrentRoom(rooms[index].gameObject);
+                    roomDetailsMenu.UpdateCrewAssignment();
+                    rooms[index].UpdateRoomStats(rooms[index].resources[0].resourceType);
+                    roomDetailsMenu.UpdateCrewAssignment();
                     crewLost[index] += 1;
                     crewAssigned -= 1;
                 }

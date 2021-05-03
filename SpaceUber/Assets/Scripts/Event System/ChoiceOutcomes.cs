@@ -76,6 +76,7 @@ public class ChoiceOutcomes
                 if(isScaledOutcome) //scalable events get a multiplier to amount
                 {
                     int newAmount = Mathf.RoundToInt(amount * campMan.GetMultiplier(resource));
+                    
 
                     switch (resource)
                     {
@@ -89,9 +90,13 @@ public class ChoiceOutcomes
                             {
                                 resultText += "\nYou lost " + Math.Abs(newAmount) + " credits";
                             }
-                            else
+                            else if(newAmount > 0)
                             {
                                 resultText += "\nYou gained " + Math.Abs(newAmount) + " credits";
+                            }
+                            else
+                            {
+                                resultText += "\nCredits unaffected";
                             }
 
                             break;
@@ -104,9 +109,13 @@ public class ChoiceOutcomes
                             {
                                 resultText += "\nYou lost " + Math.Abs(newAmount) + " energy";
                             }
-                            else
+                            else if(newAmount > 0)
                             {
                                 resultText += "\nYou gained " + Math.Abs(newAmount) + " energy";
+                            }
+                            else
+                            {
+                                resultText += "\nEnergy unaffected";
                             }
                             break;
                         case ResourceDataTypes._Security:
@@ -118,9 +127,13 @@ public class ChoiceOutcomes
                             {
                                 resultText += "\nYou lost " + Math.Abs(newAmount) + " security";
                             }
-                            else
+                            else if (newAmount > 0)
                             {
                                 resultText += "\nYou gained " + Math.Abs(newAmount) + " security";
+                            }
+                            else
+                            {
+                                resultText += "\nSecurity unaffected";
                             }
 
                             break;
@@ -133,9 +146,13 @@ public class ChoiceOutcomes
                             {
                                 resultText += "\nYou lost " + Math.Abs(newAmount) + " weapons";
                             }
-                            else
+                            else if (newAmount > 0)
                             {
                                 resultText += "\nYou gained " + Math.Abs(newAmount) + " weapons";
+                            }
+                            else
+                            {
+                                resultText += "\nWeapons unaffected";
                             }
                             break;
                         case ResourceDataTypes._Crew: //losing crew
@@ -146,11 +163,15 @@ public class ChoiceOutcomes
                                 SpawnStatChangeText(ship, newAmount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou lost " + Math.Abs(newAmount) + " crew";
                             }
-                            else
+                            else if (newAmount > 0)
                             {
                                 ship.CrewCurrent += new Vector3(newAmount, 0, 0);
                                 SpawnStatChangeText(ship, newAmount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou gained " + Math.Abs(newAmount) + " crew";
+                            }
+                            else
+                            {
+                                resultText += "\nCrew unaffected";
                             }
                             break;
                         case ResourceDataTypes._Food:
@@ -161,9 +182,13 @@ public class ChoiceOutcomes
                             {
                                 resultText += "\nYou lost " + Math.Abs(newAmount) + " food";
                             }
-                            else
+                            else if (newAmount > 0)
                             {
                                 resultText += "\nYou gained " + Math.Abs(newAmount) + " food";
+                            }
+                            else
+                            {
+                                resultText += "\nFood unaffected";
                             }
                             break;
                         case ResourceDataTypes._FoodPerTick:
@@ -173,11 +198,15 @@ public class ChoiceOutcomes
 
                             if (newAmount < 0)
                             {
-                                resultText += "\nFood Per Tick decreased by " + Math.Abs(newAmount);
+                                resultText += "\nFood per tick decreased by " + Math.Abs(newAmount);
+                            }
+                            else if (newAmount > 0)
+                            {
+                                resultText += "\nFood per tick increased by " + Math.Abs(newAmount);
                             }
                             else
                             {
-                                resultText += "\nFood Per Tick increased by " + Math.Abs(newAmount);
+                                resultText += "\nFood per tick unaffected";
                             }
                             break;
                         case ResourceDataTypes._HullDurability:
@@ -193,9 +222,13 @@ public class ChoiceOutcomes
                             {
                                 resultText += "\nYou lost " + Math.Abs(newAmount) + " hull durability";
                             }
-                            else
+                            else if (newAmount > 0)
                             {
                                 resultText += "\nYou gained " + Math.Abs(newAmount) + " hull durability";
+                            }
+                            else
+                            {
+                                resultText += "\nHull Durability unaffected";
                             }
                             break;
 
@@ -206,9 +239,12 @@ public class ChoiceOutcomes
                             {
                                 resultText += "\nYour payout decreased by " + Math.Abs(newAmount);
                             }
-                            else
+                            else if(newAmount > 0)
                             {
                                 resultText += "\nYour payout increased by " + Math.Abs(newAmount);
+                            }else
+                            {
+                                resultText += "\nPayout unaffected";
                             }
                             break;
 
@@ -220,9 +256,13 @@ public class ChoiceOutcomes
                             {
                                 resultText += "\nYou lost crew morale";
                             }
-                            else
+                            else if (newAmount > 0)
                             {
                                 resultText += "\nYou gained crew morale";
+                            }
+                            else
+                            {
+                                resultText += "\nCrew Morale unaffected";
                             }
                             break;
 
@@ -242,11 +282,14 @@ public class ChoiceOutcomes
                             {
                                 resultText += "\nYou lost " + Math.Abs(amount) + " credits";
                             }
-                            else
+                            else if (amount > 0)
                             {
                                 resultText += "\nYou gained " + Math.Abs(amount) + " credits";
                             }
-
+                            else
+                            {
+                                resultText += "\nCredits unaffected";
+                            }
                             break;
                         case ResourceDataTypes._Energy:
                             ship.Energy += new Vector3(amount, 0, 0);
@@ -256,9 +299,13 @@ public class ChoiceOutcomes
                             {
                                 resultText += "\nYou lost " + Math.Abs(amount) + " energy";
                             }
-                            else
+                            else if (amount > 0)
                             {
                                 resultText += "\nYou gained " + Math.Abs(amount) + " energy";
+                            }
+                            else
+                            {
+                                resultText += "\nEnergy unaffected";
                             }
                             break;
                         case ResourceDataTypes._Security:
@@ -269,9 +316,13 @@ public class ChoiceOutcomes
                             {
                                 resultText += "\nYou lost " + Math.Abs(amount) + " security";
                             }
-                            else
+                            else if (amount > 0)
                             {
                                 resultText += "\nYou gained " + Math.Abs(amount) + " security";
+                            }
+                            else
+                            {
+                                resultText += "\nSecurity unaffected";
                             }
 
                             break;
@@ -283,9 +334,13 @@ public class ChoiceOutcomes
                             {
                                 resultText += "\nYou lost " + Math.Abs(amount) + " weapons";
                             }
-                            else
+                            else if (amount > 0)
                             {
                                 resultText += "\nYou gained " + Math.Abs(amount) + " weapons";
+                            }
+                            else
+                            {
+                                resultText += "\nWeapons unaffected";
                             }
                             break;
                         case ResourceDataTypes._Crew:
@@ -296,11 +351,15 @@ public class ChoiceOutcomes
                                 SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou lost " + Math.Abs(amount) + " crew";
                             }
-                            else
+                            else if (amount > 0)
                             {
                                 ship.CrewCurrent += new Vector3(amount, 0, 0);
                                 SpawnStatChangeText(ship, amount, GameManager.instance.GetResourceData((int)ResourceDataTypes._Crew).resourceIcon);
                                 resultText += "\nYou gained " + Math.Abs(amount) + " crew";
+                            }
+                            else
+                            {
+                                resultText += "\nCrew unaffected";
                             }
                             break;
                         case ResourceDataTypes._Food:
@@ -310,9 +369,13 @@ public class ChoiceOutcomes
                             {
                                 resultText += "\nYou lost " + Math.Abs(amount) + " food";
                             }
-                            else
+                            else if (amount > 0)
                             {
                                 resultText += "\nYou gained " + Math.Abs(amount) + " food";
+                            }
+                            else
+                            {
+                                resultText += "\nFood unaffected";
                             }
                             break;
                         case ResourceDataTypes._FoodPerTick:
@@ -321,11 +384,15 @@ public class ChoiceOutcomes
 
                             if (amount < 0)
                             {
-                                resultText += "\nFood Per Tick decreased by " + Math.Abs(amount);
+                                resultText += "\nFood per tick decreased by " + Math.Abs(amount);
+                            }
+                            else if (amount > 0)
+                            {
+                                resultText += "\nFood per tick increased by " + Math.Abs(amount);
                             }
                             else
                             {
-                                resultText += "\nFood Per Tick increased by " + Math.Abs(amount);
+                                resultText += "\nFood per tick unaffected";
                             }
                             break;
                         case ResourceDataTypes._HullDurability:
@@ -340,9 +407,13 @@ public class ChoiceOutcomes
                             {
                                 resultText += "\nYou lost " + Math.Abs(amount) + " hull durability";
                             }
-                            else
+                            else if (amount > 0)
                             {
                                 resultText += "\nYou gained " + Math.Abs(amount) + " hull durability";
+                            }
+                            else
+                            {
+                                resultText += "\nHull durability unaffected";
                             }
                             break;
                         case ResourceDataTypes._Payout:
@@ -352,9 +423,13 @@ public class ChoiceOutcomes
                             {
                                 resultText += "\nYour payout decreased by " + Math.Abs(amount);
                             }
-                            else
+                            else if (amount > 0)
                             {
                                 resultText += "\nYour payout increased by " + Math.Abs(amount);
+                            }
+                            else
+                            {
+                                resultText += "\nPayout unaffected";
                             }
                             break;
                         case ResourceDataTypes._CrewMorale:
@@ -365,9 +440,13 @@ public class ChoiceOutcomes
                             {
                                 resultText += "\nYou lost crew morale";
                             }
-                            else
+                            else if (amount > 0)
                             {
                                 resultText += "\nYou gained crew morale";
+                            }
+                            else
+                            {
+                                resultText += "\nCrew morale unaffected";
                             }
                             break;
                         default:
