@@ -188,6 +188,10 @@ public class EventChoice
             MultipleRandom thisSet = randomEndingOutcomes[randomizedResult];
             foreach(ChoiceOutcomes choiceOutcome in thisSet.outcomes)
             {
+                //provides an int to RandomizeEnding in the ink file, which then changes the selected random ending
+                story.EvaluateFunction("RandomizeEnding", randomizedResult);
+                Debug.Log("Random result: " + randomizedResult);
+                
                 choiceOutcome.narrativeResultsBox = driver.resultsBox;
                 choiceOutcome.hasSubsequentChoices = hasSubsequentChoices;
                 choiceOutcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
@@ -238,9 +242,6 @@ public class EventChoice
 
         }
 
-        //provides an int to RandomizeEnding in the ink file, which then changes the selected random ending
-        story.EvaluateFunction("RandomizeEnding", result);
-        Debug.Log("Random result: " + result);
         randomizedResult = result;
     }
 }
