@@ -254,6 +254,20 @@ public class InkDriverBase : MonoBehaviour
     /// <param name="choice"></param>
     private void OnClickChoiceButton(Choice choice)
     {
+        StartCoroutine(ChoiceButtonFunctionality(choice));
+    }
+
+    private IEnumerator ChoiceButtonFunctionality(Choice choice)
+    {
+        if (nextChoices[choice.index].HasRandomEnding)
+        {
+            yield return new WaitUntil(() => nextChoices[choice.index].hasSetRandomStory);
+        }
+        else
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        
         story.ChooseChoiceIndex(choice.index);
         Refresh();
         showingChoices = false;

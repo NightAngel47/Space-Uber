@@ -125,33 +125,14 @@ public class OutcomeTooltipUI : MonoBehaviour
         if (description == "") //if no description supplied, use secret effect description for first spot
         {
             outcomeDescUI.gameObject.SetActive(false);
-            if (randomOutcomes.Count > 0) //there are actually outcomes listed
-            {
-                outcomeDescUI.GetComponent<TMP_Text>().text = secretEffectDescription;
-            }
-            else //this does not does effect any sort of stats
-            {
-                outcomeDescUI.GetComponent<TMP_Text>().text = defaultOutcomeText;
-            }
+            outcomeDescUI.GetComponent<TMP_Text>().text = randomOutcomes.Count > 0 ? secretEffectDescription : defaultOutcomeText;
         }
         else
         {
             outcomeDescUI.text = description;
 
-            if (randomOutcomes.Count > 0) //there are actually outcomes listed
-            {
-                GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
-                outcomeTextGO.GetComponent<TMP_Text>().text = secretEffectDescription;
-            }
-            else //this does not does effect any sort of stats
-            {
-                GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
-                outcomeTextGO.GetComponent<TMP_Text>().text = defaultOutcomeText;
-            }
+            GameObject outcomeTextGO = Instantiate(outcomeText, outcomeList.transform);
+            outcomeTextGO.GetComponent<TMP_Text>().text = randomOutcomes.Count > 0 ? secretEffectDescription : defaultOutcomeText;
         }
-
-        
-
-
     }
 }
