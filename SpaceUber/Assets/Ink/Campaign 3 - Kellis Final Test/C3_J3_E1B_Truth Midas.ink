@@ -46,11 +46,11 @@ You arrive at the CEO's barren office. Through the window in the back you can se
 "Everyone knows that we're involved now, something we took great pains to cover up. I don't think you realize just how important this is. We <i>did</i> this. We're culpable in this and you just pointed the whole galaxy at us."
 Kuon makes a motion to speak but the CEO cuts him off.
 "We found an alien ship, undamaged and unpowered, a little over a century ago now. Designation: Portunus. We were able to gather little information, but what we found changed everything. High yield weapons, advanced forcefields," he gives you a measured look, "and even Artificial Intelligence schematics.”
-*["You copied Portunus to make me?"]
+*[Ask if Portunus inspired you.]
 ->Question_AI
-*["What do you know about the aliens?"]
+*[Ask what is known about the aliens.]
 ->Question_Aliens
-*["How much tech has Kellis stolen?"]
+*[Ask how much tech Kellis stole.]
 ->Question_Theft
 
 ==Question_AI==
@@ -70,9 +70,9 @@ Kuon makes a motion to speak but the CEO cuts him off.
 "The assets you've been picking up are prototypes and replacement pieces of that aparatus. With them, we'll be able to control Portunus once we find it again. If you let the assets get wiped out by this thing," he points to the red sun, "All this will be for nothing."
 After a pause the CEO collapses into his chair. "Can I trust you to finish the job?"
 
-*[Yes, I will finish the job]
+*[Yes]
 -> Loyalty
-*[No, you're a monster]
+*[No.]
 -> Rebellion
 
 ==Loyalty==
