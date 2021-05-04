@@ -44,6 +44,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
+      propertyPath: pageClips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
       propertyPath: eventName
       value: Fate of Avanshore
       objectReference: {fileID: 0}
@@ -166,7 +171,7 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: nextChoices.Array.data[0].description
-      value: "Accept Portunus\u2019 justice and destroy Kellis\u2019 assets "
+      value: Accept Portunus' justice and destroy Kellis' assets.
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -196,12 +201,12 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: nextChoices.Array.data[1].description
-      value: Keep Kellis' assets safe and anger Portunus
+      value: Keep Kellis' assets safe and anger Portunus.
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].description
-      value: Use Lanri's relay to broadcast a reversing signal
+      value: Use Lanri's relay to broadcast a reversing signal.
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
@@ -246,22 +251,82 @@ PrefabInstance:
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].description
-      value: Allow the Midas corruption to persist
+      value: Allow the Midas corruption to persist.
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[0].description
-      value: 'Ask the CEO to save the solar system '
+      value: Ask the CEO to save the solar system.
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].description
-      value: 'Let Avanshore die and return to your job '
+      value: Let Avanshore die and return to your job.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: eventIntroSFX
+      value: Magnet 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: pageClips.Array.data[1]
+      value: Magnet 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].playSFX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[0].eventSFX
+      value: Airlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].playSFX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: nextChoices.Array.data[1].eventSFX
+      value: Deny 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].playSFX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[0].eventSFX
+      value: Lanri Wonderful-2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].playSFX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[0].eventChoices.Array.data[1].eventSFX
+      value: Lanri No-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].playSFX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656191228972796407, guid: 492e23da0c4f0a84188d48989e322a6d,
+        type: 3}
+      propertyPath: subsequentChoices.Array.data[1].eventChoices.Array.data[1].eventSFX
+      value: Warp Drive Engage
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796408, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}
       propertyPath: m_Name
-      value: FateofAvenshore
+      value: FateofAvenshoreC
       objectReference: {fileID: 0}
     - target: {fileID: 4656191228972796409, guid: 492e23da0c4f0a84188d48989e322a6d,
         type: 3}

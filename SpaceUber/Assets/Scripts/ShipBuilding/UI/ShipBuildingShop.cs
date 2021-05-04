@@ -5,7 +5,10 @@
  */
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,14 +22,51 @@ public class ShipBuildingShop : MonoBehaviour
     [SerializeField] Sprite[] roomLevelIcons;
     ShipBuildingBuyableRoom[] shopSlots = new ShipBuildingBuyableRoom[3];
 
+    [SerializeField] private Transform shopTabsContainer;
+
     private void Awake()
     {
         shopSlots = GetComponentsInChildren<ShipBuildingBuyableRoom>();
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        MenuTabBehaviour[] shopTabs = shopTabsContainer.GetComponentsInChildren<MenuTabBehaviour>();
+
+        foreach(MenuTabBehaviour shopTab in shopTabs)
+        {
+            shopTab.SetInteractableState(false);
+        }
+
         objectsToSpawn = FindObjectOfType<SpawnObject>();
+
+        yield return new WaitUntil(() => SpawnObject.finishedAddingRooms);
+
+        // find matching resource rooms
+        foreach (var roomPrefab in objectsToSpawn.availableRooms)
+        {
+            if (!roomPrefab.TryGetComponent(out Resource resource)) continue;
+            string rName = resource.resourceType.resourceName;
+            foreach (var panelTab in from dataType in GameManager.instance.ResourceDataRef where dataType == resource.resourceType from panelTab in shopTabs where !panelTab.GetInteractableState() select panelTab)
+            {
+                switch (resource.resourceType.Rt)
+                {
+                    case ResourceDataTypes._Food:
+                    case ResourceDataTypes._FoodPerTick:
+                        rName = "Food";
+                        break;
+                    case ResourceDataTypes._Credits:
+                    case ResourceDataTypes._Payout:
+                        rName = "Credits";
+                        break;
+                }
+                
+                if (panelTab.gameObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text == rName)
+                {
+                    panelTab.SetInteractableState(true);
+                }
+            }
+        }
     }
 
     public void ToResourceTab(string resourceDataType)
@@ -86,7 +126,7 @@ public class ShipBuildingShop : MonoBehaviour
             slot.gameObject.SetActive(true);
             slot.levelTemp = 1;
         }
-        
+
         // find matching resource rooms
         int i = 0;
         foreach (var roomPrefab in objectsToSpawn.availableRooms)
@@ -95,8 +135,9 @@ public class ShipBuildingShop : MonoBehaviour
             if (resourceDataTypesArray.All(resourceDataType => resource.resourceType.Rt != resourceDataType)) continue;
             shopSlots[i].roomPrefab = roomPrefab;
             shopSlots[i].UpdateRoomInfo();
-            if(++i > shopSlots.Length) break;
+            if (++i > shopSlots.Length) break;
         }
+
 
         // special exception case for medbay
         if (resourceDataTypesArray[0] == ResourceDataTypes._Crew)
@@ -118,8 +159,19 @@ public class ShipBuildingShop : MonoBehaviour
         }
     }
 
+    public bool GetShopOpen()
+    {
+        return shopToggle.GetIsOpen();
+    }
+
     public Sprite[] GetRoomLevelIcons()
     {
         return roomLevelIcons;
+    }
+
+    private void OnDestroy()
+    {
+        // Reset finishedAddingRooms to false so that when entering shipbuilding again it re-adds rooms to the available list.
+        SpawnObject.finishedAddingRooms = false;
     }
 }

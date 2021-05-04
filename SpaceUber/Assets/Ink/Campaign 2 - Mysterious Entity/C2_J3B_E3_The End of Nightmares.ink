@@ -1,6 +1,6 @@
-You are approaching the end of your journey, with just a day left until you reach your destination. However, things have been getting more and more troubling. Kuon has had to fend off multiple attempts to damage your cargo. He has been valiant in his attempts, but he is starting to get worn down. Even for him, going over thirty-six hours without sleep left him drained.
-Sensing his fatigue, he mentions that something might have to be done about "that artifact". Knowing exactly which one he is referring to, the Keystone, makes you ask him why. "I don't know. I swear I hear whispers when I'm near it. Plus, none of the attempts have focused on it.
-"I know I spoke against examining it earlier, but I think you need to do something before something really bad happens. I think I can hold out, but the groups making the attempts have only been getting bigger and bigger" Kuon may be right, but you've come this far in obeying your bosses' orders. Would it be smart to disobey them now, so close to the finish?
+You are approaching the end of your journey, with just a day left until you reach your destination. However, things have been getting more and more troubling. Kuon has had to fend off multiple attempts to damage your cargo. He has been valiant in his attempts, but he is starting to get worn down. Even he can't go over thirty-six hours of no sleep without being drained.
+Sensing his fatigue, he mentions that something might have to be done about "that artifact". Knowing exactly which one he is referring to, the Keystone, makes you ask him why. "I don't know. I swear I hear whispers when I'm near it. Plus, none of the attacks have focused on it.
+"I know I spoke against examining it earlier, but I think you need to do something before something really bad happens. I think I can hold out, but the groups making the attempts have only been getting bigger and bigger." Kuon may be right, but you've come this far in obeying your bosses' orders. Would it be smart to disobey them now, so close to the finish?
 + [Push On] -> Push
 + [Do Something About the Keystone] -> Something
 
@@ -14,7 +14,7 @@ Although it would be hard for Kuon to do, it might be best to let him deal with 
 
 === Keep ===
 Despite his willingness to uphold his guard, you can see how fatigued Kuon is becoming. The various crew members might hurt themselves, but any injuries shouldn't be too serious, and you'll keep your eye on them just in case.
-You reach your destination. Your crew is scratched and bruised, and a few members will have to have medical care, but there are no life-threatening injuries. Morale is going to be low, but you made it.
+You reach your destination. Your crew is scratched and bruised, and a few members will require medical care, but there are no life-threatening injuries. Morale is going to be low, but you made it.
 As you deliver your cargo, Kellis is pleased, despite how banged up some of the containers are. You get the full payment that was promised to you.
 -> END
 
@@ -37,8 +37,8 @@ You could also drop the Keystone off somewhere for safe keeping. There are likel
 + [Hide Keystone] -> Hide
 
 === Blast ===
-You give Kuon the go ahead to fire upon the glowing symbol on the side of the obelisk. The blast hits and a loud, inhuman scream fills the air. As a chunk of the obelisk crumbles onto the floor, the whispers stop, and the hold falls silent. Kuon sinks to the ground and passes out from exhaustion.
-Observing your sleeping crew members, you note that they are sleeping soundly, instead of appearing tossing and turning in their beds. As they wake up they appear well rested. You order a few of them to go to the cargo hold and do as you say without asking too many questions.
+You give Kuon the go ahead to fire upon the glowing symbol on the side of the obelisk. The blast hits, and a loud, inhuman scream fills the air. As a chunk of the obelisk crumbles onto the floor, the whispers stop, and the hold falls silent. Kuon sinks to the ground and passes out from exhaustion.
+Observing your sleeping crew members, you note that they are sleeping soundly, instead of tossing and turning in their beds. When they wake up, they appear well-rested. You order a few of them to go to the cargo hold and do as you say without asking too many questions.
 You have several take Kuon back to his cabin, where your security chief gets a well-deserved rest. The rest place the Keystone back into its container after disposing of the pieces that broke off of it.
 Delivering the artifact, you let your crew, now in good spirits, take a much-deserved break. Unsurprisingly, as it comes time for your payment, your employers seem annoyed.
 When questioned on the damage seemingly done to the Keystone, you play dumb, telling them that any damage done to the artifacts must have occurred before your trip, as you made sure they could not be tampered with. Although suspicious, they agree to pay you almost the full amount agreed upon. You decide its best not to contest the relatively small amount of credits withheld from you.

@@ -41,12 +41,12 @@ You recall the voice which echoed across your circuits and the 'beast' still con
 *[Tell the CEO About the Voice]
 ->CEO_Worry
 *[Keep the Voice Hidden]
-You mention nothing, Lexa comments that she hopes its coincidence, and you are dismissed.
+You mention nothing, Lexa comments sharply that she hopes it's coincidence, and you are dismissed.
 ->Scene_3
 
 ==CEO_Worry==
-You inform your boss that while the creatures and your crew fought, you felt something interfacing directly with your mind. The CEO had already dismissed you both, and was halfway into another brief, scheduling another meeting, but you briefly spot something human: Fear. 
-"I'll make sure you get some of my men added to your security detail," he says. "You can expect resistance on your next asset recovery. And if that thing speaks to you again, don't listen to it. <i>You are dismissed.</i>" You leave.
+You inform your boss that while the creatures and your crew fought, you felt something interfacing directly with your mind. The CEO had already dismissed you both, and was halfway into scheduling another meeting, but you briefly spot something human: Fear. 
+"I'll make sure you get some of my men added to your security detail." he says, "You can expect resistance on your next asset recovery. And if that thing speaks to you again, don't listen to it. <i>You are dismissed.</i>" You leave.
 ->Scene_3
 
 ==Scene_3==

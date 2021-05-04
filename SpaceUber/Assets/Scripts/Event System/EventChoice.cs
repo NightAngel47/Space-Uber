@@ -52,7 +52,9 @@ public class EventChoice
 
     [SerializeField, ShowIf(EConditionOperator.Or,"hasSecretOutcomes","hasRandomEnding"), Tooltip("Text that is read if outcome is secret or random. Will be printed beneath the regular description")] 
     public string secretOutComeText = "";
-    [SerializeField] private bool hasRandomEnding;    
+    [SerializeField] private bool hasRandomEnding;
+    public bool HasRandomEnding => hasRandomEnding;
+    public bool hasSetRandomStory { get; private set; }
     [SerializeField, ShowIf("hasRandomEnding")] private List<MultipleRandom> randomEndingOutcomes = new List<MultipleRandom>();
     [SerializeField, HideIf("hasRandomEnding")] public List<ChoiceOutcomes> outcomes = new List<ChoiceOutcomes>();
     private int randomizedResult;
@@ -141,7 +143,6 @@ public class EventChoice
         if (hasRandomEnding)
         {
             tooltip.SetOutcomeData(description, secretOutComeText, randomEndingOutcomes);
-
         }
         else
         {
@@ -149,10 +150,7 @@ public class EventChoice
                 tooltip.SetOutcomeData(description, outcomes);
             else
                 tooltip.SetOutcomeData(description, secretOutComeText, outcomes);
-
         }
-        
-
     }
 
     /// <summary>
@@ -185,6 +183,11 @@ public class EventChoice
 
         if (hasRandomEnding)
         {
+            //provides an int to RandomizeEnding in the ink file, which then changes the selected random ending
+            story.EvaluateFunction("RandomizeEnding", randomizedResult);
+            hasSetRandomStory = true;
+            Debug.Log(choiceName + "'s Random result out: " + randomizedResult);
+            
             MultipleRandom thisSet = randomEndingOutcomes[randomizedResult];
             foreach(ChoiceOutcomes choiceOutcome in thisSet.outcomes)
             {
@@ -192,7 +195,6 @@ public class EventChoice
                 choiceOutcome.hasSubsequentChoices = hasSubsequentChoices;
                 choiceOutcome.StatChange(ship, driver.campMan, hasSubsequentChoices);
             }
-            
         }
         else
         {
@@ -238,9 +240,7 @@ public class EventChoice
 
         }
 
-        //provides an int to RandomizeEnding in the ink file, which then changes the selected random ending
-        story.EvaluateFunction("RandomizeEnding", result);
-        Debug.Log("Random result: " + result);
         randomizedResult = result;
+        Debug.Log(choiceName + "'s Random result set: " + randomizedResult);
     }
 }

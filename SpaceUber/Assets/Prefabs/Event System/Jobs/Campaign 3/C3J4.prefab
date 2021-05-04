@@ -20,7 +20,7 @@ PrefabInstance:
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
       propertyPath: storyEvents.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
@@ -113,7 +113,7 @@ PrefabInstance:
         type: 3}
       propertyPath: storyEvents.Array.data[2]
       value: 
-      objectReference: {fileID: 7302037468917888254, guid: a69d6e364fb11f64e9efccb9034c5c6f,
+      objectReference: {fileID: 7302037468917888254, guid: be482bb0a4c394c40b9d7e491f26e5a4,
         type: 3}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
@@ -124,7 +124,7 @@ PrefabInstance:
         type: 3}
       propertyPath: jobListImage
       value: 
-      objectReference: {fileID: 4636568620015559153, guid: 0bb9e2c2ad583aa4b9f8268163655c8f,
+      objectReference: {fileID: 21300000, guid: c2eef5b79e3a8be44b6c947c586989da,
         type: 3}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
@@ -270,20 +270,20 @@ PrefabInstance:
         type: 3}
       propertyPath: storyEvents.Array.data[6]
       value: 
-      objectReference: {fileID: 5809476870410433921, guid: 230bb1e079d8c584a88db901a28ec1e7,
+      objectReference: {fileID: 5809476870410433921, guid: ab2a33c1b1dc4ce46b1809c9701053a6,
         type: 3}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
       propertyPath: storyEvents.Array.data[7]
       value: 
-      objectReference: {fileID: 5809476870410433921, guid: d60bb42054476d34dbf3d6a5e14bed66,
+      objectReference: {fileID: 5809476870410433921, guid: 230bb1e079d8c584a88db901a28ec1e7,
         type: 3}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
       propertyPath: description
-      value: "With the Avanshore incident concluded, you have completed Kellis\u2019
-        test. Now all that remains is their verdict. Will you be moved forward to
-        mass production, or be decommissioned? Regardless, this is your last job."
+      value: With the Avanshore incident concluded, you have completed Kellis' test.
+        Now all that remains is their verdict. Will you be moved forward to mass
+        production, or be decommissioned? Regardless, this is your last job.
       objectReference: {fileID: 0}
     - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}
@@ -406,6 +406,12 @@ PrefabInstance:
       propertyPath: randomEvents.Array.data[0]
       value: 
       objectReference: {fileID: 3474018982202345341, guid: d59b5baef3b56f64194ab7fff834b00d,
+        type: 3}
+    - target: {fileID: 6620000524830208260, guid: cd4bba6532eaaf140b6d2191571aa64c,
+        type: 3}
+      propertyPath: storyEvents.Array.data[8]
+      value: 
+      objectReference: {fileID: 5809476870410433921, guid: d60bb42054476d34dbf3d6a5e14bed66,
         type: 3}
     - target: {fileID: 6620000524830208261, guid: cd4bba6532eaaf140b6d2191571aa64c,
         type: 3}

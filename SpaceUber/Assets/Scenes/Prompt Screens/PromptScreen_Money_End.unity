@@ -164,21 +164,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f3ee8ef3e83e724ca8c18009b5652cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleName: Ending
+  titleName: Performance Review
   backgroundImage: {fileID: 21300000, guid: d73fa04e45becc14f9b9491ec2a4167e, type: 3}
   statThreshold:
     stat: 0
-    threshold: 1000
-  meetsThresholdText: "To the AI Captain of This Ship,\n\tI would like to commend
-    you on your hard work and dedication to Kellis Corporation.  I hope the incompetent
-    crew wasn't too much of a hassle for you.  As a reward for your loyalty, a portion
-    of the profits you secured for the company will be invested in your ship.  Think
-    of it as a little thank you gift for your efforts.  \n\t\t\t\t\tSincerely,\n\t\t\t\t\tThe
-    Kellis CEO"
-  belowThresholdText: "Dear AI Manufacturing Company,\n\tAs you know, we at Kellis
-    Corporation recently purchased one of your ship captain AI systems.  We will
-    not be making that mistake again.  The AI you sent us was clearly defective. 
-    It is not worth the scrap you built it with.  We are already in the process of
-    shutting down the system, and will be looking for a replacement elsewhere.  \n\t\t\t\t\tSincerely,\n\t\t\t\t\tThe
-    Kellis CEO"
+    threshold: 4000
+  meetsThresholdText: "Hello again Captain, \r\n\tIf you're hearing this prerecorded
+    message, you have exceeded your profit margins! We would like to commend you
+    on your hard work and dedication to the Kellis Corporation. We hope the crew
+    wasn't too much of a hassle for you. As a reward for your loyalty, you have been
+    named as Employee of the Month in your sector. Think of it as a small token of
+    our gratitude. Congratulations!\r"
+  belowThresholdText: "Captain,\r\n\tUnfortunately, If you're hearing this prerecorded
+    message, you have failed in turning a profit for Kellis. Your utility will be
+    evaluated by our CEO to determine whether or not you\u2019re still worth the
+    investment of precious credits. Unfortunately, you may be shut-down and replaced.
+    Still, we appreciate your time in the Kellis family!\r"
   stateToTransition: 5

@@ -408,7 +408,7 @@ public class EventSystem : MonoBehaviour
 		if (eventInstance.TryGetComponent(out InkDriverBase inkDriver))
 		{
 			inkDriver.AssignStatusFromEventSystem(eventCanvas.titleBox, eventCanvas.textBox,eventCanvas.choiceResultsBox,
-				eventCanvas.backgroundImage, eventCanvas.buttonGroup, ship, campMan);
+				eventCanvas.backgroundImage, eventCanvas.textMask, eventCanvas.buttonGroup, ship, campMan);
 		}
 
         eventActive = true;
@@ -702,4 +702,26 @@ public class EventSystem : MonoBehaviour
 
 		return true;
 	}
+
+	public int GetMaxEvents()
+    {
+		return maxEvents;
+    }
+	public float GetTimeBeforeRoll()
+    {
+		return timeBeforeEventRoll;
+    }
+	public float GetEventChanceFrequency()
+    {
+		return eventChanceFreq;
+    }
+
+	public float GetChanceIncrease()
+    {
+		return chanceIncreasePerFreq;
+    }
+	public float GetStartingChance()
+    {
+		return startingEventChance;
+    }
 }
