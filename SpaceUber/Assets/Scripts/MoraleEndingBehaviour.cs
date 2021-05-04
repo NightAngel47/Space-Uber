@@ -11,14 +11,14 @@ public class MoraleEndingBehaviour : MoneyEndingBehaviour
         
         // display character signatures if meets threshold
         if (!meetsThreshold) return;
-        eventCanvas.textBox.text += "\t\t\t\t\t\t";
+        eventCanvas.textBox.text += "\n\t\t\t\t\t\t";
         CharacterStats characterStats = FindObjectOfType<CharacterStats>();
         foreach (CharacterSignatureBehaviour characterSignature in characterSignatures)
         {
             // display that character's signature if meets their approval threshold
             if (characterStats.GetCharacterApproval(characterSignature.character) >= characterSignature.threshold)
             {
-                eventCanvas.textBox.text += characterSignature.character + "    ";
+                eventCanvas.textBox.text +=$" <i>{characterSignature.character}</i>    ";
             }
         }
     }
