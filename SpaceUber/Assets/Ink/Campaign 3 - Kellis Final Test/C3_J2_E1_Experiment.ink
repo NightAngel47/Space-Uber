@@ -1,7 +1,7 @@
 Roughly halfway through your flight, Lanri contacts you, showing signs of great restraint from her usual energy explosion.
 "Could I give my reading of happened back there, boss?" She begins speaking regardless of your answer, "That golden material on Apotheo looked like it was broken off from something larger. And proximity to it transfigured the guards. Pieces likely fell to Echo-28 days ago, causing the force we encountered there. 
-"It acted like radiation, but with a purpose, not affecting the surrounding plantlife, just the humans who got too close. It's like a sentient Midas curse, turning what it wants to gold..." The unease in Lanri’s eyes breaks through.
-"If I conduct some experiments on the Midas beast we captured I should be able to develop a cure to reverse the effects. However, the constant solar flares have also attracted my attention, and I fear they may be related. As the most advanced entity on the ship, which do you think I should research: The Midas Creatures, or Avanshore’s sol?"
+"It acted like radiation, but with a purpose, not affecting the surrounding plantlife, just the humans who got too close. It's like a sentient Midas curse, turning what it wants to gold..." The unease in Lanri's eyes breaks through.
+"If I conduct some experiments on the Midas beast we captured I should be able to develop a cure to reverse the effects. However, the constant solar flares have also attracted my attention, and I fear they may be related. As the most advanced entity on the ship, which do you think I should research: The Midas Creatures, or Avanshore's sol?"
 
 + [Experiment on Midas Creatures]
 -> ExperimentOnMidasCreatures

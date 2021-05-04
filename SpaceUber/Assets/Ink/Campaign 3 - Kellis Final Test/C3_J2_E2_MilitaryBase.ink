@@ -1,7 +1,7 @@
 You arrive on the volcanic jungle planet Ballast to receive your next asset. Kellis has brokered a deal with the Avanshore military for an ancient battery, and you are performing the pickup. As you approach, an uncanny voice reaches into your thoughts. "Please, do not ensure/deliver the doom of this galaxy. Already, we must war over/within the heads of these people to reach their lords. Procede no further and this will end when the sun dies."
 You ask what it is and feel an answer. "Your master, Kellis, named us Portunus. It is the only name we know."
 The voice of Portunus winks out, you land at the mountain base. Like clockwork, the Avanshore soldiers begin to push the cargo across the landing ramp. You overhear them question what Kellis is going to do with the battery, one mentioning recent Kellis blockades around Echo-28. The captain quells this talk with a simple, "Orders are orders."
-You hear distant gunfire and the captain immediately radios to get a read of the situation. He is reduced to a red piñata within seconds of several Midas creatures flooding up onto the landing pad. The crack of gunshots confirm the base is surrounded. 
+You hear distant gunfire and the captain immediately radios to get a read of the situation. He is reduced to a red pinata within seconds of several Midas creatures flooding up onto the landing pad. The crack of gunshots confirm the base is surrounded. 
 You can help the military base fight off the Midas beasts, or try to escape with the asset.
 
 + [Help the Military Base]
